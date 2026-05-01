@@ -1,9 +1,9 @@
 import { 
+  Globe, 
+  Smartphone, 
+  Monitor, 
   Server, 
   Database, 
-  Shield, 
-  Cpu, 
-  Network, 
   Cloud,
   LucideIcon,
 } from 'lucide-react';
@@ -14,19 +14,19 @@ export interface ServiceItem {
 }
 
 export const serviceIcons: Record<string, LucideIcon> = {
-  infrastructure: Server,
-  data: Database,
-  security: Shield,
-  hpc: Cpu,
-  network: Network,
-  cloud: Cloud,
+  web: Globe,
+  mobile: Smartphone,
+  desktop: Monitor,
+  backend: Server,
+  database: Database,
+  devops: Cloud,
 };
 
 export const serviceKeys: ServiceItem[] = [
-  { icon: Server, key: 'infrastructure' },
-  { icon: Database, key: 'data' },
-  { icon: Shield, key: 'security' },
-  { icon: Cpu, key: 'hpc' },
-  { icon: Network, key: 'network' },
-  { icon: Cloud, key: 'cloud' },
+  { icon: Globe, key: 'web' },
+  { icon: Smartphone, key: 'mobile' },
+  { icon: Monitor, key: 'desktop' },
+  { icon: Server, key: 'backend' },
+  { icon: Database, key: 'database' },
+  { icon: Cloud, key: 'devops' },
 ];

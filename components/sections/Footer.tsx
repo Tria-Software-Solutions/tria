@@ -1,24 +1,26 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useTranslations } from 'next-intl';
 import { GridPattern } from '@/components/icons/AbstractShapes';
+import { Logo } from '@/components/ui/Logo';
 import { ArrowUpRight } from 'lucide-react';
 import { theme } from '@/theme.config';
+import messages from '@/messages/es.json';
 
 export function Footer() {
-  const t = useTranslations('footer');
+  const t = messages.footer;
   const currentYear = new Date().getFullYear();
   
   const footerLinks = {
     services: [
-      { label: t('links.data'), href: '#services' },
-      { label: t('links.security'), href: '#services' },
-      { label: t('links.hpc'), href: '#services' },
+      { label: t.links.web, href: '#services' },
+      { label: t.links.mobile, href: '#services' },
+      { label: t.links.desktop, href: '#services' },
     ],
     company: [
-      { label: t('links.process'), href: '#process' },
-      { label: t('links.contact'), href: '#contact' },
+      { label: t.links.billing, href: '#billing' },
+      { label: t.links.process, href: '#process' },
+      { label: t.links.contact, href: '#contact' },
     ],
     social: [
       { label: 'LinkedIn', href: '#' },
@@ -40,17 +42,17 @@ export function Footer() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 pb-16 border-b border-neutral-800">
           {/* Brand */}
           <div className="lg:col-span-5">
-            <motion.h3
-              className="text-3xl font-semibold tracking-[-0.03em] mb-4 flex items-baseline text-white"
+            <motion.div
+              className="flex items-center gap-2 mb-4"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: theme.animation.duration.slow }}
               viewport={{ once: true }}
             >
-              tria<span className="text-[#0047AB] ml-[2px]">.</span>
-            </motion.h3>
+              <Logo size="md" variant="dark" />
+            </motion.div>
             <p className="text-sm text-neutral-500 leading-[1.7] max-w-xs">
-              {t('description')}
+              {t.description}
             </p>
           </div>
 
@@ -59,7 +61,7 @@ export function Footer() {
             {/* Services */}
             <div>
               <h4 className="text-xs tracking-[0.2em] uppercase text-neutral-500 mb-4">
-                {t('links.services')}
+                {t.links.services}
               </h4>
               <ul className="space-y-3">
                 {footerLinks.services.map((link) => (
@@ -79,7 +81,7 @@ export function Footer() {
             {/* Company */}
             <div>
               <h4 className="text-xs tracking-[0.2em] uppercase text-neutral-500 mb-4">
-                {t('links.company')}
+                {t.links.company}
               </h4>
               <ul className="space-y-3">
                 {footerLinks.company.map((link) => (
@@ -99,7 +101,7 @@ export function Footer() {
             {/* Social */}
             <div>
               <h4 className="text-xs tracking-[0.2em] uppercase text-neutral-500 mb-4">
-                {t('links.social')}
+                {t.links.social}
               </h4>
               <ul className="space-y-3">
                 {footerLinks.social.map((link) => (
@@ -121,14 +123,14 @@ export function Footer() {
         {/* Bottom section */}
         <div className="pt-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <p className="text-xs text-neutral-500 tracking-wide">
-            {t('copyright').replace('{year}', currentYear.toString())}
+            {t.copyright.replace('{year}', String(currentYear))}
           </p>
           <div className="flex gap-6">
             <a href="#" className="text-xs text-neutral-600 hover:text-neutral-400 transition-colors">
-              {t('links.privacy')}
+              {t.links.privacy}
             </a>
             <a href="#" className="text-xs text-neutral-600 hover:text-neutral-400 transition-colors">
-              {t('links.terms')}
+              {t.links.terms}
             </a>
           </div>
         </div>

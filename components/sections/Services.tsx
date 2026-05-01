@@ -1,102 +1,88 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
-import { RevealOnScroll } from '@/components/ui/RevealOnScroll';
-import { ArrowUpRight } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import { serviceKeys } from '@/constants/services';
+import { motion } from 'framer-motion';
+import { SectionTransition } from '@/components/ui/SectionTransition';
+import { 
+  Monitor, 
+  Smartphone, 
+  Cloud, 
+  Database,
+  Layers,
+  Bug,
+  Wrench,
+  ArrowUpRight
+} from 'lucide-react';
+import messages from '@/messages/es.json';
+
+const serviceIcons = [
+  Monitor,
+  Smartphone,
+  Database,
+  Cloud,
+  Layers,
+  Bug,
+  Wrench,
+  ArrowUpRight
+];
 
 export function Services() {
-  const t = useTranslations('services');
-  
-  const services = serviceKeys.map((service) => {
-    const tags = t.raw(`items.${service.key}.tags`);
-    return {
-      icon: service.icon,
-      title: t(`items.${service.key}.title`),
-      description: t(`items.${service.key}.description`),
-      capabilities: Array.isArray(tags) ? tags : [],
-    };
-  });
+  const t = messages.services;
 
   return (
-    <section id="services" className="min-h-screen flex items-center py-[clamp(6rem,15vh,10rem)] bg-white dark:bg-neutral-950">
+    <section id="services" className="py-[clamp(6rem,15vh,10rem)] bg-white dark:bg-neutral-950">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
+        
         {/* Section Header */}
-        <RevealOnScroll className="mb-24">
-          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10">
-            <div>
-              <p className="text-xs tracking-[0.25em] uppercase text-neutral-400 dark:text-neutral-500 mb-5">
-                {t('eyebrow')}
-              </p>
-              <h2
-                className="text-black dark:text-white tracking-[-0.02em] max-w-md leading-[1.1] text-[clamp(2.5rem,4vw,3.5rem)]"
-              >
-                {t('title')}
-              </h2>
-            </div>
-            <p className="text-neutral-500 dark:text-neutral-400 max-w-sm leading-[1.7] text-[0.9375rem]">
-              {t('subtitle')}
-            </p>
-          </div>
-        </RevealOnScroll>
+        <SectionTransition className="mb-16 text-center lg:text-left" delay={0.1}>
+          <h2 className="text-black dark:text-white tracking-[-0.02em] leading-[1.1] text-[clamp(2.2rem,4vw,3.2rem)] mb-4">
+            {t.title}
+          </h2>
+          <p className="text-neutral-600 dark:text-neutral-400 max-w-2xl text-sm leading-[1.6]">
+            {t.subtitle}
+          </p>
+        </SectionTransition>
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          {services.map((service, index) => {
-            const Icon = service.icon;
-            const isLastInRow = (index + 1) % 3 === 0;
-            const isLastTwoRows = index >= 3;
-            
+        {/* Services Grid - Clean Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-neutral-200 dark:bg-neutral-800">
+          {t.list.map((service, index) => {
+            const Icon = serviceIcons[index];
             return (
-              <RevealOnScroll
+              <SectionTransition
                 key={service.title}
-                delay={index * 0.08}
-                className={cn(
-                  'group relative p-8 lg:p-10',
-                  !isLastInRow && 'lg:border-r',
-                  !isLastTwoRows && 'border-b',
-                  'border-neutral-200 dark:border-neutral-800'
-                )}
+                delay={0.15 + index * 0.08}
+                className="h-full"
               >
-                {/* Icon */}
-                <div className="mb-6 text-neutral-400 dark:text-neutral-500 group-hover:text-[var(--accent)] transition-colors duration-300">
-                  <Icon strokeWidth={1.5} size={28} />
-                </div>
+                <motion.div
+                  whileHover={{ backgroundColor: "rgba(250, 250, 250, 1)" }}
+                  className="group relative h-full bg-white dark:bg-neutral-950 p-8 lg:p-10 transition-colors flex flex-col"
+                >
+                  {/* Icon */}
+                  <div className="mb-6">
+                    <Icon 
+                      strokeWidth={1.5}
+                      className="w-8 h-8 text-neutral-400 group-hover:text-black dark:group-hover:text-white transition-colors duration-300" 
+                    />
+                  </div>
 
-                {/* Title */}
-                <h3 className="text-base font-medium text-black dark:text-white mb-3 tracking-[-0.01em] flex items-center gap-2">
-                  {service.title}
-                  <ArrowUpRight
-                    size={14}
-                    className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"
-                    strokeWidth={1.5}
-                  />
-                </h3>
+                  {/* Content */}
+                  <div className="flex-1">
+                    <h3 className="text-lg font-medium text-black dark:text-white mb-2 flex items-start gap-2 whitespace-pre-line">
+                      {service.title}
+                      <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex-shrink-0 mt-1" />
+                    </h3>
+                    <p className="text-sm text-neutral-500 dark:text-neutral-500 leading-relaxed whitespace-pre-line">
+                      {service.description}
+                    </p>
+                  </div>
 
-                {/* Description */}
-                <p className="text-sm text-neutral-500 dark:text-neutral-400 leading-[1.6] mb-6">
-                  {service.description}
-                </p>
-
-                {/* Capabilities */}
-                <div className="flex flex-wrap gap-2">
-                  {service.capabilities.map((cap: string, capIndex: number) => (
-                    <span
-                      key={capIndex}
-                      className="text-[11px] tracking-[0.1em] uppercase px-2.5 py-1 bg-neutral-100 dark:bg-neutral-900 text-neutral-500 dark:text-neutral-400"
-                    >
-                      {cap}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Hover accent line */}
-                <div className="absolute bottom-0 left-0 w-0 h-[1px] bg-[var(--accent)] group-hover:w-full transition-all duration-500" />
-              </RevealOnScroll>
+                  {/* Hover line */}
+                  <div className="absolute bottom-0 left-0 w-0 h-px bg-black dark:bg-white group-hover:w-full transition-all duration-500" />
+                </motion.div>
+              </SectionTransition>
             );
           })}
         </div>
+
       </div>
     </section>
   );

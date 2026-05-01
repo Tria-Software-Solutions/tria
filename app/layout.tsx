@@ -16,11 +16,20 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "tria | Premium Computational Infrastructure",
-  description: "Enterprise-grade infrastructure architecture for organizations that demand excellence. We design, build, and scale high-performance computational systems.",
+  title: "tria | Software Engineering Excellence",
+  description: "Software engineering across all platforms. Web applications, mobile apps, desktop software, and backend systems built with cutting-edge technologies.",
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/favicon.ico',
+  },
+  manifest: '/manifest.json',
 };
 
-export default function RootLayout({
+export const viewport = {
+  themeColor: '#0047AB',
+};
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

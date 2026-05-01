@@ -2,95 +2,113 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { useTranslations } from 'next-intl';
+import { SectionTransition } from '@/components/ui/SectionTransition';
 import { ElegantButton } from '@/components/ui/ElegantButton';
-import { RevealOnScroll } from '@/components/ui/RevealOnScroll';
-import { SectionDivider } from '@/components/ui/SectionDivider';
-import { DataFlowLines } from '@/components/icons/AbstractShapes';
-import { ArrowRight } from 'lucide-react';
+import { Check } from 'lucide-react';
+import messages from '@/messages/es.json';
 
 export function Contact() {
-  const t = useTranslations('contact');
+  const t = messages.contact;
   const [formState, setFormState] = useState({
     name: '',
     email: '',
     company: '',
     projectType: '',
-    budget: '',
     message: '',
   });
   const [focused, setFocused] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormState({ ...formState, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
+    setIsSubmitting(true);
+    
+    // Simulate form submission
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    
+    setIsSubmitting(false);
+    setIsSubmitted(true);
     console.log('Form submitted:', formState);
   };
 
   const inputClasses = (fieldName: string) => `
-    w-full bg-transparent border-b py-3 text-sm text-black dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-600
+    w-full bg-transparent border-b-2 py-4 text-sm text-black dark:text-white 
+    placeholder:text-neutral-400 dark:placeholder:text-neutral-600
     outline-none transition-all duration-300
     ${focused === fieldName || formState[fieldName as keyof typeof formState]
       ? 'border-[#0047AB]'
-      : 'border-neutral-300 dark:border-neutral-700 hover:border-neutral-400 dark:hover:border-neutral-600'}
+      : 'border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700'}
   `;
 
-  return (
-    <section id="contact" className="min-h-screen flex flex-col justify-center bg-white dark:bg-neutral-950">
-      <SectionDivider />
+  const projectTypes = [
+    { value: 'web', label: t.form.projectTypes.web },
+    { value: 'mobile', label: t.form.projectTypes.mobile },
+    { value: 'desktop', label: t.form.projectTypes.desktop },
+    { value: 'backend', label: t.form.projectTypes.backend },
+    { value: 'fullstack', label: t.form.projectTypes.fullstack },
+    { value: 'other', label: t.form.projectTypes.other },
+  ];
 
-      <div className="relative flex-1 flex flex-col justify-center py-[clamp(6rem,15vh,10rem)] max-w-7xl mx-auto px-6 lg:px-12 w-full">
-        {/* Background accent */}
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[30vw] text-neutral-50 dark:text-neutral-900 opacity-50">
-          <DataFlowLines className="w-full h-auto" />
+  if (isSubmitted) {
+    return (
+      <section id="contact" className="py-[clamp(6rem,15vh,10rem)] bg-white dark:bg-neutral-950">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <SectionTransition className="text-center max-w-lg mx-auto">
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ type: "spring", duration: 0.5 }}
+              className="w-16 h-16 border border-[#0047AB] flex items-center justify-center mx-auto mb-8"
+            >
+              <Check className="w-8 h-8 text-[#0047AB]" strokeWidth={1.5} />
+            </motion.div>
+            <h2 className="text-2xl font-light text-black dark:text-white mb-4">{t.successTitle || 'Message Sent!'}</h2>
+            <p className="text-neutral-600 dark:text-neutral-400 mb-8">{t.successMessage || 'Thank you for reaching out. We will get back to you within 24 hours.'}</p>
+            <ElegantButton
+              onClick={() => {
+                setIsSubmitted(false);
+                setFormState({ name: '', email: '', company: '', projectType: '', budget: '', message: '' });
+              }}
+              variant="outline"
+              size="sm"
+            >
+              {t.sendAnother || 'Send another message'}
+            </ElegantButton>
+          </SectionTransition>
         </div>
+      </section>
+    );
+  }
 
-        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
-          {/* Left: Info */}
-          <RevealOnScroll>
-            <div className="lg:sticky lg:top-32">
-              <p className="text-xs tracking-[0.25em] uppercase text-neutral-400 dark:text-neutral-500 mb-5">
-                {t('eyebrow')}
-              </p>
-              <h2
-                className="text-black dark:text-white tracking-[-0.02em] mb-6 leading-[1.1] text-[clamp(2.5rem,4vw,3.5rem)]"
-              >
-                {t('title')}
-              </h2>
-              <p className="text-neutral-500 dark:text-neutral-400 leading-[1.7] mb-12 max-w-sm text-[0.9375rem]">
-                {t('subtitle')}
-              </p>
+  return (
+    <section id="contact" className="py-[clamp(6rem,15vh,10rem)] bg-neutral-50 dark:bg-neutral-900/40">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+        {/* Section Header */}
+        <SectionTransition className="mb-16 text-center lg:text-left" delay={0.1}>
+          <h2 className="text-black dark:text-white tracking-[-0.02em] leading-[1.1] text-[clamp(2.2rem,4vw,3.2rem)] mb-4">
+            {t.title}
+          </h2>
+          <p className="text-neutral-600 dark:text-neutral-400 max-w-2xl text-sm leading-[1.6]">
+            {t.subtitle}
+          </p>
+        </SectionTransition>
 
-              {/* Direct contact */}
-              <div className="space-y-5">
-                <div>
-                  <p className="text-xs text-neutral-400 dark:text-neutral-500 uppercase tracking-[0.15em] mb-1.5">{t('email')}</p>
-                  <a href="mailto:hello@tria.io" className="text-sm text-black dark:text-white hover:text-[#0047AB] transition-colors">
-                    {t('emailValue')}
-                  </a>
-                </div>
-                <div>
-                  <p className="text-xs text-neutral-400 dark:text-neutral-500 uppercase tracking-[0.15em] mb-1.5">{t('location')}</p>
-                  <p className="text-sm text-black dark:text-white">{t('locationValue')}</p>
-                </div>
-              </div>
-            </div>
-          </RevealOnScroll>
-
-          {/* Right: Form */}
-          <RevealOnScroll delay={0.2}>
-            <form onSubmit={handleSubmit} className="space-y-8">
-              {/* Two column fields */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+        {/* Form Card */}
+        <SectionTransition delay={0.2}>
+          <form onSubmit={handleSubmit} className="bg-white dark:bg-neutral-950 p-8 lg:p-12">
+            <div className="space-y-8">
+              {/* Name & Email */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
                   <input
                     type="text"
                     name="name"
-                    placeholder={t('form.name')}
+                    placeholder={t.form.name}
                     value={formState.name}
                     onChange={handleChange}
                     onFocus={() => setFocused('name')}
@@ -103,7 +121,7 @@ export function Contact() {
                   <input
                     type="email"
                     name="email"
-                    placeholder={t('form.email')}
+                    placeholder={t.form.email}
                     value={formState.email}
                     onChange={handleChange}
                     onFocus={() => setFocused('email')}
@@ -114,54 +132,56 @@ export function Contact() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                <div>
-                  <input
-                    type="text"
-                    name="company"
-                    placeholder={t('form.company')}
-                    value={formState.company}
-                    onChange={handleChange}
-                    onFocus={() => setFocused('company')}
-                    onBlur={() => setFocused(null)}
-                    className={inputClasses('company')}
-                  />
-                </div>
-                <div>
-                  <select
-                    name="projectType"
-                    aria-label="Select project type"
-                    title={t('form.projectType')}
-                    value={formState.projectType}
-                    onChange={handleChange}
-                    onFocus={() => setFocused('projectType')}
-                    onBlur={() => setFocused(null)}
-                    className={`${inputClasses('projectType')} cursor-pointer appearance-none`}
-                    required
-                  >
-                    <option value="" disabled>{t('form.projectType')}</option>
-                    <option value="infrastructure">{t('form.projectTypes.infrastructure')}</option>
-                    <option value="migration">{t('form.projectTypes.migration')}</option>
-                    <option value="optimization">{t('form.projectTypes.optimization')}</option>
-                    <option value="security">{t('form.projectTypes.security')}</option>
-                    <option value="other">{t('form.projectTypes.other')}</option>
-                  </select>
+              {/* Company */}
+              <div>
+                <input
+                  type="text"
+                  name="company"
+                  placeholder={t.form.company}
+                  value={formState.company}
+                  onChange={handleChange}
+                  onFocus={() => setFocused('company')}
+                  onBlur={() => setFocused(null)}
+                  className={inputClasses('company')}
+                />
+              </div>
+
+              {/* Project Type */}
+              <div>
+                <p className="text-xs text-neutral-400 dark:text-neutral-500 uppercase tracking-wider mb-3">{t.form.projectType}</p>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                  {projectTypes.map((type) => (
+                    <motion.button
+                      key={type.value}
+                      type="button"
+                      onClick={() => setFormState({ ...formState, projectType: type.value })}
+                      className={`px-4 py-3 text-xs border-2 text-left transition-all duration-200 ${
+                        formState.projectType === type.value
+                          ? 'border-[#0047AB] bg-[#0047AB]/5 text-[#0047AB] font-medium'
+                          : 'border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400 hover:border-neutral-300 dark:hover:border-neutral-700'
+                      }`}
+                      whileHover={{ scale: 1.01 }}
+                      whileTap={{ scale: 0.99 }}
+                    >
+                      {type.label}
+                    </motion.button>
+                  ))}
                 </div>
               </div>
 
-              {/* Budget selection */}
+              {/* Budget */}
               <div>
-                <p className="text-xs text-neutral-400 dark:text-neutral-500 uppercase tracking-wider mb-4">{t('form.budget')}</p>
+                <p className="text-xs text-neutral-400 dark:text-neutral-500 uppercase tracking-wider mb-3">{t.form.budget}</p>
                 <div className="flex flex-wrap gap-3">
-                  {(t.raw('form.budgetOptions') as string[]).map((range: string, rangeIndex: number) => (
+                  {t.form.budgetOptions.map((range: string) => (
                     <motion.button
-                      key={rangeIndex}
+                      key={range}
                       type="button"
                       onClick={() => setFormState({ ...formState, budget: range })}
-                      className={`px-4 py-2 text-xs border transition-all duration-200 ${
+                      className={`px-4 py-2 text-xs border-2 transition-all duration-200 ${
                         formState.budget === range
-                          ? 'border-[#0047AB] bg-[rgba(0,71,171,0.05)] dark:bg-[rgba(0,71,171,0.15)] text-[#0047AB]'
-                          : 'border-neutral-300 dark:border-neutral-700 text-neutral-600 dark:text-neutral-400 hover:border-neutral-400 dark:hover:border-neutral-600'
+                          ? 'border-[#0047AB] bg-[#0047AB] text-white font-medium'
+                          : 'border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400 hover:border-neutral-300 dark:hover:border-neutral-700'
                       }`}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
@@ -176,30 +196,35 @@ export function Contact() {
               <div>
                 <textarea
                   name="message"
-                  placeholder={t('form.message')}
+                  placeholder={t.form.message}
                   value={formState.message}
                   onChange={handleChange}
                   onFocus={() => setFocused('message')}
                   onBlur={() => setFocused(null)}
-                  className={`${inputClasses('message')} resize-none min-h-[120px]`}
-                  rows={4}
+                  className={`${inputClasses('message')} resize-none min-h-[140px]`}
+                  rows={5}
+                  required
                 />
               </div>
+            </div>
 
-              {/* Submit */}
-              <div className="pt-4">
-                <ElegantButton variant="primary" size="lg" className="w-full sm:w-auto">
-                  <span>{t('form.submit')}</span>
-                  <ArrowRight size={16} strokeWidth={1.5} />
-                </ElegantButton>
-              </div>
+            {/* Submit */}
+            <div className="pt-8 flex items-center justify-between">
+              <ElegantButton 
+                type="submit" 
+                variant="primary" 
+                size="md"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Sending...' : t.form.submit}
+              </ElegantButton>
 
               <p className="text-xs text-neutral-400 dark:text-neutral-500 leading-relaxed">
-                {t('form.privacy')}
+                {t.form.privacy}
               </p>
-            </form>
-          </RevealOnScroll>
-        </div>
+            </div>
+          </form>
+        </SectionTransition>
       </div>
     </section>
   );

@@ -1,121 +1,177 @@
 {
   "nav": {
     "services": "Services",
+    "billing": "Pricing",
     "process": "Process",
     "contact": "Contact",
-    "cta": "Get Started"
+    "cta": "Book a Call"
   },
   "hero": {
-    "eyebrow": "Computational Excellence",
-    "headline": "Premium Infrastructure Architecture",
-    "subtitle": "We design, build, and scale high-performance computational systems for enterprises that demand precision, reliability, and excellence.",
-    "ctaPrimary": "Start a Project",
-    "ctaSecondary": "Explore Services"
+    "headline": "Tria powers your business with custom software",
+    "subtitle": "We are a Costa Rica-based software services company. We design, build, and scale digital products with a strong focus on outcomes, speed, and engineering quality.",
+    "ctaPrimary": "Request Proposal",
+    "ctaSecondary": "View Capabilities"
   },
   "services": {
-    "eyebrow": "Capabilities",
-    "title": "Engineering Services",
-    "subtitle": "End-to-end computational solutions built with precision, engineered for scale, and designed for longevity.",
-    "items": {
-      "infrastructure": {
-        "title": "Infrastructure Design",
-        "description": "Scalable, fault-tolerant systems architecture for mission-critical operations.",
-        "tags": ["Cloud Migration", "Auto-scaling", "Load Balancing"]
+    "title": "Development Services",
+    "subtitle": "Full-stack software engineering for every platform.",
+    "list": [
+      {
+        "title": "Frontend\nDevelopment",
+        "description": "React, Next.js,\nTypeScript, Tailwind"
       },
-      "data": {
-        "title": "Data Architecture",
-        "description": "Optimized data pipelines and storage solutions for high-velocity environments.",
-        "tags": ["Data Lakes", "ETL Pipelines", "Real-time Analytics"]
+      {
+        "title": "Mobile\nDevelopment",
+        "description": "iOS, Android,\nReact Native"
       },
-      "security": {
-        "title": "Security Engineering",
-        "description": "Zero-trust architectures and compliance frameworks for regulated industries.",
-        "tags": ["Zero Trust", "Compliance", "Threat Modeling"]
+      {
+        "title": "Backend\nDevelopment",
+        "description": "Node.js, Python,\nPostgreSQL, APIs"
       },
-      "hpc": {
-        "title": "High-Performance Computing",
-        "description": "Custom computational clusters for intensive processing workloads.",
-        "tags": ["GPU Clusters", "Parallel Computing", "Quantum Ready"]
+      {
+        "title": "DevOps &\nCloud",
+        "description": "AWS, Docker,\nKubernetes, CI/CD"
       },
-      "network": {
-        "title": "Network Architecture",
-        "description": "Low-latency, high-throughput network topologies for global operations.",
-        "tags": ["SD-WAN", "Edge Computing", "Private Backbones"]
+      {
+        "title": "UI/UX\nDesign",
+        "description": "Responsive, Animations,\nAccessibility"
       },
-      "cloud": {
-        "title": "Cloud Optimization",
-        "description": "Cost-effective cloud strategies without compromising performance.",
-        "tags": ["FinOps", "Multi-cloud", "Containerization"]
+      {
+        "title": "Testing &\nQA",
+        "description": "Unit, E2E Tests,\nPerformance, Security"
+      },
+      {
+        "title": "Maintenance &\nSupport",
+        "description": "Bug Fixes, Updates,\nMonitoring, Optimization"
+      },
+      {
+        "title": "Technical\nConsulting",
+        "description": "Architecture, Review,\nBest Practices"
       }
-    }
+    ]
   },
   "process": {
     "eyebrow": "Methodology",
     "title": "Our Process",
-    "subtitle": "A disciplined approach to complex infrastructure challenges, refined through years of enterprise engagements.",
+    "subtitle": "A disciplined agile approach to software development, refined through years of delivering production-grade applications.",
     "steps": {
       "1": {
         "label": "Step 01",
         "title": "Discovery",
-        "description": "Deep technical audit of existing infrastructure, bottlenecks, and growth constraints.",
+        "description": "Technical requirements gathering, architecture planning, and technology stack selection.",
         "duration": "1-2 weeks"
       },
       "2": {
         "label": "Step 02",
-        "title": "Architecture",
-        "description": "Design scalable systems with precise specifications and cost-optimization models.",
+        "title": "Design & Architecture",
+        "description": "System design, database modeling, API specifications, and UI/UX prototyping.",
         "duration": "2-4 weeks"
       },
       "3": {
         "label": "Step 03",
-        "title": "Implementation",
-        "description": "Engineering execution with continuous integration and zero-downtime deployment.",
-        "duration": "4-12 weeks"
+        "title": "Development",
+        "description": "Agile implementation with continuous integration, code reviews, and automated testing.",
+        "duration": "4-16 weeks"
       },
       "4": {
         "label": "Step 04",
-        "title": "Optimization",
-        "description": "Performance tuning, monitoring setup, and operational handoff with documentation.",
+        "title": "Deploy & Optimize",
+        "description": "Production deployment, performance optimization, monitoring setup, and documentation.",
         "duration": "2-4 weeks"
       }
     }
   },
+  "billing": {
+    "title": "Pricing with realistic rates for Costa Rica",
+    "subtitle": "Reference plans for product development and support. Includes technical leadership, QA, and weekly execution follow-up.",
+    "cta": "Quote This Plan",
+    "popular": "Most Popular",
+    "perMonth": "/month",
+    "note": "All plans include weekly execution follow-up, technical leadership, and QA. Custom quotes available for specific requirements.",
+    "plans": [
+      {
+        "name": "Starter",
+        "price": "₡1.25M",
+        "priceUsd": "≈ $2,450 USD",
+        "description": "Best for small businesses that need to evolve their product with an agile team.",
+        "features": [
+          "Up to 80 development hours monthly",
+          "1 full-stack developer + part-time QA",
+          "Corrective support and ongoing improvements",
+          "Monthly technical roadmap"
+        ],
+        "highlight": false
+      },
+      {
+        "name": "Growth",
+        "price": "₡2.85M",
+        "priceUsd": "≈ $5,600 USD",
+        "description": "For growing companies that need consistent delivery and faster feature velocity.",
+        "features": [
+          "Up to 180 development hours monthly",
+          "Team of 2 devs + QA + tech lead",
+          "New features and integrations",
+          "Monitoring, metrics, and optimization"
+        ],
+        "highlight": true
+      },
+      {
+        "name": "Scale",
+        "price": "₡4.9M",
+        "priceUsd": "≈ $9,600 USD",
+        "description": "For critical products that must scale with robust architecture and operations.",
+        "features": [
+          "Up to 320 development hours monthly",
+          "Dedicated multidisciplinary squad",
+          "Architecture, DevOps, and security included",
+          "Priority SLA-backed support"
+        ],
+        "highlight": false
+      }
+    ]
+  },
   "contact": {
     "eyebrow": "Start a Project",
-    "title": "Let's Build Something Exceptional",
-    "subtitle": "Tell us about your infrastructure challenges. We respond to every inquiry within 24 hours with a preliminary assessment.",
+    "title": "Let's talk about your project",
+    "subtitle": "Within 24 hours, we share a technical recommendation, timeline estimate, and investment range.",
     "email": "Email",
     "emailValue": "hello@tria.io",
     "location": "Location",
-    "locationValue": "San Francisco, CA",
+    "locationValue": "San Jose, Costa Rica",
+    "responseTime": "Response within 24h",
+    "successTitle": "Message Sent!",
+    "successMessage": "Thank you for reaching out. We will get back to you within 24 hours.",
+    "sendAnother": "Send another message",
     "form": {
       "name": "Your Name",
       "email": "Email Address",
       "company": "Company",
       "projectType": "Project Type",
       "projectTypes": {
-        "infrastructure": "Infrastructure Design",
-        "migration": "Cloud Migration",
-        "optimization": "Performance Optimization",
-        "security": "Security Architecture",
+        "web": "Web Application",
+        "mobile": "Mobile App",
+        "desktop": "Desktop Software",
+        "backend": "Backend/API",
+        "fullstack": "Full-Stack Solution",
         "other": "Other"
       },
       "budget": "Project Budget Range",
-      "budgetOptions": ["$50k - $100k", "$100k - $250k", "$250k - $500k", "$500k+"],
-      "message": "Tell us about your project...",
+      "budgetOptions": ["₡750k - ₡1.5M", "₡1.5M - ₡3M", "₡3M - ₡6M", "₡6M+"],
+      "message": "Tell us about your project requirements, technologies, and timeline...",
       "submit": "Send Inquiry",
       "privacy": "By submitting, you agree to our privacy policy. We never share your information."
     }
   },
   "footer": {
-    "description": "Premium computational infrastructure for enterprises that demand excellence.",
-    "copyright": "© {year} tria",
+    "description": "Tria is your software engineering partner to design, build, and scale digital products in Costa Rica and LATAM.",
+    "copyright": "© {year} tria. All rights reserved.",
     "links": {
       "services": "Services",
-      "data": "Data Architecture",
-      "security": "Security",
-      "hpc": "HPC",
+      "web": "Web Dev",
+      "mobile": "Mobile",
+      "desktop": "Desktop",
       "company": "Company",
+      "billing": "Pricing",
       "process": "Process",
       "contact": "Contact",
       "social": "Connect",

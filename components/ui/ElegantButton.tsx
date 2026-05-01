@@ -1,9 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
-import { theme } from '@/theme.config';
 
 interface ElegantButtonProps {
   children: ReactNode;
@@ -12,6 +10,8 @@ interface ElegantButtonProps {
   className?: string;
   onClick?: () => void;
   href?: string;
+  type?: 'button' | 'submit';
+  disabled?: boolean;
 }
 
 export function ElegantButton({
@@ -21,9 +21,12 @@ export function ElegantButton({
   className = '',
   onClick,
   href,
+  type = 'button',
+  disabled = false,
 }: ElegantButtonProps) {
   const baseStyles = cn(
     'relative inline-flex items-center justify-center overflow-hidden font-medium tracking-wide transition-all',
+    disabled && 'opacity-50 cursor-not-allowed',
     size === 'sm' && 'px-4 py-2 text-xs',
     size === 'md' && 'px-6 py-3 text-sm',
     size === 'lg' && 'px-8 py-4 text-base',
@@ -44,47 +47,23 @@ export function ElegantButton({
 
   const content = (
     <>
-      {/* Text layer with slide effect */}
       <span className="relative z-10 flex items-center gap-2">
         {children}
       </span>
-      
-      {/* Hover indicator line */}
-      <motion.span
-        className={cn(
-          'absolute bottom-0 left-0 h-[1px] w-full origin-left',
-          variant === 'primary' ? 'bg-white/30 dark:bg-black/20' : 'bg-black/20 dark:bg-white/20'
-        )}
-        initial={{ scaleX: 0 }}
-        whileHover={{ scaleX: 1 }}
-        transition={{ duration: theme.animation.duration.normal, ease: theme.animation.easing.smooth }}
-      />
     </>
   );
 
   if (href) {
     return (
-      <motion.a
-        href={href}
-        className={baseStyles}
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-        transition={{ duration: theme.animation.duration.fast, ease: theme.animation.easing.smooth }}
-      >
+      <a href={href} className={baseStyles}>
         {content}
-      </motion.a>
+      </a>
     );
   }
 
   return (
-    <motion.button
-      onClick={onClick}
-      className={baseStyles}
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-      transition={{ duration: theme.animation.duration.fast, ease: theme.animation.easing.smooth }}
-    >
+    <button onClick={onClick} className={baseStyles} type={type} disabled={disabled}>
       {content}
-    </motion.button>
+    </button>
   );
 }

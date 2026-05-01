@@ -1,44 +1,50 @@
 'use client';
 
-import { useLocale } from 'next-intl';
-import { useRouter, usePathname } from 'next/navigation';
-import { ChangeEvent, useTransition } from 'react';
-import { locales, localeLabels } from '@/i18n/config';
+import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import { localeLabels } from '@/i18n/config';
 
 export function LanguageSwitcher() {
-  const [isPending, startTransition] = useTransition();
-  const locale = useLocale();
-  const router = useRouter();
-  const pathname = usePathname();
+  const [mounted, setMounted] = useState(false);
+  const [currentLocale, setCurrentLocale] = useState('en');
 
-  const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    const nextLocale = event.target.value;
-    startTransition(() => {
-      router.replace(`/${nextLocale}${pathname.replace(`/${locale}`, '')}`);
-    });
+  useEffect(() => {
+    setMounted(true);
+    // Get locale from cookie or default to 'en'
+    const cookieMatch = document.cookie.match(/NEXT_LOCALE=(en|es)/);
+    setCurrentLocale(cookieMatch ? cookieMatch[1] : 'en');
+  }, []);
+
+  const toggleLanguage = () => {
+    const nextLocale = currentLocale === 'en' ? 'es' : 'en';
+    document.cookie = `NEXT_LOCALE=${nextLocale}; path=/; max-age=31536000`;
+    window.location.reload();
   };
 
+  if (!mounted) {
+    return (
+      <div className="w-9 h-9 rounded-full border border-neutral-200 dark:border-neutral-700" />
+    );
+  }
+
   return (
-    <div className="relative">
-      <select
-        className="appearance-none bg-transparent text-sm tracking-wider uppercase text-neutral-700 dark:text-neutral-300 border border-neutral-300 dark:border-neutral-600 rounded px-3 py-1.5 pr-8 cursor-pointer hover:border-neutral-500 dark:hover:border-neutral-400 hover:text-black dark:hover:text-white transition-colors font-medium"
-        defaultValue={locale}
-        onChange={handleChange}
-        disabled={isPending}
-        aria-label="Language selector"
-        title="Select language"
+    <motion.button
+      onClick={toggleLanguage}
+      className="w-9 h-9 rounded-full border border-neutral-200 dark:border-neutral-700 flex items-center justify-center text-xs font-semibold tracking-wider text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors"
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      aria-label={`Current language: ${localeLabels[currentLocale as 'en' | 'es']}. Click to switch.`}
+      title={`Current: ${localeLabels[currentLocale as 'en' | 'es']}`}
+    >
+      <motion.span
+        key={currentLocale}
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: 10 }}
+        transition={{ duration: 0.2 }}
       >
-        {locales.map((loc) => (
-          <option key={loc} value={loc}>
-            {localeLabels[loc]}
-          </option>
-        ))}
-      </select>
-      <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-        <svg className="w-4 h-4 text-neutral-600 dark:text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-        </svg>
-      </div>
-    </div>
+        {localeLabels[currentLocale as 'en' | 'es']}
+      </motion.span>
+    </motion.button>
   );
 }
