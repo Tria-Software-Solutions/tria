@@ -4,10 +4,10 @@ import { motion } from 'framer-motion';
 import { SectionTransition } from '@/components/ui/SectionTransition';
 import { ElegantButton } from '@/components/ui/ElegantButton';
 import { Check } from 'lucide-react';
-import messages from '@/messages/es.json';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export function Billing() {
-  const t = messages.billing;
+  const { t } = useLanguage();
 
   return (
     <section id="billing" className="py-[clamp(6rem,14vh,9rem)] bg-neutral-50 dark:bg-neutral-900/40">
@@ -15,33 +15,33 @@ export function Billing() {
         {/* Header */}
         <SectionTransition className="mb-16 text-center lg:text-left" delay={0.1}>
           <h2 className="text-black dark:text-white tracking-[-0.02em] leading-[1.1] text-[clamp(2.2rem,4vw,3.2rem)] mb-4">
-            {t.title}
+            {t.billing.title}
           </h2>
           <p className="text-neutral-600 dark:text-neutral-400 max-w-2xl text-sm leading-[1.6]">
-            {t.subtitle}
+            {t.billing.subtitle}
           </p>
         </SectionTransition>
 
         {/* Plans Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-neutral-200 dark:bg-neutral-800">
-          {t.plans.map((plan, index) => (
+          {t.billing.plans.map((plan, index) => (
             <SectionTransition
               key={plan.name}
               delay={0.15 + index * 0.1}
               className="h-full"
             >
               <motion.div
-                whileHover={{ backgroundColor: plan.highlight ? "rgba(255,255,255,1)" : "rgba(250,250,250,1)" }}
                 className={`group relative h-full p-8 lg:p-10 transition-colors ${
                   plan.highlight
-                    ? 'bg-white dark:bg-neutral-950'
-                    : 'bg-white dark:bg-neutral-950'
+                    ? 'bg-white dark:bg-neutral-950 hover:bg-neutral-50 dark:hover:bg-neutral-900'
+                    : 'bg-white dark:bg-neutral-950 hover:bg-neutral-50 dark:hover:bg-neutral-900'
                 }`}
+                whileHover={{ y: -2 }}
               >
                 {/* Highlight Badge */}
                 {plan.highlight && (
                   <div className="absolute top-4 right-4 px-3 py-1 bg-[#0047AB] text-white text-xs font-medium">
-                    {t.popular}
+                    {t.billing.popular}
                   </div>
                 )}
 
@@ -52,7 +52,7 @@ export function Billing() {
                     <span className="text-4xl font-light tracking-tight text-black dark:text-white">
                       {plan.price}
                     </span>
-                    <span className="text-sm text-neutral-500 dark:text-neutral-400">{t.perMonth}</span>
+                    <span className="text-sm text-neutral-500 dark:text-neutral-400">{t.billing.perMonth}</span>
                   </div>
                   <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-2">
                     {plan.priceUsd}
@@ -85,7 +85,7 @@ export function Billing() {
                     href="#contact"
                     className="w-full"
                   >
-                    {t.cta}
+                    {t.billing.cta}
                   </ElegantButton>
                 </div>
 
@@ -99,7 +99,7 @@ export function Billing() {
         {/* Note */}
         <SectionTransition delay={0.5}>
           <p className="text-center text-xs text-neutral-500 dark:text-neutral-400 mt-8">
-            {t.note}
+            {t.billing.note}
           </p>
         </SectionTransition>
       </div>

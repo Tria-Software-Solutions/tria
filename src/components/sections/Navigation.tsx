@@ -3,16 +3,16 @@
 import { Logo } from '@/components/ui/Logo';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
 import { LanguageSwitcher } from '@/components/ui/LanguageSwitcher';
-import messages from '@/messages/es.json';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export function Navigation() {
-  const t = messages.nav;
+  const { t } = useLanguage();
 
   const navLinks = [
-    { label: t.services, href: '#services' },
-    { label: t.billing, href: '#billing' },
-    { label: t.process, href: '#process' },
-    { label: t.contact, href: '#contact' },
+    { label: t.nav.services, href: '#services' },
+    { label: t.nav.billing, href: '#billing' },
+    { label: t.nav.process, href: '#process' },
+    { label: t.nav.contact, href: '#contact' },
   ];
 
   return (
@@ -37,12 +37,6 @@ export function Navigation() {
               <ThemeToggle />
               <LanguageSwitcher />
             </div>
-            <a
-              href="#contact"
-              className="text-sm font-medium text-black dark:text-white hover:text-[#0047AB] transition-colors"
-            >
-              {t.cta}
-            </a>
           </div>
         </nav>
       </div>

@@ -4,23 +4,23 @@ import { motion } from 'framer-motion';
 import { GridPattern } from '@/components/icons/AbstractShapes';
 import { Logo } from '@/components/ui/Logo';
 import { ArrowUpRight } from 'lucide-react';
-import { theme } from '@/theme.config';
-import messages from '@/messages/es.json';
+import { theme } from '../../../theme.config';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export function Footer() {
-  const t = messages.footer;
+  const { t } = useLanguage();
   const currentYear = new Date().getFullYear();
   
   const footerLinks = {
     services: [
-      { label: t.links.web, href: '#services' },
-      { label: t.links.mobile, href: '#services' },
-      { label: t.links.desktop, href: '#services' },
+      { label: t.footer.links.web, href: '#services' },
+      { label: t.footer.links.mobile, href: '#services' },
+      { label: t.footer.links.desktop, href: '#services' },
     ],
     company: [
-      { label: t.links.billing, href: '#billing' },
-      { label: t.links.process, href: '#process' },
-      { label: t.links.contact, href: '#contact' },
+      { label: t.footer.links.billing, href: '#billing' },
+      { label: t.footer.links.process, href: '#process' },
+      { label: t.footer.links.contact, href: '#contact' },
     ],
     social: [
       { label: 'LinkedIn', href: '#' },
@@ -52,7 +52,7 @@ export function Footer() {
               <Logo size="md" variant="dark" />
             </motion.div>
             <p className="text-sm text-neutral-500 leading-[1.7] max-w-xs">
-              {t.description}
+              {t.footer.description}
             </p>
           </div>
 
@@ -61,7 +61,7 @@ export function Footer() {
             {/* Services */}
             <div>
               <h4 className="text-xs tracking-[0.2em] uppercase text-neutral-500 mb-4">
-                {t.links.services}
+                {t.footer.links.services}
               </h4>
               <ul className="space-y-3">
                 {footerLinks.services.map((link) => (
@@ -81,7 +81,7 @@ export function Footer() {
             {/* Company */}
             <div>
               <h4 className="text-xs tracking-[0.2em] uppercase text-neutral-500 mb-4">
-                {t.links.company}
+                {t.footer.links.company}
               </h4>
               <ul className="space-y-3">
                 {footerLinks.company.map((link) => (
@@ -101,7 +101,7 @@ export function Footer() {
             {/* Social */}
             <div>
               <h4 className="text-xs tracking-[0.2em] uppercase text-neutral-500 mb-4">
-                {t.links.social}
+                {t.footer.links.social}
               </h4>
               <ul className="space-y-3">
                 {footerLinks.social.map((link) => (
@@ -123,14 +123,14 @@ export function Footer() {
         {/* Bottom section */}
         <div className="pt-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <p className="text-xs text-neutral-500 tracking-wide">
-            {t.copyright.replace('{year}', String(currentYear))}
+            {t.footer.copyright.replace('{year}', String(currentYear))}
           </p>
           <div className="flex gap-6">
             <a href="#" className="text-xs text-neutral-600 hover:text-neutral-400 transition-colors">
-              {t.links.privacy}
+              {t.footer.links.privacy}
             </a>
             <a href="#" className="text-xs text-neutral-600 hover:text-neutral-400 transition-colors">
-              {t.links.terms}
+              {t.footer.links.terms}
             </a>
           </div>
         </div>

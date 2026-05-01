@@ -2,7 +2,7 @@
 
 import { motion, useInView } from 'framer-motion';
 import { useRef, ReactNode } from 'react';
-import { theme } from '@/theme.config';
+import { theme } from '../../../theme.config';
 
 interface RevealOnScrollProps {
   children: ReactNode;

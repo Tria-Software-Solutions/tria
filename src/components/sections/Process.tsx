@@ -5,12 +5,12 @@ import { motion } from 'framer-motion';
 import { SectionTransition } from '@/components/ui/SectionTransition';
 import { SectionDivider } from '@/components/ui/SectionDivider';
 import { Search, Lightbulb, Code2, Rocket } from 'lucide-react';
-import messages from '@/messages/es.json';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const stepIcons = [Search, Lightbulb, Code2, Rocket];
 
 export function Process() {
-  const t = messages.process;
+  const { t } = useLanguage();
   const [activeStep, setActiveStep] = useState<number | null>(null);
 
   const steps = [
@@ -28,10 +28,10 @@ export function Process() {
         {/* Section Header */}
         <SectionTransition className="mb-16 text-center lg:text-left" delay={0.1}>
           <h2 className="text-black dark:text-white tracking-[-0.02em] leading-[1.1] text-[clamp(2.2rem,4vw,3.2rem)] mb-4">
-            {t.title}
+            {t.process.title}
           </h2>
           <p className="text-neutral-600 dark:text-neutral-400 max-w-2xl text-sm leading-[1.6]">
-            {t.subtitle}
+            {t.process.subtitle}
           </p>
         </SectionTransition>
 
@@ -52,7 +52,7 @@ export function Process() {
           {/* Steps */}
           <div className="space-y-8 lg:space-y-12">
             {steps.map((step, index) => {
-              const stepData = t.steps[step.key as keyof typeof t.steps];
+              const stepData = t.process.steps[step.key as keyof typeof t.process.steps];
               const Icon = step.icon;
               const isEven = index % 2 === 0;
               const isActive = activeStep === index;

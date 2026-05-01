@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, Variants } from 'framer-motion';
 import { useRef, ReactNode } from 'react';
 
 interface SectionTransitionProps {
@@ -102,7 +102,7 @@ export function StaggeredChildren({
     }
   };
 
-  const childVariants = {
+  const childVariants: Variants = {
     hidden: getInitialVariants(),
     visible: {
       opacity: 1,
@@ -110,7 +110,7 @@ export function StaggeredChildren({
       x: 0,
       transition: {
         duration: 0.6,
-        ease: "easeOut"
+        ease: "easeInOut"
       }
     }
   };

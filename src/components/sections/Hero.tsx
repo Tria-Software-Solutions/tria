@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import { ElegantButton } from '@/components/ui/ElegantButton';
-import messages from '@/messages/es.json';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export function Hero() {
-  const t = messages.hero;
+  const { t } = useLanguage();
   const [displayedHeadline, setDisplayedHeadline] = useState('');
   const [displayedSubtitle, setDisplayedSubtitle] = useState('');
   const [isHeadlineComplete, setIsHeadlineComplete] = useState(false);
@@ -16,8 +16,8 @@ export function Hero() {
     let subtitleIndex = 0;
 
     const typeHeadline = () => {
-      if (headlineIndex < t.headline.length) {
-        setDisplayedHeadline(t.headline.slice(0, headlineIndex + 1));
+      if (headlineIndex < t.hero.headline.length) {
+        setDisplayedHeadline(t.hero.headline.slice(0, headlineIndex + 1));
         headlineIndex++;
         setTimeout(typeHeadline, 50);
       } else {
@@ -27,8 +27,8 @@ export function Hero() {
     };
 
     const typeSubtitle = () => {
-      if (subtitleIndex < t.subtitle.length) {
-        setDisplayedSubtitle(t.subtitle.slice(0, subtitleIndex + 1));
+      if (subtitleIndex < t.hero.subtitle.length) {
+        setDisplayedSubtitle(t.hero.subtitle.slice(0, subtitleIndex + 1));
         subtitleIndex++;
         setTimeout(typeSubtitle, 30);
       } else {
@@ -37,7 +37,7 @@ export function Hero() {
     };
 
     typeHeadline();
-  }, [t.headline, t.subtitle]);
+  }, [t.hero.headline, t.hero.subtitle]);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-white dark:bg-neutral-950 px-4 sm:px-6 lg:px-8">
@@ -70,7 +70,7 @@ export function Hero() {
             href="#contact"
             className="w-full sm:w-auto"
           >
-            {t.ctaPrimary}
+            {t.hero.ctaPrimary}
           </ElegantButton>
 
           <ElegantButton 
@@ -79,7 +79,7 @@ export function Hero() {
             href="#services"
             className="w-full sm:w-auto"
           >
-            {t.ctaSecondary}
+            {t.hero.ctaSecondary}
           </ElegantButton>
         </div>
 

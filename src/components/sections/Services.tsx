@@ -12,7 +12,7 @@ import {
   Wrench,
   ArrowUpRight
 } from 'lucide-react';
-import messages from '@/messages/es.json';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const serviceIcons = [
   Monitor,
@@ -26,7 +26,7 @@ const serviceIcons = [
 ];
 
 export function Services() {
-  const t = messages.services;
+  const { t } = useLanguage();
 
   return (
     <section id="services" className="py-[clamp(6rem,15vh,10rem)] bg-white dark:bg-neutral-950">
@@ -35,16 +35,16 @@ export function Services() {
         {/* Section Header */}
         <SectionTransition className="mb-16 text-center lg:text-left" delay={0.1}>
           <h2 className="text-black dark:text-white tracking-[-0.02em] leading-[1.1] text-[clamp(2.2rem,4vw,3.2rem)] mb-4">
-            {t.title}
+            {t.services.title}
           </h2>
           <p className="text-neutral-600 dark:text-neutral-400 max-w-2xl text-sm leading-[1.6]">
-            {t.subtitle}
+            {t.services.subtitle}
           </p>
         </SectionTransition>
 
         {/* Services Grid - Clean Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-neutral-200 dark:bg-neutral-800">
-          {t.list.map((service, index) => {
+          {t.services.list.map((service, index) => {
             const Icon = serviceIcons[index];
             return (
               <SectionTransition
@@ -53,8 +53,8 @@ export function Services() {
                 className="h-full"
               >
                 <motion.div
-                  whileHover={{ backgroundColor: "rgba(250, 250, 250, 1)" }}
-                  className="group relative h-full bg-white dark:bg-neutral-950 p-8 lg:p-10 transition-colors flex flex-col"
+                  className="group relative h-full bg-white dark:bg-neutral-950 hover:bg-neutral-50 dark:hover:bg-neutral-900 p-8 lg:p-10 transition-colors flex flex-col"
+                  whileHover={{ y: -2 }}
                 >
                   {/* Icon */}
                   <div className="mb-6">

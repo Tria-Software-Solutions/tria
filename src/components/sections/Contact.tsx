@@ -5,15 +5,16 @@ import { motion } from 'framer-motion';
 import { SectionTransition } from '@/components/ui/SectionTransition';
 import { ElegantButton } from '@/components/ui/ElegantButton';
 import { Check } from 'lucide-react';
-import messages from '@/messages/es.json';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export function Contact() {
-  const t = messages.contact;
+  const { t } = useLanguage();
   const [formState, setFormState] = useState({
     name: '',
     email: '',
     company: '',
     projectType: '',
+    budget: '',
     message: '',
   });
   const [focused, setFocused] = useState<string | null>(null);
@@ -46,12 +47,12 @@ export function Contact() {
   `;
 
   const projectTypes = [
-    { value: 'web', label: t.form.projectTypes.web },
-    { value: 'mobile', label: t.form.projectTypes.mobile },
-    { value: 'desktop', label: t.form.projectTypes.desktop },
-    { value: 'backend', label: t.form.projectTypes.backend },
-    { value: 'fullstack', label: t.form.projectTypes.fullstack },
-    { value: 'other', label: t.form.projectTypes.other },
+    { value: 'web', label: t.contact.form.projectTypes.web },
+    { value: 'mobile', label: t.contact.form.projectTypes.mobile },
+    { value: 'desktop', label: t.contact.form.projectTypes.desktop },
+    { value: 'backend', label: t.contact.form.projectTypes.backend },
+    { value: 'fullstack', label: t.contact.form.projectTypes.fullstack },
+    { value: 'other', label: t.contact.form.projectTypes.other },
   ];
 
   if (isSubmitted) {
@@ -67,8 +68,8 @@ export function Contact() {
             >
               <Check className="w-8 h-8 text-[#0047AB]" strokeWidth={1.5} />
             </motion.div>
-            <h2 className="text-2xl font-light text-black dark:text-white mb-4">{t.successTitle || 'Message Sent!'}</h2>
-            <p className="text-neutral-600 dark:text-neutral-400 mb-8">{t.successMessage || 'Thank you for reaching out. We will get back to you within 24 hours.'}</p>
+            <h2 className="text-2xl font-light text-black dark:text-white mb-4">{t.contact.successTitle || 'Message Sent!'}</h2>
+            <p className="text-neutral-600 dark:text-neutral-400 mb-8">{t.contact.successMessage || 'Thank you for reaching out. We will get back to you within 24 hours.'}</p>
             <ElegantButton
               onClick={() => {
                 setIsSubmitted(false);
@@ -77,7 +78,7 @@ export function Contact() {
               variant="outline"
               size="sm"
             >
-              {t.sendAnother || 'Send another message'}
+              {t.contact.sendAnother || 'Send another message'}
             </ElegantButton>
           </SectionTransition>
         </div>
@@ -91,10 +92,10 @@ export function Contact() {
         {/* Section Header */}
         <SectionTransition className="mb-16 text-center lg:text-left" delay={0.1}>
           <h2 className="text-black dark:text-white tracking-[-0.02em] leading-[1.1] text-[clamp(2.2rem,4vw,3.2rem)] mb-4">
-            {t.title}
+            {t.contact.title}
           </h2>
           <p className="text-neutral-600 dark:text-neutral-400 max-w-2xl text-sm leading-[1.6]">
-            {t.subtitle}
+            {t.contact.subtitle}
           </p>
         </SectionTransition>
 
@@ -108,7 +109,7 @@ export function Contact() {
                   <input
                     type="text"
                     name="name"
-                    placeholder={t.form.name}
+                    placeholder={t.contact.form.name}
                     value={formState.name}
                     onChange={handleChange}
                     onFocus={() => setFocused('name')}
@@ -121,7 +122,7 @@ export function Contact() {
                   <input
                     type="email"
                     name="email"
-                    placeholder={t.form.email}
+                    placeholder={t.contact.form.email}
                     value={formState.email}
                     onChange={handleChange}
                     onFocus={() => setFocused('email')}
@@ -137,7 +138,7 @@ export function Contact() {
                 <input
                   type="text"
                   name="company"
-                  placeholder={t.form.company}
+                  placeholder={t.contact.form.company}
                   value={formState.company}
                   onChange={handleChange}
                   onFocus={() => setFocused('company')}
@@ -148,7 +149,7 @@ export function Contact() {
 
               {/* Project Type */}
               <div>
-                <p className="text-xs text-neutral-400 dark:text-neutral-500 uppercase tracking-wider mb-3">{t.form.projectType}</p>
+                <p className="text-xs text-neutral-400 dark:text-neutral-500 uppercase tracking-wider mb-3">{t.contact.form.projectType}</p>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                   {projectTypes.map((type) => (
                     <motion.button
@@ -171,9 +172,9 @@ export function Contact() {
 
               {/* Budget */}
               <div>
-                <p className="text-xs text-neutral-400 dark:text-neutral-500 uppercase tracking-wider mb-3">{t.form.budget}</p>
+                <p className="text-xs text-neutral-400 dark:text-neutral-500 uppercase tracking-wider mb-3">{t.contact.form.budget}</p>
                 <div className="flex flex-wrap gap-3">
-                  {t.form.budgetOptions.map((range: string) => (
+                  {t.contact.form.budgetOptions.map((range: string) => (
                     <motion.button
                       key={range}
                       type="button"
@@ -196,7 +197,7 @@ export function Contact() {
               <div>
                 <textarea
                   name="message"
-                  placeholder={t.form.message}
+                  placeholder={t.contact.form.message}
                   value={formState.message}
                   onChange={handleChange}
                   onFocus={() => setFocused('message')}
@@ -216,11 +217,11 @@ export function Contact() {
                 size="md"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? 'Sending...' : t.form.submit}
+                {isSubmitting ? 'Sending...' : t.contact.form.submit}
               </ElegantButton>
 
               <p className="text-xs text-neutral-400 dark:text-neutral-500 leading-relaxed">
-                {t.form.privacy}
+                {t.contact.form.privacy}
               </p>
             </div>
           </form>
