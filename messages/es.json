@@ -1,0 +1,126 @@
+{
+  "nav": {
+    "services": "Servicios",
+    "process": "Proceso",
+    "contact": "Contacto",
+    "cta": "Empezar"
+  },
+  "hero": {
+    "eyebrow": "Excelencia Computacional",
+    "headline": "Arquitectura de Infraestructura Premium",
+    "subtitle": "Diseñamos, construimos y escalamos sistemas computacionales de alto rendimiento para empresas que exigen precisión, confiabilidad y excelencia.",
+    "ctaPrimary": "Iniciar Proyecto",
+    "ctaSecondary": "Explorar Servicios"
+  },
+  "services": {
+    "eyebrow": "Capacidades",
+    "title": "Servicios de Ingeniería",
+    "subtitle": "Soluciones computacionales integrales construidas con precisión, diseñadas para escalar y pensadas para perdurar.",
+    "items": {
+      "infrastructure": {
+        "title": "Diseño de Infraestructura",
+        "description": "Arquitectura de sistemas escalable y tolerante a fallas para operaciones críticas.",
+        "tags": ["Migración Cloud", "Auto-escalado", "Balanceo de Carga"]
+      },
+      "data": {
+        "title": "Arquitectura de Datos",
+        "description": "Pipelines y soluciones de almacenamiento optimizadas para entornos de alta velocidad.",
+        "tags": ["Data Lakes", "Pipelines ETL", "Analytics en Tiempo Real"]
+      },
+      "security": {
+        "title": "Ingeniería de Seguridad",
+        "description": "Arquitecturas de confianza cero y marcos de cumplimiento para industrias reguladas.",
+        "tags": ["Zero Trust", "Cumplimiento", "Modelado de Amenazas"]
+      },
+      "hpc": {
+        "title": "Computación de Alto Rendimiento",
+        "description": "Clusters computacionales personalizados para cargas de trabajo intensivas.",
+        "tags": ["Clusters GPU", "Computación Paralela", "Quantum Ready"]
+      },
+      "network": {
+        "title": "Arquitectura de Red",
+        "description": "Topologías de red de baja latencia y alto rendimiento para operaciones globales.",
+        "tags": ["SD-WAN", "Edge Computing", "Backbones Privados"]
+      },
+      "cloud": {
+        "title": "Optimización Cloud",
+        "description": "Estrategias cloud rentables sin comprometer el rendimiento.",
+        "tags": ["FinOps", "Multi-cloud", "Contenerización"]
+      }
+    }
+  },
+  "process": {
+    "eyebrow": "Metodología",
+    "title": "Nuestro Proceso",
+    "subtitle": "Un enfoque disciplinado para desafíos complejos de infraestructura, refinado a través de años de proyectos enterprise.",
+    "steps": {
+      "1": {
+        "label": "Paso 01",
+        "title": "Descubrimiento",
+        "description": "Auditoría técnica profunda de infraestructura existente, cuellos de botella y restricciones de crecimiento.",
+        "duration": "1-2 semanas"
+      },
+      "2": {
+        "label": "Paso 02",
+        "title": "Arquitectura",
+        "description": "Diseño de sistemas escalables con especificaciones precisas y modelos de optimización de costos.",
+        "duration": "2-4 semanas"
+      },
+      "3": {
+        "label": "Paso 03",
+        "title": "Implementación",
+        "description": "Ejecución de ingeniería con integración continua y despliegue sin tiempo de inactividad.",
+        "duration": "4-12 semanas"
+      },
+      "4": {
+        "label": "Paso 04",
+        "title": "Optimización",
+        "description": "Ajuste de rendimiento, configuración de monitoreo y transferencia operativa con documentación.",
+        "duration": "2-4 semanas"
+      }
+    }
+  },
+  "contact": {
+    "eyebrow": "Iniciar Proyecto",
+    "title": "Construyamos Algo Excepcional",
+    "subtitle": "Cuéntanos sobre tus desafíos de infraestructura. Respondemos cada consulta en 24 horas con una evaluación preliminar.",
+    "email": "Correo",
+    "emailValue": "hello@tria.io",
+    "location": "Ubicación",
+    "locationValue": "San Francisco, CA",
+    "form": {
+      "name": "Tu Nombre",
+      "email": "Correo Electrónico",
+      "company": "Empresa",
+      "projectType": "Tipo de Proyecto",
+      "projectTypes": {
+        "infrastructure": "Diseño de Infraestructura",
+        "migration": "Migración Cloud",
+        "optimization": "Optimización de Rendimiento",
+        "security": "Arquitectura de Seguridad",
+        "other": "Otro"
+      },
+      "budget": "Rango de Presupuesto",
+      "budgetOptions": ["$50k - $100k", "$100k - $250k", "$250k - $500k", "$500k+"],
+      "message": "Cuéntanos sobre tu proyecto...",
+      "submit": "Enviar Consulta",
+      "privacy": "Al enviar, aceptas nuestra política de privacidad. Nunca compartimos tu información."
+    }
+  },
+  "footer": {
+    "description": "Infraestructura computacional premium para empresas que exigen excelencia.",
+    "copyright": "© {year} tria",
+    "links": {
+      "services": "Servicios",
+      "data": "Arquitectura de Datos",
+      "security": "Seguridad",
+      "hpc": "HPC",
+      "company": "Empresa",
+      "process": "Proceso",
+      "contact": "Contacto",
+      "social": "Conectar",
+      "privacy": "Privacidad",
+      "terms": "Términos"
+    }
+  }
+}

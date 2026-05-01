@@ -1,0 +1,126 @@
+{
+  "nav": {
+    "services": "Services",
+    "process": "Process",
+    "contact": "Contact",
+    "cta": "Get Started"
+  },
+  "hero": {
+    "eyebrow": "Computational Excellence",
+    "headline": "Premium Infrastructure Architecture",
+    "subtitle": "We design, build, and scale high-performance computational systems for enterprises that demand precision, reliability, and excellence.",
+    "ctaPrimary": "Start a Project",
+    "ctaSecondary": "Explore Services"
+  },
+  "services": {
+    "eyebrow": "Capabilities",
+    "title": "Engineering Services",
+    "subtitle": "End-to-end computational solutions built with precision, engineered for scale, and designed for longevity.",
+    "items": {
+      "infrastructure": {
+        "title": "Infrastructure Design",
+        "description": "Scalable, fault-tolerant systems architecture for mission-critical operations.",
+        "tags": ["Cloud Migration", "Auto-scaling", "Load Balancing"]
+      },
+      "data": {
+        "title": "Data Architecture",
+        "description": "Optimized data pipelines and storage solutions for high-velocity environments.",
+        "tags": ["Data Lakes", "ETL Pipelines", "Real-time Analytics"]
+      },
+      "security": {
+        "title": "Security Engineering",
+        "description": "Zero-trust architectures and compliance frameworks for regulated industries.",
+        "tags": ["Zero Trust", "Compliance", "Threat Modeling"]
+      },
+      "hpc": {
+        "title": "High-Performance Computing",
+        "description": "Custom computational clusters for intensive processing workloads.",
+        "tags": ["GPU Clusters", "Parallel Computing", "Quantum Ready"]
+      },
+      "network": {
+        "title": "Network Architecture",
+        "description": "Low-latency, high-throughput network topologies for global operations.",
+        "tags": ["SD-WAN", "Edge Computing", "Private Backbones"]
+      },
+      "cloud": {
+        "title": "Cloud Optimization",
+        "description": "Cost-effective cloud strategies without compromising performance.",
+        "tags": ["FinOps", "Multi-cloud", "Containerization"]
+      }
+    }
+  },
+  "process": {
+    "eyebrow": "Methodology",
+    "title": "Our Process",
+    "subtitle": "A disciplined approach to complex infrastructure challenges, refined through years of enterprise engagements.",
+    "steps": {
+      "1": {
+        "label": "Step 01",
+        "title": "Discovery",
+        "description": "Deep technical audit of existing infrastructure, bottlenecks, and growth constraints.",
+        "duration": "1-2 weeks"
+      },
+      "2": {
+        "label": "Step 02",
+        "title": "Architecture",
+        "description": "Design scalable systems with precise specifications and cost-optimization models.",
+        "duration": "2-4 weeks"
+      },
+      "3": {
+        "label": "Step 03",
+        "title": "Implementation",
+        "description": "Engineering execution with continuous integration and zero-downtime deployment.",
+        "duration": "4-12 weeks"
+      },
+      "4": {
+        "label": "Step 04",
+        "title": "Optimization",
+        "description": "Performance tuning, monitoring setup, and operational handoff with documentation.",
+        "duration": "2-4 weeks"
+      }
+    }
+  },
+  "contact": {
+    "eyebrow": "Start a Project",
+    "title": "Let's Build Something Exceptional",
+    "subtitle": "Tell us about your infrastructure challenges. We respond to every inquiry within 24 hours with a preliminary assessment.",
+    "email": "Email",
+    "emailValue": "hello@tria.io",
+    "location": "Location",
+    "locationValue": "San Francisco, CA",
+    "form": {
+      "name": "Your Name",
+      "email": "Email Address",
+      "company": "Company",
+      "projectType": "Project Type",
+      "projectTypes": {
+        "infrastructure": "Infrastructure Design",
+        "migration": "Cloud Migration",
+        "optimization": "Performance Optimization",
+        "security": "Security Architecture",
+        "other": "Other"
+      },
+      "budget": "Project Budget Range",
+      "budgetOptions": ["$50k - $100k", "$100k - $250k", "$250k - $500k", "$500k+"],
+      "message": "Tell us about your project...",
+      "submit": "Send Inquiry",
+      "privacy": "By submitting, you agree to our privacy policy. We never share your information."
+    }
+  },
+  "footer": {
+    "description": "Premium computational infrastructure for enterprises that demand excellence.",
+    "copyright": "© {year} tria",
+    "links": {
+      "services": "Services",
+      "data": "Data Architecture",
+      "security": "Security",
+      "hpc": "HPC",
+      "company": "Company",
+      "process": "Process",
+      "contact": "Contact",
+      "social": "Connect",
+      "privacy": "Privacy",
+      "terms": "Terms"
+    }
+  }
+}
