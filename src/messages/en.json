@@ -8,13 +8,16 @@
   },
   "hero": {
     "headline": "Tria powers your business with custom software",
-    "subtitle": "We are a Costa Rica-based software services company. We design, build, and scale digital products with a strong focus on outcomes, speed, and engineering quality.",
+    "subtitle": "We design, build, and scale digital products with a strong focus on outcomes, speed, and engineering quality.",
     "ctaPrimary": "Request Proposal",
     "ctaSecondary": "View Capabilities"
   },
   "services": {
     "title": "Development Services",
     "subtitle": "Full-stack software engineering for every platform.",
+    "ctaTitle": "Ready to start your project?",
+    "ctaSubtitle": "Let's discuss how we can bring your vision to life.",
+    "ctaButton": "Start Your Project",
     "list": [
       {
         "title": "Frontend\nDevelopment",
@@ -48,7 +51,35 @@
         "title": "Technical\nConsulting",
         "description": "Architecture, Review,\nBest Practices"
       }
-    ]
+    ],
+    "techExpertise": {
+      "title": "Core Technologies",
+      "subtitle": "Expertise in the essential technologies that power modern applications.",
+      "frontend": {
+        "title": "Frontend",
+        "items": ["React", "Next.js", "TypeScript", "Tailwind CSS"]
+      },
+      "backend": {
+        "title": "Backend",
+        "items": ["Node.js", "Python", "PostgreSQL", "GraphQL"]
+      },
+      "mobile": {
+        "title": "Mobile",
+        "items": ["React Native", "Swift", "Kotlin"]
+      },
+      "devops": {
+        "title": "DevOps",
+        "items": ["AWS", "Docker", "Kubernetes", "CI/CD"]
+      },
+      "database": {
+        "title": "Database",
+        "items": ["PostgreSQL", "MongoDB", "Redis"]
+      },
+      "tools": {
+        "title": "Tools",
+        "items": ["Git", "Figma", "Jest", "Vite"]
+      }
+    }
   },
   "process": {
     "eyebrow": "Methodology",
@@ -160,6 +191,85 @@
       "message": "Tell us about your project requirements, technologies, and timeline...",
       "submit": "Send Inquiry",
       "privacy": "By submitting, you agree to our privacy policy. We never share your information."
+    }
+  },
+  "testimonials": {
+    "title": "Client Success Stories",
+    "subtitle": "Trusted by leading companies across Costa Rica and Latin America for delivering exceptional software solutions.",
+    "clientsLabel": "Trusted By",
+    "ctaTitle": "Want results like these?",
+    "ctaSubtitle": "Join our growing list of satisfied clients who have transformed their businesses.",
+    "ctaButton": "Become a Client",
+    "items": [
+      {
+        "testimonial": "Tria delivered our e-commerce platform ahead of schedule with exceptional quality. Their technical expertise and communication throughout the project was outstanding."
+      },
+      {
+        "testimonial": "The mobile banking app they built for us has transformed our customer experience. Performance, security, and user interface exceeded our expectations."
+      },
+      {
+        "testimonial": "Their healthcare management system streamlined our operations completely. The team's attention to detail and understanding of our industry was remarkable."
+      }
+    ]
+  },
+  "portfolio": {
+    "title": "Portfolio & Case Studies",
+    "subtitle": "Real-world projects that demonstrate our technical expertise and business impact.",
+    "featured": "Featured",
+    "ctaTitle": "See something you like?",
+    "ctaSubtitle": "Let's discuss how we can build something similar for your business.",
+    "ctaButton": "View Our Work",
+    "metrics": {
+      "users": "Users",
+      "performance": "Uptime",
+      "timeline": "Timeline"
+    },
+    "items": [
+      {
+        "title": "TechStart E-commerce Platform",
+        "category": "E-commerce",
+        "description": "Full-scale e-commerce solution with advanced inventory management, payment processing, and analytics dashboard."
+      },
+      {
+        "title": "Fintech Mobile Banking App",
+        "category": "Mobile",
+        "description": "Secure mobile banking application with real-time transactions, biometric authentication, and personalized financial insights."
+      },
+      {
+        "title": "MediCore Healthcare System",
+        "category": "Healthcare",
+        "description": "Comprehensive healthcare management system with patient records, appointment scheduling, and telemedicine capabilities."
+      }
+    ]
+  },
+  "technologies": {
+    "title": "Technology Stack",
+    "subtitle": "Cutting-edge technologies and frameworks we master to deliver exceptional software solutions.",
+    "ctaTitle": "Looking for specific expertise?",
+    "ctaSubtitle": "Our team has deep knowledge across the full technology stack.",
+    "ctaButton": "Explore Solutions",
+    "categories": {
+      "frontend": {
+        "title": "Frontend Development",
+        "description": "Modern JavaScript frameworks and CSS tools for building responsive user interfaces."
+      },
+      "backend": {
+        "title": "Backend Development",
+        "description": "Robust server-side technologies for scalable APIs and data management."
+      },
+      "mobile": {
+        "title": "Mobile Development",
+        "description": "Cross-platform and native technologies for iOS and Android applications."
+      },
+      "devops": {
+        "title": "DevOps & Cloud",
+        "description": "Cloud infrastructure, containerization, and CI/CD for modern deployment."
+      }
+    },
+    "additional": {
+      "title": "Additional Technologies",
+      "subtitle": "More tools and frameworks in our expertise portfolio:",
+      "items": ["Git", "Jest", "Webpack", "Vite", "Figma", "Slack", "Jira", "Confluence", "AWS", "Azure", "GCP", "Firebase", "MongoDB", "MySQL", "Redis", "Elasticsearch"]
     }
   },
   "footer": {

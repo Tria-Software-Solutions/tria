@@ -8,13 +8,16 @@
   },
   "hero": {
     "headline": "Software a medida para tu negocio",
-    "subtitle": "Diseñamos, construimos y escalamos productos digitales en Costa Rica.",
+    "subtitle": "Diseñamos, construimos y escalamos productos digitales.",
     "ctaPrimary": "Solicitar propuesta",
     "ctaSecondary": "Ver capacidades"
   },
   "services": {
     "title": "Servicios de Desarrollo",
     "subtitle": "Ingeniería full-stack para todas las plataformas.",
+    "ctaTitle": "¿Listo para iniciar tu proyecto?",
+    "ctaSubtitle": "Hablemos de cómo podemos dar vida a tu visión.",
+    "ctaButton": "Iniciar Tu Proyecto",
     "list": [
       {
         "title": "Desarrollo\nFrontend",
@@ -48,7 +51,35 @@
         "title": "Consultoría\nTécnica",
         "description": "Arquitectura, Review,\nBest Practices"
       }
-    ]
+    ],
+    "techExpertise": {
+      "title": "Tecnologías Principales",
+      "subtitle": "Experiencia en las tecnologías esenciales que impulsan las aplicaciones modernas.",
+      "frontend": {
+        "title": "Frontend",
+        "items": ["React", "Next.js", "TypeScript", "Tailwind CSS"]
+      },
+      "backend": {
+        "title": "Backend",
+        "items": ["Node.js", "Python", "PostgreSQL", "GraphQL"]
+      },
+      "mobile": {
+        "title": "Mobile",
+        "items": ["React Native", "Swift", "Kotlin"]
+      },
+      "devops": {
+        "title": "DevOps",
+        "items": ["AWS", "Docker", "Kubernetes", "CI/CD"]
+      },
+      "database": {
+        "title": "Base de Datos",
+        "items": ["PostgreSQL", "MongoDB", "Redis"]
+      },
+      "tools": {
+        "title": "Herramientas",
+        "items": ["Git", "Figma", "Jest", "Vite"]
+      }
+    }
   },
   "process": {
     "eyebrow": "Metodología",
@@ -160,6 +191,85 @@
       "message": "Cuéntanos sobre los requisitos de tu proyecto, tecnologías y timeline...",
       "submit": "Enviar Consulta",
       "privacy": "Al enviar, aceptas nuestra política de privacidad. Nunca compartimos tu información."
+    }
+  },
+  "testimonials": {
+    "title": "Historias de Éxito de Clientes",
+    "subtitle": "Confiado por empresas líderes en Costa Rica y América Latina para entregar soluciones de software excepcionales.",
+    "clientsLabel": "Confiado Por",
+    "ctaTitle": "¿Quieres resultados como estos?",
+    "ctaSubtitle": "Únete a nuestra creciente lista de clientes satisfechos que han transformado sus negocios.",
+    "ctaButton": "Conviértete en Cliente",
+    "items": [
+      {
+        "testimonial": "Tria entregó nuestra plataforma de e-commerce antes del plazo con una calidad excepcional. Su experiencia técnica y comunicación durante el proyecto fue sobresaliente."
+      },
+      {
+        "testimonial": "La app de banca móvil que construyeron para nosotros transformó completamente la experiencia de nuestros clientes. El rendimiento, seguridad e interfaz de usuario superaron nuestras expectativas."
+      },
+      {
+        "testimonial": "Su sistema de gestión de salud optimizó nuestras operaciones por completo. La atención al detalle del equipo y comprensión de nuestra industria fue notable."
+      }
+    ]
+  },
+  "portfolio": {
+    "title": "Portafolio y Casos de Éxito",
+    "subtitle": "Proyectos del mundo real que demuestran nuestra experiencia técnica e impacto de negocio.",
+    "featured": "Destacado",
+    "ctaTitle": "¿Ves algo que te gusta?",
+    "ctaSubtitle": "Hablemos de cómo podemos construir algo similar para tu negocio.",
+    "ctaButton": "Ver Nuestro Trabajo",
+    "metrics": {
+      "users": "Usuarios",
+      "performance": "Disponibilidad",
+      "timeline": "Plazo"
+    },
+    "items": [
+      {
+        "title": "Plataforma E-commerce TechStart",
+        "category": "E-commerce",
+        "description": "Solución e-commerce a escala con gestión de inventario avanzada, procesamiento de pagos y dashboard de analíticas."
+      },
+      {
+        "title": "App de Banca Móvil Fintech",
+        "category": "Mobile",
+        "description": "Aplicación de banca móvil segura con transacciones en tiempo real, autenticación biométrica e insights financieros personalizados."
+      },
+      {
+        "title": "Sistema de Salud MediCore",
+        "category": "Healthcare",
+        "description": "Sistema integral de gestión de salud con historiales de pacientes, agendamiento de citas y capacidades de telemedicina."
+      }
+    ]
+  },
+  "technologies": {
+    "title": "Stack Tecnológico",
+    "subtitle": "Tecnologías y frameworks de vanguardia que dominamos para entregar soluciones de software excepcionales.",
+    "ctaTitle": "¿Buscas experiencia específica?",
+    "ctaSubtitle": "Nuestro equipo tiene conocimiento profundo en todo el stack tecnológico.",
+    "ctaButton": "Explorar Soluciones",
+    "categories": {
+      "frontend": {
+        "title": "Desarrollo Frontend",
+        "description": "Frameworks JavaScript modernos y herramientas CSS para construir interfaces de usuario responsivas."
+      },
+      "backend": {
+        "title": "Desarrollo Backend",
+        "description": "Tecnologías robustas del lado del servidor para APIs escalables y gestión de datos."
+      },
+      "mobile": {
+        "title": "Desarrollo Móvil",
+        "description": "Tecnologías multiplataforma y nativas para aplicaciones iOS y Android."
+      },
+      "devops": {
+        "title": "DevOps y Cloud",
+        "description": "Infraestructura en la nube, contenerización y CI/CD para despliegues modernos."
+      }
+    },
+    "additional": {
+      "title": "Tecnologías Adicionales",
+      "subtitle": "Más herramientas y frameworks en nuestro portafolio de experiencia:",
+      "items": ["Git", "Jest", "Webpack", "Vite", "Figma", "Slack", "Jira", "Confluence", "AWS", "Azure", "GCP", "Firebase", "MongoDB", "MySQL", "Redis", "Elasticsearch"]
     }
   },
   "footer": {

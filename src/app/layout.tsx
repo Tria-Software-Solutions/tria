@@ -20,8 +20,9 @@ export const metadata: Metadata = {
   title: "tria | Software Engineering Excellence",
   description: "Software engineering across all platforms. Web applications, mobile apps, desktop software, and backend systems built with cutting-edge technologies.",
   icons: {
-    icon: '/favicon.ico',
-    apple: '/favicon.ico',
+    icon: '/logo.svg',
+    shortcut: '/logo.svg',
+    apple: '/logo.svg',
   },
   manifest: '/manifest.json',
 };

@@ -43,34 +43,34 @@ export function Services() {
         </SectionTransition>
 
         {/* Services Grid - Clean Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-neutral-200 dark:bg-neutral-800">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-neutral-200 dark:bg-neutral-800 mb-16">
           {t.services.list.map((service, index) => {
             const Icon = serviceIcons[index];
             return (
               <SectionTransition
                 key={service.title}
-                delay={0.15 + index * 0.08}
+                delay={0.2 + index * 0.1}
                 className="h-full"
               >
                 <motion.div
-                  className="group relative h-full bg-white dark:bg-neutral-950 hover:bg-neutral-50 dark:hover:bg-neutral-900 p-8 lg:p-10 transition-colors flex flex-col"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="group h-full bg-white dark:bg-neutral-950 p-8 lg:p-10 transition-colors flex flex-col"
                   whileHover={{ y: -2 }}
                 >
                   {/* Icon */}
-                  <div className="mb-6">
-                    <Icon 
-                      strokeWidth={1.5}
-                      className="w-8 h-8 text-neutral-400 group-hover:text-black dark:group-hover:text-white transition-colors duration-300" 
-                    />
+                  <div className="w-12 h-12 bg-neutral-100 dark:bg-neutral-800 rounded-lg flex items-center justify-center mb-6 group-hover:bg-neutral-200 dark:group-hover:bg-neutral-700 transition-colors">
+                    <Icon className="w-6 h-6 text-black dark:text-white" strokeWidth={1.5} />
                   </div>
 
                   {/* Content */}
                   <div className="flex-1">
-                    <h3 className="text-lg font-medium text-black dark:text-white mb-2 flex items-start gap-2 whitespace-pre-line">
+                    <h3 className="text-black dark:text-white font-medium text-sm mb-3 whitespace-pre-line">
                       {service.title}
-                      <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex-shrink-0 mt-1" />
                     </h3>
-                    <p className="text-sm text-neutral-500 dark:text-neutral-500 leading-relaxed whitespace-pre-line">
+                    <p className="text-neutral-600 dark:text-neutral-400 text-xs leading-relaxed whitespace-pre-line">
                       {service.description}
                     </p>
                   </div>
@@ -82,6 +82,30 @@ export function Services() {
             );
           })}
         </div>
+
+        {/* CTA */}
+        <SectionTransition className="text-center lg:text-left" delay={0.6}>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="bg-neutral-50 dark:bg-neutral-900/40 rounded-2xl p-8 lg:p-12 border border-neutral-200 dark:border-neutral-800"
+          >
+            <h3 className="text-xl font-medium text-black dark:text-white mb-4">
+              {t.services.ctaTitle}
+            </h3>
+            <p className="text-neutral-600 dark:text-neutral-400 mb-6 max-w-2xl">
+              {t.services.ctaSubtitle}
+            </p>
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-black dark:bg-white text-white dark:text-black rounded-lg hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-colors text-sm font-medium"
+            >
+              {t.services.ctaButton}
+            </a>
+          </motion.div>
+        </SectionTransition>
 
       </div>
     </section>
