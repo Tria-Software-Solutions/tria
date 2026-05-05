@@ -1,0 +1,60 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+
+  "model": "ollama/qwen2.5-coder:7b",
+
+  "provider": {
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama (local)",
+      "options": {
+        "baseURL": "http://localhost:11434/v1"
+      },
+      "models": {
+        "qwen3.5:latest": { "name": "Qwen 3.5 (General)" },
+        "deepseek-r1:8b": { "name": "DeepSeek R1 (Reasoning)" },
+        "qwen3:8b": { "name": "Qwen 3 8B" },
+        "phi4-mini:latest": { "name": "Phi-4 Mini (Fast)" },
+        "llama3.2:3b": { "name": "Llama 3.2 3B (Light)" },
+        "qwen2.5-coder:7b": { "name": "Qwen Coder 7B (Best for code)" },
+        "qwen2.5-coder:1.5b": { "name": "Qwen Coder 1.5B" },
+        "qwen2.5-coder:1.5b-base": { "name": "Qwen Coder Base" }
+      }
+    }
+  },
+
+  "permission": {
+    "*": "allow",
+    "bash": {
+      "*": "ask",
+      "rm *": "deny",
+      "rmdir *": "deny"
+    }
+  },
+
+  "mcp": {
+    "github": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-github"],
+      "environment": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "REEMPLAZA_ESTO"
+      }
+    },
+    "sequentialthinking": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ]
+    },
+    "fetch": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-fetch"]
+    },
+    "duckduckgo": {
+      "type": "local",
+      "command": ["npx", "-y", "@nickclyde/duckduckgo-mcp-server"]
+    }
+  }
+}

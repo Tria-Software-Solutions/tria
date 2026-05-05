@@ -1857,7 +1857,7 @@ circle text
 ------------------------------------------- */
 .mil-circle-text {
   position: absolute;
-  right: 0;
+  right: 100px;
   bottom: 90px;
   display: -webkit-box;
   display: -ms-flexbox;

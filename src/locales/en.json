@@ -1,0 +1,120 @@
+{
+  "navigation": {
+    "home": "Home",
+    "services": "Services",
+    "pricing": "Pricing",
+    "contact": "Contact",
+    "blog": "Blog",
+    "team": "Team",
+    "portfolio": "Portfolio"
+  },
+  "banner": {
+    "title": "Building <span class=\"mil-thin\">Custom</span><br> Software <span class=\"mil-thin\">Solutions</span>",
+    "subtitle": "We design, build, and scale digital products with a strong focus on outcomes, speed, and engineering quality. Your software engineering partner in Costa Rica and LATAM."
+  },
+  "services": {
+    "title": "Unique <span class=\"mil-thin\">Ideas</span>",
+    "subtitle": "For Your <span class=\"mil-thin\">Business.</span>",
+    "frontend": {
+      "title": "Frontend <br>Development",
+      "description": "React, Next.js, TypeScript, Tailwind CSS for modern user interfaces."
+    },
+    "mobile": {
+      "title": "Mobile <br>Development",
+      "description": "iOS, Android, React Native for cross-platform mobile applications."
+    },
+    "backend": {
+      "title": "Backend <br>Development",
+      "description": "Node.js, Python, PostgreSQL, APIs for robust server-side solutions."
+    },
+    "devops": {
+      "title": "DevOps & <br>Cloud",
+      "description": "AWS, Docker, Kubernetes, CI/CD for modern deployment infrastructure."
+    }
+  },
+  "about": {
+    "title": "Discover <br>Our <span class=\"mil-thin\">Studio</span>",
+    "subtitle": "At Tria, we are a collective of talented engineers ignited by our unwavering passion for transforming ideas into reality. With a harmonious blend of diverse backgrounds and a vast array of skill sets, we join forces to create compelling solutions for our esteemed clients.",
+    "subtitle2": "Collaboration is at the heart of what we do. Our team thrives on the synergy that arises when unique perspectives converge, fostering an environment of boundless creativity. By harnessing our collective expertise, we produce extraordinary results that consistently surpass expectations.",
+    "quote": "Passionately Creating <span class=\"mil-thin\">Software Wonders:</span> Unleashing <span class=\"mil-thin\">Boundless Creativity</span>"
+  },
+  "team": {
+    "title": "Our <br>Development Process",
+    "subtitle": "A disciplined agile approach to software development, refined through years of delivering production-grade applications for clients in Costa Rica and LATAM.",
+    "subtitle2": "From discovery to deployment, we follow a proven methodology that ensures quality, speed, and business outcomes.",
+    "cta": "Start Your Project",
+    "deliver": "<span class=\"mil-thin\">We</span> deliver <br><span class=\"mil-thin\">exceptional</span> software."
+  },
+  "testimonials": {
+    "title": "Client <span class=\"mil-thin\">Success</span> <br>Stories",
+    "subtitle": "Customer reviews are a valuable source of information for both businesses and consumers.",
+    "client1": {
+      "name": "Carlos Rodriguez",
+      "company": "TechStart CEO",
+      "review": "Tria delivered our e-commerce platform ahead of schedule with exceptional quality. Their technical expertise and communication throughout the project was outstanding."
+    },
+    "client2": {
+      "name": "Maria Fernandez",
+      "company": "Fintech Bank",
+      "review": "The mobile banking app they built for us has transformed our customer experience. Performance, security, and user interface exceeded our expectations."
+    }
+  },
+  "pricing": {
+    "title": "Pricing with <span class=\"mil-thin\">Realistic Rates</span>",
+    "subtitle": "Reference plans for product development and support. Includes technical leadership, QA, and weekly execution follow-up.",
+    "subtitle2": "All plans include weekly execution follow-up, technical leadership, and QA. Custom quotes available for specific requirements.",
+    "starter": {
+      "title": "Starter",
+      "price": "₡1.25M<span class=\"mil-light-soft\">/month</span>",
+      "usd": "≈ $2,450 USD",
+      "description": "Best for small businesses that need to evolve their product with an agile team.",
+      "features": [
+        "Up to 80 development hours monthly",
+        "1 full-stack developer + part-time QA",
+        "Corrective support and ongoing improvements",
+        "Monthly technical roadmap"
+      ]
+    },
+    "growth": {
+      "title": "Growth",
+      "price": "₡2.85M<span class=\"mil-light-soft\">/month</span>",
+      "usd": "≈ $5,600 USD",
+      "description": "For growing companies that need consistent delivery and faster feature velocity.",
+      "features": [
+        "Up to 180 development hours monthly",
+        "Team of 2 devs + QA + tech lead",
+        "New features and integrations",
+        "Monitoring, metrics, and optimization"
+      ],
+      "label": "Most Popular"
+    },
+    "scale": {
+      "title": "Scale",
+      "price": "₡4.9M<span class=\"mil-light-soft\">/month</span>",
+      "usd": "≈ $9,600 USD",
+      "description": "For critical products that must scale with robust architecture and operations.",
+      "features": [
+        "Up to 320 development hours monthly",
+        "Dedicated multidisciplinary squad",
+        "Architecture, DevOps, and security included",
+        "Priority SLA-backed support"
+      ]
+    }
+  },
+  "footer": {
+    "newsletter": "Subscribe our newsletter:",
+    "email_placeholder": "Enter our email",
+    "links": {
+      "privacy": "Privacy Policy",
+      "terms": "Terms and conditions",
+      "cookies": "Cookie Policy",
+      "careers": "Careers"
+    },
+    "contact": {
+      "costa_rica": "Costa Rica",
+      "response": "Response within 24h",
+      "website": "www.triacr.com"
+    },
+    "copyright": "© 2024 Tria. All Rights Reserved."
+  }
+}

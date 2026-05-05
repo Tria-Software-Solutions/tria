@@ -1,46 +1,82 @@
 ---
+import type { Translations } from '../lib/i18n/index';
+
 interface Props {
 	title: string;
+	translations?: Translations;
 }
 
-const { title } = Astro.props;
+const { title, translations } = Astro.props;
+const lang = translations ? 'es' : 'en';
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang={lang}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-		<title>{title} - Tria</title>
+		<title>{title} tria | Building Digital Solutions</title>
 		
-		<link rel="stylesheet" href="/css/plugins/bootstrap-grid.css" />
-		<link rel="stylesheet" href="/css/plugins/font-awesome.min.css" />
-		<link rel="stylesheet" href="/css/plugins/swiper.min.css" />
-		<link rel="stylesheet" href="/css/style.css" />
-		<link rel="stylesheet" href="/css/responsive.css" />
+		<!-- Favicon - Standard -->
+		<link rel="icon" type="image/svg+xml" href="/assets/icons/favicon/favicon.svg" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon/favicon-16x16.png" />
+		<link rel="shortcut icon" href="/assets/icons/favicon/favicon.ico" />
+		
+		<!-- Apple Touch Icons -->
+		<link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple/apple-touch-icon.png" />
+		<link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple/apple-touch-icon-152x152.png" />
+		<link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple/apple-touch-icon-120x120.png" />
+		<link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple/apple-touch-icon-76x76.png" />
+		<link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple/apple-touch-icon-60x60.png" />
+		
+		<!-- Android/Chrome -->
+		<link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/android/android-chrome-192x192.png" />
+		<link rel="icon" type="image/png" sizes="512x512" href="/assets/icons/android/android-chrome-512x512.png" />
+		
+		<!-- Microsoft Tiles -->
+		<meta name="msapplication-TileColor" content="#73b6ff" />
+		<meta name="msapplication-TileImage" content="/assets/icons/favicon/mstile-144x144.png" />
+		<meta name="msapplication-config" content="/browserconfig.xml" />
+		
+		<!-- Safari Pinned Tab -->
+		<link rel="mask-icon" href="/assets/icons/safari/safari-pinned-tab.svg" color="#73b6ff" />
+		
+		<!-- Web App Manifest -->
+		<link rel="manifest" href="/site.webmanifest" />
+		
+		<!-- Theme Color -->
+		<meta name="theme-color" content="#73b6ff" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="#73b6ff" />
+		
+		<link rel="stylesheet" href="/assets/css/plugins/bootstrap-grid.css" />
+		<link rel="stylesheet" href="/assets/css/plugins/font-awesome.min.css" />
+		<link rel="stylesheet" href="/assets/css/plugins/swiper.min.css" />
+		<link rel="stylesheet" href="/assets/css/style.css" />
+		<link rel="stylesheet" href="/assets/css/responsive.css" />
 	</head>
 	<body>
 		<slot />
 		
 		<!-- jQuery -->
-		<script src="/js/plugins/jquery.min.js" is:inline></script>
+		<script src="/assets/js/plugins/jquery.min.js" is:inline></script>
 		<!-- swup js -->
-		<script src="/js/plugins/swup.min.js" is:inline></script>
+		<script src="/assets/js/plugins/swup.min.js" is:inline></script>
 		<!-- swiper js -->
-		<script src="/js/plugins/swiper.min.js" is:inline></script>
+		<script src="/assets/js/plugins/swiper.min.js" is:inline></script>
 		<!-- fancybox js -->
-		<script src="/js/plugins/fancybox.min.js" is:inline></script>
+		<script src="/assets/js/plugins/fancybox.min.js" is:inline></script>
 		<!-- gsap js -->
-		<script src="/js/plugins/gsap.min.js" is:inline></script>
+		<script src="/assets/js/plugins/gsap.min.js" is:inline></script>
 		<!-- scroll smoother -->
-		<script src="/js/plugins/smooth-scroll.js" is:inline></script>
+		<script src="/assets/js/plugins/smooth-scroll.js" is:inline></script>
 		<!-- scroll trigger js -->
-		<script src="/js/plugins/ScrollTrigger.min.js" is:inline></script>
+		<script src="/assets/js/plugins/ScrollTrigger.min.js" is:inline></script>
 		<!-- scroll to js -->
-		<script src="/js/plugins/ScrollTo.min.js" is:inline></script>
+		<script src="/assets/js/plugins/ScrollTo.min.js" is:inline></script>
 		<!-- main scripts -->
-		<script src="/js/script.js" is:inline></script>
-		<script src="/js/main.js" is:inline></script>
+		<script src="/assets/js/script.js" is:inline></script>
+		<script src="/assets/js/main.js" is:inline></script>
 	</body>
 </html>

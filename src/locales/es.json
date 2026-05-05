@@ -1,0 +1,120 @@
+{
+  "navigation": {
+    "home": "Inicio",
+    "services": "Servicios",
+    "pricing": "Precios",
+    "contact": "Contacto",
+    "blog": "Blog",
+    "team": "Equipo",
+    "portfolio": "Portafolio"
+  },
+  "banner": {
+    "title": "Construyendo <span class=\"mil-thin\">Software</span> <span class=\"mil-thin\">Personalizado</span>",
+    "subtitle": "Diseñamos, construimos y escalamos productos digitales con un fuerte enfoque en resultados, velocidad y calidad de ingeniería. Tu socio de ingeniería de software en Costa Rica y LATAM."
+  },
+  "services": {
+    "title": "<span class=\"mil-thin\">Ideas</span> <span class=\"mil-thin\">Únicas</span>",
+    "subtitle": "Para Tu <span class=\"mil-thin\">Negocio.</span>",
+    "frontend": {
+      "title": "Desarrollo <br>Frontend",
+      "description": "React, Next.js, TypeScript, Tailwind CSS para interfaces de usuario modernas."
+    },
+    "mobile": {
+      "title": "Desarrollo <br>Móvil",
+      "description": "iOS, Android, React Native para aplicaciones móviles multiplataforma."
+    },
+    "backend": {
+      "title": "Desarrollo <br>Backend",
+      "description": "Node.js, Python, PostgreSQL, APIs para soluciones robustas del lado del servidor."
+    },
+    "devops": {
+      "title": "DevOps & <br>Cloud",
+      "description": "AWS, Docker, Kubernetes, CI/CD para infraestructura de despliegue moderna."
+    }
+  },
+  "about": {
+    "title": "Descubre <span class=\"mil-thin\">Nuestro</span> <span class=\"mil-thin\">Estudio</span>",
+    "subtitle": "En Tria, somos un colectivo de ingenieros talentosos impulsados por nuestra pasión inquebrantable por transformar ideas en realidad. Con una mezcla armoniosa de antecedentes diversos y una amplia gama de conjuntos de habilidades, nos unimos fuerzas para crear soluciones atractivas para nuestros estimados clientes.",
+    "subtitle2": "La colaboración está en el corazón de lo que hacemos. Nuestro equipo prospera en la sinergia que surge cuando perspectivas únicas convergen, fomentando un entorno de creatividad sin límites. Aprovechando nuestra experiencia colectiva, producimos resultados extraordinarios que consistentemente superan las expectativas.",
+    "quote": "Creando <span class=\"mil-thin\">Maravillas de Software</span> con Pasión: <span class=\"mil-thin\">Liberando</span> <span class=\"mil-thin\">Creatividad</span> <span class=\"mil-thin\">Sin Límites</span>"
+  },
+  "team": {
+    "title": "Nuestro <br>Proceso de <span class=\"mil-thin\">Desarrollo</span>",
+    "subtitle": "Un enfoque disciplinado al desarrollo de software, refinado a través de años de entrega de aplicaciones de grado de producción para clientes en Costa Rica y LATAM.",
+    "subtitle2": "Desde el descubrimiento hasta el despliegue, seguimos una metodología probada que asegura calidad, velocidad y resultados de negocio.",
+    "cta": "Inicia Tu <span class=\"mil-thin\">Proyecto</span>",
+    "deliver": "<span class=\"mil-thin\">Nosotros</span> entregamos <span class=\"mil-thin\">software</span> <span class=\"mil-thin\">excepcional</span>."
+  },
+  "testimonials": {
+    "title": "Historias de <span class=\"mil-thin\">Éxito</span> <span class=\"mil-thin\">de</span> <span class=\"mil-thin\">Clientes</span>",
+    "subtitle": "Las reseñas de clientes son una fuente valiosa de información tanto para empresas como para consumidores.",
+    "client1": {
+      "name": "Carlos Rodriguez",
+      "company": "TechStart CEO",
+      "review": "Tria entregó nuestra plataforma de comercio electrónico antes de lo programado con calidad excepcional. Su experiencia técnica y comunicación durante el proyecto fue sobresaliente."
+    },
+    "client2": {
+      "name": "Maria Fernandez",
+      "company": "Fintech Bank",
+      "review": "La aplicación de banca móvil que construyeron para nosotros ha transformado la experiencia de nuestros clientes. Rendimiento, seguridad e interfaz de usuario superaron nuestras expectativas."
+    }
+  },
+  "pricing": {
+    "title": "Precios con <span class=\"mil-thin\">Tarifas</span> <span class=\"mil-thin\">Realistas</span>",
+    "subtitle": "Planes de referencia para desarrollo y soporte de productos. Incluye liderazgo técnico, QA y seguimiento semanal de ejecución.",
+    "subtitle2": "Todos los planes incluyen seguimiento semanal de ejecución, liderazgo técnico y QA. Cotizaciones personalizadas disponibles para requisitos específicos.",
+    "starter": {
+      "title": "Inicial",
+      "price": "₡1.25M<span class=\"mil-light-soft\">/mes</span>",
+      "usd": "≈ $2,450 USD",
+      "description": "Ideal para pequeñas empresas que necesitan evolucionar su producto con un equipo ágil.",
+      "features": [
+        "Hasta 80 horas de desarrollo mensuales",
+        "1 desarrollador full-stack + QA a tiempo parcial",
+        "Soporte correctivo y mejoras continuas",
+        "Hoja de ruta técnica mensual"
+      ]
+    },
+    "growth": {
+      "title": "Crecimiento",
+      "price": "₡2.85M<span class=\"mil-light-soft\">/mes</span>",
+      "usd": "≈ $5,600 USD",
+      "description": "Para empresas en crecimiento que necesitan entrega consistente y velocidad de desarrollo de características.",
+      "features": [
+        "Hasta 180 horas de desarrollo mensuales",
+        "Equipo de 2 desarrolladores + QA + líder técnico",
+        "Nuevas características e integraciones",
+        "Monitoreo, métricas y optimización"
+      ],
+      "label": "Más Popular"
+    },
+    "scale": {
+      "title": "Escala",
+      "price": "₡4.9M<span class=\"mil-light-soft\">/mes</span>",
+      "usd": "≈ $9,600 USD",
+      "description": "Para productos críticos que deben escalar con arquitectura robusta y operaciones.",
+      "features": [
+        "Hasta 320 horas de desarrollo mensuales",
+        "Equipo multidisciplinario dedicado",
+        "Arquitectura, DevOps y seguridad incluidas",
+        "Soporte prioritario con respaldo SLA"
+      ]
+    }
+  },
+  "footer": {
+    "newsletter": "Suscríbete a nuestro boletín:",
+    "email_placeholder": "Ingresa nuestro correo",
+    "links": {
+      "privacy": "Política de Privacidad",
+      "terms": "Términos y Condiciones",
+      "cookies": "Política de Cookies",
+      "careers": "Carreras"
+    },
+    "contact": {
+      "costa_rica": "Costa Rica",
+      "response": "Respuesta dentro de 24h",
+      "website": "www.triacr.com"
+    },
+    "copyright": "© 2024 Tria. Todos los Derechos Reservados."
+  }
+}
