@@ -147,7 +147,7 @@ const translations: Translations = getTranslations();
                   <circle cx="150" cy="100" r="75" fill="none"></circle>
                   <g>
                     <use xlink:href="#circlePath" fill="none"></use>
-                    <text style="letter-spacing: 6.5px">
+                    <text class="circle-text">
                       <textPath xlink:href="#circlePath"
                         >Scroll down - Scroll down -
                       </textPath>
@@ -157,6 +157,8 @@ const translations: Translations = getTranslations();
                 <a
                   href="#about"
                   class="mil-button mil-arrow-place mil-icon-button mil-arrow-down"
+                  aria-label="Scroll down to about section"
+                  title="Scroll down to about section"
                 ></a>
               </div>
             </div>
@@ -166,17 +168,11 @@ const translations: Translations = getTranslations();
           <div class="mi-invert-fix">
             <div class="mil-animation-frame">
               <div
-                class="mil-animation mil-position-1 mil-scale"
-                data-value-1="1.2"
-                data-value-2=".2"
-                style="top: 200px; right: -100px"
+                class="mil-animation mil-position-1 mil-scale animation-position-1"
               >
               </div>
               <div
-                class="mil-animation mil-position-2 mil-scale"
-                data-value-1="1"
-                data-value-2=".5"
-                style="left: 100px"
+                class="mil-animation mil-position-2 mil-scale animation-position-2"
               >
               </div>
             </div>
@@ -209,8 +205,7 @@ const translations: Translations = getTranslations();
                   <div class="mil-about-photo mil-mb-90">
                     <div class="mil-lines-place"></div>
                     <div
-                      class="mil-up mil-img-frame"
-                      style="padding-bottom: 160%;"
+                      class="mil-up mil-img-frame img-frame-padding"
                     >
                       <img
                         src="/assets/images/placeholder.svg"
@@ -230,17 +225,11 @@ const translations: Translations = getTranslations();
           <div class="mi-invert-fix">
             <div class="mil-animation-frame">
               <div
-                class="mil-animation mil-position-1 mil-scale"
-                data-value-1="2.4"
-                data-value-2="1.4"
-                style="top: 300px; right: -100px"
+                class="mil-animation mil-position-1 mil-scale animation-position-3"
               >
               </div>
               <div
-                class="mil-animation mil-position-2 mil-scale"
-                data-value-1="2"
-                data-value-2="1"
-                style="left: 150px"
+                class="mil-animation mil-position-2 mil-scale animation-position-4"
               >
               </div>
             </div>
@@ -278,7 +267,7 @@ const translations: Translations = getTranslations();
                       React, Next.js, TypeScript, Tailwind CSS for modern user
                       interfaces.
                     </p>
-                    <div class="mil-button mil-icon-button-sm mil-arrow-place">
+                    <div class="mil-button mil-icon-button-sm mil-arrow-place" aria-label="Learn more about Frontend Development" title="Learn more about Frontend Development">
                     </div>
                   </a>
                 </div>
@@ -291,7 +280,7 @@ const translations: Translations = getTranslations();
                       iOS, Android, React Native for cross-platform mobile
                       applications.
                     </p>
-                    <div class="mil-button mil-icon-button-sm mil-arrow-place">
+                    <div class="mil-button mil-icon-button-sm mil-arrow-place" aria-label="Learn more about Mobile Development" title="Learn more about Mobile Development">
                     </div>
                   </a>
                 </div>
@@ -304,7 +293,7 @@ const translations: Translations = getTranslations();
                       Node.js, Python, PostgreSQL, APIs for robust server-side
                       solutions.
                     </p>
-                    <div class="mil-button mil-icon-button-sm mil-arrow-place">
+                    <div class="mil-button mil-icon-button-sm mil-arrow-place" aria-label="Learn more about Backend Development" title="Learn more about Backend Development">
                     </div>
                   </a>
                 </div>
@@ -315,7 +304,7 @@ const translations: Translations = getTranslations();
                       AWS, Docker, Kubernetes, CI/CD for modern deployment
                       infrastructure.
                     </p>
-                    <div class="mil-button mil-icon-button-sm mil-arrow-place">
+                    <div class="mil-button mil-icon-button-sm mil-arrow-place" aria-label="Learn more about DevOps & Cloud" title="Learn more about DevOps & Cloud">
                     </div>
                   </a>
                 </div>
@@ -327,17 +316,11 @@ const translations: Translations = getTranslations();
           <div class="mi-invert-fix">
             <div class="mil-animation-frame">
               <div
-                class="mil-animation mil-position-1 mil-scale"
-                data-value-1="1.5"
-                data-value-2=".3"
-                style="top: 100px; right: -50px"
+                class="mil-animation mil-position-1 mil-scale animation-position-5"
               >
               </div>
               <div
-                class="mil-animation mil-position-2 mil-scale"
-                data-value-1="1.2"
-                data-value-2=".4"
-                style="left: 200px"
+                class="mil-animation mil-position-2 mil-scale animation-position-6"
               >
               </div>
             </div>
@@ -384,6 +367,8 @@ const translations: Translations = getTranslations();
                                     href="#"
                                     target="_blank"
                                     class="social-icon"
+                                    aria-label="Behance"
+                                    title="Behance"
                                   >
                                     <i class="fab fa-behance"></i></a>
                                 </li>
@@ -392,6 +377,8 @@ const translations: Translations = getTranslations();
                                     href="#"
                                     target="_blank"
                                     class="social-icon"
+                                    aria-label="Dribbble"
+                                    title="Dribbble"
                                   >
                                     <i class="fab fa-dribbble"></i></a>
                                 </li>
@@ -400,6 +387,8 @@ const translations: Translations = getTranslations();
                                     href="#"
                                     target="_blank"
                                     class="social-icon"
+                                    aria-label="Twitter"
+                                    title="Twitter"
                                   >
                                     <i class="fab fa-twitter"></i></a>
                                 </li>
@@ -408,6 +397,8 @@ const translations: Translations = getTranslations();
                                     href="#"
                                     target="_blank"
                                     class="social-icon"
+                                    aria-label="GitHub"
+                                    title="GitHub"
                                   >
                                     <i class="fab fa-github"></i></a>
                                 </li>
@@ -432,6 +423,8 @@ const translations: Translations = getTranslations();
                                     href="#"
                                     target="_blank"
                                     class="social-icon"
+                                    aria-label="Behance"
+                                    title="Behance"
                                   >
                                     <i class="fab fa-behance"></i></a>
                                 </li>
@@ -440,6 +433,8 @@ const translations: Translations = getTranslations();
                                     href="#"
                                     target="_blank"
                                     class="social-icon"
+                                    aria-label="Dribbble"
+                                    title="Dribbble"
                                   >
                                     <i class="fab fa-dribbble"></i></a>
                                 </li>
@@ -448,6 +443,8 @@ const translations: Translations = getTranslations();
                                     href="#"
                                     target="_blank"
                                     class="social-icon"
+                                    aria-label="Twitter"
+                                    title="Twitter"
                                   >
                                     <i class="fab fa-twitter"></i></a>
                                 </li>
@@ -456,6 +453,8 @@ const translations: Translations = getTranslations();
                                     href="#"
                                     target="_blank"
                                     class="social-icon"
+                                    aria-label="GitHub"
+                                    title="GitHub"
                                   >
                                     <i class="fab fa-github"></i></a>
                                 </li>
@@ -466,8 +465,7 @@ const translations: Translations = getTranslations();
                       </div>
                       <div class="col-sm-6">
                         <p
-                          class="mil-mobile-hidden mil-text-sm mil-mb-30"
-                          style="height: 30px;"
+                          class="mil-mobile-hidden mil-text-sm mil-mb-30 mobile-hidden-height"
                         >
                           <span class="mil-accent">*</span> The founders of our agency
                         </p>
@@ -488,6 +486,8 @@ const translations: Translations = getTranslations();
                                     href="#"
                                     target="_blank"
                                     class="social-icon"
+                                    aria-label="Behance"
+                                    title="Behance"
                                   >
                                     <i class="fab fa-behance"></i></a>
                                 </li>
@@ -496,6 +496,8 @@ const translations: Translations = getTranslations();
                                     href="#"
                                     target="_blank"
                                     class="social-icon"
+                                    aria-label="Dribbble"
+                                    title="Dribbble"
                                   >
                                     <i class="fab fa-dribbble"></i></a>
                                 </li>
@@ -504,6 +506,8 @@ const translations: Translations = getTranslations();
                                     href="#"
                                     target="_blank"
                                     class="social-icon"
+                                    aria-label="Twitter"
+                                    title="Twitter"
                                   >
                                     <i class="fab fa-twitter"></i></a>
                                 </li>
@@ -512,6 +516,8 @@ const translations: Translations = getTranslations();
                                     href="#"
                                     target="_blank"
                                     class="social-icon"
+                                    aria-label="GitHub"
+                                    title="GitHub"
                                   >
                                     <i class="fab fa-github"></i></a>
                                 </li>
@@ -536,6 +542,8 @@ const translations: Translations = getTranslations();
                                     href="#"
                                     target="_blank"
                                     class="social-icon"
+                                    aria-label="Behance"
+                                    title="Behance"
                                   >
                                     <i class="fab fa-behance"></i></a>
                                 </li>
@@ -544,6 +552,8 @@ const translations: Translations = getTranslations();
                                     href="#"
                                     target="_blank"
                                     class="social-icon"
+                                    aria-label="Dribbble"
+                                    title="Dribbble"
                                   >
                                     <i class="fab fa-dribbble"></i></a>
                                 </li>
@@ -552,6 +562,8 @@ const translations: Translations = getTranslations();
                                     href="#"
                                     target="_blank"
                                     class="social-icon"
+                                    aria-label="Twitter"
+                                    title="Twitter"
                                   >
                                     <i class="fab fa-twitter"></i></a>
                                 </li>
@@ -560,6 +572,8 @@ const translations: Translations = getTranslations();
                                     href="#"
                                     target="_blank"
                                     class="social-icon"
+                                    aria-label="GitHub"
+                                    title="GitHub"
                                   >
                                     <i class="fab fa-github"></i></a>
                                 </li>
@@ -579,17 +593,11 @@ const translations: Translations = getTranslations();
           <div class="mi-invert-fix">
             <div class="mil-animation-frame">
               <div
-                class="mil-animation mil-position-1 mil-scale"
-                data-value-1="1.8"
-                data-value-2=".2"
-                style="top: 150px; right: -80px"
+                class="mil-animation mil-position-1 mil-scale animation-position-7"
               >
               </div>
               <div
-                class="mil-animation mil-position-2 mil-scale"
-                data-value-1="1.3"
-                data-value-2=".3"
-                style="left: 150px"
+                class="mil-animation mil-position-2 mil-scale animation-position-4"
               >
               </div>
             </div>
@@ -671,17 +679,11 @@ const translations: Translations = getTranslations();
           <div class="mi-invert-fix">
             <div class="mil-animation-frame">
               <div
-                class="mil-animation mil-position-1 mil-scale"
-                data-value-1="2"
-                data-value-2=".3"
-                style="top: 100px; right: -100px"
+                class="mil-animation mil-position-1 mil-scale animation-position-8"
               >
               </div>
               <div
-                class="mil-animation mil-position-2 mil-scale"
-                data-value-1="1.5"
-                data-value-2=".4"
-                style="left: 100px"
+                class="mil-animation mil-position-2 mil-scale animation-position-2"
               >
               </div>
             </div>
@@ -795,6 +797,8 @@ const translations: Translations = getTranslations();
                     <button
                       type="submit"
                       class="mil-button mil-icon-button-sm mil-arrow-place"
+                      aria-label="Subscribe to newsletter"
+                      title="Subscribe to newsletter"
                     ></button>
                   </form>
                 </div>
@@ -824,20 +828,20 @@ const translations: Translations = getTranslations();
                     <div class="col-md-6 col-lg-5">
                       <ul class="mil-menu-list mil-up mil-mb-60">
                         <li>
-                          <a href="#" class="mil-light-soft"
-                            >{translations.footer.links.privacy}</a>
+                          <a href="#" class="mil-light-soft" aria-label="Privacy Policy" title="Privacy Policy">
+                            {translations.footer.links.privacy}</a>
                         </li>
                         <li>
-                          <a href="#" class="mil-light-soft"
-                            >{translations.footer.links.terms}</a>
+                          <a href="#" class="mil-light-soft" aria-label="Terms of Service" title="Terms of Service">
+                            {translations.footer.links.terms}</a>
                         </li>
                         <li>
-                          <a href="#" class="mil-light-soft"
-                            >{translations.footer.links.cookies}</a>
+                          <a href="#" class="mil-light-soft" aria-label="Cookie Policy" title="Cookie Policy">
+                            {translations.footer.links.cookies}</a>
                         </li>
                         <li>
-                          <a href="#" class="mil-light-soft"
-                            >{translations.footer.links.careers}</a>
+                          <a href="#" class="mil-light-soft" aria-label="Careers" title="Careers">
+                            {translations.footer.links.careers}</a>
                         </li>
                       </ul>
                     </div>
@@ -874,19 +878,19 @@ const translations: Translations = getTranslations();
                     <div class="mil-mb-30">
                       <ul class="mil-social-icons mil-up">
                         <li>
-                          <a href="#" target="_blank" class="social-icon">
+                          <a href="#" target="_blank" class="social-icon" aria-label="Behance" title="Behance">
                             <i class="fab fa-behance"></i></a>
                         </li>
                         <li>
-                          <a href="#" target="_blank" class="social-icon">
+                          <a href="#" target="_blank" class="social-icon" aria-label="Dribbble" title="Dribbble">
                             <i class="fab fa-dribbble"></i></a>
                         </li>
                         <li>
-                          <a href="#" target="_blank" class="social-icon">
+                          <a href="#" target="_blank" class="social-icon" aria-label="Twitter" title="Twitter">
                             <i class="fab fa-twitter"></i></a>
                         </li>
                         <li>
-                          <a href="#" target="_blank" class="social-icon">
+                          <a href="#" target="_blank" class="social-icon" aria-label="GitHub" title="GitHub">
                             <i class="fab fa-github"></i></a>
                         </li>
                       </ul>

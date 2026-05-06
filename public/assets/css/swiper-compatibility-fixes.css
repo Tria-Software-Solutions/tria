@@ -3,17 +3,20 @@
 
 /* Fix for -ms-touch-action compatibility issue */
 /* Add touch-action for Firefox 52+, Firefox for Android 52+, Safari 13+, Samsung Internet 3.0+ */
-.swiper {
-    touch-action: pan-y;
+.swiper,
+.swiper-container {
+    touch-action: pan-y !important;
 }
 
 /* Fix for scrollbar-width compatibility issue */
 /* scrollbar-width is not supported by Chrome < 121, Safari, Safari on iOS, Samsung Internet */
 /* Fallback to webkit scrollbar styles provided below */
-.swiper-scrollbar {
-    /* Firefox scrollbar styling */
-    scrollbar-width: thin;
-    scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
+@supports (scrollbar-width: thin) {
+    .swiper-scrollbar {
+        /* Firefox scrollbar styling */
+        scrollbar-width: thin;
+        scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
+    }
 }
 
 /* Webkit scrollbar fallback */

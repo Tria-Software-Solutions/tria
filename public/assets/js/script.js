@@ -231,6 +231,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Service Worker registration (if available)
+    // Disabled during development to prevent caching issues
+    /*
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('/sw.js')
             .then(function() {
@@ -240,6 +242,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log('Service Worker registration failed:', error);
             });
     }
+    */
 });
 
 // Utility functions
