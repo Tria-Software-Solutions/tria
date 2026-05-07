@@ -81,7 +81,25 @@
     }
     
     section {
-        padding: 60px 0;
+        padding: 80px 20px;
+        margin: 0;
+    }
+    
+    .mil-p-120-120 {
+        padding: 80px 20px !important;
+    }
+    
+    /* Footer and services section specific padding fixes */
+    footer,
+    footer .container {
+        padding-top: 120px !important;
+        padding-bottom: 100px !important;
+    }
+    
+    #services,
+    #services .container {
+        padding-top: 120px !important;
+        padding-bottom: 100px !important;
     }
     
     .section-title {
@@ -140,6 +158,23 @@
         font-size: clamp(3.5rem, 6vw, 5rem);
     }
     
+    .mil-p-120-120 {
+        padding: 100px 40px !important;
+    }
+    
+    /* Footer and services section specific padding fixes */
+    footer,
+    footer .container {
+        padding-top: 120px !important;
+        padding-bottom: 120px !important;
+    }
+    
+    #services,
+    #services .container {
+        padding-top: 120px !important;
+        padding-bottom: 120px !important;
+    }
+    
     .testimonials-grid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -156,12 +191,25 @@
 
 /* Large Devices (desktops, 992px and up) */
 @media (min-width: 992px) and (max-width: 1199px) {
-    .container {
-        max-width: 960px;
+    .hero-title {
+        font-size: clamp(4rem, 5vw, 5.5rem);
     }
     
-    .nav-container {
-        max-width: 960px;
+    .mil-p-120-120 {
+        padding: 120px 50px !important;
+    }
+    
+    /* Footer and services section specific padding fixes */
+    footer,
+    footer .container {
+        padding-top: 140px !important;
+        padding-bottom: 140px !important;
+    }
+    
+    #services,
+    #services .container {
+        padding-top: 140px !important;
+        padding-bottom: 140px !important;
     }
     
     .testimonials-grid {
@@ -170,7 +218,7 @@
     
     .publications-grid,
     .projects-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
@@ -182,6 +230,23 @@
     
     .nav-container {
         max-width: 1140px;
+    }
+    
+    .mil-p-120-120 {
+        padding: 120px 0 !important;
+    }
+    
+    /* Footer and services section specific padding fixes */
+    footer,
+    footer .container {
+        padding-top: 140px !important;
+        padding-bottom: 140px !important;
+    }
+    
+    #services,
+    #services .container {
+        padding-top: 140px !important;
+        padding-bottom: 140px !important;
     }
 }
 

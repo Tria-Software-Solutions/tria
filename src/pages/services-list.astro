@@ -1,11 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getTranslations, type Translations } from '../lib/i18n';
+import { getTranslations, type Translations } from '../lib/i18n/index';
 
 const translations: Translations = getTranslations();
 ---
 
-<Layout title="Kemia Honest Skincare" translations={translations}>
+<Layout title="Services" translations={translations}>
 	<div class="mil-wrapper" id="top">
 		<div class="mil-ball">
 			<span class="mil-icon-1">
@@ -49,20 +49,13 @@ const translations: Translations = getTranslations();
 										<a href="#.">Homepage</a>
 										<ul>
 											<li><a href="/">Landing page</a></li>
-											<li><a href="/home-2">Personal</a></li>
+											<li><a href="/about-us">Personal</a></li>
 										</ul>
 									</li>
 									<li class="mil-has-children mil-active">
-										<a href="#.">Portfolio</a>
-										<ul>
-											<li><a href="/portfolio-1">Grid type 1</a></li>
-											<li><a href="/portfolio-2">Grid type 2</a></li>
-										</ul>
-									</li>
-									<li class="mil-has-children">
 										<a href="#.">Services</a>
 										<ul>
-											<li><a href="/services">Services List</a></li>
+											<li><a href="/services-list">Services List</a></li>
 										</ul>
 									</li>
 									<li class="mil-has-children">
@@ -84,15 +77,6 @@ const translations: Translations = getTranslations();
 								</div>
 								<div class="mil-menu-right">
 									<div class="row">
-										<div class="col-lg-8 mil-mb-60">
-											<h6 class="mil-muted mil-mb-30">Projects</h6>
-											<ul class="mil-menu-list">
-												<li><a href="/project-1" class="mil-light-soft">Interior design studio</a></li>
-												<li><a href="/project-2" class="mil-light-soft">Home Security Camera</a></li>
-												<li><a href="/project-3" class="mil-light-soft">Kemia Honest Skincare</a></li>
-												<li><a href="/project-4" class="mil-light-soft">Cascade of Lava</a></li>
-											</ul>
-										</div>
 										<div class="col-lg-4 mil-mb-60">
 											<h6 class="mil-muted mil-mb-30">Useful links</h6>
 											<ul class="mil-menu-list">
@@ -132,102 +116,85 @@ const translations: Translations = getTranslations();
 		</div>
 		<div class="mil-content">
 			<div id="swupMain" class="mil-main-transition">
-				<div class="mil-inner-banner">
-					<div class="mil-banner-content mil-up">
-						<div class="mil-animation-frame">
-							<div class="mil-animation mil-position-4 mil-dark mil-scale" data-value-1="6" data-value-2="1.4"></div>
-						</div>
-						<div class="container">
-							<ul class="mil-breadcrumbs mil-mb-60">
-								<li><a href="/">{translations.navigation.home}</a></li>
-								<li><a href="/portfolio-1">Portfolio</a></li>
-								<li><a href="/project-3">Project</a></li>
-							</ul>
-							<h1 class="mil-mb-60">Kemia <span class="mil-thin">Honest</span><br> Skincare</h1>
-							<a href="#project" class="mil-link mil-dark mil-arrow-place mil-down-arrow"><span>Read more</span></a>
+				<div class="mil-dark-bg">
+					<div class="mil-inner-banner">
+						<div class="mil-banner-content mil-up">
+							<div class="mil-animation-frame">
+								<div class="mil-animation mil-position-4 mil-scale" data-value-1="6" data-value-2="1.4"></div>
+							</div>
+							<div class="container">
+								<ul class="mil-breadcrumbs mil-light mil-mb-60">
+									<li><a href="/">{translations.navigation.home}</a></li>
+									<li><a href="/services-list">{translations.navigation.services}</a></li>
+								</ul>
+								<h1 class="mil-muted mil-mb-60">This is <span class="mil-thin">what</span><br> we do <span class="mil-thin">best</span></h1>
+								<a href="#services" class="mil-link mil-accent mil-arrow-place mil-down-arrow"><span>Our services</span></a>
+							</div>
 						</div>
 					</div>
 				</div>
-				<section class="mil-p-120-0">
-					<div class="container mil-p-0-120" id="project">
-						<div class="mil-image-frame mil-horizontal mil-up">
-							<img src="/images/project-3-1.jpg" alt="image">
-							<a data-fancybox="gallery" data-no-swup href="/images/project-3-1.jpg" class="mil-zoom-btn">
-								<img src="/images/icons/zoom.svg" alt="zoom">
-							</a>
-						</div>
-						<div class="mil-info mil-up">
-							<div>Client: &nbsp;<span class="mil-dark">Beauty Brand</span></div>
-							<div>Date: &nbsp;<span class="mil-dark">April 2023</span></div>
-							<div>Author: &nbsp;<span class="mil-dark">Tria Team</span></div>
-						</div>
-						<div class="mil-p-120-0">
+				<section id="services">
+					<div class="mi-invert-fix">
+						<div class="container mil-p-120-60">
 							<div class="row">
-								<div class="col-lg-6">
-									<div class="mil-image-frame mil-square mil-up mil-mb-30">
-										<img src="/images/project-3-2.jpg" alt="image">
-										<a data-fancybox="gallery" data-no-swup href="/images/project-3-2.jpg" class="mil-zoom-btn">
-											<img src="/images/icons/zoom.svg" alt="zoom">
-										</a>
-									</div>
-								</div>
-								<div class="col-lg-6">
-									<div class="mil-image-frame mil-square mil-up mil-mb-30">
-										<img src="/images/project-3-3.jpg" alt="image">
-										<a data-fancybox="gallery" data-no-swup href="/images/project-3-3.jpg" class="mil-zoom-btn">
-											<img src="/images/icons/zoom.svg" alt="zoom">
-										</a>
-									</div>
-								</div>
-								<div class="col-lg-6">
-									<div class="mil-image-frame mil-square mil-up mil-mb-30">
-										<img src="/images/project-3-4.jpg" alt="image">
-										<a data-fancybox="gallery" data-no-swup href="/images/project-3-4.jpg" class="mil-zoom-btn">
-											<img src="/images/icons/zoom.svg" alt="zoom">
-										</a>
-									</div>
-								</div>
-								<div class="col-lg-6">
-									<div class="mil-image-frame mil-square mil-up mil-mb-30">
-										<img src="/images/project-3-5.jpg" alt="image">
-										<a data-fancybox="gallery" data-no-swup href="/images/project-3-5.jpg" class="mil-zoom-btn">
-											<img src="/images/icons/zoom.svg" alt="zoom">
-										</a>
-									</div>
-								</div>
-							</div>
-							<div class="row justify-content-between mil-p-90-120">
 								<div class="col-lg-5">
-									<h3 class="mil-up mil-mb-60">Natural beauty meets innovation!</h3>
+									<div class="mil-lines-place mil-light"></div>
 								</div>
-								<div class="col-lg-6">
-									<p class="mil-up mil-mb-30">A skincare brand that pays great attention to natural ingredients and user experience, featuring two modes to provide beauty while protecting personal privacy. The brand has an organic and synthetic mode, we define product to have clear two sides, expressing two working states and emotions.</p>
-									<p class="mil-up">Presents a simple and gentle state when not in use, delivering a natural and beautiful aesthetic. At the same time, brand can adapt to a variety of environments, providing elegant ways of product organization and standing installation.</p>
-								</div>
-							</div>
-							<div class="row mil-p-0-90">
-								<div class="col-lg-6">
-									<div class="mil-image-frame mil-vertical mil-up mil-mb-30">
-										<img src="/images/project-3-6.jpg" alt="image">
-										<a data-fancybox="gallery" data-no-swup href="/images/project-3-6.jpg" class="mil-zoom-btn">
-											<img src="/images/icons/zoom.svg" alt="zoom">
-										</a>
+								<div class="col-lg-7">
+									<div class="row">
+										<div class="col-md-6 col-lg-6">
+											<a href="/service-detail" class="mil-service-card-lg mil-more mil-accent-cursor mil-offset">
+												<h4 class="mil-muted mil-up mil-mb-30" set:html={translations.services.frontend.title}></h4>
+												<p class="mil-descr mil-light-soft mil-up mil-mb-30">{translations.services.frontend.description}</p>
+												<ul class="mil-service-list mil-light mil-mb-30">
+													<li class="mil-up">React Development</li>
+													<li class="mil-up">Next.js Apps</li>
+													<li class="mil-up">UI/UX Design</li>
+												</ul>
+												<div class="mil-link mil-accent mil-arrow-place mil-up"><span>Read more</span></div>
+											</a>
+										</div>
+										<div class="col-md-6 col-lg-6">
+											<a href="/service-detail" class="mil-service-card-lg mil-more mil-accent-cursor">
+												<h4 class="mil-muted mil-up mil-mb-30" set:html={translations.services.mobile.title}></h4>
+												<p class="mil-descr mil-light-soft mil-up mil-mb-30">{translations.services.mobile.description}</p>
+												<ul class="mil-service-list mil-light mil-mb-30">
+													<li class="mil-up">iOS Development</li>
+													<li class="mil-up">Android Apps</li>
+													<li class="mil-up">Cross-Platform</li>
+												</ul>
+												<div class="mil-link mil-accent mil-arrow-place mil-up"><span>Read more</span></div>
+											</a>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6 col-lg-6">
+											<a href="/service-detail" class="mil-service-card-lg mil-more mil-accent-cursor">
+												<h4 class="mil-muted mil-up mil-mb-30" set:html={translations.services.backend.title}></h4>
+												<p class="mil-descr mil-light-soft mil-up mil-mb-30">{translations.services.backend.description}</p>
+												<ul class="mil-service-list mil-light mil-mb-30">
+													<li class="mil-up">Node.js APIs</li>
+													<li class="mil-up">Database Design</li>
+													<li class="mil-up">Cloud Services</li>
+												</ul>
+												<div class="mil-link mil-accent mil-arrow-place mil-up"><span>Read more</span></div>
+											</a>
+										</div>
+										<div class="col-md-6 col-lg-6">
+											<a href="/service-detail" class="mil-service-card-lg mil-more mil-accent-cursor">
+												<h4 class="mil-muted mil-up mil-mb-30" set:html={translations.services.devops.title}></h4>
+												<p class="mil-descr mil-light-soft mil-up mil-mb-30">{translations.services.devops.description}</p>
+												<ul class="mil-service-list mil-light mil-mb-30">
+													<li class="mil-up">AWS Deployment</li>
+													<li class="mil-up">Docker/Kubernetes</li>
+													<li class="mil-up">CI/CD Pipelines</li>
+												</ul>
+												<div class="mil-link mil-accent mil-arrow-place mil-up"><span>Read more</span></div>
+											</a>
+										</div>
 									</div>
 								</div>
-								<div class="col-lg-6">
-									<div class="mil-image-frame mil-vertical mil-up mil-mb-30">
-										<img src="/images/project-3-7.jpg" alt="image">
-										<a data-fancybox="gallery" data-no-swup href="/images/project-3-7.jpg" class="mil-zoom-btn">
-											<img src="/images/icons/zoom.svg" alt="zoom">
-										</a>
-									</div>
-								</div>
 							</div>
-						</div>
-						<div class="mil-works-nav mil-up">
-							<a href="/project-2" class="mil-link mil-dark mil-arrow-place mil-icon-left"><span>Prev project</span></a>
-							<a href="/portfolio-1" class="mil-link mil-dark"><span>All projects</span></a>
-							<a href="/project-4" class="mil-link mil-dark mil-arrow-place"><span>Next project</span></a>
 						</div>
 					</div>
 				</section>
@@ -239,7 +206,7 @@ const translations: Translations = getTranslations();
 							</div>
 						</div>
 						<div class="mil-center">
-							<h2 class="mil-up mil-mb-60">Ready to bring your <span class="mil-thin">ideas to</span> life? <br> We're <span class="mil-thin">here to help</span></h2>
+							<h2 class="mil-up mil-mb-60">Let's make an <span class="mil-thin">impact</span><br> together. Ready <span class="mil-thin">when you are</span></h2>
 							<div class="mil-up"><a href="/contact" class="mil-button mil-arrow-place"><span>Contact us</span></a></div>
 						</div>
 					</div>
@@ -262,8 +229,7 @@ const translations: Translations = getTranslations();
 											<nav class="mil-footer-menu mil-mb-60">
 												<ul>
 													<li class="mil-up"><a href="/">{translations.navigation.home}</a></li>
-													<li class="mil-up mil-active"><a href="/portfolio-1">Portfolio</a></li>
-													<li class="mil-up"><a href="/services">{translations.navigation.services}</a></li>
+																<li class="mil-up mil-active"><a href="/services-list">{translations.navigation.services}</a></li>
 													<li class="mil-up"><a href="/contact">{translations.navigation.contact}</a></li>
 												</ul>
 											</nav>
@@ -312,6 +278,7 @@ const translations: Translations = getTranslations();
 				</footer>
 				<div class="mil-hidden-elements">
 					<div class="mil-dodecahedron">
+						<div class="mil-pentagon"><div></div><div></div><div></div><div></div><div></div></div>
 						<div class="mil-pentagon"><div></div><div></div><div></div><div></div><div></div></div>
 						<div class="mil-pentagon"><div></div><div></div><div></div><div></div><div></div></div>
 						<div class="mil-pentagon"><div></div><div></div><div></div><div></div><div></div></div>

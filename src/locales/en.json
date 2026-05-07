@@ -1,6 +1,7 @@
 {
   "navigation": {
     "home": "Home",
+    "project": "Start your project",
     "services": "Services",
     "pricing": "Pricing",
     "contact": "Contact",
@@ -9,8 +10,9 @@
     "portfolio": "Portfolio"
   },
   "banner": {
-    "title": "Building <span class=\"mil-thin\">Custom</span><br> Software <span class=\"mil-thin\">Solutions</span>",
-    "subtitle": "We design, build, and scale digital products with a strong focus on outcomes, speed, and engineering quality. Your software engineering partner in Costa Rica and LATAM."
+    "title": "Transforming <span class=\"mil-thin\">Ideas</span> into <span class=\"mil-thin\">Solutions</span>",
+    "subtitle": "We create innovative digital experiences that drive business growth.",
+    "subtitle2": "Combining creativity with technical excellence to deliver exceptional results."
   },
   "services": {
     "title": "Unique <span class=\"mil-thin\">Ideas</span>",
@@ -38,81 +40,77 @@
     }
   },
   "about": {
-    "title": "Discover <br>Our <span class=\"mil-thin\">Studio</span>",
-    "subtitle": "At Tria, we're a software engineering team passionate about building custom digital solutions that drive real business outcomes. From concept to deployment, we combine technical excellence with deep industry knowledge to deliver scalable, high-performance software.",
-    "subtitle2": "Our agile approach ensures rapid delivery without compromising quality. We work closely with you to understand your unique challenges, then architect and implement solutions that are robust, secure, and designed for growth.",
-    "quote": "Building <span class=\"mil-thin\">Exceptional Software:</span> Delivering <span class=\"mil-thin\">Real Results</span>"
+    "title": "About <span class=\"mil-thin\">Us</span>",
+    "subtitle": "We build custom digital solutions with technical excellence.",
+    "subtitle2": "Combining expertise with practical experience.",
+    "quote": "<span class=\"mil-thin\">Exceptional</span> software for real results."
   },
   "team": {
     "title": "Our <br>Development Process",
-    "subtitle": "A disciplined agile approach to software development, refined through years of delivering production-grade applications for clients in Costa Rica and LATAM.",
-    "subtitle2": "From discovery to deployment, we follow a proven methodology that ensures quality, speed, and business outcomes.",
+    "subtitle": "Proven methodology for quality software.",
+    "subtitle2": "From concept to deployment, we follow best practices.",
     "cta": "Start Your Project",
-    "deliver": "<span class=\"mil-thin\">We</span> deliver <br><span class=\"mil-thin\">exceptional</span> software."
+    "deliver": "<span class=\"mil-thin\">We</span> deliver <span class=\"mil-thin\">exceptional</span> software."
   },
   "testimonials": {
     "title": "Client <span class=\"mil-thin\">Success</span> <br>Stories",
-    "subtitle": "Customer reviews are a valuable source of information for both businesses and consumers.",
+    "subtitle": "Real results from our clients.",
     "client1": {
       "name": "Carlos Rodriguez",
       "company": "TechStart CEO",
-      "review": "Tria delivered our e-commerce platform ahead of schedule with exceptional quality. Their technical expertise and communication throughout the project was outstanding."
+      "review": "E-commerce platform with exceptional quality."
     },
     "client2": {
       "name": "Maria Fernandez",
       "company": "Fintech Bank",
-      "review": "The mobile banking app they built for us has transformed our customer experience. Performance, security, and user interface exceeded our expectations."
+      "review": "Mobile banking app that transformed customer experience."
     }
   },
   "pricing": {
-    "title": "Pricing with <span class=\"mil-thin\">Realistic Rates</span>",
-    "subtitle": "Reference plans for product development and support. Includes technical leadership, QA, and weekly execution follow-up.",
-    "subtitle2": "All plans include weekly execution follow-up, technical leadership, and QA. Custom quotes available for specific requirements.",
+    "title": "<span class=\"mil-thin\">Flexible</span> Pricing",
+    "subtitle": "Plans adapted to your needs.",
+    "subtitle2": "Includes technical support and maintenance.",
     "starter": {
       "title": "Starter",
       "price": "₡1.25M<span class=\"mil-light-soft\">/month</span>",
       "usd": "≈ $2,450 USD",
-      "description": "Best for small businesses that need to evolve their product with an agile team.",
+      "description": "Ideal for small projects.",
       "features": [
-        "Up to 80 development hours monthly",
-        "1 full-stack developer + part-time QA",
-        "Corrective support and ongoing improvements",
-        "Monthly technical roadmap"
+        "80 development hours",
+        "Technical support",
+        "Maintenance included"
       ]
     },
     "growth": {
       "title": "Growth",
       "price": "₡2.85M<span class=\"mil-light-soft\">/month</span>",
       "usd": "≈ $5,600 USD",
-      "description": "For growing companies that need consistent delivery and faster feature velocity.",
+      "description": "For growing companies.",
       "features": [
-        "Up to 180 development hours monthly",
-        "Team of 2 devs + QA + tech lead",
-        "New features and integrations",
-        "Monitoring, metrics, and optimization"
-      ],
-      "label": "Most Popular"
+        "180 development hours",
+        "Technical leadership",
+        "Priority support"
+      ]
     },
     "scale": {
-      "title": "Scale",
-      "price": "₡4.9M<span class=\"mil-light-soft\">/month</span>",
-      "usd": "≈ $9,600 USD",
-      "description": "For critical products that must scale with robust architecture and operations.",
+      "title": "Enterprise",
+      "price": "₡4.95M<span class=\"mil-light-soft\">/month</span>",
+      "usd": "≈ $9,700 USD",
+      "description": "Complete solutions for large companies.",
       "features": [
-        "Up to 320 development hours monthly",
-        "Dedicated multidisciplinary squad",
-        "Architecture, DevOps, and security included",
-        "Priority SLA-backed support"
+        "320 development hours",
+        "Dedicated team",
+        "24/7 support"
       ]
     }
   },
   "footer": {
-    "newsletter": "Subscribe our newsletter:",
-    "email_placeholder": "Enter our email",
+    "newsletter": "Subscribe to our newsletter:",
+    "email_placeholder": "Enter your email",
     "subscribe_button": "Subscribe",
     "contact_title": "Contact",
-    "contact_address": "Costa Rica",
-    "contact_phone": "Response within 24h",
+    "contact_address": "San José, Costa Rica",
+    "contact_phone": "+50612345678",
     "contact_email": "info@triacr.com",
     "useful_links": "Useful links",
     "links": {
@@ -123,13 +121,33 @@
     },
     "contact": {
       "costa_rica": "Costa Rica",
-      "city": "San Jose, Costa Rica",
+      "city": "San José, Costa Rica",
       "response": "Response within 24h",
       "website": "www.triacr.com",
-      "whatsapp": "WhatsApp pending",
-      "whatsapp_href": "#"
+      "whatsapp": "+50612345678",
+      "whatsapp_href": "https://wa.me/50612345678"
     },
-    "copyright_suffix": "Tria. All Rights Reserved."
+    "copyright_suffix": "Tria. All Rights Reserved.",
+    "copyright": "© 2024 Tria. All Rights Reserved."
+  },
+  "contact": {
+    "name_label": "Your Name",
+    "name_placeholder": "Your Name",
+    "email_label": "Your Email",
+    "email_placeholder": "Your Email",
+    "phone_label": "Your Phone",
+    "phone_placeholder": "Your Phone",
+    "message_label": "Your Message",
+    "message_placeholder": "Your Message",
+    "privacy_policy": "I agree to the privacy policy",
+    "send_button": "Send Message",
+    "contact_info": "Contact Info",
+    "email_title": "Email",
+    "email_text": "Feel free to write us anytime!",
+    "phone_title": "Phone",
+    "phone_text": "Mon-Fri from 9am to 6pm.",
+    "address_title": "Address",
+    "address_text": "San José, Costa Rica"
   },
   "common": {
     "page_title": "Building Digital Solutions",

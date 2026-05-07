@@ -5,7 +5,7 @@ import { getTranslations, type Translations } from '../lib/i18n/index';
 const translations: Translations = getTranslations();
 ---
 
-<Layout title="Portfolio" translations={translations}>
+<Layout title="Service" translations={translations}>
 	<div class="mil-wrapper" id="top">
 		<div class="mil-ball">
 			<span class="mil-icon-1">
@@ -49,17 +49,10 @@ const translations: Translations = getTranslations();
 										<a href="#.">Homepage</a>
 										<ul>
 											<li><a href="/">Landing page</a></li>
-											<li><a href="/home-2">Personal</a></li>
+											<li><a href="/about-us">Personal</a></li>
 										</ul>
 									</li>
 									<li class="mil-has-children mil-active">
-										<a href="#.">Portfolio</a>
-										<ul>
-											<li><a href="/portfolio-1">Grid type 1</a></li>
-											<li><a href="/portfolio-2">Grid type 2</a></li>
-										</ul>
-									</li>
-									<li class="mil-has-children">
 										<a href="#.">Services</a>
 										<ul>
 											<li><a href="/services">Services List</a></li>
@@ -84,15 +77,6 @@ const translations: Translations = getTranslations();
 								</div>
 								<div class="mil-menu-right">
 									<div class="row">
-										<div class="col-lg-8 mil-mb-60">
-											<h6 class="mil-muted mil-mb-30">Projects</h6>
-											<ul class="mil-menu-list">
-												<li><a href="/project-1" class="mil-light-soft">Interior design studio</a></li>
-												<li><a href="/project-2" class="mil-light-soft">Home Security Camera</a></li>
-												<li><a href="/project-3" class="mil-light-soft">Kemia Honest Skincare</a></li>
-												<li><a href="/project-4" class="mil-light-soft">Cascade of Lava</a></li>
-											</ul>
-										</div>
 										<div class="col-lg-4 mil-mb-60">
 											<h6 class="mil-muted mil-mb-30">Useful links</h6>
 											<ul class="mil-menu-list">
@@ -133,134 +117,149 @@ const translations: Translations = getTranslations();
 		<div class="mil-content">
 			<div id="swupMain" class="mil-main-transition">
 				<div class="mil-inner-banner">
+					<div class="mil-animation-frame">
+						<div class="mil-animation mil-position-4 mil-dark mil-scale" data-value-1="6" data-value-2="1.4"></div>
+					</div>
 					<div class="mil-banner-content mil-up">
-						<div class="mil-animation-frame">
-							<div class="mil-animation mil-position-4 mil-dark mil-scale" data-value-1="6" data-value-2="1.4"></div>
-						</div>
 						<div class="container">
 							<ul class="mil-breadcrumbs mil-mb-60">
-								<li><a href="/">Homepage</a></li>
-								<li><a href="/portfolio-1">Portfolio</a></li>
+								<li><a href="/">{translations.navigation.home}</a></li>
+								<li><a href="/services-list">{translations.navigation.services}</a></li>
+								<li><a href="/service-detail">Service</a></li>
 							</ul>
-							<h1 class="mil-mb-60">Building <br> Custom <span class="mil-thin">Software Solutions</span></h1>
-							<a href="#portfolio" class="mil-link mil-dark mil-arrow-place mil-down-arrow"><span>Our works</span></a>
+							<h1 class="mil-mb-60">Software <span class="mil-thin">Development</span><br> and <span class="mil-thin">Solutions</span></h1>
+							<a href="#service" class="mil-link mil-dark mil-arrow-place mil-down-arrow"><span>About service</span></a>
 						</div>
 					</div>
 				</div>
-				<section id="portfolio">
-					<div class="container mil-portfolio mil-p-120-60">
-						<div class="mil-lines-place"></div>
-						<div class="mil-lines-place mil-lines-long"></div>
-						<div class="row justify-content-between align-items-center">
-							<div class="col-lg-5">
-								<a href="/project-1" class="mil-portfolio-item mil-more mil-mb-60">
-									<div class="mil-cover-frame mil-vert mil-up">
-										<div class="mil-cover">
-											<img src="/assets/images/projects/project-1.jpg" alt="cover">
-										</div>
-									</div>
-									<div class="mil-descr">
-										<div class="mil-labels mil-up mil-mb-15">
-											<div class="mil-label mil-upper mil-accent">Branding</div>
-											<div class="mil-label mil-upper">may 24 2023</div>
-										</div>
-										<h4 class="mil-up">Interior design studio</h4>
-									</div>
-								</a>
+				<section id="service">
+					<div class="container mil-p-120-90">
+						<div class="row justify-content-between">
+							<div class="col-lg-4 mil-relative mil-mb-90">
+								<h4 class="mil-up mil-mb-30">Your <span class="mil-thin">Approach</span> <br>and <span class="mil-thin">Work Process</span></h4>
+								<p class="mil-up mil-mb-30">At our agency, we have a unique approach to software development. We believe in creating solutions that not only work great but also perform well in terms of user experience, functionality, and scalability.</p>
+								<div class="mil-up">
+									<a href="/portfolio-1" class="mil-link mil-dark mil-arrow-place"><span>View works</span></a>
+								</div>
 							</div>
 							<div class="col-lg-6">
-								<a href="/project-2" class="mil-portfolio-item mil-more mil-parallax mil-mb-60" data-value-1="60" data-value-2="-60">
-									<div class="mil-cover-frame mil-hori mil-up">
-										<div class="mil-cover">
-											<img src="/assets/images/projects/project-2.jpg" alt="cover">
+								<div class="mil-accordion-group mil-up">
+									<div class="mil-accordion-menu">
+										<p class="mil-accordion-head">Requirements Analysis</p>
+										<div class="mil-symbol mil-h3">
+											<div class="mil-plus">+</div>
+											<div class="mil-minus">-</div>
 										</div>
 									</div>
-									<div class="mil-descr">
-										<div class="mil-labels mil-up mil-mb-15">
-											<div class="mil-label mil-upper mil-accent">Design</div>
-											<div class="mil-label mil-upper">may 24 2023</div>
-										</div>
-										<h4 class="mil-up">Home Security Camera</h4>
+									<div class="mil-accordion-content">
+										<p class="mil-mb-30">We start by understanding your business needs and technical requirements. Our team conducts thorough analysis to identify key objectives, constraints, and success metrics for your project.</p>
+										<p class="mil-mb-30">During requirements gathering, we work closely with stakeholders to document functional specifications, user stories, and acceptance criteria that will guide the development process.</p>
 									</div>
-								</a>
-							</div>
-							<div class="col-lg-6">
-								<a href="/project-3" class="mil-portfolio-item mil-more mil-parallax mil-mb-60" data-value-1="60" data-value-2="-60">
-									<div class="mil-cover-frame mil-hori mil-up">
-										<div class="mil-cover">
-											<img src="/assets/images/projects/project-3.jpg" alt="cover">
+								</div>
+								<div class="mil-accordion-group mil-up">
+									<div class="mil-accordion-menu">
+										<p class="mil-accordion-head">Design & Architecture</p>
+										<div class="mil-symbol mil-h3">
+											<div class="mil-plus">+</div>
+											<div class="mil-minus">-</div>
 										</div>
 									</div>
-									<div class="mil-descr">
-										<div class="mil-labels mil-up mil-mb-15">
-											<div class="mil-label mil-upper mil-accent">Design</div>
-											<div class="mil-label mil-upper">may 24 2023</div>
-										</div>
-										<h4 class="mil-up">Kemia Honest Skincare</h4>
+									<div class="mil-accordion-content">
+										<p class="mil-mb-30">Our design team creates intuitive user interfaces and robust system architectures. We focus on creating scalable, maintainable solutions that can grow with your business needs.</p>
+										<p class="mil-mb-30">We use modern design patterns and best practices to ensure your software is both beautiful and functional, providing excellent user experiences across all devices.</p>
 									</div>
-								</a>
-							</div>
-							<div class="col-lg-5">
-								<a href="/project-4" class="mil-portfolio-item mil-more mil-mb-60">
-									<div class="mil-cover-frame mil-vert mil-up">
-										<div class="mil-cover">
-											<img src="/assets/images/projects/project-4.jpg" alt="cover">
+								</div>
+								<div class="mil-accordion-group mil-up">
+									<div class="mil-accordion-menu">
+										<p class="mil-accordion-head">Development & Testing</p>
+										<div class="mil-symbol mil-h3">
+											<div class="mil-plus">+</div>
+											<div class="mil-minus">-</div>
 										</div>
 									</div>
-									<div class="mil-descr">
-										<div class="mil-labels mil-up mil-mb-15">
-											<div class="mil-label mil-upper mil-accent">Photography</div>
-											<div class="mil-label mil-upper">may 24 2023</div>
-										</div>
-										<h4 class="mil-up">Cascade of Lava</h4>
+									<div class="mil-accordion-content">
+										<p class="mil-mb-30">Our development team follows agile methodologies to build high-quality software. We implement comprehensive testing strategies including unit tests, integration tests, and user acceptance testing.</p>
+										<p class="mil-mb-30">We ensure your software is reliable, secure, and performs well under various conditions. Continuous integration and deployment practices help us deliver updates quickly and safely.</p>
 									</div>
-								</a>
-							</div>
-							<div class="col-lg-5">
-								<a href="/project-1" class="mil-portfolio-item mil-more mil-mb-60">
-									<div class="mil-cover-frame mil-vert mil-up">
-										<div class="mil-cover">
-											<img src="/assets/images/projects/project-5.jpg" alt="cover">
+								</div>
+								<div class="mil-accordion-group mil-up">
+									<div class="mil-accordion-menu">
+										<p class="mil-accordion-head">Deployment & Support</p>
+										<div class="mil-symbol mil-h3">
+											<div class="mil-plus">+</div>
+											<div class="mil-minus">-</div>
 										</div>
 									</div>
-									<div class="mil-descr">
-										<div class="mil-labels mil-up mil-mb-15">
-											<div class="mil-label mil-upper mil-accent">Design</div>
-											<div class="mil-label mil-upper">may 24 2023</div>
-										</div>
-										<h4 class="mil-up">Air Pro by Molekule</h4>
+									<div class="mil-accordion-content">
+										<p class="mil-mb-30">We handle the complete deployment process and provide ongoing support. Our team ensures smooth transitions to production environments and offers maintenance services to keep your software running optimally.</p>
+										<p class="mil-mb-30">Post-deployment, we monitor performance, provide updates, and offer technical support to ensure your software continues to meet business requirements and user expectations.</p>
 									</div>
-								</a>
-							</div>
-							<div class="col-lg-6">
-								<a href="/project-2" class="mil-portfolio-item mil-more mil-parallax mil-mb-60" data-value-1="60" data-value-2="-60">
-									<div class="mil-cover-frame mil-hori mil-up">
-										<div class="mil-cover">
-											<img src="/assets/images/projects/project-6.jpg" alt="cover">
-										</div>
-									</div>
-									<div class="mil-descr">
-										<div class="mil-labels mil-up mil-mb-15">
-											<div class="mil-label mil-upper mil-accent">Design</div>
-											<div class="mil-label mil-upper">may 24 2023</div>
-										</div>
-										<h4 class="mil-up">Tony's Chocolonely</h4>
-									</div>
-								</a>
+								</div>
 							</div>
 						</div>
 					</div>
 				</section>
-				<section class="mil-soft-bg">
-					<div class="container mil-p-120-120">
-						<div class="row">
-							<div class="col-lg-10">
-								<span class="mil-suptitle mil-suptitle-right mil-suptitle-dark mil-up">Looking to make your mark? We'll help you turn <br> your project into a success story.</span>
+				<section class="mil-dark-bg">
+					<div class="mi-invert-fix">
+						<div class="container mil-p-120-120">
+							<div class="mil-center">
+								<h2 class="mil-muted mil-up mil-mb-30">Flexible <span class="mil-thin">Pricing</span> <br>for Every <span class="mil-thin">Project</span></h2>
+								<p class="mil-light-soft mil-up mil-mb-120">We offer competitive pricing for high-quality software development services. <br>Customized solutions tailored to your specific needs and budget.</p>
 							</div>
-						</div>
-						<div class="mil-center">
-							<h2 class="mil-up mil-mb-60">Ready to bring your <span class="mil-thin">ideas to</span> life? <br> We're <span class="mil-thin">here to help</span></h2>
-							<div class="mil-up"><a href="/contact" class="mil-button mil-arrow-place"><span>Contact us</span></a></div>
+							<a href="/contact" class="mil-price-card mil-choose mil-accent-cursor mil-up">
+								<div class="row align-items-center">
+									<div class="col-lg-2">
+										<div class="mil-price-number mil-mb-30"><span class="mil-muted mil-thin">$</span><span class="mil-accent">5k</span></div>
+									</div>
+									<div class="col-lg-4">
+										<h5 class="mil-muted mil-mb-30">Starter Package<br>for Small Projects</h5>
+									</div>
+									<div class="col-lg-4">
+										<p class="mil-light-soft mil-mb-30">Perfect for startups and small businesses looking to establish their digital presence with essential features.</p>
+									</div>
+									<div class="col-lg-2">
+										<div class="mil-adaptive-right mil-mb-30">
+											<div class="mil-button mil-icon-button-sm mil-arrow-place"></div>
+										</div>
+									</div>
+								</div>
+							</a>
+							<a href="/contact" class="mil-price-card mil-choose mil-accent-cursor mil-up">
+								<div class="row align-items-center">
+									<div class="col-lg-2">
+										<div class="mil-price-number mil-mb-30"><span class="mil-muted mil-thin">$</span><span class="mil-accent">15k</span></div>
+									</div>
+									<div class="col-lg-4">
+										<h5 class="mil-muted mil-mb-30">Professional Package<br>for Growing Businesses</h5>
+									</div>
+									<div class="col-lg-4">
+										<p class="mil-light-soft mil-mb-30">Comprehensive solutions for established businesses needing advanced features and scalability.</p>
+									</div>
+									<div class="col-lg-2">
+										<div class="mil-adaptive-right mil-mb-30">
+											<div class="mil-button mil-icon-button-sm mil-arrow-place"></div>
+										</div>
+									</div>
+								</div>
+							</a>
+							<a href="/contact" class="mil-price-card mil-choose mil-accent-cursor mil-up">
+								<div class="row align-items-center">
+									<div class="col-lg-2">
+										<div class="mil-price-number mil-mb-30"><span class="mil-muted mil-thin">$</span><span class="mil-accent">25k+</span></div>
+									</div>
+									<div class="col-lg-4">
+										<h5 class="mil-muted mil-mb-30">Enterprise Solutions<br>Custom Development</h5>
+									</div>
+									<div class="col-lg-4">
+										<p class="mil-light-soft mil-mb-30">Tailored enterprise-grade solutions with full support and maintenance packages.</p>
+									</div>
+									<div class="col-lg-2">
+										<div class="mil-adaptive-right mil-mb-30">
+											<div class="mil-button mil-icon-button-sm mil-arrow-place"></div>
+										</div>
+									</div>
+								</div>
+							</a>
 						</div>
 					</div>
 				</section>
@@ -281,9 +280,9 @@ const translations: Translations = getTranslations();
 										<div class="col-md-6 col-lg-7">
 											<nav class="mil-footer-menu mil-mb-60">
 												<ul>
-													<li class="mil-up mil-active"><a href="/">{translations.navigation.home}</a></li>
+													<li class="mil-up"><a href="/">{translations.navigation.home}</a></li>
 													<li class="mil-up"><a href="/portfolio-1">Portfolio</a></li>
-													<li class="mil-up"><a href="/services">{translations.navigation.services}</a></li>
+													<li class="mil-up mil-active"><a href="/services-list">{translations.navigation.services}</a></li>
 													<li class="mil-up"><a href="/contact">{translations.navigation.contact}</a></li>
 												</ul>
 											</nav>
@@ -332,6 +331,9 @@ const translations: Translations = getTranslations();
 				</footer>
 				<div class="mil-hidden-elements">
 					<div class="mil-dodecahedron">
+						<div class="mil-pentagon"><div></div><div></div><div></div><div></div><div></div></div>
+						<div class="mil-pentagon"><div></div><div></div><div></div><div></div><div></div></div>
+						<div class="mil-pentagon"><div></div><div></div><div></div><div></div><div></div></div>
 						<div class="mil-pentagon"><div></div><div></div><div></div><div></div><div></div></div>
 						<div class="mil-pentagon"><div></div><div></div><div></div><div></div><div></div></div>
 						<div class="mil-pentagon"><div></div><div></div><div></div><div></div><div></div></div>

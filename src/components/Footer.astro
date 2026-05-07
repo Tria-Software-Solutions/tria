@@ -1,4 +1,6 @@
 ---
+import { env } from '../lib/env';
+
 interface Props {
   translations: any;
 }
@@ -8,7 +10,7 @@ const currentYear = new Date().getFullYear();
 ---
 <footer id="contact" class="mil-dark-bg">
   <div class="mi-invert-fix">
-    <div class="container mil-p-120-60">
+    <div class="container mil-p-120-120">
       <div class="row justify-content-between">
         <div class="col-md-4 col-lg-4 mil-mb-60">
           <div class="mil-muted mil-logo mil-up mil-mb-30">tria.</div>
@@ -45,7 +47,7 @@ const currentYear = new Date().getFullYear();
                   </li>
                   -->
                   <li class="mil-up">
-                    <a href="/services" data-i18n-text="navigation.services">{translations.navigation.services}</a>
+                    <a href="/services-list" data-i18n-text="navigation.services">{translations.navigation.services}</a>
                   </li>
                   <li class="mil-up">
                     <a href="/contact" data-i18n-text="navigation.contact">{translations.navigation.contact}</a>
@@ -70,11 +72,6 @@ const currentYear = new Date().getFullYear();
                     {translations.footer.links.cookies}
                   </a>
                 </li>
-                <li>
-                  <a href="#careers" class="mil-light-soft" data-i18n-text="footer.links.careers">
-                    {translations.footer.links.careers}
-                  </a>
-                </li>
               </ul>
             </div>
           </div>
@@ -89,16 +86,14 @@ const currentYear = new Date().getFullYear();
               </h6>
               <ul class="mil-menu-list mil-up">
                 <li>
-                  <span class="mil-light-soft" data-i18n-text="footer.contact.city">{translations.footer.contact.city}</span>
+                  <span class="mil-light-soft">
+                    <i class="fas fa-map-pin"></i> Alajuela
+                  </span>
                 </li>
                 <li>
-                  <a
-                    href={`mailto:${translations.footer.contact_email}`}
-                    class="mil-light-soft"
-                    data-i18n-text="footer.contact_email"
-                  >
-                    {translations.footer.contact_email}
-                  </a>
+                  <span class="mil-light-soft">
+                    <i class="fas fa-location-dot"></i> 20501 Atenas, CR
+                  </span>
                 </li>
               </ul>
             </div>
@@ -108,25 +103,14 @@ const currentYear = new Date().getFullYear();
               </h6>
               <ul class="mil-menu-list mil-up">
                 <li>
-                  <span class="mil-light-soft" data-i18n-text="footer.contact_phone">{translations.footer.contact_phone}</span>
+                  <span class="mil-light-soft">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                  </span>
                 </li>
                 <li>
-                  <a
-                    href={translations.footer.contact.whatsapp_href}
-                    class="mil-light-soft"
-                    data-i18n-text="footer.contact.whatsapp"
-                  >
-                    {translations.footer.contact.whatsapp}
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href={`mailto:${translations.footer.contact_email}`}
-                    class="mil-light-soft"
-                    data-i18n-text="footer.contact_email"
-                  >
-                    {translations.footer.contact_email}
-                  </a>
+                  <span class="mil-light-soft">
+                    <i class="fas fa-envelope"></i> {env.CONTACT_EMAIL}
+                  </span>
                 </li>
               </ul>
             </div>
@@ -138,7 +122,7 @@ const currentYear = new Date().getFullYear();
               <ul class="mil-social-icons mil-up">
                 <li>
                   <a
-                    href="https://instagram.com/triacr"
+                    href={env.SOCIAL_INSTAGRAM}
                     target="_blank"
                     rel="noreferrer"
                     class="social-icon"
@@ -149,7 +133,7 @@ const currentYear = new Date().getFullYear();
                 </li>
                 <li>
                   <a
-                    href="https://facebook.com/triacr"
+                    href={env.SOCIAL_FACEBOOK}
                     target="_blank"
                     rel="noreferrer"
                     class="social-icon"
@@ -160,7 +144,7 @@ const currentYear = new Date().getFullYear();
                 </li>
                 <li>
                   <a
-                    href="https://linkedin.com/company/triacr"
+                    href={env.SOCIAL_LINKEDIN}
                     target="_blank"
                     rel="noreferrer"
                     class="social-icon"
@@ -171,7 +155,7 @@ const currentYear = new Date().getFullYear();
                 </li>
                 <li>
                   <a
-                    href="https://github.com/"
+                    href={env.SOCIAL_GITHUB}
                     target="_blank"
                     rel="noreferrer"
                     class="social-icon"

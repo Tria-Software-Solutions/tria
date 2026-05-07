@@ -40,11 +40,11 @@ const { translations } = Astro.props;
           </div>
         </div>
         <a
-          href="#services"
+          href="#"
           class="mil-button mil-arrow-place mil-btn-space"
-        ><span data-i18n-text="navigation.services">{translations.navigation.services}</span></a>
-        <a href="#portfolio" class="mil-link mil-muted mil-arrow-place"
-          ><span data-i18n-text="navigation.portfolio">{translations.navigation.portfolio}</span></a>
+        ><span data-i18n-text="navigation.project">{translations.navigation.project}</span></a>
+        <a href="/services-list" class="mil-link mil-muted mil-arrow-place"
+          ><span data-i18n-text="navigation.services">{translations.navigation.services}</span></a>
 
         <div class="mil-circle-text">
           <svg
@@ -75,7 +75,7 @@ const { translations } = Astro.props;
               </text>
             </g>
           </svg>
-          <a href="#about" class="mil-button mil-arrow-place mil-icon-button mil-arrow-down"></a>
+          <button onclick="window.location.href='/services-list#services'" class="mil-button mil-arrow-place mil-icon-button mil-arrow-down"></button>
         </div>
       </div>
     </div>

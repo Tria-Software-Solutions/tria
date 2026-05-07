@@ -1,6 +1,7 @@
 {
   "navigation": {
     "home": "Inicio",
+    "project": "Inicia tu proyecto",
     "services": "Servicios",
     "pricing": "Precios",
     "contact": "Contacto",
@@ -9,8 +10,9 @@
     "portfolio": "Portafolio"
   },
   "banner": {
-    "title": "Construyendo <span class=\"mil-thin\">Software</span> <span class=\"mil-thin\">Personalizado</span>",
-    "subtitle": "Diseñamos, construimos y escalamos productos digitales con un fuerte enfoque en resultados, velocidad y calidad de ingeniería. Tu socio de ingeniería de software en Costa Rica y LATAM."
+    "title": "Transformando <span class=\"mil-thin\">Ideas</span> en <span class=\"mil-thin\">Soluciones</span>",
+    "subtitle": "Creamos experiencias digitales innovadoras que impulsan el crecimiento de tu negocio.",
+    "subtitle2": "Combinamos creatividad con excelencia técnica para entregar resultados excepcionales."
   },
   "services": {
     "title": "<span class=\"mil-thin\">Ideas</span> <span class=\"mil-thin\">Únicas</span>",
@@ -38,81 +40,77 @@
     }
   },
   "about": {
-    "title": "Descubre <span class=\"mil-thin\">Nuestro</span> <span class=\"mil-thin\">Estudio</span>",
-    "subtitle": "En Tria, somos un equipo de ingeniería de software apasionado por construir soluciones digitales personalizadas que generan resultados reales de negocio. Del concepto al despliegue, combinamos excelencia técnica con profundo conocimiento de la industria para entregar software escalable y de alto rendimiento.",
-    "subtitle2": "Nuestro enfoque ágil garantiza entrega rápida sin comprometer calidad. Trabajamos contigo para entender tus desafíos únicos, luego arquitectamos e implementamos soluciones robustas, seguras y diseñadas para crecer.",
-    "quote": "Construyendo <span class=\"mil-thin\">Software Excepcional:</span> Entregando <span class=\"mil-thin\">Resultados Reales</span>"
+    "title": "Sobre <span class=\"mil-thin\">Nosotros</span>",
+    "subtitle": "Somos un equipo de ingeniería de software especializado en construir soluciones digitales personalizadas.",
+    "subtitle2": "Combinamos excelencia técnica con experiencia práctica para entregar resultados de negocio.",
+    "quote": "Software <span class=\"mil-thin\">Excepcional</span> para <span class=\"mil-thin\">Resultados</span> Reales"
   },
   "team": {
     "title": "Nuestro <br>Proceso de <span class=\"mil-thin\">Desarrollo</span>",
-    "subtitle": "Un enfoque disciplinado al desarrollo de software, refinado a través de años de entrega de aplicaciones de grado de producción para clientes en Costa Rica y LATAM.",
-    "subtitle2": "Desde el descubrimiento hasta el despliegue, seguimos una metodología probada que asegura calidad, velocidad y resultados de negocio.",
+    "subtitle": "Metodología probada para desarrollar software de calidad.",
+    "subtitle2": "Desde el concepto hasta el despliegue, seguimos mejores prácticas.",
     "cta": "Inicia Tu <span class=\"mil-thin\">Proyecto</span>",
-    "deliver": "<span class=\"mil-thin\">Nosotros</span> entregamos <span class=\"mil-thin\">software</span> <span class=\"mil-thin\">excepcional</span>."
+    "deliver": "<span class=\"mil-thin\">Entregamos</span> software <span class=\"mil-thin\">excepcional</span>."
   },
   "testimonials": {
-    "title": "Historias de <span class=\"mil-thin\">Éxito</span> <span class=\"mil-thin\">de</span> <span class=\"mil-thin\">Clientes</span>",
-    "subtitle": "Las reseñas de clientes son una fuente valiosa de información tanto para empresas como para consumidores.",
+    "title": "Casos de <span class=\"mil-thin\">Éxito</span>",
+    "subtitle": "Resultados reales de nuestros clientes.",
     "client1": {
       "name": "Carlos Rodriguez",
       "company": "TechStart CEO",
-      "review": "Tria entregó nuestra plataforma de comercio electrónico antes de lo programado con calidad excepcional. Su experiencia técnica y comunicación durante el proyecto fue sobresaliente."
+      "review": "Plataforma de comercio electrónico con calidad excepcional."
     },
     "client2": {
       "name": "Maria Fernandez",
       "company": "Fintech Bank",
-      "review": "La aplicación de banca móvil que construyeron para nosotros ha transformado la experiencia de nuestros clientes. Rendimiento, seguridad e interfaz de usuario superaron nuestras expectativas."
+      "review": "Aplicación de banca móvil que transformó la experiencia de nuestros clientes."
     }
   },
   "pricing": {
-    "title": "Precios con <span class=\"mil-thin\">Tarifas</span> <span class=\"mil-thin\">Realistas</span>",
-    "subtitle": "Planes de referencia para desarrollo y soporte de productos. Incluye liderazgo técnico, QA y seguimiento semanal de ejecución.",
-    "subtitle2": "Todos los planes incluyen seguimiento semanal de ejecución, liderazgo técnico y QA. Cotizaciones personalizadas disponibles para requisitos específicos.",
+    "title": "Precios <span class=\"mil-thin\">Flexibles</span>",
+    "subtitle": "Planes adaptados a tus necesidades.",
+    "subtitle2": "Incluye soporte técnico y mantenimiento.",
     "starter": {
       "title": "Inicial",
       "price": "₡1.25M<span class=\"mil-light-soft\">/mes</span>",
       "usd": "≈ $2,450 USD",
-      "description": "Ideal para pequeñas empresas que necesitan evolucionar su producto con un equipo ágil.",
+      "description": "Ideal para proyectos pequeños.",
       "features": [
-        "Hasta 80 horas de desarrollo mensuales",
-        "1 desarrollador full-stack + QA a tiempo parcial",
-        "Soporte correctivo y mejoras continuas",
-        "Hoja de ruta técnica mensual"
+        "80 horas de desarrollo",
+        "Soporte técnico",
+        "Mantenimiento incluido"
       ]
     },
     "growth": {
       "title": "Crecimiento",
       "price": "₡2.85M<span class=\"mil-light-soft\">/mes</span>",
       "usd": "≈ $5,600 USD",
-      "description": "Para empresas en crecimiento que necesitan entrega consistente y velocidad de desarrollo de características.",
+      "description": "Para empresas en expansión.",
       "features": [
-        "Hasta 180 horas de desarrollo mensuales",
-        "Equipo de 2 desarrolladores + QA + líder técnico",
-        "Nuevas características e integraciones",
-        "Monitoreo, métricas y optimización"
-      ],
-      "label": "Más Popular"
+        "180 horas de desarrollo",
+        "Liderazgo técnico",
+        "Soporte prioritario"
+      ]
     },
     "scale": {
-      "title": "Escala",
-      "price": "₡4.9M<span class=\"mil-light-soft\">/mes</span>",
-      "usd": "≈ $9,600 USD",
-      "description": "Para productos críticos que deben escalar con arquitectura robusta y operaciones.",
+      "title": "Empresarial",
+      "price": "₡4.95M<span class=\"mil-light-soft\">/mes</span>",
+      "usd": "≈ $9,700 USD",
+      "description": "Soluciones completas para grandes empresas.",
       "features": [
-        "Hasta 320 horas de desarrollo mensuales",
-        "Equipo multidisciplinario dedicado",
-        "Arquitectura, DevOps y seguridad incluidas",
-        "Soporte prioritario con respaldo SLA"
+        "320 horas de desarrollo",
+        "Equipo dedicado",
+        "Soporte 24/7"
       ]
     }
   },
   "footer": {
     "newsletter": "Suscríbete a nuestro boletín:",
-    "email_placeholder": "Ingresa nuestro correo",
+    "email_placeholder": "Ingresa tu correo",
     "subscribe_button": "Suscribirse",
     "contact_title": "Contacto",
-    "contact_address": "Costa Rica",
-    "contact_phone": "Respuesta dentro de 24h",
+    "contact_address": "San José, Costa Rica",
+    "contact_phone": "+50612345678",
     "contact_email": "info@triacr.com",
     "useful_links": "Enlaces útiles",
     "links": {
@@ -123,21 +121,43 @@
     },
     "contact": {
       "costa_rica": "Costa Rica",
-      "city": "San Jose, Costa Rica",
+      "city": "San José, Costa Rica",
       "response": "Respuesta dentro de 24h",
       "website": "www.triacr.com",
-      "whatsapp": "WhatsApp pendiente",
-      "whatsapp_href": "#"
+      "whatsapp": "+50612345678",
+      "whatsapp_href": "https://wa.me/50612345678"
     },
-    "copyright_suffix": "Tria. Todos los Derechos Reservados."
+    "copyright_suffix": "Tria. Todos los Derechos Reservados.",
+    "copyright": "© 2024 Tria. Todos los Derechos Reservados."
+  },
+  "contact": {
+    "name_label": "Tu Nombre",
+    "name_placeholder": "Tu Nombre",
+    "email_label": "Tu Email",
+    "email_placeholder": "Tu Email",
+    "phone_label": "Tu Teléfono",
+    "phone_placeholder": "Tu Teléfono",
+    "message_label": "Tu Mensaje",
+    "message_placeholder": "Tu Mensaje",
+    "privacy_policy": "Acepto la política de privacidad",
+    "send_button": "Enviar Mensaje",
+    "contact_info": "Información de Contacto",
+    "email_title": "Email",
+    "email_text": "¡No dudes en escribirnos en cualquier momento!",
+    "phone_title": "Teléfono",
+    "phone_text": "Lun-Vie de 9am a 6pm.",
+    "address_title": "Dirección",
+    "address_text": "San José, Costa Rica"
   },
   "common": {
     "page_title": "Construyendo Soluciones Digitales",
     "get_started": "Comenzar",
     "subscribe": "Suscribirse",
     "learn_more": "Aprende más",
-    "back_to_top": "Volver arriba",
-    "scroll_cta": "Desplázate - Desplázate - ",
+    "back_to_top": "Volver",
+    "scroll_down": "Desplazarse hacia abajo",
+    "scroll_cta": "Desplázate hacia abajo - Desplázate hacia abajo - ",
+    "scroll_text": "Desplázate hacia abajo para explorar más - Desplázate hacia abajo para explorar más -",
     "cursor_more": "Más",
     "cursor_choose": "Elegir"
   },

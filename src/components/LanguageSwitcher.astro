@@ -12,24 +12,17 @@ const localeLabels: Record<string, string> = {
   en: 'EN',
 };
 const currentLang = getLocale(Astro.url);
-const localeUrls = Object.fromEntries(
-  locales.map((locale) => {
-    const url = new URL(Astro.url);
-    url.searchParams.set('lang', locale);
-    return [locale, `${url.pathname}${url.search}`];
-  })
-);
 ---
 
 <div class="mil-language-switcher">
   {locales.map(locale => (
-    <a
-      href={localeUrls[locale]}
+    <button
+      type="button"
       class={`mil-lang-btn${locale === currentLang ? ' mil-active' : ''}`}
       data-lang={locale}
     >
       {localeLabels[locale]}
-    </a>
+    </button>
   ))}
 </div>
 
@@ -58,6 +51,13 @@ const localeUrls = Object.fromEntries(
     transition: opacity 0.3s ease;
     cursor: pointer;
     pointer-events: all;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0 4px;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
   }
 
   .mil-lang-btn:hover {
@@ -82,157 +82,166 @@ const localeUrls = Object.fromEntries(
 
 <script is:inline>
 (function() {
-  var translationsByLocale = window.translations || {};
-  var currentLang = localStorage.getItem('preferred-lang') || window.currentLang || 'es';
-
-  function getCurrentTranslations(lang) {
-    return translationsByLocale[lang] || translationsByLocale.es || {};
+  // Wait for translations to be available
+  function waitForTranslations() {
+    if (!window.translations || Object.keys(window.translations).length === 0) {
+      setTimeout(waitForTranslations, 50);
+      return;
+    }
+    
+    initLanguageSwitcher();
   }
+  
+  function initLanguageSwitcher() {
+    var translationsByLocale = window.translations;
+    var currentLang = localStorage.getItem('preferred-lang') || window.currentLang || 'es';
 
-  function getValueByPath(obj, path) {
-    return path.split('.').reduce(function(acc, key) {
-      if (acc === undefined || acc === null) return undefined;
-      return acc[key];
-    }, obj);
-  }
-
-  function applyDataTranslations(lang) {
-    var t = getCurrentTranslations(lang);
-
-    document.documentElement.lang = lang;
-    if (t.common && t.common.page_title) {
-      document.title = 'tria | ' + t.common.page_title;
+    function getCurrentTranslations(lang) {
+      var translations = translationsByLocale[lang] || translationsByLocale.es || {};
+      return translations;
     }
 
-    document.querySelectorAll('[data-i18n-text]').forEach(function(el) {
-      var path = el.getAttribute('data-i18n-text');
-      var value = path ? getValueByPath(t, path) : undefined;
-      if (value !== undefined) {
-        el.textContent = String(value);
+    function getValueByPath(obj, path) {
+      return path.split('.').reduce(function(acc, key) {
+        if (acc === undefined || acc === null) return undefined;
+        return acc[key];
+      }, obj);
+    }
+
+    function applyDataTranslations(lang) {
+      var t = getCurrentTranslations(lang);
+
+      document.documentElement.lang = lang;
+      if (t.common && t.common.page_title) {
+        document.title = 'Tria | ' + t.common.page_title;
       }
-    });
 
-    document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
-      var path = el.getAttribute('data-i18n-html');
-      var value = path ? getValueByPath(t, path) : undefined;
-      if (value !== undefined) {
-        el.innerHTML = String(value);
-      }
-    });
+      // Only translate elements outside the language switcher
+      document.querySelectorAll('[data-i18n-text]:not(.mil-language-switcher [data-i18n-text])').forEach(function(el) {
+        var path = el.getAttribute('data-i18n-text');
+        var value = path ? getValueByPath(t, path) : undefined;
+        if (value !== undefined) {
+          el.textContent = String(value);
+        }
+      });
 
-    document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
-      var path = el.getAttribute('data-i18n-placeholder');
-      var value = path ? getValueByPath(t, path) : undefined;
-      if (value !== undefined) {
-        el.setAttribute('placeholder', String(value));
-      }
-    });
+      document.querySelectorAll('[data-i18n-html]:not(.mil-language-switcher [data-i18n-html])').forEach(function(el) {
+        var path = el.getAttribute('data-i18n-html');
+        var value = path ? getValueByPath(t, path) : undefined;
+        if (value !== undefined) {
+          el.innerHTML = String(value);
+        }
+      });
 
-    document.querySelectorAll('[data-i18n-title]').forEach(function(el) {
-      var path = el.getAttribute('data-i18n-title');
-      var value = path ? getValueByPath(t, path) : undefined;
-      if (value !== undefined) {
-        el.setAttribute('title', String(value));
-      }
-    });
+      document.querySelectorAll('[data-i18n-placeholder]:not(.mil-language-switcher [data-i18n-placeholder])').forEach(function(el) {
+        var path = el.getAttribute('data-i18n-placeholder');
+        var value = path ? getValueByPath(t, path) : undefined;
+        if (value !== undefined) {
+          el.setAttribute('placeholder', String(value));
+        }
+      });
+    }
 
-    document.querySelectorAll('[data-i18n-aria-label]').forEach(function(el) {
-      var path = el.getAttribute('data-i18n-aria-label');
-      var value = path ? getValueByPath(t, path) : undefined;
-      if (value !== undefined) {
-        el.setAttribute('aria-label', String(value));
-      }
-    });
-
-    document.querySelectorAll('[data-current-year]').forEach(function(el) {
-      var year = el.getAttribute('data-current-year');
-      var suffix = getValueByPath(t, 'footer.copyright_suffix');
-      if (year && suffix) {
-        el.textContent = '© ' + year + ' ' + suffix;
-      }
-    });
-  }
-
-  function updateCurrentPageLabel(lang) {
-    var switcherContainer = document.querySelector('.mil-current-page');
-    if (!switcherContainer) return;
-
-    var sectionLabel = switcherContainer.querySelector('[data-current-page-label]');
-    if (!sectionLabel) return;
-
-    var currentSection = window.location.hash || '#home';
-    var sectionKey = currentSection === '' ? 'home' : currentSection.substring(1);
-    var navTranslations = getCurrentTranslations(lang).navigation || {};
-    sectionLabel.textContent = navTranslations[sectionKey] || navTranslations.home || 'Home';
-  }
-
-  function applyTranslations(lang) {
-    var t = getCurrentTranslations(lang);
-    if (!t) return;
-
-    applyDataTranslations(lang);
-    updateCurrentPageLabel(lang);
-
-    // Update active button
-    document.querySelectorAll('.mil-lang-btn').forEach(function(btn) {
-      btn.classList.toggle('mil-active', btn.getAttribute('data-lang') === lang);
-    });
-  }
-
-  document.addEventListener('DOMContentLoaded', function() {
+    // Set initial active button
     var langButtons = document.querySelectorAll('.mil-lang-btn');
-    var savedLang = localStorage.getItem('preferred-lang') || currentLang;
+    langButtons.forEach(function(btn) {
+      var btnLang = btn.getAttribute('data-lang');
+      if (btnLang === currentLang) {
+        btn.classList.add('mil-active');
+      } else {
+        btn.classList.remove('mil-active');
+      }
+    });
 
-    // Clear the container completely
-    var switcherContainer = document.querySelector('.mil-current-page');
+    // Add page name to language switcher
+    var switcherContainer = document.querySelector('.mil-language-switcher');
     if (switcherContainer) {
-      switcherContainer.innerHTML = '';
-      
-      // Get current section from URL hash
+      var navTranslations = getCurrentTranslations(currentLang).navigation || {};
       var currentSection = window.location.hash || '#home';
-      
-      // Get section key dynamically by removing # and using the hash directly
       var sectionKey = currentSection === '' ? 'home' : currentSection.substring(1);
-      
-      // Get translations from global translations object
-      var navTranslations = getCurrentTranslations(savedLang).navigation || {};
       var pageName = navTranslations[sectionKey] || navTranslations.home || 'Home';
       
       // Create page name element
       var pageNameEl = document.createElement('span');
-      pageNameEl.setAttribute('data-current-page-label', 'true');
+      pageNameEl.className = 'mil-current-page';
       pageNameEl.textContent = pageName;
-      switcherContainer.appendChild(pageNameEl);
+      
+      // Insert page name before language buttons
+      switcherContainer.insertBefore(pageNameEl, switcherContainer.firstChild);
       
       // Add separator
       var separator = document.createElement('span');
       separator.textContent = '|';
       separator.style.opacity = '0.3';
       separator.style.margin = '0 8px';
-      switcherContainer.appendChild(separator);
-      
-      // Add language buttons
-      langButtons.forEach(function(btn) {
-        switcherContainer.appendChild(btn);
-      });
+      switcherContainer.insertBefore(separator, pageNameEl.nextSibling);
     }
 
-    currentLang = savedLang;
-    applyTranslations(savedLang);
+    // Apply initial translations
+    applyDataTranslations(currentLang);
 
+    // Add click handlers
     langButtons.forEach(function(btn) {
       btn.addEventListener('click', function(e) {
         e.preventDefault();
         var lang = btn.getAttribute('data-lang') || 'es';
+       
         localStorage.setItem('preferred-lang', lang);
-        currentLang = lang;
-        applyTranslations(lang);
+        
+        // Update active button
+        document.querySelectorAll('.mil-lang-btn').forEach(function(b) {
+          b.classList.remove('mil-active');
+        });
+        btn.classList.add('mil-active');
+        
+        // Apply translations without affecting language switcher
+        var t = getCurrentTranslations(lang);
+        document.documentElement.lang = lang;
+        if (t.common && t.common.page_title) {
+          document.title = 'tria | ' + t.common.page_title;
+        }
+
+        // Only translate elements outside the language switcher
+        var textElements = document.querySelectorAll('[data-i18n-text]:not(.mil-language-switcher [data-i18n-text])');
+        
+        textElements.forEach(function(el) {
+          var path = el.getAttribute('data-i18n-text');
+          var value = path ? getValueByPath(t, path) : undefined;
+          if (value !== undefined) {
+            el.textContent = String(value);
+          }
+        });
+
+        var htmlElements = document.querySelectorAll('[data-i18n-html]:not(.mil-language-switcher [data-i18n-html])');
+
+        htmlElements.forEach(function(el) {
+          var path = el.getAttribute('data-i18n-html');
+          var value = path ? getValueByPath(t, path) : undefined;
+          if (value !== undefined) {
+            el.innerHTML = String(value);
+          }
+        });
+
+        var placeholderElements = document.querySelectorAll('[data-i18n-placeholder]:not(.mil-language-switcher [data-i18n-placeholder])');
+        
+        placeholderElements.forEach(function(el) {
+          var path = el.getAttribute('data-i18n-placeholder');
+          var value = path ? getValueByPath(t, path) : undefined;
+          if (value !== undefined) {
+            el.setAttribute('placeholder', String(value));
+          }
+        });
+        
+
       });
     });
+  }
 
-    window.addEventListener('hashchange', function() {
-      applyTranslations(currentLang);
-    });
-  });
+  // Start waiting for translations
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', waitForTranslations);
+  } else {
+    waitForTranslations();
+  }
 })();
 </script>

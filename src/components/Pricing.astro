@@ -7,18 +7,7 @@ const { translations } = Astro.props;
 ---
 
 <section id="pricing" class="mil-pricing-section">
-  <div class="mi-invert-fix">
-    <div class="mil-animation-frame">
-      <div
-        class="mil-animation mil-position-1 mil-scale animation-position-5"
-      >
-      </div>
-      <div
-        class="mil-animation mil-position-2 mil-scale animation-position-6"
-      >
-      </div>
-    </div>
-    <div class="container mil-p-120-120">
+  <div class="container mil-p-120-120">
       <div class="row justify-content-between">
         <div class="col-lg-6">
           <h2 class="mil-up mil-mb-60" data-i18n-html="pricing.title" set:html={translations.pricing.title}>
@@ -50,7 +39,7 @@ const { translations } = Astro.props;
               <li data-i18n-text="pricing.starter.features.1">{translations.pricing.starter.features[1]}</li>
               <li data-i18n-text="pricing.starter.features.2">{translations.pricing.starter.features[2]}</li>
             </ul>
-            <a href="#contact" class="mil-button mil-arrow-place"
+            <a href="/contact" class="mil-button mil-arrow-place mil-pricing-cta"
               ><span data-i18n-text="common.get_started">{translations.common.get_started}</span></a
             >
           </div>
@@ -74,7 +63,7 @@ const { translations } = Astro.props;
               <li data-i18n-text="pricing.growth.features.1">{translations.pricing.growth.features[1]}</li>
               <li data-i18n-text="pricing.growth.features.2">{translations.pricing.growth.features[2]}</li>
             </ul>
-            <a href="#contact" class="mil-button mil-arrow-place"
+            <a href="/contact" class="mil-button mil-arrow-place mil-pricing-cta"
               ><span data-i18n-text="common.get_started">{translations.common.get_started}</span></a
             >
           </div>
@@ -95,24 +84,44 @@ const { translations } = Astro.props;
               <li data-i18n-text="pricing.scale.features.1">{translations.pricing.scale.features[1]}</li>
               <li data-i18n-text="pricing.scale.features.2">{translations.pricing.scale.features[2]}</li>
             </ul>
-            <a href="#contact" class="mil-button mil-arrow-place"
+            <a href="/contact" class="mil-button mil-arrow-place mil-pricing-cta"
               ><span data-i18n-text="common.get_started">{translations.common.get_started}</span></a
             >
           </div>
         </div>
       </div>
     </div>
-  </div>
 </section>
 
 <style>
+  /* Force white background on pricing section and container only */
   .mil-pricing-section {
-    background: #fff;
+    background: #fff !important;
   }
 
-  .mil-pricing-section .mi-invert-fix,
-  .mil-pricing-section .container {
-    background: #fff;
+  .mil-pricing-section > .container {
+    background: #fff !important;
+  }
+
+  /* Remove all animation elements */
+  :global(#pricing .mil-animation-frame),
+  :global(#pricing .mil-dodecahedron),
+  :global(#pricing .mil-pentagon),
+  :global(#pricing .mil-animation),
+  :global(#pricing .mil-position-1),
+  :global(#pricing .mil-position-2),
+  :global(#pricing .mil-scale),
+  :global(#pricing .mi-invert-fix) {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    position: absolute !important;
+    left: -9999px !important;
+    top: -9999px !important;
+    background: transparent !important;
   }
 
   :global(#pricing .mil-light-soft) {
@@ -124,13 +133,27 @@ const { translations } = Astro.props;
   }
 
   :global(#pricing .mil-pricing-card) {
-    background-color: rgb(242, 242, 242);
+    background-color: rgb(242, 242, 242) !important;
     border: 1px solid rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    padding: 40px 30px;
+  }
+
+  :global(#pricing .mil-pricing-card:hover) {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
   }
 
   :global(#pricing .mil-pricing-card.mil-active) {
-    background: #fff;
+    background: #fff !important;
     border-color: rgb(255, 152, 0);
+  }
+
+  :global(#pricing .mil-pricing-card.mil-active:hover) {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(255, 152, 0, 0.3);
   }
 
   :global(#pricing .mil-pricing-card .mil-muted),
@@ -150,8 +173,88 @@ const { translations } = Astro.props;
     color: rgba(0, 0, 0, 0.7);
   }
 
-  :global(#pricing .mil-pricing-card .mil-button),
-  :global(#pricing .mil-pricing-card .mil-button span) {
+  :global(#pricing .mil-pricing-card .mil-button) {
+    background-color: rgb(255, 152, 0) !important;
     color: rgb(0, 0, 0);
+    border: none;
+  }
+
+  :global(#pricing .mil-pricing-card .mil-button:hover) {
+    background-color: rgb(230, 120, 0) !important;
+  }
+
+  :global(#pricing .mil-pricing-card.mil-active .mil-button) {
+    background-color: rgb(0, 0, 0) !important;
+    color: rgb(255, 255, 255);
+  }
+
+  :global(#pricing .mil-pricing-card.mil-active .mil-button:hover) {
+    background-color: rgb(50, 50, 50) !important;
+  }
+
+  /* Responsive styles with proper spacing */
+  @media (max-width: 992px) {
+    :global(#pricing .mil-pricing-card) {
+      padding: 35px 25px;
+      margin-bottom: 25px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    :global(#pricing .row.mil-mb-60) {
+      gap: 25px;
+    }
+
+    :global(#pricing .row.mil-mb-60 .col-md-4) {
+      width: 100%;
+      max-width: 100%;
+      flex: 0 0 100%;
+    }
+
+    :global(#pricing .mil-pricing-card) {
+      padding: 30px 20px;
+      margin-bottom: 0;
+    }
+  }
+
+  @media (max-width: 576px) {
+    :global(#pricing .row.mil-mb-60) {
+      gap: 20px;
+    }
+
+    :global(#pricing .mil-pricing-card) {
+      padding: 25px 15px;
+    }
+
+    :global(#pricing .mil-pricing-card h5) {
+      font-size: 18px;
+    }
+
+    :global(#pricing .mil-pricing-card .mil-price) {
+      font-size: 28px;
+    }
+
+    :global(#pricing .mil-pricing-card p) {
+      font-size: 14px;
+    }
+
+    :global(#pricing .mil-pricing-card .mil-list li) {
+      font-size: 13px;
+    }
+  }
+
+  /* Extra small devices */
+  @media (max-width: 400px) {
+    :global(#pricing .mil-pricing-card) {
+      padding: 20px 12px;
+    }
+
+    :global(#pricing .mil-pricing-card h5) {
+      font-size: 16px;
+    }
+
+    :global(#pricing .mil-pricing-card .mil-price) {
+      font-size: 24px;
+    }
   }
 </style>

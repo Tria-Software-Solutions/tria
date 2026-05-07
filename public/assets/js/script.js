@@ -163,7 +163,6 @@ document.addEventListener('DOMContentLoaded', function() {
             
             if (isValid) {
                 // Form submission logic here
-                console.log('Form submitted successfully');
                 form.reset();
             }
         });
@@ -220,7 +219,6 @@ document.addEventListener('DOMContentLoaded', function() {
         window.addEventListener('load', function() {
             const perfData = performance.getEntriesByType('navigation')[0];
             const loadTime = perfData.loadEventEnd - perfData.loadEventStart;
-            console.log(`Page load time: ${loadTime}ms`);
         });
     }
     
@@ -229,20 +227,6 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('JavaScript error:', e.error);
         // You could send this to an error tracking service
     });
-    
-    // Service Worker registration (if available)
-    // Disabled during development to prevent caching issues
-    /*
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js')
-            .then(function() {
-                console.log('Service Worker registered');
-            })
-            .catch(function(error) {
-                console.log('Service Worker registration failed:', error);
-            });
-    }
-    */
 });
 
 // Utility functions
