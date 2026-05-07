@@ -1,0 +1,72 @@
+---
+interface Props {
+  translations: any;
+}
+
+const { translations } = Astro.props;
+---
+
+<div class="mil-menu-frame">
+  <div class="mil-frame-top">
+    <a href="/" class="mil-logo">tria.</a>
+    <div class="mil-menu-btn"><span></span></div>
+  </div>
+  <div class="container">
+    <div class="mil-menu-content">
+      <div class="row">
+        <div class="col-xl-5">
+          <nav class="mil-main-menu" id="swupMenu">
+            <ul>
+              <li class="mil-active"><a href="/" data-i18n-text="navigation.home">{translations.navigation.home}</a></li>
+              <li><a href="#services" data-i18n-text="navigation.services">{translations.navigation.services}</a></li>
+              <li><a href="#pricing" data-i18n-text="navigation.pricing">{translations.navigation.pricing}</a></li>
+              <li><a href="#contact" data-i18n-text="navigation.contact">{translations.navigation.contact}</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="col-xl-7">
+          <div class="mil-menu-right-frame">
+            <div class="mil-menu-right">
+              <div class="row">
+                <div class="col-lg-8 mil-mb-60">
+                  <h6 class="mil-muted mil-mb-30" data-i18n-text="navigation.services">{translations.navigation.services}</h6>
+                  <ul class="mil-menu-list">
+                    <li><a href="#services" class="mil-light-soft" data-i18n-html="services.frontend.title" set:html={translations.services.frontend.title}></a></li>
+                    <li><a href="#services" class="mil-light-soft" data-i18n-html="services.mobile.title" set:html={translations.services.mobile.title}></a></li>
+                    <li><a href="#services" class="mil-light-soft" data-i18n-html="services.backend.title" set:html={translations.services.backend.title}></a></li>
+                    <li><a href="#services" class="mil-light-soft" data-i18n-html="services.devops.title" set:html={translations.services.devops.title}></a></li>
+                  </ul>
+                </div>
+                <div class="col-lg-4 mil-mb-60">
+                  <h6 class="mil-muted mil-mb-30" data-i18n-text="footer.useful_links">{translations.footer.useful_links}</h6>
+                  <ul class="mil-menu-list">
+                    <li><a href="#privacy" class="mil-light-soft" data-i18n-text="footer.links.privacy">{translations.footer.links.privacy}</a></li>
+                    <li><a href="#terms" class="mil-light-soft" data-i18n-text="footer.links.terms">{translations.footer.links.terms}</a></li>
+                    <li><a href="#cookies" class="mil-light-soft" data-i18n-text="footer.links.cookies">{translations.footer.links.cookies}</a></li>
+                    <li><a href="#careers" class="mil-light-soft" data-i18n-text="footer.links.careers">{translations.footer.links.careers}</a></li>
+                  </ul>
+                </div>
+                <div class="col-lg-8 mil-mb-60">
+                  <h6 class="mil-muted mil-mb-30" data-i18n-text="footer.contact_title">{translations.footer.contact_title}</h6>
+                  <ul class="mil-menu-list">
+                    <li><span class="mil-light-soft" data-i18n-text="footer.contact_phone">{translations.footer.contact_phone}</span></li>
+                    <li><a href={translations.footer.contact.whatsapp_href} class="mil-light-soft" data-i18n-text="footer.contact.whatsapp">{translations.footer.contact.whatsapp}</a></li>
+                    <li><a href={`mailto:${translations.footer.contact_email}`} class="mil-light-soft" data-i18n-text="footer.contact_email">{translations.footer.contact_email}</a></li>
+                  </ul>
+                </div>
+                <div class="col-lg-4 mil-mb-60">
+                  <h6 class="mil-muted mil-mb-30" data-i18n-text="footer.contact.costa_rica">{translations.footer.contact.costa_rica}</h6>
+                  <ul class="mil-menu-list">
+                    <li><span class="mil-light-soft" data-i18n-text="footer.contact.city">{translations.footer.contact.city}</span></li>
+                    <li><a href="https://instagram.com/triacr" target="_blank" rel="noreferrer" class="mil-light-soft">Instagram</a></li>
+                    <li><a href="https://linkedin.com/company/triacr" target="_blank" rel="noreferrer" class="mil-light-soft">LinkedIn</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

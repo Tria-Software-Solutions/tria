@@ -1,0 +1,157 @@
+---
+interface Props {
+  translations: any;
+}
+
+const { translations } = Astro.props;
+---
+
+<section id="pricing" class="mil-pricing-section">
+  <div class="mi-invert-fix">
+    <div class="mil-animation-frame">
+      <div
+        class="mil-animation mil-position-1 mil-scale animation-position-5"
+      >
+      </div>
+      <div
+        class="mil-animation mil-position-2 mil-scale animation-position-6"
+      >
+      </div>
+    </div>
+    <div class="container mil-p-120-120">
+      <div class="row justify-content-between">
+        <div class="col-lg-6">
+          <h2 class="mil-up mil-mb-60" data-i18n-html="pricing.title" set:html={translations.pricing.title}>
+          </h2>
+          <p class="mil-up mil-mb-30" data-i18n-text="pricing.subtitle">
+            {translations.pricing.subtitle}
+          </p>
+          <p class="mil-up mil-mb-60" data-i18n-text="pricing.subtitle2">
+            {translations.pricing.subtitle2}
+          </p>
+        </div>
+      </div>
+      <div class="row mil-mb-60">
+        <div class="col-md-4">
+          <div class="mil-pricing-card mil-up">
+            <h5 class="mil-muted mil-mb-30" data-i18n-text="pricing.starter.title">
+              {translations.pricing.starter.title}
+            </h5>
+            <div class="mil-price mil-mb-30" data-i18n-html="pricing.starter.price" set:html={translations.pricing.starter.price}>
+            </div>
+            <p class="mil-light-soft mil-mb-30" data-i18n-text="pricing.starter.usd">
+              {translations.pricing.starter.usd}
+            </p>
+            <p class="mil-light-soft mil-mb-30" data-i18n-text="pricing.starter.description">
+              {translations.pricing.starter.description}
+            </p>
+            <ul class="mil-list mil-mb-30">
+              <li data-i18n-text="pricing.starter.features.0">{translations.pricing.starter.features[0]}</li>
+              <li data-i18n-text="pricing.starter.features.1">{translations.pricing.starter.features[1]}</li>
+              <li data-i18n-text="pricing.starter.features.2">{translations.pricing.starter.features[2]}</li>
+            </ul>
+            <a href="#contact" class="mil-button mil-arrow-place"
+              ><span data-i18n-text="common.get_started">{translations.common.get_started}</span></a
+            >
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="mil-pricing-card mil-up mil-active">
+            <div class="mil-pricing-label" data-i18n-text="pricing.growth.label">{translations.pricing.growth.label}</div>
+            <h5 class="mil-muted mil-mb-30" data-i18n-text="pricing.growth.title">
+              {translations.pricing.growth.title}
+            </h5>
+            <div class="mil-price mil-mb-30" data-i18n-html="pricing.growth.price" set:html={translations.pricing.growth.price}>
+            </div>
+            <p class="mil-light-soft mil-mb-30" data-i18n-text="pricing.growth.usd">
+              {translations.pricing.growth.usd}
+            </p>
+            <p class="mil-light-soft mil-mb-30" data-i18n-text="pricing.growth.description">
+              {translations.pricing.growth.description}
+            </p>
+            <ul class="mil-list mil-mb-30">
+              <li data-i18n-text="pricing.growth.features.0">{translations.pricing.growth.features[0]}</li>
+              <li data-i18n-text="pricing.growth.features.1">{translations.pricing.growth.features[1]}</li>
+              <li data-i18n-text="pricing.growth.features.2">{translations.pricing.growth.features[2]}</li>
+            </ul>
+            <a href="#contact" class="mil-button mil-arrow-place"
+              ><span data-i18n-text="common.get_started">{translations.common.get_started}</span></a
+            >
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="mil-pricing-card mil-up">
+            <h5 class="mil-muted mil-mb-30" data-i18n-text="pricing.scale.title">{translations.pricing.scale.title}</h5>
+            <div class="mil-price mil-mb-30" data-i18n-html="pricing.scale.price" set:html={translations.pricing.scale.price}>
+            </div>
+            <p class="mil-light-soft mil-mb-30" data-i18n-text="pricing.scale.usd">
+              {translations.pricing.scale.usd}
+            </p>
+            <p class="mil-light-soft mil-mb-30" data-i18n-text="pricing.scale.description">
+              {translations.pricing.scale.description}
+            </p>
+            <ul class="mil-list mil-mb-30">
+              <li data-i18n-text="pricing.scale.features.0">{translations.pricing.scale.features[0]}</li>
+              <li data-i18n-text="pricing.scale.features.1">{translations.pricing.scale.features[1]}</li>
+              <li data-i18n-text="pricing.scale.features.2">{translations.pricing.scale.features[2]}</li>
+            </ul>
+            <a href="#contact" class="mil-button mil-arrow-place"
+              ><span data-i18n-text="common.get_started">{translations.common.get_started}</span></a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .mil-pricing-section {
+    background: #fff;
+  }
+
+  .mil-pricing-section .mi-invert-fix,
+  .mil-pricing-section .container {
+    background: #fff;
+  }
+
+  :global(#pricing .mil-light-soft) {
+    color: rgba(0, 0, 0, 0.5);
+  }
+
+  :global(#pricing .mil-muted) {
+    color: rgba(0, 0, 0, 0.9);
+  }
+
+  :global(#pricing .mil-pricing-card) {
+    background-color: rgb(242, 242, 242);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  :global(#pricing .mil-pricing-card.mil-active) {
+    background: #fff;
+    border-color: rgb(255, 152, 0);
+  }
+
+  :global(#pricing .mil-pricing-card .mil-muted),
+  :global(#pricing .mil-pricing-card .mil-price),
+  :global(#pricing .mil-pricing-card .mil-price span) {
+    color: rgba(0, 0, 0, 0.92);
+  }
+
+  :global(#pricing .mil-pricing-card .mil-light-soft),
+  :global(#pricing .mil-pricing-card .mil-price .mil-light-soft),
+  :global(#pricing .mil-pricing-card p),
+  :global(#pricing .mil-pricing-card p span) {
+    color: rgba(0, 0, 0, 0.56);
+  }
+
+  :global(#pricing .mil-pricing-card .mil-list li) {
+    color: rgba(0, 0, 0, 0.7);
+  }
+
+  :global(#pricing .mil-pricing-card .mil-button),
+  :global(#pricing .mil-pricing-card .mil-button span) {
+    color: rgb(0, 0, 0);
+  }
+</style>

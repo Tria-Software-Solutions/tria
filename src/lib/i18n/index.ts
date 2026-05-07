@@ -2,8 +2,8 @@ import { getLocale } from './request';
 import esTranslations from '../../locales/es.json';
 import enTranslations from '../../locales/en.json';
 
-export function getTranslations() {
-  const locale = getLocale();
+export function getTranslations(url?: URL) {
+  const locale = getLocale(url);
   
   if (locale === 'en') {
     return enTranslations;

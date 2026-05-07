@@ -1,0 +1,58 @@
+---
+interface Props {
+  translations: any;
+}
+
+const { translations } = Astro.props;
+---
+<section id="about">
+  <div class="mi-invert-fix">
+    <div class="mil-animation-frame">
+      <div
+        class="mil-animation mil-position-1 mil-scale animation-position-1"
+      >
+      </div>
+      <div
+        class="mil-animation mil-position-2 mil-scale animation-position-2"
+      >
+      </div>
+    </div>
+    <div class="container mil-p-120-30">
+      <div class="row justify-content-between align-items-center">
+        <div class="col-lg-6 col-xl-5">
+          <div class="mil-mb-90">
+            <h2 class="mil-up mil-mb-60" data-i18n-html="about.title" set:html={translations.about.title}></h2>
+            <p class="mil-up mil-mb-30" data-i18n-text="about.subtitle">
+              {translations.about.subtitle}
+            </p>
+            <p class="mil-up mil-mb-60" data-i18n-text="about.subtitle2">
+              {translations.about.subtitle2}
+            </p>
+            <div class="mil-about-quote">
+              <div class="mil-avatar mil-up">
+                <img src="/assets/images/placeholder.svg" alt="Founder" />
+              </div>
+              <h6 class="mil-quote mil-up" data-i18n-html="about.quote" set:html={translations.about.quote}></h6>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="mil-about-photo mil-mb-90">
+            <div class="mil-lines-place"></div>
+            <div
+              class="mil-up mil-img-frame img-frame-padding"
+            >
+              <img
+                src="/assets/images/placeholder.svg"
+                alt="img"
+                class="mil-scale"
+                data-value-1="1"
+                data-value-2="1.2"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

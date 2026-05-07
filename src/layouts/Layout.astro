@@ -1,5 +1,9 @@
 ---
 import type { Translations } from '../lib/i18n/index';
+import LanguageSwitcher from '../components/LanguageSwitcher.astro';
+import { getLocale } from '../lib/i18n/request';
+import esTranslations from '../locales/es.json';
+import enTranslations from '../locales/en.json';
 
 interface Props {
 	title: string;
@@ -7,7 +11,11 @@ interface Props {
 }
 
 const { title, translations } = Astro.props;
-const lang = translations ? 'es' : 'en';
+const lang = getLocale(Astro.url);
+const allTranslations = {
+	es: esTranslations,
+	en: enTranslations,
+};
 ---
 
 <!DOCTYPE html>
@@ -16,7 +24,7 @@ const lang = translations ? 'es' : 'en';
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-		<title>{title} tria | Building Digital Solutions</title>
+		<title>tria | {translations?.common?.page_title || 'Building Digital Solutions'}</title>
 		
 		<!-- Favicon - Standard -->
 		<link rel="icon" type="image/svg+xml" href="/assets/icons/favicon/favicon.svg" />
@@ -78,5 +86,9 @@ const lang = translations ? 'es' : 'en';
 		<!-- main scripts -->
 		<script src="/assets/js/script.js" is:inline></script>
 		<script src="/assets/js/main.js" is:inline></script>
-	</body>
+		<script define:vars={{ allTranslations, lang }} is:inline>
+			window.translations = allTranslations;
+			window.currentLang = lang;
+		</script>
+			</body>
 </html>

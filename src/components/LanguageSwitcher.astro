@@ -1,0 +1,238 @@
+---
+import { getLocale } from '../lib/i18n/request';
+
+interface Props {
+  translations: any;
+}
+
+const { translations } = Astro.props;
+const locales = ['es', 'en'] as const;
+const localeLabels: Record<string, string> = {
+  es: 'ES',
+  en: 'EN',
+};
+const currentLang = getLocale(Astro.url);
+const localeUrls = Object.fromEntries(
+  locales.map((locale) => {
+    const url = new URL(Astro.url);
+    url.searchParams.set('lang', locale);
+    return [locale, `${url.pathname}${url.search}`];
+  })
+);
+---
+
+<div class="mil-language-switcher">
+  {locales.map(locale => (
+    <a
+      href={localeUrls[locale]}
+      class={`mil-lang-btn${locale === currentLang ? ' mil-active' : ''}`}
+      data-lang={locale}
+    >
+      {localeLabels[locale]}
+    </a>
+  ))}
+</div>
+
+<style>
+  .mil-current-page {
+    pointer-events: none;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 12px;
+    width: 300px;
+    color: rgb(0, 0, 0);
+    -webkit-transform: rotate(-90deg) translateX(138px) translateY(-138px);
+            transform: rotate(-90deg) translateX(138px) translateY(-138px);
+    display: flex;
+    align-items: center;
+  }
+
+  .mil-lang-btn {
+    font-weight: 500;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    letter-spacing: 2px;
+    font-size: 12px;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+    pointer-events: all;
+  }
+
+  .mil-lang-btn:hover {
+    opacity: 0.6;
+  }
+
+  .mil-lang-btn.mil-active {
+    color: rgb(0, 0, 0);
+    opacity: 1;
+  }
+
+  .mil-lang-btn:not(.mil-active) {
+    opacity: 0.4;
+  }
+
+  @media screen and (max-width: 1200px) {
+    .mil-language-switcher {
+      display: none;
+    }
+  }
+</style>
+
+<script is:inline>
+(function() {
+  var translationsByLocale = window.translations || {};
+  var currentLang = localStorage.getItem('preferred-lang') || window.currentLang || 'es';
+
+  function getCurrentTranslations(lang) {
+    return translationsByLocale[lang] || translationsByLocale.es || {};
+  }
+
+  function getValueByPath(obj, path) {
+    return path.split('.').reduce(function(acc, key) {
+      if (acc === undefined || acc === null) return undefined;
+      return acc[key];
+    }, obj);
+  }
+
+  function applyDataTranslations(lang) {
+    var t = getCurrentTranslations(lang);
+
+    document.documentElement.lang = lang;
+    if (t.common && t.common.page_title) {
+      document.title = 'tria | ' + t.common.page_title;
+    }
+
+    document.querySelectorAll('[data-i18n-text]').forEach(function(el) {
+      var path = el.getAttribute('data-i18n-text');
+      var value = path ? getValueByPath(t, path) : undefined;
+      if (value !== undefined) {
+        el.textContent = String(value);
+      }
+    });
+
+    document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
+      var path = el.getAttribute('data-i18n-html');
+      var value = path ? getValueByPath(t, path) : undefined;
+      if (value !== undefined) {
+        el.innerHTML = String(value);
+      }
+    });
+
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
+      var path = el.getAttribute('data-i18n-placeholder');
+      var value = path ? getValueByPath(t, path) : undefined;
+      if (value !== undefined) {
+        el.setAttribute('placeholder', String(value));
+      }
+    });
+
+    document.querySelectorAll('[data-i18n-title]').forEach(function(el) {
+      var path = el.getAttribute('data-i18n-title');
+      var value = path ? getValueByPath(t, path) : undefined;
+      if (value !== undefined) {
+        el.setAttribute('title', String(value));
+      }
+    });
+
+    document.querySelectorAll('[data-i18n-aria-label]').forEach(function(el) {
+      var path = el.getAttribute('data-i18n-aria-label');
+      var value = path ? getValueByPath(t, path) : undefined;
+      if (value !== undefined) {
+        el.setAttribute('aria-label', String(value));
+      }
+    });
+
+    document.querySelectorAll('[data-current-year]').forEach(function(el) {
+      var year = el.getAttribute('data-current-year');
+      var suffix = getValueByPath(t, 'footer.copyright_suffix');
+      if (year && suffix) {
+        el.textContent = '© ' + year + ' ' + suffix;
+      }
+    });
+  }
+
+  function updateCurrentPageLabel(lang) {
+    var switcherContainer = document.querySelector('.mil-current-page');
+    if (!switcherContainer) return;
+
+    var sectionLabel = switcherContainer.querySelector('[data-current-page-label]');
+    if (!sectionLabel) return;
+
+    var currentSection = window.location.hash || '#home';
+    var sectionKey = currentSection === '' ? 'home' : currentSection.substring(1);
+    var navTranslations = getCurrentTranslations(lang).navigation || {};
+    sectionLabel.textContent = navTranslations[sectionKey] || navTranslations.home || 'Home';
+  }
+
+  function applyTranslations(lang) {
+    var t = getCurrentTranslations(lang);
+    if (!t) return;
+
+    applyDataTranslations(lang);
+    updateCurrentPageLabel(lang);
+
+    // Update active button
+    document.querySelectorAll('.mil-lang-btn').forEach(function(btn) {
+      btn.classList.toggle('mil-active', btn.getAttribute('data-lang') === lang);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var langButtons = document.querySelectorAll('.mil-lang-btn');
+    var savedLang = localStorage.getItem('preferred-lang') || currentLang;
+
+    // Clear the container completely
+    var switcherContainer = document.querySelector('.mil-current-page');
+    if (switcherContainer) {
+      switcherContainer.innerHTML = '';
+      
+      // Get current section from URL hash
+      var currentSection = window.location.hash || '#home';
+      
+      // Get section key dynamically by removing # and using the hash directly
+      var sectionKey = currentSection === '' ? 'home' : currentSection.substring(1);
+      
+      // Get translations from global translations object
+      var navTranslations = getCurrentTranslations(savedLang).navigation || {};
+      var pageName = navTranslations[sectionKey] || navTranslations.home || 'Home';
+      
+      // Create page name element
+      var pageNameEl = document.createElement('span');
+      pageNameEl.setAttribute('data-current-page-label', 'true');
+      pageNameEl.textContent = pageName;
+      switcherContainer.appendChild(pageNameEl);
+      
+      // Add separator
+      var separator = document.createElement('span');
+      separator.textContent = '|';
+      separator.style.opacity = '0.3';
+      separator.style.margin = '0 8px';
+      switcherContainer.appendChild(separator);
+      
+      // Add language buttons
+      langButtons.forEach(function(btn) {
+        switcherContainer.appendChild(btn);
+      });
+    }
+
+    currentLang = savedLang;
+    applyTranslations(savedLang);
+
+    langButtons.forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        var lang = btn.getAttribute('data-lang') || 'es';
+        localStorage.setItem('preferred-lang', lang);
+        currentLang = lang;
+        applyTranslations(lang);
+      });
+    });
+
+    window.addEventListener('hashchange', function() {
+      applyTranslations(currentLang);
+    });
+  });
+})();
+</script>

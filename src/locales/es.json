@@ -15,28 +15,33 @@
   "services": {
     "title": "<span class=\"mil-thin\">Ideas</span> <span class=\"mil-thin\">Únicas</span>",
     "subtitle": "Para Tu <span class=\"mil-thin\">Negocio.</span>",
+    "supertitle": "Profesionales enfocados en ayudar a tu marca<br> a crecer y avanzar.",
     "frontend": {
       "title": "Desarrollo <br>Frontend",
-      "description": "React, Next.js, TypeScript, Tailwind CSS para interfaces de usuario modernas."
+      "description": "React, Next.js, TypeScript, Tailwind CSS para interfaces de usuario modernas.",
+      "aria_label": "Aprende más sobre Desarrollo Frontend"
     },
     "mobile": {
       "title": "Desarrollo <br>Móvil",
-      "description": "iOS, Android, React Native para aplicaciones móviles multiplataforma."
+      "description": "iOS, Android, React Native para aplicaciones móviles multiplataforma.",
+      "aria_label": "Aprende más sobre Desarrollo Móvil"
     },
     "backend": {
       "title": "Desarrollo <br>Backend",
-      "description": "Node.js, Python, PostgreSQL, APIs para soluciones robustas del lado del servidor."
+      "description": "Node.js, Python, PostgreSQL, APIs para soluciones robustas del lado del servidor.",
+      "aria_label": "Aprende más sobre Desarrollo Backend"
     },
     "devops": {
       "title": "DevOps & <br>Cloud",
-      "description": "AWS, Docker, Kubernetes, CI/CD para infraestructura de despliegue moderna."
+      "description": "AWS, Docker, Kubernetes, CI/CD para infraestructura de despliegue moderna.",
+      "aria_label": "Aprende más sobre DevOps y Cloud"
     }
   },
   "about": {
     "title": "Descubre <span class=\"mil-thin\">Nuestro</span> <span class=\"mil-thin\">Estudio</span>",
-    "subtitle": "En Tria, somos un colectivo de ingenieros talentosos impulsados por nuestra pasión inquebrantable por transformar ideas en realidad. Con una mezcla armoniosa de antecedentes diversos y una amplia gama de conjuntos de habilidades, nos unimos fuerzas para crear soluciones atractivas para nuestros estimados clientes.",
-    "subtitle2": "La colaboración está en el corazón de lo que hacemos. Nuestro equipo prospera en la sinergia que surge cuando perspectivas únicas convergen, fomentando un entorno de creatividad sin límites. Aprovechando nuestra experiencia colectiva, producimos resultados extraordinarios que consistentemente superan las expectativas.",
-    "quote": "Creando <span class=\"mil-thin\">Maravillas de Software</span> con Pasión: <span class=\"mil-thin\">Liberando</span> <span class=\"mil-thin\">Creatividad</span> <span class=\"mil-thin\">Sin Límites</span>"
+    "subtitle": "En Tria, somos un equipo de ingeniería de software apasionado por construir soluciones digitales personalizadas que generan resultados reales de negocio. Del concepto al despliegue, combinamos excelencia técnica con profundo conocimiento de la industria para entregar software escalable y de alto rendimiento.",
+    "subtitle2": "Nuestro enfoque ágil garantiza entrega rápida sin comprometer calidad. Trabajamos contigo para entender tus desafíos únicos, luego arquitectamos e implementamos soluciones robustas, seguras y diseñadas para crecer.",
+    "quote": "Construyendo <span class=\"mil-thin\">Software Excepcional:</span> Entregando <span class=\"mil-thin\">Resultados Reales</span>"
   },
   "team": {
     "title": "Nuestro <br>Proceso de <span class=\"mil-thin\">Desarrollo</span>",
@@ -104,6 +109,12 @@
   "footer": {
     "newsletter": "Suscríbete a nuestro boletín:",
     "email_placeholder": "Ingresa nuestro correo",
+    "subscribe_button": "Suscribirse",
+    "contact_title": "Contacto",
+    "contact_address": "Costa Rica",
+    "contact_phone": "Respuesta dentro de 24h",
+    "contact_email": "info@triacr.com",
+    "useful_links": "Enlaces útiles",
     "links": {
       "privacy": "Política de Privacidad",
       "terms": "Términos y Condiciones",
@@ -112,9 +123,46 @@
     },
     "contact": {
       "costa_rica": "Costa Rica",
+      "city": "San Jose, Costa Rica",
       "response": "Respuesta dentro de 24h",
-      "website": "www.triacr.com"
+      "website": "www.triacr.com",
+      "whatsapp": "WhatsApp pendiente",
+      "whatsapp_href": "#"
     },
-    "copyright": "© 2024 Tria. Todos los Derechos Reservados."
+    "copyright_suffix": "Tria. Todos los Derechos Reservados."
+  },
+  "common": {
+    "page_title": "Construyendo Soluciones Digitales",
+    "get_started": "Comenzar",
+    "subscribe": "Suscribirse",
+    "learn_more": "Aprende más",
+    "back_to_top": "Volver arriba",
+    "scroll_cta": "Desplázate - Desplázate - ",
+    "cursor_more": "Más",
+    "cursor_choose": "Elegir"
+  },
+  "preloader": {
+    "word1": "Construyendo",
+    "word2": "Soluciones",
+    "word3": "Digitales"
+  },
+  "team_members": {
+    "anna_oldman": {
+      "name": "Anna Oldman",
+      "role": "Directora de Arte"
+    },
+    "oscar_freeman": {
+      "name": "Oscar Freeman",
+      "role": "Desarrollador Frontend"
+    },
+    "emma_newman": {
+      "name": "Emma Newman",
+      "role": "Fundadora"
+    },
+    "sarah_johnson": {
+      "name": "Sarah Johnson",
+      "role": "Diseñadora UI/UX"
+    },
+    "founders_note": "<span class=\"mil-accent\">*</span> Los fundadores de nuestra agencia"
   }
 }

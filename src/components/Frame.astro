@@ -1,0 +1,26 @@
+---
+import LanguageSwitcher from './LanguageSwitcher.astro';
+
+interface Props {
+  translations: any;
+}
+
+const { translations } = Astro.props;
+---
+<div class="mil-curtain"></div>
+<div class="mil-frame">
+  <div class="mil-frame-top">
+    <a href="/" class="mil-logo">tria.</a>
+    <div class="mil-menu-btn"><span></span></div>
+  </div>
+  <div class="mil-frame-bottom">
+    <div class="mil-current-page">
+      <LanguageSwitcher translations={translations} />
+    </div>
+    <div class="mil-back-to-top">
+      <a href="#top" class="mil-link mil-dark mil-arrow-place"
+        ><span data-i18n-text="common.back_to_top">{translations.common.back_to_top}</span></a
+      >
+    </div>
+  </div>
+</div>

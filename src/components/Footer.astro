@@ -1,0 +1,195 @@
+---
+interface Props {
+  translations: any;
+}
+
+const { translations } = Astro.props;
+const currentYear = new Date().getFullYear();
+---
+<footer id="contact" class="mil-dark-bg">
+  <div class="mi-invert-fix">
+    <div class="container mil-p-120-60">
+      <div class="row justify-content-between">
+        <div class="col-md-4 col-lg-4 mil-mb-60">
+          <div class="mil-muted mil-logo mil-up mil-mb-30">tria.</div>
+          <p class="mil-light-soft mil-up mil-mb-30" data-i18n-text="footer.newsletter">
+            {translations.footer.newsletter}
+          </p>
+          <form class="mil-subscribe-form mil-up">
+            <input
+              type="text"
+              data-i18n-placeholder="footer.email_placeholder"
+              placeholder={translations.footer.email_placeholder}
+            />
+            <button
+              type="submit"
+              class="mil-button mil-icon-button-sm mil-arrow-place"
+              data-i18n-aria-label="footer.subscribe_button"
+              data-i18n-title="footer.subscribe_button"
+              aria-label={translations.footer.subscribe_button}
+              title={translations.footer.subscribe_button}
+            ></button>
+          </form>
+        </div>
+        <div class="col-md-7 col-lg-6">
+          <div class="row justify-content-end">
+            <div class="col-md-6 col-lg-7">
+              <nav class="mil-footer-menu mil-mb-60">
+                <ul>
+                  <li class="mil-up mil-active">
+                    <a href="/" data-i18n-text="navigation.home">{translations.navigation.home}</a>
+                  </li>
+                  <!--
+                  <li class="mil-up">
+                    <a href="/portfolio-1" data-i18n-text="navigation.portfolio">{translations.navigation.portfolio}</a>
+                  </li>
+                  -->
+                  <li class="mil-up">
+                    <a href="/services" data-i18n-text="navigation.services">{translations.navigation.services}</a>
+                  </li>
+                  <li class="mil-up">
+                    <a href="/contact" data-i18n-text="navigation.contact">{translations.navigation.contact}</a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+            <div class="col-md-6 col-lg-5">
+              <ul class="mil-menu-list mil-up mil-mb-60">
+                <li>
+                  <a href="#privacy" class="mil-light-soft" data-i18n-text="footer.links.privacy">
+                    {translations.footer.links.privacy}
+                  </a>
+                </li>
+                <li>
+                  <a href="#terms" class="mil-light-soft" data-i18n-text="footer.links.terms">
+                    {translations.footer.links.terms}
+                  </a>
+                </li>
+                <li>
+                  <a href="#cookies" class="mil-light-soft" data-i18n-text="footer.links.cookies">
+                    {translations.footer.links.cookies}
+                  </a>
+                </li>
+                <li>
+                  <a href="#careers" class="mil-light-soft" data-i18n-text="footer.links.careers">
+                    {translations.footer.links.careers}
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-between flex-sm-row-reverse">
+        <div class="col-md-7 col-lg-6">
+          <div class="row justify-content-between">
+            <div class="col-md-6 col-lg-5 mil-mb-60">
+              <h6 class="mil-muted mil-up mil-mb-30" data-i18n-text="footer.contact.costa_rica">
+                {translations.footer.contact.costa_rica}
+              </h6>
+              <ul class="mil-menu-list mil-up">
+                <li>
+                  <span class="mil-light-soft" data-i18n-text="footer.contact.city">{translations.footer.contact.city}</span>
+                </li>
+                <li>
+                  <a
+                    href={`mailto:${translations.footer.contact_email}`}
+                    class="mil-light-soft"
+                    data-i18n-text="footer.contact_email"
+                  >
+                    {translations.footer.contact_email}
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-6 col-lg-5 mil-mb-60">
+              <h6 class="mil-muted mil-up mil-mb-30" data-i18n-text="footer.contact_title">
+                {translations.footer.contact_title}
+              </h6>
+              <ul class="mil-menu-list mil-up">
+                <li>
+                  <span class="mil-light-soft" data-i18n-text="footer.contact_phone">{translations.footer.contact_phone}</span>
+                </li>
+                <li>
+                  <a
+                    href={translations.footer.contact.whatsapp_href}
+                    class="mil-light-soft"
+                    data-i18n-text="footer.contact.whatsapp"
+                  >
+                    {translations.footer.contact.whatsapp}
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={`mailto:${translations.footer.contact_email}`}
+                    class="mil-light-soft"
+                    data-i18n-text="footer.contact_email"
+                  >
+                    {translations.footer.contact_email}
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-lg-6 mil-mb-60">
+          <div class="mil-vert-between">
+            <div class="mil-mb-30">
+              <ul class="mil-social-icons mil-up">
+                <li>
+                  <a
+                    href="https://instagram.com/triacr"
+                    target="_blank"
+                    rel="noreferrer"
+                    class="social-icon"
+                    aria-label="Instagram"
+                  >
+                    <i class="fab fa-instagram"></i>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://facebook.com/triacr"
+                    target="_blank"
+                    rel="noreferrer"
+                    class="social-icon"
+                    aria-label="Facebook"
+                  >
+                    <i class="fab fa-facebook-f"></i>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://linkedin.com/company/triacr"
+                    target="_blank"
+                    rel="noreferrer"
+                    class="social-icon"
+                    aria-label="LinkedIn"
+                  >
+                    <i class="fab fa-linkedin-in"></i>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://github.com/"
+                    target="_blank"
+                    rel="noreferrer"
+                    class="social-icon"
+                    aria-label="GitHub"
+                  >
+                    <i class="fab fa-github"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <p
+              class="mil-light-soft mil-up"
+              data-i18n-text="footer.copyright_suffix"
+              data-current-year={currentYear}
+            >© {currentYear} {translations.footer.copyright_suffix}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

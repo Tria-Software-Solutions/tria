@@ -1,0 +1,83 @@
+---
+interface Props {
+  translations: any;
+}
+
+const { translations } = Astro.props;
+---
+<section class="mil-banner mil-dark-bg">
+  <div class="mi-invert-fix">
+    <div class="mil-animation-frame">
+      <div
+        class="mil-animation mil-position-1 mil-scale"
+        data-value-1="7"
+        data-value-2="1.6"
+      >
+      </div>
+      <div
+        class="mil-animation mil-position-2 mil-scale"
+        data-value-1="4"
+        data-value-2="1"
+      >
+      </div>
+      <div
+        class="mil-animation mil-position-3 mil-scale"
+        data-value-1="1.2"
+        data-value-2=".1"
+      >
+      </div>
+    </div>
+    <div class="mil-gradient"></div>
+    <div class="container">
+      <div class="mil-banner-content mil-up">
+        <h1 class="mil-muted mil-mb-60" data-i18n-html="banner.title" set:html={translations.banner.title}>
+        </h1>
+        <div class="row">
+          <div class="col-md-7 col-lg-5">
+            <p class="mil-light-soft mil-mb-60" data-i18n-text="banner.subtitle">
+              {translations.banner.subtitle}
+            </p>
+          </div>
+        </div>
+        <a
+          href="#services"
+          class="mil-button mil-arrow-place mil-btn-space"
+        ><span data-i18n-text="navigation.services">{translations.navigation.services}</span></a>
+        <a href="#portfolio" class="mil-link mil-muted mil-arrow-place"
+          ><span data-i18n-text="navigation.portfolio">{translations.navigation.portfolio}</span></a>
+
+        <div class="mil-circle-text">
+          <svg
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            x="0px"
+            y="0px"
+            viewBox="0 0 300 300"
+            enable-background="new 0 0 300 300"
+            xml:space="preserve"
+            class="mil-ct-svg mil-rotate"
+            data-value="360"
+          >
+            <defs>
+              <path
+                id="circlePath"
+                d="M 150, 150 m -60, 0 a 60,60 0 0,1 120,0 a 60,60 0 0,1 -120,0 "
+              />
+            </defs>
+            <circle cx="150" cy="100" r="75" fill="none"></circle>
+            <g>
+              <use xlink:href="#circlePath" fill="none"></use>
+              <text style="letter-spacing: 6.5px">
+                <textPath xlink:href="#circlePath" data-i18n-text="common.scroll_cta">
+                  {translations.common.scroll_cta}
+                </textPath>
+              </text>
+            </g>
+          </svg>
+          <a href="#about" class="mil-button mil-arrow-place mil-icon-button mil-arrow-down"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

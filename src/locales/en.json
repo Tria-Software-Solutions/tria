@@ -15,28 +15,33 @@
   "services": {
     "title": "Unique <span class=\"mil-thin\">Ideas</span>",
     "subtitle": "For Your <span class=\"mil-thin\">Business.</span>",
+    "supertitle": "Professionals focused on helping your brand<br> grow and move forward.",
     "frontend": {
       "title": "Frontend <br>Development",
-      "description": "React, Next.js, TypeScript, Tailwind CSS for modern user interfaces."
+      "description": "React, Next.js, TypeScript, Tailwind CSS for modern user interfaces.",
+      "aria_label": "Learn more about Frontend Development"
     },
     "mobile": {
       "title": "Mobile <br>Development",
-      "description": "iOS, Android, React Native for cross-platform mobile applications."
+      "description": "iOS, Android, React Native for cross-platform mobile applications.",
+      "aria_label": "Learn more about Mobile Development"
     },
     "backend": {
       "title": "Backend <br>Development",
-      "description": "Node.js, Python, PostgreSQL, APIs for robust server-side solutions."
+      "description": "Node.js, Python, PostgreSQL, APIs for robust server-side solutions.",
+      "aria_label": "Learn more about Backend Development"
     },
     "devops": {
       "title": "DevOps & <br>Cloud",
-      "description": "AWS, Docker, Kubernetes, CI/CD for modern deployment infrastructure."
+      "description": "AWS, Docker, Kubernetes, CI/CD for modern deployment infrastructure.",
+      "aria_label": "Learn more about DevOps & Cloud"
     }
   },
   "about": {
     "title": "Discover <br>Our <span class=\"mil-thin\">Studio</span>",
-    "subtitle": "At Tria, we are a collective of talented engineers ignited by our unwavering passion for transforming ideas into reality. With a harmonious blend of diverse backgrounds and a vast array of skill sets, we join forces to create compelling solutions for our esteemed clients.",
-    "subtitle2": "Collaboration is at the heart of what we do. Our team thrives on the synergy that arises when unique perspectives converge, fostering an environment of boundless creativity. By harnessing our collective expertise, we produce extraordinary results that consistently surpass expectations.",
-    "quote": "Passionately Creating <span class=\"mil-thin\">Software Wonders:</span> Unleashing <span class=\"mil-thin\">Boundless Creativity</span>"
+    "subtitle": "At Tria, we're a software engineering team passionate about building custom digital solutions that drive real business outcomes. From concept to deployment, we combine technical excellence with deep industry knowledge to deliver scalable, high-performance software.",
+    "subtitle2": "Our agile approach ensures rapid delivery without compromising quality. We work closely with you to understand your unique challenges, then architect and implement solutions that are robust, secure, and designed for growth.",
+    "quote": "Building <span class=\"mil-thin\">Exceptional Software:</span> Delivering <span class=\"mil-thin\">Real Results</span>"
   },
   "team": {
     "title": "Our <br>Development Process",
@@ -104,6 +109,12 @@
   "footer": {
     "newsletter": "Subscribe our newsletter:",
     "email_placeholder": "Enter our email",
+    "subscribe_button": "Subscribe",
+    "contact_title": "Contact",
+    "contact_address": "Costa Rica",
+    "contact_phone": "Response within 24h",
+    "contact_email": "info@triacr.com",
+    "useful_links": "Useful links",
     "links": {
       "privacy": "Privacy Policy",
       "terms": "Terms and conditions",
@@ -112,9 +123,48 @@
     },
     "contact": {
       "costa_rica": "Costa Rica",
+      "city": "San Jose, Costa Rica",
       "response": "Response within 24h",
-      "website": "www.triacr.com"
+      "website": "www.triacr.com",
+      "whatsapp": "WhatsApp pending",
+      "whatsapp_href": "#"
     },
-    "copyright": "© 2024 Tria. All Rights Reserved."
+    "copyright_suffix": "Tria. All Rights Reserved."
+  },
+  "common": {
+    "page_title": "Building Digital Solutions",
+    "get_started": "Get Started",
+    "subscribe": "Subscribe",
+    "learn_more": "Learn More",
+    "back_to_top": "Back to top",
+    "scroll_down": "Scroll down",
+    "scroll_cta": "Scroll down - Scroll down - ",
+    "scroll_text": "Scroll down to explore more - Scroll down to explore more -",
+    "cursor_more": "More",
+    "cursor_choose": "Choose"
+  },
+  "preloader": {
+    "word1": "Building",
+    "word2": "Digital",
+    "word3": "Solutions"
+  },
+  "team_members": {
+    "anna_oldman": {
+      "name": "Anna Oldman",
+      "role": "Art Director"
+    },
+    "oscar_freeman": {
+      "name": "Oscar Freeman",
+      "role": "Frontend Dev"
+    },
+    "emma_newman": {
+      "name": "Emma Newman",
+      "role": "Founder"
+    },
+    "sarah_johnson": {
+      "name": "Sarah Johnson",
+      "role": "UI/UX Designer"
+    },
+    "founders_note": "<span class=\"mil-accent\">*</span> The founders of our agency"
   }
 }
