@@ -4,81 +4,40 @@ interface Props {
 }
 
 const { translations } = Astro.props;
+
+const services = [
+  { key: 'frontend', title: translations.services.frontend.title, description: translations.services.frontend.description, aria_label: translations.services.frontend.aria_label },
+  { key: 'mobile', title: translations.services.mobile.title, description: translations.services.mobile.description, aria_label: translations.services.mobile.aria_label },
+  { key: 'backend', title: translations.services.backend.title, description: translations.services.backend.description, aria_label: translations.services.backend.aria_label },
+  { key: 'devops', title: translations.services.devops.title, description: translations.services.devops.description, aria_label: translations.services.devops.aria_label },
+];
 ---
 <section id="services" class="mil-dark-bg">
   <div class="mi-invert-fix">
-    <div class="mil-animation-frame">
-      <div
-        class="mil-animation mil-position-1 mil-scale animation-position-3"
-      >
-      </div>
-      <div
-        class="mil-animation mil-position-2 mil-scale animation-position-4"
-      >
-      </div>
-    </div>
     <div class="container mil-p-120-120">
       <div class="mil-mb-120">
         <div class="row">
           <div class="col-lg-10">
-            <span
-              class="mil-suptitle mil-light-soft mil-suptitle-right mil-up" data-i18n-html="services.supertitle" set:html={translations.services.supertitle}
-            ></span></div>
+            <span class="mil-suptitle mil-light-soft mil-suptitle-right mil-up" set:html={translations.services.supertitle}></span>
+          </div>
         </div>
-        <div class="mil-complex-text justify-content-center mil-up mil-mb-15"
-        >
-          <h2 class="mil-h1 mil-muted mil-center" data-i18n-html="services.title" set:html={translations.services.title}>
-          </h2>
+        <div class="mil-complex-text justify-content-center mil-up mil-mb-15">
+          <h2 class="mil-h1 mil-muted mil-center" set:html={translations.services.title}></h2>
         </div>
         <div class="mil-complex-text justify-content-center mil-up">
-          <h2 class="mil-h1 mil-muted mil-center" data-i18n-html="services.subtitle" set:html={translations.services.subtitle}>
-          </h2>
+          <h2 class="mil-h1 mil-muted mil-center" set:html={translations.services.subtitle}></h2>
         </div>
       </div>
       <div class="row mil-services-grid m-0">
-        <div class="col-md-6 col-lg-3 mil-services-grid-item p-0">
-          <a href="#" class="mil-service-card-sm mil-up">
-            <h5 class="mil-muted mil-mb-30" data-i18n-html="services.frontend.title" set:html={translations.services.frontend.title}>
-            </h5>
-            <p class="mil-light-soft mil-mb-30" data-i18n-text="services.frontend.description">
-              {translations.services.frontend.description}
-            </p>
-            <div class="mil-button mil-icon-button-sm mil-arrow-place" data-i18n-aria-label="services.frontend.aria_label" data-i18n-title="services.frontend.aria_label" aria-label={translations.services.frontend.aria_label} title={translations.services.frontend.aria_label}>
-            </div>
-          </a>
-        </div>
-        <div class="col-md-6 col-lg-3 mil-services-grid-item p-0">
-          <a href="#" class="mil-service-card-sm mil-up">
-            <h5 class="mil-muted mil-mb-30" data-i18n-html="services.mobile.title" set:html={translations.services.mobile.title}>
-            </h5>
-            <p class="mil-light-soft mil-mb-30" data-i18n-text="services.mobile.description">
-              {translations.services.mobile.description}
-            </p>
-            <div class="mil-button mil-icon-button-sm mil-arrow-place" data-i18n-aria-label="services.mobile.aria_label" data-i18n-title="services.mobile.aria_label" aria-label={translations.services.mobile.aria_label} title={translations.services.mobile.aria_label}>
-            </div>
-          </a>
-        </div>
-        <div class="col-md-6 col-lg-3 mil-services-grid-item p-0">
-          <a href="#" class="mil-service-card-sm mil-up">
-            <h5 class="mil-muted mil-mb-30" data-i18n-html="services.backend.title" set:html={translations.services.backend.title}>
-            </h5>
-            <p class="mil-light-soft mil-mb-30" data-i18n-text="services.backend.description">
-              {translations.services.backend.description}
-            </p>
-            <div class="mil-button mil-icon-button-sm mil-arrow-place" data-i18n-aria-label="services.backend.aria_label" data-i18n-title="services.backend.aria_label" aria-label={translations.services.backend.aria_label} title={translations.services.backend.aria_label}>
-            </div>
-          </a>
-        </div>
-        <div class="col-md-6 col-lg-3 mil-services-grid-item p-0">
-          <a href="#" class="mil-service-card-sm mil-up">
-            <h5 class="mil-muted mil-mb-30" data-i18n-html="services.devops.title" set:html={translations.services.devops.title}></h5>
-            <p class="mil-light-soft mil-mb-30" data-i18n-text="services.devops.description">
-              {translations.services.devops.description}
-            </p>
-            <div class="mil-button mil-icon-button-sm mil-arrow-place" data-i18n-aria-label="services.devops.aria_label" data-i18n-title="services.devops.aria_label" aria-label={translations.services.devops.aria_label} title={translations.services.devops.aria_label}>
-            </div>
-          </a>
-        </div>
+        {services.map((service) => (
+          <div class="col-md-6 col-lg-3 mil-services-grid-item p-0">
+            <a href="#" class="mil-service-card-sm mil-up">
+              <h5 class="mil-muted mil-mb-30" set:html={service.title}></h5>
+              <p class="mil-light-soft mil-mb-30">{service.description}</p>
+              <div class="mil-button mil-icon-button-sm mil-arrow-place" aria-label={service.aria_label} title={service.aria_label}></div>
+            </a>
+          </div>
+        ))}
       </div>
     </div>
   </div>

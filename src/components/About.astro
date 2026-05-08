@@ -5,50 +5,276 @@ interface Props {
 
 const { translations } = Astro.props;
 ---
-<section id="about">
+
+<section id="team">
   <div class="mi-invert-fix">
     <div class="mil-animation-frame">
       <div
-        class="mil-animation mil-position-1 mil-scale animation-position-1"
+        class="mil-animation mil-position-1 mil-scale animation-position-5"
       >
       </div>
       <div
-        class="mil-animation mil-position-2 mil-scale animation-position-2"
+        class="mil-animation mil-position-2 mil-scale animation-position-6"
       >
       </div>
     </div>
     <div class="container mil-p-120-120">
       <div class="row justify-content-between align-items-center">
-        <div class="col-lg-6 col-xl-5">
+        <div class="col-lg-5 col-xl-4">
           <div class="mil-mb-90">
-            <h2 class="mil-up mil-mb-60" data-i18n-html="about.title" set:html={translations.about.title}></h2>
-            <p class="mil-up mil-mb-30" data-i18n-text="about.subtitle">
-              {translations.about.subtitle}
+            <h2 class="mil-up mil-mb-60" data-i18n-html="team.title" set:html={translations.team.title}></h2>
+            <p class="mil-up mil-mb-30" data-i18n-text="team.subtitle">{translations.team.subtitle}</p>
+            <p class="mil-up mil-mb-60" data-i18n-text="team.subtitle2">
+              {translations.team.subtitle2}
             </p>
-            <p class="mil-up mil-mb-60" data-i18n-text="about.subtitle2">
-              {translations.about.subtitle2}
-            </p>
-            <div class="mil-about-quote">
-              <div class="mil-avatar mil-up">
-                <img src="/assets/images/placeholder.svg" alt="Founder" />
-              </div>
-              <h6 class="mil-quote mil-up" data-i18n-html="about.quote" set:html={translations.about.quote}></h6>
+            <div class="mil-up">
+              <a
+                href="#contact"
+                class="mil-button mil-arrow-place mil-mb-60"
+              >
+                <span data-i18n-html="navigation.project" set:html={translations.navigation.project}></span>
+              </a>
             </div>
+            <h4 class="mil-up" data-i18n-html="team.deliver" set:html={translations.team.deliver}></h4>
           </div>
         </div>
-        <div class="col-lg-5">
-          <div class="mil-about-photo mil-mb-90">
+        <div class="col-lg-6">
+          <div class="mil-team-list">
             <div class="mil-lines-place"></div>
-            <div
-              class="mil-up mil-img-frame img-frame-padding"
-            >
-              <img
-                src="/assets/images/placeholder.svg"
-                alt="img"
-                class="mil-scale"
-                data-value-1="1"
-                data-value-2="1.2"
-              />
+            <div class="row mil-mb-60">
+              <div class="col-sm-6">
+                <div class="mil-team-card mil-up mil-mb-30">
+                  <img
+                    src="/assets/images/placeholder.svg"
+                    alt="Team member"
+                  />
+                  <div class="mil-description">
+                    <div class="mil-secrc-text">
+                      <h5 class="mil-muted mil-mb-5" data-i18n-text="team_members.anna_oldman.name">{translations.team_members.anna_oldman.name}</h5>
+                      <p class="mil-link mil-light-soft mil-mb-10" data-i18n-text="team_members.anna_oldman.role">
+                        {translations.team_members.anna_oldman.role}
+                      </p>
+                      <ul class="mil-social-icons mil-center">
+                        <li>
+                          <a
+                            href="#"
+                            target="_blank"
+                            class="social-icon"
+                            aria-label="Behance"
+                            title="Behance"
+                          >
+                            <i class="fab fa-behance"></i></a>
+                        </li>
+                        <li>
+                          <a
+                            href="#"
+                            target="_blank"
+                            class="social-icon"
+                            aria-label="Dribbble"
+                            title="Dribbble"
+                          >
+                            <i class="fab fa-dribbble"></i></a>
+                        </li>
+                        <li>
+                          <a
+                            href="#"
+                            target="_blank"
+                            class="social-icon"
+                            aria-label="Twitter"
+                            title="Twitter"
+                          >
+                            <i class="fab fa-twitter"></i></a>
+                        </li>
+                        <li>
+                          <a
+                            href="#"
+                            target="_blank"
+                            class="social-icon"
+                            aria-label="GitHub"
+                            title="GitHub"
+                          >
+                            <i class="fab fa-github"></i></a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="mil-team-card mil-up mil-mb-30">
+                  <img
+                    src="/assets/images/placeholder.svg"
+                    alt="Team member"
+                  />
+                  <div class="mil-description">
+                    <div class="mil-secrc-text">
+                      <h5 class="mil-muted mil-mb-5" data-i18n-text="team_members.oscar_freeman.name">{translations.team_members.oscar_freeman.name}</h5>
+                      <p class="mil-link mil-light-soft mil-mb-10" data-i18n-text="team_members.oscar_freeman.role">
+                        {translations.team_members.oscar_freeman.role}
+                      </p>
+                      <ul class="mil-social-icons mil-center">
+                        <li>
+                          <a
+                            href="#"
+                            target="_blank"
+                            class="social-icon"
+                            aria-label="Behance"
+                            title="Behance"
+                          >
+                            <i class="fab fa-behance"></i></a>
+                        </li>
+                        <li>
+                          <a
+                            href="#"
+                            target="_blank"
+                            class="social-icon"
+                            aria-label="Dribbble"
+                            title="Dribbble"
+                          >
+                            <i class="fab fa-dribbble"></i></a>
+                        </li>
+                        <li>
+                          <a
+                            href="#"
+                            target="_blank"
+                            class="social-icon"
+                            aria-label="Twitter"
+                            title="Twitter"
+                          >
+                            <i class="fab fa-twitter"></i></a>
+                        </li>
+                        <li>
+                          <a
+                            href="#"
+                            target="_blank"
+                            class="social-icon"
+                            aria-label="GitHub"
+                            title="GitHub"
+                          >
+                            <i class="fab fa-github"></i></a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <p
+                  class="mil-mobile-hidden mil-text-sm mil-mb-30 mobile-hidden-height"
+                >
+                  <span data-i18n-html="team_members.founders_note" set:html={translations.team_members.founders_note}></span>
+                </p>
+                <div class="mil-team-card mil-up mil-mb-30">
+                  <img
+                    src="/assets/images/placeholder.svg"
+                    alt="Team member"
+                  />
+                  <div class="mil-description">
+                    <div class="mil-secrc-text">
+                      <h5 class="mil-muted mil-mb-5" data-i18n-text="team_members.emma_newman.name">{translations.team_members.emma_newman.name}</h5>
+                      <p class="mil-link mil-light-soft mil-mb-10" data-i18n-text="team_members.emma_newman.role">
+                        {translations.team_members.emma_newman.role}
+                      </p>
+                      <ul class="mil-social-icons mil-center">
+                        <li>
+                          <a
+                            href="#"
+                            target="_blank"
+                            class="social-icon"
+                            aria-label="Behance"
+                            title="Behance"
+                          >
+                            <i class="fab fa-behance"></i></a>
+                        </li>
+                        <li>
+                          <a
+                            href="#"
+                            target="_blank"
+                            class="social-icon"
+                            aria-label="Dribbble"
+                            title="Dribbble"
+                          >
+                            <i class="fab fa-dribbble"></i></a>
+                        </li>
+                        <li>
+                          <a
+                            href="#"
+                            target="_blank"
+                            class="social-icon"
+                            aria-label="Twitter"
+                            title="Twitter"
+                          >
+                            <i class="fab fa-twitter"></i></a>
+                        </li>
+                        <li>
+                          <a
+                            href="#"
+                            target="_blank"
+                            class="social-icon"
+                            aria-label="GitHub"
+                            title="GitHub"
+                          >
+                            <i class="fab fa-github"></i></a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="mil-team-card mil-up mil-mb-30">
+                  <img
+                    src="/assets/images/placeholder.svg"
+                    alt="Team member"
+                  />
+                  <div class="mil-description">
+                    <div class="mil-secrc-text">
+                      <h5 class="mil-muted mil-mb-5" data-i18n-text="team_members.sarah_johnson.name">{translations.team_members.sarah_johnson.name}</h5>
+                      <p class="mil-link mil-light-soft mil-mb-10" data-i18n-text="team_members.sarah_johnson.role">
+                        {translations.team_members.sarah_johnson.role}
+                      </p>
+                      <ul class="mil-social-icons mil-center">
+                        <li>
+                          <a
+                            href="#"
+                            target="_blank"
+                            class="social-icon"
+                            aria-label="Behance"
+                            title="Behance"
+                          >
+                            <i class="fab fa-behance"></i></a>
+                        </li>
+                        <li>
+                          <a
+                            href="#"
+                            target="_blank"
+                            class="social-icon"
+                            aria-label="Dribbble"
+                            title="Dribbble"
+                          >
+                            <i class="fab fa-dribbble"></i></a>
+                        </li>
+                        <li>
+                          <a
+                            href="#"
+                            target="_blank"
+                            class="social-icon"
+                            aria-label="Twitter"
+                            title="Twitter"
+                          >
+                            <i class="fab fa-twitter"></i></a>
+                        </li>
+                        <li>
+                          <a
+                            href="#"
+                            target="_blank"
+                            class="social-icon"
+                            aria-label="GitHub"
+                            title="GitHub"
+                          >
+                            <i class="fab fa-github"></i></a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
