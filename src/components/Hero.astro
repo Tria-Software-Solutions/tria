@@ -46,13 +46,15 @@
 <style>
   .tria-gradient-overlay {
     position: absolute;
-    inset: 0;
+    inset: -10%;
     z-index: -1;
     background: url('https://colir.space/Templates/7.png') center / cover no-repeat;
     opacity: 0.5;
     mix-blend-mode: screen;
     pointer-events: none;
+    will-change: transform, filter;
   }
+
   .tria-banner-content {
     position: relative;
     z-index: 1;

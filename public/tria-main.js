@@ -22,7 +22,7 @@ $(function () {
         containers: ['#swupMain', '#swupMenu'],
         animateHistoryBrowsing: true,
         linkSelector: 'a:not([data-no-swup])',
-        animationSelector: '[class="mil-main-transition"]'
+        animationSelector: '[class="tria-main-transition"]'
     };
     const swup = new Swup(options);
 
@@ -111,7 +111,7 @@ $(function () {
         opacity: 1,
         scale: 1,
         onComplete: function () {
-            $('.tria-preloader').addClass("mil-hidden");
+            $('.tria-preloader').addClass("tria-hidden");
         },
     }, "-=1");
     /***************************
@@ -273,7 +273,7 @@ $(function () {
             background: accent,
             ease: 'sine',
         });
-        $(cursor).addClass('mil-accent');
+        $(cursor).addClass('tria-accent');
     });
 
     $('.tria-accent-cursor').mouseleave(function () {
@@ -281,7 +281,7 @@ $(function () {
             background: dark,
             ease: 'sine',
         });
-        $(cursor).removeClass('mil-accent');
+        $(cursor).removeClass('tria-accent');
     });
 
     $('.tria-drag').mouseover(function () {
@@ -365,9 +365,9 @@ $(function () {
 
     ***************************/
     $('.tria-menu-btn').on("click", function () {
-        $('.tria-menu-btn').toggleClass('mil-active');
-        $('.tria-menu').toggleClass('mil-active');
-        $('.tria-menu-frame').toggleClass('mil-active');
+        $('.tria-menu-btn').toggleClass('tria-active');
+        $('.tria-menu').toggleClass('tria-active');
+        $('.tria-menu-frame').toggleClass('tria-active');
     });
     /***************************
 
@@ -375,10 +375,10 @@ $(function () {
 
     ***************************/
     $('.tria-has-children a').on('click', function () {
-        $('.tria-has-children ul').removeClass('mil-active');
-        $('.tria-has-children a').removeClass('mil-active');
-        $(this).toggleClass('mil-active');
-        $(this).next().toggleClass('mil-active');
+        $('.tria-has-children ul').removeClass('tria-active');
+        $('.tria-has-children a').removeClass('tria-active');
+        $(this).toggleClass('tria-active');
+        $(this).next().toggleClass('tria-active');
     });
     /***************************
 
@@ -499,7 +499,7 @@ $(function () {
 
     ***************************/
 
-    var menu = ['<div class="mil-custom-dot mil-slide-1"></div>', '<div class="mil-custom-dot mil-slide-2"></div>', '<div class="mil-custom-dot mil-slide-3"></div>', '<div class="mil-custom-dot mil-slide-4"></div>', '<div class="mil-custom-dot mil-slide-5"></div>', '<div class="mil-custom-dot mil-slide-6"></div>', '<div class="mil-custom-dot mil-slide-7"></div>']
+    var menu = ['<div class="tria-custom-dot tria-slide-1"></div>', '<div class="tria-custom-dot tria-slide-2"></div>', '<div class="tria-custom-dot tria-slide-3"></div>', '<div class="tria-custom-dot tria-slide-4"></div>', '<div class="tria-custom-dot tria-slide-5"></div>', '<div class="tria-custom-dot tria-slide-6"></div>', '<div class="tria-custom-dot tria-slide-7"></div>']
     var mySwiper = new Swiper('.tria-reviews-slider', {
         // If we need pagination
         pagination: {
@@ -631,9 +631,9 @@ $(function () {
          menu
 
         ***************************/
-        $('.tria-menu-btn').removeClass('mil-active');
-        $('.tria-menu').removeClass('mil-active');
-        $('.tria-menu-frame').removeClass('mil-active');
+        $('.tria-menu-btn').removeClass('tria-active');
+        $('.tria-menu').removeClass('tria-active');
+        $('.tria-menu-frame').removeClass('tria-active');
         /***************************
 
         append
@@ -736,7 +736,7 @@ $(function () {
                 background: accent,
                 ease: 'sine',
             });
-            $(cursor).addClass('mil-accent');
+            $(cursor).addClass('tria-accent');
         });
 
         $('.tria-accent-cursor').mouseleave(function () {
@@ -744,7 +744,7 @@ $(function () {
                 background: dark,
                 ease: 'sine',
             });
-            $(cursor).removeClass('mil-accent');
+            $(cursor).removeClass('tria-accent');
         });
 
         $('.tria-drag').mouseover(function () {
@@ -828,10 +828,10 @@ $(function () {
 
         ***************************/
         $('.tria-has-children a').on('click', function () {
-            $('.tria-has-children ul').removeClass('mil-active');
-            $('.tria-has-children a').removeClass('mil-active');
-            $(this).toggleClass('mil-active');
-            $(this).next().toggleClass('mil-active');
+            $('.tria-has-children ul').removeClass('tria-active');
+            $('.tria-has-children a').removeClass('tria-active');
+            $(this).toggleClass('tria-active');
+            $(this).next().toggleClass('tria-active');
         });
         /***************************
 
@@ -940,7 +940,7 @@ $(function () {
 
         ***************************/
 
-        var menu = ['<div class="mil-custom-dot mil-slide-1"></div>', '<div class="mil-custom-dot mil-slide-2"></div>', '<div class="mil-custom-dot mil-slide-3"></div>', '<div class="mil-custom-dot mil-slide-4"></div>', '<div class="mil-custom-dot mil-slide-5"></div>', '<div class="mil-custom-dot mil-slide-6"></div>', '<div class="mil-custom-dot mil-slide-7"></div>']
+        var menu = ['<div class="tria-custom-dot tria-slide-1"></div>', '<div class="tria-custom-dot tria-slide-2"></div>', '<div class="tria-custom-dot tria-slide-3"></div>', '<div class="tria-custom-dot tria-slide-4"></div>', '<div class="tria-custom-dot tria-slide-5"></div>', '<div class="tria-custom-dot tria-slide-6"></div>', '<div class="tria-custom-dot tria-slide-7"></div>']
         var mySwiper = new Swiper('.tria-reviews-slider', {
             // If we need pagination
             pagination: {
