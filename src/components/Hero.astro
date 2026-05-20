@@ -4,11 +4,8 @@
 <!-- banner -->
 <section class="mil-banner mil-dark-bg">
   <div class="mi-invert-fix">
-    <div class="mil-animation-frame">
-      <div class="mil-animation mil-position-1 mil-scale" data-value-1="7" data-value-2="1.6"></div>
-      <div class="mil-animation mil-position-2 mil-scale" data-value-1="4" data-value-2="1"></div>
-      <div class="mil-animation mil-position-3 mil-scale" data-value-1="1.2" data-value-2=".1"></div>
-    </div>
+    <div class="mil-gradient-overlay"></div>
+    <div class="mil-animation-frame"></div>
 
     <div class="mil-gradient"></div>
 
@@ -26,7 +23,7 @@
         </a>
 
         <div class="mil-circle-text">
-          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 300 300" enable-background="new 0 0 300 300" xml:space="preserve" class="mil-ct-svg mil-rotate" data-value="360">
+          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 300 300" enable-background="new 0 0 300 300" xml:space="preserve" class="mil-ct-svg">
             <defs>
               <path id="circlePath" d="M 150, 150 m -60, 0 a 60,60 0 0,1 120,0 a 60,60 0 0,1 -120,0 " />
             </defs>
@@ -45,3 +42,19 @@
   </div>
 </section>
 <!-- banner end -->
+
+<style>
+  .mil-gradient-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: url('https://colir.space/Templates/7.png') center / cover no-repeat;
+    opacity: 0.5;
+    mix-blend-mode: screen;
+    pointer-events: none;
+  }
+  .mil-banner-content {
+    position: relative;
+    z-index: 1;
+  }
+</style>
