@@ -1,53 +1,19 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Astro-specific overrides for the Ashley theme */
 
-/* Custom styles for inline styles */
-.circle-text {
-  letter-spacing: 6.5px;
+/* Fix selection color - override original which hides it */
+::selection {
+  background-color: rgba(255, 152, 0, 0.3);
+  color: inherit;
 }
 
-.animation-position-1 {
-  top: 200px;
-  right: -100px;
+/* Ensure swiper containers are visible */
+.swiper-container {
+  overflow: hidden;
 }
 
-.animation-position-2 {
-  left: 100px;
-}
-
-.animation-position-3 {
-  top: 300px;
-  right: -100px;
-}
-
-.animation-position-4 {
-  left: 150px;
-}
-
-.animation-position-5 {
-  top: 100px;
-  right: -50px;
-}
-
-.animation-position-6 {
-  left: 200px;
-}
-
-.animation-position-7 {
-  top: 150px;
-  right: -80px;
-}
-
-.animation-position-8 {
-  top: 100px;
-  right: -100px;
-}
-
-.img-frame-padding {
-  padding-bottom: 160%;
-}
-
-.mobile-hidden-height {
-  height: 30px;
+/* Fix mil-dark-bg invert filter on mobile where it can be problematic */
+@media screen and (max-width: 768px) {
+  .mil-dark-bg:before {
+    backdrop-filter: invert(100%) brightness(0.85);
+  }
 }

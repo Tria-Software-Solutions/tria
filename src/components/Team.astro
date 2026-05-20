@@ -1,47 +1,92 @@
 ---
-interface Props {
-  translations: any;
-}
-
-const { translations } = Astro.props;
-
-const team = [
-  { name: 'Carlos Rodriguez', role: 'CEO & Founder', socials: ['linkedin', 'twitter', 'github'] },
-  { name: 'Maria Gonzalez', role: 'Lead Developer', socials: ['linkedin', 'twitter', 'github'] },
-  { name: 'Ana Silva', role: 'UI/UX Designer', socials: ['linkedin', 'dribbble', 'behance'] },
-  { name: 'Jose Martinez', role: 'Backend Engineer', socials: ['linkedin', 'twitter', 'github'] },
-  { name: 'Laura Fernandez', role: 'Project Manager', socials: ['linkedin', 'twitter', 'github'] },
-  { name: 'Diego Lopez', role: 'DevOps Engineer', socials: ['linkedin', 'twitter', 'github'] },
-  { name: 'Sofia Herrera', role: 'QA Engineer', socials: ['linkedin', 'twitter', 'github'] },
-  { name: 'Roberto Morales', role: 'Mobile Developer', socials: ['linkedin', 'twitter', 'github'] },
-];
 ---
 
-<section id="team">
-  <div class="container mil-p-120-90">
-    <div class="row">
-      {team.map((member) => (
-        <div class="col-sm-6 col-md-4 col-lg-3">
-          <div class="mil-team-card mil-up mil-mb-30">
-            <img src="/assets/images/placeholder.svg" alt={member.name} />
-            <div class="mil-description">
-              <div class="mil-secrc-text">
-                <h5 class="mil-muted mil-mb-5"><a href="#.">{member.name}</a></h5>
-                <p class="mil-link mil-light-soft mil-mb-10">{member.role}</p>
-                <ul class="mil-social-icons mil-center">
-                  {member.socials.map((social) => (
-                    <li>
-                      <a href="#" target="_blank" class="social-icon">
-                        <i class={`fab fa-${social}`}></i>
-                      </a>
-                    </li>
-                  ))}
-                </ul>
+<!-- team -->
+<section>
+  <div class="container mil-p-120-30">
+    <div class="row justify-content-between align-items-center">
+      <div class="col-lg-5 col-xl-4">
+        <div class="mil-mb-90">
+          <h2 class="mil-up mil-mb-60">Meet <br>Our Team</h2>
+          <p class="mil-up mil-mb-30">We are talented individuals who are passionate about bringing ideas to life. With a diverse range of backgrounds and skill sets, we collaborate to produce effective solutions for our clients.</p>
+          <p class="mil-up mil-mb-60">Together, our creative team is committed to delivering impactful work that exceeds expectations.</p>
+          <div class="mil-up"><a href="/team" class="mil-button mil-arrow-place mil-mb-60"><span>Read more</span></a></div>
+          <h4 class="mil-up"><span class="mil-thin">We</span> delivering <br><span class="mil-thin">exceptional</span> results.</h4>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="mil-team-list">
+          <div class="mil-lines-place"></div>
+          <div class="row mil-mb-60">
+            <div class="col-sm-6">
+              <div class="mil-team-card mil-up mil-mb-30">
+                <img src="https://miller.bslthemes.com/ashley-demo/img/faces/1.jpg" alt="Team member">
+                <div class="mil-description">
+                  <div class="mil-secrc-text">
+                    <h5 class="mil-muted mil-mb-5"><a href="/">Anna Oldman</a></h5>
+                    <p class="mil-link mil-light-soft mil-mb-10">Art Director</p>
+                    <ul class="mil-social-icons mil-center">
+                      <li><a href="#." target="_blank" class="social-icon"> <i class="fab fa-behance"></i></a></li>
+                      <li><a href="#." target="_blank" class="social-icon"> <i class="fab fa-dribbble"></i></a></li>
+                      <li><a href="#." target="_blank" class="social-icon"> <i class="fab fa-twitter"></i></a></li>
+                      <li><a href="#." target="_blank" class="social-icon"> <i class="fab fa-github"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="mil-team-card mil-up mil-mb-30">
+                <img src="https://miller.bslthemes.com/ashley-demo/img/faces/3.jpg" alt="Team member">
+                <div class="mil-description">
+                  <div class="mil-secrc-text">
+                    <h5 class="mil-muted mil-mb-5"><a href="/">Oscar Freeman</a></h5>
+                    <p class="mil-link mil-light-soft mil-mb-10">Frontend Dev</p>
+                    <ul class="mil-social-icons mil-center">
+                      <li><a href="#." target="_blank" class="social-icon"> <i class="fab fa-behance"></i></a></li>
+                      <li><a href="#." target="_blank" class="social-icon"> <i class="fab fa-dribbble"></i></a></li>
+                      <li><a href="#." target="_blank" class="social-icon"> <i class="fab fa-twitter"></i></a></li>
+                      <li><a href="#." target="_blank" class="social-icon"> <i class="fab fa-github"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <p class="mil-mobile-hidden mil-text-sm mil-mb-30" style="height: 30px;"><span class="mil-accent">*</span> The founders of our agency</p>
+              <div class="mil-team-card mil-up mil-mb-30">
+                <img src="https://miller.bslthemes.com/ashley-demo/img/faces/2.jpg" alt="Team member">
+                <div class="mil-description">
+                  <div class="mil-secrc-text">
+                    <h5 class="mil-muted mil-mb-5"><a href="/">Emma Newman</a></h5>
+                    <p class="mil-link mil-light-soft mil-mb-10">Founder</p>
+                    <ul class="mil-social-icons mil-center">
+                      <li><a href="#." target="_blank" class="social-icon"> <i class="fab fa-behance"></i></a></li>
+                      <li><a href="#." target="_blank" class="social-icon"> <i class="fab fa-dribbble"></i></a></li>
+                      <li><a href="#." target="_blank" class="social-icon"> <i class="fab fa-twitter"></i></a></li>
+                      <li><a href="#." target="_blank" class="social-icon"> <i class="fab fa-github"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="mil-team-card mil-up mil-mb-30">
+                <img src="https://miller.bslthemes.com/ashley-demo/img/faces/4.jpg" alt="Team member">
+                <div class="mil-description">
+                  <div class="mil-secrc-text">
+                    <h5 class="mil-muted mil-mb-5"><a href="/">Lisa Trueman</a></h5>
+                    <p class="mil-link mil-light-soft mil-mb-10">UI/UX Designer</p>
+                    <ul class="mil-social-icons mil-center">
+                      <li><a href="#." target="_blank" class="social-icon"> <i class="fab fa-behance"></i></a></li>
+                      <li><a href="#." target="_blank" class="social-icon"> <i class="fab fa-dribbble"></i></a></li>
+                      <li><a href="#." target="_blank" class="social-icon"> <i class="fab fa-twitter"></i></a></li>
+                      <li><a href="#." target="_blank" class="social-icon"> <i class="fab fa-github"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      ))}
+      </div>
     </div>
   </div>
 </section>
+<!-- team end -->
