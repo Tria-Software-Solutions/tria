@@ -1,17 +1,180 @@
-/* Astro-specific overrides for the Ashley theme */
+/* tria brand — consistent indigo accent */
 
-/* Fix selection color - override original which hides it */
+:root {
+  --accent: #4F46E5;
+  --accent-hover: #4338CA;
+  --accent-rgb: 79, 70, 229;
+  --accent-bg: rgba(79, 70, 229, 0.15);
+}
+
+/* ── color ── */
+.mil-accent                                      { color: var(--accent) !important; }
+.mil-breadcrumbs li a:hover                      { color: var(--accent) !important; }
+.mil-breadcrumbs.mil-light li a:hover            { color: var(--accent) !important; }
+.mil-main-menu ul li.mil-active > a              { color: var(--accent) !important; }
+.mil-main-menu ul li.mil-active > a:hover        { color: var(--accent) !important; }
+.mil-team-card .mil-description .mil-secrc-text a:hover { color: var(--accent) !important; }
+.mil-social-icons li a:hover                     { color: var(--accent) !important; }
+.mil-social-icons.mil-dark li a:hover            { color: var(--accent) !important; }
+.mil-footer-menu ul li a:hover                   { color: var(--accent) !important; }
+.mil-footer-menu ul li.mil-active a              { color: var(--accent) !important; }
+
+/* ── background-color ── */
+.mil-marker                                      { background-color: var(--accent) !important; }
+.mil-button                                      { background-color: var(--accent) !important; border-color: var(--accent) !important; }
+.mil-button.mil-icon-button-sm svg               { background-color: var(--accent) !important; }
+.mil-preloader .mil-reveal-box                   { background-color: var(--accent) !important; }
+.mil-progress-track .mil-progress                { background-color: var(--accent) !important; }
+.mil-main-menu ul li a.mil-active:before         { background-color: var(--accent) !important; }
+.mil-about-quote .mil-avatar:after               { background-color: var(--accent) !important; }
+.mil-service-card-sm:before                      { background-color: var(--accent) !important; }
+.mil-service-card-lg.mil-other-card:hover        { background-color: var(--accent) !important; }
+.mil-team-card:after                             { background-color: var(--accent) !important; }
+.mil-pagination-btn.mil-active                   { background-color: var(--accent) !important; }
+.mil-category-list li a.mil-active               { background-color: var(--accent) !important; }
+
+/* ── fill ── */
+.mil-link.mil-accent svg path                    { fill: var(--accent) !important; }
+.mil-button svg path                             { fill: var(--accent) !important; }
+.mil-service-card-lg.mil-other-card:hover .mil-link svg path { fill: var(--accent) !important; }
+.mil-quote-icon path                             { fill: var(--accent) !important; }
+.mil-slider-nav .mil-slider-arrow svg path       { fill: var(--accent) !important; }
+
+/* ── border / shadow ── */
+blockquote                                        { border-left-color: var(--accent) !important; }
+.mil-revi-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  box-shadow: inset 0 0 0 4px var(--accent) !important;
+}
+
+/* ── gradient ── */
+.mil-portrait-frame .mil-nimbus {
+  background: radial-gradient(50% 50% at 50% 50%, var(--accent) 0%, rgba(79, 70, 229, 0) 100%) !important;
+}
+.mil-404::before {
+  text-shadow: -2px 0 var(--accent) !important;
+}
+
+/* ── button hover / misc ── */
+.mil-button:hover,
+.mil-button.mil-icon-button:hover {
+  background-color: var(--accent-hover) !important;
+  filter: brightness(110%);
+}
+.mil-slider-nav .mil-slider-arrow {
+  color: var(--accent) !important;
+}
+a:not(.mil-button):hover,
+.mil-link:hover {
+  color: var(--accent) !important;
+}
+
+/* ── Selection ── */
 ::selection {
-  background-color: rgba(255, 152, 0, 0.3);
+  background-color: rgba(var(--accent-rgb), 0.3);
   color: inherit;
 }
 
-/* Ensure swiper containers are visible */
+/* ── Swiper ── */
 .swiper-container {
   overflow: hidden;
 }
 
-/* Fix mil-dark-bg invert filter on mobile where it can be problematic */
+/* ── Footer contact list ── */
+.mil-contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.mil-contact-list li {
+  margin-bottom: 12px;
+}
+.mil-contact-list li:last-child {
+  margin-bottom: 0;
+}
+.mil-contact-list a {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  transition: color 0.2s ease;
+}
+.mil-contact-list a:hover {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+.mil-contact-list i {
+  width: 16px;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* ── Footer premium contact ── */
+.mil-premium-contact {
+  display: flex;
+  gap: 12px;
+}
+.mil-contact-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.12);
+  font-size: 18px;
+  color: rgba(255,255,255,0.5);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+.mil-contact-btn::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-4px);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: rgba(255,255,255,0.6);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.mil-contact-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent) !important;
+  background: rgba(79,70,229,0.08);
+  transform: translateY(-2px);
+}
+.mil-contact-btn:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ── Footer contact icons ── */
+.mil-contact-icons {
+  display: flex;
+  gap: 16px;
+}
+.mil-contact-icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.15);
+  font-size: 16px;
+  transition: all 0.2s ease;
+}
+.mil-contact-icons a:hover {
+  border-color: var(--accent);
+  color: var(--accent) !important;
+  background: rgba(79,70,229,0.1);
+}
+
+/* ── Dark bg fix ── */
 @media screen and (max-width: 768px) {
   .mil-dark-bg:before {
     backdrop-filter: invert(100%) brightness(0.85);

@@ -1,4 +1,5 @@
 ---
+const year = new Date().getFullYear();
 ---
 
 <!-- footer -->
@@ -7,8 +8,8 @@
     <div class="container mil-p-120-60">
       <div class="row justify-content-between">
         <div class="col-md-4 col-lg-4 mil-mb-60">
-          <div class="mil-muted mil-logo mil-up mil-mb-30">Ashley.</div>
-          <p class="mil-light-soft mil-up mil-mb-30">Subscribe our newsletter:</p>
+          <div class="mil-muted mil-logo mil-up mil-mb-30">tria</div>
+          <p class="mil-light-soft mil-up mil-mb-30">Stay in the loop:</p>
           <form class="mil-subscribe-form mil-up">
             <input type="text" placeholder="Enter our email">
             <button type="submit" class="mil-button mil-icon-button-sm mil-arrow-place"></button>
@@ -20,10 +21,8 @@
               <nav class="mil-footer-menu mil-mb-60">
                 <ul>
                   <li class="mil-up mil-active"><a href="/">Home</a></li>
-                  <li class="mil-up"><a href="/portfolio">Portfolio</a></li>
                   <li class="mil-up"><a href="/services">Services</a></li>
                   <li class="mil-up"><a href="/contact">Contact</a></li>
-                  <li class="mil-up"><a href="/blog">Blog</a></li>
                 </ul>
               </nav>
             </div>
@@ -42,12 +41,22 @@
         <div class="col-md-7 col-lg-6">
           <div class="row justify-content-between">
             <div class="col-md-6 col-lg-5 mil-mb-60">
-              <h6 class="mil-muted mil-up mil-mb-30">Canada</h6>
-              <p class="mil-light-soft mil-up">71 South Los Carneros Road, California <span class="mil-no-wrap">+51 174 705 812</span></p>
+              <h6 class="mil-muted mil-up mil-mb-30">Location</h6>
+              <address class="mil-light-soft mil-up" style="font-style:normal">
+                Atenas, Alajuela<br>
+                Costa Rica 20501
+              </address>
             </div>
             <div class="col-md-6 col-lg-5 mil-mb-60">
-              <h6 class="mil-muted mil-up mil-mb-30">Germany</h6>
-              <p class="mil-light-soft mil-up">Leehove 40, 2678 MC De Lier, Netherlands <span class="mil-no-wrap">+31 174 705 811</span></p>
+              <h6 class="mil-muted mil-up mil-mb-20">Contact</h6>
+              <div class="mil-premium-contact mil-up">
+                <a href="mailto:hola@triacr.com" aria-label="Email hola@triacr.com" class="mil-contact-btn" data-tooltip="Email">
+                  <i class="fas fa-envelope" aria-hidden="true"></i>
+                </a>
+                <a href="https://wa.me/50662164040" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp +506 6216 4040" class="mil-contact-btn" data-tooltip="WhatsApp">
+                  <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -55,13 +64,13 @@
           <div class="mil-vert-between">
             <div class="mil-mb-30">
               <ul class="mil-social-icons mil-up">
-                <li><a href="#." target="_blank" class="social-icon"> <i class="fab fa-behance"></i></a></li>
-                <li><a href="#." target="_blank" class="social-icon"> <i class="fab fa-dribbble"></i></a></li>
-                <li><a href="#." target="_blank" class="social-icon"> <i class="fab fa-twitter"></i></a></li>
-                <li><a href="#." target="_blank" class="social-icon"> <i class="fab fa-github"></i></a></li>
+                <li><a href="#." target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="social-icon"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+                <li><a href="#." target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-icon"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
+                <li><a href="#." target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-icon"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a></li>
+                <li><a href="#." target="_blank" rel="noopener noreferrer" aria-label="X" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width:14px;height:14px;fill:currentColor;vertical-align:middle"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg></a></li>
               </ul>
             </div>
-            <p class="mil-light-soft mil-up">© Copyright 2023 - Mil. All Rights Reserved.</p>
+            <p class="mil-light-soft mil-up">&copy; {year} tria. All rights reserved.</p>
           </div>
         </div>
       </div>
