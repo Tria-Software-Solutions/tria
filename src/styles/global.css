@@ -174,9 +174,10 @@ a:not(.tria-button):hover,
   background: rgba(79,70,229,0.1);
 }
 
-/* ── Dark bg fix ── */
+/* ── Dark bg fix (Safari iOS needs -webkit- prefix) ── */
 @media screen and (max-width: 768px) {
   .tria-dark-bg:before {
+    -webkit-backdrop-filter: invert(100%) brightness(0.85);
     backdrop-filter: invert(100%) brightness(0.85);
   }
 }

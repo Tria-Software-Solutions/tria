@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import '../styles/global.css';
+import '../styles/tria-theme.css';
 
 interface Props {
   title?: string;
@@ -25,7 +26,6 @@ const {
   <link rel="stylesheet" href="https://miller.bslthemes.com/ashley-demo/css/plugins/font-awesome.min.css" />
   <link rel="stylesheet" href="https://miller.bslthemes.com/ashley-demo/css/plugins/swiper.min.css" />
   <link rel="stylesheet" href="https://miller.bslthemes.com/ashley-demo/css/plugins/fancybox.min.css" />
-  <link rel="stylesheet" href="https://miller.bslthemes.com/ashley-demo/css/style.css" />
 </head>
 <body>
   <!-- wrapper -->
@@ -134,6 +134,6 @@ const {
   <script is:inline src="https://miller.bslthemes.com/ashley-demo/js/plugins/smooth-scroll.js"></script>
   <script is:inline src="https://miller.bslthemes.com/ashley-demo/js/plugins/ScrollTrigger.min.js"></script>
   <script is:inline src="https://miller.bslthemes.com/ashley-demo/js/plugins/ScrollTo.min.js"></script>
-  <script is:inline src="https://miller.bslthemes.com/ashley-demo/js/main.js"></script>
+  <script is:inline src="/tria-main.js"></script>
 </body>
 </html>
