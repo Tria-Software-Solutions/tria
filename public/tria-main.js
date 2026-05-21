@@ -157,19 +157,18 @@ $(function () {
   $(document).on("click", 'a[href^="#"]', function (event) {
     event.preventDefault();
 
-    var target = $($.attr(this, "href"));
-    var offset = 0;
+    var target = document.querySelector($.attr(this, "href"));
+    if (!target) return;
 
+    var offset = 0;
     if ($(window).width() < 1200) {
       offset = 90;
     }
 
-    $("html, body").animate(
-      {
-        scrollTop: target.offset().top - offset,
-      },
-      400,
-    );
+    window.scrollTo({
+      top: target.getBoundingClientRect().top + window.scrollY - offset,
+      behavior: "smooth",
+    });
   });
   /***************************
 
@@ -684,12 +683,7 @@ $(function () {
     ------------------------------------------------------------
     ----------------------------------------------------------*/
   document.addEventListener("swup:contentReplaced", function () {
-    $("html, body").animate(
-      {
-        scrollTop: 0,
-      },
-      0,
-    );
+    window.scrollTo(0, 0);
 
     gsap.to(".tria-progress", {
       height: 0,

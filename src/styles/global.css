@@ -1,7 +1,9 @@
 .tria-logo-img {
-  height: 38px;
-  display: block;
+  height: 1em;
+  vertical-align: middle;
 }
+
+html { scroll-behavior: smooth; }
 
 /* tria brand — consistent accent */
 
