@@ -55,22 +55,22 @@
   }
 
   var firstColors = [
-    rgbToNormalized(254, 246, 194),
-    rgbToNormalized(13, 102, 221),
-    rgbToNormalized(19, 8, 79),
-    rgbToNormalized(80, 60, 212),
+    rgbToNormalized(150, 130, 70),
+    rgbToNormalized(6, 45, 120),
+    rgbToNormalized(8, 2, 35),
+    rgbToNormalized(35, 20, 110),
   ];
   var secondColors = [
-    rgbToNormalized(147, 133, 0),
-    rgbToNormalized(11, 29, 2),
-    rgbToNormalized(4, 0, 17),
+    rgbToNormalized(70, 60, 0),
+    rgbToNormalized(4, 10, 1),
+    rgbToNormalized(2, 0, 7),
     rgbToNormalized(0, 0, 0),
   ];
   var thirdColors = [
-    rgbToNormalized(8, 8, 10),
-    rgbToNormalized(12, 12, 14),
-    rgbToNormalized(6, 6, 8),
-    rgbToNormalized(10, 10, 12),
+    rgbToNormalized(4, 4, 5),
+    rgbToNormalized(5, 5, 7),
+    rgbToNormalized(3, 3, 4),
+    rgbToNormalized(5, 5, 6),
   ];
 
   var curveStates = [
@@ -240,6 +240,7 @@
   var prog, posLoc, posBuf, noiseTex;
   var scrollTicking = false;
   var animPending = false;
+  var time = 0;
 
   function compileShader(src, type) {
     var s = gl.createShader(type);
@@ -323,7 +324,7 @@
     gl.uniform2f(gl.getUniformLocation(prog, "u_distortionSeed"), 263.0, 131.5);
     gl.uniform1f(
       gl.getUniformLocation(prog, "u_distortionScroll"),
-      currentScrollProgress,
+      time,
     );
     gl.uniform1i(gl.getUniformLocation(prog, "u_distortionOctaves"), 1);
     gl.uniform1f(gl.getUniformLocation(prog, "u_distortionLacunarity"), 2.1);
@@ -367,6 +368,12 @@
     canvas.height = h * dpr;
     gl.viewport(0, 0, canvas.width, canvas.height);
     render();
+  }
+
+  function animate() {
+    time += 0.005;
+    render();
+    requestAnimationFrame(animate);
   }
 
   function updateFromScroll() {
@@ -500,6 +507,7 @@
 
     resize();
     updateFromScroll();
+    animate();
   }
 
   window.initTriaGradient = initTriaGradient;
