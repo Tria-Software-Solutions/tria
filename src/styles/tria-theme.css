@@ -10,7 +10,7 @@ main
 *:before,
 *:after {
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
@@ -25,11 +25,11 @@ body {
   color: rgba(0, 0, 0, 0.5);
   line-height: 150%;
   -ms-scroll-chaining: none;
-      overscroll-behavior: none;
+  overscroll-behavior: none;
 }
 @media screen and (max-width: 768px) {
   html,
-body {
+  body {
     font-size: 15px;
   }
 }
@@ -74,11 +74,11 @@ body {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   height: 100%;
 }
 
@@ -117,17 +117,17 @@ h6,
 }
 @media screen and (max-width: 768px) {
   h1 br,
-.tria-h1 br,
-h2 br,
-.tria-h12 br,
-h3 br,
-.tria-h3 br,
-h4 br,
-.tria-h4 br,
-h5 br,
-.tria-h5 br,
-h6 br,
-.tria-h6 br {
+  .tria-h1 br,
+  h2 br,
+  .tria-h12 br,
+  h3 br,
+  .tria-h3 br,
+  h4 br,
+  .tria-h4 br,
+  h5 br,
+  .tria-h5 br,
+  h6 br,
+  .tria-h6 br {
     display: none;
   }
 }
@@ -138,25 +138,25 @@ h1,
 }
 @media screen and (max-width: 1400px) {
   h1,
-.tria-h1 {
+  .tria-h1 {
     font-size: 74px;
   }
 }
 @media screen and (max-width: 1200px) {
   h1,
-.tria-h1 {
+  .tria-h1 {
     font-size: 72px;
   }
 }
 @media screen and (max-width: 992px) {
   h1,
-.tria-h1 {
+  .tria-h1 {
     font-size: 58px;
   }
 }
 @media screen and (max-width: 768px) {
   h1,
-.tria-h1 {
+  .tria-h1 {
     font-size: 34px;
   }
 }
@@ -168,19 +168,19 @@ h2,
 }
 @media screen and (max-width: 1200px) {
   h2,
-.tria-h2 {
+  .tria-h2 {
     font-size: 56px;
   }
 }
 @media screen and (max-width: 992px) {
   h2,
-.tria-h2 {
+  .tria-h2 {
     font-size: 44px;
   }
 }
 @media screen and (max-width: 768px) {
   h2,
-.tria-h2 {
+  .tria-h2 {
     font-size: 36px;
   }
 }
@@ -191,19 +191,19 @@ h3,
 }
 @media screen and (max-width: 1200px) {
   h3,
-.tria-h3 {
+  .tria-h3 {
     font-size: 39px;
   }
 }
 @media screen and (max-width: 992px) {
   h3,
-.tria-h3 {
+  .tria-h3 {
     font-size: 36px;
   }
 }
 @media screen and (max-width: 768px) {
   h3,
-.tria-h3 {
+  .tria-h3 {
     font-size: 30px;
   }
 }
@@ -214,19 +214,19 @@ h4,
 }
 @media screen and (max-width: 1200px) {
   h4,
-.tria-h4 {
+  .tria-h4 {
     font-size: 26px;
   }
 }
 @media screen and (max-width: 992px) {
   h4,
-.tria-h4 {
+  .tria-h4 {
     font-size: 24px;
   }
 }
 @media screen and (max-width: 768px) {
   h4,
-.tria-h4 {
+  .tria-h4 {
     font-size: 22px;
   }
 }
@@ -238,7 +238,7 @@ h5,
 }
 @media screen and (max-width: 768px) {
   h5,
-.tria-h5 {
+  .tria-h5 {
     font-size: 18px;
   }
 }
@@ -250,19 +250,19 @@ h6,
 }
 @media screen and (max-width: 1200px) {
   h6,
-.tria-h6 {
+  .tria-h6 {
     font-size: 17px;
   }
 }
 @media screen and (max-width: 992px) {
   h6,
-.tria-h6 {
+  .tria-h6 {
     font-size: 16px;
   }
 }
 @media screen and (max-width: 768px) {
   h6,
-.tria-h6 {
+  .tria-h6 {
     font-size: 21px;
   }
 }
@@ -437,9 +437,9 @@ a {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   -o-object-position: center;
-     object-position: center;
+  object-position: center;
 }
 
 /* -------------------------------------------
@@ -453,8 +453,8 @@ link
   display: -ms-inline-flexbox;
   display: inline-flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -491,15 +491,15 @@ link
 }
 .tria-link:hover svg {
   -webkit-transform: scale(1.15);
-          transform: scale(1.15);
+  transform: scale(1.15);
 }
 .tria-link.tria-down-arrow svg {
   -webkit-transform: rotate(90deg);
-          transform: rotate(90deg);
+  transform: rotate(90deg);
 }
 .tria-link.tria-down-arrow:hover svg {
   -webkit-transform: scale(1.15) rotate(90deg);
-          transform: scale(1.15) rotate(90deg);
+  transform: scale(1.15) rotate(90deg);
 }
 .tria-link.tria-icon-left {
   display: -webkit-box;
@@ -507,18 +507,18 @@ link
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: reverse;
-      -ms-flex-direction: row-reverse;
-          flex-direction: row-reverse;
+  -ms-flex-direction: row-reverse;
+  flex-direction: row-reverse;
 }
 .tria-link.tria-icon-left svg {
   margin-left: 0;
   margin-right: 15px;
   -webkit-transform: rotate(180deg);
-          transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 .tria-link.tria-icon-left:hover svg {
   -webkit-transform: scale(1.15) rotate(180deg);
-          transform: scale(1.15) rotate(180deg);
+  transform: scale(1.15) rotate(180deg);
 }
 
 /* -------------------------------------------
@@ -532,11 +532,11 @@ button
   display: -ms-inline-flexbox;
   display: inline-flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   border: none;
   letter-spacing: 2px;
   font-size: 12px;
@@ -585,27 +585,27 @@ button
 }
 .tria-button:hover {
   -webkit-transform: scale(1.015);
-          transform: scale(1.015);
+  transform: scale(1.015);
   -webkit-filter: brightness(110%);
-          filter: brightness(110%);
+  filter: brightness(110%);
 }
 .tria-button:hover svg {
   -webkit-transform: scale(1.15);
-          transform: scale(1.15);
+  transform: scale(1.15);
 }
 .tria-button.tria-arrow-down svg {
   -webkit-transform: rotate(90deg);
-          transform: rotate(90deg);
+  transform: rotate(90deg);
 }
 .tria-button.tria-arrow-down:hover {
   -webkit-transform: scale(1.015);
-          transform: scale(1.015);
+  transform: scale(1.015);
   -webkit-filter: brightness(110%);
-          filter: brightness(110%);
+  filter: brightness(110%);
 }
 .tria-button.tria-arrow-down:hover svg {
   -webkit-transform: scale(1.15) rotate(90deg);
-          transform: scale(1.15) rotate(90deg);
+  transform: scale(1.15) rotate(90deg);
 }
 @media screen and (max-width: 992px) {
   .tria-button {
@@ -642,28 +642,32 @@ input:focus,
 textarea:focus {
   outline: inherit;
 }
-input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: 500;
   color: rgba(0, 0, 0, 0.5);
 }
-input::-moz-placeholder, textarea::-moz-placeholder {
+input::-moz-placeholder,
+textarea::-moz-placeholder {
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: 500;
   color: rgba(0, 0, 0, 0.5);
 }
-input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: 500;
   color: rgba(0, 0, 0, 0.5);
 }
-input::-ms-input-placeholder, textarea::-ms-input-placeholder {
+input::-ms-input-placeholder,
+textarea::-ms-input-placeholder {
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -694,8 +698,8 @@ breadcrumbs
   display: -ms-inline-flexbox;
   display: inline-flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   position: relative;
 }
 .tria-breadcrumbs:before {
@@ -750,8 +754,8 @@ breadcrumbs
 }
 .tria-breadcrumbs.tria-center {
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 
 /* -------------------------------------------
@@ -770,7 +774,7 @@ backgrounds
   pointer-events: none;
   z-index: 2;
   -webkit-backdrop-filter: invert(100%);
-          backdrop-filter: invert(100%);
+  backdrop-filter: invert(100%);
 }
 .tria-dark-bg .mi-invert-fix {
   height: 100%;
@@ -949,14 +953,14 @@ spaces
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
 }
 @media screen and (max-width: 992px) {
   .tria-adaptive-right {
     -webkit-box-pack: start;
-        -ms-flex-pack: start;
-            justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
   }
 }
 
@@ -998,11 +1002,11 @@ preloader
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 .tria-preloader .tria-preloader-animation .tria-pos-abs p {
   opacity: 0;
@@ -1012,8 +1016,8 @@ preloader
   .tria-preloader .tria-preloader-animation .tria-pos-abs {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
   }
   .tria-preloader .tria-preloader-animation .tria-pos-abs p {
     margin-right: 0;
@@ -1024,7 +1028,11 @@ preloader
   position: relative;
   padding: 0 30px;
 }
-.tria-preloader .tria-preloader-animation .tria-pos-abs .tria-reveal-frame .tria-reveal-box {
+.tria-preloader
+  .tria-preloader-animation
+  .tria-pos-abs
+  .tria-reveal-frame
+  .tria-reveal-box {
   z-index: 4;
   position: absolute;
   opacity: 0;
@@ -1052,11 +1060,11 @@ cursor
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   opacity: 0.1;
 }
 .tria-ball .tria-icon-1 {
@@ -1064,12 +1072,13 @@ cursor
   width: 40px;
   height: 40px;
   -webkit-transform: scale(0);
-          transform: scale(0);
+  transform: scale(0);
 }
 .tria-ball .tria-icon-1 svg {
   fill: rgba(255, 255, 255, 0.9);
 }
-.tria-ball .tria-more-text, .tria-ball .tria-choose-text {
+.tria-ball .tria-more-text,
+.tria-ball .tria-choose-text {
   position: absolute;
   width: 100%;
   text-align: center;
@@ -1080,12 +1089,13 @@ cursor
   letter-spacing: 2px;
   text-transform: uppercase;
   -webkit-transform: scale(0);
-          transform: scale(0);
+  transform: scale(0);
 }
 .tria-ball.tria-accent .tria-icon-1 svg {
   fill: rgb(0, 0, 0);
 }
-.tria-ball.tria-accent .tria-more-text, .tria-ball.tria-accent .tria-choose-text {
+.tria-ball.tria-accent .tria-more-text,
+.tria-ball.tria-accent .tria-choose-text {
   color: rgb(0, 0, 0);
 }
 @media screen and (max-width: 1200px) {
@@ -1099,7 +1109,9 @@ cursor
 hidden elements
 
 ------------------------------------------- */
-.tria-hidden-elements .tria-dodecahedron, .tria-hidden-elements .tria-lines, .tria-hidden-elements .tria-arrow {
+.tria-hidden-elements .tria-dodecahedron,
+.tria-hidden-elements .tria-lines,
+.tria-hidden-elements .tria-arrow {
   display: none;
 }
 
@@ -1158,11 +1170,11 @@ frame
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   width: 100%;
   height: 100%;
 }
@@ -1185,12 +1197,14 @@ frame
     border-bottom: solid 1px rgba(255, 255, 255, 0.1);
     padding: 0 30px;
     -webkit-backdrop-filter: blur(8px);
-            backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
   }
   .tria-frame .tria-frame-top .tria-logo {
     color: rgb(255, 255, 255);
   }
-  .tria-frame .tria-frame-top .tria-menu-btn span, .tria-frame .tria-frame-top .tria-menu-btn span:after, .tria-frame .tria-frame-top .tria-menu-btn span:before {
+  .tria-frame .tria-frame-top .tria-menu-btn span,
+  .tria-frame .tria-frame-top .tria-menu-btn span:after,
+  .tria-frame .tria-frame-top .tria-menu-btn span:before {
     background: rgb(255, 255, 255);
   }
 }
@@ -1200,11 +1214,11 @@ frame
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
+  -ms-flex-align: end;
+  align-items: flex-end;
 }
 @media screen and (max-width: 1200px) {
   .tria-frame .tria-frame-bottom {
@@ -1220,12 +1234,12 @@ frame
   width: 300px;
   color: rgb(0, 0, 0);
   -webkit-transform: rotate(-90deg) translateX(138px) translateY(-138px);
-          transform: rotate(-90deg) translateX(138px) translateY(-138px);
+  transform: rotate(-90deg) translateX(138px) translateY(-138px);
 }
 .tria-frame .tria-frame-bottom .tria-back-to-top {
   width: 300px;
   -webkit-transform: rotate(-90deg) translateX(130px) translateY(130px);
-          transform: rotate(-90deg) translateX(130px) translateY(130px);
+  transform: rotate(-90deg) translateX(130px) translateY(130px);
   pointer-events: all;
 }
 
@@ -1234,11 +1248,11 @@ frame
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 .tria-frame-top .tria-logo {
   pointer-events: all;
@@ -1258,35 +1272,38 @@ menu button
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-transition: 0.4s cubic-bezier(0, 0, 0.3642, 1);
   transition: 0.4s cubic-bezier(0, 0, 0.3642, 1);
 }
 @media screen and (max-width: 992px) {
   .tria-menu-btn {
     -webkit-transform: scale(0.85);
-            transform: scale(0.85);
+    transform: scale(0.85);
   }
 }
-.tria-menu-btn span, .tria-menu-btn span:after, .tria-menu-btn span:before {
+.tria-menu-btn span,
+.tria-menu-btn span:after,
+.tria-menu-btn span:before {
   content: "";
   display: block;
   width: 28px;
   height: 2.5px;
   background: rgb(0, 0, 0);
   -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
+  backface-visibility: hidden;
   -webkit-transition: inherit;
   transition: inherit;
 }
 .tria-menu-btn span {
   position: relative;
 }
-.tria-menu-btn span:after, .tria-menu-btn span:before {
+.tria-menu-btn span:after,
+.tria-menu-btn span:before {
   position: absolute;
 }
 .tria-menu-btn span:before {
@@ -1298,17 +1315,17 @@ menu button
 }
 .tria-menu-btn.tria-active span {
   -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 .tria-menu-btn.tria-active span:before {
   -webkit-transform: translate(0px, 9px) rotate(-90deg);
-          transform: translate(0px, 9px) rotate(-90deg);
+  transform: translate(0px, 9px) rotate(-90deg);
 }
 .tria-menu-btn.tria-active span:after {
   opacity: 0;
   width: 24px;
   -webkit-transform: translate(0px, -9px) rotate(-90deg);
-          transform: translate(0px, -9px) rotate(-90deg);
+  transform: translate(0px, -9px) rotate(-90deg);
 }
 
 /* -------------------------------------------
@@ -1345,12 +1362,14 @@ menu
 .tria-menu-frame .tria-frame-top .tria-logo {
   color: rgb(255, 255, 255);
 }
-.tria-menu-frame .tria-frame-top .tria-menu-btn span, .tria-menu-frame .tria-frame-top .tria-menu-btn span:after, .tria-menu-frame .tria-frame-top .tria-menu-btn span:before {
+.tria-menu-frame .tria-frame-top .tria-menu-btn span,
+.tria-menu-frame .tria-frame-top .tria-menu-btn span:after,
+.tria-menu-frame .tria-frame-top .tria-menu-btn span:before {
   background-color: rgb(255, 255, 255);
 }
 .tria-menu-frame .tria-main-menu {
   -webkit-transform: translateX(-30px);
-          transform: translateX(-30px);
+  transform: translateX(-30px);
   opacity: 0;
   -webkit-transition: 0.4s cubic-bezier(0, 0, 0.3642, 1);
   transition: 0.4s cubic-bezier(0, 0, 0.3642, 1);
@@ -1358,7 +1377,7 @@ menu
 @media screen and (max-width: 1200px) {
   .tria-menu-frame .tria-main-menu {
     -webkit-transform: translateY(30px);
-            transform: translateY(30px);
+    transform: translateY(30px);
   }
 }
 .tria-menu-frame .tria-menu-right-frame {
@@ -1369,12 +1388,12 @@ menu
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
+  -ms-flex-align: end;
+  align-items: flex-end;
   border-left: solid 1px rgba(255, 255, 255, 0.1);
   opacity: 0;
   -webkit-transform: translateY(30px);
-          transform: translateY(30px);
+  transform: translateY(30px);
   -webkit-transition: 0.4s cubic-bezier(0, 0, 0.3642, 1);
   transition: 0.4s cubic-bezier(0, 0, 0.3642, 1);
 }
@@ -1387,7 +1406,7 @@ menu
   right: 0;
   opacity: 0;
   -webkit-transform: translateY(-60px);
-          transform: translateY(-60px);
+  transform: translateY(-60px);
   -webkit-transition: 0.4s cubic-bezier(0, 0, 0.3642, 1);
   transition: 0.4s cubic-bezier(0, 0, 0.3642, 1);
 }
@@ -1410,26 +1429,26 @@ menu
 }
 .tria-menu-frame.tria-active .tria-main-menu {
   -webkit-transform: translateX(0);
-          transform: translateX(0);
+  transform: translateX(0);
   -webkit-transform: translateY(0);
-          transform: translateY(0);
+  transform: translateY(0);
   opacity: 1;
   -webkit-transition-delay: 0.4s;
-          transition-delay: 0.4s;
+  transition-delay: 0.4s;
 }
 .tria-menu-frame.tria-active .tria-menu-right-frame {
   opacity: 1;
   -webkit-transform: translateY(0);
-          transform: translateY(0);
+  transform: translateY(0);
   -webkit-transition-delay: 0.6s;
-          transition-delay: 0.6s;
+  transition-delay: 0.6s;
 }
 .tria-menu-frame.tria-active .tria-menu-right-frame .tria-animation-in {
   opacity: 1;
   -webkit-transform: translateY(0);
-          transform: translateY(0);
+  transform: translateY(0);
   -webkit-transition-delay: 0.8s;
-          transition-delay: 0.8s;
+  transition-delay: 0.8s;
 }
 
 .tria-menu-list li {
@@ -1446,7 +1465,7 @@ menu
 }
 .tria-menu-list li a:hover {
   -webkit-transform: translateX(5px);
-          transform: translateX(5px);
+  transform: translateX(5px);
   color: rgb(255, 255, 255);
 }
 .tria-menu-list.tria-hori-list {
@@ -1468,8 +1487,8 @@ menu
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 .tria-main-menu ul {
   padding: 0;
@@ -1487,8 +1506,8 @@ menu
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.8);
   font-size: 34px;
@@ -1509,7 +1528,7 @@ menu
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.4);
   -webkit-transform: scale(0);
-          transform: scale(0);
+  transform: scale(0);
   -webkit-transition: 0.4s cubic-bezier(0, 0, 0.3642, 1);
   transition: 0.4s cubic-bezier(0, 0, 0.3642, 1);
 }
@@ -1521,7 +1540,7 @@ menu
 }
 .tria-main-menu ul li a.tria-active:before {
   -webkit-transform: scale(1);
-          transform: scale(1);
+  transform: scale(1);
   background-color: rgb(255, 152, 0);
 }
 .tria-main-menu ul li.tria-active > a {
@@ -1530,7 +1549,7 @@ menu
 .tria-main-menu ul li.tria-active > a:hover {
   color: rgb(255, 152, 0) !important;
   -webkit-filter: brightness(110%);
-          filter: brightness(110%);
+  filter: brightness(110%);
 }
 .tria-main-menu ul li.tria-has-children > a:hover {
   color: rgb(255, 255, 255);
@@ -1538,7 +1557,7 @@ menu
 }
 .tria-main-menu ul li.tria-has-children > a:hover:before {
   -webkit-transform: scale(1);
-          transform: scale(1);
+  transform: scale(1);
 }
 .tria-main-menu ul li.tria-has-children ul {
   padding-left: 25px;
@@ -1567,7 +1586,7 @@ menu
 .tria-main-menu ul li.tria-has-children ul li a:hover {
   color: rgba(255, 255, 255, 0.8);
   -webkit-transform: translateX(5px);
-          transform: translateX(5px);
+  transform: translateX(5px);
 }
 .tria-main-menu ul li.tria-has-children ul.tria-active {
   max-height: 200px;
@@ -1575,8 +1594,8 @@ menu
 @media screen and (max-width: 1200px) {
   .tria-main-menu {
     -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
   }
   .tria-main-menu ul {
     display: -webkit-box;
@@ -1584,19 +1603,19 @@ menu
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
     -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
   }
   .tria-main-menu ul li {
     margin-bottom: 30px;
   }
   .tria-main-menu ul li a {
     -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
   }
   .tria-main-menu ul li a:before {
     display: none;
@@ -1626,8 +1645,8 @@ banner
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
+  -ms-flex-align: end;
+  align-items: flex-end;
 }
 .tria-banner .tria-banner-content {
   width: 100%;
@@ -1681,11 +1700,11 @@ banner
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   padding: 0 60px 0 90px;
   background-color: rgb(255, 255, 255);
   height: 180px;
@@ -1698,8 +1717,8 @@ banner
   .tria-banner-personal .tria-banner-content .tria-banner-panel {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
     height: auto;
     padding: 60px 30px;
   }
@@ -1714,16 +1733,20 @@ banner
   display: -ms-flexbox;
   display: flex;
 }
-.tria-banner-personal .tria-banner-content .tria-banner-panel .tria-right .tria-social-frame {
+.tria-banner-personal
+  .tria-banner-content
+  .tria-banner-panel
+  .tria-right
+  .tria-social-frame {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   margin-right: 30px;
   padding: 0 50px;
   background-color: rgba(0, 0, 0, 0.1);
@@ -1732,18 +1755,26 @@ banner
   -webkit-transition: 0.4s cubic-bezier(0, 0, 0.3642, 1);
   transition: 0.4s cubic-bezier(0, 0, 0.3642, 1);
 }
-.tria-banner-personal .tria-banner-content .tria-banner-panel .tria-right .tria-social-frame:hover {
+.tria-banner-personal
+  .tria-banner-content
+  .tria-banner-panel
+  .tria-right
+  .tria-social-frame:hover {
   -webkit-transform: scale(1.015);
-          transform: scale(1.015);
+  transform: scale(1.015);
 }
 @media screen and (max-width: 992px) {
   .tria-banner-personal .tria-banner-content .tria-banner-panel .tria-right {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
   }
-  .tria-banner-personal .tria-banner-content .tria-banner-panel .tria-right .tria-social-frame {
+  .tria-banner-personal
+    .tria-banner-content
+    .tria-banner-panel
+    .tria-right
+    .tria-social-frame {
     margin-right: 0;
     margin-bottom: 30px;
     height: 60px;
@@ -1779,10 +1810,14 @@ banner
   width: 100%;
   height: 100%;
   -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
 }
 .tria-portrait-frame .tria-nimbus {
-  background: radial-gradient(50% 50% at 50% 50%, rgb(255, 152, 0) 0%, rgba(250, 168, 69, 0) 100%);
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    rgb(255, 152, 0) 0%,
+    rgba(250, 168, 69, 0) 100%
+  );
   width: 100%;
   padding-bottom: 100%;
   position: absolute;
@@ -1794,9 +1829,9 @@ banner
   }
   .tria-portrait-frame img {
     -o-object-fit: cover;
-       object-fit: cover;
+    object-fit: cover;
     -o-object-position: top;
-       object-position: top;
+    object-position: top;
   }
 }
 
@@ -1813,17 +1848,17 @@ circle text
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   width: 140px;
   height: 140px;
 }
 .tria-circle-text .tria-ct-svg {
   -webkit-transform: scale(2);
-          transform: scale(2);
+  transform: scale(2);
   width: 140px;
   height: 140px;
 }
@@ -1855,29 +1890,29 @@ lines
 @-webkit-keyframes move {
   from {
     -webkit-transform: translateY(-75px);
-            transform: translateY(-75px);
+    transform: translateY(-75px);
   }
   50% {
     -webkit-transform: translateY(75px);
-            transform: translateY(75px);
+    transform: translateY(75px);
   }
   to {
     -webkit-transform: translateY(-75px);
-            transform: translateY(-75px);
+    transform: translateY(-75px);
   }
 }
 @keyframes move {
   from {
     -webkit-transform: translateY(-75px);
-            transform: translateY(-75px);
+    transform: translateY(-75px);
   }
   50% {
     -webkit-transform: translateY(75px);
-            transform: translateY(75px);
+    transform: translateY(75px);
   }
   to {
     -webkit-transform: translateY(-75px);
-            transform: translateY(-75px);
+    transform: translateY(-75px);
   }
 }
 .tria-lines-place .tria-lines {
@@ -1889,17 +1924,21 @@ lines
     display: none;
   }
 }
-.tria-lines-place .tria-lines path, .tria-lines-place .tria-lines rect, .tria-lines-place .tria-lines line {
+.tria-lines-place .tria-lines path,
+.tria-lines-place .tria-lines rect,
+.tria-lines-place .tria-lines line {
   stroke: rgb(0, 0, 0);
 }
 .tria-lines-place .tria-lines .tria-move {
   -webkit-animation: move 10s linear infinite;
-          animation: move 10s linear infinite;
+  animation: move 10s linear infinite;
 }
 .tria-lines-place.tria-light .tria-lines {
   opacity: 0.2;
 }
-.tria-lines-place.tria-light .tria-lines path, .tria-lines-place.tria-light .tria-lines rect, .tria-lines-place.tria-light .tria-lines line {
+.tria-lines-place.tria-light .tria-lines path,
+.tria-lines-place.tria-light .tria-lines rect,
+.tria-lines-place.tria-light .tria-lines line {
   stroke: rgb(255, 255, 255);
 }
 
@@ -1914,7 +1953,7 @@ dodecahedron
   position: absolute;
   top: 0;
   -webkit-animation: jump 10s linear infinite;
-          animation: jump 10s linear infinite;
+  animation: jump 10s linear infinite;
   pointer-events: none;
 }
 
@@ -1944,7 +1983,7 @@ dodecahedron
 }
 .tria-position-2 .tria-dodecahedron {
   -webkit-animation-delay: 0.5s;
-          animation-delay: 0.5s;
+  animation-delay: 0.5s;
 }
 @media screen and (max-width: 1400px) {
   .tria-position-2 {
@@ -1961,7 +2000,7 @@ dodecahedron
 }
 .tria-position-3 .tria-dodecahedron {
   -webkit-animation-delay: 1s;
-          animation-delay: 1s;
+  animation-delay: 1s;
 }
 @media screen and (max-width: 1400px) {
   .tria-position-3 {
@@ -1978,7 +2017,7 @@ dodecahedron
 }
 .tria-position-4 .tria-dodecahedron {
   -webkit-animation-delay: 0.5s;
-          animation-delay: 0.5s;
+  animation-delay: 0.5s;
 }
 @media screen and (max-width: 1400px) {
   .tria-position-4 {
@@ -1996,28 +2035,28 @@ dodecahedron
   width: 100px;
   height: 223px;
   -webkit-transform-style: preserve-3d;
-          transform-style: preserve-3d;
+  transform-style: preserve-3d;
   -webkit-animation: rotate 100s infinite linear;
-          animation: rotate 100s infinite linear;
+  animation: rotate 100s infinite linear;
 }
 @-webkit-keyframes rotate {
   from {
     -webkit-transform: rotateX(0deg) rotateY(360deg) rotateZ(360deg);
-            transform: rotateX(0deg) rotateY(360deg) rotateZ(360deg);
+    transform: rotateX(0deg) rotateY(360deg) rotateZ(360deg);
   }
   to {
     -webkit-transform: rotateX(360deg) rotateY(0deg) rotateZ(-360deg);
-            transform: rotateX(360deg) rotateY(0deg) rotateZ(-360deg);
+    transform: rotateX(360deg) rotateY(0deg) rotateZ(-360deg);
   }
 }
 @keyframes rotate {
   from {
     -webkit-transform: rotateX(0deg) rotateY(360deg) rotateZ(360deg);
-            transform: rotateX(0deg) rotateY(360deg) rotateZ(360deg);
+    transform: rotateX(0deg) rotateY(360deg) rotateZ(360deg);
   }
   to {
     -webkit-transform: rotateX(360deg) rotateY(0deg) rotateZ(-360deg);
-            transform: rotateX(360deg) rotateY(0deg) rotateZ(-360deg);
+    transform: rotateX(360deg) rotateY(0deg) rotateZ(-360deg);
   }
 }
 
@@ -2027,113 +2066,113 @@ dodecahedron
 }
 .tria-pentagon:nth-child(1) {
   -webkit-transform: rotateY(0.2turn) translateZ(69px) rotateX(26.5deg);
-          transform: rotateY(0.2turn) translateZ(69px) rotateX(26.5deg);
+  transform: rotateY(0.2turn) translateZ(69px) rotateX(26.5deg);
 }
 .tria-pentagon:nth-child(6) {
   bottom: 0;
   -webkit-transform: rotateY(0.2turn) translateZ(-69px) rotateX(206.5deg);
-          transform: rotateY(0.2turn) translateZ(-69px) rotateX(206.5deg);
+  transform: rotateY(0.2turn) translateZ(-69px) rotateX(206.5deg);
 }
 .tria-pentagon:nth-child(2) {
   -webkit-transform: rotateY(0.4turn) translateZ(69px) rotateX(26.5deg);
-          transform: rotateY(0.4turn) translateZ(69px) rotateX(26.5deg);
+  transform: rotateY(0.4turn) translateZ(69px) rotateX(26.5deg);
 }
 .tria-pentagon:nth-child(7) {
   bottom: 0;
   -webkit-transform: rotateY(0.4turn) translateZ(-69px) rotateX(206.5deg);
-          transform: rotateY(0.4turn) translateZ(-69px) rotateX(206.5deg);
+  transform: rotateY(0.4turn) translateZ(-69px) rotateX(206.5deg);
 }
 .tria-pentagon:nth-child(3) {
   -webkit-transform: rotateY(0.6turn) translateZ(69px) rotateX(26.5deg);
-          transform: rotateY(0.6turn) translateZ(69px) rotateX(26.5deg);
+  transform: rotateY(0.6turn) translateZ(69px) rotateX(26.5deg);
 }
 .tria-pentagon:nth-child(8) {
   bottom: 0;
   -webkit-transform: rotateY(0.6turn) translateZ(-69px) rotateX(206.5deg);
-          transform: rotateY(0.6turn) translateZ(-69px) rotateX(206.5deg);
+  transform: rotateY(0.6turn) translateZ(-69px) rotateX(206.5deg);
 }
 .tria-pentagon:nth-child(4) {
   -webkit-transform: rotateY(0.8turn) translateZ(69px) rotateX(26.5deg);
-          transform: rotateY(0.8turn) translateZ(69px) rotateX(26.5deg);
+  transform: rotateY(0.8turn) translateZ(69px) rotateX(26.5deg);
 }
 .tria-pentagon:nth-child(9) {
   bottom: 0;
   -webkit-transform: rotateY(0.8turn) translateZ(-69px) rotateX(206.5deg);
-          transform: rotateY(0.8turn) translateZ(-69px) rotateX(206.5deg);
+  transform: rotateY(0.8turn) translateZ(-69px) rotateX(206.5deg);
 }
 .tria-pentagon:nth-child(5) {
   -webkit-transform: rotateY(1turn) translateZ(69px) rotateX(26.5deg);
-          transform: rotateY(1turn) translateZ(69px) rotateX(26.5deg);
+  transform: rotateY(1turn) translateZ(69px) rotateX(26.5deg);
 }
 .tria-pentagon:nth-child(10) {
   bottom: 0;
   -webkit-transform: rotateY(1turn) translateZ(-69px) rotateX(206.5deg);
-          transform: rotateY(1turn) translateZ(-69px) rotateX(206.5deg);
+  transform: rotateY(1turn) translateZ(-69px) rotateX(206.5deg);
 }
 .tria-pentagon:nth-child(11) {
   -webkit-transform: translateZ(69px) rotateX(-90deg);
-          transform: translateZ(69px) rotateX(-90deg);
+  transform: translateZ(69px) rotateX(-90deg);
 }
 .tria-pentagon:nth-child(12) {
   bottom: 0;
   -webkit-transform: translateZ(-69px) rotateX(90deg);
-          transform: translateZ(-69px) rotateX(90deg);
+  transform: translateZ(-69px) rotateX(90deg);
 }
 .tria-pentagon div {
   position: absolute;
   width: 100px;
   height: 69px;
   -webkit-transform-origin: bottom;
-          transform-origin: bottom;
+  transform-origin: bottom;
 }
 .tria-pentagon div:nth-child(1) {
   -webkit-transform: rotate(0.2turn);
-          transform: rotate(0.2turn);
+  transform: rotate(0.2turn);
 }
 .tria-pentagon div:nth-child(2) {
   -webkit-transform: rotate(0.4turn);
-          transform: rotate(0.4turn);
+  transform: rotate(0.4turn);
 }
 .tria-pentagon div:nth-child(3) {
   -webkit-transform: rotate(0.6turn);
-          transform: rotate(0.6turn);
+  transform: rotate(0.6turn);
 }
 .tria-pentagon div:nth-child(4) {
   -webkit-transform: rotate(0.8turn);
-          transform: rotate(0.8turn);
+  transform: rotate(0.8turn);
 }
 .tria-pentagon div:nth-child(5) {
   -webkit-transform: rotate(1turn);
-          transform: rotate(1turn);
+  transform: rotate(1turn);
 }
 
 @-webkit-keyframes jump {
   0% {
     -webkit-transform: translateY(-30px);
-            transform: translateY(-30px);
+    transform: translateY(-30px);
   }
   50% {
     -webkit-transform: translateY(30px);
-            transform: translateY(30px);
+    transform: translateY(30px);
   }
   100% {
     -webkit-transform: translateY(-30px);
-            transform: translateY(-30px);
+    transform: translateY(-30px);
   }
 }
 
 @keyframes jump {
   0% {
     -webkit-transform: translateY(-30px);
-            transform: translateY(-30px);
+    transform: translateY(-30px);
   }
   50% {
     -webkit-transform: translateY(30px);
-            transform: translateY(30px);
+    transform: translateY(30px);
   }
   100% {
     -webkit-transform: translateY(-30px);
-            transform: translateY(-30px);
+    transform: translateY(-30px);
   }
 }
 /* -------------------------------------------
@@ -2146,11 +2185,11 @@ about
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 .tria-about-quote .tria-avatar {
   width: 90px;
@@ -2159,32 +2198,34 @@ about
   position: relative;
 }
 .tria-about-quote .tria-avatar:after {
-  content: ' " ';
-  color: rgb(0, 0, 0);
+  content: '◆';
+  color: #fff;
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background-color: rgb(255, 152, 0);
+  background-color: var(--accent);
   position: absolute;
   bottom: 0;
   right: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding-top: 12px;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  font-size: 36px;
+  -ms-flex-pack: center;
+  justify-content: center;
+  font-size: 14px;
 }
 .tria-about-quote .tria-avatar img {
   border-radius: 50%;
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   -o-object-position: top;
-     object-position: top;
+  object-position: top;
 }
 .tria-about-quote .tria-quote {
   padding-left: 30px;
@@ -2196,10 +2237,9 @@ about
     height: 70px;
   }
   .tria-about-quote .tria-avatar:after {
-    padding-top: 7px;
     width: 25px;
     height: 25px;
-    font-size: 24px;
+    font-size: 12px;
   }
   .tria-about-quote .tria-quote {
     font-size: 16px;
@@ -2224,7 +2264,7 @@ partners
 ------------------------------------------- */
 .tria-infinite-show .swiper-wrapper {
   -webkit-transition-timing-function: linear;
-          transition-timing-function: linear;
+  transition-timing-function: linear;
 }
 
 .tria-partner-frame {
@@ -2244,8 +2284,8 @@ services
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 .tria-complex-text .tria-button {
   margin-left: 30px;
@@ -2254,8 +2294,8 @@ services
   .tria-complex-text {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
   }
   .tria-complex-text .tria-button {
     margin-left: 0;
@@ -2275,15 +2315,15 @@ services
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   -o-object-position: top;
-     object-position: top;
+  object-position: top;
   -webkit-transition: 0.4s cubic-bezier(0, 0, 0.3642, 1);
   transition: 0.4s cubic-bezier(0, 0, 0.3642, 1);
 }
 .tria-text-image:hover img {
   -webkit-transform: scale(1.05);
-          transform: scale(1.05);
+  transform: scale(1.05);
 }
 @media screen and (max-width: 768px) {
   .tria-text-image {
@@ -2299,7 +2339,7 @@ services
 .tria-service-card-sm p {
   opacity: 0;
   -webkit-transform: translateY(10px);
-          transform: translateY(10px);
+  transform: translateY(10px);
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -2310,9 +2350,9 @@ services
 }
 .tria-service-card-sm .tria-button {
   -webkit-transform: scale(0.3);
-          transform: scale(0.3);
+  transform: scale(0.3);
   -webkit-filter: grayscale(100%);
-          filter: grayscale(100%);
+  filter: grayscale(100%);
   opacity: 0.4;
 }
 .tria-service-card-sm:before {
@@ -2329,13 +2369,13 @@ services
 .tria-service-card-sm:hover p {
   opacity: 1;
   -webkit-transform: translateY(0);
-          transform: translateY(0);
+  transform: translateY(0);
 }
 .tria-service-card-sm:hover .tria-button {
   -webkit-transform: scale(1);
-          transform: scale(1);
+  transform: scale(1);
   -webkit-filter: grayscale(0);
-          filter: grayscale(0);
+  filter: grayscale(0);
   opacity: 1;
 }
 .tria-service-card-sm:hover:before {
@@ -2345,13 +2385,13 @@ services
   .tria-service-card-sm p {
     opacity: 1;
     -webkit-transform: translateY(0);
-            transform: translateY(0);
+    transform: translateY(0);
   }
   .tria-service-card-sm .tria-button {
     -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
     -webkit-filter: grayscale(0);
-            filter: grayscale(0);
+    filter: grayscale(0);
     opacity: 1;
   }
 }
@@ -2482,22 +2522,22 @@ team
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   -o-object-position: top;
-     object-position: top;
+  object-position: top;
   -webkit-transform: scale(1.05);
-          transform: scale(1.05);
+  transform: scale(1.05);
   -webkit-transition: 0.4s cubic-bezier(0, 0, 0.3642, 1);
   transition: 0.4s cubic-bezier(0, 0, 0.3642, 1);
 }
 .tria-team-card.tria-offset-card {
   -webkit-transform: translateY(60px);
-          transform: translateY(60px);
+  transform: translateY(60px);
 }
 @media screen and (max-width: 992px) {
   .tria-team-card.tria-offset-card {
     -webkit-transform: none;
-            transform: none;
+    transform: none;
   }
 }
 .tria-team-card .tria-description {
@@ -2515,11 +2555,11 @@ team
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
   pointer-events: none;
   -webkit-transition: 0.6s cubic-bezier(0, 0, 0.3642, 1);
   transition: 0.6s cubic-bezier(0, 0, 0.3642, 1);
@@ -2527,11 +2567,11 @@ team
 .tria-team-card .tria-description .tria-secrc-text {
   opacity: 0;
   -webkit-transform: translateY(15px);
-          transform: translateY(15px);
+  transform: translateY(15px);
   -webkit-transition: 0.4s cubic-bezier(0, 0, 0.3642, 1);
   transition: 0.4s cubic-bezier(0, 0, 0.3642, 1);
   -webkit-transition-delay: 0s;
-          transition-delay: 0s;
+  transition-delay: 0s;
 }
 .tria-team-card .tria-description .tria-secrc-text a {
   color: rgb(255, 255, 255);
@@ -2543,7 +2583,7 @@ team
 }
 .tria-team-card:hover img {
   -webkit-transform: scale(1);
-          transform: scale(1);
+  transform: scale(1);
 }
 .tria-team-card:hover:after {
   width: 100%;
@@ -2555,9 +2595,9 @@ team
 .tria-team-card:hover .tria-description .tria-secrc-text {
   opacity: 1;
   -webkit-transform: translateY(0);
-          transform: translateY(0);
+  transform: translateY(0);
   -webkit-transition-delay: 0.1s;
-          transition-delay: 0.1s;
+  transition-delay: 0.1s;
 }
 
 .tria-team-list {
@@ -2583,8 +2623,8 @@ social icons
 }
 .tria-social-icons.tria-center {
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 .tria-social-icons li {
   list-style-type: none;
@@ -2619,13 +2659,13 @@ revievs
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 @media screen and (max-width: 992px) {
   .tria-revi-pagination {
     -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
+    flex-wrap: wrap;
   }
 }
 .tria-revi-pagination .swiper-pagination-bullet {
@@ -2656,7 +2696,7 @@ revievs
 }
 .tria-revi-pagination .swiper-pagination-bullet:hover {
   -webkit-box-shadow: inset 0 0 0 4px rgb(255, 255, 255);
-          box-shadow: inset 0 0 0 4px rgb(255, 255, 255);
+  box-shadow: inset 0 0 0 4px rgb(255, 255, 255);
 }
 .tria-revi-pagination .swiper-pagination-bullet .tria-custom-dot {
   background-color: red;
@@ -2695,9 +2735,10 @@ revievs
 .tria-revi-pagination .swiper-pagination-bullet .tria-custom-dot.tria-slide-7 {
   background-image: url(../img/faces/customers/7.jpg);
 }
-.tria-revi-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
+.tria-revi-pagination
+  .swiper-pagination-bullet.swiper-pagination-bullet-active {
   -webkit-box-shadow: inset 0 0 0 4px rgb(255, 152, 0);
-          box-shadow: inset 0 0 0 4px rgb(255, 152, 0);
+  box-shadow: inset 0 0 0 4px rgb(255, 152, 0);
 }
 
 .tria-quote-icon {
@@ -2732,7 +2773,7 @@ revievs
 .tria-slider-nav .tria-slider-arrow.tria-prev {
   margin-right: 10px;
   -webkit-transform: rotate(180deg);
-          transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 .tria-slider-nav .tria-slider-arrow.swiper-button-disabled {
   opacity: 0.1;
@@ -2740,11 +2781,11 @@ revievs
 }
 .tria-slider-nav .tria-slider-arrow:hover {
   -webkit-transform: scale(1.15);
-          transform: scale(1.15);
+  transform: scale(1.15);
 }
 .tria-slider-nav .tria-slider-arrow:hover.tria-prev {
   -webkit-transform: rotate(180deg) scale(1.15);
-          transform: rotate(180deg) scale(1.15);
+  transform: rotate(180deg) scale(1.15);
 }
 .tria-slider-nav.tria-reviews-nav {
   position: absolute;
@@ -2752,8 +2793,8 @@ revievs
   left: 0;
   width: 100%;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
 }
 @media screen and (max-width: 992px) {
   .tria-slider-nav.tria-reviews-nav {
@@ -2785,9 +2826,9 @@ blog
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   -o-object-position: center;
-     object-position: center;
+  object-position: center;
   position: absolute;
   top: 0;
   left: 0;
@@ -2806,7 +2847,7 @@ blog
 }
 .tria-blog-card:hover .tria-cover-frame img {
   -webkit-transform: scale(1.05);
-          transform: scale(1.05);
+  transform: scale(1.05);
 }
 .tria-blog-card.tria-blog-card-hori {
   padding-top: 60px;
@@ -2815,8 +2856,8 @@ blog
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 .tria-blog-card.tria-blog-card-hori .tria-cover-frame {
   margin-bottom: 0;
@@ -2850,8 +2891,8 @@ blog
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   padding: 0;
 }
 .tria-labels .tria-label {
@@ -2868,8 +2909,8 @@ blog
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   margin-top: 20px;
 }
 
@@ -2910,11 +2951,11 @@ blog
   display: -ms-inline-flexbox;
   display: inline-flex;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   background-color: transparent;
   padding: 0 20px;
   border-radius: 40px;
@@ -2936,23 +2977,23 @@ blog
   .tria-category-list {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
   }
   .tria-category-list li {
     margin-right: 0;
     margin-bottom: 10px;
     -webkit-box-align: start;
-        -ms-flex-align: start;
-            align-items: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start;
   }
   .tria-category-list li:last-child {
     margin-bottom: 0;
   }
   .tria-category-list li a {
     -webkit-box-pack: start;
-        -ms-flex-pack: start;
-            justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
   }
 }
 
@@ -2978,7 +3019,7 @@ footer
 }
 .tria-footer-menu ul li a:hover {
   -webkit-transform: translateX(10px);
-          transform: translateX(10px);
+  transform: translateX(10px);
   color: rgb(255, 152, 0);
 }
 @media screen and (max-width: 768px) {
@@ -2991,7 +3032,7 @@ footer
 }
 .tria-footer-menu ul li.tria-active a:hover {
   -webkit-transform: none;
-          transform: none;
+  transform: none;
 }
 @media screen and (max-width: 768px) {
   .tria-footer-menu {
@@ -3101,9 +3142,9 @@ portfolio
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   -o-object-position: center;
-     object-position: center;
+  object-position: center;
   -webkit-transition: 0.4s cubic-bezier(0, 0, 0.3642, 1);
   transition: 0.4s cubic-bezier(0, 0, 0.3642, 1);
 }
@@ -3115,7 +3156,7 @@ portfolio
 }
 .tria-portfolio-item:hover .tria-cover-frame .tria-cover img {
   -webkit-transform: scale(1.05);
-          transform: scale(1.05);
+  transform: scale(1.05);
 }
 .tria-portfolio-item.tria-slider-item .tria-cover-frame {
   margin-bottom: 30px;
@@ -3133,11 +3174,11 @@ portfolio
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   height: 180px;
   background-color: rgb(242, 242, 242);
   padding: 0 60px;
@@ -3147,11 +3188,11 @@ portfolio
     padding: 30px;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
     -webkit-box-align: start;
-        -ms-flex-align: start;
-            align-items: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start;
     height: auto;
   }
   .tria-portfolio-item.tria-slider-item .tria-descr .tria-descr-text {
@@ -3160,7 +3201,7 @@ portfolio
 }
 .tria-portfolio-item.tria-slider-item:hover .tria-cover-frame .tria-cover img {
   -webkit-transform: none;
-          transform: none;
+  transform: none;
 }
 
 .swiper-slide .tria-portfolio-item .tria-descr {
@@ -3202,22 +3243,22 @@ portfolio
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 .tria-portfolio-nav .tria-portfolio-btns-frame {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   padding: 0 15px;
   height: 70px;
   border-radius: 70px;
@@ -3229,8 +3270,8 @@ portfolio
     height: auto;
     padding: 30px 0 90px;
     -webkit-box-pack: start;
-        -ms-flex-pack: start;
-            justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
     background-color: rgb(255, 255, 255);
   }
   .tria-portfolio-nav .tria-portfolio-btns-frame {
@@ -3254,13 +3295,13 @@ portfolio
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   width: 100%;
   height: 120px;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   border-bottom: solid 1px rgba(0, 0, 0, 0.1);
   text-transform: uppercase;
   font-size: 12px;
@@ -3271,8 +3312,8 @@ portfolio
   .tria-info {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
     height: auto;
     padding: 30px;
   }
@@ -3285,11 +3326,11 @@ portfolio
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 .tria-works-nav .tria-disabled {
   opacity: 0.2;
@@ -3300,8 +3341,8 @@ portfolio
     padding-top: 0;
     border-top: none;
     -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
   }
   .tria-works-nav .tria-link {
     display: none;
@@ -3352,11 +3393,11 @@ accordion
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   cursor: pointer;
   margin-bottom: 30px;
 }
@@ -3371,19 +3412,20 @@ accordion
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   position: relative;
 }
-.tria-accordion-group .tria-accordion-menu .tria-symbol .tria-plus, .tria-accordion-group .tria-accordion-menu .tria-symbol .tria-minus {
+.tria-accordion-group .tria-accordion-menu .tria-symbol .tria-plus,
+.tria-accordion-group .tria-accordion-menu .tria-symbol .tria-minus {
   position: absolute;
 }
 .tria-accordion-group .tria-accordion-menu .tria-symbol .tria-minus {
   -webkit-transform: translateY(-2px);
-          transform: translateY(-2px);
+  transform: translateY(-2px);
 }
 .tria-accordion-group .tria-accordion-menu .tria-accordion-head {
   font-size: 12px;
@@ -3438,15 +3480,15 @@ price
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .tria-404-text {
@@ -3457,14 +3499,14 @@ price
 
 .tria-scale-frame {
   -webkit-transform: scale(2.3);
-          transform: scale(2.3);
+  transform: scale(2.3);
   text-align: center;
   margin-bottom: 90px;
 }
 @media screen and (max-width: 530px) {
   .tria-scale-frame {
     -webkit-transform: scale(1.3);
-            transform: scale(1.3);
+    transform: scale(1.3);
     margin-bottom: 50px;
   }
 }
@@ -3496,7 +3538,9 @@ price
   width: 100%;
   height: 100%;
   left: -2px;
-  text-shadow: -2px 0 rgb(153, 153, 153), 2px 2px rgb(229, 229, 229);
+  text-shadow:
+    -2px 0 rgb(153, 153, 153),
+    2px 2px rgb(229, 229, 229);
   animation: glitch-anim2 1s infinite linear alternate-reverse;
 }
 
@@ -3504,107 +3548,107 @@ price
   0% {
     clip: rect(49px, 9999px, 31px, 0);
     -webkit-transform: skew(0.04deg);
-            transform: skew(0.04deg);
+    transform: skew(0.04deg);
   }
   5% {
     clip: rect(63px, 9999px, 92px, 0);
     -webkit-transform: skew(0.18deg);
-            transform: skew(0.18deg);
+    transform: skew(0.18deg);
   }
   10% {
     clip: rect(86px, 9999px, 74px, 0);
     -webkit-transform: skew(0.4deg);
-            transform: skew(0.4deg);
+    transform: skew(0.4deg);
   }
   15% {
     clip: rect(85px, 9999px, 19px, 0);
     -webkit-transform: skew(0.57deg);
-            transform: skew(0.57deg);
+    transform: skew(0.57deg);
   }
   20% {
     clip: rect(64px, 9999px, 75px, 0);
     -webkit-transform: skew(0.96deg);
-            transform: skew(0.96deg);
+    transform: skew(0.96deg);
   }
   25% {
     clip: rect(77px, 9999px, 17px, 0);
     -webkit-transform: skew(0.61deg);
-            transform: skew(0.61deg);
+    transform: skew(0.61deg);
   }
   30% {
     clip: rect(16px, 9999px, 76px, 0);
     -webkit-transform: skew(0.81deg);
-            transform: skew(0.81deg);
+    transform: skew(0.81deg);
   }
   35% {
     clip: rect(5px, 9999px, 61px, 0);
     -webkit-transform: skew(0.56deg);
-            transform: skew(0.56deg);
+    transform: skew(0.56deg);
   }
   40% {
     clip: rect(79px, 9999px, 81px, 0);
     -webkit-transform: skew(0.05deg);
-            transform: skew(0.05deg);
+    transform: skew(0.05deg);
   }
   45% {
     clip: rect(20px, 9999px, 97px, 0);
     -webkit-transform: skew(0.56deg);
-            transform: skew(0.56deg);
+    transform: skew(0.56deg);
   }
   50% {
     clip: rect(33px, 9999px, 100px, 0);
     -webkit-transform: skew(0.16deg);
-            transform: skew(0.16deg);
+    transform: skew(0.16deg);
   }
   55% {
     clip: rect(19px, 9999px, 76px, 0);
     -webkit-transform: skew(0.93deg);
-            transform: skew(0.93deg);
+    transform: skew(0.93deg);
   }
   60% {
     clip: rect(29px, 9999px, 59px, 0);
     -webkit-transform: skew(0.58deg);
-            transform: skew(0.58deg);
+    transform: skew(0.58deg);
   }
   65% {
     clip: rect(19px, 9999px, 95px, 0);
     -webkit-transform: skew(0.83deg);
-            transform: skew(0.83deg);
+    transform: skew(0.83deg);
   }
   70% {
     clip: rect(88px, 9999px, 30px, 0);
     -webkit-transform: skew(0.39deg);
-            transform: skew(0.39deg);
+    transform: skew(0.39deg);
   }
   75% {
     clip: rect(43px, 9999px, 45px, 0);
     -webkit-transform: skew(0.6deg);
-            transform: skew(0.6deg);
+    transform: skew(0.6deg);
   }
   80% {
     clip: rect(30px, 9999px, 4px, 0);
     -webkit-transform: skew(0.89deg);
-            transform: skew(0.89deg);
+    transform: skew(0.89deg);
   }
   85% {
     clip: rect(4px, 9999px, 96px, 0);
     -webkit-transform: skew(1deg);
-            transform: skew(1deg);
+    transform: skew(1deg);
   }
   90% {
     clip: rect(4px, 9999px, 91px, 0);
     -webkit-transform: skew(0.2deg);
-            transform: skew(0.2deg);
+    transform: skew(0.2deg);
   }
   95% {
     clip: rect(48px, 9999px, 80px, 0);
     -webkit-transform: skew(0.41deg);
-            transform: skew(0.41deg);
+    transform: skew(0.41deg);
   }
   100% {
     clip: rect(10px, 9999px, 58px, 0);
     -webkit-transform: skew(0.91deg);
-            transform: skew(0.91deg);
+    transform: skew(0.91deg);
   }
 }
 
@@ -3612,413 +3656,413 @@ price
   0% {
     clip: rect(49px, 9999px, 31px, 0);
     -webkit-transform: skew(0.04deg);
-            transform: skew(0.04deg);
+    transform: skew(0.04deg);
   }
   5% {
     clip: rect(63px, 9999px, 92px, 0);
     -webkit-transform: skew(0.18deg);
-            transform: skew(0.18deg);
+    transform: skew(0.18deg);
   }
   10% {
     clip: rect(86px, 9999px, 74px, 0);
     -webkit-transform: skew(0.4deg);
-            transform: skew(0.4deg);
+    transform: skew(0.4deg);
   }
   15% {
     clip: rect(85px, 9999px, 19px, 0);
     -webkit-transform: skew(0.57deg);
-            transform: skew(0.57deg);
+    transform: skew(0.57deg);
   }
   20% {
     clip: rect(64px, 9999px, 75px, 0);
     -webkit-transform: skew(0.96deg);
-            transform: skew(0.96deg);
+    transform: skew(0.96deg);
   }
   25% {
     clip: rect(77px, 9999px, 17px, 0);
     -webkit-transform: skew(0.61deg);
-            transform: skew(0.61deg);
+    transform: skew(0.61deg);
   }
   30% {
     clip: rect(16px, 9999px, 76px, 0);
     -webkit-transform: skew(0.81deg);
-            transform: skew(0.81deg);
+    transform: skew(0.81deg);
   }
   35% {
     clip: rect(5px, 9999px, 61px, 0);
     -webkit-transform: skew(0.56deg);
-            transform: skew(0.56deg);
+    transform: skew(0.56deg);
   }
   40% {
     clip: rect(79px, 9999px, 81px, 0);
     -webkit-transform: skew(0.05deg);
-            transform: skew(0.05deg);
+    transform: skew(0.05deg);
   }
   45% {
     clip: rect(20px, 9999px, 97px, 0);
     -webkit-transform: skew(0.56deg);
-            transform: skew(0.56deg);
+    transform: skew(0.56deg);
   }
   50% {
     clip: rect(33px, 9999px, 100px, 0);
     -webkit-transform: skew(0.16deg);
-            transform: skew(0.16deg);
+    transform: skew(0.16deg);
   }
   55% {
     clip: rect(19px, 9999px, 76px, 0);
     -webkit-transform: skew(0.93deg);
-            transform: skew(0.93deg);
+    transform: skew(0.93deg);
   }
   60% {
     clip: rect(29px, 9999px, 59px, 0);
     -webkit-transform: skew(0.58deg);
-            transform: skew(0.58deg);
+    transform: skew(0.58deg);
   }
   65% {
     clip: rect(19px, 9999px, 95px, 0);
     -webkit-transform: skew(0.83deg);
-            transform: skew(0.83deg);
+    transform: skew(0.83deg);
   }
   70% {
     clip: rect(88px, 9999px, 30px, 0);
     -webkit-transform: skew(0.39deg);
-            transform: skew(0.39deg);
+    transform: skew(0.39deg);
   }
   75% {
     clip: rect(43px, 9999px, 45px, 0);
     -webkit-transform: skew(0.6deg);
-            transform: skew(0.6deg);
+    transform: skew(0.6deg);
   }
   80% {
     clip: rect(30px, 9999px, 4px, 0);
     -webkit-transform: skew(0.89deg);
-            transform: skew(0.89deg);
+    transform: skew(0.89deg);
   }
   85% {
     clip: rect(4px, 9999px, 96px, 0);
     -webkit-transform: skew(1deg);
-            transform: skew(1deg);
+    transform: skew(1deg);
   }
   90% {
     clip: rect(4px, 9999px, 91px, 0);
     -webkit-transform: skew(0.2deg);
-            transform: skew(0.2deg);
+    transform: skew(0.2deg);
   }
   95% {
     clip: rect(48px, 9999px, 80px, 0);
     -webkit-transform: skew(0.41deg);
-            transform: skew(0.41deg);
+    transform: skew(0.41deg);
   }
   100% {
     clip: rect(10px, 9999px, 58px, 0);
     -webkit-transform: skew(0.91deg);
-            transform: skew(0.91deg);
+    transform: skew(0.91deg);
   }
 }
 @-webkit-keyframes glitch-anim2 {
   0% {
     clip: rect(97px, 9999px, 84px, 0);
     -webkit-transform: skew(0.55deg);
-            transform: skew(0.55deg);
+    transform: skew(0.55deg);
   }
   5% {
     clip: rect(82px, 9999px, 21px, 0);
     -webkit-transform: skew(0.04deg);
-            transform: skew(0.04deg);
+    transform: skew(0.04deg);
   }
   10% {
     clip: rect(51px, 9999px, 99px, 0);
     -webkit-transform: skew(0.93deg);
-            transform: skew(0.93deg);
+    transform: skew(0.93deg);
   }
   15% {
     clip: rect(42px, 9999px, 97px, 0);
     -webkit-transform: skew(0.03deg);
-            transform: skew(0.03deg);
+    transform: skew(0.03deg);
   }
   20% {
     clip: rect(27px, 9999px, 25px, 0);
     -webkit-transform: skew(0.86deg);
-            transform: skew(0.86deg);
+    transform: skew(0.86deg);
   }
   25% {
     clip: rect(69px, 9999px, 5px, 0);
     -webkit-transform: skew(0.95deg);
-            transform: skew(0.95deg);
+    transform: skew(0.95deg);
   }
   30% {
     clip: rect(38px, 9999px, 67px, 0);
     -webkit-transform: skew(0.33deg);
-            transform: skew(0.33deg);
+    transform: skew(0.33deg);
   }
   35% {
     clip: rect(8px, 9999px, 90px, 0);
     -webkit-transform: skew(0.67deg);
-            transform: skew(0.67deg);
+    transform: skew(0.67deg);
   }
   40% {
     clip: rect(34px, 9999px, 31px, 0);
     -webkit-transform: skew(0.33deg);
-            transform: skew(0.33deg);
+    transform: skew(0.33deg);
   }
   45% {
     clip: rect(1px, 9999px, 25px, 0);
     -webkit-transform: skew(0.71deg);
-            transform: skew(0.71deg);
+    transform: skew(0.71deg);
   }
   50% {
     clip: rect(45px, 9999px, 40px, 0);
     -webkit-transform: skew(0.38deg);
-            transform: skew(0.38deg);
+    transform: skew(0.38deg);
   }
   55% {
     clip: rect(84px, 9999px, 96px, 0);
     -webkit-transform: skew(0.3deg);
-            transform: skew(0.3deg);
+    transform: skew(0.3deg);
   }
   60% {
     clip: rect(68px, 9999px, 59px, 0);
     -webkit-transform: skew(0.35deg);
-            transform: skew(0.35deg);
+    transform: skew(0.35deg);
   }
   65% {
     clip: rect(93px, 9999px, 48px, 0);
     -webkit-transform: skew(0.25deg);
-            transform: skew(0.25deg);
+    transform: skew(0.25deg);
   }
   70% {
     clip: rect(19px, 9999px, 40px, 0);
     -webkit-transform: skew(0.97deg);
-            transform: skew(0.97deg);
+    transform: skew(0.97deg);
   }
   75% {
     clip: rect(76px, 9999px, 56px, 0);
     -webkit-transform: skew(0.79deg);
-            transform: skew(0.79deg);
+    transform: skew(0.79deg);
   }
   80% {
     clip: rect(22px, 9999px, 82px, 0);
     -webkit-transform: skew(0.48deg);
-            transform: skew(0.48deg);
+    transform: skew(0.48deg);
   }
   85% {
     clip: rect(30px, 9999px, 63px, 0);
     -webkit-transform: skew(0.91deg);
-            transform: skew(0.91deg);
+    transform: skew(0.91deg);
   }
   90% {
     clip: rect(68px, 9999px, 44px, 0);
     -webkit-transform: skew(0.4deg);
-            transform: skew(0.4deg);
+    transform: skew(0.4deg);
   }
   95% {
     clip: rect(12px, 9999px, 36px, 0);
     -webkit-transform: skew(0.61deg);
-            transform: skew(0.61deg);
+    transform: skew(0.61deg);
   }
   100% {
     clip: rect(24px, 9999px, 5px, 0);
     -webkit-transform: skew(0.96deg);
-            transform: skew(0.96deg);
+    transform: skew(0.96deg);
   }
 }
 @keyframes glitch-anim2 {
   0% {
     clip: rect(97px, 9999px, 84px, 0);
     -webkit-transform: skew(0.55deg);
-            transform: skew(0.55deg);
+    transform: skew(0.55deg);
   }
   5% {
     clip: rect(82px, 9999px, 21px, 0);
     -webkit-transform: skew(0.04deg);
-            transform: skew(0.04deg);
+    transform: skew(0.04deg);
   }
   10% {
     clip: rect(51px, 9999px, 99px, 0);
     -webkit-transform: skew(0.93deg);
-            transform: skew(0.93deg);
+    transform: skew(0.93deg);
   }
   15% {
     clip: rect(42px, 9999px, 97px, 0);
     -webkit-transform: skew(0.03deg);
-            transform: skew(0.03deg);
+    transform: skew(0.03deg);
   }
   20% {
     clip: rect(27px, 9999px, 25px, 0);
     -webkit-transform: skew(0.86deg);
-            transform: skew(0.86deg);
+    transform: skew(0.86deg);
   }
   25% {
     clip: rect(69px, 9999px, 5px, 0);
     -webkit-transform: skew(0.95deg);
-            transform: skew(0.95deg);
+    transform: skew(0.95deg);
   }
   30% {
     clip: rect(38px, 9999px, 67px, 0);
     -webkit-transform: skew(0.33deg);
-            transform: skew(0.33deg);
+    transform: skew(0.33deg);
   }
   35% {
     clip: rect(8px, 9999px, 90px, 0);
     -webkit-transform: skew(0.67deg);
-            transform: skew(0.67deg);
+    transform: skew(0.67deg);
   }
   40% {
     clip: rect(34px, 9999px, 31px, 0);
     -webkit-transform: skew(0.33deg);
-            transform: skew(0.33deg);
+    transform: skew(0.33deg);
   }
   45% {
     clip: rect(1px, 9999px, 25px, 0);
     -webkit-transform: skew(0.71deg);
-            transform: skew(0.71deg);
+    transform: skew(0.71deg);
   }
   50% {
     clip: rect(45px, 9999px, 40px, 0);
     -webkit-transform: skew(0.38deg);
-            transform: skew(0.38deg);
+    transform: skew(0.38deg);
   }
   55% {
     clip: rect(84px, 9999px, 96px, 0);
     -webkit-transform: skew(0.3deg);
-            transform: skew(0.3deg);
+    transform: skew(0.3deg);
   }
   60% {
     clip: rect(68px, 9999px, 59px, 0);
     -webkit-transform: skew(0.35deg);
-            transform: skew(0.35deg);
+    transform: skew(0.35deg);
   }
   65% {
     clip: rect(93px, 9999px, 48px, 0);
     -webkit-transform: skew(0.25deg);
-            transform: skew(0.25deg);
+    transform: skew(0.25deg);
   }
   70% {
     clip: rect(19px, 9999px, 40px, 0);
     -webkit-transform: skew(0.97deg);
-            transform: skew(0.97deg);
+    transform: skew(0.97deg);
   }
   75% {
     clip: rect(76px, 9999px, 56px, 0);
     -webkit-transform: skew(0.79deg);
-            transform: skew(0.79deg);
+    transform: skew(0.79deg);
   }
   80% {
     clip: rect(22px, 9999px, 82px, 0);
     -webkit-transform: skew(0.48deg);
-            transform: skew(0.48deg);
+    transform: skew(0.48deg);
   }
   85% {
     clip: rect(30px, 9999px, 63px, 0);
     -webkit-transform: skew(0.91deg);
-            transform: skew(0.91deg);
+    transform: skew(0.91deg);
   }
   90% {
     clip: rect(68px, 9999px, 44px, 0);
     -webkit-transform: skew(0.4deg);
-            transform: skew(0.4deg);
+    transform: skew(0.4deg);
   }
   95% {
     clip: rect(12px, 9999px, 36px, 0);
     -webkit-transform: skew(0.61deg);
-            transform: skew(0.61deg);
+    transform: skew(0.61deg);
   }
   100% {
     clip: rect(24px, 9999px, 5px, 0);
     -webkit-transform: skew(0.96deg);
-            transform: skew(0.96deg);
+    transform: skew(0.96deg);
   }
 }
 @-webkit-keyframes glitch-skew {
   0% {
     -webkit-transform: skew(3deg);
-            transform: skew(3deg);
+    transform: skew(3deg);
   }
   10% {
     -webkit-transform: skew(2deg);
-            transform: skew(2deg);
+    transform: skew(2deg);
   }
   20% {
     -webkit-transform: skew(0deg);
-            transform: skew(0deg);
+    transform: skew(0deg);
   }
   30% {
     -webkit-transform: skew(0deg);
-            transform: skew(0deg);
+    transform: skew(0deg);
   }
   40% {
     -webkit-transform: skew(2deg);
-            transform: skew(2deg);
+    transform: skew(2deg);
   }
   50% {
     -webkit-transform: skew(-1deg);
-            transform: skew(-1deg);
+    transform: skew(-1deg);
   }
   60% {
     -webkit-transform: skew(-3deg);
-            transform: skew(-3deg);
+    transform: skew(-3deg);
   }
   70% {
     -webkit-transform: skew(-1deg);
-            transform: skew(-1deg);
+    transform: skew(-1deg);
   }
   80% {
     -webkit-transform: skew(-1deg);
-            transform: skew(-1deg);
+    transform: skew(-1deg);
   }
   90% {
     -webkit-transform: skew(4deg);
-            transform: skew(4deg);
+    transform: skew(4deg);
   }
   100% {
     -webkit-transform: skew(-3deg);
-            transform: skew(-3deg);
+    transform: skew(-3deg);
   }
 }
 @keyframes glitch-skew {
   0% {
     -webkit-transform: skew(3deg);
-            transform: skew(3deg);
+    transform: skew(3deg);
   }
   10% {
     -webkit-transform: skew(2deg);
-            transform: skew(2deg);
+    transform: skew(2deg);
   }
   20% {
     -webkit-transform: skew(0deg);
-            transform: skew(0deg);
+    transform: skew(0deg);
   }
   30% {
     -webkit-transform: skew(0deg);
-            transform: skew(0deg);
+    transform: skew(0deg);
   }
   40% {
     -webkit-transform: skew(2deg);
-            transform: skew(2deg);
+    transform: skew(2deg);
   }
   50% {
     -webkit-transform: skew(-1deg);
-            transform: skew(-1deg);
+    transform: skew(-1deg);
   }
   60% {
     -webkit-transform: skew(-3deg);
-            transform: skew(-3deg);
+    transform: skew(-3deg);
   }
   70% {
     -webkit-transform: skew(-1deg);
-            transform: skew(-1deg);
+    transform: skew(-1deg);
   }
   80% {
     -webkit-transform: skew(-1deg);
-            transform: skew(-1deg);
+    transform: skew(-1deg);
   }
   90% {
     -webkit-transform: skew(4deg);
-            transform: skew(4deg);
+    transform: skew(4deg);
   }
   100% {
     -webkit-transform: skew(-3deg);
-            transform: skew(-3deg);
+    transform: skew(-3deg);
   }
 }
 /***************************
@@ -4037,9 +4081,9 @@ images
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   -o-object-position: center;
-     object-position: center;
+  object-position: center;
 }
 .tria-image-frame.tria-horizontal {
   padding-bottom: 65%;
@@ -4056,7 +4100,7 @@ images
 .tria-image-frame .tria-zoom-btn {
   opacity: 0;
   -webkit-transform: translateY(15px);
-          transform: translateY(15px);
+  transform: translateY(15px);
   position: absolute;
   top: 30px;
   right: 30px;
@@ -4067,11 +4111,11 @@ images
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   background-color: rgba(255, 255, 255, 0.8);
   -webkit-transition: 0.4s cubic-bezier(0, 0, 0.3642, 1);
   transition: 0.4s cubic-bezier(0, 0, 0.3642, 1);
@@ -4086,7 +4130,7 @@ images
 .tria-image-frame:hover .tria-zoom-btn {
   opacity: 1;
   -webkit-transform: translateY(0);
-          transform: translateY(0);
+  transform: translateY(0);
   z-index: 2;
 }
 
@@ -4098,7 +4142,7 @@ page transitions
 .tria-frame {
   opacity: 1;
   -webkit-transform: scale(1);
-          transform: scale(1);
+  transform: scale(1);
   -webkit-transition: 0.6s;
   transition: 0.6s;
 }
@@ -4120,7 +4164,7 @@ page transitions
   transition: 0.6s;
   margin-top: 0;
   -webkit-transition-delay: 0.3s;
-          transition-delay: 0.3s;
+  transition-delay: 0.3s;
 }
 .tria-main-transition .tria-animation-frame {
   opacity: 1;
@@ -4128,7 +4172,7 @@ page transitions
   -webkit-transition: 0.6s;
   transition: 0.6s;
   -webkit-transition-delay: 0.3s;
-          transition-delay: 0.3s;
+  transition-delay: 0.3s;
 }
 .tria-main-transition .tria-lines-place {
   opacity: 1;
@@ -4136,20 +4180,20 @@ page transitions
   -webkit-transition: 0.6s;
   transition: 0.6s;
   -webkit-transition-delay: 0.3s;
-          transition-delay: 0.3s;
+  transition-delay: 0.3s;
 }
 
 html.is-animating .tria-frame {
   opacity: 0;
   -webkit-transition-delay: 0.5s;
-          transition-delay: 0.5s;
+  transition-delay: 0.5s;
   -webkit-transform: scale(0.9);
-          transform: scale(0.9);
+  transform: scale(0.9);
 }
 @media screen and (max-width: 1200px) {
   html.is-animating .tria-frame {
     -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
     opacity: 1;
   }
 }
@@ -4164,17 +4208,17 @@ html.is-animating .tria-main-transition .tria-animation-frame {
   opacity: 0;
   margin-top: -90px;
   -webkit-transition-delay: 0s;
-          transition-delay: 0s;
+  transition-delay: 0s;
 }
 html.is-animating .tria-main-transition .tria-lines-place {
   opacity: 0;
   margin-top: 90px;
   -webkit-transition-delay: 0s;
-          transition-delay: 0s;
+  transition-delay: 0s;
 }
 
 html.is-animating .tria-menu-frame {
   opacity: 0;
   -webkit-transition-delay: 0.3s;
-          transition-delay: 0.3s;
+  transition-delay: 0.3s;
 }

@@ -1,54 +1,125 @@
-/* tria brand — consistent indigo accent */
+.tria-logo-img {
+  height: 38px;
+  display: block;
+}
+
+/* tria brand — consistent accent */
 
 :root {
-  --accent: #4F46E5;
-  --accent-hover: #4338CA;
-  --accent-rgb: 79, 70, 229;
-  --accent-bg: rgba(79, 70, 229, 0.15);
+  --accent: #dc2626;
+  --accent-hover: #b91c1c;
+  --accent-rgb: 220, 38, 38;
+  --accent-bg: rgba(220, 38, 38, 0.15);
 }
 
 /* ── color ── */
-.tria-accent                                      { color: var(--accent) !important; }
-.tria-breadcrumbs li a:hover                      { color: var(--accent) !important; }
-.tria-breadcrumbs.tria-light li a:hover            { color: var(--accent) !important; }
-.tria-main-menu ul li.tria-active > a              { color: var(--accent) !important; }
-.tria-main-menu ul li.tria-active > a:hover        { color: var(--accent) !important; }
-.tria-team-card .tria-description .tria-secrc-text a:hover { color: var(--accent) !important; }
-.tria-social-icons li a:hover                     { color: var(--accent) !important; }
-.tria-social-icons.tria-dark li a:hover            { color: var(--accent) !important; }
-.tria-footer-menu ul li a:hover                   { color: var(--accent) !important; }
-.tria-footer-menu ul li.tria-active a              { color: var(--accent) !important; }
+.tria-accent {
+  color: var(--accent) !important;
+}
+.tria-breadcrumbs li a:hover {
+  color: var(--accent) !important;
+}
+.tria-breadcrumbs.tria-light li a:hover {
+  color: var(--accent) !important;
+}
+.tria-main-menu ul li.tria-active > a {
+  color: var(--accent) !important;
+}
+.tria-main-menu ul li.tria-active > a:hover {
+  color: var(--accent) !important;
+}
+.tria-team-card .tria-description .tria-secrc-text a:hover {
+  color: var(--accent) !important;
+}
+.tria-social-icons li a:hover {
+  color: var(--accent) !important;
+}
+.tria-social-icons.tria-dark li a:hover {
+  color: var(--accent) !important;
+}
+.tria-footer-menu ul li a:hover {
+  color: var(--accent) !important;
+}
+.tria-footer-menu ul li.tria-active a {
+  color: var(--accent) !important;
+}
 
 /* ── background-color ── */
-.tria-marker                                      { background-color: var(--accent) !important; }
-.tria-button                                      { background-color: var(--accent) !important; border-color: var(--accent) !important; }
-.tria-button.tria-icon-button-sm svg               { background-color: var(--accent) !important; }
-.tria-preloader .tria-reveal-box                   { background-color: var(--accent) !important; }
-.tria-progress-track .tria-progress                { background-color: var(--accent) !important; }
-.tria-main-menu ul li a.tria-active:before         { background-color: var(--accent) !important; }
-.tria-about-quote .tria-avatar:after               { background-color: var(--accent) !important; }
-.tria-service-card-sm:before                      { background-color: var(--accent) !important; }
-.tria-service-card-lg.tria-other-card:hover        { background-color: var(--accent) !important; }
-.tria-team-card:after                             { background-color: var(--accent) !important; }
-.tria-pagination-btn.tria-active                   { background-color: var(--accent) !important; }
-.tria-category-list li a.tria-active               { background-color: var(--accent) !important; }
+.tria-marker {
+  background-color: var(--accent) !important;
+}
+.tria-button {
+  background-color: var(--accent) !important;
+  border-color: var(--accent) !important;
+}
+.tria-button.tria-icon-button-sm svg {
+  background-color: var(--accent) !important;
+}
+.tria-preloader .tria-reveal-box {
+  background-color: var(--accent) !important;
+}
+.tria-progress-track .tria-progress {
+  background-color: var(--accent) !important;
+}
+.tria-main-menu ul li a.tria-active:before {
+  background-color: var(--accent) !important;
+}
+.tria-about-quote .tria-avatar:after {
+  background-color: var(--accent) !important;
+}
+.tria-about-quote .tria-avatar img.tria-avatar-logo {
+  object-position: center;
+  object-fit: contain;
+}
+.tria-service-card-sm:before {
+  background-color: var(--accent) !important;
+}
+.tria-service-card-lg.tria-other-card:hover {
+  background-color: var(--accent) !important;
+}
+.tria-team-card:after {
+  background-color: var(--accent) !important;
+}
+.tria-pagination-btn.tria-active {
+  background-color: var(--accent) !important;
+}
+.tria-category-list li a.tria-active {
+  background-color: var(--accent) !important;
+}
 
 /* ── fill ── */
-.tria-link.tria-accent svg path                    { fill: var(--accent) !important; }
-.tria-button svg path                             { fill: var(--accent) !important; }
-.tria-service-card-lg.tria-other-card:hover .tria-link svg path { fill: var(--accent) !important; }
-.tria-quote-icon path                             { fill: var(--accent) !important; }
-.tria-slider-nav .tria-slider-arrow svg path       { fill: var(--accent) !important; }
+.tria-link.tria-accent svg path {
+  fill: var(--accent) !important;
+}
+.tria-button svg path {
+  fill: var(--accent) !important;
+}
+.tria-service-card-lg.tria-other-card:hover .tria-link svg path {
+  fill: var(--accent) !important;
+}
+.tria-quote-icon path {
+  fill: var(--accent) !important;
+}
+.tria-slider-nav .tria-slider-arrow svg path {
+  fill: var(--accent) !important;
+}
 
 /* ── border / shadow ── */
-blockquote                                        { border-left-color: var(--accent) !important; }
-.tria-revi-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
+blockquote {
+  border-left-color: var(--accent) !important;
+}
+.tria-revi-pagination
+  .swiper-pagination-bullet.swiper-pagination-bullet-active {
   box-shadow: inset 0 0 0 4px var(--accent) !important;
 }
 
 /* ── gradient ── */
 .tria-portrait-frame .tria-nimbus {
-  background: radial-gradient(50% 50% at 50% 50%, var(--accent) 0%, rgba(79, 70, 229, 0) 100%) !important;
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    var(--accent) 0%,
+    rgba(var(--accent-rgb), 0) 100%
+  ) !important;
 }
 .tria-404::before {
   text-shadow: -2px 0 var(--accent) !important;
@@ -119,9 +190,9 @@ a:not(.tria-button):hover,
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.12);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   font-size: 18px;
-  color: rgba(255,255,255,0.5);
+  color: rgba(255, 255, 255, 0.5);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
 }
@@ -136,7 +207,7 @@ a:not(.tria-button):hover,
   letter-spacing: 0.5px;
   text-transform: uppercase;
   white-space: nowrap;
-  color: rgba(255,255,255,0.6);
+  color: rgba(255, 255, 255, 0.6);
   opacity: 0;
   pointer-events: none;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -144,7 +215,7 @@ a:not(.tria-button):hover,
 .tria-contact-btn:hover {
   border-color: var(--accent);
   color: var(--accent) !important;
-  background: rgba(79,70,229,0.08);
+  background: rgba(var(--accent-rgb), 0.08);
   transform: translateY(-2px);
 }
 .tria-contact-btn:hover::after {
@@ -164,14 +235,50 @@ a:not(.tria-button):hover,
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.15);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   font-size: 16px;
   transition: all 0.2s ease;
 }
 .tria-contact-icons a:hover {
   border-color: var(--accent);
   color: var(--accent) !important;
-  background: rgba(79,70,229,0.1);
+  background: rgba(var(--accent-rgb), 0.1);
+}
+
+/* ── Frame: above canvas, below preloader ── */
+@media screen and (min-width: 1201px) {
+  .tria-frame {
+    z-index: 4 !important;
+  }
+}
+
+/* ── Frame elements white only inside hero ── */
+@media screen and (min-width: 1201px) {
+  .tria-frame.hero-visible .tria-frame-top .tria-logo {
+    color: #fff !important;
+  }
+  .tria-frame.hero-visible .tria-menu-btn span,
+  .tria-frame.hero-visible .tria-menu-btn span:before,
+  .tria-frame.hero-visible .tria-menu-btn span:after {
+    background: #fff !important;
+  }
+  .tria-frame.hero-visible .tria-frame-bottom .tria-current-page {
+    color: #fff !important;
+  }
+  .tria-frame.hero-visible .tria-frame-bottom .tria-back-to-top a.tria-dark,
+  .tria-frame.hero-visible
+    .tria-frame-bottom
+    .tria-back-to-top
+    a.tria-dark
+    span {
+    color: #fff !important;
+  }
+  .tria-frame.hero-visible .tria-link.tria-dark svg {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+  }
+  .tria-frame.hero-visible .tria-link.tria-dark svg path {
+    fill: rgb(255, 255, 255) !important;
+  }
 }
 
 /* ── Dark bg fix (Safari iOS needs -webkit- prefix) ── */

@@ -1,4 +1,5 @@
 ---
+
 ---
 
 <!-- banner -->
@@ -11,10 +12,18 @@
 
     <div class="container">
       <div class="tria-banner-content tria-up">
-        <h1 class="tria-muted tria-mb-60">Building <span class="tria-thin">Software</span><br> That <span class="tria-thin">Matters</span></h1>
+        <h1 class="tria-muted tria-mb-60">
+          Building <span class="tria-thin">Software</span><br /> That <span
+            class="tria-thin">Matters</span
+          >
+        </h1>
         <div class="row">
           <div class="col-md-7 col-lg-5">
-            <p class="tria-light-soft tria-mb-60">We are a software enterprise crafting powerful digital solutions. From cloud infrastructure to AI-driven platforms — we build technology that drives business forward.</p>
+            <p class="tria-light-soft tria-mb-60">
+              We are a software enterprise crafting powerful digital solutions.
+              From cloud infrastructure to AI-driven platforms — we build
+              technology that drives business forward.
+            </p>
           </div>
         </div>
 
@@ -23,19 +32,37 @@
         </a>
 
         <div class="tria-circle-text">
-          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 300 300" enable-background="new 0 0 300 300" xml:space="preserve" class="tria-ct-svg">
+          <svg
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            x="0px"
+            y="0px"
+            viewBox="0 0 300 300"
+            enable-background="new 0 0 300 300"
+            xml:space="preserve"
+            class="tria-ct-svg"
+          >
             <defs>
-              <path id="circlePath" d="M 150, 150 m -60, 0 a 60,60 0 0,1 120,0 a 60,60 0 0,1 -120,0 " />
+              <path
+                id="circlePath"
+                d="M 150, 150 m -60, 0 a 60,60 0 0,1 120,0 a 60,60 0 0,1 -120,0 "
+              ></path>
             </defs>
-            <circle cx="150" cy="100" r="75" fill="none" />
+            <circle cx="150" cy="100" r="75" fill="none"></circle>
             <g>
-              <use xlink:href="#circlePath" fill="none" />
+              <use xlink:href="#circlePath" fill="none"></use>
               <text style="letter-spacing: 6.5px">
-                <textPath xlink:href="#circlePath">Scroll down - Scroll down - </textPath>
+                <textPath xlink:href="#circlePath"
+                  >Scroll down - Scroll down -
+                </textPath>
               </text>
             </g>
           </svg>
-          <a href="#about" class="tria-button tria-arrow-place tria-icon-button tria-arrow-down"></a>
+          <a
+            href="#about"
+            class="tria-button tria-arrow-place tria-icon-button tria-arrow-down"
+          ></a>
         </div>
       </div>
     </div>
@@ -43,20 +70,52 @@
 </section>
 <!-- banner end -->
 
+<script is:inline src="/tria-bg-gradient.js"></script>
+
 <style>
   .tria-gradient-overlay {
     position: absolute;
     inset: -10%;
     z-index: -1;
-    background: url('https://colir.space/Templates/7.png') center / cover no-repeat;
+    background: url("https://colir.space/Templates/7.png") center / cover
+      no-repeat;
     opacity: 0.5;
     mix-blend-mode: screen;
     pointer-events: none;
     will-change: transform, filter;
   }
 
+  .tria-gradient {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .tria-gradient canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
   .tria-banner-content {
     position: relative;
     z-index: 1;
+  }
+
+  /* Hero buttons & scroll-down in cream accent */
+  .tria-banner .tria-button {
+    background-color: #f5e6d3 !important;
+    border-color: #f5e6d3 !important;
+  }
+  .tria-banner .tria-button svg {
+    background-color: rgba(0, 0, 0, 0.1) !important;
+  }
+  .tria-banner .tria-button svg path {
+    fill: #1a1a1a !important;
+  }
+  .tria-banner .tria-circle-text .tria-ct-svg text {
+    fill: #f5e6d3 !important;
   }
 </style>
