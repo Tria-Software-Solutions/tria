@@ -66,12 +66,8 @@ html { scroll-behavior: smooth; }
 .tria-main-menu ul li a.tria-active:before {
   background-color: var(--accent) !important;
 }
-.tria-about-quote .tria-avatar:after {
-  background-color: var(--accent) !important;
-}
 .tria-about-quote .tria-avatar img.tria-avatar-logo {
   object-position: center;
-  object-fit: contain;
 }
 .tria-service-card-sm:before {
   background-color: var(--accent) !important;
@@ -104,6 +100,75 @@ html { scroll-behavior: smooth; }
 }
 .tria-slider-nav .tria-slider-arrow svg path {
   fill: var(--accent) !important;
+}
+
+/* ── cloned Font Awesome icons ── */
+.tria-arrow-place > [class*="fa-"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 16px;
+  -webkit-transition: 0.4s cubic-bezier(0, 0, 0.3642, 1);
+  transition: 0.4s cubic-bezier(0, 0, 0.3642, 1);
+}
+.tria-button.tria-arrow-place > [class*="fa-"] {
+  margin-left: 30px;
+  width: 40px;
+  height: 40px;
+  background-color: rgb(0, 0, 0);
+  color: var(--accent);
+}
+.tria-button.tria-icon-button.tria-arrow-place > [class*="fa-"] {
+  margin-left: 0;
+}
+.tria-button.tria-icon-button-sm.tria-arrow-place > [class*="fa-"] {
+  margin-left: 0;
+  background-color: rgb(255, 152, 0);
+  color: rgb(0, 0, 0);
+}
+.tria-subscribe-form .tria-button.tria-icon-button-sm.tria-arrow-place > [class*="fa-"] {
+  background-color: var(--accent) !important;
+  color: #000 !important;
+}
+.tria-button.tria-arrow-place:hover > [class*="fa-"] {
+  -webkit-transform: scale(1.15);
+  transform: scale(1.15);
+}
+.tria-link.tria-arrow-place > [class*="fa-"] {
+  margin-left: 15px;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: rgb(255, 255, 255);
+}
+.tria-link.tria-dark.tria-arrow-place > [class*="fa-"] {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: rgb(0, 0, 0);
+}
+.tria-link.tria-accent.tria-arrow-place > [class*="fa-"] {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--accent);
+}
+.tria-link.tria-arrow-place:hover > [class*="fa-"] {
+  -webkit-transform: scale(1.15);
+  transform: scale(1.15);
+}
+.tria-slider-arrow.tria-arrow-place > [class*="fa-"] {
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  background: none;
+  color: rgb(255, 152, 0);
+  font-size: 16px;
+}
+.tria-soft .tria-slider-arrow.tria-arrow-place > [class*="fa-"] {
+  color: rgb(0, 0, 0);
+}
+.tria-banner .tria-button.tria-arrow-place > [class*="fa-"] {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+  color: #1a1a1a !important;
 }
 
 /* ── border / shadow ── */

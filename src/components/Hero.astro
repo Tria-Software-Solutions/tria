@@ -61,8 +61,8 @@
           </svg>
           <a
             href="#about"
-            class="tria-button tria-arrow-place tria-icon-button tria-arrow-down"
-          ></a>
+            class="tria-button tria-icon-button tria-arrow-down"
+          ><i class="fas fa-arrow-down"></i></a>
         </div>
       </div>
     </div>
@@ -108,11 +108,18 @@
     background-color: #f5e6d3 !important;
     border-color: #f5e6d3 !important;
   }
-  .tria-banner .tria-button svg {
+  .tria-banner .tria-button i {
     background-color: rgba(0, 0, 0, 0.1) !important;
+    color: #1a1a1a !important;
   }
-  .tria-banner .tria-button svg path {
-    fill: #1a1a1a !important;
+  .tria-banner .tria-button.tria-arrow-down i {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 18px;
   }
   .tria-banner .tria-circle-text .tria-ct-svg text {
     fill: #f5e6d3 !important;
