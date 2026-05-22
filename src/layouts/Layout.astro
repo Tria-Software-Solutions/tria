@@ -2,6 +2,8 @@
 import Header from "../components/Header.astro";
 import "../styles/global.css";
 import "../styles/tria-theme.css";
+import en from "../i18n/en.json";
+import es from "../i18n/es.json";
 
 interface Props {
   title?: string;
@@ -12,6 +14,8 @@ const {
   title = "Tria — Digital Solutions",
   description = "Software enterprise crafting digital solutions from Costa Rica.",
 } = Astro.props;
+
+const triaTranslations = JSON.stringify({ en, es });
 ---
 
 <!doctype html>
@@ -88,7 +92,12 @@ const {
           </div>
         </div>
         <div class="tria-frame-bottom">
-          <div class="tria-current-page"></div>
+          <div class="tria-frame-bottom-left">
+            <div class="tria-current-page"></div>
+            <span class="tria-lang-sep">|</span>
+            <span class="tria-lang-btn" data-lang="en">EN</span>
+            <span class="tria-lang-btn" data-lang="es">ES</span>
+          </div>
           <div class="tria-back-to-top">
             <a href="#top" class="tria-link tria-dark tria-arrow-place">
               <span>Back to top</span>
@@ -270,6 +279,28 @@ const {
             }
           }
 
+          // Language switcher (bottom frame)
+          var langBtns = document.querySelectorAll(
+            ".tria-frame-bottom-left .tria-lang-btn",
+          );
+          for (var b = 0; b < langBtns.length; b++) {
+            var r = langBtns[b].getBoundingClientRect();
+            langBtns[b].classList.toggle(
+              "tria-on-dark",
+              getThemeAt(r.top + r.height / 2) === "dark",
+            );
+          }
+          var langSep = document.querySelector(
+            ".tria-frame-bottom-left .tria-lang-sep",
+          );
+          if (langSep) {
+            var rs = langSep.getBoundingClientRect();
+            langSep.classList.toggle(
+              "tria-on-dark",
+              getThemeAt(rs.top + rs.height / 2) === "dark",
+            );
+          }
+
           // Page name (rotated -90°): gradient right→left = visual bottom→top
           updateTextGradient(
             document.querySelector(
@@ -323,6 +354,8 @@ const {
         });
       })();
     </script>
+    <script id="tria-i18n-data" type="application/json">{triaTranslations}</script>
+    <script is:inline src="/js/tria-i18n.js"></script>
     <script is:inline src="/vendor/js/jquery.min.js"></script>
     <script is:inline src="/vendor/js/swup.min.js"></script>
     <script is:inline src="/vendor/js/swiper.min.js"></script>

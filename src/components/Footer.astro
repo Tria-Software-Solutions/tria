@@ -11,9 +11,9 @@ const year = new Date().getFullYear();
           <div class="tria-muted tria-logo tria-up tria-mb-30">
             <img src="/logo.svg" alt="tria" class="tria-logo-img" /> tria.
           </div>
-          <p class="tria-light-soft tria-up tria-mb-30">Stay in the loop:</p>
+          <p class="tria-light-soft tria-up tria-mb-30" data-i18n="footer.stayInLoop">Stay in the loop:</p>
           <form class="tria-subscribe-form tria-up">
-            <input type="text" placeholder="Enter our email" />
+            <input type="text" placeholder="Enter our email" data-i18n-placeholder="footer.emailPlaceholder" />
             <button
               type="submit"
               class="tria-button tria-icon-button-sm tria-arrow-place"></button>
@@ -24,20 +24,20 @@ const year = new Date().getFullYear();
             <div class="col-md-6 col-lg-7">
               <nav class="tria-footer-menu tria-mb-60">
                 <ul>
-                  <li class="tria-up tria-active"><a href="/">Home</a></li>
-                  <li class="tria-up"><a href="/services">Services</a></li>
-                  <li class="tria-up"><a href="/contact">Contact</a></li>
+                  <li class="tria-up tria-active"><a href="/" data-i18n="nav.home">Home</a></li>
+                  <li class="tria-up"><a href="/services" data-i18n="nav.services">Services</a></li>
+                  <li class="tria-up"><a href="/contact" data-i18n="nav.contact">Contact</a></li>
                 </ul>
               </nav>
             </div>
             <div class="col-md-6 col-lg-5">
               <ul class="tria-menu-list tria-up tria-mb-60">
-                <li><a href="#." class="tria-light-soft">Privacy Policy</a></li>
+                <li><a href="#." class="tria-light-soft" data-i18n="nav.privacyPolicy">Privacy Policy</a></li>
                 <li>
-                  <a href="#." class="tria-light-soft">Terms and conditions</a>
+                  <a href="#." class="tria-light-soft" data-i18n="nav.terms">Terms and conditions</a>
                 </li>
-                <li><a href="#." class="tria-light-soft">Cookie Policy</a></li>
-                <li><a href="#." class="tria-light-soft">Careers</a></li>
+                <li><a href="#." class="tria-light-soft" data-i18n="nav.cookiePolicy">Cookie Policy</a></li>
+                <li><a href="#." class="tria-light-soft" data-i18n="nav.careers">Careers</a></li>
               </ul>
             </div>
           </div>
@@ -47,17 +47,18 @@ const year = new Date().getFullYear();
         <div class="col-md-7 col-lg-6">
           <div class="row justify-content-between">
             <div class="col-md-6 col-lg-5 tria-mb-60">
-              <h6 class="tria-muted tria-up tria-mb-30">Location</h6>
+              <h6 class="tria-muted tria-up tria-mb-30" data-i18n="nav.location">Location</h6>
               <address
                 class="tria-light-soft tria-up"
                 style="font-style:normal"
+                data-i18n-html="nav.address"
               >
                 Atenas, Alajuela<br />
                 Costa Rica 20501
               </address>
             </div>
             <div class="col-md-6 col-lg-5 tria-mb-60">
-              <h6 class="tria-muted tria-up tria-mb-20">Contact</h6>
+              <h6 class="tria-muted tria-up tria-mb-20" data-i18n="nav.contactInfo">Contact</h6>
               <div class="tria-premium-contact tria-up">
                 <a
                   href="mailto:hola@triacr.com"
@@ -134,7 +135,7 @@ const year = new Date().getFullYear();
                 </li>
               </ul>
             </div>
-            <p class="tria-light-soft tria-up">
+            <p class="tria-light-soft tria-up" data-i18n="footer.allRights">
               &copy; {year} tria. All rights reserved.
             </p>
           </div>

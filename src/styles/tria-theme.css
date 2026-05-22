@@ -1227,7 +1227,7 @@ frame
     display: none;
   }
 }
-.tria-frame .tria-frame-bottom .tria-current-page {
+.tria-frame .tria-frame-bottom .tria-frame-bottom-left {
   pointer-events: none;
   font-weight: 500;
   text-transform: uppercase;
@@ -1237,6 +1237,48 @@ frame
   color: rgb(0, 0, 0);
   -webkit-transform: rotate(-90deg) translateX(138px) translateY(-138px);
   transform: rotate(-90deg) translateX(138px) translateY(-138px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 0;
+}
+.tria-frame .tria-frame-bottom .tria-frame-bottom-left .tria-current-page {
+  pointer-events: none;
+}
+.tria-frame .tria-frame-bottom .tria-frame-bottom-left .tria-lang-sep {
+  margin: 0 10px;
+  color: rgb(0, 0, 0);
+  -webkit-transition: color 0.4s cubic-bezier(0, 0, 0.3642, 1);
+  transition: color 0.4s cubic-bezier(0, 0, 0.3642, 1);
+}
+.tria-frame .tria-frame-bottom .tria-frame-bottom-left .tria-lang-sep.tria-on-dark {
+  color: #fff !important;
+}
+.tria-frame .tria-frame-bottom .tria-frame-bottom-left .tria-lang-btn {
+  pointer-events: all;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 2px;
+  font-size: 12px;
+  color: rgb(0, 0, 0);
+  -webkit-transition: color 0.4s cubic-bezier(0, 0, 0.3642, 1);
+  transition: color 0.4s cubic-bezier(0, 0, 0.3642, 1);
+  -webkit-user-select: none;
+  user-select: none;
+  margin: 0 3px;
+}
+.tria-frame .tria-frame-bottom .tria-frame-bottom-left .tria-lang-btn.tria-on-dark {
+  color: #fff !important;
+}
+.tria-frame .tria-frame-bottom .tria-frame-bottom-left .tria-lang-btn.is-active {
+  text-decoration: underline;
+}
+.tria-frame .tria-frame-bottom .tria-frame-bottom-left .tria-lang-btn.is-active.tria-on-dark {
+  text-decoration-color: #fff;
 }
 .tria-frame .tria-frame-bottom .tria-back-to-top {
   width: 300px;
@@ -2193,8 +2235,8 @@ about
   align-items: center;
 }
 .tria-about-quote .tria-avatar {
-  width: 90px;
-  height: 90px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   position: relative;
   display: -webkit-box;
@@ -2216,8 +2258,8 @@ about
   object-fit: contain;
 }
 .tria-about-quote .tria-quote {
-  padding-left: 30px;
-  width: calc(100% - 90px);
+  padding-left: 20px;
+  width: calc(100% - 50px);
 }
 @media screen and (max-width: 992px) {
   .tria-about-quote .tria-avatar {
@@ -2233,6 +2275,21 @@ about
 
 .tria-about-photo {
   position: relative;
+}
+.tria-about-photo .tria-about-blob {
+  position: absolute;
+  width: 130%;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  pointer-events: none;
+}
+.tria-about-photo .tria-img-frame {
+  position: relative;
+  z-index: 1;
 }
 .tria-about-photo .tria-lines-place {
   position: absolute;
