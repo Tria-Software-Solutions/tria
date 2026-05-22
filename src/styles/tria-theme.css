@@ -1206,9 +1206,7 @@ frame
   .tria-frame .tria-frame-top .tria-logo {
     color: rgb(255, 255, 255);
   }
-  .tria-frame .tria-frame-top .tria-menu-btn span,
-  .tria-frame .tria-frame-top .tria-menu-btn span:after,
-  .tria-frame .tria-frame-top .tria-menu-btn span:before {
+  .tria-frame .tria-frame-top .tria-menu-btn span {
     background: rgb(255, 255, 255);
   }
 }
@@ -1290,10 +1288,14 @@ menu button
     transform: scale(0.85);
   }
 }
-.tria-menu-btn span,
-.tria-menu-btn span:after,
-.tria-menu-btn span:before {
-  content: "";
+.tria-menu-btn {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 6.5px;
+}
+.tria-menu-btn span {
   display: block;
   width: 28px;
   height: 2.5px;
@@ -1302,34 +1304,31 @@ menu button
   backface-visibility: hidden;
   -webkit-transition: inherit;
   transition: inherit;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
 }
-.tria-menu-btn span {
-  position: relative;
-}
-.tria-menu-btn span:after,
-.tria-menu-btn span:before {
-  position: absolute;
-}
-.tria-menu-btn span:before {
-  top: -9px;
-}
-.tria-menu-btn span:after {
+.tria-menu-btn span:last-child {
   width: 18px;
-  top: 9px;
 }
-.tria-menu-btn.tria-active span {
-  -webkit-transform: rotate(45deg);
-  transform: rotate(45deg);
+.tria-menu-btn span:nth-child(1) {
+  -webkit-transform-origin: center 10.25px;
+  transform-origin: center 10.25px;
 }
-.tria-menu-btn.tria-active span:before {
-  -webkit-transform: translate(0px, 9px) rotate(-90deg);
-  transform: translate(0px, 9px) rotate(-90deg);
+.tria-menu-btn span:nth-child(3) {
+  -webkit-transform-origin: center -7.75px;
+  transform-origin: center -7.75px;
 }
-.tria-menu-btn.tria-active span:after {
+.tria-menu-btn.tria-active span:nth-child(1) {
+  -webkit-transform: rotate(45deg) translateY(9px);
+  transform: rotate(45deg) translateY(9px);
+}
+.tria-menu-btn.tria-active span:nth-child(2) {
   opacity: 0;
-  width: 24px;
-  -webkit-transform: translate(0px, -9px) rotate(-90deg);
-  transform: translate(0px, -9px) rotate(-90deg);
+}
+.tria-menu-btn.tria-active span:nth-child(3) {
+  width: 28px;
+  -webkit-transform: rotate(-45deg) translateY(-9px);
+  transform: rotate(-45deg) translateY(-9px);
 }
 
 /* -------------------------------------------
@@ -1366,9 +1365,7 @@ menu
 .tria-menu-frame .tria-frame-top .tria-logo {
   color: rgb(255, 255, 255);
 }
-.tria-menu-frame .tria-frame-top .tria-menu-btn span,
-.tria-menu-frame .tria-frame-top .tria-menu-btn span:after,
-.tria-menu-frame .tria-frame-top .tria-menu-btn span:before {
+.tria-menu-frame .tria-frame-top .tria-menu-btn span {
   background-color: rgb(255, 255, 255);
 }
 .tria-menu-frame .tria-main-menu {

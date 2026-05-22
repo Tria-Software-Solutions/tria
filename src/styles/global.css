@@ -319,32 +319,25 @@ a:not(.tria-button):hover,
   }
 }
 
-/* ── Frame elements white only inside hero ── */
+/* ── Smooth transitions for frame color switching ── */
+.tria-menu-btn span {
+  transition: background 0.4s cubic-bezier(0, 0, 0.3642, 1),
+              transform 0.4s cubic-bezier(0, 0, 0.3642, 1),
+              opacity 0.4s cubic-bezier(0, 0, 0.3642, 1),
+              width 0.4s cubic-bezier(0, 0, 0.3642, 1);
+}
+.tria-link.tria-dark svg path {
+  transition: fill 0.4s cubic-bezier(0, 0, 0.3642, 1);
+}
+
+/* ── Frame elements color per corner ── */
 @media screen and (min-width: 1201px) {
-  .tria-frame.hero-visible .tria-frame-top .tria-logo {
-    color: #fff !important;
-  }
-  .tria-frame.hero-visible .tria-menu-btn span,
-  .tria-frame.hero-visible .tria-menu-btn span:before,
-  .tria-frame.hero-visible .tria-menu-btn span:after {
+  .tria-menu-btn span.tria-on-dark {
     background: #fff !important;
   }
-  .tria-frame.hero-visible .tria-frame-bottom .tria-current-page {
-    color: #fff !important;
-  }
-  .tria-frame.hero-visible .tria-frame-bottom .tria-back-to-top a.tria-dark,
-  .tria-frame.hero-visible
-    .tria-frame-bottom
-    .tria-back-to-top
-    a.tria-dark
-    span {
-    color: #fff !important;
-  }
-  .tria-frame.hero-visible .tria-link.tria-dark svg {
+  .tria-back-to-top .tria-link .fa-arrow-right.tria-on-dark {
     background-color: rgba(255, 255, 255, 0.1) !important;
-  }
-  .tria-frame.hero-visible .tria-link.tria-dark svg path {
-    fill: rgb(255, 255, 255) !important;
+    color: rgb(255, 255, 255) !important;
   }
 }
 

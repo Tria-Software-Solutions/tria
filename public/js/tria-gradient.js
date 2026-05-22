@@ -237,10 +237,11 @@
   }
 
   var gl, container, canvas, dpr;
-  var prog, posLoc, posBuf, noiseTex;
+  var prog, posLoc, posBuf, noiseTex, xTex, yTex;
   var scrollTicking = false;
   var animPending = false;
   var time = 0;
+  var animId = null;
 
   function compileShader(src, type) {
     var s = gl.createShader(type);
@@ -272,7 +273,7 @@
       }),
     );
 
-    var xTex = gl.createTexture();
+    if (!xTex) xTex = gl.createTexture();
     gl.bindTexture(gl.TEXTURE_2D, xTex);
     gl.texImage2D(
       gl.TEXTURE_2D,
@@ -289,7 +290,7 @@
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
 
-    var yTex = gl.createTexture();
+    if (!yTex) yTex = gl.createTexture();
     gl.bindTexture(gl.TEXTURE_2D, yTex);
     gl.texImage2D(
       gl.TEXTURE_2D,
@@ -367,13 +368,27 @@
     canvas.width = w * dpr;
     canvas.height = h * dpr;
     gl.viewport(0, 0, canvas.width, canvas.height);
+    xTex = null;
+    yTex = null;
     render();
   }
 
   function animate() {
     time += 0.005;
     render();
-    requestAnimationFrame(animate);
+    animId = requestAnimationFrame(animate);
+  }
+
+  function startAnim() {
+    if (animId) return;
+    animId = requestAnimationFrame(animate);
+  }
+
+  function stopAnim() {
+    if (animId) {
+      cancelAnimationFrame(animId);
+      animId = null;
+    }
   }
 
   function updateFromScroll() {
@@ -507,7 +522,18 @@
 
     resize();
     updateFromScroll();
-    animate();
+    startAnim();
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          startAnim();
+        } else {
+          stopAnim();
+        }
+      });
+    }, { threshold: 0 });
+    observer.observe(container);
   }
 
   window.initTriaGradient = initTriaGradient;

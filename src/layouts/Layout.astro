@@ -83,6 +83,8 @@ const {
           >
           <div class="tria-menu-btn">
             <span></span>
+            <span></span>
+            <span></span>
           </div>
         </div>
         <div class="tria-frame-bottom">
@@ -160,19 +162,163 @@ const {
     <script is:inline>
       (function () {
         var frame = document.querySelector(".tria-frame");
-        var hero = document.querySelector(".tria-banner");
-        function check() {
-          if (!frame || !hero) return;
-          frame.classList.toggle(
-            "hero-visible",
-            hero.getBoundingClientRect().bottom > 0,
-          );
+
+        function getThemeAt(clientY) {
+          var sections = document.querySelectorAll("[data-section-theme]");
+          for (var i = 0; i < sections.length; i++) {
+            var rect = sections[i].getBoundingClientRect();
+            if (clientY >= rect.top && clientY < rect.bottom) {
+              return sections[i].getAttribute("data-section-theme");
+            }
+          }
+          return null;
         }
-        window.addEventListener("scroll", check, { passive: true });
-        check();
+
+        function updateTextGradient(el, horizontal) {
+          if (!el) return;
+          var rect = el.getBoundingClientRect();
+          var top = rect.top;
+          var bottom = rect.bottom;
+          var height = bottom - top;
+          if (height <= 0) return;
+
+          var sections = document.querySelectorAll(
+            "[data-section-theme]",
+          );
+          var boundaryY;
+          var aboveTheme;
+          var belowTheme;
+
+          for (var i = 0; i < sections.length - 1; i++) {
+            var r = sections[i].getBoundingClientRect();
+            var b = r.bottom;
+            if (b > top && b < bottom) {
+              var t1 = sections[i].getAttribute("data-section-theme");
+              var t2 = sections[i + 1].getAttribute(
+                "data-section-theme",
+              );
+              if (t1 !== t2) {
+                boundaryY = b;
+                aboveTheme = t1;
+                belowTheme = t2;
+                break;
+              }
+            }
+          }
+
+          var dir = horizontal ? "to bottom" : "to left";
+
+          if (boundaryY !== undefined) {
+            var pct =
+              ((boundaryY - top) / height) * 100;
+            var c1 = aboveTheme === "dark" ? "#fff" : "#000";
+            var c2 = belowTheme === "dark" ? "#fff" : "#000";
+            var spread = 20;
+            var startPct = Math.max(0, pct - spread);
+            var endPct = Math.min(100, pct + spread);
+
+            el.style.backgroundImage =
+              "linear-gradient(" +
+              dir +
+              ", " +
+              c1 +
+              " 0%, " +
+              c1 +
+              " " +
+              startPct +
+              "%, " +
+              c2 +
+              " " +
+              endPct +
+              "%, " +
+              c2 +
+              " 100%)";
+            el.style.webkitBackgroundClip = "text";
+            el.style.backgroundClip = "text";
+            el.style.color = "transparent";
+          } else {
+            var mid = getThemeAt((top + bottom) / 2);
+            var col = mid === "dark" ? "#fff" : "#000";
+            el.style.backgroundImage = "";
+            el.style.webkitBackgroundClip = "";
+            el.style.backgroundClip = "";
+            el.style.color = col;
+          }
+        }
+
+        function updateFrameTheme() {
+          if (!frame) return;
+
+          // Logo (horizontal text): per-pixel gradient top→bottom
+          updateTextGradient(
+            document.querySelector(".tria-frame .tria-logo"),
+            true,
+          );
+
+          // Hamburger: per-line (3 real spans)
+          var menuBtn = document.querySelector(
+            ".tria-frame .tria-menu-btn",
+          );
+          if (menuBtn) {
+            var lines = menuBtn.querySelectorAll("span");
+            for (var i = 0; i < lines.length; i++) {
+              var r = lines[i].getBoundingClientRect();
+              lines[i].classList.toggle(
+                "tria-on-dark",
+                getThemeAt(r.top + r.height / 2) === "dark",
+              );
+            }
+          }
+
+          // Page name (rotated -90°): gradient right→left = visual bottom→top
+          updateTextGradient(
+            document.querySelector(
+              ".tria-frame .tria-frame-bottom .tria-current-page a",
+            ),
+            false,
+          );
+
+          // Back-to-top text (rotated -90°): gradient right→left = visual bottom→top
+          updateTextGradient(
+            document.querySelector(
+              ".tria-frame .tria-frame-bottom .tria-back-to-top .tria-link > span",
+            ),
+            false,
+          );
+
+          // Back-to-top icon (whole-element)
+          var bttIcon = document.querySelector(
+            ".tria-frame .tria-frame-bottom .tria-back-to-top .tria-link .fa-arrow-right",
+          );
+          if (bttIcon) {
+            var r = bttIcon.getBoundingClientRect();
+            bttIcon.classList.toggle(
+              "tria-on-dark",
+              getThemeAt(r.top + r.height / 2) === "dark",
+            );
+          }
+        }
+
+        function initFrameTheme() {
+          updateFrameTheme();
+          // Re-run after tria-main.js clones page name and arrow
+          if (document.readyState === "complete") {
+            updateFrameTheme();
+          } else {
+            window.addEventListener("load", function () {
+              updateFrameTheme();
+            });
+          }
+        }
+
+        window.addEventListener("scroll", updateFrameTheme, {
+          passive: true,
+        });
+        window.addEventListener("resize", updateFrameTheme);
+        initFrameTheme();
+
         document.addEventListener("swup:contentReplaced", function () {
-          hero = document.querySelector(".tria-banner");
-          check();
+          updateFrameTheme();
           if (window.initTriaGradient) window.initTriaGradient();
         });
       })();
@@ -185,28 +331,6 @@ const {
 
     <script is:inline src="/vendor/js/ScrollTrigger.min.js"></script>
     <script is:inline src="/vendor/js/ScrollTo.min.js"></script>
-    <script is:inline>
-      if (window.innerWidth >= 1201) {
-        var spans = document.querySelectorAll(".tria-logo span");
-        if (spans.length) {
-          gsap.fromTo(
-            spans,
-            { color: "#ffffff" },
-            {
-              color: "#000000",
-              stagger: 0.08,
-              ease: "none",
-              scrollTrigger: {
-                trigger: ".tria-banner",
-                start: "bottom bottom",
-                end: "bottom top",
-                scrub: true,
-              },
-            },
-          );
-        }
-      }
-    </script>
     <script is:inline src="/js/tria-main.js"></script>
 
     <script is:inline src="/js/tria-gradient.js"></script>
