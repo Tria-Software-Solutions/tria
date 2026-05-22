@@ -28,10 +28,10 @@ const triaTranslations = JSON.stringify({ en, es });
     <title>{title}</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="alternate icon" href="/favicon.ico" sizes="any" />
-    <link rel="stylesheet" href="/vendor/css/bootstrap-grid.css" />
-    <link rel="stylesheet" href="/vendor/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="/vendor/css/swiper.min.css" />
-    <link rel="stylesheet" href="/vendor/css/fancybox.min.css" />
+    <link rel="stylesheet" href="/assets/css/vendor/bootstrap-grid.css" />
+    <link rel="stylesheet" href="/assets/css/vendor/font-awesome.min.css" />
+    <link rel="stylesheet" href="/assets/css/vendor/swiper.min.css" />
+    <link rel="stylesheet" href="/assets/css/vendor/fancybox.min.css" />
 
   </head>
   <body>
@@ -95,9 +95,10 @@ const triaTranslations = JSON.stringify({ en, es });
           <div class="tria-frame-bottom-left">
             <div class="tria-current-page"></div>
             <span class="tria-lang-sep">|</span>
-            <span class="tria-lang-btn" data-lang="en">EN</span>
-            <span class="tria-lang-btn" data-lang="es">ES</span>
+            <span class="tria-lang-btn" data-lang="en" onclick="window.triaI18n.switchTo('en')">EN</span>
+            <span class="tria-lang-btn" data-lang="es" onclick="window.triaI18n.switchTo('es')">ES</span>
           </div>
+          <script>(function(){var l=localStorage.getItem("tria-lang")||"en";document.querySelectorAll(".tria-lang-btn[data-lang]").forEach(function(b){b.classList.toggle("is-active",b.getAttribute("data-lang")===l)})})();</script>
           <div class="tria-back-to-top">
             <a href="#top" class="tria-link tria-dark tria-arrow-place">
               <span>Back to top</span>
@@ -354,18 +355,16 @@ const triaTranslations = JSON.stringify({ en, es });
         });
       })();
     </script>
-    <script id="tria-i18n-data" type="application/json">{triaTranslations}</script>
-    <script is:inline src="/js/tria-i18n.js"></script>
-    <script is:inline src="/vendor/js/jquery.min.js"></script>
-    <script is:inline src="/vendor/js/swup.min.js"></script>
-    <script is:inline src="/vendor/js/swiper.min.js"></script>
-    <script is:inline src="/vendor/js/fancybox.min.js"></script>
-    <script is:inline src="/vendor/js/gsap.min.js"></script>
-
-    <script is:inline src="/vendor/js/ScrollTrigger.min.js"></script>
-    <script is:inline src="/vendor/js/ScrollTo.min.js"></script>
-    <script is:inline src="/js/tria-main.js"></script>
-
-    <script is:inline src="/js/tria-gradient.js"></script>
+    <script define:vars={{ triaTranslations }}>window.__triaData = triaTranslations;</script>
+    <script is:inline src="/assets/js/tria-i18n.js"></script>
+    <script is:inline src="/assets/js/vendor/jquery.min.js"></script>
+    <script is:inline src="/assets/js/vendor/swup.min.js"></script>
+    <script is:inline src="/assets/js/vendor/swiper.min.js"></script>
+    <script is:inline src="/assets/js/vendor/fancybox.min.js"></script>
+    <script is:inline src="/assets/js/vendor/gsap.min.js"></script>
+    <script is:inline src="/assets/js/vendor/ScrollTrigger.min.js"></script>
+    <script is:inline src="/assets/js/vendor/ScrollTo.min.js"></script>
+    <script is:inline src="/assets/js/tria-main.js"></script>
+    <script is:inline src="/assets/js/tria-gradient.js"></script>
   </body>
 </html>

@@ -1261,24 +1261,25 @@ frame
   pointer-events: all;
   cursor: pointer;
   text-transform: uppercase;
-  font-weight: 500;
   letter-spacing: 2px;
   font-size: 12px;
-  color: rgb(0, 0, 0);
+  color: rgba(0, 0, 0, 0.35);
   -webkit-transition: color 0.4s cubic-bezier(0, 0, 0.3642, 1);
   transition: color 0.4s cubic-bezier(0, 0, 0.3642, 1);
   -webkit-user-select: none;
   user-select: none;
   margin: 0 3px;
+  font-weight: 400;
 }
 .tria-frame .tria-frame-bottom .tria-frame-bottom-left .tria-lang-btn.tria-on-dark {
-  color: #fff !important;
+  color: rgba(255, 255, 255, 0.35) !important;
 }
 .tria-frame .tria-frame-bottom .tria-frame-bottom-left .tria-lang-btn.is-active {
-  text-decoration: underline;
+  color: rgb(0, 0, 0);
+  font-weight: 600;
 }
 .tria-frame .tria-frame-bottom .tria-frame-bottom-left .tria-lang-btn.is-active.tria-on-dark {
-  text-decoration-color: #fff;
+  color: #fff !important;
 }
 .tria-frame .tria-frame-bottom .tria-back-to-top {
   width: 300px;
@@ -2755,25 +2756,25 @@ revievs
   }
 }
 .tria-revi-pagination .swiper-pagination-bullet .tria-custom-dot.tria-slide-1 {
-  background-image: url(../img/voices/1.svg);
+  background-image: url(../assets/img/voices/1.svg);
 }
 .tria-revi-pagination .swiper-pagination-bullet .tria-custom-dot.tria-slide-2 {
-  background-image: url(../img/voices/2.svg);
+  background-image: url(../assets/img/voices/2.svg);
 }
 .tria-revi-pagination .swiper-pagination-bullet .tria-custom-dot.tria-slide-3 {
-  background-image: url(../img/voices/3.svg);
+  background-image: url(../assets/img/voices/3.svg);
 }
 .tria-revi-pagination .swiper-pagination-bullet .tria-custom-dot.tria-slide-4 {
-  background-image: url(../img/voices/4.svg);
+  background-image: url(../assets/img/voices/4.svg);
 }
 .tria-revi-pagination .swiper-pagination-bullet .tria-custom-dot.tria-slide-5 {
-  background-image: url(../img/voices/5.svg);
+  background-image: url(../assets/img/voices/5.svg);
 }
 .tria-revi-pagination .swiper-pagination-bullet .tria-custom-dot.tria-slide-6 {
-  background-image: url(../img/voices/6.svg);
+  background-image: url(../assets/img/voices/6.svg);
 }
 .tria-revi-pagination .swiper-pagination-bullet .tria-custom-dot.tria-slide-7 {
-  background-image: url(../img/voices/7.svg);
+  background-image: url(../assets/img/voices/7.svg);
 }
 .tria-revi-pagination
   .swiper-pagination-bullet.swiper-pagination-bullet-active {

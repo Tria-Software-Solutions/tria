@@ -8,10 +8,10 @@
 
     init: function (data) {
       if (!data) {
-        var el = document.getElementById("tria-i18n-data");
-        if (el) {
-          try { data = JSON.parse(el.textContent); }
-          catch(e) { return; }
+        data = window.__triaData;
+        if (typeof data === "string") {
+          try { data = JSON.parse(data); }
+          catch(e) { data = null; }
         }
       }
       if (!data) return;
@@ -27,6 +27,14 @@
     },
 
     switchTo: function (lang) {
+      if (!this.translations) {
+        var d = window.__triaData;
+        if (typeof d === "string") {
+          try { d = JSON.parse(d); }
+          catch(e) { d = null; }
+        }
+        this.translations = d;
+      }
       if (!this.translations || !this.translations[lang]) return;
       this.currentLang = lang;
       localStorage.setItem("tria-lang", lang);
