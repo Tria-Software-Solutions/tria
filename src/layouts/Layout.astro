@@ -15,7 +15,8 @@ const {
   description = "Software enterprise crafting digital solutions from Costa Rica.",
 } = Astro.props;
 
-const triaTranslations = JSON.stringify({ en, es });
+const triaData = JSON.stringify({ en, es });
+
 ---
 
 <!doctype html>
@@ -356,7 +357,7 @@ const triaTranslations = JSON.stringify({ en, es });
         });
       })();
     </script>
-    <script define:vars={{ triaTranslations }}>window.__triaData = triaTranslations;</script>
+    <script is:inline>window.__triaData = {triaData};</script>
     <script is:inline src="/assets/js/tria-i18n.js"></script>
     <script is:inline src="/assets/js/vendor/jquery.min.js"></script>
     <script is:inline src="/assets/js/vendor/swup.min.js"></script>
