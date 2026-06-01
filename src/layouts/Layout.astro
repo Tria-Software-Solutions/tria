@@ -352,6 +352,7 @@ const triaTranslations = JSON.stringify({ en, es });
         document.addEventListener("swup:contentReplaced", function () {
           updateFrameTheme();
           if (window.initTriaGradient) window.initTriaGradient();
+          if (window.triaI18n) window.triaI18n.apply();
         });
       })();
     </script>
