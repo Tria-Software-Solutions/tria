@@ -1,69 +1,69 @@
 ---
-
+import Grainient from "../components/react/Grainient";
 ---
 
 <!-- banner -->
-<section class="tria-banner tria-dark-bg" data-section-theme="dark">
-  <div class="mi-invert-fix">
-    <div class="tria-gradient-overlay"></div>
-    <div class="tria-animation-frame"></div>
-
-    <div class="tria-gradient"></div>
-
-    <div class="container">
-      <div class="tria-banner-content tria-up">
-        <h1 class="tria-muted tria-mb-60" data-i18n-html="hero.title">
-          Building <span class="tria-thin">Software</span><br /> That <span
-            class="tria-thin">Matters</span
-          >
-        </h1>
-        <div class="row">
-          <div class="col-md-7 col-lg-5">
-            <p class="tria-light-soft tria-mb-60" data-i18n="hero.description">
-              We are a software enterprise crafting powerful digital solutions.
-              From cloud infrastructure to AI-driven platforms — we build
-              technology that drives business forward.
-            </p>
-          </div>
+<section class="tria-banner" data-section-theme="dark">
+  <div class="tria-hero-bg">
+    <Grainient
+      client:only="react"
+      color1="#411010"
+      color2="#3a3647"
+      color3="#56051d"
+      timeSpeed={1.6}
+      colorBalance={0}
+      warpStrength={1}
+      warpFrequency={5}
+      warpSpeed={2}
+      warpAmplitude={50}
+      blendAngle={0}
+      blendSoftness={0.05}
+      rotationAmount={500}
+      noiseScale={2}
+      grainAmount={0.1}
+      grainScale={2}
+      grainAnimated={false}
+      contrast={1.5}
+      gamma={1}
+      saturation={1}
+      centerX={0}
+      centerY={0}
+      zoom={0.9}
+    />
+  </div>
+  <div class="container">
+    <div class="tria-banner-content tria-up">
+      <h1 class="tria-muted tria-mb-60" data-i18n-html="hero.title">
+        Building <span class="tria-thin">Software</span><br /> That <span class="tria-thin">Matters</span>
+      </h1>
+      <div class="row">
+        <div class="col-md-7 col-lg-5">
+          <p class="tria-light-soft tria-mb-60" data-i18n="hero.description">
+            We are a software enterprise crafting powerful digital solutions.
+            From cloud infrastructure to AI-driven platforms — we build
+            technology that drives business forward.
+          </p>
         </div>
+      </div>
 
-        <a href="/services" class="tria-button tria-arrow-place tria-btn-space">
-          <span data-i18n="hero.ourServices">Our services</span>
-        </a>
+      <a href="/services" class="tria-button tria-arrow-place tria-btn-space">
+        <span data-i18n="hero.ourServices">Our services</span>
+      </a>
 
-        <div class="tria-circle-text">
-          <svg
-            version="1.1"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-            x="0px"
-            y="0px"
-            viewBox="0 0 300 300"
-            enable-background="new 0 0 300 300"
-            xml:space="preserve"
-            class="tria-ct-svg"
-          >
-            <defs>
-              <path
-                id="circlePath"
-                d="M 150, 150 m -60, 0 a 60,60 0 0,1 120,0 a 60,60 0 0,1 -120,0 "
-              ></path>
-            </defs>
-            <circle cx="150" cy="100" r="75" fill="none"></circle>
-            <g>
-              <use xlink:href="#circlePath" fill="none"></use>
-                  <text style="letter-spacing: 6.5px">
-                    <textPath xlink:href="#circlePath" data-i18n="hero.scrollDown"
-                      >Scroll down - Scroll down -
-                    </textPath>
-                  </text>
-            </g>
-          </svg>
-          <a
-            href="#about"
-            class="tria-button tria-icon-button tria-arrow-down"
-          ><i class="fas fa-arrow-down"></i></a>
-        </div>
+      <div class="tria-circle-text">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 300 300" enable-background="new 0 0 300 300" xml:space="preserve" class="tria-ct-svg">
+          <defs>
+            <path id="circlePath" d="M 150, 150 m -60, 0 a 60,60 0 0,1 120,0 a 60,60 0 0,1 -120,0 "></path>
+          </defs>
+          <circle cx="150" cy="100" r="75" fill="none"></circle>
+          <g>
+            <use xlink:href="#circlePath" fill="none"></use>
+            <text style="letter-spacing: 6.5px">
+              <textPath xlink:href="#circlePath" data-i18n="hero.scrollDown">Scroll down - Scroll down -</textPath>
+            </text>
+          </g>
+        </svg>
+        <a href="#about" class="tria-button tria-icon-button tria-arrow-down"><i class="fas fa-arrow-down"></i></a>
       </div>
     </div>
   </div>
@@ -73,47 +73,21 @@
 
 <style>
   .tria-banner {
-    background-color: #1a1a1a;
-  }
-  .tria-gradient-overlay {
-    position: absolute;
-    inset: -10%;
-    z-index: -1;
-    background: url("https://colir.space/Templates/7.png") center / cover
-      no-repeat;
-    opacity: 0.5;
-    mix-blend-mode: screen;
-    pointer-events: none;
-    will-change: transform, filter;
-  }
-
-  .tria-gradient {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
+    position: relative;
     overflow: hidden;
   }
-
-  .tria-gradient canvas {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-
   .tria-banner-content {
     position: relative;
     z-index: 1;
   }
-
-  /* Hero buttons & scroll-down in cream accent */
   .tria-banner .tria-button {
-    background-color: #f5e6d3 !important;
-    border-color: #f5e6d3 !important;
+    background-color: #e6e0eb !important;
+    border-color: #e6e0eb !important;
+    color: #0b0d17 !important;
   }
   .tria-banner .tria-button i {
     background-color: rgba(0, 0, 0, 0.1) !important;
-    color: #1a1a1a !important;
+    color: #0b0d17 !important;
   }
   .tria-banner .tria-button.tria-arrow-down i {
     display: inline-flex;
@@ -125,6 +99,21 @@
     font-size: 18px;
   }
   .tria-banner .tria-circle-text .tria-ct-svg text {
-    fill: #f5e6d3 !important;
+    fill: #e6e0eb !important;
+  }
+  .tria-hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .tria-banner .container {
+    position: relative;
+    z-index: 1;
   }
 </style>

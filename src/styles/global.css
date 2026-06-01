@@ -8,10 +8,15 @@ html { scroll-behavior: smooth; }
 /* tria brand — consistent accent */
 
 :root {
-  --accent: #dc2626;
-  --accent-hover: #b91c1c;
-  --accent-rgb: 220, 38, 38;
-  --accent-bg: rgba(220, 38, 38, 0.15);
+  --accent: #56051d;
+  --accent-hover: #3d0412;
+  --accent-rgb: 86, 5, 29;
+  --accent-bg: rgba(86, 5, 29, 0.15);
+  --accent-secondary: #3a3647;
+  --text-primary: #0f111a;
+  --text-muted: #6b7280;
+  --bg-light: #faf7f2;
+  --bg-dark: #0b0d17;
 }
 
 /* ── color ── */
@@ -116,8 +121,8 @@ html { scroll-behavior: smooth; }
   margin-left: 30px;
   width: 40px;
   height: 40px;
-  background-color: rgb(0, 0, 0);
-  color: var(--accent);
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
 }
 .tria-button.tria-icon-button.tria-arrow-place > [class*="fa-"] {
   margin-left: 0;
@@ -125,11 +130,11 @@ html { scroll-behavior: smooth; }
 .tria-button.tria-icon-button-sm.tria-arrow-place > [class*="fa-"] {
   margin-left: 0;
   background-color: var(--accent);
-  color: #000;
+  color: #fff;
 }
 .tria-subscribe-form .tria-button.tria-icon-button-sm.tria-arrow-place > [class*="fa-"] {
   background-color: var(--accent) !important;
-  color: #000 !important;
+  color: #fff !important;
 }
 .tria-button.tria-arrow-place:hover > [class*="fa-"] {
   -webkit-transform: scale(1.15);
@@ -160,7 +165,7 @@ html { scroll-behavior: smooth; }
   margin: 0;
   padding: 0;
   background: none;
-  color: rgb(255, 152, 0);
+  color: var(--accent);
   font-size: 16px;
 }
 .tria-soft .tria-slider-arrow.tria-arrow-place > [class*="fa-"] {

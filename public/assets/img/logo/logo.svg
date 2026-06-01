@@ -1,8 +1,8 @@
 <svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="-31 -24 160 160">
   <defs>
     <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#DC2626"/>
-      <stop offset="100%" stop-color="#991B1B"/>
+      <stop offset="0%" stop-color="#56051d"/>
+      <stop offset="100%" stop-color="#3d0412"/>
     </linearGradient>
   </defs>
   <g id="Layer_1-2" data-name="Layer 1">
