@@ -1525,6 +1525,31 @@ menu
   color: rgb(0, 0, 0);
 }
 
+.tria-menu-lang {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 24px;
+}
+.tria-menu-lang .tria-lang-btn {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  -webkit-transition: 0.2s cubic-bezier(0, 0, 0.3642, 1);
+  transition: 0.2s cubic-bezier(0, 0, 0.3642, 1);
+}
+.tria-menu-lang .tria-lang-btn:hover {
+  -webkit-transform: translateX(5px);
+  transform: translateX(5px);
+  color: rgb(255, 255, 255);
+}
+.tria-menu-lang .tria-lang-btn.is-active {
+  color: rgb(255, 255, 255);
+}
+
 .tria-main-menu {
   height: 100vh;
   display: -webkit-box;
@@ -3063,7 +3088,7 @@ footer
   display: block;
   font-weight: 500;
   font-size: 28px;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(0, 0, 0, 0.85);
   -webkit-transition: 0.4s cubic-bezier(0, 0, 0.3642, 1);
   transition: 0.4s cubic-bezier(0, 0, 0.3642, 1);
 }
@@ -3098,7 +3123,7 @@ footer
 .tria-subscribe-form input {
   height: 100%;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(0, 0, 0, 0.05);
   color: rgb(0, 0, 0);
   font-size: 12px;
   font-weight: 500;

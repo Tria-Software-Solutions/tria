@@ -1,69 +1,432 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Footer from "../components/Footer.astro";
 ---
 
-<Layout title="Contact — tria">
-  <section style="min-height:100vh;padding:160px 0 100px;">
-    <div class="container">
-      <p class="section-label" data-i18n="contact.getInTouch">Get in touch</p>
-      <h1
-        style="font-family:var(--font-display);font-size:clamp(3rem,7vw,7rem);font-weight:300;"
-        data-i18n-html="contact.letsBuild"
-      >
-        Let's build<br /><em
-          style="font-style:italic;color:var(--color-accent);">together</em
-        >
-      </h1>
-      <div
-        style="margin-top:60px;display:grid;grid-template-columns:1fr 1fr;gap:80px;max-width:900px;"
-      >
-        <div>
-          <p
-            style="font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--color-muted);margin-bottom:8px;"
-            data-i18n="nav.location"
-          >
-            Location
-          </p>
-          <p style="font-size:.9rem;line-height:1.8;color:#555;" data-i18n-html="nav.address">
-            Atenas, Alajuela<br />Costa Rica 20501
-          </p>
+<Layout title="Contact — tria" description="Start a project with tria. Get in touch with our team to discuss your software needs.">
+
+  <!-- hero -->
+  <section class="tria-contact-hero" data-section-theme="dark">
+    <div class="tria-ch-bg">
+      <div class="tria-ch-orb tria-ch-orb--1"></div>
+      <div class="tria-ch-orb tria-ch-orb--2"></div>
+    </div>
+    <div class="container tria-ch-inner">
+      <div class="row">
+        <div class="col-lg-8">
+          <span class="tria-suptitle tria-light-soft tria-up" style="display:block;margin-bottom:24px;">Get in touch</span>
+          <h1 class="tria-up" style="font-size:clamp(3rem,7vw,6.5rem);font-weight:300;color:#fff;line-height:1.05;letter-spacing:-0.02em;" data-i18n-html="contact.letsBuild">
+            Let's build<br /><em style="font-style:italic;color:rgba(255,255,255,0.35);">together</em>
+          </h1>
         </div>
-        <div>
-          <p
-            style="font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--color-muted);margin-bottom:8px;"
-            data-i18n="nav.contactInfo"
-          >
-            Contact
-          </p>
-          <p style="font-size:.9rem;line-height:1.8;color:#555;">
-            <a
-              href="mailto:hola@triacr.com"
-              style="color:#555;text-decoration:none;">hola@triacr.com</a
-            ><br />
-            <a
-              href="mailto:contacto@triacr.com"
-              style="color:#555;text-decoration:none;">contacto@triacr.com</a
-            ><br />
-            <a
-              href="https://wa.me/50662164040"
-              target="_blank"
-              rel="noopener noreferrer"
-              style="color:#555;text-decoration:none;">+506 6216 4040</a
-            >
-          </p>
-        </div>
-      </div>
-      <div>
-        <p
-          style="font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--color-muted);margin-bottom:8px;"
-          data-i18n="contact.emailLabel"
-        >
-          Email
-        </p>
-        <p style="font-size:.9rem;line-height:1.8;color:#555;">
-          hola@triacr.com
-        </p>
       </div>
     </div>
   </section>
+
+  <!-- contact body -->
+  <section data-section-theme="light">
+    <div class="container tria-p-120-120">
+      <div class="row tria-contact-layout">
+
+        <!-- LEFT: form -->
+        <div class="col-lg-7">
+          <form class="tria-contact-form tria-up" id="triaContactForm">
+            <div class="tria-cf-row">
+              <div class="tria-cf-group">
+                <label class="tria-cf-label" for="cf-name">Full name</label>
+                <input class="tria-cf-input" type="text" id="cf-name" name="name" placeholder="Jane Smith" required />
+              </div>
+              <div class="tria-cf-group">
+                <label class="tria-cf-label" for="cf-email">Email address</label>
+                <input class="tria-cf-input" type="email" id="cf-email" name="email" placeholder="jane@company.com" required />
+              </div>
+            </div>
+
+            <div class="tria-cf-row">
+              <div class="tria-cf-group">
+                <label class="tria-cf-label" for="cf-company">Company</label>
+                <input class="tria-cf-input" type="text" id="cf-company" name="company" placeholder="Acme Corp" />
+              </div>
+              <div class="tria-cf-group">
+                <label class="tria-cf-label" for="cf-budget">Estimated budget</label>
+                <select class="tria-cf-input tria-cf-select" id="cf-budget" name="budget">
+                  <option value="" disabled selected>Select a range</option>
+                  <option value="under-10k">Under $10,000</option>
+                  <option value="10k-50k">$10,000 – $50,000</option>
+                  <option value="50k-150k">$50,000 – $150,000</option>
+                  <option value="150k-plus">$150,000+</option>
+                  <option value="tbd">To be determined</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="tria-cf-group">
+              <label class="tria-cf-label">Services needed</label>
+              <div class="tria-cf-chips">
+                <label class="tria-cf-chip">
+                  <input type="checkbox" name="services" value="software" />
+                  <span>Software Development</span>
+                </label>
+                <label class="tria-cf-chip">
+                  <input type="checkbox" name="services" value="cloud" />
+                  <span>Cloud & DevOps</span>
+                </label>
+                <label class="tria-cf-chip">
+                  <input type="checkbox" name="services" value="ai" />
+                  <span>AI & Machine Learning</span>
+                </label>
+                <label class="tria-cf-chip">
+                  <input type="checkbox" name="services" value="security" />
+                  <span>Cybersecurity</span>
+                </label>
+                <label class="tria-cf-chip">
+                  <input type="checkbox" name="services" value="advisory" />
+                  <span>Advisory</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="tria-cf-group">
+              <label class="tria-cf-label" for="cf-message">Tell us about your project</label>
+              <textarea class="tria-cf-input tria-cf-textarea" id="cf-message" name="message" placeholder="Describe your challenge, goals, timeline, or anything relevant..." rows="6" required></textarea>
+            </div>
+
+            <div class="tria-cf-submit">
+              <button type="submit" class="tria-button tria-arrow-place" id="cf-submit-btn">
+                <span>Send message</span>
+              </button>
+              <p class="tria-cf-note">We respond to all inquiries within 24 hours.</p>
+            </div>
+
+            <div class="tria-cf-success" id="triaFormSuccess" style="display:none;">
+              <div class="tria-cfs-icon"><i class="fas fa-check"></i></div>
+              <h4>Message sent!</h4>
+              <p>Thanks for reaching out. We'll be in touch shortly.</p>
+            </div>
+          </form>
+        </div>
+
+        <!-- RIGHT: info -->
+        <div class="col-lg-4 offset-lg-1 tria-up">
+          <div class="tria-contact-info">
+
+            <div class="tria-ci-block">
+              <h6 class="tria-ci-label">Location</h6>
+              <p class="tria-ci-value">Atenas, Alajuela<br />Costa Rica 20501</p>
+            </div>
+
+            <div class="tria-ci-block">
+              <h6 class="tria-ci-label">Email</h6>
+              <p class="tria-ci-value">
+                <a href="mailto:hola@triacr.com" class="tria-ci-link">hola@triacr.com</a>
+              </p>
+            </div>
+
+            <div class="tria-ci-block">
+              <h6 class="tria-ci-label">WhatsApp</h6>
+              <p class="tria-ci-value">
+                <a href="https://wa.me/50662164040" target="_blank" rel="noopener noreferrer" class="tria-ci-link">+506 6216 4040</a>
+              </p>
+            </div>
+
+            <div class="tria-ci-block">
+              <h6 class="tria-ci-label">Response time</h6>
+              <p class="tria-ci-value">Within 24 hours</p>
+              <div class="tria-ci-availability">
+                <span class="tria-ci-dot"></span>
+                <span>Available for new projects</span>
+              </div>
+            </div>
+
+            <div class="tria-ci-divider"></div>
+
+            <div class="tria-ci-block">
+              <h6 class="tria-ci-label">Follow us</h6>
+              <ul class="tria-ci-social">
+                <li><a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i> LinkedIn</a></li>
+                <li><a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a></li>
+                <li><a href="#" target="_blank" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width:13px;height:13px;fill:currentColor;vertical-align:middle;"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg> X / Twitter</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <Footer />
 </Layout>
+
+<style>
+  /* ── Hero ── */
+  .tria-contact-hero {
+    position: relative;
+    overflow: hidden;
+    background: #0b0d17;
+  }
+  .tria-ch-bg {
+    position: absolute;
+    inset: 0;
+  }
+  .tria-ch-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.2;
+  }
+  .tria-ch-orb--1 {
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, #56051d, transparent 70%);
+    top: -100px; left: -100px;
+  }
+  .tria-ch-orb--2 {
+    width: 350px; height: 350px;
+    background: radial-gradient(circle, #3a3647, transparent 70%);
+    bottom: -80px; right: 10%;
+  }
+  .tria-ch-inner {
+    padding-top: 160px;
+    padding-bottom: 100px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── Form ── */
+  .tria-contact-layout {
+    gap: 60px 0;
+  }
+  .tria-contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  .tria-cf-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .tria-cf-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .tria-cf-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.4);
+    font-weight: 500;
+  }
+  .tria-cf-input {
+    border: 1px solid rgba(0,0,0,0.12);
+    border-radius: 8px;
+    padding: 16px 20px;
+    font-size: 0.88rem;
+    color: #0b0d17;
+    background: #fff;
+    font-family: inherit;
+    transition: border-color 0.25s, box-shadow 0.25s;
+    outline: none;
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .tria-cf-input::placeholder { color: rgba(0,0,0,0.25); }
+  .tria-cf-input:focus {
+    border-color: var(--accent, #56051d);
+    box-shadow: 0 0 0 3px rgba(86,5,29,0.06);
+  }
+  .tria-cf-select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23999' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px;
+  }
+  .tria-cf-textarea {
+    resize: vertical;
+    min-height: 150px;
+    line-height: 1.65;
+  }
+
+  /* Chips */
+  .tria-cf-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .tria-cf-chip {
+    cursor: pointer;
+  }
+  .tria-cf-chip input {
+    display: none;
+  }
+  .tria-cf-chip span {
+    display: block;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    padding: 10px 18px;
+    border: 1px solid rgba(0,0,0,0.12);
+    border-radius: 30px;
+    color: rgba(0,0,0,0.45);
+    transition: all 0.2s ease;
+  }
+  .tria-cf-chip input:checked + span {
+    background: #0b0d17;
+    border-color: #0b0d17;
+    color: #fff;
+  }
+  .tria-cf-chip:hover span {
+    border-color: rgba(0,0,0,0.3);
+    color: rgba(0,0,0,0.7);
+  }
+
+  /* Submit */
+  .tria-cf-submit {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+  .tria-cf-note {
+    font-size: 0.72rem;
+    color: rgba(0,0,0,0.35);
+    margin: 0;
+  }
+
+  /* Success */
+  .tria-cf-success {
+    text-align: center;
+    padding: 60px 40px;
+    border: 1px solid rgba(86,5,29,0.15);
+    border-radius: 12px;
+    background: rgba(86,5,29,0.02);
+  }
+  .tria-cfs-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--accent, #56051d);
+    color: #fff;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+  }
+  .tria-cf-success h4 { margin-bottom: 10px; }
+  .tria-cf-success p { color: #888; font-size: 0.9rem; }
+
+  /* ── Info Panel ── */
+  .tria-contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding-top: 8px;
+  }
+  .tria-ci-block {
+    padding: 28px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+  .tria-ci-block:first-child { padding-top: 0; }
+  .tria-ci-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.3);
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  .tria-ci-value {
+    font-size: 0.9rem;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+  }
+  .tria-ci-link {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .tria-ci-link:hover { color: var(--accent, #56051d) !important; }
+  .tria-ci-availability {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .tria-ci-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 0 3px rgba(34,197,94,0.2);
+    animation: tria-pulse-dot 2s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+  @keyframes tria-pulse-dot {
+    0%, 100% { box-shadow: 0 0 0 3px rgba(34,197,94,0.2); }
+    50% { box-shadow: 0 0 0 6px rgba(34,197,94,0.08); }
+  }
+  .tria-ci-availability span:last-child {
+    font-size: 0.72rem;
+    color: #22c55e;
+    letter-spacing: 0.05em;
+  }
+  .tria-ci-divider {
+    height: 1px;
+    background: rgba(0,0,0,0.08);
+    margin: 0;
+  }
+  .tria-ci-social {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .tria-ci-social li a {
+    font-size: 0.82rem;
+    color: #555;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: color 0.2s;
+  }
+  .tria-ci-social li a:hover { color: var(--accent, #56051d) !important; }
+
+  @media (max-width: 767px) {
+    .tria-cf-row { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    function initForm() {
+      var form = document.getElementById('triaContactForm');
+      var success = document.getElementById('triaFormSuccess');
+      if (!form) return;
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var btn = document.getElementById('cf-submit-btn');
+        if (btn) {
+          btn.disabled = true;
+          btn.querySelector('span').textContent = 'Sending…';
+        }
+        setTimeout(function () {
+          form.style.display = 'none';
+          if (success) success.style.display = 'block';
+        }, 1200);
+      });
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initForm);
+    } else {
+      initForm();
+    }
+    document.addEventListener('swup:contentReplaced', initForm);
+  })();
+</script>

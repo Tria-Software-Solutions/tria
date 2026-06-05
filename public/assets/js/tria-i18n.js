@@ -17,7 +17,7 @@
       if (!data) return;
       this.translations = data;
       this.currentLang =
-        localStorage.getItem("tria-lang") ||
+        getStoredLang() ||
         (navigator.language &&
         navigator.language.slice(0, 2) === "es"
           ? "es"
@@ -37,7 +37,7 @@
       }
       if (!this.translations || !this.translations[lang]) return;
       this.currentLang = lang;
-      localStorage.setItem("tria-lang", lang);
+      setStoredLang(lang);
       this.apply();
       var btns = document.querySelectorAll(".tria-lang-btn[data-lang]");
       for (var i = 0; i < btns.length; i++) {
@@ -103,20 +103,30 @@
         });
 
       document.documentElement.lang = this.currentLang;
+      this._syncButtons();
     },
 
     _bindButtons: function () {
       var self = this;
+      if (!this._buttonsBound) {
+        document.addEventListener("click", function (event) {
+          var btn = event.target.closest(
+            ".tria-lang-btn[data-lang]",
+          );
+          if (!btn) return;
+          event.preventDefault();
+          self.switchTo(btn.getAttribute("data-lang"));
+        });
+        this._buttonsBound = true;
+      }
+      this._syncButtons();
+    },
+
+    _syncButtons: function () {
       var btns = document.querySelectorAll(
         ".tria-lang-btn[data-lang]",
       );
       for (var i = 0; i < btns.length; i++) {
-        (function (btn) {
-          btn.addEventListener("click", function () {
-            var lang = btn.getAttribute("data-lang");
-            self.switchTo(lang);
-          });
-        })(btns[i]);
         btns[i].classList.toggle(
           "is-active",
           btns[i].getAttribute("data-lang") ===
@@ -128,6 +138,7 @@
 
   function resolveKey(obj, key) {
     if (!obj || !key) return null;
+    if (typeof obj[key] === "string") return obj[key];
     var parts = key.split(".");
     var val = obj;
     for (var i = 0; i < parts.length; i++) {
@@ -136,6 +147,20 @@
       val = val[parts[i]];
     }
     return typeof val === "string" ? val : null;
+  }
+
+  function getStoredLang() {
+    try {
+      return window.localStorage && window.localStorage.getItem("tria-lang");
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function setStoredLang(lang) {
+    try {
+      if (window.localStorage) window.localStorage.setItem("tria-lang", lang);
+    } catch (e) {}
   }
 
   window.triaI18n.init();

@@ -1,0 +1,142 @@
+---
+---
+
+<!-- cta -->
+<section class="tria-cta-section" data-section-theme="light">
+  <div class="container tria-p-120-120">
+      <div class="row justify-content-center tria-cta-inner">
+        <div class="col-lg-10 tria-center">
+          <span class="tria-suptitle tria-light-soft tria-up tria-mb-30" style="display:block;text-align:center;" data-i18n="cta.suptitle">Ready to build?</span>
+          <h2 class="tria-cta-heading tria-up tria-mb-60" data-i18n-html="cta.heading">
+            Let's turn your <span class="tria-thin">idea</span> into<br />
+            a product that <span class="tria-thin tria-cta-accent">scales.</span>
+          </h2>
+          <div class="tria-cta-actions tria-up">
+            <a href="/contact" class="tria-button tria-arrow-place tria-cta-btn-primary">
+              <span data-i18n="cta.startProject">Start a Project</span>
+            </a>
+            <a href="/work" class="tria-cta-link tria-link tria-arrow-place">
+              <span data-i18n="cta.seeWork">See our work</span>
+              <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- bottom info row -->
+      <div class="row tria-cta-meta tria-up">
+        <div class="col-md-4 tria-cta-meta-item">
+          <span class="tria-cta-meta-label" data-i18n="cta.responseLabel">Response time</span>
+          <span class="tria-cta-meta-value" data-i18n="cta.responseValue">Within 24 hours</span>
+        </div>
+        <div class="col-md-4 tria-cta-meta-item tria-center">
+          <span class="tria-cta-meta-label" data-i18n="cta.locationLabel">Based in</span>
+          <span class="tria-cta-meta-value" data-i18n="cta.locationValue">Atenas, Costa Rica</span>
+        </div>
+        <div class="col-md-4 tria-cta-meta-item" style="text-align:right;">
+          <span class="tria-cta-meta-label" data-i18n="cta.availabilityLabel">Availability</span>
+          <span class="tria-cta-meta-value" data-i18n="cta.availabilityValue">Open for new work</span>
+        </div>
+      </div>
+  </div>
+</section>
+<!-- cta end -->
+
+<style>
+  .tria-cta-section {
+    position: relative;
+    overflow: hidden;
+    background: #ffffff;
+  }
+
+  .tria-cta-inner {
+    position: relative;
+    z-index: 1;
+  }
+
+  .tria-cta-heading {
+    font-size: clamp(2.5rem, 5.5vw, 5rem);
+    font-weight: 300;
+    color: #0b0d17;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .tria-cta-accent {
+    color: rgba(0, 0, 0, 0.3);
+    font-style: italic;
+  }
+
+  .tria-cta-actions {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .tria-cta-btn-primary {
+    background-color: #0b0d17 !important;
+    border-color: #0b0d17 !important;
+    color: #fff !important;
+    font-size: 0.8rem;
+  }
+
+  .tria-cta-btn-primary i {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    color: #fff !important;
+  }
+
+  .tria-cta-btn-primary:hover {
+    background-color: var(--accent) !important;
+    border-color: var(--accent) !important;
+    filter: none !important;
+  }
+
+  .tria-cta-link {
+    color: rgba(0, 0, 0, 0.4);
+    font-size: 0.8rem;
+  }
+
+  .tria-cta-link:hover {
+    color: #0b0d17 !important;
+  }
+
+  /* Meta row */
+  .tria-cta-meta {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    padding-top: 50px;
+    margin-top: 90px;
+  }
+
+  .tria-cta-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .tria-cta-meta-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .tria-cta-meta-value {
+    font-size: 0.9rem;
+    color: rgba(0, 0, 0, 0.6);
+    font-weight: 300;
+  }
+
+  @media (max-width: 768px) {
+    .tria-cta-meta-item {
+      text-align: left !important;
+      margin-bottom: 30px;
+    }
+    .tria-cta-meta-item:last-child {
+      margin-bottom: 0;
+    }
+  }
+</style>

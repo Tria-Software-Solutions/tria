@@ -33,6 +33,7 @@ const triaData = JSON.stringify({ en, es });
     <link rel="stylesheet" href="/assets/css/vendor/font-awesome.min.css" />
     <link rel="stylesheet" href="/assets/css/vendor/swiper.min.css" />
     <link rel="stylesheet" href="/assets/css/vendor/fancybox.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
 
   </head>
   <body>
@@ -55,9 +56,9 @@ const triaData = JSON.stringify({ en, es });
       <div class="tria-preloader">
         <div class="tria-preloader-animation">
           <div class="tria-pos-abs tria-animation-1">
-            <p class="tria-h3 tria-muted tria-thin">Design</p>
-            <p class="tria-h3 tria-muted">Build</p>
-            <p class="tria-h3 tria-muted tria-thin">Grow</p>
+            <p class="tria-h3 tria-muted tria-thin" data-i18n="splash.design">Design</p>
+            <p class="tria-h3 tria-muted" data-i18n="splash.build">Build</p>
+            <p class="tria-h3 tria-muted tria-thin" data-i18n="splash.grow">Grow</p>
           </div>
           <div class="tria-pos-abs tria-animation-2">
             <div class="tria-reveal-frame">
@@ -99,7 +100,7 @@ const triaData = JSON.stringify({ en, es });
             <span class="tria-lang-btn" data-lang="en" onclick="window.triaI18n.switchTo('en')">EN</span>
             <span class="tria-lang-btn" data-lang="es" onclick="window.triaI18n.switchTo('es')">ES</span>
           </div>
-          <script>(function(){var l=localStorage.getItem("tria-lang")||"en";document.querySelectorAll(".tria-lang-btn[data-lang]").forEach(function(b){b.classList.toggle("is-active",b.getAttribute("data-lang")===l)})})();</script>
+          <script>(function(){var l="en";try{l=window.localStorage.getItem("tria-lang")||l}catch(e){}document.querySelectorAll(".tria-lang-btn[data-lang]").forEach(function(b){b.classList.toggle("is-active",b.getAttribute("data-lang")===l)})})();</script>
           <div class="tria-back-to-top">
             <a href="#top" class="tria-link tria-dark tria-arrow-place">
               <span>Back to top</span>
@@ -357,7 +358,7 @@ const triaData = JSON.stringify({ en, es });
         });
       })();
     </script>
-    <script is:inline>window.__triaData = {triaData};</script>
+    <script is:inline set:html={`window.__triaData = ${triaData};`}></script>
     <script is:inline src="/assets/js/tria-i18n.js"></script>
     <script is:inline src="/assets/js/vendor/jquery.min.js"></script>
     <script is:inline src="/assets/js/vendor/swup.min.js"></script>
@@ -366,6 +367,7 @@ const triaData = JSON.stringify({ en, es });
     <script is:inline src="/assets/js/vendor/gsap.min.js"></script>
     <script is:inline src="/assets/js/vendor/ScrollTrigger.min.js"></script>
     <script is:inline src="/assets/js/vendor/ScrollTo.min.js"></script>
+    <script is:inline src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
     <script is:inline src="/assets/js/tria-main.js"></script>
     <script is:inline src="/assets/js/tria-gradient.js"></script>
   </body>

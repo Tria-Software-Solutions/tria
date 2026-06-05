@@ -1,0 +1,202 @@
+---
+---
+
+<!-- stats -->
+<section class="tria-stats-section" data-section-theme="light">
+  <div class="container tria-p-120-120">
+      <div class="row tria-stats-grid">
+        <div class="col-6 col-lg-3 tria-stat-item tria-up">
+          <div class="tria-stat-number">
+            <span class="tria-counter" data-target="120">0</span><span class="tria-stat-suffix">+</span>
+          </div>
+          <p class="tria-stat-label tria-dark-soft" data-i18n="stats.projectsLabel">Projects Delivered</p>
+        </div>
+        <div class="col-6 col-lg-3 tria-stat-item tria-up">
+          <div class="tria-stat-number">
+            <span class="tria-counter" data-target="48">0</span><span class="tria-stat-suffix">+</span>
+          </div>
+          <p class="tria-stat-label tria-dark-soft" data-i18n="stats.clientsLabel">Clients Worldwide</p>
+        </div>
+        <div class="col-6 col-lg-3 tria-stat-item tria-up">
+          <div class="tria-stat-number">
+            <span class="tria-counter" data-target="7">0</span><span class="tria-stat-suffix">+</span>
+          </div>
+          <p class="tria-stat-label tria-dark-soft" data-i18n="stats.yearsLabel">Years of Expertise</p>
+        </div>
+        <div class="col-6 col-lg-3 tria-stat-item tria-up">
+          <div class="tria-stat-number">
+            <span class="tria-counter" data-target="99">0</span><span class="tria-stat-suffix">%</span>
+          </div>
+          <p class="tria-stat-label tria-dark-soft" data-i18n="stats.satisfactionLabel">Client Satisfaction</p>
+        </div>
+      </div>
+
+      <!-- Marquee divider -->
+      <div class="tria-stats-marquee tria-up">
+        <div class="tria-marquee-track">
+          <span data-i18n="stats.marquee1">Software Engineering</span>
+          <span class="tria-marquee-dot">✦</span>
+          <span data-i18n="stats.marquee2">Cloud & DevOps</span>
+          <span class="tria-marquee-dot">✦</span>
+          <span data-i18n="stats.marquee3">AI & Machine Learning</span>
+          <span class="tria-marquee-dot">✦</span>
+          <span data-i18n="stats.marquee4">Cybersecurity</span>
+          <span class="tria-marquee-dot">✦</span>
+          <span data-i18n="stats.marquee5">Product Design</span>
+          <span class="tria-marquee-dot">✦</span>
+          <span data-i18n="stats.marquee6">Data Engineering</span>
+          <span class="tria-marquee-dot">✦</span>
+          <span data-i18n="stats.marquee1">Software Engineering</span>
+          <span class="tria-marquee-dot">✦</span>
+          <span data-i18n="stats.marquee2">Cloud & DevOps</span>
+          <span class="tria-marquee-dot">✦</span>
+          <span>AI & Machine Learning</span>
+          <span class="tria-marquee-dot">✦</span>
+          <span>Cybersecurity</span>
+          <span class="tria-marquee-dot">✦</span>
+          <span>Product Design</span>
+          <span class="tria-marquee-dot">✦</span>
+          <span>Data Engineering</span>
+          <span class="tria-marquee-dot">✦</span>
+        </div>
+    </div>
+  </div>
+</section>
+<!-- stats end -->
+
+<style>
+  .tria-stats-section {
+    position: relative;
+    background: #ffffff;
+  }
+
+  .tria-stats-grid {
+    margin-bottom: 90px;
+  }
+
+  .tria-stat-item {
+    padding: 40px 30px;
+    border-right: 1px solid rgba(0, 0, 0, 0.06);
+    position: relative;
+  }
+
+  .tria-stat-item:last-child {
+    border-right: none;
+  }
+
+  @media (max-width: 991px) {
+    .tria-stat-item:nth-child(2) {
+      border-right: none;
+    }
+    .tria-stat-item:nth-child(3) {
+      border-right: 1px solid rgba(0, 0, 0, 0.06);
+    }
+  }
+
+  .tria-stat-number {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    margin-bottom: 12px;
+  }
+
+  .tria-counter {
+    font-family: var(--font-display, 'Cormorant Garamond', serif);
+    font-size: clamp(3.5rem, 6vw, 5.5rem);
+    font-weight: 300;
+    color: #0b0d17;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .tria-stat-suffix {
+    font-family: var(--font-display, 'Cormorant Garamond', serif);
+    font-size: clamp(2rem, 3vw, 3rem);
+    font-weight: 300;
+    color: var(--accent, #56051d);
+    line-height: 1;
+  }
+
+  .tria-stat-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  /* Marquee */
+  .tria-stats-marquee {
+    overflow: hidden;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    padding-top: 40px;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  }
+
+  .tria-marquee-track {
+    display: flex;
+    gap: 40px;
+    width: max-content;
+    animation: tria-marquee-scroll 30s linear infinite;
+    white-space: nowrap;
+  }
+
+  .tria-marquee-track span {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.3);
+    flex-shrink: 0;
+  }
+
+  .tria-marquee-dot {
+    color: var(--accent, #56051d) !important;
+    font-size: 0.5rem !important;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  @keyframes tria-marquee-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    function animateCounter(el) {
+      var target = parseInt(el.getAttribute('data-target'), 10);
+      var duration = 2000;
+      var start = null;
+      function step(ts) {
+        if (!start) start = ts;
+        var progress = Math.min((ts - start) / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.floor(eased * target);
+        if (progress < 1) requestAnimationFrame(step);
+        else el.textContent = target;
+      }
+      requestAnimationFrame(step);
+    }
+
+    function initCounters() {
+      var counters = document.querySelectorAll('.tria-counter');
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            animateCounter(entry.target);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+      counters.forEach(function (c) { observer.observe(c); });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initCounters);
+    } else {
+      initCounters();
+    }
+    document.addEventListener('swup:contentReplaced', initCounters);
+  })();
+</script>

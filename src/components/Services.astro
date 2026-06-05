@@ -1,88 +1,449 @@
 ---
-
 ---
 
 <!-- services -->
-<section class="tria-dark-bg" data-section-theme="dark">
-  <div class="mi-invert-fix">
-    <div class="tria-animation-frame"></div>
-    <div class="container tria-p-120-0">
+<section class="tria-services-section" data-section-theme="light">
+  <div class="container tria-p-120-0">
       <div class="tria-mb-120">
         <div class="row">
           <div class="col-lg-10">
             <span
-              class="tria-suptitle tria-light-soft tria-suptitle-right tria-up"
+              class="tria-suptitle tria-suptitle-right tria-suptitle-dark tria-up"
               data-i18n-html="services.suptitle">Full-stack software engineering for<br /> startups and enterprises.</span
             >
           </div>
         </div>
-        <div
-          class="tria-complex-text justify-content-center tria-up tria-mb-15"
-        >
-          <h2 class="tria-h1 tria-muted tria-center" data-i18n-html="services.modernSolutions">
-            Modern <span class="tria-thin">Solutions</span>
-          </h2>
-        </div>
-        <div class="tria-complex-text justify-content-center tria-up">
-          <h2 class="tria-h1 tria-muted tria-center" data-i18n-html="services.forYourBusiness">
-            For Your <span class="tria-thin">Business</span>
-          </h2>
-          <a
-            href="/services"
-            class="tria-services-button tria-button tria-arrow-place"
-            ><span data-i18n="hero.ourServices">Our services</span></a
-          >
-        </div>
-      </div>
-      <div class="row tria-services-grid m-0">
-        <div class="col-md-6 col-lg-3 tria-services-grid-item p-0">
-          <a href="/service" class="tria-service-card-sm tria-up">
-            <h5 class="tria-muted tria-mb-30" data-i18n-html="services.softwareDev">Software <br />Development</h5>
-            <p class="tria-light-soft tria-mb-30" data-i18n="services.softwareDevDesc">
-              Custom web and mobile applications built with modern architectures
-              and best practices.
-            </p>
-            <div class="tria-button tria-icon-button-sm tria-arrow-place"></div>
-          </a>
-        </div>
-        <div class="col-md-6 col-lg-3 tria-services-grid-item p-0">
-          <a href="/service" class="tria-service-card-sm tria-up">
-            <h5 class="tria-muted tria-mb-30" data-i18n-html="services.cloudDevops">
-              Cloud &amp; DevOps <br />Solutions
-            </h5>
-            <p class="tria-light-soft tria-mb-30" data-i18n="services.cloudDevopsDesc">
-              Scalable cloud infrastructure, CI/CD pipelines, and automated
-              deployments.
-            </p>
-            <div class="tria-button tria-icon-button-sm tria-arrow-place"></div>
-          </a>
-        </div>
-        <div class="col-md-6 col-lg-3 tria-services-grid-item p-0">
-          <a href="/service" class="tria-service-card-sm tria-up">
-            <h5 class="tria-muted tria-mb-30" data-i18n-html="services.aiMl">
-              AI &amp; Machine <br />Learning
-            </h5>
-            <p class="tria-light-soft tria-mb-30" data-i18n="services.aiMlDesc">
-              Intelligent systems, predictive models, and data-driven automation
-              for your business.
-            </p>
-            <div class="tria-button tria-icon-button-sm tria-arrow-place"></div>
-          </a>
-        </div>
-        <div class="col-md-6 col-lg-3 tria-services-grid-item p-0">
-          <a href="/service" class="tria-service-card-sm tria-up">
-            <h5 class="tria-muted tria-mb-30" data-i18n-html="services.itCybersecurity">
-              IT &amp; Cybersecurity <br />Consulting
-            </h5>
-            <p class="tria-light-soft tria-mb-30" data-i18n="services.itCybersecurityDesc">
-              Security audits, risk assessments, and strategic technology
-              planning.
-            </p>
-            <div class="tria-button tria-icon-button-sm tria-arrow-place"></div>
-          </a>
+        <div class="tria-services-header tria-up">
+          <div class="tria-services-heading">
+            <h2 class="tria-h1 tria-dark" data-i18n-html="services.modernSolutions">
+              Modern <span class="tria-thin">Solutions</span>
+            </h2>
+            <div class="tria-services-heading-accent"></div>
+          </div>
+          <div class="tria-services-sub">
+            <h2 class="tria-h1 tria-dark" data-i18n-html="services.forYourBusiness">
+              For Your <span class="tria-thin">Business</span>
+            </h2>
+            <a
+              href="/services"
+              class="tria-services-button tria-button tria-arrow-place"
+              ><span data-i18n="hero.ourServices">Our services</span></a
+            >
+          </div>
         </div>
       </div>
-    </div>
+      <div class="row tria-services-grid g-0">
+        <div class="col-md-6 col-lg-3 tria-services-grid-item">
+          <a href="/service" class="tria-service-card tria-up">
+            <div class="tria-service-card-content">
+              <h5 class="tria-service-card-title" data-i18n-html="services.softwareDev">Software <br />Development</h5>
+              <p class="tria-service-card-desc" data-i18n="services.softwareDevDesc">
+                Custom web and mobile applications built with modern architectures
+                and best practices.
+              </p>
+            </div>
+            <div class="tria-service-arrow">
+              <i class="fas fa-arrow-right"></i>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-6 col-lg-3 tria-services-grid-item">
+          <a href="/service" class="tria-service-card tria-up">
+            <div class="tria-service-card-content">
+              <h5 class="tria-service-card-title" data-i18n-html="services.cloudDevops">
+                Cloud &amp; DevOps <br />Solutions
+              </h5>
+              <p class="tria-service-card-desc" data-i18n="services.cloudDevopsDesc">
+                Scalable cloud infrastructure, CI/CD pipelines, and automated
+                deployments.
+              </p>
+            </div>
+            <div class="tria-service-arrow">
+              <i class="fas fa-arrow-right"></i>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-6 col-lg-3 tria-services-grid-item">
+          <a href="/service" class="tria-service-card tria-up">
+            <div class="tria-service-card-content">
+              <h5 class="tria-service-card-title" data-i18n-html="services.aiMl">
+                AI &amp; Machine <br />Learning
+              </h5>
+              <p class="tria-service-card-desc" data-i18n="services.aiMlDesc">
+                Intelligent systems, predictive models, and data-driven automation
+                for your business.
+              </p>
+            </div>
+            <div class="tria-service-arrow">
+              <i class="fas fa-arrow-right"></i>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-6 col-lg-3 tria-services-grid-item">
+          <a href="/service" class="tria-service-card tria-up">
+            <div class="tria-service-card-content">
+              <h5 class="tria-service-card-title" data-i18n-html="services.itCybersecurity">
+                IT &amp; Cybersecurity <br />Consulting
+              </h5>
+              <p class="tria-service-card-desc" data-i18n="services.itCybersecurityDesc">
+                Security audits, risk assessments, and strategic technology
+                planning.
+              </p>
+            </div>
+            <div class="tria-service-arrow">
+              <i class="fas fa-arrow-right"></i>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Tech marquee -->
+      <div class="tria-tech-marquee tria-up">
+        <div class="tria-tech-marquee-inner">
+          <div class="tria-marquee-row tria-marquee-row--right">
+            <div class="tria-marquee-track">
+              <i class="tria-marquee-icon ti ti-brand-react"></i>
+              <i class="tria-marquee-icon ti ti-brand-vue"></i>
+              <i class="tria-marquee-icon ti ti-brand-angular"></i>
+              <i class="tria-marquee-icon ti ti-brand-svelte"></i>
+              <i class="tria-marquee-icon ti ti-brand-solidjs"></i>
+              <i class="tria-marquee-icon ti ti-brand-nextjs"></i>
+              <i class="tria-marquee-icon ti ti-brand-astro"></i>
+              <i class="tria-marquee-icon ti ti-brand-flutter"></i>
+              <i class="tria-marquee-icon ti ti-brand-python"></i>
+              <i class="tria-marquee-icon ti ti-brand-rust"></i>
+              <i class="tria-marquee-icon ti ti-brand-golang"></i>
+              <i class="tria-marquee-icon ti ti-brand-swift"></i>
+              <i class="tria-marquee-icon ti ti-brand-kotlin"></i>
+              <i class="tria-marquee-icon ti ti-brand-php"></i>
+              <i class="tria-marquee-icon ti ti-brand-django"></i>
+              <i class="tria-marquee-icon ti ti-brand-laravel"></i>
+              <i class="tria-marquee-icon ti ti-brand-nodejs"></i>
+              <i class="tria-marquee-icon ti ti-brand-deno"></i>
+              <i class="tria-marquee-icon ti ti-brand-javascript"></i>
+              <i class="tria-marquee-icon ti ti-brand-typescript"></i>
+              <i class="tria-marquee-icon ti ti-brand-sass"></i>
+              <i class="tria-marquee-icon ti ti-brand-graphql"></i>
+              <i class="tria-marquee-icon ti ti-brand-redux"></i>
+              <i class="tria-marquee-icon ti ti-brand-threejs"></i>
+              <i class="tria-marquee-icon ti ti-brand-docker"></i>
+              <i class="tria-marquee-icon ti ti-brand-vite"></i>
+              <i class="tria-marquee-icon ti ti-brand-react"></i>
+              <i class="tria-marquee-icon ti ti-brand-vue"></i>
+              <i class="tria-marquee-icon ti ti-brand-angular"></i>
+              <i class="tria-marquee-icon ti ti-brand-svelte"></i>
+              <i class="tria-marquee-icon ti ti-brand-solidjs"></i>
+              <i class="tria-marquee-icon ti ti-brand-nextjs"></i>
+              <i class="tria-marquee-icon ti ti-brand-astro"></i>
+              <i class="tria-marquee-icon ti ti-brand-flutter"></i>
+              <i class="tria-marquee-icon ti ti-brand-python"></i>
+              <i class="tria-marquee-icon ti ti-brand-rust"></i>
+              <i class="tria-marquee-icon ti ti-brand-golang"></i>
+              <i class="tria-marquee-icon ti ti-brand-swift"></i>
+              <i class="tria-marquee-icon ti ti-brand-kotlin"></i>
+              <i class="tria-marquee-icon ti ti-brand-php"></i>
+              <i class="tria-marquee-icon ti ti-brand-django"></i>
+              <i class="tria-marquee-icon ti ti-brand-laravel"></i>
+              <i class="tria-marquee-icon ti ti-brand-nodejs"></i>
+              <i class="tria-marquee-icon ti ti-brand-deno"></i>
+              <i class="tria-marquee-icon ti ti-brand-javascript"></i>
+              <i class="tria-marquee-icon ti ti-brand-typescript"></i>
+              <i class="tria-marquee-icon ti ti-brand-sass"></i>
+              <i class="tria-marquee-icon ti ti-brand-graphql"></i>
+              <i class="tria-marquee-icon ti ti-brand-redux"></i>
+              <i class="tria-marquee-icon ti ti-brand-threejs"></i>
+              <i class="tria-marquee-icon ti ti-brand-docker"></i>
+              <i class="tria-marquee-icon ti ti-brand-vite"></i>
+            </div>
+          </div>
+          <div class="tria-marquee-row tria-marquee-row--left">
+            <div class="tria-marquee-track">
+              <i class="tria-marquee-icon ti ti-brand-aws"></i>
+              <i class="tria-marquee-icon ti ti-brand-google"></i>
+              <i class="tria-marquee-icon ti ti-brand-azure"></i>
+              <i class="tria-marquee-icon ti ti-brand-cloudflare"></i>
+              <i class="tria-marquee-icon ti ti-brand-vercel"></i>
+              <i class="tria-marquee-icon ti ti-brand-ansible"></i>
+              <i class="tria-marquee-icon ti ti-brand-terraform"></i>
+              <i class="tria-marquee-icon ti ti-brand-openai"></i>
+              <i class="tria-marquee-icon ti ti-brand-databricks"></i>
+              <i class="tria-marquee-icon ti ti-brand-meta"></i>
+              <i class="tria-marquee-icon ti ti-brand-mongodb"></i>
+              <i class="tria-marquee-icon ti ti-brand-mysql"></i>
+              <i class="tria-marquee-icon ti ti-brand-elastic"></i>
+              <i class="tria-marquee-icon ti ti-brand-firebase"></i>
+              <i class="tria-marquee-icon ti ti-brand-supabase"></i>
+              <i class="tria-marquee-icon ti ti-brand-prisma"></i>
+              <i class="tria-marquee-icon ti ti-brand-notion"></i>
+              <i class="tria-marquee-icon ti ti-brand-jira"></i>
+              <i class="tria-marquee-icon ti ti-brand-trello"></i>
+              <i class="tria-marquee-icon ti ti-brand-asana"></i>
+              <i class="tria-marquee-icon ti ti-brand-github"></i>
+              <i class="tria-marquee-icon ti ti-brand-gitlab"></i>
+              <i class="tria-marquee-icon ti ti-brand-tailwind"></i>
+              <i class="tria-marquee-icon ti ti-brand-figma"></i>
+              <i class="tria-marquee-icon ti ti-brand-storybook"></i>
+              <i class="tria-marquee-icon ti ti-brand-cypress"></i>
+              <i class="tria-marquee-icon ti ti-brand-sentry"></i>
+              <i class="tria-marquee-icon ti ti-brand-mantine"></i>
+              <i class="tria-marquee-icon ti ti-brand-headlessui"></i>
+              <i class="tria-marquee-icon ti ti-brand-aws"></i>
+              <i class="tria-marquee-icon ti ti-brand-google"></i>
+              <i class="tria-marquee-icon ti ti-brand-azure"></i>
+              <i class="tria-marquee-icon ti ti-brand-cloudflare"></i>
+              <i class="tria-marquee-icon ti ti-brand-vercel"></i>
+              <i class="tria-marquee-icon ti ti-brand-ansible"></i>
+              <i class="tria-marquee-icon ti ti-brand-terraform"></i>
+              <i class="tria-marquee-icon ti ti-brand-openai"></i>
+              <i class="tria-marquee-icon ti ti-brand-databricks"></i>
+              <i class="tria-marquee-icon ti ti-brand-meta"></i>
+              <i class="tria-marquee-icon ti ti-brand-mongodb"></i>
+              <i class="tria-marquee-icon ti ti-brand-mysql"></i>
+              <i class="tria-marquee-icon ti ti-brand-elastic"></i>
+              <i class="tria-marquee-icon ti ti-brand-firebase"></i>
+              <i class="tria-marquee-icon ti ti-brand-supabase"></i>
+              <i class="tria-marquee-icon ti ti-brand-prisma"></i>
+              <i class="tria-marquee-icon ti ti-brand-notion"></i>
+              <i class="tria-marquee-icon ti ti-brand-jira"></i>
+              <i class="tria-marquee-icon ti ti-brand-trello"></i>
+              <i class="tria-marquee-icon ti ti-brand-asana"></i>
+              <i class="tria-marquee-icon ti ti-brand-github"></i>
+              <i class="tria-marquee-icon ti ti-brand-gitlab"></i>
+              <i class="tria-marquee-icon ti ti-brand-tailwind"></i>
+              <i class="tria-marquee-icon ti ti-brand-figma"></i>
+              <i class="tria-marquee-icon ti ti-brand-storybook"></i>
+              <i class="tria-marquee-icon ti ti-brand-cypress"></i>
+              <i class="tria-marquee-icon ti ti-brand-sentry"></i>
+              <i class="tria-marquee-icon ti ti-brand-mantine"></i>
+              <i class="tria-marquee-icon ti ti-brand-headlessui"></i>
+            </div>
+          </div>
+        </div>
+      </div>
   </div>
 </section>
 <!-- services end -->
+
+<style>
+  .tria-services-section {
+    position: relative;
+    overflow: hidden;
+    background: #ffffff;
+  }
+
+  .tria-services-header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .tria-services-heading {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .tria-services-heading-accent {
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(to right, var(--accent), transparent);
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .tria-services-sub {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .tria-services-sub h2 {
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 768px) {
+    .tria-services-heading-accent {
+      width: 40px;
+    }
+    .tria-services-sub {
+      gap: 24px;
+    }
+  }
+
+  /* ── service cards ── */
+  .tria-services-grid {
+    position: relative;
+    z-index: 1;
+  }
+
+  .tria-services-grid-item {
+    padding: 0;
+  }
+
+  .tria-service-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 50px 40px;
+    height: 100%;
+    min-height: 260px;
+    text-decoration: none;
+    overflow: hidden;
+    border-right: 1px solid rgba(0, 0, 0, 0.04);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    transition: all 0.5s var(--ease-spring);
+  }
+
+  .tria-services-grid-item:last-child .tria-service-card {
+    border-right: none;
+  }
+
+  @media (max-width: 991px) {
+    .tria-service-card {
+      border-right: none;
+      min-height: 220px;
+      padding: 40px 30px;
+    }
+  }
+
+  .tria-service-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 0;
+    padding: 1px;
+    background: linear-gradient(135deg, transparent 40%, rgba(0,0,0,0.04) 60%, transparent 80%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.5s var(--ease-spring);
+    pointer-events: none;
+  }
+
+  .tria-service-card:hover::after {
+    opacity: 0.5;
+  }
+
+  .tria-service-card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+  }
+
+  .tria-service-card-title {
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: #0b0d17;
+    margin-bottom: 16px;
+    line-height: 1.4;
+    transition: color 0.3s var(--ease-smooth);
+  }
+
+  .tria-service-card:hover .tria-service-card-title {
+    color: #000;
+  }
+
+  .tria-service-card-desc {
+    font-size: 0.82rem;
+    line-height: 1.7;
+    color: rgba(0, 0, 0, 0.35);
+    margin: 0;
+    max-width: 280px;
+    transition: color 0.3s var(--ease-smooth);
+  }
+
+  .tria-service-card:hover .tria-service-card-desc {
+    color: rgba(0, 0, 0, 0.55);
+  }
+
+  .tria-service-arrow {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(0, 0, 0, 0.2);
+    font-size: 13px;
+    transition: all 0.4s var(--ease-spring);
+    flex-shrink: 0;
+    margin-top: 24px;
+  }
+
+  .tria-service-card:hover .tria-service-arrow {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+    transform: translateX(4px) rotate(-45deg);
+  }
+
+  /* ── Tech marquee ── */
+  .tria-tech-marquee {
+    margin-top: 60px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .tria-tech-marquee-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .tria-marquee-row {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+  }
+
+  .tria-marquee-track {
+    display: flex;
+    gap: 10px;
+    width: max-content;
+    animation: tria-marquee-scroll 40s linear infinite;
+  }
+
+  .tria-marquee-row--right .tria-marquee-track {
+    animation-direction: normal;
+  }
+
+  .tria-marquee-row--left .tria-marquee-track {
+    animation-direction: reverse;
+  }
+
+  @keyframes tria-marquee-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .tria-marquee-icon {
+    font-size: 44px;
+    color: rgba(0, 0, 0, 0.12);
+    flex-shrink: 0;
+    transition: color 0.3s var(--ease-spring);
+    cursor: default;
+  }
+
+  .tria-marquee-icon:hover {
+    color: var(--accent);
+  }
+
+  .tria-marquee-track {
+    gap: 56px;
+  }
+
+  @media (max-width: 768px) {
+    .tria-marquee-icon {
+      font-size: 32px;
+    }
+    .tria-marquee-track {
+      gap: 38px;
+    }
+  }
+</style>

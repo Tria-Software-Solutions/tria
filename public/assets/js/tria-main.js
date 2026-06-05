@@ -14,6 +14,53 @@ $(function () {
 
   /***************************
 
+    lenis smooth scroll
+
+    ***************************/
+  if (window.Lenis) {
+    const lenis = new Lenis({
+      duration: 1.4,
+      easing: function (t) { return 1 - Math.pow(1 - t, 3) },
+      orientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 0.9,
+      touchMultiplier: 1.5,
+    });
+
+    lenis.on('scroll', function (e) {
+      ScrollTrigger.update();
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    // Expose so animations can reference it
+    window.triaLenis = lenis;
+
+    // GSAP + Lenis integration
+    document.addEventListener('swup:contentReplaced', function () {
+      lenis.scrollTo(0, { immediate: true });
+      setTimeout(function () { ScrollTrigger.refresh(); }, 100);
+    });
+
+    // Override anchor scroll to use Lenis
+    $(document).on('click', 'a[href^="#"]', function (event) {
+      event.preventDefault();
+      var target = document.querySelector($(this).attr('href'));
+      if (!target) return;
+      var offset = $(window).width() < 1200 ? 90 : 0;
+      lenis.scrollTo(target, { offset: -offset, duration: 1.6 });
+    });
+
+    // Remove the old native smooth scroll handler since Lenis handles it
+    // (the handler is below, we keep it for non-Lenis fallback)
+  }
+
+  /***************************
+
     swup
 
     ***************************/
@@ -151,25 +198,28 @@ $(function () {
   );
   /***************************
 
-    anchor scroll
+    anchor scroll (Lenis fallback)
 
     ***************************/
-  $(document).on("click", 'a[href^="#"]', function (event) {
-    event.preventDefault();
+  // Only attach if Lenis is NOT available (Lenis handler is in the init block above)
+  if (!window.Lenis) {
+    $(document).on("click", 'a[href^="#"]', function (event) {
+      event.preventDefault();
 
-    var target = document.querySelector($.attr(this, "href"));
-    if (!target) return;
+      var target = document.querySelector($.attr(this, "href"));
+      if (!target) return;
 
-    var offset = 0;
-    if ($(window).width() < 1200) {
-      offset = 90;
-    }
+      var offset = 0;
+      if ($(window).width() < 1200) {
+        offset = 90;
+      }
 
-    window.scrollTo({
-      top: target.getBoundingClientRect().top + window.scrollY - offset,
-      behavior: "smooth",
+      window.scrollTo({
+        top: target.getBoundingClientRect().top + window.scrollY - offset,
+        behavior: "smooth",
+      });
     });
-  });
+  }
   /***************************
 
     append
@@ -456,22 +506,23 @@ $(function () {
   const appearance = document.querySelectorAll(".tria-up");
 
   appearance.forEach((section) => {
+    // Skip elements already handled by Lenis or that should animate differently
+    if (section.classList.contains('tria-skip-gsap')) return;
     gsap.fromTo(
       section,
       {
         opacity: 0,
-        y: 40,
-        scale: 0.98,
-        ease: "sine",
+        y: 30,
       },
       {
         y: 0,
         opacity: 1,
-        scale: 1,
-        duration: 0.4,
+        duration: 0.7,
+        ease: "power3.out",
         scrollTrigger: {
           trigger: section,
           toggleActions: "play none none reverse",
+          start: "top 90%",
         },
       },
     );
@@ -928,22 +979,22 @@ $(function () {
     const appearance = document.querySelectorAll(".tria-up");
 
     appearance.forEach((section) => {
+      if (section.classList.contains('tria-skip-gsap')) return;
       gsap.fromTo(
         section,
         {
           opacity: 0,
-          y: 40,
-          scale: 0.98,
-          ease: "sine",
+          y: 30,
         },
         {
           y: 0,
           opacity: 1,
-          scale: 1,
-          duration: 0.4,
+          duration: 0.7,
+          ease: "power3.out",
           scrollTrigger: {
             trigger: section,
             toggleActions: "play none none reverse",
+            start: "top 90%",
           },
         },
       );

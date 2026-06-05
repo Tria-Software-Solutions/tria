@@ -1,0 +1,228 @@
+---
+---
+
+<!-- process -->
+<section class="tria-process-section" data-section-theme="light">
+  <div class="container tria-p-120-120">
+    <div class="row tria-mb-90">
+      <div class="col-lg-6">
+        <span class="tria-suptitle tria-suptitle-dark tria-up" data-i18n="process.suptitle">How we work</span>
+        <h2 class="tria-up tria-mt-30" data-i18n-html="process.title">
+          Our <span class="tria-thin">Process</span>
+        </h2>
+      </div>
+      <div class="col-lg-5 offset-lg-1 tria-process-intro-col">
+        <p class="tria-up tria-process-intro" data-i18n="process.intro">
+          We follow a rigorous, transparent process that ensures every
+          project is delivered on time, within scope, and beyond expectations.
+        </p>
+      </div>
+    </div>
+
+    <div class="tria-process-steps">
+      <div class="tria-process-step tria-up">
+        <div class="tria-process-num">01</div>
+        <div class="tria-process-divider"></div>
+        <div class="tria-process-body">
+          <h4 class="tria-process-title" data-i18n="process.step1Title">Discovery &amp; Strategy</h4>
+          <p class="tria-process-desc" data-i18n="process.step1Desc">
+            We start by understanding your business, users, and goals.
+            Deep research, stakeholder interviews, and technical audits
+            inform a clear product roadmap.
+          </p>
+        </div>
+        <div class="tria-process-tags">
+          <span data-i18n="process.step1Tag1">Research</span>
+          <span data-i18n="process.step1Tag2">Scoping</span>
+          <span data-i18n="process.step1Tag3">Roadmap</span>
+        </div>
+      </div>
+
+      <div class="tria-process-step tria-up">
+        <div class="tria-process-num">02</div>
+        <div class="tria-process-divider"></div>
+        <div class="tria-process-body">
+          <h4 class="tria-process-title" data-i18n="process.step2Title">Architecture &amp; Design</h4>
+          <p class="tria-process-desc" data-i18n="process.step2Desc">
+            Our architects design scalable, maintainable systems. We
+            prototype interfaces and validate technical decisions before
+            a single line of production code is written.
+          </p>
+        </div>
+        <div class="tria-process-tags">
+          <span data-i18n="process.step2Tag1">System Design</span>
+          <span data-i18n="process.step2Tag2">UI/UX</span>
+          <span data-i18n="process.step2Tag3">Prototyping</span>
+        </div>
+      </div>
+
+      <div class="tria-process-step tria-up">
+        <div class="tria-process-num">03</div>
+        <div class="tria-process-divider"></div>
+        <div class="tria-process-body">
+          <h4 class="tria-process-title" data-i18n="process.step3Title">Build &amp; Iterate</h4>
+          <p class="tria-process-desc" data-i18n="process.step3Desc">
+            Agile sprints with continuous client feedback. We ship
+            incrementally, test rigorously, and adapt quickly — ensuring
+            quality at every stage of development.
+          </p>
+        </div>
+        <div class="tria-process-tags">
+          <span data-i18n="process.step3Tag1">Agile</span>
+          <span data-i18n="process.step3Tag2">CI/CD</span>
+          <span data-i18n="process.step3Tag3">Testing</span>
+        </div>
+      </div>
+
+      <div class="tria-process-step tria-up">
+        <div class="tria-process-num">04</div>
+        <div class="tria-process-divider"></div>
+        <div class="tria-process-body">
+          <h4 class="tria-process-title" data-i18n="process.step4Title">Launch &amp; Scale</h4>
+          <p class="tria-process-desc" data-i18n="process.step4Desc">
+            We deploy to production with zero-downtime strategies, monitor
+            performance, and provide ongoing support to scale your product
+            as your business grows.
+          </p>
+        </div>
+        <div class="tria-process-tags">
+          <span data-i18n="process.step4Tag1">DevOps</span>
+          <span data-i18n="process.step4Tag2">Monitoring</span>
+          <span data-i18n="process.step4Tag3">Support</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- process end -->
+
+<style>
+  .tria-process-intro-col {
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 8px;
+  }
+
+  .tria-process-intro {
+    line-height: 1.7;
+    color: #555;
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  .tria-process-steps {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .tria-process-step {
+    display: grid;
+    grid-template-columns: 80px 1px 1fr auto;
+    gap: 0 40px;
+    align-items: start;
+    padding: 50px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    transition: background 0.4s ease;
+    position: relative;
+  }
+
+  .tria-process-step::before {
+    content: '';
+    position: absolute;
+    left: -24px;
+    right: -24px;
+    top: 0;
+    bottom: 0;
+    background: transparent;
+    border-radius: 4px;
+    transition: background 0.4s ease;
+    z-index: -1;
+  }
+
+  .tria-process-step:hover::before {
+    background: rgba(86, 5, 29, 0.02);
+  }
+
+  .tria-process-num {
+    font-family: var(--font-display, 'Cormorant Garamond', serif);
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: rgba(0, 0, 0, 0.25);
+    letter-spacing: 0.05em;
+    padding-top: 6px;
+    transition: color 0.3s;
+  }
+
+  .tria-process-step:hover .tria-process-num {
+    color: var(--accent, #56051d);
+  }
+
+  .tria-process-divider {
+    width: 1px;
+    background: rgba(0, 0, 0, 0.1);
+    align-self: stretch;
+    margin-top: 6px;
+  }
+
+  .tria-process-body {
+    flex: 1;
+  }
+
+  .tria-process-title {
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin-bottom: 16px;
+    color: #0b0d17;
+    transition: color 0.3s;
+  }
+
+  .tria-process-step:hover .tria-process-title {
+    color: var(--accent, #56051d);
+  }
+
+  .tria-process-desc {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.75;
+    max-width: 500px;
+    margin: 0;
+  }
+
+  .tria-process-tags {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 4px;
+    align-items: flex-end;
+  }
+
+  .tria-process-tags span {
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.3);
+    white-space: nowrap;
+    transition: color 0.3s;
+  }
+
+  .tria-process-step:hover .tria-process-tags span {
+    color: var(--accent, #56051d);
+    opacity: 0.7;
+  }
+
+  @media (max-width: 768px) {
+    .tria-process-step {
+      grid-template-columns: 50px 1px 1fr;
+      gap: 0 20px;
+    }
+    .tria-process-tags {
+      display: none;
+    }
+    .tria-process-num {
+      font-size: 0.9rem;
+    }
+  }
+
+  .tria-mt-30 {
+    margin-top: 30px;
+  }
+</style>
