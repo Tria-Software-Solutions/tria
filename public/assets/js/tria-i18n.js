@@ -53,12 +53,14 @@
         this.translations[this.currentLang];
       if (!strings) return;
 
+      var year = new Date().getFullYear();
+
       document
         .querySelectorAll("[data-i18n]")
         .forEach(function (el) {
           var key = el.getAttribute("data-i18n");
           var val = resolveKey(strings, key);
-          if (val != null) el.textContent = val;
+          if (val != null) el.textContent = val.replace(/\{year\}/g, year);
         });
 
       document
@@ -66,7 +68,7 @@
         .forEach(function (el) {
           var key = el.getAttribute("data-i18n-html");
           var val = resolveKey(strings, key);
-          if (val != null) el.innerHTML = val;
+          if (val != null) el.innerHTML = val.replace(/\{year\}/g, year);
         });
 
       document

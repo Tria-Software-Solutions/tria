@@ -7,9 +7,9 @@ import Grainient from "../components/react/Grainient";
   <div class="tria-hero-bg">
     <Grainient
       client:only="react"
-      color1="#411010"
-      color2="#3a3647"
-      color3="#56051d"
+      color1="#0d2b2b"
+      color2="#1a2f3a"
+      color3="#068e8c"
       timeSpeed={1.6}
       colorBalance={0}
       warpStrength={1}
@@ -81,13 +81,20 @@ import Grainient from "../components/react/Grainient";
     z-index: 1;
   }
   .tria-banner .tria-button {
-    background-color: #e6e0eb !important;
-    border-color: #e6e0eb !important;
-    color: #0b0d17 !important;
+    background-color: rgba(255,255,255,0.08) !important;
+    border-color: rgba(255,255,255,0.12) !important;
+    color: #fff !important;
+    backdrop-filter: blur(8px);
+    transition: background 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .tria-banner .tria-button:hover {
+    background-color: rgba(255,255,255,0.14) !important;
+    border-color: rgba(255,255,255,0.2) !important;
+    transform: translateY(-2px);
   }
   .tria-banner .tria-button i {
-    background-color: rgba(0, 0, 0, 0.1) !important;
-    color: #0b0d17 !important;
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: #fff !important;
   }
   .tria-banner .tria-button.tria-arrow-down i {
     display: inline-flex;
@@ -99,7 +106,7 @@ import Grainient from "../components/react/Grainient";
     font-size: 18px;
   }
   .tria-banner .tria-circle-text .tria-ct-svg text {
-    fill: #e6e0eb !important;
+    fill: rgba(255,255,255,0.5) !important;
   }
   .tria-hero-bg {
     position: absolute;

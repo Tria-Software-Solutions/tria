@@ -220,6 +220,36 @@ $(function () {
       });
     });
   }
+  function updateCurrentPage() {
+    var name = "Home";
+    var i18nKey = "nav.home";
+    var p = window.location.pathname;
+
+    if (p === "/" || p === "") {
+      name = "Home"; i18nKey = "nav.home";
+    } else if (p.startsWith("/work")) {
+      name = "Work"; i18nKey = "nav.work";
+    } else if (p.startsWith("/services") || p.startsWith("/service")) {
+      name = "Services"; i18nKey = "nav.services";
+    } else if (p.startsWith("/contact")) {
+      name = "Contact"; i18nKey = "nav.contact";
+    } else if (p.startsWith("/team")) {
+      name = "Team";
+    } else if (p.startsWith("/blog")) {
+      name = "Blog";
+    } else if (p.startsWith("/project")) {
+      name = "Project";
+    } else if (p.startsWith("/portfolio")) {
+      name = "Portfolio";
+    }
+
+    $(".tria-current-page a").remove();
+    var $link = $("<a>").text(name);
+    if (i18nKey) $link.attr("data-i18n", i18nKey);
+    $(".tria-current-page").append($link);
+    if (window.triaI18n) window.triaI18n.apply();
+  }
+
   /***************************
 
     append
@@ -229,9 +259,7 @@ $(function () {
     $(".tria-arrow").clone().appendTo(".tria-arrow-place");
     $(".tria-dodecahedron").clone().appendTo(".tria-animation");
     $(".tria-lines").clone().appendTo(".tria-lines-place");
-    $(".tria-main-menu ul li.tria-active > a")
-      .clone()
-      .appendTo(".tria-current-page");
+    updateCurrentPage();
   });
   /***************************
 
@@ -758,14 +786,12 @@ $(function () {
         ***************************/
     $(document).ready(function () {
       $(
-        ".tria-arrow-place .tria-arrow, .tria-animation .tria-dodecahedron, .tria-current-page a",
+        ".tria-arrow-place .tria-arrow, .tria-animation .tria-dodecahedron",
       ).remove();
       $(".tria-arrow").clone().appendTo(".tria-arrow-place");
       $(".tria-dodecahedron").clone().appendTo(".tria-animation");
       $(".tria-lines").clone().appendTo(".tria-lines-place");
-      $(".tria-main-menu ul li.tria-active > a")
-        .clone()
-        .appendTo(".tria-current-page");
+      updateCurrentPage();
     });
     /***************************
 
@@ -1118,7 +1144,7 @@ $(function () {
     var swiper = new Swiper(".tria-infinite-show", {
       slidesPerView: 2,
       spaceBetween: 30,
-      speed: 5000,
+      speed: 25000,
       autoplay: true,
       autoplay: {
         delay: 0,

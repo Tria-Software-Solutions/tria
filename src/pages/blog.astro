@@ -1,19 +1,33 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Footer from "../components/Footer.astro";
 ---
 
-<Layout title="Blog — tria">
-  <section style="min-height:100vh;padding:160px 0 100px;">
-    <div class="container">
-      <p class="section-label" data-i18n="blog.newsletter">Newsletter</p>
-      <h1
-        style="font-family:var(--font-display);font-size:clamp(3rem,7vw,7rem);font-weight:300;"
-        data-i18n-html="blog.popularPublications"
-      >
-        Popular<br /><em style="font-style:italic;color:var(--color-accent);"
-          >Publications</em
-        >
+<Layout title="Tria — Software Solutions" description="Read insights on software engineering, AI, cloud infrastructure, and technology from the tria team.">
+  <section class="page-hero" data-section-theme="dark">
+    <div class="page-hero-bg">
+      <div class="page-hero-orb page-hero-orb--1"></div>
+      <div class="page-hero-orb page-hero-orb--2"></div>
+    </div>
+    <div class="container page-hero-inner">
+      <span class="tria-suptitle tria-light-soft tria-up" style="display:block;margin-bottom:24px;" data-i18n="blog.newsletter">Newsletter</span>
+      <h1 class="page-hero-heading tria-up" data-i18n-html="blog.popularPublications">
+        Popular<br /><span class="page-hero-em">Publications</span>
       </h1>
     </div>
   </section>
+
+  <section class="tria-soft-bg" data-section-theme="light" style="padding:120px 0;">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 tria-center">
+          <p class="tria-dark-soft" style="font-size:1.1rem;line-height:1.8;max-width:600px;margin:0 auto;" data-i18n="blog.body">
+            Insights on software engineering, AI, cloud infrastructure, and technology from the tria team. Coming soon.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
 </Layout>

@@ -11,11 +11,11 @@ html {
 
 /* tria brand — refined palette */
 :root {
-  --accent: #56051d;
-  --accent-hover: #3d0412;
-  --accent-rgb: 86, 5, 29;
-  --accent-bg: rgba(86, 5, 29, 0.12);
-  --accent-glow: rgba(86, 5, 29, 0.3);
+  --accent: #068e8c;
+  --accent-hover: #057573;
+  --accent-rgb: 6, 142, 140;
+  --accent-bg: rgba(6, 142, 140, 0.12);
+  --accent-glow: rgba(6, 142, 140, 0.3);
   --accent-secondary: #3a3647;
   --text-primary: #0f111a;
   --text-muted: #6b7280;
@@ -178,6 +178,8 @@ section[data-section-theme] {
 .tria-button.tria-arrow-place:hover > [class*="fa-"] {
   -webkit-transform: scale(1.15);
   transform: scale(1.15);
+  background-color: var(--accent);
+  color: #fff;
 }
 .tria-link.tria-arrow-place > [class*="fa-"] {
   margin-left: 15px;
@@ -211,8 +213,73 @@ section[data-section-theme] {
   color: rgb(0, 0, 0);
 }
 .tria-banner .tria-button.tria-arrow-place > [class*="fa-"] {
-  background-color: rgba(0, 0, 0, 0.1) !important;
-  color: #1a1a1a !important;
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  color: #fff !important;
+}
+
+/* ── Shared page hero ── */
+.page-hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 60vh;
+  display: flex;
+  align-items: flex-end;
+  background: #0b0d17;
+}
+.page-hero-bg {
+  position: absolute;
+  inset: 0;
+}
+.page-hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+}
+.page-hero-orb--1 {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, #068e8c, transparent 70%);
+  top: -150px; right: -100px;
+}
+.page-hero-orb--2 {
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, #068e8c, transparent 70%);
+  bottom: 0; left: 20%;
+}
+.page-hero-inner {
+  padding-top: 160px;
+  padding-bottom: 90px;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+.page-hero-heading {
+  font-size: clamp(3rem,7vw,6.5rem);
+  font-weight: 300;
+  color: #fff;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+.page-hero-em {
+  color: rgba(255,255,255,0.35);
+  font-style: italic;
+}
+.page-hero-sub {
+  color: rgba(255,255,255,0.5);
+  font-size: 1rem;
+  max-width: 480px;
+  line-height: 1.75;
+  margin: 0;
+}
+@media (max-width: 768px) {
+  .page-hero-orb--1,
+  .page-hero-orb--2 { opacity: 0.08; }
+}
+
+/* ── Shared page body ── */
+.page-body {
+  padding: 120px 0;
+  background: #fff;
 }
 
 /* ── border / shadow ── */

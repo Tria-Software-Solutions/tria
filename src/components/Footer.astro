@@ -3,14 +3,14 @@ const year = new Date().getFullYear();
 ---
 
 <!-- footer -->
-<footer data-section-theme="light">
+<footer style="background:#000" data-section-theme="dark">
   <div class="container tria-p-120-60">
       <div class="row justify-content-between">
         <div class="col-md-4 col-lg-4 tria-mb-60">
-          <div class="tria-logo tria-up tria-mb-30">
+          <div class="tria-logo tria-light tria-up tria-mb-30">
             <img src="/assets/img/logo/logo.svg" alt="tria" class="tria-logo-img" /> tria.
           </div>
-          <p class="tria-dark-soft tria-up tria-mb-30" data-i18n="footer.stayInLoop">Stay in the loop:</p>
+          <p class="tria-light-soft tria-up tria-mb-30" data-i18n="footer.stayInLoop">Stay in the loop:</p>
           <form class="tria-subscribe-form tria-up">
             <input type="text" placeholder="Enter our email" data-i18n-placeholder="footer.emailPlaceholder" />
             <button
@@ -21,7 +21,7 @@ const year = new Date().getFullYear();
         <div class="col-md-7 col-lg-6">
           <div class="row justify-content-end">
             <div class="col-md-6 col-lg-7">
-              <nav class="tria-footer-menu tria-mb-60">
+              <nav class="tria-footer-menu tria-light tria-mb-60">
                 <ul>
                   <li class="tria-up tria-active"><a href="/" data-i18n="nav.home">Home</a></li>
                   <li class="tria-up"><a href="/work" data-i18n="nav.work">Work</a></li>
@@ -47,9 +47,9 @@ const year = new Date().getFullYear();
         <div class="col-md-7 col-lg-6">
           <div class="row justify-content-between">
             <div class="col-md-6 col-lg-5 tria-mb-60">
-              <h6 class="tria-dark tria-up tria-mb-30" data-i18n="nav.location">Location</h6>
+              <h6 class="tria-light tria-up tria-mb-30" data-i18n="nav.location">Location</h6>
               <address
-                class="tria-dark-soft tria-up"
+                class="tria-light-soft tria-up"
                 style="font-style:normal"
                 data-i18n-html="nav.address"
               >
@@ -58,7 +58,7 @@ const year = new Date().getFullYear();
               </address>
             </div>
             <div class="col-md-6 col-lg-5 tria-mb-60">
-              <h6 class="tria-dark tria-up tria-mb-20" data-i18n="nav.contactInfo">Contact</h6>
+              <h6 class="tria-light tria-up tria-mb-20" data-i18n="nav.contactInfo">Contact</h6>
               <div class="tria-premium-contact tria-up">
                 <a
                   href="mailto:hola@triacr.com"
@@ -85,7 +85,7 @@ const year = new Date().getFullYear();
         <div class="col-md-4 col-lg-6 tria-mb-60">
           <div class="tria-vert-between">
             <div class="tria-mb-30">
-              <ul class="tria-social-icons tria-dark tria-up">
+              <ul class="tria-social-icons tria-up">
                 <li>
                   <a
                     href="#."
@@ -135,7 +135,7 @@ const year = new Date().getFullYear();
                 </li>
               </ul>
             </div>
-            <p class="tria-dark-soft tria-up" data-i18n="footer.allRights">
+            <p class="tria-light-soft tria-up" data-i18n="footer.allRights">
               &copy; {year} tria. All rights reserved.
             </p>
           </div>
@@ -143,5 +143,74 @@ const year = new Date().getFullYear();
     </div>
   </div>
 </footer>
+<style>
+  footer {
+    position: relative;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  footer .tria-subscribe-form input {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    backdrop-filter: blur(4px);
+  }
+
+  footer .tria-subscribe-form input:focus,
+  footer .tria-subscribe-form input:hover {
+    background-color: rgba(255, 255, 255, 0.14);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1);
+  }
+
+  footer .tria-subscribe-form input::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+  }
+
+  footer .tria-contact-btn {
+    color: rgba(255, 255, 255, 0.5) !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  footer .tria-contact-btn:hover {
+    color: #fff !important;
+    border-color: rgba(255, 255, 255, 0.35) !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  }
+
+  footer .tria-contact-btn::after {
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  footer .tria-logo-img {
+    filter: brightness(0) invert(1);
+  }
+
+  footer .tria-social-icons li a {
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  footer .tria-social-icons li a:hover {
+    transform: translateY(-2px) scale(1.1);
+  }
+
+  footer .tria-footer-menu ul li a {
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  footer .tria-footer-menu ul li a:hover {
+    opacity: 0.7;
+  }
+
+  footer .tria-menu-list li a {
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  footer .tria-menu-list li a:hover {
+    color: rgba(255, 255, 255, 0.8) !important;
+  }
+</style>
+
 <!-- footer end -->
 

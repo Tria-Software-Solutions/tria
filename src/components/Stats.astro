@@ -68,6 +68,7 @@
   .tria-stats-section {
     position: relative;
     background: #ffffff;
+    border-bottom: 1px solid rgba(0,0,0,0.04);
   }
 
   .tria-stats-grid {
@@ -78,6 +79,11 @@
     padding: 40px 30px;
     border-right: 1px solid rgba(0, 0, 0, 0.06);
     position: relative;
+    transition: background 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .tria-stat-item:hover {
+    background: rgba(6,142,140,0.02);
   }
 
   .tria-stat-item:last-child {
@@ -101,7 +107,7 @@
   }
 
   .tria-counter {
-    font-family: var(--font-display, 'Cormorant Garamond', serif);
+    font-family: var(--font-display, 'Outfit', sans-serif);
     font-size: clamp(3.5rem, 6vw, 5.5rem);
     font-weight: 300;
     color: #0b0d17;
@@ -110,10 +116,10 @@
   }
 
   .tria-stat-suffix {
-    font-family: var(--font-display, 'Cormorant Garamond', serif);
+    font-family: var(--font-display, 'Outfit', sans-serif);
     font-size: clamp(2rem, 3vw, 3rem);
     font-weight: 300;
-    color: var(--accent, #56051d);
+    color: var(--accent, #068e8c);
     line-height: 1;
   }
 
@@ -122,6 +128,7 @@
     letter-spacing: 0.2em;
     text-transform: uppercase;
     margin: 0;
+    color: rgba(0,0,0,0.5);
   }
 
   /* Marquee */
@@ -150,7 +157,7 @@
   }
 
   .tria-marquee-dot {
-    color: var(--accent, #56051d) !important;
+    color: var(--accent, #068e8c) !important;
     font-size: 0.5rem !important;
     display: inline-flex;
     align-items: center;

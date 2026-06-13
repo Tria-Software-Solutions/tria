@@ -1,18 +1,226 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Footer from "../components/Footer.astro";
 ---
 
-<Layout title="Service — tria">
-  <section style="min-height:100vh;padding:160px 0 100px;">
-    <div class="container">
-      <p class="section-label">What we offer</p>
-      <h1
-        style="font-family:var(--font-display);font-size:clamp(3rem,7vw,7rem);font-weight:300;"
-      >
-        Single<br /><em style="font-style:italic;color:var(--color-accent);"
-          >Service</em
-        >
+<Layout title="Tria — Software Solutions" description="Explore our software engineering services — from cloud architecture to AI-driven platforms.">
+  <!-- hero -->
+  <section class="page-hero" data-section-theme="dark">
+    <div class="page-hero-bg">
+      <div class="page-hero-orb page-hero-orb--1"></div>
+      <div class="page-hero-orb page-hero-orb--2"></div>
+    </div>
+    <div class="container page-hero-inner">
+      <span class="tria-suptitle tria-light-soft tria-up" style="display:block;margin-bottom:24px;">What we offer</span>
+      <h1 class="page-hero-heading tria-up">
+        Service<br /><span class="page-hero-em">Name</span>
       </h1>
+      <p class="page-hero-sub tria-up" style="margin-top:20px;">
+        A brief description of this service and how it helps your business.
+      </p>
     </div>
   </section>
+
+  <!-- overview -->
+  <section class="tria-sd-section" data-section-theme="light">
+    <div class="container tria-p-120-60">
+      <div class="row justify-content-between align-items-start">
+        <div class="col-lg-5">
+          <span class="tria-suptitle tria-suptitle-dark tria-up">Overview</span>
+          <h2 class="tria-up tria-mt-30" style="font-size:clamp(1.8rem,3vw,2.5rem);font-weight:300;line-height:1.15;color:#0b0d17;">
+            What We<br /><span style="color:var(--accent);">Deliver</span>
+          </h2>
+        </div>
+        <div class="col-lg-6">
+          <p class="tria-up" style="font-size:0.95rem;line-height:1.85;color:#555;margin-bottom:24px;">
+            We design and build solutions that align with your business goals. Every engagement starts with understanding your unique challenges and ends with measurable outcomes.
+          </p>
+          <p class="tria-up" style="font-size:0.95rem;line-height:1.85;color:#555;">
+            Our team brings deep expertise across the full technology stack, ensuring your project is built on solid foundations with modern architectures and best practices.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- features -->
+  <section class="tria-sd-feat-section" data-section-theme="light">
+    <div class="container tria-p-60-60">
+      <div class="row">
+        <div class="col-lg-4 tria-up tria-mb-30">
+          <div class="tria-sd-feat-card">
+            <div class="tria-sd-feat-icon"><i class="fas fa-bolt"></i></div>
+            <h4 class="tria-sd-feat-title">Fast Delivery</h4>
+            <p class="tria-sd-feat-desc">Agile sprints with continuous delivery. We ship incrementally so you see value from day one.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 tria-up tria-mb-30">
+          <div class="tria-sd-feat-card">
+            <div class="tria-sd-feat-icon"><i class="fas fa-shield-alt"></i></div>
+            <h4 class="tria-sd-feat-title">Enterprise Security</h4>
+            <p class="tria-sd-feat-desc">Built-in security at every layer. We follow industry standards to protect your data and users.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 tria-up tria-mb-30">
+          <div class="tria-sd-feat-card">
+            <div class="tria-sd-feat-icon"><i class="fas fa-arrows-alt"></i></div>
+            <h4 class="tria-sd-feat-title">Scalable Architecture</h4>
+            <p class="tria-sd-feat-desc">Systems designed to grow with you. Our architecture handles increasing loads without rework.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- process -->
+  <section class="tria-sd-section" data-section-theme="light" style="background:#faf7f2;">
+    <div class="container tria-p-60-60">
+      <div class="row justify-content-center tria-mb-60">
+        <div class="col-lg-8 tria-center">
+          <span class="tria-suptitle tria-suptitle-dark tria-up">Our Approach</span>
+          <h2 class="tria-up tria-mt-30" style="font-size:clamp(1.8rem,3vw,2.5rem);font-weight:300;color:#0b0d17;">
+            How We <span style="color:var(--accent);">Work</span>
+          </h2>
+        </div>
+      </div>
+      <div class="row tria-sd-process">
+        <div class="col-md-3 tria-up tria-mb-30">
+          <div class="tria-sd-step">
+            <span class="tria-sd-step-num">01</span>
+            <h5 class="tria-sd-step-title">Discovery</h5>
+            <p class="tria-sd-step-desc">We learn your business, users, and goals to define the right solution.</p>
+          </div>
+        </div>
+        <div class="col-md-3 tria-up tria-mb-30">
+          <div class="tria-sd-step">
+            <span class="tria-sd-step-num">02</span>
+            <h5 class="tria-sd-step-title">Design</h5>
+            <p class="tria-sd-step-desc">Architecture, UX, and technical design validated before building.</p>
+          </div>
+        </div>
+        <div class="col-md-3 tria-up tria-mb-30">
+          <div class="tria-sd-step">
+            <span class="tria-sd-step-num">03</span>
+            <h5 class="tria-sd-step-title">Build</h5>
+            <p class="tria-sd-step-desc">Agile development with continuous feedback and testing.</p>
+          </div>
+        </div>
+        <div class="col-md-3 tria-up tria-mb-30">
+          <div class="tria-sd-step">
+            <span class="tria-sd-step-num">04</span>
+            <h5 class="tria-sd-step-title">Scale</h5>
+            <p class="tria-sd-step-desc">Deploy, monitor, and optimize for growth and reliability.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- cta -->
+  <section class="tria-sd-section" data-section-theme="light">
+    <div class="container tria-p-60-120">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 tria-center">
+          <h2 class="tria-up" style="font-size:clamp(1.5rem,3vw,2.2rem);font-weight:300;color:#0b0d17;margin-bottom:20px;">
+            Ready to get started?
+          </h2>
+          <p class="tria-up" style="color:#888;margin-bottom:36px;font-size:0.95rem;">
+            Let's discuss how this service can help your business.
+          </p>
+          <a href="/contact" class="tria-up tria-button tria-arrow-place">
+            <span>Start a conversation</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
 </Layout>
+
+<style>
+  .tria-sd-section {
+    background: #fff;
+  }
+
+  /* Feature cards */
+  .tria-sd-feat-section {
+    background: #fff;
+  }
+  .tria-sd-feat-card {
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 16px;
+    padding: 36px 32px;
+    height: 100%;
+    transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .tria-sd-feat-card:hover {
+    border-color: rgba(6,142,140,0.2);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.05);
+  }
+  .tria-sd-feat-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: rgba(6,142,140,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    font-size: 18px;
+    margin-bottom: 20px;
+    transition: background 0.3s, transform 0.3s;
+  }
+  .tria-sd-feat-card:hover .tria-sd-feat-icon {
+    background: var(--accent);
+    color: #fff;
+    transform: translateY(-2px);
+  }
+  .tria-sd-feat-title {
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: #0b0d17;
+    margin-bottom: 12px;
+  }
+  .tria-sd-feat-desc {
+    font-size: 0.82rem;
+    color: #777;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* Process steps */
+  .tria-sd-step {
+    text-align: center;
+    padding: 0 10px;
+  }
+  .tria-sd-step-num {
+    font-family: var(--font-display, 'Outfit', sans-serif);
+    font-size: 2.5rem;
+    font-weight: 200;
+    color: rgba(6,142,140,0.15);
+    display: block;
+    margin-bottom: 16px;
+    line-height: 1;
+  }
+  .tria-sd-step-title {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #0b0d17;
+    margin-bottom: 10px;
+  }
+  .tria-sd-step-desc {
+    font-size: 0.8rem;
+    color: #888;
+    line-height: 1.7;
+    margin: 0;
+    max-width: 240px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 768px) {
+    .tria-sd-step { margin-bottom: 40px; }
+    .tria-sd-step:last-child { margin-bottom: 0; }
+  }
+</style>

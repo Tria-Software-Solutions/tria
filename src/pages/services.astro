@@ -3,35 +3,34 @@ import Layout from "../layouts/Layout.astro";
 import Footer from "../components/Footer.astro";
 ---
 
-<Layout title="Services — tria" description="Enterprise software services: Software Development, Cloud & DevOps, AI/ML, and Cybersecurity consulting.">
+<Layout title="Tria — Software Solutions" description="Enterprise software services: Software Development, Cloud & DevOps, AI/ML, and Cybersecurity consulting.">
 
   <!-- hero -->
-  <section class="tria-dark-bg tria-services-hero" data-section-theme="dark">
-    <div class="mi-invert-fix">
-      <div class="tria-sh-bg">
-        <div class="tria-animation-frame"></div>
-      </div>
-      <div class="container tria-sh-inner">
-        <div class="row align-items-end">
-          <div class="col-lg-7">
-            <span class="tria-suptitle tria-light-soft tria-up" style="display:block;margin-bottom:20px;">What we do</span>
-            <h1 class="tria-up" style="font-size:clamp(3rem,7vw,6.5rem);font-weight:300;color:#fff;line-height:1.05;letter-spacing:-0.02em;">
-              Our<br /><em style="color:rgba(255,255,255,0.35);font-style:italic;">Services</em>
-            </h1>
-          </div>
-          <div class="col-lg-5 tria-sh-right">
-            <p class="tria-up" style="color:rgba(255,255,255,0.5);font-size:0.9rem;line-height:1.8;max-width:380px;">
-              From first-line code to enterprise-grade infrastructure —
-              we deliver complete software solutions tailored to your business objectives.
-            </p>
-          </div>
+  <section class="page-hero" data-section-theme="dark">
+    <div class="page-hero-bg">
+      <div class="page-hero-orb page-hero-orb--1"></div>
+      <div class="page-hero-orb page-hero-orb--2"></div>
+    </div>
+    <div class="container page-hero-inner">
+      <div class="row align-items-end">
+        <div class="col-lg-7">
+          <span class="tria-suptitle tria-light-soft tria-up" style="display:block;margin-bottom:24px;">What we do</span>
+          <h1 class="page-hero-heading tria-up">
+            Our<br /><span class="page-hero-em">Services</span>
+          </h1>
+        </div>
+        <div class="col-lg-5 tria-sh-right">
+          <p class="page-hero-sub tria-up">
+            From first-line code to enterprise-grade infrastructure —
+            we deliver complete software solutions tailored to your business objectives.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- main services list -->
-  <section data-section-theme="light">
+  <section data-section-theme="light" style="background:#faf7f2;">
     <div class="container tria-p-120-0">
       <div class="tria-services-list">
 
@@ -40,9 +39,6 @@ import Footer from "../components/Footer.astro";
           <div class="tria-sr-content">
             <div class="tria-sr-header">
               <h2 class="tria-sr-title">Software <span class="tria-thin">Development</span></h2>
-              <div class="tria-sr-icon">
-                <i class="fas fa-code"></i>
-              </div>
             </div>
             <div class="row">
               <div class="col-lg-6">
@@ -65,58 +61,15 @@ import Footer from "../components/Footer.astro";
               <div class="tria-sr-tags">
                 <span>React</span><span>Next.js</span><span>Node.js</span><span>Go</span><span>TypeScript</span>
               </div>
-              <a href="/contact" class="tria-button tria-arrow-place tria-sr-cta">
-                <span>Get a quote</span>
-              </a>
             </div>
           </div>
         </div>
 
         <div class="tria-service-row tria-up" id="cloud-devops">
-          <div class="tria-sr-num">02</div>
-          <div class="tria-sr-content">
-            <div class="tria-sr-header">
-              <h2 class="tria-sr-title">Cloud &amp; <span class="tria-thin">DevOps</span></h2>
-              <div class="tria-sr-icon">
-                <i class="fas fa-cloud"></i>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-lg-6">
-                <p class="tria-sr-desc">
-                  Scalable cloud infrastructure designed for reliability and cost efficiency.
-                  We automate everything — from provisioning to deployments — so your team moves faster with fewer incidents.
-                </p>
-              </div>
-              <div class="col-lg-5 offset-lg-1">
-                <ul class="tria-sr-features">
-                  <li>Cloud Architecture Design</li>
-                  <li>CI/CD Pipeline Automation</li>
-                  <li>Infrastructure as Code</li>
-                  <li>Kubernetes Orchestration</li>
-                  <li>Cost Optimization</li>
-                </ul>
-              </div>
-            </div>
-            <div class="tria-sr-footer">
-              <div class="tria-sr-tags">
-                <span>AWS</span><span>GCP</span><span>Terraform</span><span>Kubernetes</span><span>Docker</span>
-              </div>
-              <a href="/contact" class="tria-button tria-arrow-place tria-sr-cta">
-                <span>Get a quote</span>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="tria-service-row tria-up" id="ai-ml">
           <div class="tria-sr-num">03</div>
           <div class="tria-sr-content">
             <div class="tria-sr-header">
               <h2 class="tria-sr-title">AI &amp; <span class="tria-thin">Machine Learning</span></h2>
-              <div class="tria-sr-icon">
-                <i class="fas fa-brain"></i>
-              </div>
             </div>
             <div class="row">
               <div class="col-lg-6">
@@ -139,9 +92,6 @@ import Footer from "../components/Footer.astro";
               <div class="tria-sr-tags">
                 <span>Python</span><span>PyTorch</span><span>LangChain</span><span>Spark</span><span>dbt</span>
               </div>
-              <a href="/contact" class="tria-button tria-arrow-place tria-sr-cta">
-                <span>Get a quote</span>
-              </a>
             </div>
           </div>
         </div>
@@ -151,9 +101,6 @@ import Footer from "../components/Footer.astro";
           <div class="tria-sr-content">
             <div class="tria-sr-header">
               <h2 class="tria-sr-title">IT &amp; <span class="tria-thin">Cybersecurity</span></h2>
-              <div class="tria-sr-icon">
-                <i class="fas fa-shield-alt"></i>
-              </div>
             </div>
             <div class="row">
               <div class="col-lg-6">
@@ -176,9 +123,6 @@ import Footer from "../components/Footer.astro";
               <div class="tria-sr-tags">
                 <span>OWASP</span><span>SIEM</span><span>Zero Trust</span><span>ISO 27001</span>
               </div>
-              <a href="/contact" class="tria-button tria-arrow-place tria-sr-cta">
-                <span>Get a quote</span>
-              </a>
             </div>
           </div>
         </div>
@@ -242,99 +186,85 @@ import Footer from "../components/Footer.astro";
 </Layout>
 
 <style>
-  /* ── Hero ── */
-  .tria-services-hero {
-    position: relative;
-    overflow: hidden;
-  }
-  .tria-sh-bg {
-    position: absolute;
-    inset: 0;
-    background: #0b0d17;
-  }
-  .tria-sh-inner {
-    padding-top: 160px;
-    padding-bottom: 100px;
-    position: relative;
-    z-index: 1;
-  }
   .tria-sh-right {
     display: flex;
     align-items: flex-end;
     padding-bottom: 12px;
   }
 
-  /* ── Services List ── */
   .tria-services-list {
-    border-top: 1px solid rgba(0,0,0,0.1);
+    border-top: 1px solid rgba(0,0,0,0.06);
   }
   .tria-service-row {
     display: grid;
-    grid-template-columns: 80px 1fr;
+    grid-template-columns: 70px 1fr;
     gap: 0 40px;
-    padding: 70px 0;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding: 60px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
     position: relative;
   }
   .tria-service-row::before {
     content: '';
     position: absolute;
-    left: -24px;
-    right: -24px;
-    top: 0;
-    bottom: 0;
+    inset: 8px -16px;
     background: transparent;
-    border-radius: 6px;
-    transition: background 0.4s ease;
-    z-index: -1;
+    border-radius: 16px;
+    transition: background 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 0;
   }
   .tria-service-row:hover::before {
-    background: rgba(86,5,29,0.02);
+    background: rgba(6,142,140,0.04);
+  }
+  .tria-service-row > * {
+    position: relative;
+    z-index: 1;
   }
   .tria-sr-num {
-    font-family: var(--font-display, 'Cormorant Garamond', serif);
-    font-size: 1rem;
-    color: rgba(0,0,0,0.2);
-    padding-top: 10px;
-    transition: color 0.3s;
+    font-family: var(--font-display, 'Outfit', sans-serif);
+    font-size: 0.9rem;
+    color: rgba(0,0,0,0.15);
+    padding-top: 8px;
+    transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    letter-spacing: 0.05em;
   }
   .tria-service-row:hover .tria-sr-num {
-    color: var(--accent, #56051d);
+    color: var(--accent);
   }
   .tria-sr-header {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    margin-bottom: 40px;
+    margin-bottom: 32px;
+    gap: 20px;
   }
   .tria-sr-title {
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
     font-weight: 400;
-    line-height: 1.1;
+    line-height: 1.15;
     margin: 0;
     color: #0b0d17;
-    transition: color 0.3s;
+    transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .tria-service-row:hover .tria-sr-title {
-    color: var(--accent, #56051d);
+    color: var(--accent);
   }
   .tria-sr-icon {
-    width: 56px;
-    height: 56px;
+    width: 52px;
+    height: 52px;
     border-radius: 14px;
-    background: rgba(86,5,29,0.07);
+    background: rgba(6,142,140,0.08);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--accent, #56051d);
-    font-size: 22px;
+    color: var(--accent);
+    font-size: 20px;
     flex-shrink: 0;
-    transition: background 0.3s, transform 0.3s;
+    transition: background 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .tria-service-row:hover .tria-sr-icon {
-    background: var(--accent, #56051d);
+    background: var(--accent);
     color: #fff;
-    transform: rotate(5deg);
+    transform: translateY(-3px) scale(1.05);
   }
   .tria-sr-desc {
     font-size: 0.9rem;
@@ -348,26 +278,30 @@ import Footer from "../components/Footer.astro";
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
   }
   .tria-sr-features li {
     font-size: 0.82rem;
     color: #444;
-    padding-left: 18px;
+    padding-left: 20px;
     position: relative;
+    transition: color 0.3s ease;
+  }
+  .tria-service-row:hover .tria-sr-features li {
+    color: #0b0d17;
   }
   .tria-sr-features li::before {
     content: '→';
     position: absolute;
     left: 0;
-    color: var(--accent, #56051d);
+    color: var(--accent);
     font-size: 0.7rem;
   }
   .tria-sr-footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 50px;
+    margin-top: 40px;
     flex-wrap: wrap;
     gap: 20px;
   }
@@ -380,79 +314,86 @@ import Footer from "../components/Footer.astro";
     font-size: 0.6rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    padding: 5px 12px;
-    border: 1px solid rgba(0,0,0,0.12);
+    padding: 6px 14px;
+    border: 1px solid rgba(0,0,0,0.08);
     border-radius: 20px;
-    color: rgba(0,0,0,0.4);
+    color: rgba(0,0,0,0.35);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .tria-service-row:hover .tria-sr-tags span {
+    border-color: rgba(6,142,140,0.2);
+    color: var(--accent);
+  }
+
+  .tria-sr-cta {
+    font-size: 0.75rem !important;
   }
 
   /* ── Engagement cards ── */
-  .tria-engagement-grid {
-    gap: 20px 0;
-  }
   .tria-engagement-card {
-    border: 1px solid rgba(0,0,0,0.1);
-    border-radius: 12px;
-    padding: 50px 40px;
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 16px;
+    padding: 44px 36px;
     height: 100%;
     position: relative;
     background: #fff;
-    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .tria-engagement-card:hover {
-    border-color: rgba(86,5,29,0.25);
-    transform: translateY(-4px);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.07);
+    border-color: rgba(6,142,140,0.2);
+    transform: translateY(-6px);
+    box-shadow: 0 24px 64px rgba(0,0,0,0.06);
   }
   .tria-engagement-card--featured {
-    border-color: var(--accent, #56051d);
+    border-color: var(--accent);
     background: #0b0d17;
   }
   .tria-engagement-card--featured .tria-ec-title,
   .tria-engagement-card--featured .tria-ec-desc,
   .tria-engagement-card--featured .tria-ec-list li {
-    color: rgba(255,255,255,0.8) !important;
+    color: rgba(255,255,255,0.85) !important;
   }
   .tria-engagement-card--featured:hover {
-    border-color: var(--accent, #56051d);
-    box-shadow: 0 20px 60px rgba(86,5,29,0.2);
+    border-color: var(--accent);
+    box-shadow: 0 24px 64px rgba(6,142,140,0.15);
   }
   .tria-ec-badge {
     position: absolute;
     top: -12px;
-    left: 40px;
+    left: 36px;
     font-size: 0.55rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    background: var(--accent, #56051d);
+    background: var(--accent);
     color: #fff;
-    padding: 4px 12px;
+    padding: 5px 14px;
     border-radius: 20px;
+    font-weight: 500;
   }
   .tria-ec-icon {
     width: 48px;
     height: 48px;
-    border-radius: 12px;
-    background: rgba(86,5,29,0.08);
+    border-radius: 14px;
+    background: rgba(6,142,140,0.08);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--accent, #56051d);
+    color: var(--accent);
     font-size: 20px;
     margin-bottom: 24px;
-    transition: background 0.3s, transform 0.3s;
+    transition: background 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .tria-engagement-card--featured .tria-ec-icon {
     background: rgba(255,255,255,0.08);
     color: rgba(255,255,255,0.7);
   }
   .tria-engagement-card:hover .tria-ec-icon {
-    background: var(--accent, #56051d);
+    background: var(--accent);
     color: #fff;
-    transform: translateY(-2px);
+    transform: translateY(-3px);
   }
   .tria-ec-title {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     font-weight: 400;
     margin-bottom: 16px;
     color: #0b0d17;
@@ -461,7 +402,7 @@ import Footer from "../components/Footer.astro";
     font-size: 0.82rem;
     color: #777;
     line-height: 1.75;
-    margin-bottom: 28px;
+    margin-bottom: 24px;
   }
   .tria-ec-list {
     list-style: none;
@@ -474,26 +415,33 @@ import Footer from "../components/Footer.astro";
   .tria-ec-list li {
     font-size: 0.78rem;
     color: #555;
-    padding-left: 16px;
+    padding-left: 18px;
     position: relative;
   }
   .tria-ec-list li::before {
     content: '✓';
     position: absolute;
     left: 0;
-    color: var(--accent, #56051d);
+    color: var(--accent);
     font-size: 0.7rem;
   }
   .tria-engagement-card--featured .tria-ec-list li::before {
-    color: rgba(255,255,255,0.4);
+    color: rgba(255,255,255,0.35);
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 991px) {
     .tria-service-row {
       grid-template-columns: 50px 1fr;
-      gap: 0 16px;
+      gap: 0 20px;
       padding: 50px 0;
     }
-    .tria-sr-header { flex-direction: column; gap: 20px; }
+    .tria-sr-header { flex-direction: column; gap: 16px; }
+  }
+  @media (max-width: 768px) {
+    .tria-sr-num { display: none; }
+    .tria-service-row {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
   }
 </style>

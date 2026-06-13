@@ -11,7 +11,7 @@ interface Props {
 }
 
 const {
-  title = "Tria — Digital Solutions",
+  title = "Tria — Software Solutions",
   description = "Software enterprise crafting digital solutions from Costa Rica.",
 } = Astro.props;
 
@@ -26,7 +26,7 @@ const triaData = JSON.stringify({ en, es });
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta name="description" content={description} />
-    <title>{title}</title>
+    <title>Tria — Software Solutions</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="alternate icon" href="/favicon.ico" sizes="any" />
     <link rel="stylesheet" href="/assets/css/vendor/bootstrap-grid.css" />
@@ -352,6 +352,7 @@ const triaData = JSON.stringify({ en, es });
         initFrameTheme();
 
         document.addEventListener("swup:contentReplaced", function () {
+          document.title = "Tria — Software Solutions";
           updateFrameTheme();
           if (window.initTriaGradient) window.initTriaGradient();
           if (window.triaI18n) window.triaI18n.apply();

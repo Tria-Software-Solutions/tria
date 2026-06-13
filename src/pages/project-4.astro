@@ -1,18 +1,27 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Footer from "../components/Footer.astro";
 ---
 
-<Layout title="AI-Powered Analytics — tria">
-  <section style="min-height:100vh;padding:160px 0 100px;">
-    <div class="container">
-      <p class="section-label">Project</p>
-      <h1
-        style="font-family:var(--font-display);font-size:clamp(3rem,7vw,7rem);font-weight:300;"
-      >
-        AI-Powered<br /><em style="font-style:italic;color:var(--color-accent);"
-          >Analytics</em
-        >
+<Layout title="Tria — Software Solutions" description="AI-Powered Analytics — a project by tria.">
+  <section class="page-hero" data-section-theme="dark">
+    <div class="page-hero-bg">
+      <div class="page-hero-orb page-hero-orb--1"></div>
+      <div class="page-hero-orb page-hero-orb--2"></div>
+    </div>
+    <div class="container page-hero-inner">
+      <span class="tria-suptitle tria-light-soft tria-up" style="display:block;margin-bottom:24px;" data-i18n="project.suptitle">Project</span>
+      <h1 class="page-hero-heading tria-up" data-i18n-html="project4.title">
+        AI-Powered<br /><span class="page-hero-em">Analytics</span>
       </h1>
     </div>
   </section>
+
+  <section class="tria-soft-bg" data-section-theme="light" style="padding:120px 0;">
+    <div class="container">
+      <p class="tria-center tria-dark-soft" style="font-size:1.1rem;" data-i18n="project.body">Project details coming soon.</p>
+    </div>
+  </section>
+
+  <Footer />
 </Layout>

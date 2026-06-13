@@ -3,6 +3,7 @@
 
 <!-- cta -->
 <section class="tria-cta-section" data-section-theme="light">
+  <div class="tria-cta-glow"></div>
   <div class="container tria-p-120-120">
       <div class="row justify-content-center tria-cta-inner">
         <div class="col-lg-10 tria-center">
@@ -49,6 +50,17 @@
     background: #ffffff;
   }
 
+  .tria-cta-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    height: 600px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(6,142,140,0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
   .tria-cta-inner {
     position: relative;
     z-index: 1;
@@ -80,6 +92,7 @@
     border-color: #0b0d17 !important;
     color: #fff !important;
     font-size: 0.8rem;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
   }
 
   .tria-cta-btn-primary i {
@@ -90,16 +103,20 @@
   .tria-cta-btn-primary:hover {
     background-color: var(--accent) !important;
     border-color: var(--accent) !important;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(6,142,140,0.25);
     filter: none !important;
   }
 
   .tria-cta-link {
     color: rgba(0, 0, 0, 0.4);
     font-size: 0.8rem;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .tria-cta-link:hover {
     color: #0b0d17 !important;
+    gap: 14px;
   }
 
   /* Meta row */

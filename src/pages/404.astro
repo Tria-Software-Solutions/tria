@@ -1,26 +1,24 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Footer from "../components/Footer.astro";
 ---
 
-<Layout title="404 — tria">
-  <section
-    style="min-height:100vh;padding:160px 0 100px;display:flex;align-items:center;"
-  >
-    <div class="container" style="text-align:center;">
-      <h1
-        style="font-family:var(--font-display);font-size:clamp(6rem,15vw,12rem);font-weight:300;margin:0;"
-      >
-        404
-      </h1>
-      <p style="font-size:1.1rem;color:var(--color-muted);margin:20px 0 40px;">
-        Page not found
-      </p>
-      <a
-        href="/"
-        style="text-decoration:none;border:1px solid var(--color-accent);padding:12px 32px;border-radius:6px;color:var(--color-accent);font-size:.85rem;transition:.3s;"
-      >
-        Back to home
-      </a>
+<Layout title="Tria — Software Solutions" description="Page not found.">
+  <section class="page-hero" data-section-theme="dark" style="min-height:80vh;align-items:center;">
+    <div class="page-hero-bg">
+      <div class="page-hero-orb page-hero-orb--1"></div>
+      <div class="page-hero-orb page-hero-orb--2"></div>
+    </div>
+    <div class="container page-hero-inner">
+      <div class="tria-center">
+        <h1 class="page-hero-heading" style="font-size:clamp(6rem,15vw,12rem);margin-bottom:10px;" data-i18n="404.title">404</h1>
+        <p class="page-hero-sub" style="max-width:none;font-size:1.1rem;margin-bottom:40px;" data-i18n="404.subtitle">Page not found</p>
+        <a href="/" class="tria-button tria-arrow-place" data-i18n="404.cta">
+          <span>Back to home</span>
+        </a>
+      </div>
     </div>
   </section>
+
+  <Footer />
 </Layout>
