@@ -1,0 +1,112 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout title="About — tria" description="Founded in Costa Rica, tria is a software enterprise building powerful digital solutions.">
+  <section class="page-hero" data-section-theme="dark">
+    <div class="page-hero-bg">
+      <div class="page-hero-orb page-hero-orb--1"></div>
+      <div class="page-hero-orb page-hero-orb--2"></div>
+    </div>
+    <div class="container page-hero-inner">
+      <span class="tria-suptitle tria-light-soft tria-up" style="display:block;margin-bottom:24px;">About</span>
+      <h1 class="page-hero-heading tria-up" data-i18n-html="about.title">
+        About <br /><span class="page-hero-em">tria</span>
+      </h1>
+    </div>
+  </section>
+
+  <section data-section-theme="dark" style="background:#0b0d17;padding:120px 0;">
+    <div class="container">
+      <div class="row justify-content-between align-items-center">
+        <div class="col-lg-5">
+          <p class="tria-up tria-mb-30" style="color:rgba(255,255,255,0.7);font-size:1.05rem;line-height:1.8;" data-i18n="about.description1">
+            Founded in Costa Rica, tria is a software enterprise built
+            by engineers who believe great technology starts with understanding
+            real problems. We design, build, and scale digital products that
+            simplify complexity and drive measurable outcomes.
+          </p>
+          <p class="tria-up tria-mb-60" style="color:rgba(255,255,255,0.7);font-size:1.05rem;line-height:1.8;" data-i18n="about.description2">
+            Our team spans cloud architecture, full-stack development, AI/ML,
+            and cybersecurity — working together to deliver enterprise-grade
+            solutions. Every project begins with a question: how can we make
+            this simpler, faster, and more reliable?
+          </p>
+          <div class="tria-about-quote">
+            <div class="tria-avatar tria-up">
+              <img
+                src="/assets/img/logo/logo-avatar.svg"
+                alt="tria logo"
+                class="tria-avatar-logo"
+              />
+            </div>
+            <h6 class="tria-quote tria-up" style="color:rgba(255,255,255,0.5);" data-i18n-html="about.quote">
+              Crafted in Costa Rica, <span style="color:rgba(255,255,255,0.3);">Engineered for the World:</span> Software <span style="color:rgba(255,255,255,0.3);">That Delivers</span>
+            </h6>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="tria-about-photo tria-mb-90">
+            <div class="tria-lines-place"></div>
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="tria-about-blob">
+              <path fill="#068e8c" d="M49,-62.6C60.6,-59,65.3,-40.8,67.6,-24.2C69.8,-7.6,69.8,7.5,67.4,24.1C65,40.6,60.3,58.6,48.7,63.9C37.1,69.2,18.5,61.9,2.4,58.7C-13.8,55.4,-27.7,56.3,-35.1,49.6C-42.4,42.9,-43.3,28.6,-51.6,14.2C-59.8,-0.3,-75.4,-14.9,-75.7,-27.8C-76,-40.8,-60.9,-52,-45.8,-54.4C-30.6,-56.9,-15.3,-50.7,1.7,-53C18.7,-55.3,37.3,-66.2,49,-62.6Z" transform="translate(100 100)" />
+            </svg>
+            <div class="tria-up tria-img-frame" style="padding-bottom: 100%;">
+              <img src="/assets/img/about/2.svg" alt="Software engineering illustration" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  .tria-about-photo {
+    position: relative;
+  }
+  .tria-about-blob {
+    position: absolute;
+    width: 80%;
+    height: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.2;
+    z-index: 0;
+  }
+  .tria-about-photo .tria-img-frame {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    border-radius: 16px;
+  }
+  .tria-about-photo .tria-img-frame img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .tria-avatar-logo {
+    filter: brightness(0) invert(1);
+    width: 48px;
+    height: auto;
+  }
+  .tria-avatar {
+    margin-bottom: 20px;
+  }
+  .tria-quote {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.6;
+    margin: 0;
+  }
+  .tria-lines-place {
+    display: none;
+  }
+</style>

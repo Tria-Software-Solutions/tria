@@ -1,0 +1,149 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+---
+
+<Layout title={`${post.data.title} — tria`} description={post.data.description}>
+  <section class="page-hero page-hero--short" data-section-theme="dark">
+    <div class="page-hero-bg">
+      <div class="page-hero-orb page-hero-orb--1"></div>
+      <div class="page-hero-orb page-hero-orb--2"></div>
+    </div>
+    <div class="container page-hero-inner">
+      <a href="/blog" class="tria-link tria-light-soft tria-up" style="display:inline-block;margin-bottom:24px;">
+        &larr; Back to Blog
+      </a>
+      <div class="tria-labels tria-up tria-mb-20">
+        <div class="tria-label tria-upper tria-accent">{post.data.category.toUpperCase()}</div>
+        <div class="tria-label tria-upper">{new Date(post.data.pubDate).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</div>
+      </div>
+      <h1 class="page-hero-heading tria-up">{post.data.title}</h1>
+    </div>
+  </section>
+
+  <section class="tria-soft-bg" data-section-theme="light" style="padding:80px 0;">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10 col-xl-8">
+          <article class="tria-article" set:html={post.rendered.html}></article>
+
+          <div class="tria-post-footer tria-up" style="margin-top:60px;padding-top:40px;border-top:1px solid rgba(0,0,0,0.08);">
+            <div class="tria-tags">
+              {
+                post.data.tags.map((tag) => (
+                  <span class="tria-label tria-upper">{tag}</span>
+                ))
+              }
+            </div>
+            <a href="/blog" class="tria-link tria-dark tria-arrow-place" style="margin-top:24px;display:inline-block;">
+              <span>&larr; Back to all posts</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero--short {
+    padding: 120px 0 80px;
+  }
+  .tria-article :global(h2) {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: #111;
+  }
+  .tria-article :global(h3) {
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    color: #111;
+  }
+  .tria-article :global(p) {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+    color: rgba(0, 0, 0, 0.75);
+  }
+  .tria-article :global(ul),
+  .tria-article :global(ol) {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
+    color: rgba(0, 0, 0, 0.75);
+  }
+  .tria-article :global(li) {
+    margin-bottom: 0.5rem;
+  }
+  .tria-article :global(strong) {
+    font-weight: 600;
+    color: #111;
+  }
+  .tria-article :global(pre) {
+    background: #111;
+    color: #f5f5f5;
+    padding: 1.5rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  .tria-article :global(code) {
+    font-family: "SF Mono", "Fira Code", monospace;
+    font-size: 0.9em;
+  }
+  .tria-article :global(:not(pre) > code) {
+    background: rgba(0, 0, 0, 0.06);
+    padding: 0.15em 0.4em;
+    border-radius: 4px;
+  }
+  .tria-article :global(blockquote) {
+    border-left: 3px solid var(--accent, #555);
+    padding-left: 1.25rem;
+    margin: 1.5rem 0;
+    color: rgba(0, 0, 0, 0.6);
+    font-style: italic;
+  }
+  .tria-article :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+  }
+  .tria-article :global(th),
+  .tria-article :global(td) {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    text-align: left;
+  }
+  .tria-article :global(th) {
+    font-weight: 600;
+    color: #111;
+  }
+  .tria-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .tria-labels {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+</style>

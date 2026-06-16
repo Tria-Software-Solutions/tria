@@ -355,9 +355,11 @@ const triaData = JSON.stringify({ en, es });
 
         document.addEventListener("swup:contentReplaced", function () {
           document.title = "Tria — Software Solutions";
+          ScrollTrigger.getAll().forEach(function (st) { st.kill(); });
           updateFrameTheme();
           if (window.initTriaGradient) window.initTriaGradient();
           if (window.triaI18n) window.triaI18n.apply();
+          if (window.__reinitHeroBg) window.__reinitHeroBg();
         });
       })();
     </script>
@@ -373,5 +375,17 @@ const triaData = JSON.stringify({ en, es });
     <script is:inline src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
     <script is:inline src="/assets/js/tria-main.js"></script>
     <script is:inline src="/assets/js/tria-gradient.js"></script>
+    <script>
+    import { initGradient } from "../scripts/hero-gradient";
+    let __heroCleanup = null;
+    window.__reinitHeroBg = function () {
+      if (__heroCleanup) { __heroCleanup(); __heroCleanup = null; }
+      var bg = document.querySelector(".tria-hero-bg");
+      if (bg && window.__heroGradProps) {
+        __heroCleanup = initGradient(bg, window.__heroGradProps);
+      }
+    };
+    if (document.querySelector(".tria-hero-bg")) window.__reinitHeroBg();
+    </script>
   </body>
 </html>

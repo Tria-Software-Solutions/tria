@@ -1,0 +1,86 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  posts: CollectionEntry<"blog">[];
+  currentPage: number;
+  totalPages: number;
+}
+
+const { posts, currentPage, totalPages } = Astro.props;
+---
+
+<div class="container tria-p-120-60">
+  <div class="row">
+    {
+      posts.map((post) => (
+        <div class="col-lg-6">
+          <a href={`/blog/${post.id}`} class="tria-blog-card tria-mb-60">
+            <div class="tria-cover-frame tria-up">
+              <img src={post.data.image} alt={post.data.title} />
+            </div>
+            <div class="tria-post-descr">
+              <div class="tria-labels tria-up tria-mb-30">
+                <div class="tria-label tria-upper tria-accent">{post.data.category.toUpperCase()}</div>
+                <div class="tria-label tria-upper">{new Date(post.data.pubDate).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}</div>
+              </div>
+              <h4 class="tria-up tria-mb-30">{post.data.title}</h4>
+              <p class="tria-post-text tria-up tria-mb-30">{post.data.description}</p>
+              <div class="tria-link tria-dark tria-arrow-place tria-up">
+                <span>Read more</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      ))
+    }
+  </div>
+
+  {
+    totalPages > 1 && (
+      <div class="row">
+        <div class="col-12 tria-center">
+          <div class="tria-pagination">
+            {
+              currentPage > 1 && (
+                <a
+                  href={currentPage === 2 ? "/blog" : `/blog/page/${currentPage - 1}`}
+                  class="tria-link tria-dark tria-arrow-place"
+                >
+                  <span>Previous</span>
+                </a>
+              )
+            }
+            <span class="tria-pagination-info">
+              Page {currentPage} of {totalPages}
+            </span>
+            {
+              currentPage < totalPages && (
+                <a
+                  href={`/blog/page/${currentPage + 1}`}
+                  class="tria-link tria-dark tria-arrow-place"
+                >
+                  <span>Next</span>
+                </a>
+              )
+            }
+          </div>
+        </div>
+      </div>
+    )
+  }
+</div>
+
+<style>
+  .tria-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    padding-top: 40px;
+  }
+  .tria-pagination-info {
+    font-size: 0.9rem;
+    color: rgba(0, 0, 0, 0.5);
+  }
+</style>

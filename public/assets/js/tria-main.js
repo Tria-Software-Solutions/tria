@@ -231,6 +231,8 @@ $(function () {
       name = "Work"; i18nKey = "nav.work";
     } else if (p.startsWith("/services") || p.startsWith("/service")) {
       name = "Services"; i18nKey = "nav.services";
+    } else if (p.startsWith("/about")) {
+      name = "About"; i18nKey = "nav.about";
     } else if (p.startsWith("/contact")) {
       name = "Contact"; i18nKey = "nav.contact";
     } else if (p.startsWith("/team")) {

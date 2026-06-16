@@ -1,6 +1,16 @@
 ---
+import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
 import Footer from "../components/Footer.astro";
+import BlogList from "../components/BlogList.astro";
+
+const allPosts = await getCollection("blog");
+allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const pageSize = 6;
+const currentPage = 1;
+const totalPages = Math.ceil(allPosts.length / pageSize);
+const posts = allPosts.slice(0, pageSize);
 ---
 
 <Layout title="Tria — Software Solutions" description="Read insights on software engineering, AI, cloud infrastructure, and technology from the tria team.">
@@ -18,15 +28,7 @@ import Footer from "../components/Footer.astro";
   </section>
 
   <section class="tria-soft-bg" data-section-theme="light" style="padding:120px 0;">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-8 tria-center">
-          <p class="tria-dark-soft" style="font-size:1.1rem;line-height:1.8;max-width:600px;margin:0 auto;" data-i18n="blog.body">
-            Insights on software engineering, AI, cloud infrastructure, and technology from the tria team. Coming soon.
-          </p>
-        </div>
-      </div>
-    </div>
+    <BlogList posts={posts} currentPage={currentPage} totalPages={totalPages} />
   </section>
 
   <Footer />
