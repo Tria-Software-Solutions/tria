@@ -12,12 +12,11 @@ const t = createT(Astro.currentLocale);
           <span class="tria-suptitle tria-light-soft tria-up tria-mb-30" style="display:block;text-align:center;" data-i18n="cta.suptitle">{t("cta.suptitle")}</span>
           <h2 class="tria-cta-heading tria-up tria-mb-60" data-i18n-html="cta.heading" set:html={t("cta.heading")} />
           <div class="tria-cta-actions tria-up">
-            <a href="/contact" class="tria-button tria-arrow-place tria-cta-btn-primary">
+            <a href="/contact" class="tria-button tria-arrow-place">
               <span data-i18n="cta.startProject">{t("cta.startProject")}</span>
             </a>
-            <a href="/work" class="tria-cta-link tria-link tria-arrow-place">
+            <a href="/portfolio" class="tria-cta-link">
               <span data-i18n="cta.seeWork">{t("cta.seeWork")}</span>
-              <i class="fas fa-arrow-right"></i>
             </a>
           </div>
         </div>
@@ -86,36 +85,17 @@ const t = createT(Astro.currentLocale);
     flex-wrap: wrap;
   }
 
-  .tria-cta-btn-primary {
-    background-color: #0b0d17 !important;
-    border-color: #0b0d17 !important;
-    color: #fff !important;
-    font-size: 0.8rem;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
-  }
-
-  .tria-cta-btn-primary i {
-    background-color: rgba(255, 255, 255, 0.15) !important;
-    color: #fff !important;
-  }
-
-  .tria-cta-btn-primary:hover {
-    background-color: var(--accent) !important;
-    border-color: var(--accent) !important;
-    transform: translateY(-3px);
-    box-shadow: 0 12px 40px rgba(6,142,140,0.25);
-    filter: none !important;
-  }
-
   .tria-cta-link {
-    color: rgba(0, 0, 0, 0.4);
     font-size: 0.8rem;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    color: rgba(0, 0, 0, 0.4);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .tria-cta-link:hover {
-    color: #0b0d17 !important;
-    gap: 14px;
+    color: var(--accent);
   }
 
   /* Meta row */

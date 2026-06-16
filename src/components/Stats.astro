@@ -5,7 +5,7 @@ const t = createT(Astro.currentLocale);
 
 <!-- stats -->
 <section class="tria-stats-section" data-section-theme="light">
-  <div class="container tria-p-120-120">
+  <div class="container tria-p-90-90">
       <div class="row tria-stats-grid">
         <div class="col-6 col-lg-3 tria-stat-item tria-up">
           <div class="tria-stat-number">
@@ -33,35 +33,7 @@ const t = createT(Astro.currentLocale);
         </div>
       </div>
 
-      <!-- Marquee divider -->
-      <div class="tria-stats-marquee tria-up">
-        <div class="tria-marquee-track">
-          <span data-i18n="stats.marquee1">{t("stats.marquee1")}</span>
-          <span class="tria-marquee-dot">✦</span>
-          <span data-i18n="stats.marquee2">{t("stats.marquee2")}</span>
-          <span class="tria-marquee-dot">✦</span>
-          <span data-i18n="stats.marquee3">{t("stats.marquee3")}</span>
-          <span class="tria-marquee-dot">✦</span>
-          <span data-i18n="stats.marquee4">{t("stats.marquee4")}</span>
-          <span class="tria-marquee-dot">✦</span>
-          <span data-i18n="stats.marquee5">{t("stats.marquee5")}</span>
-          <span class="tria-marquee-dot">✦</span>
-          <span data-i18n="stats.marquee6">{t("stats.marquee6")}</span>
-          <span class="tria-marquee-dot">✦</span>
-          <span data-i18n="stats.marquee1">{t("stats.marquee1")}</span>
-          <span class="tria-marquee-dot">✦</span>
-          <span data-i18n="stats.marquee2">{t("stats.marquee2")}</span>
-          <span class="tria-marquee-dot">✦</span>
-          <span data-i18n="stats.marquee3">{t("stats.marquee3")}</span>
-          <span class="tria-marquee-dot">✦</span>
-          <span data-i18n="stats.marquee4">{t("stats.marquee4")}</span>
-          <span class="tria-marquee-dot">✦</span>
-          <span data-i18n="stats.marquee5">{t("stats.marquee5")}</span>
-          <span class="tria-marquee-dot">✦</span>
-          <span data-i18n="stats.marquee6">{t("stats.marquee6")}</span>
-          <span class="tria-marquee-dot">✦</span>
-        </div>
-    </div>
+
   </div>
 </section>
 <!-- stats end -->
@@ -74,7 +46,7 @@ const t = createT(Astro.currentLocale);
   }
 
   .tria-stats-grid {
-    margin-bottom: 90px;
+    margin-bottom: 0;
   }
 
   .tria-stat-item {
@@ -133,42 +105,7 @@ const t = createT(Astro.currentLocale);
     color: rgba(0,0,0,0.5);
   }
 
-  /* Marquee */
-  .tria-stats-marquee {
-    overflow: hidden;
-    border-top: 1px solid rgba(0, 0, 0, 0.06);
-    padding-top: 40px;
-    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-  }
 
-  .tria-marquee-track {
-    display: flex;
-    gap: 40px;
-    width: max-content;
-    animation: tria-marquee-scroll 30s linear infinite;
-    white-space: nowrap;
-  }
-
-  .tria-marquee-track span {
-    font-size: 0.65rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: rgba(0, 0, 0, 0.3);
-    flex-shrink: 0;
-  }
-
-  .tria-marquee-dot {
-    color: var(--accent, #068e8c) !important;
-    font-size: 0.5rem !important;
-    display: inline-flex;
-    align-items: center;
-  }
-
-  @keyframes tria-marquee-scroll {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
 </style>
 
 <script is:inline>

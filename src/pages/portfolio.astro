@@ -3,25 +3,462 @@ import Layout from "../layouts/Layout.astro";
 import Footer from "../components/Footer.astro";
 ---
 
-<Layout title="Tria — Software Solutions" description="Explore our portfolio of software engineering projects.">
+<Layout title="Tria — Software Solutions" description="Explore tria's portfolio of software engineering projects across FinTech, Healthcare, AI, and more.">
+
+  <!-- page hero -->
   <section class="page-hero" data-section-theme="dark">
     <div class="page-hero-bg">
       <div class="page-hero-orb page-hero-orb--1"></div>
       <div class="page-hero-orb page-hero-orb--2"></div>
     </div>
     <div class="container page-hero-inner">
-      <span class="tria-suptitle tria-light-soft tria-up" style="display:block;margin-bottom:24px;" data-i18n="portfolio.suptitle">Our Work</span>
-      <h1 class="page-hero-heading tria-up" data-i18n-html="portfolio.title">
-        Selected<br /><span class="page-hero-em">Projects</span>
-      </h1>
+      <div class="row">
+        <div class="col-lg-8">
+          <span class="tria-suptitle tria-light-soft tria-up tria-mb-20" style="display:block;">Selected Projects</span>
+          <h1 class="tria-up tria-mb-30 page-hero-heading">
+            Projects That<br /><span class="page-hero-em">Deliver Results</span>
+          </h1>
+          <p class="tria-up page-hero-sub">
+            A curated selection of our most impactful projects — from complex platforms to AI-powered systems built for scale.
+          </p>
+        </div>
+        <div class="col-lg-4 tria-ph-stats-col">
+          <div class="tria-ph-stats">
+            <div class="tria-ph-stat">
+              <span class="tria-ph-stat-num">120+</span>
+              <span class="tria-ph-stat-label">Projects</span>
+            </div>
+            <div class="tria-ph-stat">
+              <span class="tria-ph-stat-num">6</span>
+              <span class="tria-ph-stat-label">Industries</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- page hero end -->
+
+  <!-- filter + grid -->
+  <section data-section-theme="light" class="tria-work-section-bg">
+    <div class="container" style="padding-top:80px;padding-bottom:40px;">
+      <div class="tria-work-filter tria-up">
+        <button class="tria-filter-btn tria-filter-active" data-filter="all">All</button>
+        <button class="tria-filter-btn" data-filter="fintech">FinTech</button>
+        <button class="tria-filter-btn" data-filter="cloud">Cloud</button>
+        <button class="tria-filter-btn" data-filter="ai">AI / ML</button>
+        <button class="tria-filter-btn" data-filter="healthcare">Healthcare</button>
+        <button class="tria-filter-btn" data-filter="ecommerce">E-Commerce</button>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="tria-portfolio-grid tria-up">
+
+        <div class="tria-portfolio-card" data-cat="fintech">
+          <div class="tria-pc-img" style="background:linear-gradient(135deg,#0b0d17 0%,#1a1f35 55%,#068e8c 100%);">
+            <div class="tria-pc-abstract tria-pc-abstract--lines"></div>
+          </div>
+          <div class="tria-pc-body">
+            <div class="tria-pc-meta">
+              <span class="tria-pc-cat">FinTech</span>
+            </div>
+            <h3 class="tria-pc-title">FinTech Dashboard Platform</h3>
+            <p class="tria-pc-desc">Real-time transaction analytics engine processing 10M+ events daily with sub-100ms latency across 30 currencies.</p>
+            <div class="tria-pc-tags">
+              <span>React</span><span>Go</span><span>PostgreSQL</span><span>AWS</span>
+            </div>
+            <a href="#" class="tria-pc-link tria-link tria-arrow-place">
+              <span>Case study</span>
+              <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="tria-portfolio-card" data-cat="cloud">
+          <div class="tria-pc-img" style="background:linear-gradient(135deg,#111827 0%,#1e3a5f 100%);">
+            <div class="tria-pc-abstract tria-pc-abstract--rings"></div>
+          </div>
+          <div class="tria-pc-body">
+            <div class="tria-pc-meta">
+              <span class="tria-pc-cat">Cloud</span>
+            </div>
+            <h3 class="tria-pc-title">Cloud Infrastructure Suite</h3>
+            <p class="tria-pc-desc">Multi-cloud orchestration platform with GitOps workflows reducing operational overhead by 60% for enterprise clients.</p>
+            <div class="tria-pc-tags">
+              <span>Kubernetes</span><span>Terraform</span><span>GCP</span><span>AWS</span>
+            </div>
+            <a href="#" class="tria-pc-link tria-link tria-arrow-place">
+              <span>Case study</span>
+              <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="tria-portfolio-card" data-cat="ecommerce">
+          <div class="tria-pc-img" style="background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);">
+          </div>
+          <div class="tria-pc-body">
+            <div class="tria-pc-meta">
+              <span class="tria-pc-cat">E-Commerce</span>
+            </div>
+            <h3 class="tria-pc-title">E-Commerce Engine</h3>
+            <p class="tria-pc-desc">Headless commerce platform handling 50K+ concurrent users with 99.99% uptime during peak campaigns.</p>
+            <div class="tria-pc-tags">
+              <span>Next.js</span><span>Node.js</span><span>Redis</span><span>Stripe</span>
+            </div>
+            <a href="#" class="tria-pc-link tria-link tria-arrow-place">
+              <span>Case study</span>
+              <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="tria-portfolio-card" data-cat="ai">
+          <div class="tria-pc-img" style="background:linear-gradient(135deg,#0d0d0d 0%,#1a0f0f 50%,#068e8c 100%);">
+            <div class="tria-pc-abstract tria-pc-abstract--dots"></div>
+          </div>
+          <div class="tria-pc-body">
+            <div class="tria-pc-meta">
+              <span class="tria-pc-cat">AI / ML</span>
+            </div>
+            <h3 class="tria-pc-title">AI-Powered Analytics</h3>
+            <p class="tria-pc-desc">Predictive intelligence platform delivering 94% accuracy across 15 business verticals with real-time model updates.</p>
+            <div class="tria-pc-tags">
+              <span>Python</span><span>PyTorch</span><span>Kafka</span><span>Snowflake</span>
+            </div>
+            <a href="#" class="tria-pc-link tria-link tria-arrow-place">
+              <span>Case study</span>
+              <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="tria-portfolio-card" data-cat="cloud">
+          <div class="tria-pc-img" style="background:linear-gradient(135deg,#0a0a1a 0%,#0d2137 100%);">
+          </div>
+          <div class="tria-pc-body">
+            <div class="tria-pc-meta">
+              <span class="tria-pc-cat">Cloud</span>
+            </div>
+            <h3 class="tria-pc-title">IoT Fleet Management</h3>
+            <p class="tria-pc-desc">Edge-to-cloud IoT platform managing 200K+ connected devices with real-time telemetry and predictive maintenance.</p>
+            <div class="tria-pc-tags">
+              <span>Go</span><span>MQTT</span><span>InfluxDB</span><span>Azure</span>
+            </div>
+            <a href="#" class="tria-pc-link tria-link tria-arrow-place">
+              <span>Case study</span>
+              <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="tria-portfolio-card" data-cat="healthcare">
+          <div class="tria-pc-img" style="background:linear-gradient(135deg,#071a2c 0%,#0c3b5e 100%);">
+          </div>
+          <div class="tria-pc-body">
+            <div class="tria-pc-meta">
+              <span class="tria-pc-cat">Healthcare</span>
+            </div>
+            <h3 class="tria-pc-title">Healthcare Data Platform</h3>
+            <p class="tria-pc-desc">HIPAA-compliant data lake serving 200+ providers with real-time patient insights and regulatory reporting.</p>
+            <div class="tria-pc-tags">
+              <span>Python</span><span>Spark</span><span>dbt</span><span>GCP</span>
+            </div>
+            <a href="#" class="tria-pc-link tria-link tria-arrow-place">
+              <span>Case study</span>
+              <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
     </div>
   </section>
 
-  <section class="tria-soft-bg" data-section-theme="light" style="padding:120px 0;">
-    <div class="container">
-      <p class="tria-center tria-dark-soft" style="font-size:1.1rem;" data-i18n-html="portfolio.body">View our full portfolio on the <a href="/work" style="color:var(--accent);">Work page</a>.</p>
+  <!-- CTA strip -->
+  <section data-section-theme="light" class="tria-work-section-bg">
+    <div class="container" style="padding:0 0 120px;">
+      <div class="tria-work-page-cta tria-up">
+        <div class="tria-wpc-left">
+          <h4 class="tria-wpc-heading">Have a project in mind?</h4>
+          <p class="tria-wpc-sub">We're currently accepting new clients for Q3 2025.</p>
+        </div>
+        <a href="/contact" class="tria-button tria-arrow-place">
+          <span>Start a conversation</span>
+        </a>
+      </div>
     </div>
   </section>
 
   <Footer />
 </Layout>
+
+<style>
+  .tria-ph-stats-col {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding-bottom: 12px;
+  }
+  .tria-ph-stats {
+    display: flex;
+    gap: 50px;
+  }
+  .tria-ph-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  .tria-ph-stat-num {
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.8);
+    font-family: var(--font-display, 'Cormorant Garamond', serif);
+    line-height: 1;
+  }
+  .tria-ph-stat-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-top: 6px;
+  }
+
+  .tria-work-section-bg {
+    background: #faf7f2;
+  }
+
+  .tria-work-filter {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 60px;
+  }
+  .tria-filter-btn {
+    padding: 10px 22px;
+    border-radius: 30px;
+    border: 1px solid rgba(0,0,0,0.12);
+    background: transparent;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: rgba(0,0,0,0.45);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    font-family: inherit;
+  }
+  .tria-filter-btn:hover {
+    background: #0b0d17;
+    color: #fff;
+    border-color: #0b0d17;
+  }
+  .tria-filter-btn.tria-filter-active {
+    background: #0b0d17;
+    color: #fff;
+    border-color: #0b0d17;
+  }
+
+  .tria-portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .tria-portfolio-card {
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    transition: box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .tria-portfolio-card:hover {
+    box-shadow: 0 16px 48px rgba(0,0,0,0.1), 0 4px 16px rgba(0,0,0,0.06);
+    transform: translateY(-4px);
+  }
+  .tria-portfolio-card.tria-hidden {
+    display: none;
+  }
+  .tria-pc-img {
+    height: 240px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .tria-portfolio-card:hover .tria-pc-img {
+    transform: scale(1.04);
+  }
+  .tria-pc-abstract {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .tria-pc-abstract--lines::after {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    right: -30px;
+    bottom: -30px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 50%;
+    box-shadow: 0 0 0 40px rgba(255,255,255,0.03), 0 0 0 80px rgba(255,255,255,0.015);
+  }
+  .tria-pc-abstract--rings::before {
+    content: '';
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    top: 20px;
+    right: 20px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.06);
+    box-shadow: 0 0 0 30px rgba(255,255,255,0.03);
+  }
+  .tria-pc-abstract--dots::after {
+    content: '';
+    position: absolute;
+    right: 30px;
+    top: 30px;
+    width: 80px;
+    height: 80px;
+    background-image: radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px);
+    background-size: 12px 12px;
+  }
+  .tria-pc-body {
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1;
+  }
+  .tria-pc-meta {
+    display: flex;
+    align-items: center;
+  }
+  .tria-pc-cat {
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .tria-pc-title {
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: #0b0d17;
+    line-height: 1.25;
+    margin: 0;
+    transition: color 0.3s ease;
+  }
+  .tria-portfolio-card:hover .tria-pc-title {
+    color: var(--accent);
+  }
+  .tria-pc-desc {
+    font-size: 0.82rem;
+    color: #777;
+    line-height: 1.7;
+    margin: 0;
+    flex: 1;
+  }
+  .tria-pc-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .tria-pc-tags span {
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 20px;
+    color: rgba(0,0,0,0.4);
+    transition: border-color 0.3s ease;
+  }
+  .tria-portfolio-card:hover .tria-pc-tags span {
+    border-color: rgba(0,0,0,0.18);
+  }
+  .tria-pc-link {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: #0b0d17;
+    margin-top: 8px;
+  }
+  .tria-pc-link i {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .tria-pc-link:hover i {
+    transform: translateX(4px);
+  }
+
+  .tria-work-page-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 16px;
+    padding: 50px 60px;
+    background: #fff;
+    gap: 40px;
+    flex-wrap: wrap;
+    transition: box-shadow 0.4s ease;
+  }
+  .tria-work-page-cta:hover {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+  }
+  .tria-wpc-heading {
+    font-weight: 300;
+    font-size: 1.8rem;
+    margin: 0;
+  }
+  .tria-wpc-sub {
+    color: #888;
+    font-size: 0.9rem;
+    margin: 8px 0 0;
+  }
+
+  @media (max-width: 991px) {
+    .tria-portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+    .tria-ph-stats-col { display: none; }
+  }
+  @media (max-width: 600px) {
+    .tria-portfolio-grid { grid-template-columns: 1fr; }
+    .tria-work-page-cta { padding: 36px; }
+    .tria-wpc-heading { font-size: 1.4rem; }
+  }
+
+  .tria-mb-20 { margin-bottom: 20px; }
+</style>
+
+<script is:inline>
+  (function () {
+    function initFilter() {
+      var btns = document.querySelectorAll('.tria-filter-btn');
+      var cards = document.querySelectorAll('.tria-portfolio-card');
+      if (!btns.length) return;
+      btns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          btns.forEach(function (b) { b.classList.remove('tria-filter-active'); });
+          btn.classList.add('tria-filter-active');
+          var filter = btn.getAttribute('data-filter');
+          cards.forEach(function (card) {
+            var cat = card.getAttribute('data-cat');
+            if (filter === 'all' || cat === filter) {
+              card.classList.remove('tria-hidden');
+            } else {
+              card.classList.add('tria-hidden');
+            }
+          });
+        });
+      });
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initFilter);
+    } else {
+      initFilter();
+    }
+    document.addEventListener('swup:contentReplaced', initFilter);
+  })();
+</script>
