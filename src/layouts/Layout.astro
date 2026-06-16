@@ -20,8 +20,11 @@ const triaData = JSON.stringify({ en, es });
 ---
 
 <!doctype html>
-<html lang="zxx">
+<html lang="en">
   <head>
+    <script is:inline>
+      (function(){try{var l=window.localStorage.getItem("tria-lang");if(l==="en"||l==="es")document.documentElement.lang=l;}catch(e){}})();
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
