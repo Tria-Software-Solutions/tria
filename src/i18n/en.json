@@ -190,7 +190,7 @@
   "404.subtitle": "Page not found",
   "404.cta": "Back to home",
   "team.suptitle": "Who we are",
-  "team.title": "Meet the<br /><span class=\"page-hero-em\">Team</span>",
+  "team.title": "Meet the<br /><span class=\"tria-thin\">Team</span>",
   "team.body": "We are engineers, architects, and problem solvers who thrive on building software that works. Our team spans cloud infrastructure, full-stack development, AI/ML, and cybersecurity.",
   "home2.suptitle": "Personal",
   "home2.title": "Personal<br /><span class=\"page-hero-em\">Landing</span>",

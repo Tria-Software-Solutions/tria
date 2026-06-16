@@ -68,10 +68,10 @@ section[data-section-theme] {
 .tria-breadcrumbs.tria-light li a:hover {
   color: var(--accent) !important;
 }
-.tria-main-menu ul li.tria-active > a {
+.tria-menu-section ul li.tria-active > a {
   color: var(--accent) !important;
 }
-.tria-main-menu ul li.tria-active > a:hover {
+.tria-menu-section ul li.tria-active > a:hover {
   color: var(--accent) !important;
 }
 .tria-team-card .tria-description .tria-secrc-text a:hover {
@@ -107,9 +107,7 @@ section[data-section-theme] {
 .tria-progress-track .tria-progress {
   background-color: var(--accent) !important;
 }
-.tria-main-menu ul li a.tria-active:before {
-  background-color: var(--accent) !important;
-}
+
 .tria-about-quote .tria-avatar img.tria-avatar-logo {
   object-position: center;
 }

@@ -99,7 +99,7 @@
   "featured.viewAll": "Ver portafolio",
   "featured.ctaText": "\u00bfTienes un proyecto en mente?",
   "featured.ctaLink": "Hablemos",
-  "team.title": "Conoce a<br />Nuestro Equipo",
+  "team.title": "Conoce a<br />Nuestro <span class=\"tria-thin\">Equipo</span>",
   "team.description1": "Somos ingenieros, arquitectos y solucionadores de problemas que prosperamos construyendo software que funciona. Cada miembro de nuestro equipo aporta una profunda experiencia t\u00e9cnica y un compromiso compartido con la calidad.",
   "team.description2": "Desde infraestructura en la nube hasta interfaces frontend, nuestras diversas habilidades se combinan para ofrecer soluciones robustas y escalables para cada cliente.",
   "team.readMore": "Ver m\u00e1s",

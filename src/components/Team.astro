@@ -9,7 +9,8 @@ const t = createT(Astro.currentLocale);
     <div class="row justify-content-between align-items-center">
       <div class="col-lg-5 col-xl-4">
         <div class="tria-mb-90">
-          <h2 class="tria-up tria-mb-60" data-i18n-html="team.title" set:html={t("team.title")} />
+          <span class="tria-suptitle tria-suptitle-dark tria-up" data-i18n="team.suptitle">{t("team.suptitle")}</span>
+          <h2 class="tria-up" style="margin-top:20px;" data-i18n-html="team.title" set:html={t("team.title")} />
           <p class="tria-up tria-mb-30" data-i18n="team.description1">{t("team.description1")}</p>
           <p class="tria-up tria-mb-60" data-i18n="team.description2">{t("team.description2")}</p>
           <div class="tria-up">

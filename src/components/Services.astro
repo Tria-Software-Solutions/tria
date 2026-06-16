@@ -17,7 +17,6 @@ const t = createT(Astro.currentLocale);
         <div class="tria-services-header tria-up">
           <div class="tria-services-heading">
             <h2 class="tria-h1 tria-dark" data-i18n-html="services.modernSolutions" set:html={t("services.modernSolutions")} />
-            <div class="tria-services-heading-accent"></div>
           </div>
           <div class="tria-services-sub">
             <h2 class="tria-h1 tria-dark" data-i18n-html="services.forYourBusiness" set:html={t("services.forYourBusiness")} />
@@ -217,18 +216,7 @@ const t = createT(Astro.currentLocale);
   }
 
   .tria-services-heading {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-    flex-wrap: wrap;
-  }
-
-  .tria-services-heading-accent {
-    width: 80px;
-    height: 2px;
-    background: linear-gradient(to right, var(--accent), transparent);
-    border-radius: 2px;
-    flex-shrink: 0;
+    margin-bottom: 8px;
   }
 
   .tria-services-sub {
