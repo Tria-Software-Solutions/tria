@@ -89,8 +89,8 @@
   "stats.yearsLabel": "A\u00f1os de Experiencia",
   "stats.satisfactionLabel": "Satisfacci\u00f3n del Cliente",
   "stats.marquee1": "Ingenier\u00eda de Software",
-  "stats.marquee2": "Cloud &amp; DevOps",
-  "stats.marquee3": "IA &amp; Machine Learning",
+  "stats.marquee2": "Cloud & DevOps",
+  "stats.marquee3": "IA & Machine Learning",
   "stats.marquee4": "Ciberseguridad",
   "stats.marquee5": "Dise\u00f1o de Producto",
   "stats.marquee6": "Ingenier\u00eda de Datos",
@@ -210,5 +210,8 @@
   "project4.title": "Anal\u00edtica<br /><span class=\"page-hero-em\">Impulsada por IA</span>",
   "project5.title": "Gesti\u00f3n de<br /><span class=\"page-hero-em\">Flotas IoT</span>",
   "project6.title": "Plataforma de<br /><span class=\"page-hero-em\">Datos de Salud</span>",
-  "blog.body": "Perspectivas sobre ingenier\u00eda de software, IA, infraestructura cloud y tecnolog\u00eda del equipo de tria. Pr\u00f3ximamente."
+  "blog.body": "Perspectivas sobre ingenier\u00eda de software, IA, infraestructura cloud y tecnolog\u00eda del equipo de tria. Pr\u00f3ximamente.",
+  "pagination.previous": "Anterior",
+  "pagination.next": "Siguiente",
+  "pagination.page": "Página {current} de {total}"
 }

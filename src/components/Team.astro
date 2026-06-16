@@ -1,5 +1,6 @@
 ---
-
+import { createT } from "../i18n/utils";
+const t = createT(Astro.currentLocale);
 ---
 
 <!-- team -->
@@ -8,26 +9,15 @@
     <div class="row justify-content-between align-items-center">
       <div class="col-lg-5 col-xl-4">
         <div class="tria-mb-90">
-          <h2 class="tria-up tria-mb-60" data-i18n-html="team.title">Meet <br />Our Team</h2>
-          <p class="tria-up tria-mb-30" data-i18n="team.description1">
-            We are engineers, architects, and problem solvers who thrive on
-            building software that works. Every member of our team brings deep
-            technical expertise and a shared commitment to quality.
-          </p>
-          <p class="tria-up tria-mb-60" data-i18n="team.description2">
-            From cloud infrastructure to frontend interfaces, our diverse skills
-            combine to deliver robust, scalable solutions for every client.
-          </p>
+          <h2 class="tria-up tria-mb-60" data-i18n-html="team.title" set:html={t("team.title")} />
+          <p class="tria-up tria-mb-30" data-i18n="team.description1">{t("team.description1")}</p>
+          <p class="tria-up tria-mb-60" data-i18n="team.description2">{t("team.description2")}</p>
           <div class="tria-up">
             <a href="/team" class="tria-button tria-arrow-place tria-mb-60"
-              ><span data-i18n="team.readMore">Read more</span></a
+              ><span data-i18n="team.readMore">{t("team.readMore")}</span></a
             >
           </div>
-          <h4 class="tria-up" data-i18n-html="team.tagline">
-            <span class="tria-thin">We</span> build <br /><span
-              class="tria-thin">exceptional</span
-            > software.
-          </h4>
+          <h4 class="tria-up" data-i18n-html="team.tagline" set:html={t("team.tagline")} />
         </div>
       </div>
       <div class="col-lg-6">
@@ -42,9 +32,7 @@
                     <h5 class="tria-dark tria-mb-5">
                       Sofia Rojas
                     </h5>
-                    <p class="tria-link tria-dark-soft tria-mb-10" data-i18n="team.role1">
-                      Lead Engineer
-                    </p>
+                    <p class="tria-link tria-dark-soft tria-mb-10" data-i18n="team.role1">{t("team.role1")}</p>
                     <ul class="tria-social-icons tria-dark tria-center">
                       <li>
                         <a href="#." target="_blank" class="social-icon">
@@ -76,7 +64,7 @@
                   class="tria-mobile-hidden tria-text-sm tria-mb-30"
                   style="height: 30px;"
                 >
-                  <span class="tria-accent">*</span><span data-i18n="team.coreNote"> Core team leads</span>
+                  <span class="tria-accent">*</span><span data-i18n="team.coreNote">{t("team.coreNote")}</span>
                 </p>
               <div class="tria-team-card tria-up tria-mb-30">
                 <img src="/assets/img/team/2.jpg" alt="Team member" />
@@ -85,9 +73,7 @@
                     <h5 class="tria-dark tria-mb-5">
                       Valeria Castro
                     </h5>
-                    <p class="tria-link tria-dark-soft tria-mb-10" data-i18n="team.role2">
-                      CEO & Founder
-                    </p>
+                    <p class="tria-link tria-dark-soft tria-mb-10" data-i18n="team.role2">{t("team.role2")}</p>
                     <ul class="tria-social-icons tria-dark tria-center">
                       <li>
                         <a href="#." target="_blank" class="social-icon">

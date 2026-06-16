@@ -224,6 +224,7 @@ $(function () {
     var name = "Home";
     var i18nKey = "nav.home";
     var p = window.location.pathname;
+    p = p.replace(/^\/es/, "") || "/";
 
     if (p === "/" || p === "") {
       name = "Home"; i18nKey = "nav.home";
@@ -249,7 +250,6 @@ $(function () {
     var $link = $("<a>").text(name);
     if (i18nKey) $link.attr("data-i18n", i18nKey);
     $(".tria-current-page").append($link);
-    if (window.triaI18n) window.triaI18n.apply();
   }
 
   /***************************

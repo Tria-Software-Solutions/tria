@@ -1,6 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Footer from "../components/Footer.astro";
+import { createT } from "../i18n/utils";
+const t = createT(Astro.currentLocale);
 ---
 
 <Layout title="Tria — Software Solutions" description="Meet the team behind tria — software engineers, architects, and problem solvers from Costa Rica.">
@@ -10,10 +12,8 @@ import Footer from "../components/Footer.astro";
       <div class="page-hero-orb page-hero-orb--2"></div>
     </div>
     <div class="container page-hero-inner">
-      <span class="tria-suptitle tria-light-soft tria-up" style="display:block;margin-bottom:24px;" data-i18n="team.suptitle">Who we are</span>
-      <h1 class="page-hero-heading tria-up" data-i18n-html="team.title">
-        Meet the<br /><span class="page-hero-em">Team</span>
-      </h1>
+      <span class="tria-suptitle tria-light-soft tria-up" style="display:block;margin-bottom:24px;" data-i18n="team.suptitle">{t("team.suptitle")}</span>
+      <h1 class="page-hero-heading tria-up" data-i18n-html="team.title" set:html={t("team.title")} />
     </div>
   </section>
 
@@ -21,9 +21,7 @@ import Footer from "../components/Footer.astro";
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-8 tria-center">
-          <p class="tria-dark-soft" style="font-size:1.1rem;line-height:1.8;max-width:600px;margin:0 auto;" data-i18n="team.body">
-            We are engineers, architects, and problem solvers who thrive on building software that works. Our team spans cloud infrastructure, full-stack development, AI/ML, and cybersecurity.
-          </p>
+          <p class="tria-dark-soft" style="font-size:1.1rem;line-height:1.8;max-width:600px;margin:0 auto;" data-i18n="team.body">{t("team.body")}</p>
         </div>
       </div>
     </div>

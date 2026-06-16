@@ -1,4 +1,6 @@
 ---
+import { createT } from "../i18n/utils";
+const t = createT(Astro.currentLocale);
 ---
 
 <!-- stats -->
@@ -9,54 +11,54 @@
           <div class="tria-stat-number">
             <span class="tria-counter" data-target="120">0</span><span class="tria-stat-suffix">+</span>
           </div>
-          <p class="tria-stat-label tria-dark-soft" data-i18n="stats.projectsLabel">Projects Delivered</p>
+          <p class="tria-stat-label tria-dark-soft" data-i18n="stats.projectsLabel">{t("stats.projectsLabel")}</p>
         </div>
         <div class="col-6 col-lg-3 tria-stat-item tria-up">
           <div class="tria-stat-number">
             <span class="tria-counter" data-target="48">0</span><span class="tria-stat-suffix">+</span>
           </div>
-          <p class="tria-stat-label tria-dark-soft" data-i18n="stats.clientsLabel">Clients Worldwide</p>
+          <p class="tria-stat-label tria-dark-soft" data-i18n="stats.clientsLabel">{t("stats.clientsLabel")}</p>
         </div>
         <div class="col-6 col-lg-3 tria-stat-item tria-up">
           <div class="tria-stat-number">
             <span class="tria-counter" data-target="7">0</span><span class="tria-stat-suffix">+</span>
           </div>
-          <p class="tria-stat-label tria-dark-soft" data-i18n="stats.yearsLabel">Years of Expertise</p>
+          <p class="tria-stat-label tria-dark-soft" data-i18n="stats.yearsLabel">{t("stats.yearsLabel")}</p>
         </div>
         <div class="col-6 col-lg-3 tria-stat-item tria-up">
           <div class="tria-stat-number">
             <span class="tria-counter" data-target="99">0</span><span class="tria-stat-suffix">%</span>
           </div>
-          <p class="tria-stat-label tria-dark-soft" data-i18n="stats.satisfactionLabel">Client Satisfaction</p>
+          <p class="tria-stat-label tria-dark-soft" data-i18n="stats.satisfactionLabel">{t("stats.satisfactionLabel")}</p>
         </div>
       </div>
 
       <!-- Marquee divider -->
       <div class="tria-stats-marquee tria-up">
         <div class="tria-marquee-track">
-          <span data-i18n="stats.marquee1">Software Engineering</span>
+          <span data-i18n="stats.marquee1">{t("stats.marquee1")}</span>
           <span class="tria-marquee-dot">✦</span>
-          <span data-i18n="stats.marquee2">Cloud & DevOps</span>
+          <span data-i18n="stats.marquee2">{t("stats.marquee2")}</span>
           <span class="tria-marquee-dot">✦</span>
-          <span data-i18n="stats.marquee3">AI & Machine Learning</span>
+          <span data-i18n="stats.marquee3">{t("stats.marquee3")}</span>
           <span class="tria-marquee-dot">✦</span>
-          <span data-i18n="stats.marquee4">Cybersecurity</span>
+          <span data-i18n="stats.marquee4">{t("stats.marquee4")}</span>
           <span class="tria-marquee-dot">✦</span>
-          <span data-i18n="stats.marquee5">Product Design</span>
+          <span data-i18n="stats.marquee5">{t("stats.marquee5")}</span>
           <span class="tria-marquee-dot">✦</span>
-          <span data-i18n="stats.marquee6">Data Engineering</span>
+          <span data-i18n="stats.marquee6">{t("stats.marquee6")}</span>
           <span class="tria-marquee-dot">✦</span>
-          <span data-i18n="stats.marquee1">Software Engineering</span>
+          <span data-i18n="stats.marquee1">{t("stats.marquee1")}</span>
           <span class="tria-marquee-dot">✦</span>
-          <span data-i18n="stats.marquee2">Cloud & DevOps</span>
+          <span data-i18n="stats.marquee2">{t("stats.marquee2")}</span>
           <span class="tria-marquee-dot">✦</span>
-          <span>AI & Machine Learning</span>
+          <span data-i18n="stats.marquee3">{t("stats.marquee3")}</span>
           <span class="tria-marquee-dot">✦</span>
-          <span>Cybersecurity</span>
+          <span data-i18n="stats.marquee4">{t("stats.marquee4")}</span>
           <span class="tria-marquee-dot">✦</span>
-          <span>Product Design</span>
+          <span data-i18n="stats.marquee5">{t("stats.marquee5")}</span>
           <span class="tria-marquee-dot">✦</span>
-          <span>Data Engineering</span>
+          <span data-i18n="stats.marquee6">{t("stats.marquee6")}</span>
           <span class="tria-marquee-dot">✦</span>
         </div>
     </div>

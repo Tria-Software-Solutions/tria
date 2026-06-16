@@ -1,6 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Footer from "../components/Footer.astro";
+import { createT } from "../i18n/utils";
+const t = createT(Astro.currentLocale);
 ---
 
 <Layout title="Tria — Software Solutions" description="Start a project with tria. Get in touch with our team to discuss your software needs.">
@@ -14,10 +16,8 @@ import Footer from "../components/Footer.astro";
     <div class="container page-hero-inner">
       <div class="row align-items-end">
         <div class="col-lg-7">
-          <span class="tria-suptitle tria-light-soft tria-up" style="display:block;margin-bottom:24px;" data-i18n="contact.getInTouch">Get in touch</span>
-          <h1 class="tria-up page-hero-heading" data-i18n-html="contact.letsBuild">
-            Let's build<br /><span class="page-hero-em">together</span>
-          </h1>
+          <span class="tria-suptitle tria-light-soft tria-up" style="display:block;margin-bottom:24px;" data-i18n="contact.getInTouch">{t("contact.getInTouch")}</span>
+          <h1 class="tria-up page-hero-heading" data-i18n-html="contact.letsBuild" set:html={t("contact.letsBuild")} />
         </div>
         <div class="col-lg-5 tria-sh-right">
           <p class="page-hero-sub tria-up">
@@ -45,75 +45,75 @@ import Footer from "../components/Footer.astro";
             <form class="tria-contact-form" id="triaContactForm">
               <div class="tria-cf-row">
                 <div class="tria-cf-group">
-                  <label class="tria-cf-label" for="cf-name" data-i18n="contact.form.label.name">Full name</label>
-                  <input class="tria-cf-input" type="text" id="cf-name" name="name" data-i18n-placeholder="contact.form.placeholder.name" placeholder="Jane Smith" required />
+                  <label class="tria-cf-label" for="cf-name" data-i18n="contact.form.label.name">{t("contact.form.label.name")}</label>
+                  <input class="tria-cf-input" type="text" id="cf-name" name="name" data-i18n-placeholder="contact.form.placeholder.name" placeholder={t("contact.form.placeholder.name")} required />
                 </div>
                 <div class="tria-cf-group">
-                  <label class="tria-cf-label" for="cf-email" data-i18n="contact.form.label.email">Email address</label>
-                  <input class="tria-cf-input" type="email" id="cf-email" name="email" data-i18n-placeholder="contact.form.placeholder.email" placeholder="jane@company.com" required />
+                  <label class="tria-cf-label" for="cf-email" data-i18n="contact.form.label.email">{t("contact.form.label.email")}</label>
+                  <input class="tria-cf-input" type="email" id="cf-email" name="email" data-i18n-placeholder="contact.form.placeholder.email" placeholder={t("contact.form.placeholder.email")} required />
                 </div>
               </div>
 
               <div class="tria-cf-row">
                 <div class="tria-cf-group">
-                  <label class="tria-cf-label" for="cf-company" data-i18n="contact.form.label.company">Company</label>
-                  <input class="tria-cf-input" type="text" id="cf-company" name="company" data-i18n-placeholder="contact.form.placeholder.company" placeholder="Acme Corp" />
+                  <label class="tria-cf-label" for="cf-company" data-i18n="contact.form.label.company">{t("contact.form.label.company")}</label>
+                  <input class="tria-cf-input" type="text" id="cf-company" name="company" data-i18n-placeholder="contact.form.placeholder.company" placeholder={t("contact.form.placeholder.company")} />
                 </div>
                 <div class="tria-cf-group">
-                  <label class="tria-cf-label" for="cf-budget" data-i18n="contact.form.label.budget">Estimated budget</label>
+                  <label class="tria-cf-label" for="cf-budget" data-i18n="contact.form.label.budget">{t("contact.form.label.budget")}</label>
                   <select class="tria-cf-input tria-cf-select" id="cf-budget" name="budget">
-                    <option value="" disabled selected data-i18n="contact.form.placeholder.budget">Select a range</option>
-                    <option value="under-10k" data-i18n="contact.form.option.under10k">Under $10,000</option>
-                    <option value="10k-50k" data-i18n="contact.form.option.10k50k">$10,000 – $50,000</option>
-                    <option value="50k-150k" data-i18n="contact.form.option.50k150k">$50,000 – $150,000</option>
-                    <option value="150k-plus" data-i18n="contact.form.option.150kPlus">$150,000+</option>
-                    <option value="tbd" data-i18n="contact.form.option.tbd">To be determined</option>
+                    <option value="" disabled selected data-i18n="contact.form.placeholder.budget">{t("contact.form.placeholder.budget")}</option>
+                    <option value="under-10k" data-i18n="contact.form.option.under10k">{t("contact.form.option.under10k")}</option>
+                    <option value="10k-50k" data-i18n="contact.form.option.10k50k">{t("contact.form.option.10k50k")}</option>
+                    <option value="50k-150k" data-i18n="contact.form.option.50k150k">{t("contact.form.option.50k150k")}</option>
+                    <option value="150k-plus" data-i18n="contact.form.option.150kPlus">{t("contact.form.option.150kPlus")}</option>
+                    <option value="tbd" data-i18n="contact.form.option.tbd">{t("contact.form.option.tbd")}</option>
                   </select>
                 </div>
               </div>
 
               <div class="tria-cf-group">
-                <label class="tria-cf-label" data-i18n="contact.form.label.services">Services needed</label>
+                <label class="tria-cf-label" data-i18n="contact.form.label.services">{t("contact.form.label.services")}</label>
                 <div class="tria-cf-chips">
                   <label class="tria-cf-chip">
                     <input type="checkbox" name="services" value="software" />
-                    <span data-i18n="contact.form.chip.software">Software Development</span>
+                    <span data-i18n="contact.form.chip.software">{t("contact.form.chip.software")}</span>
                   </label>
                   <label class="tria-cf-chip">
                     <input type="checkbox" name="services" value="cloud" />
-                    <span data-i18n="contact.form.chip.cloud">Cloud & DevOps</span>
+                    <span data-i18n="contact.form.chip.cloud">{t("contact.form.chip.cloud")}</span>
                   </label>
                   <label class="tria-cf-chip">
                     <input type="checkbox" name="services" value="ai" />
-                    <span data-i18n="contact.form.chip.ai">AI & Machine Learning</span>
+                    <span data-i18n="contact.form.chip.ai">{t("contact.form.chip.ai")}</span>
                   </label>
                   <label class="tria-cf-chip">
                     <input type="checkbox" name="services" value="security" />
-                    <span data-i18n="contact.form.chip.security">Cybersecurity</span>
+                    <span data-i18n="contact.form.chip.security">{t("contact.form.chip.security")}</span>
                   </label>
                   <label class="tria-cf-chip">
                     <input type="checkbox" name="services" value="advisory" />
-                    <span data-i18n="contact.form.chip.advisory">Advisory</span>
+                    <span data-i18n="contact.form.chip.advisory">{t("contact.form.chip.advisory")}</span>
                   </label>
                 </div>
               </div>
 
               <div class="tria-cf-group">
-                <label class="tria-cf-label" for="cf-message" data-i18n="contact.form.label.message">Tell us about your project</label>
-                <textarea class="tria-cf-input tria-cf-textarea" id="cf-message" name="message" data-i18n-placeholder="contact.form.placeholder.message" placeholder="Describe your challenge, goals, timeline, or anything relevant..." rows="6" required></textarea>
+                <label class="tria-cf-label" for="cf-message" data-i18n="contact.form.label.message">{t("contact.form.label.message")}</label>
+                <textarea class="tria-cf-input tria-cf-textarea" id="cf-message" name="message" data-i18n-placeholder="contact.form.placeholder.message" placeholder={t("contact.form.placeholder.message")} rows="6" required></textarea>
               </div>
 
               <button type="submit" class="tria-button tria-arrow-place" id="cf-submit-btn" style="width:100%;">
-                <span data-i18n="contact.form.submit">Send message</span>
+                <span data-i18n="contact.form.submit">{t("contact.form.submit")}</span>
               </button>
 
-              <p class="tria-cf-note" data-i18n="contact.form.note">We respond to all inquiries within 24 hours.</p>
+              <p class="tria-cf-note" data-i18n="contact.form.note">{t("contact.form.note")}</p>
             </form>
 
             <div class="tria-cf-success" id="triaFormSuccess" style="display:none;">
               <div class="tria-cfs-icon"><i class="fas fa-check"></i></div>
-              <h4 data-i18n="contact.form.success.title">Message sent!</h4>
-              <p data-i18n="contact.form.success.text">Thanks for reaching out. We'll be in touch shortly.</p>
+              <h4 data-i18n="contact.form.success.title">{t("contact.form.success.title")}</h4>
+              <p data-i18n="contact.form.success.text">{t("contact.form.success.text")}</p>
             </div>
           </div>
         </div>
@@ -125,15 +125,15 @@ import Footer from "../components/Footer.astro";
             <div class="tria-ci-item">
               <div class="tria-ci-icon"><i class="fas fa-map-pin"></i></div>
               <div>
-                <h6 class="tria-ci-label" data-i18n="contact.info.location">Location</h6>
-                <p class="tria-ci-value" data-i18n-html="contact.info.locationValue">Atenas, Alajuela<br />Costa Rica 20501</p>
+                <h6 class="tria-ci-label" data-i18n="contact.info.location">{t("contact.info.location")}</h6>
+                <p class="tria-ci-value" data-i18n-html="contact.info.locationValue" set:html={t("contact.info.locationValue")} />
               </div>
             </div>
 
             <div class="tria-ci-item">
               <div class="tria-ci-icon"><i class="fas fa-envelope"></i></div>
               <div>
-                <h6 class="tria-ci-label" data-i18n="contact.info.email">Email</h6>
+                <h6 class="tria-ci-label" data-i18n="contact.info.email">{t("contact.info.email")}</h6>
                 <p class="tria-ci-value">
                   <a href="mailto:hola@triacr.com" class="tria-ci-link">hola@triacr.com</a>
                 </p>
@@ -143,7 +143,7 @@ import Footer from "../components/Footer.astro";
             <div class="tria-ci-item">
               <div class="tria-ci-icon"><i class="fab fa-whatsapp"></i></div>
               <div>
-                <h6 class="tria-ci-label" data-i18n="contact.info.whatsapp">WhatsApp</h6>
+                <h6 class="tria-ci-label" data-i18n="contact.info.whatsapp">{t("contact.info.whatsapp")}</h6>
                 <p class="tria-ci-value">
                   <a href="https://wa.me/50662164040" target="_blank" rel="noopener noreferrer" class="tria-ci-link">+506 6216 4040</a>
                 </p>
@@ -153,11 +153,11 @@ import Footer from "../components/Footer.astro";
             <div class="tria-ci-item">
               <div class="tria-ci-icon"><i class="fas fa-clock"></i></div>
               <div>
-                <h6 class="tria-ci-label" data-i18n="contact.info.responseTime">Response time</h6>
-                <p class="tria-ci-value" data-i18n="contact.info.responseValue">Within 24 hours</p>
+                <h6 class="tria-ci-label" data-i18n="contact.info.responseTime">{t("contact.info.responseTime")}</h6>
+                <p class="tria-ci-value" data-i18n="contact.info.responseValue">{t("contact.info.responseValue")}</p>
                 <div class="tria-ci-availability">
                   <span class="tria-ci-dot"></span>
-                  <span data-i18n="contact.info.availability">Available for new projects</span>
+                  <span data-i18n="contact.info.availability">{t("contact.info.availability")}</span>
                 </div>
               </div>
             </div>
@@ -165,7 +165,7 @@ import Footer from "../components/Footer.astro";
             <div class="tria-ci-divider"></div>
 
             <div>
-              <h6 class="tria-ci-label" data-i18n="contact.info.followUs">Follow us</h6>
+              <h6 class="tria-ci-label" data-i18n="contact.info.followUs">{t("contact.info.followUs")}</h6>
               <ul class="tria-ci-social">
                 <li><a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i> LinkedIn</a></li>
                 <li><a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a></li>

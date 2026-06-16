@@ -89,8 +89,8 @@
   "stats.yearsLabel": "Years of Expertise",
   "stats.satisfactionLabel": "Client Satisfaction",
   "stats.marquee1": "Software Engineering",
-  "stats.marquee2": "Cloud &amp; DevOps",
-  "stats.marquee3": "AI &amp; Machine Learning",
+  "stats.marquee2": "Cloud & DevOps",
+  "stats.marquee3": "AI & Machine Learning",
   "stats.marquee4": "Cybersecurity",
   "stats.marquee5": "Product Design",
   "stats.marquee6": "Data Engineering",
@@ -211,5 +211,8 @@
   "project4.title": "AI-Powered<br /><span class=\"page-hero-em\">Analytics</span>",
   "project5.title": "IoT Fleet<br /><span class=\"page-hero-em\">Management</span>",
   "project6.title": "Healthcare<br /><span class=\"page-hero-em\">Data Platform</span>",
-  "blog.body": "Insights on software engineering, AI, cloud infrastructure, and technology from the tria team. Coming soon."
+  "blog.body": "Insights on software engineering, AI, cloud infrastructure, and technology from the tria team. Coming soon.",
+  "pagination.previous": "Previous",
+  "pagination.next": "Next",
+  "pagination.page": "Page {current} of {total}"
 }

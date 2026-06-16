@@ -1,169 +1,74 @@
 (function () {
   "use strict";
-
   if (window.triaI18n) return;
-  window.triaI18n = {
-    translations: null,
-    currentLang: "en",
 
-    init: function (data) {
-      if (!data) {
-        data = window.__triaData;
-        if (typeof data === "string") {
-          try { data = JSON.parse(data); }
-          catch(e) { data = null; }
-        }
-      }
-      if (!data) return;
-      this.translations = data;
-      this.currentLang =
-        getStoredLang() ||
-        (navigator.language &&
-        navigator.language.slice(0, 2) === "es"
-          ? "es"
-          : "en");
-      this.apply();
-      this._bindButtons();
-    },
-
-    switchTo: function (lang) {
-      if (!this.translations) {
-        var d = window.__triaData;
-        if (typeof d === "string") {
-          try { d = JSON.parse(d); }
-          catch(e) { d = null; }
-        }
-        this.translations = d;
-      }
-      if (!this.translations || !this.translations[lang]) return;
-      this.currentLang = lang;
-      setStoredLang(lang);
-      this.apply();
-      var btns = document.querySelectorAll(".tria-lang-btn[data-lang]");
-      for (var i = 0; i < btns.length; i++) {
-        btns[i].classList.toggle(
-          "is-active",
-          btns[i].getAttribute("data-lang") === lang,
-        );
-      }
-    },
-
-    apply: function () {
-      var strings =
-        this.translations[this.currentLang];
-      if (!strings) return;
-
-      var year = new Date().getFullYear();
-
-      document
-        .querySelectorAll("[data-i18n]")
-        .forEach(function (el) {
-          var key = el.getAttribute("data-i18n");
-          var val = resolveKey(strings, key);
-          if (val != null) el.textContent = val.replace(/\{year\}/g, year);
-        });
-
-      document
-        .querySelectorAll("[data-i18n-html]")
-        .forEach(function (el) {
-          var key = el.getAttribute("data-i18n-html");
-          var val = resolveKey(strings, key);
-          if (val != null) el.innerHTML = val.replace(/\{year\}/g, year);
-        });
-
-      document
-        .querySelectorAll("[data-i18n-placeholder]")
-        .forEach(function (el) {
-          var key = el.getAttribute(
-            "data-i18n-placeholder",
-          );
-          var val = resolveKey(strings, key);
-          if (val != null)
-            el.setAttribute("placeholder", val);
-        });
-
-      document
-        .querySelectorAll("[data-i18n-tooltip]")
-        .forEach(function (el) {
-          var key = el.getAttribute(
-            "data-i18n-tooltip",
-          );
-          var val = resolveKey(strings, key);
-          if (val != null)
-            el.setAttribute("data-tooltip", val);
-        });
-
-      document
-        .querySelectorAll("[data-i18n-aria-label]")
-        .forEach(function (el) {
-          var key = el.getAttribute(
-            "data-i18n-aria-label",
-          );
-          var val = resolveKey(strings, key);
-          if (val != null)
-            el.setAttribute("aria-label", val);
-        });
-
-      document.documentElement.lang = this.currentLang;
-      this._syncButtons();
-    },
-
-    _bindButtons: function () {
-      var self = this;
-      if (!this._buttonsBound) {
-        document.addEventListener("click", function (event) {
-          var btn = event.target.closest(
-            ".tria-lang-btn[data-lang]",
-          );
-          if (!btn) return;
-          event.preventDefault();
-          self.switchTo(btn.getAttribute("data-lang"));
-        });
-        this._buttonsBound = true;
-      }
-      this._syncButtons();
-    },
-
-    _syncButtons: function () {
-      var btns = document.querySelectorAll(
-        ".tria-lang-btn[data-lang]",
-      );
-      for (var i = 0; i < btns.length; i++) {
-        btns[i].classList.toggle(
-          "is-active",
-          btns[i].getAttribute("data-lang") ===
-            this.currentLang,
-        );
-      }
-    },
-  };
+  var translations = window.__triaTranslations || {};
 
   function resolveKey(obj, key) {
-    if (!obj || !key) return null;
     if (typeof obj[key] === "string") return obj[key];
     var parts = key.split(".");
-    var val = obj;
+    var current = obj;
     for (var i = 0; i < parts.length; i++) {
-      if (val == null || typeof val !== "object")
-        return null;
-      val = val[parts[i]];
+      if (current == null || typeof current !== "object") return null;
+      if (typeof current[parts[i]] === "string") return current[parts[i]];
+      current = current[parts[i]];
     }
-    return typeof val === "string" ? val : null;
+    return typeof current === "string" ? current : null;
   }
 
-  function getStoredLang() {
-    try {
-      return window.localStorage && window.localStorage.getItem("tria-lang");
-    } catch (e) {
-      return null;
+  function switchLanguage(lang) {
+    if (!translations[lang]) return;
+    var t = translations[lang];
+
+    var els, key, val, i;
+
+    els = document.querySelectorAll("[data-i18n]");
+    for (i = 0; i < els.length; i++) {
+      key = els[i].getAttribute("data-i18n");
+      val = resolveKey(t, key);
+      if (val != null) els[i].textContent = val;
     }
+
+    els = document.querySelectorAll("[data-i18n-html]");
+    for (i = 0; i < els.length; i++) {
+      key = els[i].getAttribute("data-i18n-html");
+      val = resolveKey(t, key);
+      if (val != null) els[i].innerHTML = val;
+    }
+
+    els = document.querySelectorAll("[data-i18n-placeholder]");
+    for (i = 0; i < els.length; i++) {
+      key = els[i].getAttribute("data-i18n-placeholder");
+      val = resolveKey(t, key);
+      if (val != null) els[i].placeholder = val;
+    }
+
+    document.documentElement.lang = lang;
+
+    var btns = document.querySelectorAll(".tria-lang-btn");
+    for (i = 0; i < btns.length; i++) {
+      btns[i].classList.toggle("is-active", btns[i].getAttribute("data-lang") === lang);
+    }
+
+    var cur = window.location.pathname.replace(/\/+$/, "") || "/";
+    var isEs = cur.startsWith("/es");
+    var next = lang === "en"
+      ? (isEs ? (cur.replace(/^\/es/, "") || "/") : cur)
+      : (isEs ? cur : "/es" + (cur === "/" ? "" : cur));
+    window.history.replaceState(null, "", next);
   }
 
-  function setStoredLang(lang) {
-    try {
-      if (window.localStorage) window.localStorage.setItem("tria-lang", lang);
-    } catch (e) {}
-  }
+  document.addEventListener("click", function (e) {
+    var btn = e.target.closest(".tria-lang-btn");
+    if (!btn) return;
+    var lang = btn.getAttribute("data-lang");
+    if (!lang) return;
+    e.preventDefault();
+    switchLanguage(lang);
+  });
 
-  window.triaI18n.init();
+  window.triaI18n = {
+    switchTo: switchLanguage,
+    apply: function () {},
+  };
 })();

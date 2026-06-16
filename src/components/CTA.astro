@@ -1,4 +1,6 @@
 ---
+import { createT } from "../i18n/utils";
+const t = createT(Astro.currentLocale);
 ---
 
 <!-- cta -->
@@ -7,17 +9,14 @@
   <div class="container tria-p-120-120">
       <div class="row justify-content-center tria-cta-inner">
         <div class="col-lg-10 tria-center">
-          <span class="tria-suptitle tria-light-soft tria-up tria-mb-30" style="display:block;text-align:center;" data-i18n="cta.suptitle">Ready to build?</span>
-          <h2 class="tria-cta-heading tria-up tria-mb-60" data-i18n-html="cta.heading">
-            Let's turn your <span class="tria-thin">idea</span> into<br />
-            a product that <span class="tria-thin tria-cta-accent">scales.</span>
-          </h2>
+          <span class="tria-suptitle tria-light-soft tria-up tria-mb-30" style="display:block;text-align:center;" data-i18n="cta.suptitle">{t("cta.suptitle")}</span>
+          <h2 class="tria-cta-heading tria-up tria-mb-60" data-i18n-html="cta.heading" set:html={t("cta.heading")} />
           <div class="tria-cta-actions tria-up">
             <a href="/contact" class="tria-button tria-arrow-place tria-cta-btn-primary">
-              <span data-i18n="cta.startProject">Start a Project</span>
+              <span data-i18n="cta.startProject">{t("cta.startProject")}</span>
             </a>
             <a href="/work" class="tria-cta-link tria-link tria-arrow-place">
-              <span data-i18n="cta.seeWork">See our work</span>
+              <span data-i18n="cta.seeWork">{t("cta.seeWork")}</span>
               <i class="fas fa-arrow-right"></i>
             </a>
           </div>
@@ -27,16 +26,16 @@
       <!-- bottom info row -->
       <div class="row tria-cta-meta tria-up">
         <div class="col-md-4 tria-cta-meta-item">
-          <span class="tria-cta-meta-label" data-i18n="cta.responseLabel">Response time</span>
-          <span class="tria-cta-meta-value" data-i18n="cta.responseValue">Within 24 hours</span>
+          <span class="tria-cta-meta-label" data-i18n="cta.responseLabel">{t("cta.responseLabel")}</span>
+          <span class="tria-cta-meta-value" data-i18n="cta.responseValue">{t("cta.responseValue")}</span>
         </div>
         <div class="col-md-4 tria-cta-meta-item tria-center">
-          <span class="tria-cta-meta-label" data-i18n="cta.locationLabel">Based in</span>
-          <span class="tria-cta-meta-value" data-i18n="cta.locationValue">Atenas, Costa Rica</span>
+          <span class="tria-cta-meta-label" data-i18n="cta.locationLabel">{t("cta.locationLabel")}</span>
+          <span class="tria-cta-meta-value" data-i18n="cta.locationValue">{t("cta.locationValue")}</span>
         </div>
         <div class="col-md-4 tria-cta-meta-item" style="text-align:right;">
-          <span class="tria-cta-meta-label" data-i18n="cta.availabilityLabel">Availability</span>
-          <span class="tria-cta-meta-value" data-i18n="cta.availabilityValue">Open for new work</span>
+          <span class="tria-cta-meta-label" data-i18n="cta.availabilityLabel">{t("cta.availabilityLabel")}</span>
+          <span class="tria-cta-meta-value" data-i18n="cta.availabilityValue">{t("cta.availabilityValue")}</span>
         </div>
       </div>
   </div>

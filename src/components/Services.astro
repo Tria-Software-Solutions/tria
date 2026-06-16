@@ -1,4 +1,6 @@
 ---
+import { createT } from "../i18n/utils";
+const t = createT(Astro.currentLocale);
 ---
 
 <!-- services -->
@@ -9,25 +11,20 @@
           <div class="col-lg-10">
             <span
               class="tria-suptitle tria-suptitle-right tria-suptitle-dark tria-up"
-              data-i18n-html="services.suptitle">Full-stack software engineering for<br /> startups and enterprises.</span
-            >
+              data-i18n-html="services.suptitle" set:html={t("services.suptitle")} />
           </div>
         </div>
         <div class="tria-services-header tria-up">
           <div class="tria-services-heading">
-            <h2 class="tria-h1 tria-dark" data-i18n-html="services.modernSolutions">
-              Modern <span class="tria-thin">Solutions</span>
-            </h2>
+            <h2 class="tria-h1 tria-dark" data-i18n-html="services.modernSolutions" set:html={t("services.modernSolutions")} />
             <div class="tria-services-heading-accent"></div>
           </div>
           <div class="tria-services-sub">
-            <h2 class="tria-h1 tria-dark" data-i18n-html="services.forYourBusiness">
-              For Your <span class="tria-thin">Business</span>
-            </h2>
+            <h2 class="tria-h1 tria-dark" data-i18n-html="services.forYourBusiness" set:html={t("services.forYourBusiness")} />
             <a
               href="/services"
               class="tria-services-button tria-button tria-arrow-place"
-              ><span data-i18n="hero.ourServices">Our services</span></a
+              ><span data-i18n="hero.ourServices">{t("hero.ourServices")}</span></a
             >
           </div>
         </div>
@@ -36,11 +33,8 @@
         <div class="col-md-6 col-lg-3 tria-services-grid-item">
           <a href="/service" class="tria-service-card tria-up">
             <div class="tria-service-card-content">
-              <h5 class="tria-service-card-title" data-i18n-html="services.softwareDev">Software <br />Development</h5>
-              <p class="tria-service-card-desc" data-i18n="services.softwareDevDesc">
-                Custom web and mobile applications built with modern architectures
-                and best practices.
-              </p>
+              <h5 class="tria-service-card-title" data-i18n-html="services.softwareDev" set:html={t("services.softwareDev")} />
+              <p class="tria-service-card-desc" data-i18n="services.softwareDevDesc">{t("services.softwareDevDesc")}</p>
             </div>
             <div class="tria-service-arrow">
               <i class="fas fa-arrow-right"></i>
@@ -50,13 +44,8 @@
         <div class="col-md-6 col-lg-3 tria-services-grid-item">
           <a href="/service" class="tria-service-card tria-up">
             <div class="tria-service-card-content">
-              <h5 class="tria-service-card-title" data-i18n-html="services.cloudDevops">
-                Cloud &amp; DevOps <br />Solutions
-              </h5>
-              <p class="tria-service-card-desc" data-i18n="services.cloudDevopsDesc">
-                Scalable cloud infrastructure, CI/CD pipelines, and automated
-                deployments.
-              </p>
+              <h5 class="tria-service-card-title" data-i18n-html="services.cloudDevops" set:html={t("services.cloudDevops")} />
+              <p class="tria-service-card-desc" data-i18n="services.cloudDevopsDesc">{t("services.cloudDevopsDesc")}</p>
             </div>
             <div class="tria-service-arrow">
               <i class="fas fa-arrow-right"></i>
@@ -66,13 +55,8 @@
         <div class="col-md-6 col-lg-3 tria-services-grid-item">
           <a href="/service" class="tria-service-card tria-up">
             <div class="tria-service-card-content">
-              <h5 class="tria-service-card-title" data-i18n-html="services.aiMl">
-                AI &amp; Machine <br />Learning
-              </h5>
-              <p class="tria-service-card-desc" data-i18n="services.aiMlDesc">
-                Intelligent systems, predictive models, and data-driven automation
-                for your business.
-              </p>
+              <h5 class="tria-service-card-title" data-i18n-html="services.aiMl" set:html={t("services.aiMl")} />
+              <p class="tria-service-card-desc" data-i18n="services.aiMlDesc">{t("services.aiMlDesc")}</p>
             </div>
             <div class="tria-service-arrow">
               <i class="fas fa-arrow-right"></i>
@@ -82,13 +66,8 @@
         <div class="col-md-6 col-lg-3 tria-services-grid-item">
           <a href="/service" class="tria-service-card tria-up">
             <div class="tria-service-card-content">
-              <h5 class="tria-service-card-title" data-i18n-html="services.itCybersecurity">
-                IT &amp; Cybersecurity <br />Consulting
-              </h5>
-              <p class="tria-service-card-desc" data-i18n="services.itCybersecurityDesc">
-                Security audits, risk assessments, and strategic technology
-                planning.
-              </p>
+              <h5 class="tria-service-card-title" data-i18n-html="services.itCybersecurity" set:html={t("services.itCybersecurity")} />
+              <p class="tria-service-card-desc" data-i18n="services.itCybersecurityDesc">{t("services.itCybersecurityDesc")}</p>
             </div>
             <div class="tria-service-arrow">
               <i class="fas fa-arrow-right"></i>

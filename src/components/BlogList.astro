@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import { createT } from "../i18n/utils";
 
 interface Props {
   posts: CollectionEntry<"blog">[];
@@ -8,6 +9,7 @@ interface Props {
 }
 
 const { posts, currentPage, totalPages } = Astro.props;
+const t = createT(Astro.currentLocale);
 ---
 
 <div class="container tria-p-120-60">
@@ -27,7 +29,7 @@ const { posts, currentPage, totalPages } = Astro.props;
               <h4 class="tria-up tria-mb-30">{post.data.title}</h4>
               <p class="tria-post-text tria-up tria-mb-30">{post.data.description}</p>
               <div class="tria-link tria-dark tria-arrow-place tria-up">
-                <span>Read more</span>
+                <span data-i18n="blog.readMore">{t("blog.readMore")}</span>
               </div>
             </div>
           </a>
@@ -47,12 +49,12 @@ const { posts, currentPage, totalPages } = Astro.props;
                   href={currentPage === 2 ? "/blog" : `/blog/page/${currentPage - 1}`}
                   class="tria-link tria-dark tria-arrow-place"
                 >
-                  <span>Previous</span>
+                  <span data-i18n="pagination.previous">{t("pagination.previous")}</span>
                 </a>
               )
             }
-            <span class="tria-pagination-info">
-              Page {currentPage} of {totalPages}
+            <span class="tria-pagination-info" data-i18n="pagination.page">
+              {t("pagination.page").replace("{current}", currentPage).replace("{total}", totalPages)}
             </span>
             {
               currentPage < totalPages && (
@@ -60,7 +62,7 @@ const { posts, currentPage, totalPages } = Astro.props;
                   href={`/blog/page/${currentPage + 1}`}
                   class="tria-link tria-dark tria-arrow-place"
                 >
-                  <span>Next</span>
+                  <span data-i18n="pagination.next">{t("pagination.next")}</span>
                 </a>
               )
             }

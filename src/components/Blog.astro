@@ -1,5 +1,7 @@
 ---
 import { getCollection } from "astro:content";
+import { createT } from "../i18n/utils";
+const t = createT(Astro.currentLocale);
 
 const allPosts = await getCollection("blog");
 const posts = allPosts
@@ -12,12 +14,12 @@ const posts = allPosts
   <div class="container tria-p-120-60">
     <div class="row align-items-center tria-mb-30">
       <div class="col-lg-6 tria-mb-30">
-        <h3 class="tria-up" data-i18n="blog.title">Latest Insights:</h3>
+        <h3 class="tria-up" data-i18n="blog.title">{t("blog.title")}</h3>
       </div>
       <div class="col-lg-6 tria-mb-30">
         <div class="tria-adaptive-right tria-up">
           <a href="/blog" class="tria-link tria-dark tria-arrow-place">
-            <span data-i18n="blog.viewAll">View all</span>
+            <span data-i18n="blog.viewAll">{t("blog.viewAll")}</span>
           </a>
         </div>
       </div>
@@ -38,7 +40,7 @@ const posts = allPosts
                 <h4 class="tria-up tria-mb-30">{post.data.title}</h4>
                 <p class="tria-post-text tria-up tria-mb-30">{post.data.description}</p>
                 <div class="tria-link tria-dark tria-arrow-place tria-up">
-                  <span data-i18n="blog.readMore">Read more</span>
+                  <span data-i18n="blog.readMore">{t("blog.readMore")}</span>
                 </div>
               </div>
             </a>

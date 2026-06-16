@@ -1,5 +1,8 @@
 ---
 import type { GradProps } from "../scripts/hero-gradient";
+import { createT } from "../i18n/utils";
+
+const t = createT(Astro.currentLocale);
 
 const gradProps: GradProps = {
   color1: "#0d2b2b",
@@ -32,21 +35,15 @@ const gradData = JSON.stringify(gradProps);
   </div>
   <div class="container">
     <div class="tria-banner-content tria-up">
-      <h1 class="tria-muted tria-mb-60" data-i18n-html="hero.title">
-        Building <span class="tria-thin">Software</span><br /> That <span class="tria-thin">Matters</span>
-      </h1>
+      <h1 class="tria-muted tria-mb-60" data-i18n-html="hero.title" set:html={t("hero.title")} />
       <div class="row">
         <div class="col-md-7 col-lg-5">
-          <p class="tria-light-soft tria-mb-60" data-i18n="hero.description">
-            We are a software enterprise crafting powerful digital solutions.
-            From cloud infrastructure to AI-driven platforms — we build
-            technology that drives business forward.
-          </p>
+          <p class="tria-light-soft tria-mb-60" data-i18n="hero.description">{t("hero.description")}</p>
         </div>
       </div>
 
       <a href="/services" class="tria-button tria-arrow-place tria-btn-space">
-        <span data-i18n="hero.ourServices">Our services</span>
+        <span data-i18n="hero.ourServices">{t("hero.ourServices")}</span>
       </a>
 
       <div class="tria-circle-text">
@@ -58,7 +55,7 @@ const gradData = JSON.stringify(gradProps);
           <g>
             <use xlink:href="#circlePath" fill="none"></use>
             <text style="letter-spacing: 6.5px">
-              <textPath xlink:href="#circlePath" data-i18n="hero.scrollDown">Scroll down - Scroll down -</textPath>
+              <textPath xlink:href="#circlePath" data-i18n="hero.scrollDown">{t("hero.scrollDown")}</textPath>
             </text>
           </g>
         </svg>

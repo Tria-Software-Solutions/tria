@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import Layout from "../../../layouts/Layout.astro";
 import Footer from "../../../components/Footer.astro";
 import BlogList from "../../../components/BlogList.astro";
+import { createT } from "../../../i18n/utils";
 
 export async function getStaticPaths() {
   const allPosts = await getCollection("blog");
@@ -22,6 +23,7 @@ export async function getStaticPaths() {
 }
 
 const { posts, currentPage, totalPages } = Astro.props;
+const t = createT(Astro.currentLocale);
 ---
 
 <Layout title={`Tria — Software Solutions`} description="Read insights on software engineering, AI, cloud infrastructure, and technology from the tria team.">
@@ -31,10 +33,8 @@ const { posts, currentPage, totalPages } = Astro.props;
       <div class="page-hero-orb page-hero-orb--2"></div>
     </div>
     <div class="container page-hero-inner">
-      <span class="tria-suptitle tria-light-soft tria-up" style="display:block;margin-bottom:24px;" data-i18n="blog.newsletter">Newsletter</span>
-      <h1 class="page-hero-heading tria-up" data-i18n-html="blog.popularPublications">
-        Popular<br /><span class="page-hero-em">Publications</span>
-      </h1>
+      <span class="tria-suptitle tria-light-soft tria-up" style="display:block;margin-bottom:24px;" data-i18n="blog.newsletter">{t("blog.newsletter")}</span>
+      <h1 class="page-hero-heading tria-up" data-i18n-html="blog.popularPublications" set:html={t("blog.popularPublications")} />
     </div>
   </section>
 

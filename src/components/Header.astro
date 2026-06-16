@@ -1,5 +1,12 @@
 ---
-
+import { createT } from "../i18n/utils";
+const t = createT(Astro.currentLocale);
+const locale = Astro.currentLocale;
+const pathname = Astro.url.pathname;
+const path = pathname.replace(/\/+$/, "") || "/";
+const barePath = path.startsWith("/es") ? (path.replace(/^\/es/, "") || "/") : path;
+const enHref = barePath;
+const esHref = `/es${barePath === "/" ? "" : barePath}`;
 ---
 
 <!-- menu -->
@@ -19,25 +26,25 @@
           <nav class="tria-main-menu" id="swupMenu">
             <ul>
               <li class="tria-active">
-                <a href="/" data-i18n="nav.home">Home</a>
+                <a href="/" data-i18n="nav.home">{t("nav.home")}</a>
               </li>
               <li>
-                <a href="/about" data-i18n="nav.about">About</a>
+                <a href="/about" data-i18n="nav.about">{t("nav.about")}</a>
               </li>
               <li>
-                <a href="/work" data-i18n="nav.work">Work</a>
+                <a href="/work" data-i18n="nav.work">{t("nav.work")}</a>
               </li>
               <li class="tria-has-children">
-                <a href="/services" data-i18n="nav.services">Services</a>
+                <a href="/services" data-i18n="nav.services">{t("nav.services")}</a>
                 <ul>
-                  <li><a href="/services#software-dev" data-i18n="nav.softwareDev">Software Development</a></li>
-                  <li><a href="/services#cloud-devops" data-i18n="nav.cloudDevops">Cloud &amp; DevOps</a></li>
-                  <li><a href="/services#ai-ml" data-i18n="nav.aiMl">AI &amp; Machine Learning</a></li>
-                  <li><a href="/services#cybersecurity" data-i18n="nav.cybersecurity">Cybersecurity</a></li>
+                  <li><a href="/services#software-dev" data-i18n="nav.softwareDev">{t("nav.softwareDev")}</a></li>
+                  <li><a href="/services#cloud-devops" data-i18n="nav.cloudDevops">{t("nav.cloudDevops")}</a></li>
+                  <li><a href="/services#ai-ml" data-i18n="nav.aiMl">{t("nav.aiMl")}</a></li>
+                  <li><a href="/services#cybersecurity" data-i18n="nav.cybersecurity">{t("nav.cybersecurity")}</a></li>
                 </ul>
               </li>
               <li>
-                <a href="/contact" data-i18n="nav.contact">Contact</a>
+                <a href="/contact" data-i18n="nav.contact">{t("nav.contact")}</a>
               </li>
             </ul>
           </nav>
@@ -50,69 +57,67 @@
             <div class="tria-menu-right">
               <div class="row">
                 <div class="col-lg-8 tria-mb-60">
-                  <h6 class="tria-muted tria-mb-30" data-i18n="nav.projects">Projects</h6>
+                  <h6 class="tria-muted tria-mb-30" data-i18n="nav.projects">{t("nav.projects")}</h6>
                   <ul class="tria-menu-list">
                     <li>
                       <a href="/work" class="tria-light-soft" data-i18n="nav.fintechDashboard"
-                        >FinTech Dashboard Platform</a
+                        >{t("nav.fintechDashboard")}</a
                       >
                     </li>
                     <li>
                       <a href="/work" class="tria-light-soft" data-i18n="nav.cloudInfra"
-                        >Cloud Infrastructure Suite</a
+                        >{t("nav.cloudInfra")}</a
                       >
                     </li>
                     <li>
                       <a href="/work" class="tria-light-soft" data-i18n="nav.ecommerce"
-                        >E-Commerce Engine</a
+                        >{t("nav.ecommerce")}</a
                       >
                     </li>
                     <li>
                       <a href="/work" class="tria-light-soft" data-i18n="nav.aiAnalytics"
-                        >AI-Powered Analytics</a
+                        >{t("nav.aiAnalytics")}</a
                       >
                     </li>
                     <li>
                       <a href="/work" class="tria-light-soft" data-i18n="nav.iotFleet"
-                        >IoT Fleet Management</a
+                        >{t("nav.iotFleet")}</a
                       >
                     </li>
                     <li>
                       <a href="/work" class="tria-light-soft" data-i18n="nav.healthcareData"
-                        >Healthcare Data Platform</a
+                        >{t("nav.healthcareData")}</a
                       >
                     </li>
                   </ul>
                 </div>
                 <div class="col-lg-4 tria-mb-60">
-                  <h6 class="tria-muted tria-mb-30" data-i18n="nav.usefulLinks">Quick links</h6>
+                  <h6 class="tria-muted tria-mb-30" data-i18n="nav.usefulLinks">{t("nav.usefulLinks")}</h6>
                   <ul class="tria-menu-list">
                     <li>
-                      <a href="/work" class="tria-light-soft" data-i18n="nav.viewAllWork">View All Work</a>
+                      <a href="/work" class="tria-light-soft" data-i18n="nav.viewAllWork">{t("nav.viewAllWork")}</a>
                     </li>
                     <li>
-                      <a href="/services" class="tria-light-soft" data-i18n="nav.ourServices">Our Services</a>
+                      <a href="/services" class="tria-light-soft" data-i18n="nav.ourServices">{t("nav.ourServices")}</a>
                     </li>
                     <li>
-                      <a href="/about" class="tria-light-soft" data-i18n="nav.about">About</a>
+                      <a href="/about" class="tria-light-soft" data-i18n="nav.about">{t("nav.about")}</a>
                     </li>
                     <li>
-                      <a href="/contact" class="tria-light-soft" data-i18n="nav.startProject">Start a Project</a>
+                      <a href="/contact" class="tria-light-soft" data-i18n="nav.startProject">{t("nav.startProject")}</a>
                     </li>
-                    <li><a href="#." class="tria-light-soft" data-i18n="nav.careers">Careers</a></li>
+                    <li><a href="#." class="tria-light-soft" data-i18n="nav.careers">{t("nav.careers")}</a></li>
                   </ul>
                 </div>
               </div>
               <div class="tria-divider tria-mb-60"></div>
               <div class="row justify-content-between">
                 <div class="col-lg-4 tria-mb-60">
-                  <h6 class="tria-muted tria-mb-30" data-i18n="nav.location">Location</h6>
-                  <p class="tria-light-soft tria-up" data-i18n-html="nav.address">
-                    Atenas, Alajuela<br />Costa Rica 20501
-                  </p>
+                  <h6 class="tria-muted tria-mb-30" data-i18n="nav.location">{t("nav.location")}</h6>
+                  <p class="tria-light-soft tria-up" data-i18n-html="nav.address" set:html={t("nav.address")} />
                 </div>
                 <div class="col-lg-4 tria-mb-60">
-                  <h6 class="tria-muted tria-mb-30" data-i18n="nav.contactInfo">Contact</h6>
+                  <h6 class="tria-muted tria-mb-30" data-i18n="nav.contactInfo">{t("nav.contactInfo")}</h6>
                   <p class="tria-light-soft">
                     <a href="mailto:hola@triacr.com" class="tria-light-soft"
                       >hola@triacr.com</a
@@ -126,14 +131,26 @@
                   </p>
                 </div>
                 <div class="col-lg-4 tria-mb-60">
-                  <h6 class="tria-muted tria-mb-30" data-i18n="nav.language">Language</h6>
+                  <h6 class="tria-muted tria-mb-30" data-i18n="nav.language">{t("nav.language")}</h6>
                   <div class="tria-menu-lang" aria-label="Language">
-                    <button type="button" class="tria-light-soft tria-lang-btn" data-lang="en" data-i18n="nav.langEn">
-                      English
-                    </button>
-                    <button type="button" class="tria-light-soft tria-lang-btn" data-lang="es" data-i18n="nav.langEs">
-                      Espa&ntilde;ol
-                    </button>
+                    <a
+                      href={enHref}
+                      class="tria-light-soft tria-lang-btn"
+                      class:list={{ "is-active": locale === "en" }}
+                      data-lang="en"
+                      data-i18n="nav.langEn"
+                    >
+                      {t("nav.langEn")}
+                    </a>
+                    <a
+                      href={esHref}
+                      class="tria-light-soft tria-lang-btn"
+                      class:list={{ "is-active": locale === "es" }}
+                      data-lang="es"
+                      data-i18n="nav.langEs"
+                    >
+                      {t("nav.langEs")}
+                    </a>
                   </div>
                 </div>
               </div>

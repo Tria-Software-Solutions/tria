@@ -1,4 +1,6 @@
 ---
+import { createT } from "../i18n/utils";
+const t = createT(Astro.currentLocale);
 ---
 
 <!-- process -->
@@ -6,16 +8,11 @@
   <div class="container tria-p-120-120">
     <div class="row tria-mb-90">
       <div class="col-lg-6">
-        <span class="tria-suptitle tria-suptitle-dark tria-up" data-i18n="process.suptitle">How we work</span>
-        <h2 class="tria-up tria-mt-30" data-i18n-html="process.title">
-          Our <span class="tria-thin">Process</span>
-        </h2>
+        <span class="tria-suptitle tria-suptitle-dark tria-up" data-i18n="process.suptitle">{t("process.suptitle")}</span>
+        <h2 class="tria-up tria-mt-30" data-i18n-html="process.title" set:html={t("process.title")} />
       </div>
       <div class="col-lg-5 offset-lg-1 tria-process-intro-col">
-        <p class="tria-up tria-process-intro" data-i18n="process.intro">
-          We follow a rigorous, transparent process that ensures every
-          project is delivered on time, within scope, and beyond expectations.
-        </p>
+        <p class="tria-up tria-process-intro" data-i18n="process.intro">{t("process.intro")}</p>
       </div>
     </div>
 
@@ -24,17 +21,13 @@
         <div class="tria-process-num">01</div>
         <div class="tria-process-divider"></div>
         <div class="tria-process-body">
-          <h4 class="tria-process-title" data-i18n="process.step1Title">Discovery & Strategy</h4>
-          <p class="tria-process-desc" data-i18n="process.step1Desc">
-            We start by understanding your business, users, and goals.
-            Deep research, stakeholder interviews, and technical audits
-            inform a clear product roadmap.
-          </p>
+          <h4 class="tria-process-title" data-i18n="process.step1Title">{t("process.step1Title")}</h4>
+          <p class="tria-process-desc" data-i18n="process.step1Desc">{t("process.step1Desc")}</p>
         </div>
         <div class="tria-process-tags">
-          <span data-i18n="process.step1Tag1">Research</span>
-          <span data-i18n="process.step1Tag2">Scoping</span>
-          <span data-i18n="process.step1Tag3">Roadmap</span>
+          <span data-i18n="process.step1Tag1">{t("process.step1Tag1")}</span>
+          <span data-i18n="process.step1Tag2">{t("process.step1Tag2")}</span>
+          <span data-i18n="process.step1Tag3">{t("process.step1Tag3")}</span>
         </div>
       </div>
 
@@ -42,17 +35,13 @@
         <div class="tria-process-num">02</div>
         <div class="tria-process-divider"></div>
         <div class="tria-process-body">
-          <h4 class="tria-process-title" data-i18n="process.step2Title">Architecture & Design</h4>
-          <p class="tria-process-desc" data-i18n="process.step2Desc">
-            Our architects design scalable, maintainable systems. We
-            prototype interfaces and validate technical decisions before
-            a single line of production code is written.
-          </p>
+          <h4 class="tria-process-title" data-i18n="process.step2Title">{t("process.step2Title")}</h4>
+          <p class="tria-process-desc" data-i18n="process.step2Desc">{t("process.step2Desc")}</p>
         </div>
         <div class="tria-process-tags">
-          <span data-i18n="process.step2Tag1">System Design</span>
-          <span data-i18n="process.step2Tag2">UI/UX</span>
-          <span data-i18n="process.step2Tag3">Prototyping</span>
+          <span data-i18n="process.step2Tag1">{t("process.step2Tag1")}</span>
+          <span data-i18n="process.step2Tag2">{t("process.step2Tag2")}</span>
+          <span data-i18n="process.step2Tag3">{t("process.step2Tag3")}</span>
         </div>
       </div>
 
@@ -60,17 +49,13 @@
         <div class="tria-process-num">03</div>
         <div class="tria-process-divider"></div>
         <div class="tria-process-body">
-          <h4 class="tria-process-title" data-i18n="process.step3Title">Build & Iterate</h4>
-          <p class="tria-process-desc" data-i18n="process.step3Desc">
-            Agile sprints with continuous client feedback. We ship
-            incrementally, test rigorously, and adapt quickly — ensuring
-            quality at every stage of development.
-          </p>
+          <h4 class="tria-process-title" data-i18n="process.step3Title">{t("process.step3Title")}</h4>
+          <p class="tria-process-desc" data-i18n="process.step3Desc">{t("process.step3Desc")}</p>
         </div>
         <div class="tria-process-tags">
-          <span data-i18n="process.step3Tag1">Agile</span>
-          <span data-i18n="process.step3Tag2">CI/CD</span>
-          <span data-i18n="process.step3Tag3">Testing</span>
+          <span data-i18n="process.step3Tag1">{t("process.step3Tag1")}</span>
+          <span data-i18n="process.step3Tag2">{t("process.step3Tag2")}</span>
+          <span data-i18n="process.step3Tag3">{t("process.step3Tag3")}</span>
         </div>
       </div>
 
@@ -78,17 +63,13 @@
         <div class="tria-process-num">04</div>
         <div class="tria-process-divider"></div>
         <div class="tria-process-body">
-          <h4 class="tria-process-title" data-i18n="process.step4Title">Launch & Scale</h4>
-          <p class="tria-process-desc" data-i18n="process.step4Desc">
-            We deploy to production with zero-downtime strategies, monitor
-            performance, and provide ongoing support to scale your product
-            as your business grows.
-          </p>
+          <h4 class="tria-process-title" data-i18n="process.step4Title">{t("process.step4Title")}</h4>
+          <p class="tria-process-desc" data-i18n="process.step4Desc">{t("process.step4Desc")}</p>
         </div>
         <div class="tria-process-tags">
-          <span data-i18n="process.step4Tag1">DevOps</span>
-          <span data-i18n="process.step4Tag2">Monitoring</span>
-          <span data-i18n="process.step4Tag3">Support</span>
+          <span data-i18n="process.step4Tag1">{t("process.step4Tag1")}</span>
+          <span data-i18n="process.step4Tag2">{t("process.step4Tag2")}</span>
+          <span data-i18n="process.step4Tag3">{t("process.step4Tag3")}</span>
         </div>
       </div>
     </div>
