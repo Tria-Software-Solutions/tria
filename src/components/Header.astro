@@ -20,8 +20,7 @@ const esHref = `/es${barePath === "/" ? "" : barePath}`;
   </div>
   <div class="tria-menu-content">
     <div class="tria-menu-grid" id="swupMenu">
-      <div class="tria-menu-section">
-        <h6>Pages</h6>
+      <div class="tria-menu-pages">
         <ul>
           <li class="tria-active">
             <a href="/" data-i18n="nav.home">{t("nav.home")}</a>
@@ -40,32 +39,37 @@ const esHref = `/es${barePath === "/" ? "" : barePath}`;
           </li>
         </ul>
       </div>
-      <div class="tria-menu-section">
-        <h6 data-i18n="nav.services">{t("nav.services")}</h6>
-        <ul>
-          <li><a href="/services#software-dev" data-i18n="nav.softwareDev">{t("nav.softwareDev")}</a></li>
-          <li><a href="/services#cloud-devops" data-i18n="nav.cloudDevops">{t("nav.cloudDevops")}</a></li>
-          <li><a href="/services#ai-ml" data-i18n="nav.aiMl">{t("nav.aiMl")}</a></li>
-          <li><a href="/services#cybersecurity" data-i18n="nav.cybersecurity">{t("nav.cybersecurity")}</a></li>
-        </ul>
+      <div class="tria-menu-col">
+        <div class="tria-menu-list-group">
+          <span class="tria-menu-group-label" data-i18n="nav.services">{t("nav.services")}</span>
+          <a href="/services#software-dev" data-i18n="nav.softwareDev">{t("nav.softwareDev")}</a>
+          <a href="/services#cloud-devops" data-i18n="nav.cloudDevops">{t("nav.cloudDevops")}</a>
+          <a href="/services#ai-ml" data-i18n="nav.aiMl">{t("nav.aiMl")}</a>
+          <a href="/services#cybersecurity" data-i18n="nav.cybersecurity">{t("nav.cybersecurity")}</a>
+        </div>
+        <div class="tria-menu-list-group">
+          <span class="tria-menu-group-label">Case Studies</span>
+          <a href="/project-1" data-i18n="nav.fintechDashboard">{t("nav.fintechDashboard")}</a>
+          <a href="/project-2" data-i18n="nav.cloudInfra">{t("nav.cloudInfra")}</a>
+          <a href="/project-3" data-i18n="nav.ecommerce">{t("nav.ecommerce")}</a>
+          <a href="/project-4" data-i18n="nav.aiAnalytics">{t("nav.aiAnalytics")}</a>
+          <a href="/project-5" data-i18n="nav.iotFleet">{t("nav.iotFleet")}</a>
+          <a href="/project-6" data-i18n="nav.healthcareData">{t("nav.healthcareData")}</a>
+        </div>
       </div>
-      <div class="tria-menu-section">
-        <h6>Case Studies</h6>
-        <ul>
-          <li><a href="/project-1" data-i18n="nav.fintechDashboard">{t("nav.fintechDashboard")}</a></li>
-          <li><a href="/project-2" data-i18n="nav.cloudInfra">{t("nav.cloudInfra")}</a></li>
-          <li><a href="/project-3" data-i18n="nav.ecommerce">{t("nav.ecommerce")}</a></li>
-          <li><a href="/project-4" data-i18n="nav.aiAnalytics">{t("nav.aiAnalytics")}</a></li>
-          <li><a href="/project-5" data-i18n="nav.iotFleet">{t("nav.iotFleet")}</a></li>
-          <li><a href="/project-6" data-i18n="nav.healthcareData">{t("nav.healthcareData")}</a></li>
-        </ul>
-      </div>
-      <div class="tria-menu-section">
-        <h6 data-i18n="nav.more">More</h6>
-        <ul>
-          <li><a href="/team" data-i18n="nav.team">{t("nav.team")}</a></li>
-          <li><a href="/blog">Blog</a></li>
-        </ul>
+      <div class="tria-menu-col">
+        <div class="tria-menu-list-group">
+          <span class="tria-menu-group-label">Useful Links</span>
+          <a href="/privacy" data-i18n="nav.privacyPolicy">{t("nav.privacyPolicy")}</a>
+          <a href="/terms" data-i18n="nav.terms">{t("nav.terms")}</a>
+          <a href="/cookies" data-i18n="nav.cookiePolicy">{t("nav.cookiePolicy")}</a>
+          <a href="/careers" data-i18n="nav.careers">{t("nav.careers")}</a>
+        </div>
+        <div class="tria-menu-list-group">
+          <span class="tria-menu-group-label" data-i18n="nav.more">More</span>
+          <a href="/team" data-i18n="nav.team">{t("nav.team")}</a>
+          <a href="/blog">Blog</a>
+        </div>
       </div>
     </div>
   </div>
