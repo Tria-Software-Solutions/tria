@@ -15,7 +15,7 @@ const posts = allPosts
     <div class="row align-items-center tria-mb-30">
       <div class="col-lg-6 tria-mb-30">
         <span class="tria-suptitle tria-suptitle-dark tria-up">Reading</span>
-        <h2 class="tria-up" style="margin-top:20px;" data-i18n="blog.title">{t("blog.title")}</h2>
+        <h2 class="tria-up" style="margin-top:20px;" data-i18n-html="blog.title" set:html={t("blog.title")} />
       </div>
       <div class="col-lg-6 tria-mb-30">
         <div class="tria-adaptive-right tria-up">

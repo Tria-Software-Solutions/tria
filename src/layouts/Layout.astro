@@ -312,13 +312,17 @@ const translData = JSON.stringify({ en: enData, es: esData });
             );
           }
 
-          // Page name (rotated -90°): gradient right→left = visual bottom→top
-          updateTextGradient(
-            document.querySelector(
-              ".tria-frame .tria-frame-bottom .tria-current-page a",
-            ),
-            false,
+          // Page name: simple on-dark class toggle (a added by tria-main.js later)
+          var pageName = document.querySelector(
+            ".tria-frame .tria-frame-bottom .tria-current-page",
           );
+          if (pageName) {
+            var r = pageName.getBoundingClientRect();
+            pageName.classList.toggle(
+              "tria-on-dark",
+              getThemeAt(r.top + r.height / 2) === "dark",
+            );
+          }
 
           // Back-to-top text (rotated -90°): gradient right→left = visual bottom→top
           updateTextGradient(
@@ -359,13 +363,54 @@ const translData = JSON.stringify({ en: enData, es: esData });
         window.addEventListener("resize", updateFrameTheme);
         initFrameTheme();
 
+        var __heroCleanup = null;
+        var __lastHeroBgEl = null;
+        window.__reinitHeroBg = function () {
+          var bg = document.querySelector(".tria-hero-bg");
+          if (!bg) {
+            if (__heroCleanup) { 
+              try { __heroCleanup(); } catch(e) {}
+              __heroCleanup = null; 
+            }
+            __lastHeroBgEl = null;
+            return;
+          }
+          if (bg === __lastHeroBgEl && __heroCleanup) {
+            return;
+          }
+          if (__heroCleanup) { 
+            try { __heroCleanup(); } catch(e) {}
+            __heroCleanup = null; 
+          }
+          __lastHeroBgEl = bg;
+          if (bg.dataset.gradProps && window.__initHeroGradient) {
+            try {
+              __heroCleanup = window.__initHeroGradient(bg, JSON.parse(bg.dataset.gradProps));
+            } catch (e) {
+              console.error("Failed to init hero bg:", e);
+            }
+          }
+        };
+
         document.addEventListener("swup:contentReplaced", function () {
           document.title = "Tria — Software Solutions";
           ScrollTrigger.getAll().forEach(function (st) { st.kill(); });
           updateFrameTheme();
           if (window.initTriaGradient) window.initTriaGradient();
-          if (window.__reinitHeroBg) window.__reinitHeroBg();
+          if (window.__reinitHeroBg) {
+            window.__reinitHeroBg();
+            setTimeout(window.__reinitHeroBg, 100);
+            setTimeout(window.__reinitHeroBg, 300);
+          }
         });
+
+        (function pollHeroGradient(retries) {
+          if (window.__initHeroGradient && document.querySelector('.tria-hero-bg')) {
+            __reinitHeroBg();
+          } else if (retries < 50) {
+            setTimeout(function () { pollHeroGradient(retries + 1); }, 200);
+          }
+        })(0);
       })();
     </script>
     <script is:inline src="/assets/js/vendor/jquery.min.js"></script>
@@ -381,15 +426,10 @@ const translData = JSON.stringify({ en: enData, es: esData });
     <script is:inline src="/assets/js/tria-gradient.js"></script>
     <script>
     import { initGradient } from "../scripts/hero-gradient";
-    let __heroCleanup = null;
-    window.__reinitHeroBg = function () {
-      if (__heroCleanup) { __heroCleanup(); __heroCleanup = null; }
-      var bg = document.querySelector(".tria-hero-bg");
-      if (bg && window.__heroGradProps) {
-        __heroCleanup = initGradient(bg, window.__heroGradProps);
-      }
-    };
-    if (document.querySelector(".tria-hero-bg")) window.__reinitHeroBg();
+    window.__initHeroGradient = initGradient;
+    if (document.querySelector(".tria-hero-bg") && window.__reinitHeroBg) {
+      window.__reinitHeroBg();
+    }
     </script>
   </body>
 </html>

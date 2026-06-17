@@ -11,6 +11,10 @@ const esHref = `/es${barePath === "/" ? "" : barePath}`;
 
 <!-- menu -->
 <div class="tria-menu-frame">
+  <!-- Dynamic premium orbs for visual depth -->
+  <div class="tria-menu-orb tria-menu-orb-1"></div>
+  <div class="tria-menu-orb tria-menu-orb-2"></div>
+
   <div class="tria-menu-close">
     <div class="tria-menu-btn">
       <span></span>
@@ -75,3 +79,231 @@ const esHref = `/es${barePath === "/" ? "" : barePath}`;
   </div>
 </div>
 <!-- menu end -->
+
+<style is:global>
+  /* Menu Frame Modern overrides */
+  .tria-menu-frame {
+    background: rgba(8, 10, 18, 0.88) !important;
+    backdrop-filter: blur(24px) saturate(1.8) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(1.8) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    overflow-y: auto;
+  }
+
+  /* Dynamic premium orbs for visual depth */
+  .tria-menu-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 0;
+  }
+  
+  .tria-menu-orb-1 {
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle, rgba(var(--accent-rgb), 0.2) 0%, transparent 70%);
+    top: -100px;
+    left: -100px;
+  }
+  
+  .tria-menu-orb-2 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(79, 70, 229, 0.15) 0%, transparent 70%);
+    bottom: -50px;
+    right: -50px;
+  }
+
+  .tria-menu-frame.tria-active .tria-menu-orb {
+    opacity: 1;
+  }
+
+  .tria-menu-frame.tria-active .tria-menu-orb-1 {
+    animation: menuOrbPulse1 14s infinite alternate ease-in-out;
+  }
+  
+  .tria-menu-frame.tria-active .tria-menu-orb-2 {
+    animation: menuOrbPulse2 11s infinite alternate ease-in-out;
+  }
+
+  @keyframes menuOrbPulse1 {
+    0% { transform: scale(1) translate(0, 0); }
+    100% { transform: scale(1.2) translate(30px, 40px); }
+  }
+  
+  @keyframes menuOrbPulse2 {
+    0% { transform: scale(1) translate(0, 0); }
+    100% { transform: scale(1.15) translate(-40px, -30px); }
+  }
+
+  /* Close Button Redesign */
+  .tria-menu-close {
+    top: 40px;
+    right: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    cursor: pointer;
+    transition: all 0.4s var(--ease-spring) !important;
+    padding: 0;
+    z-index: 10;
+  }
+  
+  .tria-menu-close:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--accent) !important;
+    transform: rotate(90deg) scale(1.05);
+    box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.25);
+  }
+  
+  .tria-menu-close .tria-menu-btn {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  
+  .tria-menu-close .tria-menu-btn span {
+    background-color: #fff !important;
+  }
+
+  /* Staggered Column Entrance Animation */
+  .tria-menu-grid > * {
+    opacity: 0;
+    transform: translateY(35px);
+    transition: transform 0.8s var(--ease-spring), opacity 0.8s ease;
+  }
+  
+  .tria-menu-frame.tria-active .tria-menu-grid > *:nth-child(1) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.15s;
+  }
+  
+  .tria-menu-frame.tria-active .tria-menu-grid > *:nth-child(2) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.25s;
+  }
+  
+  .tria-menu-frame.tria-active .tria-menu-grid > *:nth-child(3) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.35s;
+  }
+
+  /* Main Links Styling */
+  .tria-menu-pages ul li {
+    margin-bottom: 12px !important;
+  }
+
+  .tria-menu-pages ul li a {
+    font-size: 2.3rem !important;
+    font-weight: 500 !important;
+    font-family: var(--font-display);
+    letter-spacing: -0.03em !important;
+    color: rgba(255, 255, 255, 0.45) !important;
+    transition: color 0.4s ease, transform 0.4s var(--ease-spring), text-shadow 0.4s ease !important;
+    position: relative;
+    display: inline-block !important;
+  }
+  
+  .tria-menu-pages ul li a:hover {
+    color: #fff !important;
+    transform: translateX(8px) !important;
+    text-shadow: 0 0 20px rgba(var(--accent-rgb), 0.35);
+  }
+  
+  .tria-menu-pages ul li.tria-active > a {
+    color: var(--accent) !important;
+    padding-left: 20px !important;
+  }
+  
+  .tria-menu-pages ul li.tria-active > a::before {
+    content: "" !important;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%) !important;
+    width: 4px !important;
+    height: 24px !important;
+    background: var(--accent) !important;
+    border-radius: 2px;
+    transition: height 0.3s ease;
+  }
+  
+  .tria-menu-pages ul li.tria-active > a:hover::before {
+    height: 32px !important;
+  }
+
+  /* Secondary Links Styling */
+  .tria-menu-list-group {
+    gap: 8px !important;
+  }
+  
+  .tria-menu-group-label {
+    color: rgba(255, 255, 255, 0.2) !important;
+    font-size: 0.7rem !important;
+    letter-spacing: 0.15em !important;
+    font-weight: 600 !important;
+    margin-bottom: 8px !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    padding-bottom: 6px;
+  }
+  
+  .tria-menu-list-group a {
+    color: rgba(255, 255, 255, 0.45) !important;
+    font-size: 0.9rem !important;
+    transition: color 0.3s ease, padding-left 0.4s var(--ease-spring), transform 0.4s var(--ease-spring) !important;
+    padding: 4px 0 !important;
+    display: inline-flex !important;
+    align-items: center;
+    position: relative;
+  }
+  
+  .tria-menu-list-group a:hover {
+    color: #fff !important;
+    padding-left: 14px !important;
+    transform: translateX(0) !important;
+  }
+  
+  .tria-menu-list-group a::before {
+    content: "" !important;
+    position: absolute;
+    left: 0;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0;
+    transform: scale(0);
+    transition: transform 0.3s var(--ease-spring), opacity 0.3s ease;
+  }
+  
+  .tria-menu-list-group a:hover::before {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  @media screen and (max-width: 640px) {
+    .tria-menu-pages ul li a {
+      font-size: 1.8rem !important;
+    }
+    .tria-menu-close {
+      top: 24px;
+      right: 24px;
+    }
+  }
+</style>
+

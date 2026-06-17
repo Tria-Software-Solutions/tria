@@ -7,24 +7,13 @@ const t = createT(Astro.currentLocale);
 <section class="tria-services-section" data-section-theme="light">
   <div class="container tria-p-120-0">
       <div class="tria-mb-120">
-        <div class="row">
-          <div class="col-lg-10">
-            <span
-              class="tria-suptitle tria-suptitle-right tria-suptitle-dark tria-up"
-              data-i18n-html="services.suptitle" set:html={t("services.suptitle")} />
+        <div class="row align-items-end">
+          <div class="col-lg-8">
+            <span class="tria-suptitle tria-suptitle-dark tria-up" data-i18n="services.suptitle">{t("services.suptitle")}</span>
+            <h2 class="tria-up tria-mt-30" data-i18n-html="services.modernSolutions" set:html={t("services.modernSolutions")} />
           </div>
-        </div>
-        <div class="tria-services-header tria-up">
-          <div class="tria-services-heading">
-            <h2 class="tria-h1 tria-dark" data-i18n-html="services.modernSolutions" set:html={t("services.modernSolutions")} />
-          </div>
-          <div class="tria-services-sub">
-            <h2 class="tria-h1 tria-dark" data-i18n-html="services.forYourBusiness" set:html={t("services.forYourBusiness")} />
-            <a
-              href="/services"
-              class="tria-services-button tria-button tria-arrow-place"
-              ><span data-i18n="hero.ourServices">{t("hero.ourServices")}</span></a
-            >
+          <div class="col-lg-4 tria-services-header-right">
+            <a href="/services" class="tria-button tria-arrow-place tria-up"><span data-i18n="hero.ourServices">{t("hero.ourServices")}</span></a>
           </div>
         </div>
       </div>
@@ -209,35 +198,14 @@ const t = createT(Astro.currentLocale);
     background: #ffffff;
   }
 
-  .tria-services-header {
+  .tria-services-header-right {
     display: flex;
-    flex-direction: column;
-    gap: 8px;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding-bottom: 4px;
   }
 
-  .tria-services-heading {
-    margin-bottom: 8px;
-  }
 
-  .tria-services-sub {
-    display: flex;
-    align-items: center;
-    gap: 40px;
-    flex-wrap: wrap;
-  }
-
-  .tria-services-sub h2 {
-    flex-shrink: 0;
-  }
-
-  @media (max-width: 768px) {
-    .tria-services-heading-accent {
-      width: 40px;
-    }
-    .tria-services-sub {
-      gap: 24px;
-    }
-  }
 
   /* ── service cards ── */
   .tria-services-grid {

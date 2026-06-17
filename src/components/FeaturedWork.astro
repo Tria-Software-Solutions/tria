@@ -6,16 +6,9 @@ const t = createT(Astro.currentLocale);
 <!-- featured work -->
 <section class="tria-work-section" data-section-theme="light">
   <div class="container tria-p-120-0">
-    <div class="row align-items-end tria-mb-60">
-      <div class="col-lg-8">
-        <span class="tria-suptitle tria-suptitle-dark tria-up" data-i18n="featured.suptitle">{t("featured.suptitle")}</span>
-        <h2 class="tria-up tria-mt-30" data-i18n-html="featured.title" set:html={t("featured.title")} />
-      </div>
-      <div class="col-lg-4 tria-work-header-right">
-        <a href="/portfolio" class="tria-button tria-arrow-place tria-up">
-          <span data-i18n="featured.viewAll">{t("featured.viewAll")}</span>
-        </a>
-      </div>
+    <div class="tria-mb-60">
+      <span class="tria-suptitle tria-suptitle-dark tria-up" data-i18n="featured.suptitle">{t("featured.suptitle")}</span>
+      <h2 class="tria-up tria-mt-30" data-i18n-html="featured.title" set:html={t("featured.title")} />
     </div>
   </div>
 
@@ -109,24 +102,47 @@ const t = createT(Astro.currentLocale);
     </a>
   </div>
 
-  <div class="container tria-p-60-120">
-    <div class="tria-work-cta tria-up">
-      <p class="tria-work-cta-text" data-i18n="featured.ctaText">{t("featured.ctaText")}</p>
-      <a href="/contact" class="tria-link tria-arrow-place">
-        <span data-i18n="featured.ctaLink">{t("featured.ctaLink")}</span>
-        <i class="fas fa-arrow-right"></i>
-      </a>
+  <div class="container tria-featured-footer tria-p-60-120">
+    <div class="row align-items-center">
+      <div class="col">
+        <a href="/portfolio" class="tria-button tria-arrow-place">
+          <span data-i18n="featured.viewAll">{t("featured.viewAll")}</span>
+        </a>
+      </div>
+      <div class="col tria-featured-cta-col">
+        <div class="tria-work-cta tria-up">
+          <p class="tria-work-cta-text" data-i18n="featured.ctaText">{t("featured.ctaText")}</p>
+          <a href="/contact" class="tria-link tria-arrow-place">
+            <span data-i18n="featured.ctaLink">{t("featured.ctaLink")}</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 <!-- featured work end -->
 
 <style>
-  .tria-work-header-right {
+  .tria-featured-footer .tria-work-cta {
+    border-top: none;
+    padding-top: 0;
+    margin-top: 0;
+    justify-content: flex-end;
+    gap: 60px;
+  }
+  .tria-featured-cta-col {
     display: flex;
     justify-content: flex-end;
-    align-items: flex-end;
-    padding-bottom: 4px;
+  }
+  @media (max-width: 768px) {
+    .tria-featured-footer .row {
+      flex-direction: column;
+      gap: 30px;
+    }
+    .tria-featured-cta-col {
+      justify-content: flex-start;
+    }
   }
 
   .tria-work-grid {
