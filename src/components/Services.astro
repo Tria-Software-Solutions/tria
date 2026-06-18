@@ -4,16 +4,19 @@ const t = createT(Astro.currentLocale);
 ---
 
 <!-- services -->
-<section class="tria-services-section" data-section-theme="light">
-  <div class="container tria-p-120-0">
+<section class="tria-services-section" data-section-theme="dark">
+  <div class="container tria-p-120-120">
       <div class="tria-mb-120">
         <div class="row align-items-end">
           <div class="col-lg-8">
-            <span class="tria-suptitle tria-suptitle-dark tria-up" data-i18n="services.suptitle">{t("services.suptitle")}</span>
+            <span class="tria-suptitle tria-up" data-i18n="services.suptitle">{t("services.suptitle")}</span>
             <h2 class="tria-up tria-mt-30" data-i18n-html="services.modernSolutions" set:html={t("services.modernSolutions")} />
           </div>
           <div class="col-lg-4 tria-services-header-right">
-            <a href="/services" class="tria-button tria-arrow-place tria-up"><span data-i18n="hero.ourServices">{t("hero.ourServices")}</span></a>
+            <a href="/services" class="tria-services-view-link">
+              <span data-i18n="services.viewAll">{t("services.viewAll")}</span>
+              <i class="fas fa-arrow-right"></i>
+            </a>
           </div>
         </div>
       </div>
@@ -195,7 +198,17 @@ const t = createT(Astro.currentLocale);
   .tria-services-section {
     position: relative;
     overflow: hidden;
-    background: #ffffff;
+    background: #0b0d17;
+  }
+
+  .tria-services-section .tria-suptitle {
+    color: rgba(255,255,255,0.5);
+  }
+  .tria-services-section .tria-suptitle::before {
+    background-color: rgba(255,255,255,0.15);
+  }
+  .tria-services-section h2 {
+    color: #fff;
   }
 
   .tria-services-header-right {
@@ -203,6 +216,33 @@ const t = createT(Astro.currentLocale);
     justify-content: flex-end;
     align-items: flex-end;
     padding-bottom: 4px;
+  }
+
+  .tria-services-view-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.4);
+    text-decoration: none;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: color 0.4s var(--ease-spring), gap 0.4s var(--ease-spring);
+  }
+
+  .tria-services-view-link i {
+    font-size: 0.7rem;
+    transition: transform 0.4s var(--ease-spring);
+  }
+
+  .tria-services-view-link:hover {
+    color: var(--accent);
+    gap: 14px;
+  }
+
+  .tria-services-view-link:hover i {
+    transform: translateX(4px);
   }
 
 
@@ -226,8 +266,8 @@ const t = createT(Astro.currentLocale);
     min-height: 260px;
     text-decoration: none;
     overflow: hidden;
-    border-right: 1px solid rgba(0, 0, 0, 0.04);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     transition: all 0.5s var(--ease-spring);
   }
 
@@ -249,7 +289,7 @@ const t = createT(Astro.currentLocale);
     inset: 0;
     border-radius: 0;
     padding: 1px;
-    background: linear-gradient(135deg, transparent 40%, rgba(0,0,0,0.04) 60%, transparent 80%);
+    background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.06) 60%, transparent 80%);
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
@@ -273,38 +313,38 @@ const t = createT(Astro.currentLocale);
   .tria-service-card-title {
     font-size: 1.15rem;
     font-weight: 400;
-    color: #0b0d17;
+    color: #fff;
     margin-bottom: 16px;
     line-height: 1.4;
     transition: color 0.3s var(--ease-smooth);
   }
 
   .tria-service-card:hover .tria-service-card-title {
-    color: #000;
+    color: rgba(255,255,255,0.85);
   }
 
   .tria-service-card-desc {
     font-size: 0.82rem;
     line-height: 1.7;
-    color: rgba(0, 0, 0, 0.35);
+    color: rgba(255, 255, 255, 0.35);
     margin: 0;
     max-width: 280px;
     transition: color 0.3s var(--ease-smooth);
   }
 
   .tria-service-card:hover .tria-service-card-desc {
-    color: rgba(0, 0, 0, 0.55);
+    color: rgba(255, 255, 255, 0.55);
   }
 
   .tria-service-arrow {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    border: 1px solid rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: rgba(0, 0, 0, 0.2);
+    color: rgba(255, 255, 255, 0.3);
     font-size: 13px;
     transition: all 0.4s var(--ease-spring);
     flex-shrink: 0;
@@ -360,7 +400,7 @@ const t = createT(Astro.currentLocale);
 
   .tria-marquee-icon {
     font-size: 44px;
-    color: rgba(0, 0, 0, 0.12);
+    color: rgba(255, 255, 255, 0.12);
     flex-shrink: 0;
     transition: color 0.3s var(--ease-spring);
     cursor: default;

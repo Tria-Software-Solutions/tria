@@ -1149,6 +1149,10 @@ frame
   color: var(--accent);
 }
 
+.tria-frame-top .tria-logo span[data-i="4"] {
+  color: var(--accent) !important;
+}
+
 /* -------------------------------------------
 
 menu button

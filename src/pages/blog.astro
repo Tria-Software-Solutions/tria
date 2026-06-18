@@ -15,7 +15,7 @@ const totalPages = Math.ceil(allPosts.length / pageSize);
 const posts = allPosts.slice(0, pageSize);
 ---
 
-<Layout title="Tria — Software Solutions" description="Read insights on software engineering, AI, cloud infrastructure, and technology from the tria team.">
+<Layout title={t("meta.title")} description={t("meta.description")}>
   <section class="page-hero" data-section-theme="dark">
     <div class="page-hero-bg">
       <div class="page-hero-orb page-hero-orb--1"></div>

@@ -6,9 +6,15 @@ const t = createT(Astro.currentLocale);
 <!-- featured work -->
 <section class="tria-work-section" data-section-theme="light">
   <div class="container tria-p-120-0">
-    <div class="tria-mb-60">
-      <span class="tria-suptitle tria-suptitle-dark tria-up" data-i18n="featured.suptitle">{t("featured.suptitle")}</span>
-      <h2 class="tria-up tria-mt-30" data-i18n-html="featured.title" set:html={t("featured.title")} />
+    <div class="tria-featured-header tria-up">
+      <div>
+        <span class="tria-suptitle tria-suptitle-dark" data-i18n="featured.suptitle">{t("featured.suptitle")}</span>
+        <h2 class="tria-mt-30" data-i18n-html="featured.title" set:html={t("featured.title")} />
+      </div>
+      <a href="/portfolio" class="tria-featured-view-link">
+        <span data-i18n="featured.viewAll">{t("featured.viewAll")}</span>
+        <i class="fas fa-arrow-right"></i>
+      </a>
     </div>
   </div>
 
@@ -18,11 +24,11 @@ const t = createT(Astro.currentLocale);
         <div class="tria-work-img" style="background: linear-gradient(135deg, #0b0d17 0%, #1a1f35 50%, #068e8c 100%);"></div>
         <div class="tria-work-overlay">
           <div class="tria-work-meta">
-            <span class="tria-work-category">FinTech</span>
+            <span class="tria-work-category" data-i18n="featured.project1Cat">{t("featured.project1Cat")}</span>
           </div>
           <div class="tria-work-grid-content">
-            <h3 class="tria-work-name">FinTech Dashboard Platform</h3>
-            <p class="tria-work-desc">Real-time analytics engine processing 10M+ transactions daily with sub-100ms latency.</p>
+            <h3 class="tria-work-name" data-i18n="featured.project1Title">{t("featured.project1Title")}</h3>
+            <p class="tria-work-desc" data-i18n="featured.project1Desc">{t("featured.project1Desc")}</p>
           </div>
           <div class="tria-work-arrow">
             <i class="fas fa-arrow-right"></i>
@@ -44,11 +50,11 @@ const t = createT(Astro.currentLocale);
         <div class="tria-work-img" style="background: linear-gradient(135deg, #1a1f35 0%, #2d3561 100%);"></div>
         <div class="tria-work-overlay">
           <div class="tria-work-meta">
-            <span class="tria-work-category">Cloud</span>
+            <span class="tria-work-category" data-i18n="featured.project2Cat">{t("featured.project2Cat")}</span>
           </div>
           <div class="tria-work-grid-content">
-            <h3 class="tria-work-name">Cloud Infrastructure Suite</h3>
-            <p class="tria-work-desc">Multi-cloud orchestration platform reducing ops overhead by 60%.</p>
+            <h3 class="tria-work-name" data-i18n="featured.project2Title">{t("featured.project2Title")}</h3>
+            <p class="tria-work-desc" data-i18n="featured.project2Desc">{t("featured.project2Desc")}</p>
           </div>
           <div class="tria-work-arrow">
             <i class="fas fa-arrow-right"></i>
@@ -67,11 +73,11 @@ const t = createT(Astro.currentLocale);
         <div class="tria-work-img" style="background: linear-gradient(135deg, #0b0d17 0%, #068e8c 100%);"></div>
         <div class="tria-work-overlay">
           <div class="tria-work-meta">
-            <span class="tria-work-category">AI / ML</span>
+            <span class="tria-work-category" data-i18n="featured.project3Cat">{t("featured.project3Cat")}</span>
           </div>
           <div class="tria-work-grid-content">
-            <h3 class="tria-work-name">AI-Powered Analytics</h3>
-            <p class="tria-work-desc">Predictive models delivering 94% accuracy across 15 business verticals.</p>
+            <h3 class="tria-work-name" data-i18n="featured.project3Title">{t("featured.project3Title")}</h3>
+            <p class="tria-work-desc" data-i18n="featured.project3Desc">{t("featured.project3Desc")}</p>
           </div>
           <div class="tria-work-arrow">
             <i class="fas fa-arrow-right"></i>
@@ -88,11 +94,11 @@ const t = createT(Astro.currentLocale);
         <div class="tria-work-img" style="background: linear-gradient(135deg, #111827 0%, #1f2d40 50%, #0d3050 100%);"></div>
         <div class="tria-work-overlay">
           <div class="tria-work-meta">
-            <span class="tria-work-category">Healthcare</span>
+            <span class="tria-work-category" data-i18n="featured.project4Cat">{t("featured.project4Cat")}</span>
           </div>
           <div class="tria-work-grid-content">
-            <h3 class="tria-work-name">Healthcare Data Platform</h3>
-            <p class="tria-work-desc">HIPAA-compliant data platform serving 200+ healthcare providers with real-time patient insights.</p>
+            <h3 class="tria-work-name" data-i18n="featured.project4Title">{t("featured.project4Title")}</h3>
+            <p class="tria-work-desc" data-i18n="featured.project4Desc">{t("featured.project4Desc")}</p>
           </div>
           <div class="tria-work-arrow">
             <i class="fas fa-arrow-right"></i>
@@ -101,48 +107,44 @@ const t = createT(Astro.currentLocale);
       </div>
     </a>
   </div>
-
-  <div class="container tria-featured-footer tria-p-60-120">
-    <div class="row align-items-center">
-      <div class="col">
-        <a href="/portfolio" class="tria-button tria-arrow-place">
-          <span data-i18n="featured.viewAll">{t("featured.viewAll")}</span>
-        </a>
-      </div>
-      <div class="col tria-featured-cta-col">
-        <div class="tria-work-cta tria-up">
-          <p class="tria-work-cta-text" data-i18n="featured.ctaText">{t("featured.ctaText")}</p>
-          <a href="/contact" class="tria-link tria-arrow-place">
-            <span data-i18n="featured.ctaLink">{t("featured.ctaLink")}</span>
-            <i class="fas fa-arrow-right"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
 </section>
 <!-- featured work end -->
 
 <style>
-  .tria-featured-footer .tria-work-cta {
-    border-top: none;
-    padding-top: 0;
-    margin-top: 0;
-    justify-content: flex-end;
-    gap: 60px;
-  }
-  .tria-featured-cta-col {
+  .tria-featured-header {
     display: flex;
-    justify-content: flex-end;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 40px;
+    margin-bottom: 60px;
   }
-  @media (max-width: 768px) {
-    .tria-featured-footer .row {
-      flex-direction: column;
-      gap: 30px;
-    }
-    .tria-featured-cta-col {
-      justify-content: flex-start;
-    }
+
+  .tria-featured-view-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.35);
+    text-decoration: none;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: color 0.4s var(--ease-spring), gap 0.4s var(--ease-spring);
+    flex-shrink: 0;
+  }
+
+  .tria-featured-view-link i {
+    font-size: 0.7rem;
+    transition: transform 0.4s var(--ease-spring);
+  }
+
+  .tria-featured-view-link:hover {
+    color: var(--accent);
+    gap: 14px;
+  }
+
+  .tria-featured-view-link:hover i {
+    transform: translateX(4px);
   }
 
   .tria-work-grid {
@@ -385,42 +387,12 @@ const t = createT(Astro.currentLocale);
     background-size: 20px 20px;
   }
 
-  .tria-work-cta {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-top: 1px solid rgba(0,0,0,0.06);
-    padding-top: 50px;
-    margin-top: 20px;
+  .tria-work-section {
+    padding-bottom: 80px;
   }
 
-  .tria-work-cta-text {
-    font-size: clamp(1rem, 2vw, 1.4rem);
-    color: #0b0d17;
-    margin: 0;
-    font-weight: 400;
-    letter-spacing: -0.01em;
-  }
-
-  .tria-work-cta a {
-    font-size: 0.85rem;
-    color: #0b0d17;
-    font-weight: 500;
-  }
-
-  .tria-work-cta a i {
-    background-color: rgba(0,0,0,0.08);
-    color: #0b0d17;
-  }
-
-  .tria-work-cta a:hover {
-    color: var(--accent) !important;
-  }
-
-  .tria-work-cta a:hover i {
-    background-color: var(--accent) !important;
-    color: #fff !important;
-  }
+  .tria-mt-30 { margin-top: 30px; }
+  .tria-p-60-120 { padding: 60px 0 120px; }
 
   @media (max-width: 991px) {
     .tria-work-grid {
@@ -436,12 +408,5 @@ const t = createT(Astro.currentLocale);
     .tria-work-item--large .tria-work-img-wrap {
       min-height: 400px;
     }
-    .tria-work-header-right {
-      justify-content: flex-start;
-      margin-top: 30px;
-    }
   }
-
-  .tria-mt-30 { margin-top: 30px; }
-  .tria-p-60-120 { padding: 60px 0 120px; }
 </style>

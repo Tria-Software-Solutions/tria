@@ -15,8 +15,8 @@ const locale = Astro.currentLocale || "en";
 const t = createT(locale);
 
 const {
-  title = "Tria — Software Solutions",
-  description = "Software enterprise crafting digital solutions from Costa Rica.",
+  title = t("meta.title"),
+  description = t("meta.description"),
 } = Astro.props;
 
 const pathname = Astro.url.pathname;
@@ -25,6 +25,7 @@ const barePath = path.startsWith("/es") ? (path.replace(/^\/es/, "") || "/") : p
 const enHref = barePath;
 const esHref = `/es${barePath === "/" ? "" : barePath}`;
 
+const metaTitle = t("meta.title");
 const translData = JSON.stringify({ en: enData, es: esData });
 ---
 
@@ -35,7 +36,7 @@ const translData = JSON.stringify({ en: enData, es: esData });
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta name="description" content={description} />
-    <title>Tria — Software Solutions</title>
+    <title>{metaTitle}</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="alternate icon" href="/favicon.ico" sizes="any" />
     <link rel="stylesheet" href="/assets/css/vendor/bootstrap-grid.css" />
@@ -57,8 +58,8 @@ const translData = JSON.stringify({ en: enData, es: esData });
             ></path>
           </svg>
         </span>
-        <div class="tria-more-text">More</div>
-        <div class="tria-choose-text">Сhoose</div>
+        <div class="tria-more-text" data-i18n="layout.more">{t("layout.more")}</div>
+        <div class="tria-choose-text" data-i18n="layout.choose">{t("layout.choose")}</div>
       </div>
 
       <!-- preloader -->
@@ -72,7 +73,7 @@ const translData = JSON.stringify({ en: enData, es: esData });
           <div class="tria-pos-abs tria-animation-2">
             <div class="tria-reveal-frame">
               <p class="tria-reveal-box"></p>
-              <p class="tria-h3 tria-muted tria-thin">triacr.com</p>
+              <p class="tria-h3 tria-muted tria-thin" data-i18n="layout.triacr">{t("layout.triacr")}</p>
             </div>
           </div>
         </div>
@@ -111,7 +112,7 @@ const translData = JSON.stringify({ en: enData, es: esData });
           </div>
           <div class="tria-back-to-top">
             <a href="#top" class="tria-link tria-dark tria-arrow-place">
-              <span>Back to top</span>
+              <span data-i18n="layout.backToTop">{t("layout.backToTop")}</span>
             </a>
           </div>
         </div>

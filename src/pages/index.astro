@@ -9,6 +9,8 @@ import Team from "../components/Team.astro";
 import Partners from "../components/Partners.astro";
 import CTA from "../components/CTA.astro";
 import Footer from "../components/Footer.astro";
+import { createT } from "../i18n/utils";
+const t = createT(Astro.currentLocale);
 ---
 
 <Layout
@@ -17,11 +19,113 @@ import Footer from "../components/Footer.astro";
 >
   <Hero />
   <Stats />
-  <Process />
   <Services />
   <FeaturedWork />
-  <Team />
-  <Partners />
   <CTA />
+  <Process />
+  <Partners />
+  <Team />
+  <!-- Footer CTA band -->
+  <div class="tria-footer-cta tria-up" data-section-theme="dark">
+    <div class="tria-footer-cta-glow"></div>
+    <div class="container">
+      <h2 class="tria-footer-cta-title" data-i18n-html="cta.heading" set:html={t("cta.heading")} />
+      <div class="tria-footer-cta-actions">
+        <a href="/contact" class="tria-button tria-arrow-place">
+          <span data-i18n="cta.startProject">{t("cta.startProject")}</span>
+          <i class="fas fa-arrow-right"></i>
+        </a>
+        <a href="/portfolio" class="tria-footer-cta-link" data-i18n="cta.seeWork">{t("cta.seeWork")}</a>
+      </div>
+    </div>
+  </div>
   <Footer />
 </Layout>
+
+<style>
+  .tria-footer-cta {
+    position: relative;
+    text-align: center;
+    padding: 100px 0 80px;
+    overflow: hidden;
+    background: var(--accent);
+  }
+
+  .tria-footer-cta-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 800px;
+    height: 600px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(ellipse, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .tria-footer-cta > .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .tria-footer-cta-title {
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 450;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    color: #fff;
+    margin: 0 auto 36px;
+    max-width: 700px;
+  }
+
+  :global(.tria-cta-accent) {
+    color: rgba(255, 255, 255, 0.4) !important;
+    font-weight: 300;
+    font-style: italic;
+  }
+
+  .tria-footer-cta-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .tria-footer-cta-actions .tria-button {
+    background-color: #fff !important;
+    border-color: transparent !important;
+    color: var(--accent) !important;
+  }
+
+  .tria-footer-cta-actions .tria-button > [class*="fa-"] {
+    background-color: var(--accent) !important;
+    color: #fff !important;
+  }
+
+  .tria-footer-cta-actions .tria-button:hover {
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    border-color: transparent !important;
+    color: var(--accent-hover) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  .tria-footer-cta-actions .tria-button:hover > [class*="fa-"] {
+    background-color: var(--accent-hover) !important;
+    color: #fff !important;
+  }
+
+  .tria-footer-cta-link {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.4s var(--ease-spring);
+  }
+
+  .tria-footer-cta-link:hover {
+    color: #fff;
+  }
+</style>

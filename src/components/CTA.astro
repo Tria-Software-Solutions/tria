@@ -9,34 +9,19 @@ const t = createT(Astro.currentLocale);
   <div class="container tria-p-120-120">
       <div class="row justify-content-center tria-cta-inner">
         <div class="col-lg-10 tria-center">
-          <span class="tria-suptitle tria-light-soft tria-up tria-mb-30" style="display:block;text-align:center;" data-i18n="cta.suptitle">{t("cta.suptitle")}</span>
-          <h2 class="tria-cta-heading tria-up tria-mb-60" data-i18n-html="cta.heading" set:html={t("cta.heading")} />
+          <span class="tria-suptitle tria-light-soft tria-up tria-mb-30" style="display:block;text-align:center;" data-i18n="ctaAlt.suptitle">{t("ctaAlt.suptitle")}</span>
+          <h2 class="tria-cta-heading tria-up tria-mb-60" data-i18n-html="ctaAlt.heading" set:html={t("ctaAlt.heading")} />
           <div class="tria-cta-actions tria-up">
             <a href="/contact" class="tria-button tria-arrow-place">
-              <span data-i18n="cta.startProject">{t("cta.startProject")}</span>
+              <span data-i18n="ctaAlt.startProject">{t("ctaAlt.startProject")}</span>
             </a>
             <a href="/portfolio" class="tria-cta-link">
-              <span data-i18n="cta.seeWork">{t("cta.seeWork")}</span>
+              <span data-i18n="ctaAlt.seeWork">{t("ctaAlt.seeWork")}</span>
             </a>
           </div>
         </div>
       </div>
 
-      <!-- bottom info row -->
-      <div class="row tria-cta-meta tria-up">
-        <div class="col-md-4 tria-cta-meta-item">
-          <span class="tria-cta-meta-label" data-i18n="cta.responseLabel">{t("cta.responseLabel")}</span>
-          <span class="tria-cta-meta-value" data-i18n="cta.responseValue">{t("cta.responseValue")}</span>
-        </div>
-        <div class="col-md-4 tria-cta-meta-item tria-center">
-          <span class="tria-cta-meta-label" data-i18n="cta.locationLabel">{t("cta.locationLabel")}</span>
-          <span class="tria-cta-meta-value" data-i18n="cta.locationValue">{t("cta.locationValue")}</span>
-        </div>
-        <div class="col-md-4 tria-cta-meta-item" style="text-align:right;">
-          <span class="tria-cta-meta-label" data-i18n="cta.availabilityLabel">{t("cta.availabilityLabel")}</span>
-          <span class="tria-cta-meta-value" data-i18n="cta.availabilityValue">{t("cta.availabilityValue")}</span>
-        </div>
-      </div>
   </div>
 </section>
 <!-- cta end -->
@@ -45,7 +30,7 @@ const t = createT(Astro.currentLocale);
   .tria-cta-section {
     position: relative;
     overflow: hidden;
-    background: #ffffff;
+    background: #f5f6fa;
   }
 
   .tria-cta-glow {
@@ -99,41 +84,6 @@ const t = createT(Astro.currentLocale);
     color: var(--accent);
   }
 
-  /* Meta row */
-  .tria-cta-meta {
-    position: relative;
-    z-index: 1;
-    border-top: 1px solid rgba(0, 0, 0, 0.06);
-    padding-top: 50px;
-    margin-top: 90px;
-  }
-
-  .tria-cta-meta-item {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .tria-cta-meta-label {
-    font-size: 0.6rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(0, 0, 0, 0.3);
-  }
-
-  .tria-cta-meta-value {
-    font-size: 0.9rem;
-    color: rgba(0, 0, 0, 0.6);
-    font-weight: 300;
-  }
-
   @media (max-width: 768px) {
-    .tria-cta-meta-item {
-      text-align: left !important;
-      margin-bottom: 30px;
-    }
-    .tria-cta-meta-item:last-child {
-      margin-bottom: 0;
-    }
   }
 </style>

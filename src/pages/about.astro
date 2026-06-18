@@ -5,14 +5,14 @@ import { createT } from "../i18n/utils";
 const t = createT(Astro.currentLocale);
 ---
 
-<Layout title="About — tria" description="Founded in Costa Rica, tria is a software enterprise building powerful digital solutions.">
+<Layout title={t("meta.title")} description={t("meta.description")}>
   <section class="page-hero" data-section-theme="dark">
     <div class="page-hero-bg">
       <div class="page-hero-orb page-hero-orb--1"></div>
       <div class="page-hero-orb page-hero-orb--2"></div>
     </div>
     <div class="container page-hero-inner">
-      <span class="tria-suptitle tria-light-soft tria-up" style="display:block;margin-bottom:24px;">About</span>
+      <span class="tria-suptitle tria-light-soft tria-up" style="display:block;margin-bottom:24px;" data-i18n="about.suptitle">{t("about.suptitle")}</span>
       <h1 class="page-hero-heading tria-up" data-i18n-html="about.title" set:html={t("about.title")} />
     </div>
   </section>

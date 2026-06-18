@@ -1,9 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Footer from "../components/Footer.astro";
+import { createT } from "../i18n/utils";
+const t = createT(Astro.currentLocale);
 ---
 
-<Layout title="Tria — Software Solutions" description="Explore our software engineering services — from cloud architecture to AI-driven platforms.">
+<Layout title={t("meta.title")} description={t("meta.description")}>
   <!-- hero -->
   <section class="page-hero" data-section-theme="dark">
     <div class="page-hero-bg">
@@ -11,13 +13,9 @@ import Footer from "../components/Footer.astro";
       <div class="page-hero-orb page-hero-orb--2"></div>
     </div>
     <div class="container page-hero-inner">
-      <span class="tria-suptitle tria-light-soft tria-up" style="display:block;margin-bottom:24px;">What we offer</span>
-      <h1 class="page-hero-heading tria-up">
-        Service<br /><span class="page-hero-em">Name</span>
-      </h1>
-      <p class="page-hero-sub tria-up" style="margin-top:20px;">
-        A brief description of this service and how it helps your business.
-      </p>
+      <span class="tria-suptitle tria-light-soft tria-up" style="display:block;margin-bottom:24px;" data-i18n="services.hero.suptitle">{t("services.hero.suptitle")}</span>
+      <h1 class="page-hero-heading tria-up" data-i18n-html="services.hero.title" set:html={t("services.hero.title")} />
+      <p class="page-hero-sub tria-up" style="margin-top:20px;" data-i18n="services.hero.desc">{t("services.hero.desc")}</p>
     </div>
   </section>
 

@@ -5,7 +5,7 @@ import { createT } from "../i18n/utils";
 const t = createT(Astro.currentLocale);
 ---
 
-<Layout title="Tria — Software Solutions" description="Meet the team behind tria — software engineers, architects, and problem solvers from Costa Rica.">
+<Layout title={t("meta.title")} description={t("meta.description")}>
   <section class="page-hero" data-section-theme="dark">
     <div class="page-hero-bg">
       <div class="page-hero-orb page-hero-orb--1"></div>

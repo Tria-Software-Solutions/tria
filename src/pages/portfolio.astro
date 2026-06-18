@@ -1,9 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Footer from "../components/Footer.astro";
+import { createT } from "../i18n/utils";
+const t = createT(Astro.currentLocale);
 ---
 
-<Layout title="Tria — Software Solutions" description="Explore tria's portfolio of software engineering projects across FinTech, Healthcare, AI, and more.">
+<Layout title={t("meta.title")} description={t("meta.description")}>
 
   <!-- page hero -->
   <section class="page-hero" data-section-theme="dark">
@@ -14,23 +16,19 @@ import Footer from "../components/Footer.astro";
     <div class="container page-hero-inner">
       <div class="row">
         <div class="col-lg-8">
-          <span class="tria-suptitle tria-light-soft tria-up tria-mb-20" style="display:block;">Selected Projects</span>
-          <h1 class="tria-up tria-mb-30 page-hero-heading">
-            Projects That<br /><span class="page-hero-em">Deliver Results</span>
-          </h1>
-          <p class="tria-up page-hero-sub">
-            A curated selection of our most impactful projects — from complex platforms to AI-powered systems built for scale.
-          </p>
+          <span class="tria-suptitle tria-light-soft tria-up tria-mb-20" style="display:block;" data-i18n="portfolio.suptitle">{t("portfolio.suptitle")}</span>
+          <h1 class="tria-up tria-mb-30 page-hero-heading" data-i18n-html="portfolio.title" set:html={t("portfolio.title")} />
+          <p class="tria-up page-hero-sub" data-i18n="portfolio.desc">{t("portfolio.desc")}</p>
         </div>
         <div class="col-lg-4 tria-ph-stats-col">
           <div class="tria-ph-stats">
             <div class="tria-ph-stat">
               <span class="tria-ph-stat-num">120+</span>
-              <span class="tria-ph-stat-label">Projects</span>
+              <span class="tria-ph-stat-label" data-i18n="portfolio.stats.projects">{t("portfolio.stats.projects")}</span>
             </div>
             <div class="tria-ph-stat">
               <span class="tria-ph-stat-num">6</span>
-              <span class="tria-ph-stat-label">Industries</span>
+              <span class="tria-ph-stat-label" data-i18n="portfolio.stats.industries">{t("portfolio.stats.industries")}</span>
             </div>
           </div>
         </div>
@@ -43,12 +41,12 @@ import Footer from "../components/Footer.astro";
   <section data-section-theme="light" class="tria-work-section-bg">
     <div class="container" style="padding-top:80px;padding-bottom:40px;">
       <div class="tria-work-filter tria-up">
-        <button class="tria-filter-btn tria-filter-active" data-filter="all">All</button>
-        <button class="tria-filter-btn" data-filter="fintech">FinTech</button>
-        <button class="tria-filter-btn" data-filter="cloud">Cloud</button>
-        <button class="tria-filter-btn" data-filter="ai">AI / ML</button>
-        <button class="tria-filter-btn" data-filter="healthcare">Healthcare</button>
-        <button class="tria-filter-btn" data-filter="ecommerce">E-Commerce</button>
+        <button class="tria-filter-btn tria-filter-active" data-filter="all" data-i18n="portfolio.filter.all">{t("portfolio.filter.all")}</button>
+        <button class="tria-filter-btn" data-filter="fintech" data-i18n="portfolio.filter.fintech">{t("portfolio.filter.fintech")}</button>
+        <button class="tria-filter-btn" data-filter="cloud" data-i18n="portfolio.filter.cloud">{t("portfolio.filter.cloud")}</button>
+        <button class="tria-filter-btn" data-filter="ai" data-i18n="portfolio.filter.ai">{t("portfolio.filter.ai")}</button>
+        <button class="tria-filter-btn" data-filter="healthcare" data-i18n="portfolio.filter.healthcare">{t("portfolio.filter.healthcare")}</button>
+        <button class="tria-filter-btn" data-filter="ecommerce" data-i18n="portfolio.filter.ecommerce">{t("portfolio.filter.ecommerce")}</button>
       </div>
     </div>
 
@@ -61,15 +59,15 @@ import Footer from "../components/Footer.astro";
           </div>
           <div class="tria-pc-body">
             <div class="tria-pc-meta">
-              <span class="tria-pc-cat">FinTech</span>
+              <span class="tria-pc-cat" data-i18n="featured.project1Cat">{t("featured.project1Cat")}</span>
             </div>
-            <h3 class="tria-pc-title">FinTech Dashboard Platform</h3>
-            <p class="tria-pc-desc">Real-time transaction analytics engine processing 10M+ events daily with sub-100ms latency across 30 currencies.</p>
+            <h3 class="tria-pc-title" data-i18n="featured.project1Title">{t("featured.project1Title")}</h3>
+            <p class="tria-pc-desc" data-i18n="featured.project1Desc">{t("featured.project1Desc")}</p>
             <div class="tria-pc-tags">
               <span>React</span><span>Go</span><span>PostgreSQL</span><span>AWS</span>
             </div>
             <a href="#" class="tria-pc-link tria-link tria-arrow-place">
-              <span>Case study</span>
+              <span data-i18n="portfolio.card.caseStudy">{t("portfolio.card.caseStudy")}</span>
               <i class="fas fa-arrow-right"></i>
             </a>
           </div>
@@ -81,15 +79,15 @@ import Footer from "../components/Footer.astro";
           </div>
           <div class="tria-pc-body">
             <div class="tria-pc-meta">
-              <span class="tria-pc-cat">Cloud</span>
+              <span class="tria-pc-cat" data-i18n="featured.project2Cat">{t("featured.project2Cat")}</span>
             </div>
-            <h3 class="tria-pc-title">Cloud Infrastructure Suite</h3>
-            <p class="tria-pc-desc">Multi-cloud orchestration platform with GitOps workflows reducing operational overhead by 60% for enterprise clients.</p>
+            <h3 class="tria-pc-title" data-i18n="featured.project2Title">{t("featured.project2Title")}</h3>
+            <p class="tria-pc-desc" data-i18n="featured.project2Desc">{t("featured.project2Desc")}</p>
             <div class="tria-pc-tags">
               <span>Kubernetes</span><span>Terraform</span><span>GCP</span><span>AWS</span>
             </div>
             <a href="#" class="tria-pc-link tria-link tria-arrow-place">
-              <span>Case study</span>
+              <span data-i18n="portfolio.card.caseStudy">{t("portfolio.card.caseStudy")}</span>
               <i class="fas fa-arrow-right"></i>
             </a>
           </div>
@@ -100,15 +98,15 @@ import Footer from "../components/Footer.astro";
           </div>
           <div class="tria-pc-body">
             <div class="tria-pc-meta">
-              <span class="tria-pc-cat">E-Commerce</span>
+              <span class="tria-pc-cat" data-i18n="featured.project5Cat">{t("featured.project5Cat")}</span>
             </div>
-            <h3 class="tria-pc-title">E-Commerce Engine</h3>
-            <p class="tria-pc-desc">Headless commerce platform handling 50K+ concurrent users with 99.99% uptime during peak campaigns.</p>
+            <h3 class="tria-pc-title" data-i18n="featured.project5Title">{t("featured.project5Title")}</h3>
+            <p class="tria-pc-desc" data-i18n="featured.project5Desc">{t("featured.project5Desc")}</p>
             <div class="tria-pc-tags">
               <span>Next.js</span><span>Node.js</span><span>Redis</span><span>Stripe</span>
             </div>
             <a href="#" class="tria-pc-link tria-link tria-arrow-place">
-              <span>Case study</span>
+              <span data-i18n="portfolio.card.caseStudy">{t("portfolio.card.caseStudy")}</span>
               <i class="fas fa-arrow-right"></i>
             </a>
           </div>
@@ -120,15 +118,15 @@ import Footer from "../components/Footer.astro";
           </div>
           <div class="tria-pc-body">
             <div class="tria-pc-meta">
-              <span class="tria-pc-cat">AI / ML</span>
+              <span class="tria-pc-cat" data-i18n="featured.project3Cat">{t("featured.project3Cat")}</span>
             </div>
-            <h3 class="tria-pc-title">AI-Powered Analytics</h3>
-            <p class="tria-pc-desc">Predictive intelligence platform delivering 94% accuracy across 15 business verticals with real-time model updates.</p>
+            <h3 class="tria-pc-title" data-i18n="featured.project3Title">{t("featured.project3Title")}</h3>
+            <p class="tria-pc-desc" data-i18n="featured.project3Desc">{t("featured.project3Desc")}</p>
             <div class="tria-pc-tags">
               <span>Python</span><span>PyTorch</span><span>Kafka</span><span>Snowflake</span>
             </div>
             <a href="#" class="tria-pc-link tria-link tria-arrow-place">
-              <span>Case study</span>
+              <span data-i18n="portfolio.card.caseStudy">{t("portfolio.card.caseStudy")}</span>
               <i class="fas fa-arrow-right"></i>
             </a>
           </div>
@@ -139,15 +137,15 @@ import Footer from "../components/Footer.astro";
           </div>
           <div class="tria-pc-body">
             <div class="tria-pc-meta">
-              <span class="tria-pc-cat">Cloud</span>
+              <span class="tria-pc-cat" data-i18n="featured.project6Cat">{t("featured.project6Cat")}</span>
             </div>
-            <h3 class="tria-pc-title">IoT Fleet Management</h3>
-            <p class="tria-pc-desc">Edge-to-cloud IoT platform managing 200K+ connected devices with real-time telemetry and predictive maintenance.</p>
+            <h3 class="tria-pc-title" data-i18n="featured.project6Title">{t("featured.project6Title")}</h3>
+            <p class="tria-pc-desc" data-i18n="featured.project6Desc">{t("featured.project6Desc")}</p>
             <div class="tria-pc-tags">
               <span>Go</span><span>MQTT</span><span>InfluxDB</span><span>Azure</span>
             </div>
             <a href="#" class="tria-pc-link tria-link tria-arrow-place">
-              <span>Case study</span>
+              <span data-i18n="portfolio.card.caseStudy">{t("portfolio.card.caseStudy")}</span>
               <i class="fas fa-arrow-right"></i>
             </a>
           </div>
@@ -158,15 +156,15 @@ import Footer from "../components/Footer.astro";
           </div>
           <div class="tria-pc-body">
             <div class="tria-pc-meta">
-              <span class="tria-pc-cat">Healthcare</span>
+              <span class="tria-pc-cat" data-i18n="featured.project4Cat">{t("featured.project4Cat")}</span>
             </div>
-            <h3 class="tria-pc-title">Healthcare Data Platform</h3>
-            <p class="tria-pc-desc">HIPAA-compliant data lake serving 200+ providers with real-time patient insights and regulatory reporting.</p>
+            <h3 class="tria-pc-title" data-i18n="featured.project4Title">{t("featured.project4Title")}</h3>
+            <p class="tria-pc-desc" data-i18n="featured.project4Desc">{t("featured.project4Desc")}</p>
             <div class="tria-pc-tags">
               <span>Python</span><span>Spark</span><span>dbt</span><span>GCP</span>
             </div>
             <a href="#" class="tria-pc-link tria-link tria-arrow-place">
-              <span>Case study</span>
+              <span data-i18n="portfolio.card.caseStudy">{t("portfolio.card.caseStudy")}</span>
               <i class="fas fa-arrow-right"></i>
             </a>
           </div>
@@ -181,11 +179,11 @@ import Footer from "../components/Footer.astro";
     <div class="container" style="padding:0 0 120px;">
       <div class="tria-work-page-cta tria-up">
         <div class="tria-wpc-left">
-          <h4 class="tria-wpc-heading">Have a project in mind?</h4>
-          <p class="tria-wpc-sub">We're currently accepting new clients for Q3 2025.</p>
+          <h4 class="tria-wpc-heading" data-i18n="portfolio.cta.heading">{t("portfolio.cta.heading")}</h4>
+          <p class="tria-wpc-sub" data-i18n="portfolio.cta.subtext">{t("portfolio.cta.subtext")}</p>
         </div>
         <a href="/contact" class="tria-button tria-arrow-place">
-          <span>Let's Talk</span>
+          <span data-i18n="portfolio.cta.button">{t("portfolio.cta.button")}</span>
         </a>
       </div>
     </div>

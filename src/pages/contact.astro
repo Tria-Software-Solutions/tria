@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Footer from "../components/Footer.astro";
 import { createT } from "../i18n/utils";
 const t = createT(Astro.currentLocale);
+const sendingText = t('contact.form.sending');
 ---
 
 <Layout title="Tria — Software Solutions" description="Start a project with tria. Get in touch with our team to discuss your software needs.">
@@ -20,8 +21,8 @@ const t = createT(Astro.currentLocale);
           <h1 class="tria-up page-hero-heading" data-i18n-html="contact.letsBuild" set:html={t("contact.letsBuild")} />
         </div>
         <div class="col-lg-5 tria-sh-right">
-          <p class="page-hero-sub tria-up">
-            Tell us about your project and we'll get back to you within 24 hours.
+          <p class="page-hero-sub tria-up" data-i18n="contact.heroSub">
+            {t("contact.heroSub")}
           </p>
         </div>
       </div>
@@ -33,8 +34,8 @@ const t = createT(Astro.currentLocale);
     <div class="container tria-p-120-120">
       <div class="row tria-mb-60">
         <div class="col-lg-6">
-          <span class="tria-suptitle tria-suptitle-dark tria-up">Contact</span>
-          <h2 class="tria-up" style="margin-top:20px;">How to <span class="tria-thin">Reach Us</span></h2>
+          <span class="tria-suptitle tria-suptitle-dark tria-up" data-i18n="contact.suptitle">{t("contact.suptitle")}</span>
+          <h2 class="tria-up" style="margin-top:20px;" data-i18n-html="contact.heading" set:html={t("contact.heading")} />
         </div>
       </div>
       <div class="row tria-contact-layout">
@@ -134,9 +135,6 @@ const t = createT(Astro.currentLocale);
               <div class="tria-ci-icon"><i class="fas fa-envelope"></i></div>
               <div>
                 <h6 class="tria-ci-label" data-i18n="contact.info.email">{t("contact.info.email")}</h6>
-                <p class="tria-ci-value">
-                  <a href="mailto:hola@triacr.com" class="tria-ci-link">hola@triacr.com</a>
-                </p>
               </div>
             </div>
 
@@ -145,7 +143,7 @@ const t = createT(Astro.currentLocale);
               <div>
                 <h6 class="tria-ci-label" data-i18n="contact.info.whatsapp">{t("contact.info.whatsapp")}</h6>
                 <p class="tria-ci-value">
-                  <a href="https://wa.me/50662164040" target="_blank" rel="noopener noreferrer" class="tria-ci-link">+506 6216 4040</a>
+                  <a href="https://wa.me/50662164040" target="_blank" rel="noopener noreferrer" class="tria-ci-link" data-i18n="contact.phone">{t("contact.phone")}</a>
                 </p>
               </div>
             </div>
@@ -167,9 +165,9 @@ const t = createT(Astro.currentLocale);
             <div>
               <h6 class="tria-ci-label" data-i18n="contact.info.followUs">{t("contact.info.followUs")}</h6>
               <ul class="tria-ci-social">
-                <li><a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i> LinkedIn</a></li>
-                <li><a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a></li>
-                <li><a href="#" target="_blank" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width:13px;height:13px;fill:currentColor;vertical-align:middle;"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg> X / Twitter</a></li>
+                <li><a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i> <span data-i18n="contact.social.linkedin">{t("contact.social.linkedin")}</span></a></li>
+                <li><a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> <span data-i18n="contact.social.github">{t("contact.social.github")}</span></a></li>
+                <li><a href="#" target="_blank" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width:13px;height:13px;fill:currentColor;vertical-align:middle;"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg> <span data-i18n="contact.social.x">{t("contact.social.x")}</span></a></li>
               </ul>
             </div>
 
@@ -185,14 +183,12 @@ const t = createT(Astro.currentLocale);
     <div class="container tria-p-60-120">
       <div class="row justify-content-center">
         <div class="col-lg-8 tria-center">
-          <h2 class="tria-up" style="font-size:clamp(1.5rem,3vw,2.2rem);font-weight:300;color:#0b0d17;margin-bottom:20px;">
-            Not ready <span style="color:var(--accent);">yet?</span>
-          </h2>
-          <p class="tria-up" style="color:#888;margin-bottom:36px;font-size:0.95rem;">
-            Browse our portfolio to see how we've helped other businesses.
+          <h2 class="tria-up" style="font-size:clamp(1.5rem,3vw,2.2rem);font-weight:300;color:#0b0d17;margin-bottom:20px;" data-i18n-html="contact.ctaHeading" set:html={t("contact.ctaHeading")} />
+          <p class="tria-up" style="color:#888;margin-bottom:36px;font-size:0.95rem;" data-i18n="contact.ctaDesc">
+            {t("contact.ctaDesc")}
           </p>
           <a href="/portfolio" class="tria-up tria-button tria-arrow-place">
-            <span>View Portfolio</span>
+            <span data-i18n="contact.ctaButton">{t("contact.ctaButton")}</span>
           </a>
         </div>
       </div>
@@ -470,7 +466,7 @@ const t = createT(Astro.currentLocale);
         var btn = document.getElementById('cf-submit-btn');
         if (btn) {
           btn.disabled = true;
-          btn.querySelector('span').textContent = 'Sending\u2026';
+          btn.querySelector('span').textContent = "{sendingText}";
         }
         setTimeout(function () {
           form.style.display = 'none';

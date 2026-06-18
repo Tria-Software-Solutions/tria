@@ -36,10 +36,10 @@ const contactLinks = [
 ];
 
 const socialLinks = [
-  { href: "https://linkedin.com", label: "LinkedIn", icon: "fab fa-linkedin-in" },
-  { href: "https://x.com", label: "X", icon: "fab fa-twitter" },
-  { href: "https://instagram.com", label: "Instagram", icon: "fab fa-instagram" },
-  { href: "https://github.com", label: "GitHub", icon: "fab fa-github" },
+  { href: "https://linkedin.com", label: "LinkedIn", icon: "ti ti-brand-linkedin" },
+  { href: "https://x.com", label: "X", icon: "ti ti-brand-x" },
+  { href: "https://instagram.com", label: "Instagram", icon: "ti ti-brand-instagram" },
+  { href: "https://github.com", label: "GitHub", icon: "ti ti-brand-github" },
 ];
 ---
 
@@ -47,31 +47,17 @@ const socialLinks = [
   <div class="tria-footer-glow"></div>
   <div class="tria-footer-glow tria-footer-glow--accent"></div>
 
-  <div class="container tria-p-120-0">
-    <!-- CTA band -->
-    <div class="tria-footer-hero tria-up">
-      <div class="tria-footer-hero-content">
-        <span class="tria-suptitle tria-suptitle-dark tria-up" data-i18n="footer.stayInLoop">{t("footer.stayInLoop")}</span>
-        <h2 class="tria-footer-hero-title tria-up" data-i18n-html="footer.newsletterHeading" set:html={t("footer.newsletterHeading")} />
-        <p class="tria-footer-hero-desc tria-up" data-i18n="footer.description">{t("footer.description")}</p>
-      </div>
-      <div class="tria-footer-hero-actions tria-up">
-        <a href="/contact" class="tria-button tria-arrow-place">
-          <span data-i18n="cta.startProject">{t("cta.startProject")}</span>
-        </a>
-        <a href="mailto:hola@triacr.com" class="tria-footer-email-link">
-          <i class="ti ti-mail"></i>
-          <span data-i18n="header.email">{t("header.email")}</span>
-        </a>
-      </div>
-    </div>
-
+  <div class="container">
     <!-- Navigation grid -->
     <div class="tria-footer-grid tria-up">
       <div class="tria-footer-col tria-footer-col--brand">
         <a href="/" class="tria-footer-logo" aria-label="tria home">
           tria<span class="tria-footer-logo-dot">.</span>
         </a>
+
+        <p class="tria-footer-brand-desc" data-i18n="footer.description">{t("footer.description")}</p>
+
+        <span class="tria-footer-label" data-i18n="contact.info.followUs">{t("contact.info.followUs")}</span>
         <ul class="tria-footer-social">
           {socialLinks.map((social) => (
             <li>
@@ -139,22 +125,6 @@ const socialLinks = [
       </div>
     </div>
 
-    <!-- Meta row -->
-    <div class="tria-footer-meta tria-up">
-      <div class="tria-footer-meta-item">
-        <span class="tria-footer-meta-label" data-i18n="cta.responseLabel">{t("cta.responseLabel")}</span>
-        <span class="tria-footer-meta-value" data-i18n="cta.responseValue">{t("cta.responseValue")}</span>
-      </div>
-      <div class="tria-footer-meta-item tria-footer-meta-item--center">
-        <span class="tria-footer-meta-label" data-i18n="cta.locationLabel">{t("cta.locationLabel")}</span>
-        <span class="tria-footer-meta-value" data-i18n="cta.locationValue">{t("cta.locationValue")}</span>
-      </div>
-      <div class="tria-footer-meta-item tria-footer-meta-item--end">
-        <span class="tria-footer-meta-label" data-i18n="cta.availabilityLabel">{t("cta.availabilityLabel")}</span>
-        <span class="tria-footer-meta-value" data-i18n="cta.availabilityValue">{t("cta.availabilityValue")}</span>
-      </div>
-    </div>
-
     <!-- Bottom bar -->
     <div class="tria-footer-bottom tria-up">
       <p class="tria-footer-copyright">{t("footer.allRights").replace("{year}", String(year))}</p>
@@ -209,80 +179,10 @@ const socialLinks = [
     z-index: 1;
   }
 
-  /* ── Hero band ── */
-  .tria-footer-hero {
-    display: grid;
-    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-    gap: clamp(32px, 5vw, 80px);
-    align-items: end;
-    padding-bottom: clamp(48px, 6vw, 72px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  }
-
-  .tria-footer-hero-title {
-    font-size: clamp(1.6rem, 3vw, 2.4rem);
-    font-weight: 450;
-    line-height: 1.15;
-    letter-spacing: -0.025em;
-    color: #fff;
-    margin: 0 0 16px;
-  }
-
-  .tria-footer-hero-desc {
-    font-size: 0.95rem;
-    line-height: 1.7;
-    color: rgba(255, 255, 255, 0.45);
-    margin: 0;
-    max-width: 480px;
-  }
-
-  .tria-footer-hero-actions {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
-    padding-bottom: 4px;
-  }
-
-  .tria-footer-section .tria-button {
-    background-color: var(--accent) !important;
-    border-color: var(--accent) !important;
-    color: #fff !important;
-    transition: background 0.4s var(--ease-spring), border-color 0.4s var(--ease-spring), transform 0.4s var(--ease-spring), box-shadow 0.4s var(--ease-spring);
-  }
-
-  .tria-footer-section .tria-button:hover {
-    background-color: var(--accent-hover) !important;
-    border-color: var(--accent-hover) !important;
-    transform: translateY(-2px);
-    box-shadow: 0 12px 40px rgba(var(--accent-rgb), 0.25);
-  }
-
-  .tria-footer-email-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 0.82rem;
-    letter-spacing: 0.04em;
-    color: rgba(255, 255, 255, 0.45);
-    text-decoration: none;
-    transition: color 0.35s var(--ease-spring), transform 0.35s var(--ease-spring);
-  }
-
-  .tria-footer-email-link i {
-    font-size: 1rem;
-    color: var(--accent);
-  }
-
-  .tria-footer-email-link:hover {
-    color: #fff;
-    transform: translateX(4px);
-  }
-
   /* ── Main grid ── */
   .tria-footer-grid {
     display: grid;
-    grid-template-columns: minmax(160px, 2fr) minmax(88px, 1fr) minmax(100px, 1.1fr) minmax(150px, 1.7fr) minmax(120px, 1.2fr);
+    grid-template-columns: minmax(200px, 2.2fr) minmax(88px, 1fr) minmax(100px, 1.1fr) minmax(150px, 1.7fr) minmax(120px, 1.2fr);
     gap: clamp(24px, 3vw, 48px);
     padding: clamp(56px, 7vw, 80px) 0 clamp(48px, 6vw, 64px);
     align-items: start;
@@ -311,6 +211,14 @@ const socialLinks = [
   .tria-footer-logo-dot {
     color: var(--accent);
     margin-left: -1px;
+  }
+
+  .tria-footer-brand-desc {
+    font-size: 0.82rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.35);
+    margin: -12px 0 20px;
+    max-width: 260px;
   }
 
   .tria-footer-label {
@@ -371,23 +279,18 @@ const socialLinks = [
   }
 
   .tria-footer-contact a:hover .tria-footer-contact-icon {
-    background: rgba(var(--accent-rgb), 0.14);
-    border-color: rgba(var(--accent-rgb), 0.35);
     color: var(--accent);
   }
 
   .tria-footer-contact-icon {
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.1);
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.15rem;
+    color: rgba(255, 255, 255, 0.4);
     flex-shrink: 0;
-    transition: all 0.35s var(--ease-spring);
+    transition: color 0.3s var(--ease-spring);
+    width: 20px;
   }
 
   .tria-footer-social {
@@ -400,62 +303,16 @@ const socialLinks = [
   }
 
   .tria-footer-social a {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.4);
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.35);
     text-decoration: none;
-    transition: all 0.35s var(--ease-spring);
+    transition: all 0.3s var(--ease-spring);
+    line-height: 1;
   }
 
   .tria-footer-social a:hover {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: #fff;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 24px rgba(var(--accent-rgb), 0.3);
-  }
-
-  /* ── Meta row ── */
-  .tria-footer-meta {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 24px;
-    padding: 48px 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  }
-
-  .tria-footer-meta-item {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .tria-footer-meta-item--center {
-    text-align: center;
-  }
-
-  .tria-footer-meta-item--end {
-    text-align: right;
-  }
-
-  .tria-footer-meta-label {
-    font-size: 0.6rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.28);
-  }
-
-  .tria-footer-meta-value {
-    font-size: 0.9rem;
-    font-weight: 300;
-    color: rgba(255, 255, 255, 0.62);
+    color: var(--accent);
+    transform: translateY(-2px);
   }
 
   /* ── Bottom bar ── */
@@ -494,11 +351,6 @@ const socialLinks = [
 
   /* ── Responsive ── */
   @media (max-width: 991px) {
-    .tria-footer-hero {
-      grid-template-columns: 1fr;
-      align-items: flex-start;
-    }
-
     .tria-footer-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 40px 32px;
@@ -506,16 +358,6 @@ const socialLinks = [
 
     .tria-footer-col--brand {
       grid-column: 1 / -1;
-    }
-
-    .tria-footer-meta {
-      grid-template-columns: 1fr;
-      gap: 28px;
-    }
-
-    .tria-footer-meta-item--center,
-    .tria-footer-meta-item--end {
-      text-align: left;
     }
   }
 

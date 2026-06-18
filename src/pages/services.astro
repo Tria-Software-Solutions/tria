@@ -1,6 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Footer from "../components/Footer.astro";
+import { createT } from "../i18n/utils";
+const t = createT(Astro.url);
 ---
 
 <Layout title="Tria — Software Solutions" description="Enterprise software services: Software Development, Cloud & DevOps, AI/ML, and Cybersecurity consulting.">
@@ -14,16 +16,11 @@ import Footer from "../components/Footer.astro";
     <div class="container page-hero-inner">
       <div class="row align-items-end">
         <div class="col-lg-7">
-          <span class="tria-suptitle tria-light-soft tria-up" style="display:block;margin-bottom:24px;">What we do</span>
-          <h1 class="page-hero-heading tria-up">
-            Our<br /><span class="page-hero-em">Services</span>
-          </h1>
+          <span class="tria-suptitle tria-light-soft tria-up" style="display:block;margin-bottom:24px;" data-i18n="services.hero.suptitle">{t("services.hero.suptitle")}</span>
+          <h1 class="page-hero-heading tria-up" data-i18n-html="services.hero.title" set:html={t("services.hero.title")} />
         </div>
         <div class="col-lg-5 tria-sh-right">
-          <p class="page-hero-sub tria-up">
-            From first-line code to enterprise-grade infrastructure —
-            we deliver complete software solutions tailored to your business objectives.
-          </p>
+          <p class="page-hero-sub tria-up" data-i18n="services.hero.desc">{t("services.hero.desc")}</p>
         </div>
       </div>
     </div>
@@ -38,29 +35,24 @@ import Footer from "../components/Footer.astro";
           <div class="tria-sr-num">01</div>
           <div class="tria-sr-content">
             <div class="tria-sr-header">
-              <h2 class="tria-sr-title">Software <span class="tria-thin">Development</span></h2>
+              <h2 class="tria-sr-title" data-i18n-html="services.softwareDev" set:html={t("services.softwareDev")} />
             </div>
             <div class="row">
               <div class="col-lg-6">
-                <p class="tria-sr-desc">
-                  Custom web and mobile applications designed for performance, scalability, and maintainability.
-                  We build with modern frameworks and proven architectures — from greenfield products to complex system migrations.
-                </p>
+                <p class="tria-sr-desc" data-i18n="services.desc1">{t("services.desc1")}</p>
               </div>
               <div class="col-lg-5 offset-lg-1">
                 <ul class="tria-sr-features">
-                  <li>Web & Mobile Applications</li>
-                  <li>API Design & Development</li>
-                  <li>Microservices Architecture</li>
-                  <li>Legacy System Modernization</li>
-                  <li>Real-time Systems</li>
+                  <li data-i18n="services.feature1">{t("services.feature1")}</li>
+                  <li data-i18n="services.feature2">{t("services.feature2")}</li>
+                  <li data-i18n="services.feature3">{t("services.feature3")}</li>
+                  <li data-i18n="services.feature4">{t("services.feature4")}</li>
+                  <li data-i18n="services.feature5">{t("services.feature5")}</li>
                 </ul>
               </div>
             </div>
             <div class="tria-sr-footer">
-              <div class="tria-sr-tags">
-                <span>React</span><span>Next.js</span><span>Node.js</span><span>Go</span><span>TypeScript</span>
-              </div>
+              <div class="tria-sr-tags" data-i18n="services.tech1">{t("services.tech1")}</div>
             </div>
           </div>
         </div>
@@ -69,29 +61,24 @@ import Footer from "../components/Footer.astro";
           <div class="tria-sr-num">02</div>
           <div class="tria-sr-content">
             <div class="tria-sr-header">
-              <h2 class="tria-sr-title">Cloud &amp; <span class="tria-thin">DevOps</span></h2>
+              <h2 class="tria-sr-title" data-i18n-html="services.cloudDevops" set:html={t("services.cloudDevops")} />
             </div>
             <div class="row">
               <div class="col-lg-6">
-                <p class="tria-sr-desc">
-                  Scalable cloud infrastructure and automated delivery pipelines engineered for reliability,
-                  speed, and cost efficiency. We design, deploy, and manage your entire cloud ecosystem.
-                </p>
+                <p class="tria-sr-desc" data-i18n="services.desc2">{t("services.desc2")}</p>
               </div>
               <div class="col-lg-5 offset-lg-1">
                 <ul class="tria-sr-features">
-                  <li>Cloud Architecture & Migration</li>
-                  <li>Kubernetes & Container Orchestration</li>
-                  <li>CI/CD Pipeline Engineering</li>
-                  <li>Infrastructure as Code</li>
-                  <li>Observability & FinOps</li>
+                  <li data-i18n="services.feature6">{t("services.feature6")}</li>
+                  <li data-i18n="services.feature7">{t("services.feature7")}</li>
+                  <li data-i18n="services.feature8">{t("services.feature8")}</li>
+                  <li data-i18n="services.feature9">{t("services.feature9")}</li>
+                  <li data-i18n="services.feature10">{t("services.feature10")}</li>
                 </ul>
               </div>
             </div>
             <div class="tria-sr-footer">
-              <div class="tria-sr-tags">
-                <span>AWS</span><span>Kubernetes</span><span>Docker</span><span>Terraform</span><span>CI/CD</span>
-              </div>
+              <div class="tria-sr-tags" data-i18n="services.tech2">{t("services.tech2")}</div>
             </div>
           </div>
         </div>
@@ -100,29 +87,24 @@ import Footer from "../components/Footer.astro";
           <div class="tria-sr-num">03</div>
           <div class="tria-sr-content">
             <div class="tria-sr-header">
-              <h2 class="tria-sr-title">AI &amp; <span class="tria-thin">Machine Learning</span></h2>
+              <h2 class="tria-sr-title" data-i18n-html="services.aiMl" set:html={t("services.aiMl")} />
             </div>
             <div class="row">
               <div class="col-lg-6">
-                <p class="tria-sr-desc">
-                  Intelligent systems that learn, predict, and automate. We design end-to-end ML pipelines —
-                  from data engineering and model development to production deployment and monitoring.
-                </p>
+                <p class="tria-sr-desc" data-i18n="services.desc3">{t("services.desc3")}</p>
               </div>
               <div class="col-lg-5 offset-lg-1">
                 <ul class="tria-sr-features">
-                  <li>Predictive Modeling</li>
-                  <li>LLM Integration & Fine-tuning</li>
-                  <li>Data Pipeline Engineering</li>
-                  <li>Computer Vision Systems</li>
-                  <li>MLOps & Model Monitoring</li>
+                  <li data-i18n="services.feature11">{t("services.feature11")}</li>
+                  <li data-i18n="services.feature12">{t("services.feature12")}</li>
+                  <li data-i18n="services.feature13">{t("services.feature13")}</li>
+                  <li data-i18n="services.feature14">{t("services.feature14")}</li>
+                  <li data-i18n="services.feature15">{t("services.feature15")}</li>
                 </ul>
               </div>
             </div>
             <div class="tria-sr-footer">
-              <div class="tria-sr-tags">
-                <span>Python</span><span>PyTorch</span><span>LangChain</span><span>Spark</span><span>dbt</span>
-              </div>
+              <div class="tria-sr-tags" data-i18n="services.tech3">{t("services.tech3")}</div>
             </div>
           </div>
         </div>
@@ -131,29 +113,24 @@ import Footer from "../components/Footer.astro";
           <div class="tria-sr-num">04</div>
           <div class="tria-sr-content">
             <div class="tria-sr-header">
-              <h2 class="tria-sr-title">IT &amp; <span class="tria-thin">Cybersecurity</span></h2>
+              <h2 class="tria-sr-title" data-i18n-html="services.cybersecurity" set:html={t("services.cybersecurity")} />
             </div>
             <div class="row">
               <div class="col-lg-6">
-                <p class="tria-sr-desc">
-                  Proactive security consulting to protect your assets and ensure compliance.
-                  We combine penetration testing, risk assessment, and strategic advisory to build a robust security posture.
-                </p>
+                <p class="tria-sr-desc" data-i18n="services.desc4">{t("services.desc4")}</p>
               </div>
               <div class="col-lg-5 offset-lg-1">
                 <ul class="tria-sr-features">
-                  <li>Security Architecture Review</li>
-                  <li>Penetration Testing</li>
-                  <li>HIPAA / SOC2 Compliance</li>
-                  <li>Incident Response Planning</li>
-                  <li>Zero Trust Implementation</li>
+                  <li data-i18n="services.feature16">{t("services.feature16")}</li>
+                  <li data-i18n="services.feature17">{t("services.feature17")}</li>
+                  <li data-i18n="services.feature18">{t("services.feature18")}</li>
+                  <li data-i18n="services.feature19">{t("services.feature19")}</li>
+                  <li data-i18n="services.feature20">{t("services.feature20")}</li>
                 </ul>
               </div>
             </div>
             <div class="tria-sr-footer">
-              <div class="tria-sr-tags">
-                <span>OWASP</span><span>SIEM</span><span>Zero Trust</span><span>ISO 27001</span>
-              </div>
+              <div class="tria-sr-tags" data-i18n="services.tech4">{t("services.tech4")}</div>
             </div>
           </div>
         </div>
@@ -167,45 +144,45 @@ import Footer from "../components/Footer.astro";
     <div class="container tria-p-120-120">
       <div class="row tria-mb-60">
         <div class="col-lg-6">
-          <span class="tria-suptitle tria-suptitle-dark tria-up">Engagement</span>
-          <h2 class="tria-up" style="margin-top:20px;">How We <span class="tria-thin">Engage</span></h2>
+          <span class="tria-suptitle tria-suptitle-dark tria-up" data-i18n="services.engagement.suptitle">{t("services.engagement.suptitle")}</span>
+          <h2 class="tria-up" style="margin-top:20px;" data-i18n-html="services.engagement.title" set:html={t("services.engagement.title")} />
         </div>
       </div>
       <div class="row tria-engagement-grid">
         <div class="col-md-4 tria-up">
           <div class="tria-engagement-card">
             <div class="tria-ec-icon"><i class="fas fa-rocket"></i></div>
-            <h4 class="tria-ec-title">Project-Based</h4>
-            <p class="tria-ec-desc">Fixed scope, timeline, and budget. Ideal for defined product builds, platform launches, or specific feature development.</p>
+            <h4 class="tria-ec-title" data-i18n="services.engagement.projectBased">{t("services.engagement.projectBased")}</h4>
+            <p class="tria-ec-desc" data-i18n="services.engagement.projectBasedDesc">{t("services.engagement.projectBasedDesc")}</p>
             <ul class="tria-ec-list">
-              <li>Clear deliverables</li>
-              <li>Fixed pricing</li>
-              <li>Milestone-based payments</li>
+              <li data-i18n="services.engagement.projectBased1">{t("services.engagement.projectBased1")}</li>
+              <li data-i18n="services.engagement.projectBased2">{t("services.engagement.projectBased2")}</li>
+              <li data-i18n="services.engagement.projectBased3">{t("services.engagement.projectBased3")}</li>
             </ul>
           </div>
         </div>
         <div class="col-md-4 tria-up">
           <div class="tria-engagement-card tria-engagement-card--featured">
-            <div class="tria-ec-badge">Most Popular</div>
+            <div class="tria-ec-badge" data-i18n="services.engagement.mostPopular">{t("services.engagement.mostPopular")}</div>
             <div class="tria-ec-icon"><i class="fas fa-users"></i></div>
-            <h4 class="tria-ec-title">Dedicated Team</h4>
-            <p class="tria-ec-desc">A full-time extension of your engineering team. Senior engineers embedded in your workflow, culture, and tools.</p>
+            <h4 class="tria-ec-title" data-i18n="services.engagement.dedicatedTeam">{t("services.engagement.dedicatedTeam")}</h4>
+            <p class="tria-ec-desc" data-i18n="services.engagement.dedicatedTeamDesc">{t("services.engagement.dedicatedTeamDesc")}</p>
             <ul class="tria-ec-list">
-              <li>Full team ownership</li>
-              <li>Daily collaboration</li>
-              <li>Long-term partnership</li>
+              <li data-i18n="services.engagement.dedicatedTeam1">{t("services.engagement.dedicatedTeam1")}</li>
+              <li data-i18n="services.engagement.dedicatedTeam2">{t("services.engagement.dedicatedTeam2")}</li>
+              <li data-i18n="services.engagement.dedicatedTeam3">{t("services.engagement.dedicatedTeam3")}</li>
             </ul>
           </div>
         </div>
         <div class="col-md-4 tria-up">
           <div class="tria-engagement-card">
             <div class="tria-ec-icon"><i class="fas fa-lightbulb"></i></div>
-            <h4 class="tria-ec-title">Advisory</h4>
-            <p class="tria-ec-desc">Strategic CTO-level guidance for architecture decisions, technology selection, and team scaling without full engagement.</p>
+            <h4 class="tria-ec-title" data-i18n="services.engagement.advisory">{t("services.engagement.advisory")}</h4>
+            <p class="tria-ec-desc" data-i18n="services.engagement.advisoryDesc">{t("services.engagement.advisoryDesc")}</p>
             <ul class="tria-ec-list">
-              <li>Architecture reviews</li>
-              <li>Tech stack audits</li>
-              <li>Flexible hours</li>
+              <li data-i18n="services.engagement.advisory1">{t("services.engagement.advisory1")}</li>
+              <li data-i18n="services.engagement.advisory2">{t("services.engagement.advisory2")}</li>
+              <li data-i18n="services.engagement.advisory3">{t("services.engagement.advisory3")}</li>
             </ul>
           </div>
         </div>
