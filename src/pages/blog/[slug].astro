@@ -1,6 +1,8 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
+import CTA from "../../components/CTA.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
 import Button from "../../components/Button.astro";
 
 export async function getStaticPaths() {
@@ -52,6 +54,21 @@ const { post } = Astro.props;
       </div>
     </div>
   </section>
+  <CTA 
+    heading="Have a project in mind?"
+    description="From concept to deployment, we build software that scales."
+    primaryButtonText="Start a Project"
+    secondaryButtonText="See Our Work"
+    primaryButtonHref="/contact"
+    secondaryButtonHref="/portfolio"
+    theme="dark"
+    showIcon={true}
+    padding=""
+    primaryButtonVariant="primary"
+    primaryButtonColor="#0b0d17"
+    primaryButtonHoverColor="#1a1f35"
+  />
+  <SiteFooter />
 </Layout>
 
 <style>

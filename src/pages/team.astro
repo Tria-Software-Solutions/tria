@@ -1,21 +1,14 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Footer from "../components/Footer.astro";
+import PageBanner from "../components/PageBanner.astro";
+import CTA from "../components/CTA.astro";
+import SiteFooter from "../components/SiteFooter.astro";
 import { createT } from "../i18n/utils";
 const t = createT(Astro.currentLocale);
 ---
 
 <Layout title={t("meta.title")} description={t("meta.description")}>
-  <section class="page-hero" data-section-theme="dark">
-    <div class="page-hero-bg">
-      <div class="page-hero-orb page-hero-orb--1"></div>
-      <div class="page-hero-orb page-hero-orb--2"></div>
-    </div>
-    <div class="container page-hero-inner">
-      <span class="tria-suptitle tria-light-soft tria-up" style="display:block;margin-bottom:24px;" data-i18n="team.suptitle">{t("team.suptitle")}</span>
-      <h1 class="page-hero-heading tria-up" data-i18n-html="team.title" set:html={t("team.title")} />
-    </div>
-  </section>
+  <PageBanner suptitleKey="team.suptitle" headingKey="team.title" />
 
   <section class="tria-soft-bg" data-section-theme="light" style="padding:120px 0;">
     <div class="container">
@@ -27,7 +20,21 @@ const t = createT(Astro.currentLocale);
     </div>
   </section>
 
-  <Footer />
+  <CTA 
+    heading={t("cta.heading") || ""}
+    description={t("cta.description") || "From concept to deployment, we build software that scales."}
+    primaryButtonText={t("cta.startProject") || ""}
+    secondaryButtonText={t("cta.seeWork") || ""}
+    primaryButtonHref="/contact"
+    secondaryButtonHref="/portfolio"
+    theme="dark"
+    showIcon={true}
+    padding=""
+    primaryButtonVariant="primary"
+    primaryButtonColor="#0b0d17"
+    primaryButtonHoverColor="#1a1f35"
+  />
+  <SiteFooter />
 </Layout>
 
 <style>

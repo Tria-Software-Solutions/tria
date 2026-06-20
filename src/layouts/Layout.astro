@@ -276,6 +276,13 @@ const translData = JSON.stringify({ en: enData, es: esData });
             true,
           );
 
+          // Logo dot: solid color based on section instead of gradient
+          var logoDot = document.querySelector('.tria-frame .tria-logo [data-i="4"]');
+          if (logoDot) {
+            var rd = logoDot.getBoundingClientRect();
+            logoDot.classList.toggle("tria-on-dark", getThemeAt(rd.top + rd.height / 2) === "dark");
+          }
+
           // Hamburger: per-line (3 real spans)
           var menuBtn = document.querySelector(
             ".tria-frame .tria-menu-btn",

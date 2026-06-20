@@ -219,7 +219,6 @@ section[data-section-theme] {
 .page-hero {
   position: relative;
   overflow: hidden;
-  min-height: 60vh;
   display: flex;
   align-items: flex-end;
   background: #0b0d17;
@@ -228,31 +227,38 @@ section[data-section-theme] {
   position: absolute;
   inset: 0;
 }
+.page-hero-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(11,13,23,0.4) 100%);
+  pointer-events: none;
+}
 .page-hero-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.15;
+  filter: blur(100px);
+  opacity: 0.10;
 }
 .page-hero-orb--1 {
-  width: 500px; height: 500px;
+  width: 400px; height: 400px;
   background: radial-gradient(circle, #068e8c, transparent 70%);
-  top: -150px; right: -100px;
+  top: -100px; right: -80px;
 }
 .page-hero-orb--2 {
-  width: 300px; height: 300px;
+  width: 240px; height: 240px;
   background: radial-gradient(circle, #068e8c, transparent 70%);
-  bottom: 0; left: 20%;
+  bottom: -60px; left: 15%;
 }
 .page-hero-inner {
-  padding-top: 160px;
-  padding-bottom: 90px;
+  padding-top: 130px;
+  padding-bottom: 50px;
   position: relative;
   z-index: 1;
   width: 100%;
 }
 .page-hero-heading {
-  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
   font-weight: 450;
   color: #fff;
   line-height: 1.15;
@@ -264,10 +270,10 @@ section[data-section-theme] {
   font-style: italic;
 }
 .page-hero-sub {
-  color: rgba(255,255,255,0.5);
-  font-size: 1rem;
+  color: rgba(255,255,255,0.45);
+  font-size: 0.92rem;
   max-width: 480px;
-  line-height: 1.75;
+  line-height: 1.7;
   margin: 0;
 }
 @media (max-width: 768px) {
@@ -448,6 +454,9 @@ a:not(.tria-button):hover,
   .tria-back-to-top .tria-link .fa-arrow-right.tria-on-dark {
     background-color: rgba(255, 255, 255, 0.1) !important;
     color: rgb(255, 255, 255) !important;
+  }
+  .tria-logo [data-i="4"].tria-on-dark {
+    color: #fff !important;
   }
 }
 

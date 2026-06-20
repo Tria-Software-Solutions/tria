@@ -7,6 +7,7 @@ interface WorkItem {
   gradient: string;
   size?: 'large' | 'wide' | 'normal';
   abstractType?: 'fintech' | 'cloud' | 'ai' | 'none';
+  previewImg?: string;
 }
 
 interface Props {
@@ -56,22 +57,15 @@ const {
           project.size === 'wide' ? 'tria-work-item--wide' : ''
         }`} 
         data-category={project.category}
+        {project.previewImg ? 'data-preview' : ''}
       >
         <div class="tria-work-img-wrap">
-          <div class="tria-work-img" style={`background: ${project.gradient};`}></div>
-          <div class="tria-work-overlay">
-            <div class="tria-work-meta">
-              <span class="tria-work-category">{project.category}</span>
-            </div>
-            <div class="tria-work-grid-content">
-              <h3 class="tria-work-name">{project.title}</h3>
-              <p class="tria-work-desc">{project.description}</p>
-            </div>
-            <div class="tria-work-arrow">
-              <i class="fas fa-arrow-right"></i>
-            </div>
+          <div class="tria-work-img" style={project.previewImg ? `background-image: url(${project.previewImg}); background-size: cover; background-position: center;` : `background: ${project.gradient};`}></div>
+          {project.previewImg && <div class="tria-work-img-glass"></div>}
+          <span class="tria-work-category">{project.category}</span>
+          <div class="tria-work-arrow">
+            <i class="fas fa-arrow-right"></i>
           </div>
-          <div class="tria-work-gradient-border"></div>
           {project.abstractType === 'fintech' && (
             <div class="tria-work-abstract tria-work-abstract--fintech">
               <div class="tria-fa-grid">
@@ -94,6 +88,10 @@ const {
             </div>
           )}
         </div>
+        <div class="tria-work-content">
+          <p class="tria-work-desc">{project.description}</p>
+        </div>
+        <div class="tria-work-gradient-border"></div>
       </a>
     ))}
   </div>
@@ -153,12 +151,15 @@ const {
     text-decoration: none;
     position: relative;
     border-radius: 18px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-    transition: box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    background: #0b0d17;
+    border: 1px solid rgba(0,0,0,0.015);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.015);
+    transition: box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
   }
 
   .tria-work-item:hover {
-    box-shadow: 0 20px 48px rgba(0,0,0,0.10), 0 8px 20px rgba(0,0,0,0.04);
+    box-shadow: 0 24px 56px rgba(0,0,0,0.06), 0 8px 20px rgba(0,0,0,0.02);
+    border-color: rgba(6,142,140,0.06);
   }
 
   .tria-work-gradient-border {
@@ -178,12 +179,13 @@ const {
 
   .tria-work-item:hover .tria-work-gradient-border {
     opacity: 1;
-    background: linear-gradient(135deg, rgba(6,142,140,0.25) 0%, transparent 50%, rgba(6,142,140,0.08) 100%);
+    background: linear-gradient(135deg, rgba(6,142,140,0.3) 0%, rgba(6,142,140,0.08) 50%, transparent 100%);
   }
 
   .tria-work-item--large {
     grid-column: span 7;
     grid-row: span 2;
+    align-self: start;
   }
 
   .tria-work-item:not(.tria-work-item--large):not(.tria-work-item--wide) {
@@ -197,22 +199,35 @@ const {
   .tria-work-img-wrap {
     position: relative;
     width: 100%;
-    height: 100%;
-    min-height: 340px;
     overflow: hidden;
   }
 
+  .tria-work-img-wrap::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 60%, rgba(11,13,23,0.08) 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .tria-work-item:not(.tria-work-item--large):not(.tria-work-item--wide) .tria-work-img-wrap {
+    height: 240px;
+  }
+
   .tria-work-item--large .tria-work-img-wrap {
-    min-height: 640px;
+    height: 560px;
   }
 
   .tria-work-item--wide .tria-work-img-wrap {
-    min-height: 280px;
+    height: 260px;
   }
 
   .tria-work-img {
     position: absolute;
     inset: 0;
+    background-size: cover;
+    background-position: center;
     transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
@@ -220,111 +235,78 @@ const {
     transform: scale(1.05);
   }
 
-  .tria-work-overlay {
+  .tria-work-img-glass {
     position: absolute;
     inset: 0;
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
     z-index: 2;
-    background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.15) 40%, transparent 60%);
-    transition: background 0.45s ease;
+    background: linear-gradient(135deg, rgba(11,13,23,0.08) 0%, rgba(11,13,23,0.25) 100%);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    transition: all 0.6s ease;
   }
 
-  .tria-work-item:hover .tria-work-overlay {
-    background: linear-gradient(to top, rgba(6,142,140,0.40) 0%, rgba(0,0,0,0.35) 35%, rgba(0,0,0,0.08) 60%);
+  .tria-work-item:hover .tria-work-img-glass {
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    background: linear-gradient(135deg, rgba(11,13,23,0.02) 0%, rgba(6,142,140,0.15) 100%);
   }
 
-  .tria-work-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .tria-work-category {
-    font-size: 0.6rem;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    color: var(--accent);
-    background: rgba(6, 142, 140, 0.12);
-    padding: 4px 10px;
-    border-radius: 4px;
-    transition: background 0.25s ease;
-  }
-
-  .tria-work-item:hover .tria-work-category {
-    background: rgba(6, 142, 140, 0.2);
-  }
-
-  .tria-work-year {
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    color: rgba(255, 255, 255, 0.35);
-  }
-
-  .tria-work-grid-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-  }
-
-  .tria-work-name {
-    color: #fff;
-    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
-    font-weight: 500;
-    letter-spacing: -0.02em;
-    margin-bottom: 10px;
-    line-height: 1.2;
-    transform: translateY(8px);
-    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  .tria-work-content {
+    padding: 14px 20px 16px;
+    background: #fff;
+    border-top: 1px solid rgba(0,0,0,0.05);
   }
 
   .tria-work-desc {
-    color: rgba(255, 255, 255, 0.55);
-    font-size: 0.8rem;
-    line-height: 1.65;
+    color: rgba(11, 13, 23, 0.55);
+    font-size: 0.78rem;
+    line-height: 1.6;
     margin: 0;
-    max-width: 380px;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.45s ease 0.05s, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.05s;
   }
 
-  .tria-work-item:hover .tria-work-name {
-    transform: translateY(0);
-  }
-
-  .tria-work-item:hover .tria-work-desc {
-    opacity: 1;
-    transform: translateY(0);
+  .tria-work-category {
+    font-size: 0.55rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 5px 12px;
+    border-radius: 6px;
+    display: inline-block;
+    position: absolute;
+    top: 16px;
+    left: 18px;
+    z-index: 3;
   }
 
   .tria-work-arrow {
-    position: absolute;
-    top: 40px;
-    right: 40px;
-    width: 44px;
-    height: 44px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: rgba(255, 255, 255, 0.5);
-    font-size: 13px;
-    transform: translateY(-10px);
-    opacity: 0;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 11px;
     transition: all 0.4s var(--ease-spring);
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 3;
   }
 
   .tria-work-item:hover .tria-work-arrow {
-    opacity: 1;
-    transform: translateY(0) translateX(6px);
     background: var(--accent);
     border-color: var(--accent);
     color: #fff;
+    transform: translateX(4px);
   }
 
   .tria-work-abstract {
@@ -342,28 +324,28 @@ const {
 
   .tria-fa-grid {
     position: absolute;
-    right: 40px;
-    bottom: 120px;
+    right: 24px;
+    bottom: 24px;
     display: grid;
-    grid-template-columns: repeat(3, 10px);
-    gap: 8px;
+    grid-template-columns: repeat(3, 8px);
+    gap: 6px;
     opacity: 0.12;
   }
   .tria-fa-grid div {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
     background: #fff;
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .tria-work-item:hover .tria-fa-grid div:nth-child(1) { transform: translateY(-4px); }
-  .tria-work-item:hover .tria-fa-grid div:nth-child(3) { transform: translateY(-4px); }
-  .tria-work-item:hover .tria-fa-grid div:nth-child(7) { transform: translateY(-4px); }
-  .tria-work-item:hover .tria-fa-grid div:nth-child(9) { transform: translateY(-4px); }
+  .tria-work-item:hover .tria-fa-grid div:nth-child(1) { transform: translateY(-3px); }
+  .tria-work-item:hover .tria-fa-grid div:nth-child(3) { transform: translateY(-3px); }
+  .tria-work-item:hover .tria-fa-grid div:nth-child(7) { transform: translateY(-3px); }
+  .tria-work-item:hover .tria-fa-grid div:nth-child(9) { transform: translateY(-3px); }
 
   .tria-cloud-rings {
     position: absolute;
-    right: 30px;
+    right: 20px;
     top: 50%;
     transform: translateY(-50%);
     display: flex;
@@ -376,23 +358,23 @@ const {
     border: 1px solid rgba(255,255,255,0.08);
     transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.6s ease;
   }
-  .tria-cloud-rings div:nth-child(1) { width: 80px; height: 80px; }
-  .tria-cloud-rings div:nth-child(2) { width: 120px; height: 120px; }
-  .tria-cloud-rings div:nth-child(3) { width: 160px; height: 160px; }
+  .tria-cloud-rings div:nth-child(1) { width: 60px; height: 60px; }
+  .tria-cloud-rings div:nth-child(2) { width: 90px; height: 90px; }
+  .tria-cloud-rings div:nth-child(3) { width: 120px; height: 120px; }
   .tria-work-item:hover .tria-cloud-rings div:nth-child(1) { transform: scale(1.15); border-color: rgba(6, 142, 140, 0.2); }
   .tria-work-item:hover .tria-cloud-rings div:nth-child(2) { transform: scale(1.08); border-color: rgba(6, 142, 140, 0.15); }
   .tria-work-item:hover .tria-cloud-rings div:nth-child(3) { transform: scale(1.04); border-color: rgba(6, 142, 140, 0.1); }
 
   .tria-neural-dots {
     position: absolute;
-    right: 40px;
+    right: 24px;
     top: 50%;
     transform: translateY(-50%);
-    width: 120px;
-    height: 120px;
+    width: 90px;
+    height: 90px;
     background:
       radial-gradient(circle, rgba(255,255,255,0.06) 1.5px, transparent 1.5px);
-    background-size: 20px 20px;
+    background-size: 18px 18px;
   }
 
   .tria-work-section {
@@ -414,7 +396,10 @@ const {
       grid-column: span 1;
     }
     .tria-work-item--large .tria-work-img-wrap {
-      min-height: 400px;
+      height: 420px;
+    }
+    .tria-work-item:not(.tria-work-item--large):not(.tria-work-item--wide) .tria-work-img-wrap {
+      height: 220px;
     }
     .tria-featured-header {
       flex-direction: column;
@@ -429,30 +414,20 @@ const {
     .tria-work-grid {
       padding: 0 12px;
     }
-    .tria-work-overlay {
-      padding: 24px;
-    }
-    .tria-work-item--large .tria-work-img-wrap {
-      min-height: 320px;
-    }
-    .tria-work-img-wrap {
-      min-height: 260px;
-    }
-    .tria-work-item--wide .tria-work-img-wrap {
-      min-height: 220px;
-    }
-    .tria-work-arrow {
-      top: 24px;
-      right: 24px;
-      width: 36px;
-      height: 36px;
-      font-size: 11px;
-    }
-    .tria-work-name {
-      font-size: clamp(1rem, 4vw, 1.2rem);
+    .tria-work-content {
+      padding: 10px 14px 12px;
     }
     .tria-work-desc {
-      font-size: 0.75rem;
+      font-size: 0.7rem;
+    }
+    .tria-work-item:not(.tria-work-item--large):not(.tria-work-item--wide) .tria-work-img-wrap {
+      height: 180px;
+    }
+    .tria-work-item--large .tria-work-img-wrap {
+      height: 320px;
+    }
+    .tria-work-item--wide .tria-work-img-wrap {
+      height: 200px;
     }
   }
 </style>

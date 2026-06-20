@@ -1,0 +1,75 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import { createT } from "../../i18n/utils";
+const t = createT(Astro.currentLocale);
+const deepwikiUrl = "https://deepwiki.com/Tria-Building-Digital-Solutions/parkit";
+const deepwikiCta = Astro.currentLocale === "es" ? "Leer caso de estudio completo en DeepWiki" : "Read full case study on DeepWiki";
+---
+
+<Layout title={t("featured.project1Title")} description={t("featured.project1Desc")}>
+  <section class="page-hero" data-section-theme="dark">
+    <div class="page-hero-bg">
+      <div class="page-hero-orb page-hero-orb--1"></div>
+      <div class="page-hero-orb page-hero-orb--2"></div>
+    </div>
+    <div class="container page-hero-inner">
+      <span class="tria-suptitle tria-light-soft tria-up" style="display:block;margin-bottom:24px;">{t("featured.project1Cat")}</span>
+      <h1 class="page-hero-heading tria-up">{t("featured.project1Title")}</h1>
+    </div>
+  </section>
+
+  <section class="tria-soft-bg" data-section-theme="light" style="padding:100px 0;">
+    <div class="container">
+      <div class="project-body">
+        <p class="project-desc">{t("featured.project1Desc")}</p>
+        <a href={deepwikiUrl} target="_blank" rel="noopener noreferrer" class="project-deepwiki-link">
+          {deepwikiCta}
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="margin-left:8px;">
+            <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <SiteFooter />
+</Layout>
+
+<style>
+  .project-body {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .project-desc {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: rgba(11, 13, 23, 0.6);
+    margin-bottom: 48px;
+  }
+  .project-deepwiki-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 14px 32px;
+    background: #0b0d17;
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border-radius: 40px;
+    text-decoration: none;
+    transition: all 0.4s var(--ease-spring);
+    letter-spacing: 0.02em;
+  }
+  .project-deepwiki-link:hover {
+    background: #068e8c;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(6, 142, 140, 0.25);
+  }
+  .project-deepwiki-link svg {
+    transition: transform 0.3s ease;
+  }
+  .project-deepwiki-link:hover svg {
+    transform: translateX(4px);
+  }
+</style>

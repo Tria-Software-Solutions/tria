@@ -9,8 +9,8 @@ import Team from "../components/Team.astro";
 import Partners from "../components/Partners.astro";
 import CTA from "../components/CTA.astro";
 import Pricing from "../components/Pricing.astro";
-import Cotizacion from "../components/Cotizacion.astro";
-import Footer from "../components/Footer.astro";
+import Quote from "../components/Quote.astro";
+import SiteFooter from "../components/SiteFooter.astro";
 import { createT } from "../i18n/utils";
 const t = createT(Astro.currentLocale || 'en');
 ---
@@ -75,19 +75,21 @@ const t = createT(Astro.currentLocale || 'en');
         category: t("featured.project1Cat") || "",
         title: t("featured.project1Title") || "",
         description: t("featured.project1Desc") || "",
-        href: "/portfolio",
+        href: "/projects/parkit",
         gradient: "linear-gradient(135deg, #0b0d17 0%, #1a1f35 50%, #068e8c 100%)",
+        previewImg: "/assets/img/featured/parkit-preview.png",
         size: "large",
-        abstractType: "fintech"
+        abstractType: "none"
       },
       {
         category: t("featured.project2Cat") || "",
         title: t("featured.project2Title") || "",
         description: t("featured.project2Desc") || "",
-        href: "/portfolio",
+        href: "/projects/choferes",
         gradient: "linear-gradient(135deg, #1a1f35 0%, #2d3561 100%)",
+        previewImg: "/assets/img/featured/choferes-preview.png",
         size: "normal",
-        abstractType: "cloud"
+        abstractType: "fintech"
       },
       {
         category: t("featured.project3Cat") || "",
@@ -247,7 +249,7 @@ const t = createT(Astro.currentLocale || 'en');
       }
     ]}
   />
-  <Cotizacion
+  <Quote
     heading={t("cotizacion.heading") || 'Get a <span class="tria-thin">Custom Quote</span>'}
     description={t("cotizacion.description") || ""}
     buttonText={t("cotizacion.buttonText") || "Request a Quote"}
@@ -307,55 +309,5 @@ const t = createT(Astro.currentLocale || 'en');
     primaryButtonColor="#0b0d17"
     primaryButtonHoverColor="#1a1f35"
   />
-  <Footer 
-    brandName="tria"
-    brandHref="/"
-    brandDescription={t("footer.description") || ""}
-    socialLabel={t("contact.info.followUs") || ""}
-    exploreLabel={t("nav.explore") || ""}
-    servicesLabel={t("nav.services") || ""}
-    projectsLabel={t("nav.projects") || ""}
-    contactLabel={t("nav.contactInfo") || ""}
-    exploreLinks={[
-      { href: "/", label: t("nav.home") || "" },
-      { href: "/about", label: t("nav.about") || "" },
-      { href: "/team", label: t("nav.team") || "" },
-      { href: "/portfolio", label: t("nav.work") || "" },
-      { href: "/blog", label: t("nav.blog") || "Blog" },
-      { href: "/contact", label: t("nav.contact") || "" }
-    ]}
-    serviceLinks={[
-      { href: "/services#software-dev", label: t("nav.softwareDev") || "", html: true },
-      { href: "/services#cloud-devops", label: t("nav.cloudDevops") || "", html: true },
-      { href: "/services#ai-ml", label: t("nav.aiMl") || "", html: true },
-      { href: "/services#cybersecurity", label: t("nav.cybersecurity") || "", html: true }
-    ]}
-    projectLinks={[
-      { href: "/project-1", label: t("nav.fintechDashboard") || "" },
-      { href: "/project-2", label: t("nav.cloudInfra") || "" },
-      { href: "/project-3", label: t("nav.ecommerce") || "" },
-      { href: "/project-4", label: t("nav.aiAnalytics") || "" },
-      { href: "/project-5", label: t("nav.iotFleet") || "" },
-      { href: "/project-6", label: t("nav.healthcareData") || "" }
-    ]}
-    contactLinks={[
-      { href: "mailto:hola@triacr.com", label: t("footer.contactLink") || "", icon: "ti-mail" },
-      { href: "mailto:support@triacr.com", label: t("footer.supportLink") || "", icon: "ti-headset" },
-      { href: "mailto:sales@triacr.com", label: t("footer.salesLink") || "", icon: "ti-briefcase" },
-      { href: "https://wa.me/50662164040", label: t("footer.whatsappLink") || "", icon: "ti-brand-whatsapp", external: true }
-    ]}
-    socialLinks={[
-      { href: "https://linkedin.com", label: "LinkedIn", icon: "ti ti-brand-linkedin" },
-      { href: "https://x.com", label: "X", icon: "ti ti-brand-x" },
-      { href: "https://instagram.com", label: "Instagram", icon: "ti ti-brand-instagram" },
-      { href: "https://github.com", label: "GitHub", icon: "ti ti-brand-github" }
-    ]}
-    copyrightText={t("footer.allRights")?.replace("{year}", String(new Date().getFullYear())) || ""}
-    legalLinks={[
-      { href: "/privacy", label: t("nav.privacyPolicy") || "" },
-      { href: "/terms", label: t("nav.terms") || "" },
-      { href: "/cookies", label: t("nav.cookiePolicy") || "" }
-    ]}
-    showGlow={true}
-  />
+  <SiteFooter />
 </Layout>

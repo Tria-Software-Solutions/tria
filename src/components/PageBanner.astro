@@ -1,0 +1,48 @@
+---
+interface Props {
+  suptitleKey: string;
+  headingKey: string;
+  descriptionKey?: string;
+}
+
+const { suptitleKey, headingKey, descriptionKey } = Astro.props;
+const { createT } = await import("../i18n/utils");
+const t = createT(Astro.currentLocale);
+const hasChildren = await Astro.slots.render("default");
+---
+
+<section class="page-hero" data-section-theme="dark">
+  <div class="page-hero-bg">
+    <div class="page-hero-orb page-hero-orb--1"></div>
+    <div class="page-hero-orb page-hero-orb--2"></div>
+  </div>
+  <div class="container page-hero-inner">
+    {hasChildren ? (
+      <div class="row">
+        <div class="col-lg-8">
+          <span class="tria-suptitle tria-light-soft tria-up tria-mb-20" style="display:block;" data-i18n={suptitleKey}>{t(suptitleKey)}</span>
+          <h1 class="tria-up tria-mb-30 page-hero-heading" data-i18n-html={headingKey} set:html={t(headingKey)} />
+          {descriptionKey && <p class="tria-up page-hero-sub" data-i18n={descriptionKey}>{t(descriptionKey)}</p>}
+        </div>
+        <div class="col-lg-4">
+          <slot />
+        </div>
+      </div>
+    ) : descriptionKey ? (
+      <div class="row align-items-end">
+        <div class="col-lg-7">
+          <span class="tria-suptitle tria-light-soft tria-up" style="display:block;margin-bottom:24px;" data-i18n={suptitleKey}>{t(suptitleKey)}</span>
+          <h1 class="page-hero-heading tria-up" data-i18n-html={headingKey} set:html={t(headingKey)} />
+        </div>
+        <div class="col-lg-5 tria-sh-right">
+          <p class="page-hero-sub tria-up" data-i18n={descriptionKey}>{t(descriptionKey)}</p>
+        </div>
+      </div>
+    ) : (
+      <div class="page-hero-inner">
+        <span class="tria-suptitle tria-light-soft tria-up" style="display:block;margin-bottom:24px;" data-i18n={suptitleKey}>{t(suptitleKey)}</span>
+        <h1 class="page-hero-heading tria-up" data-i18n-html={headingKey} set:html={t(headingKey)} />
+      </div>
+    )}
+  </div>
+</section>

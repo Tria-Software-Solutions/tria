@@ -105,20 +105,7 @@ const cls = [
     overflow: hidden;
   }
 
-  .tria-btn::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 100px;
-    background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 50%);
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-  }
 
-  .tria-btn:hover::after {
-    opacity: 1;
-  }
 
   /* ── Sizes ── */
   .tria-btn--sm {
@@ -155,8 +142,9 @@ const cls = [
   .tria-btn--primary:hover {
     background-color: var(--btn-hover, var(--accent-hover));
     border-color: var(--btn-hover, var(--accent-hover));
+    color: #fff;
     transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 12px 32px rgba(6, 142, 140, 0.35);
+    box-shadow: 0 12px 40px rgba(6, 142, 140, 0.4);
   }
 
   /* ── Secondary ── */
@@ -169,6 +157,7 @@ const cls = [
   .tria-btn--secondary:hover {
     background-color: var(--btn-hover, #1a1f35);
     border-color: var(--btn-hover, #1a1f35);
+    color: #fff;
     transform: translateY(-3px) scale(1.02);
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
   }
@@ -212,8 +201,8 @@ const cls = [
   }
 
   .tria-btn--glass:hover {
-    background-color: rgba(255, 255, 255, 0.16);
-    border-color: transparent;
+    background-color: rgba(255, 255, 255, 0.22);
+    border-color: rgba(255, 255, 255, 0.3);
     color: var(--btn-hover, #fff);
     transform: translateY(-3px) scale(1.02);
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
