@@ -1,111 +1,101 @@
 ---
-import { createT } from "../i18n/utils";
-const t = createT(Astro.currentLocale);
+interface WorkItem {
+  category: string;
+  title: string;
+  description: string;
+  href: string;
+  gradient: string;
+  size?: 'large' | 'wide' | 'normal';
+  abstractType?: 'fintech' | 'cloud' | 'ai' | 'none';
+}
+
+interface Props {
+  suptitle?: string;
+  heading: string;
+  viewAllText?: string;
+  viewAllHref?: string;
+  projects: WorkItem[];
+  padding?: string;
+}
+
+const {
+  suptitle,
+  heading,
+  viewAllText,
+  viewAllHref = "/portfolio",
+  projects = [],
+  padding = 'tria-p-120-0'
+} = Astro.props;
 ---
 
 <!-- featured work -->
 <section class="tria-work-section" data-section-theme="light">
-  <div class="container tria-p-120-0">
+  <div class={`container ${padding}`}>
     <div class="tria-featured-header tria-up">
       <div>
-        <span class="tria-suptitle tria-suptitle-dark" data-i18n="featured.suptitle">{t("featured.suptitle")}</span>
-        <h2 class="tria-mt-30" data-i18n-html="featured.title" set:html={t("featured.title")} />
+        {suptitle && <span class="tria-suptitle tria-suptitle-dark">{suptitle}</span>}
+        <h2 class="tria-mt-30" set:html={heading} />
       </div>
-      <a href="/portfolio" class="tria-featured-view-link">
-        <span data-i18n="featured.viewAll">{t("featured.viewAll")}</span>
-        <i class="fas fa-arrow-right"></i>
-      </a>
+      {viewAllText && (
+        <a href={viewAllHref} class="tria-featured-view-link">
+          <span>{viewAllText}</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      )}
     </div>
   </div>
 
   <div class="tria-work-grid">
-    <a href="/portfolio" class="tria-work-item tria-work-item--large tria-up" data-category="FinTech">
-      <div class="tria-work-img-wrap">
-        <div class="tria-work-img" style="background: linear-gradient(135deg, #0b0d17 0%, #1a1f35 50%, #068e8c 100%);"></div>
-        <div class="tria-work-overlay">
-          <div class="tria-work-meta">
-            <span class="tria-work-category" data-i18n="featured.project1Cat">{t("featured.project1Cat")}</span>
+    {projects.map((project) => (
+      <a 
+        href={project.href} 
+        class={`tria-work-item tria-up ${
+          project.size === 'large' ? 'tria-work-item--large' : 
+          project.size === 'wide' ? 'tria-work-item--wide' : ''
+        }`} 
+        data-category={project.category}
+      >
+        <div class="tria-work-img-wrap">
+          <div class="tria-work-img" style={`background: ${project.gradient};`}></div>
+          <div class="tria-work-overlay">
+            <div class="tria-work-meta">
+              <span class="tria-work-category">{project.category}</span>
+            </div>
+            <div class="tria-work-grid-content">
+              <h3 class="tria-work-name">{project.title}</h3>
+              <p class="tria-work-desc">{project.description}</p>
+            </div>
+            <div class="tria-work-arrow">
+              <i class="fas fa-arrow-right"></i>
+            </div>
           </div>
-          <div class="tria-work-grid-content">
-            <h3 class="tria-work-name" data-i18n="featured.project1Title">{t("featured.project1Title")}</h3>
-            <p class="tria-work-desc" data-i18n="featured.project1Desc">{t("featured.project1Desc")}</p>
-          </div>
-          <div class="tria-work-arrow">
-            <i class="fas fa-arrow-right"></i>
-          </div>
+          <div class="tria-work-gradient-border"></div>
+          {project.abstractType === 'fintech' && (
+            <div class="tria-work-abstract tria-work-abstract--fintech">
+              <div class="tria-fa-grid">
+                <div></div><div></div><div></div>
+                <div></div><div></div><div></div>
+                <div></div><div></div><div></div>
+              </div>
+            </div>
+          )}
+          {project.abstractType === 'cloud' && (
+            <div class="tria-work-abstract tria-work-abstract--cloud">
+              <div class="tria-cloud-rings">
+                <div></div><div></div><div></div>
+              </div>
+            </div>
+          )}
+          {project.abstractType === 'ai' && (
+            <div class="tria-work-abstract tria-work-abstract--ai">
+              <div class="tria-neural-dots"></div>
+            </div>
+          )}
         </div>
-        <!-- Abstract visual element -->
-        <div class="tria-work-abstract tria-work-abstract--fintech">
-          <div class="tria-fa-grid">
-            <div></div><div></div><div></div>
-            <div></div><div></div><div></div>
-            <div></div><div></div><div></div>
-          </div>
-        </div>
-      </div>
-    </a>
-
-    <a href="/portfolio" class="tria-work-item tria-up" data-category="Cloud">
-      <div class="tria-work-img-wrap">
-        <div class="tria-work-img" style="background: linear-gradient(135deg, #1a1f35 0%, #2d3561 100%);"></div>
-        <div class="tria-work-overlay">
-          <div class="tria-work-meta">
-            <span class="tria-work-category" data-i18n="featured.project2Cat">{t("featured.project2Cat")}</span>
-          </div>
-          <div class="tria-work-grid-content">
-            <h3 class="tria-work-name" data-i18n="featured.project2Title">{t("featured.project2Title")}</h3>
-            <p class="tria-work-desc" data-i18n="featured.project2Desc">{t("featured.project2Desc")}</p>
-          </div>
-          <div class="tria-work-arrow">
-            <i class="fas fa-arrow-right"></i>
-          </div>
-        </div>
-        <div class="tria-work-abstract tria-work-abstract--cloud">
-          <div class="tria-cloud-rings">
-            <div></div><div></div><div></div>
-          </div>
-        </div>
-      </div>
-    </a>
-
-    <a href="/portfolio" class="tria-work-item tria-up" data-category="AI/ML">
-      <div class="tria-work-img-wrap">
-        <div class="tria-work-img" style="background: linear-gradient(135deg, #0b0d17 0%, #068e8c 100%);"></div>
-        <div class="tria-work-overlay">
-          <div class="tria-work-meta">
-            <span class="tria-work-category" data-i18n="featured.project3Cat">{t("featured.project3Cat")}</span>
-          </div>
-          <div class="tria-work-grid-content">
-            <h3 class="tria-work-name" data-i18n="featured.project3Title">{t("featured.project3Title")}</h3>
-            <p class="tria-work-desc" data-i18n="featured.project3Desc">{t("featured.project3Desc")}</p>
-          </div>
-          <div class="tria-work-arrow">
-            <i class="fas fa-arrow-right"></i>
-          </div>
-        </div>
-        <div class="tria-work-abstract tria-work-abstract--ai">
-          <div class="tria-neural-dots"></div>
-        </div>
-      </div>
-    </a>
-
-    <a href="/portfolio" class="tria-work-item tria-work-item--wide tria-up" data-category="Healthcare">
-      <div class="tria-work-img-wrap">
-        <div class="tria-work-img" style="background: linear-gradient(135deg, #111827 0%, #1f2d40 50%, #0d3050 100%);"></div>
-        <div class="tria-work-overlay">
-          <div class="tria-work-meta">
-            <span class="tria-work-category" data-i18n="featured.project4Cat">{t("featured.project4Cat")}</span>
-          </div>
-          <div class="tria-work-grid-content">
-            <h3 class="tria-work-name" data-i18n="featured.project4Title">{t("featured.project4Title")}</h3>
-            <p class="tria-work-desc" data-i18n="featured.project4Desc">{t("featured.project4Desc")}</p>
-          </div>
-          <div class="tria-work-arrow">
-            <i class="fas fa-arrow-right"></i>
-          </div>
-        </div>
-      </div>
-    </a>
+      </a>
+    ))}
   </div>
 </section>
 <!-- featured work end -->
@@ -133,8 +123,7 @@ const t = createT(Astro.currentLocale);
     flex-shrink: 0;
   }
 
-  .tria-featured-view-link i {
-    font-size: 0.7rem;
+  .tria-featured-view-link svg {
     transition: transform 0.4s var(--ease-spring);
   }
 
@@ -143,7 +132,7 @@ const t = createT(Astro.currentLocale);
     gap: 14px;
   }
 
-  .tria-featured-view-link:hover i {
+  .tria-featured-view-link:hover svg {
     transform: translateX(4px);
   }
 
@@ -163,13 +152,33 @@ const t = createT(Astro.currentLocale);
     display: block;
     text-decoration: none;
     position: relative;
-    border-radius: 16px;
+    border-radius: 18px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.04);
     transition: box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .tria-work-item:hover {
-    box-shadow: 0 20px 60px rgba(0,0,0,0.12), 0 8px 24px rgba(0,0,0,0.06);
+    box-shadow: 0 20px 48px rgba(0,0,0,0.10), 0 8px 20px rgba(0,0,0,0.04);
+  }
+
+  .tria-work-gradient-border {
+    position: absolute;
+    inset: 0;
+    border-radius: 18px;
+    padding: 1px;
+    background: transparent;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    z-index: 3;
+    transition: opacity 0.5s ease;
+    opacity: 0;
+  }
+
+  .tria-work-item:hover .tria-work-gradient-border {
+    opacity: 1;
+    background: linear-gradient(135deg, rgba(6,142,140,0.25) 0%, transparent 50%, rgba(6,142,140,0.08) 100%);
   }
 
   .tria-work-item--large {
@@ -219,12 +228,12 @@ const t = createT(Astro.currentLocale);
     flex-direction: column;
     justify-content: space-between;
     z-index: 2;
-    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 40%, transparent 65%);
-    transition: background 0.5s ease;
+    background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.15) 40%, transparent 60%);
+    transition: background 0.45s ease;
   }
 
   .tria-work-item:hover .tria-work-overlay {
-    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.15) 45%, rgba(0,0,0,0.05) 70%);
+    background: linear-gradient(to top, rgba(6,142,140,0.40) 0%, rgba(0,0,0,0.35) 35%, rgba(0,0,0,0.08) 60%);
   }
 
   .tria-work-meta {
@@ -235,20 +244,17 @@ const t = createT(Astro.currentLocale);
 
   .tria-work-category {
     font-size: 0.6rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: #fff;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    padding: 6px 14px;
-    border-radius: 20px;
-    backdrop-filter: blur(12px);
-    transition: background 0.3s ease, border-color 0.3s ease;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    background: rgba(6, 142, 140, 0.12);
+    padding: 4px 10px;
+    border-radius: 4px;
+    transition: background 0.25s ease;
   }
 
   .tria-work-item:hover .tria-work-category {
-    background: rgba(6, 142, 140, 0.25);
-    border-color: rgba(6, 142, 140, 0.4);
+    background: rgba(6, 142, 140, 0.2);
   }
 
   .tria-work-year {
@@ -267,7 +273,8 @@ const t = createT(Astro.currentLocale);
   .tria-work-name {
     color: #fff;
     font-size: clamp(1.2rem, 2.5vw, 1.8rem);
-    font-weight: 400;
+    font-weight: 500;
+    letter-spacing: -0.02em;
     margin-bottom: 10px;
     line-height: 1.2;
     transform: translateY(8px);
@@ -281,8 +288,8 @@ const t = createT(Astro.currentLocale);
     margin: 0;
     max-width: 380px;
     opacity: 0;
-    transform: translateY(8px);
-    transition: opacity 0.4s ease 0.05s, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.05s;
+    transform: translateY(10px);
+    transition: opacity 0.45s ease 0.05s, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.05s;
   }
 
   .tria-work-item:hover .tria-work-name {
@@ -301,22 +308,23 @@ const t = createT(Astro.currentLocale);
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #fff;
-    font-size: 14px;
-    transform: translateY(-8px);
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 13px;
+    transform: translateY(-10px);
     opacity: 0;
-    transition: opacity 0.35s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease, border-color 0.3s ease;
+    transition: all 0.4s var(--ease-spring);
   }
 
   .tria-work-item:hover .tria-work-arrow {
     opacity: 1;
     transform: translateY(0) translateX(6px);
-    background: rgba(6, 142, 140, 0.2);
-    border-color: rgba(6, 142, 140, 0.4);
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
   }
 
   .tria-work-abstract {
@@ -407,6 +415,44 @@ const t = createT(Astro.currentLocale);
     }
     .tria-work-item--large .tria-work-img-wrap {
       min-height: 400px;
+    }
+    .tria-featured-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+      margin-bottom: 40px;
+      padding: 0 16px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .tria-work-grid {
+      padding: 0 12px;
+    }
+    .tria-work-overlay {
+      padding: 24px;
+    }
+    .tria-work-item--large .tria-work-img-wrap {
+      min-height: 320px;
+    }
+    .tria-work-img-wrap {
+      min-height: 260px;
+    }
+    .tria-work-item--wide .tria-work-img-wrap {
+      min-height: 220px;
+    }
+    .tria-work-arrow {
+      top: 24px;
+      right: 24px;
+      width: 36px;
+      height: 36px;
+      font-size: 11px;
+    }
+    .tria-work-name {
+      font-size: clamp(1rem, 4vw, 1.2rem);
+    }
+    .tria-work-desc {
+      font-size: 0.75rem;
     }
   }
 </style>

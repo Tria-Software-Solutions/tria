@@ -1,5 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import CTA from "../components/CTA.astro";
+import Button from "../components/Button.astro";
 import Footer from "../components/Footer.astro";
 import { createT } from "../i18n/utils";
 const t = createT(Astro.currentLocale);
@@ -182,9 +184,7 @@ const t = createT(Astro.currentLocale);
           <h4 class="tria-wpc-heading" data-i18n="portfolio.cta.heading">{t("portfolio.cta.heading")}</h4>
           <p class="tria-wpc-sub" data-i18n="portfolio.cta.subtext">{t("portfolio.cta.subtext")}</p>
         </div>
-        <a href="/contact" class="tria-button tria-arrow-place">
-          <span data-i18n="portfolio.cta.button">{t("portfolio.cta.button")}</span>
-        </a>
+        <Button text={t("portfolio.cta.button")} href="/contact" showArrow={true} />
       </div>
     </div>
   </section>

@@ -1,77 +1,62 @@
 ---
-import { createT } from "../i18n/utils";
-const t = createT(Astro.currentLocale);
+interface ProcessStep {
+  number: string;
+  title: string;
+  description: string;
+  tags: string[];
+}
+
+interface Props {
+  suptitle?: string;
+  heading: string;
+  intro?: string;
+  steps: ProcessStep[];
+  padding?: string;
+}
+
+const {
+  suptitle,
+  heading,
+  intro,
+  steps = [],
+  padding = 'tria-p-120-120'
+} = Astro.props;
 ---
 
 <!-- process -->
 <section class="tria-process-section" data-section-theme="dark">
-  <div class="container tria-p-120-120">
+  <div class={`container ${padding}`}>
     <div class="row tria-mb-90">
       <div class="col-lg-6">
-        <span class="tria-suptitle tria-suptitle-dark tria-up" data-i18n="process.suptitle">{t("process.suptitle")}</span>
-        <h2 class="tria-up tria-mt-30" data-i18n-html="process.title" set:html={t("process.title")} />
+        {suptitle && <span class="tria-suptitle tria-suptitle-dark tria-up">{suptitle}</span>}
+        <h2 class="tria-up tria-mt-30" set:html={heading} />
       </div>
-      <div class="col-lg-5 offset-lg-1 tria-process-intro-col">
-        <p class="tria-up tria-process-intro" data-i18n="process.intro">{t("process.intro")}</p>
-      </div>
+      {intro && (
+        <div class="col-lg-5 offset-lg-1 tria-process-intro-col">
+          <p class="tria-up tria-process-intro">{intro}</p>
+        </div>
+      )}
     </div>
 
     <div class="tria-process-steps">
-      <div class="tria-process-step tria-up">
-        <div class="tria-process-num">01</div>
-        <div class="tria-process-divider"></div>
-        <div class="tria-process-body">
-          <h4 class="tria-process-title" data-i18n="process.step1Title">{t("process.step1Title")}</h4>
-          <p class="tria-process-desc" data-i18n="process.step1Desc">{t("process.step1Desc")}</p>
+      {steps.map((step) => (
+        <div class="tria-process-step tria-up">
+          <div class="tria-process-card">
+            <div class="tria-process-card-top">
+              <span class="tria-process-num">{step.number}</span>
+            </div>
+            <div class="tria-process-body">
+              <h4 class="tria-process-title">{step.title}</h4>
+              <p class="tria-process-desc">{step.description}</p>
+            </div>
+            <div class="tria-process-tags">
+              {step.tags.map((tag) => (
+                <span>{tag}</span>
+              ))}
+            </div>
+          </div>
         </div>
-        <div class="tria-process-tags">
-          <span data-i18n="process.step1Tag1">{t("process.step1Tag1")}</span>
-          <span data-i18n="process.step1Tag2">{t("process.step1Tag2")}</span>
-          <span data-i18n="process.step1Tag3">{t("process.step1Tag3")}</span>
-        </div>
-      </div>
-
-      <div class="tria-process-step tria-up">
-        <div class="tria-process-num">02</div>
-        <div class="tria-process-divider"></div>
-        <div class="tria-process-body">
-          <h4 class="tria-process-title" data-i18n="process.step2Title">{t("process.step2Title")}</h4>
-          <p class="tria-process-desc" data-i18n="process.step2Desc">{t("process.step2Desc")}</p>
-        </div>
-        <div class="tria-process-tags">
-          <span data-i18n="process.step2Tag1">{t("process.step2Tag1")}</span>
-          <span data-i18n="process.step2Tag2">{t("process.step2Tag2")}</span>
-          <span data-i18n="process.step2Tag3">{t("process.step2Tag3")}</span>
-        </div>
-      </div>
-
-      <div class="tria-process-step tria-up">
-        <div class="tria-process-num">03</div>
-        <div class="tria-process-divider"></div>
-        <div class="tria-process-body">
-          <h4 class="tria-process-title" data-i18n="process.step3Title">{t("process.step3Title")}</h4>
-          <p class="tria-process-desc" data-i18n="process.step3Desc">{t("process.step3Desc")}</p>
-        </div>
-        <div class="tria-process-tags">
-          <span data-i18n="process.step3Tag1">{t("process.step3Tag1")}</span>
-          <span data-i18n="process.step3Tag2">{t("process.step3Tag2")}</span>
-          <span data-i18n="process.step3Tag3">{t("process.step3Tag3")}</span>
-        </div>
-      </div>
-
-      <div class="tria-process-step tria-up">
-        <div class="tria-process-num">04</div>
-        <div class="tria-process-divider"></div>
-        <div class="tria-process-body">
-          <h4 class="tria-process-title" data-i18n="process.step4Title">{t("process.step4Title")}</h4>
-          <p class="tria-process-desc" data-i18n="process.step4Desc">{t("process.step4Desc")}</p>
-        </div>
-        <div class="tria-process-tags">
-          <span data-i18n="process.step4Tag1">{t("process.step4Tag1")}</span>
-          <span data-i18n="process.step4Tag2">{t("process.step4Tag2")}</span>
-          <span data-i18n="process.step4Tag3">{t("process.step4Tag3")}</span>
-        </div>
-      </div>
+      ))}
     </div>
   </div>
 </section>
@@ -109,87 +94,110 @@ const t = createT(Astro.currentLocale);
   }
 
   .tria-process-steps {
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
   }
 
   .tria-process-step {
-    display: grid;
-    grid-template-columns: 80px 1px 1fr auto;
-    gap: 0 40px;
-    align-items: start;
-    padding: 50px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    transition: background 0.4s ease;
     position: relative;
   }
 
-  .tria-process-step::before {
-    content: '';
-    position: absolute;
-    left: -24px;
-    right: -24px;
-    top: 0;
-    bottom: 0;
-    background: transparent;
-    border-radius: 4px;
-    transition: background 0.4s ease;
-    z-index: -1;
+  .tria-process-card {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 44px 40px;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+    transition: all 0.5s var(--ease-spring);
+    overflow: hidden;
   }
 
-  .tria-process-step:hover::before {
-    background: rgba(6, 142, 140, 0.06);
+  .tria-process-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+
+  .tria-process-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    background: linear-gradient(135deg, transparent 40%, rgba(6, 142, 140, 0.15) 60%, transparent 80%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.5s var(--ease-spring);
+    pointer-events: none;
+  }
+
+  .tria-process-card:hover::after {
+    opacity: 1;
+  }
+
+  .tria-process-card-top {
+    flex-shrink: 0;
+    width: 80px;
+    padding-top: 4px;
   }
 
   .tria-process-num {
-    font-family: var(--font-display, 'Outfit', sans-serif);
-    font-size: 1.1rem;
-    font-weight: 300;
-    color: rgba(255, 255, 255, 0.25);
-    letter-spacing: 0.05em;
-    padding-top: 6px;
-    transition: color 0.3s;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.15);
+    letter-spacing: 0.08em;
+    font-variant-numeric: tabular-nums;
+    transition: color 0.4s var(--ease-spring);
   }
 
-  .tria-process-step:hover .tria-process-num {
-    color: var(--accent);
-  }
-
-  .tria-process-divider {
-    width: 1px;
-    background: rgba(255, 255, 255, 0.08);
-    align-self: stretch;
-    margin-top: 6px;
+  .tria-process-card:hover .tria-process-num {
+    color: rgba(255, 255, 255, 0.4);
   }
 
   .tria-process-body {
     flex: 1;
+    min-width: 0;
   }
 
   .tria-process-title {
     font-size: 1.3rem;
-    font-weight: 400;
-    margin-bottom: 16px;
+    font-weight: 450;
+    margin-bottom: 14px;
     color: #fff;
-    transition: color 0.3s;
+    line-height: 1.35;
+    transition: color 0.3s var(--ease-smooth);
   }
 
-  .tria-process-step:hover .tria-process-title {
-    color: var(--accent);
+  .tria-process-card:hover .tria-process-title {
+    color: rgba(255,255,255,0.85);
   }
 
   .tria-process-desc {
-    color: rgba(255, 255, 255, 0.55);
-    font-size: 0.9rem;
-    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 0.82rem;
+    line-height: 1.7;
     max-width: 500px;
     margin: 0;
+    transition: color 0.3s var(--ease-smooth);
+  }
+
+  .tria-process-card:hover .tria-process-desc {
+    color: rgba(255, 255, 255, 0.5);
   }
 
   .tria-process-tags {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    padding-top: 4px;
+    flex-shrink: 0;
+    padding-top: 2px;
     align-items: flex-end;
   }
 
@@ -197,25 +205,46 @@ const t = createT(Astro.currentLocale);
     font-size: 0.62rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.2);
     white-space: nowrap;
-    transition: color 0.3s;
+    transition: color 0.4s var(--ease-spring);
   }
 
-  .tria-process-step:hover .tria-process-tags span {
-    color: var(--accent);
+  .tria-process-card:hover .tria-process-tags span {
+    color: rgba(255, 255, 255, 0.45);
   }
 
   @media (max-width: 768px) {
-    .tria-process-step {
-      grid-template-columns: 50px 1px 1fr;
-      gap: 0 20px;
+    .tria-process-card {
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 36px 28px 30px;
     }
     .tria-process-tags {
       display: none;
     }
+    .tria-process-card-top {
+      width: auto;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .tria-process-card {
+      padding: 24px 20px 24px;
+      gap: 14px;
+    }
+    .tria-process-title {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+    .tria-process-desc {
+      font-size: 0.78rem;
+    }
     .tria-process-num {
-      font-size: 0.9rem;
+      font-size: 0.6rem;
+    }
+    .tria-process-card-top {
+      width: auto;
     }
   }
 

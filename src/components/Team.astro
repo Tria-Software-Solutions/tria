@@ -1,106 +1,93 @@
 ---
-import { createT } from "../i18n/utils";
-const t = createT(Astro.currentLocale);
+import Button from "./Button.astro";
+interface TeamMember {
+  name: string;
+  role: string;
+  image: string;
+  socialLinks?: { icon: string; href: string }[];
+  isCore?: boolean;
+}
+
+interface Props {
+  suptitle?: string;
+  heading: string;
+  description1?: string;
+  description2?: string;
+  tagline?: string;
+  readMoreText?: string;
+  readMoreHref?: string;
+  coreNote?: string;
+  members: TeamMember[];
+  padding?: string;
+}
+
+const {
+  suptitle,
+  heading,
+  description1,
+  description2,
+  tagline,
+  readMoreText,
+  readMoreHref = "/team",
+  coreNote,
+  members = [],
+  padding = 'tria-p-120-30'
+} = Astro.props;
 ---
 
 <!-- team -->
 <section data-section-theme="light">
-  <div class="container tria-p-120-30">
+  <div class={`container ${padding}`}>
     <div class="tria-mb-30">
-      <span class="tria-suptitle tria-suptitle-dark tria-up" data-i18n="team.suptitle">{t("team.suptitle")}</span>
-      <h2 class="tria-up" style="margin-top:20px;" data-i18n-html="team.title" set:html={t("team.title")} />
+      {suptitle && <span class="tria-suptitle tria-suptitle-dark tria-up">{suptitle}</span>}
+      <h2 class="tria-up" style="margin-top:20px;" set:html={heading} />
     </div>
     <div class="row justify-content-between align-items-center">
       <div class="col-lg-5 col-xl-4">
         <div class="tria-mb-90">
-          <p class="tria-up tria-mb-30" data-i18n="team.description1">{t("team.description1")}</p>
-          <p class="tria-up tria-mb-60" data-i18n="team.description2">{t("team.description2")}</p>
-          <p class="tria-up tria-mb-30" style="font-size:1rem;line-height:1.6;font-weight:450;color:rgb(0,0,0);" data-i18n-html="team.tagline" set:html={t("team.tagline")} />
-          <div class="tria-up">
-            <a href="/team" class="tria-button tria-arrow-place"><span data-i18n="team.readMore">{t("team.readMore")}</span></a>
-          </div>
+          {description1 && <p class="tria-up tria-mb-30">{description1}</p>}
+          {description2 && <p class="tria-up tria-mb-60">{description2}</p>}
+          {tagline && <p class="tria-up tria-mb-30" style="font-size:1rem;line-height:1.6;font-weight:450;color:rgb(0,0,0);" set:html={tagline} />}
+          {readMoreText && (
+            <div class="tria-up">
+              <Button text={readMoreText} href={readMoreHref} showArrow={true} />
+            </div>
+          )}
         </div>
       </div>
       <div class="col-lg-6">
         <div class="tria-team-list">
           <div class="tria-lines-place"></div>
           <div class="row tria-mb-60">
-            <div class="col-sm-6">
-              <div class="tria-team-card tria-up tria-mb-30">
-                <img src="/assets/img/team/1.jpg" alt="Team member" />
-                <div class="tria-description">
-                  <div class="tria-secrc-text">
-                    <h5 class="tria-dark tria-mb-5" data-i18n="team.member1Name">
-                      {t("team.member1Name")}
-                    </h5>
-                    <p class="tria-link tria-dark-soft tria-mb-10" data-i18n="team.role1">{t("team.role1")}</p>
-                    <ul class="tria-social-icons tria-dark tria-center">
-                      <li>
-                        <a href="#." target="_blank" class="social-icon">
-                          <i class="fab fa-behance"></i></a
-                        >
-                      </li>
-                      <li>
-                        <a href="#." target="_blank" class="social-icon">
-                          <i class="fab fa-dribbble"></i></a
-                        >
-                      </li>
-                      <li>
-                        <a href="#." target="_blank" class="social-icon">
-                          <i class="fab fa-twitter"></i></a
-                        >
-                      </li>
-                      <li>
-                        <a href="#." target="_blank" class="social-icon">
-                          <i class="fab fa-github"></i></a
-                        >
-                      </li>
-                    </ul>
+            {members.map((member, index) => (
+              <div class="col-sm-6">
+                {index === 1 && coreNote && (
+                  <p class="tria-mobile-hidden tria-text-sm tria-mb-30" style="height: 30px;">
+                    <span class="tria-accent">*</span><span>{coreNote}</span>
+                  </p>
+                )}
+                <div class="tria-team-card tria-up tria-mb-30">
+                  <img src={member.image} alt="Team member" />
+                  <div class="tria-description">
+                    <div class="tria-secrc-text">
+                      <h5 class="tria-dark tria-mb-5">{member.name}</h5>
+                      <p class="tria-link tria-dark-soft tria-mb-10">{member.role}</p>
+                      {member.socialLinks && (
+                        <ul class="tria-social-icons tria-dark tria-center">
+                          {member.socialLinks.map((social) => (
+                            <li>
+                              <a href={social.href} target="_blank" class="social-icon">
+                                <i class={social.icon}></i>
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="col-sm-6">
-                <p
-                  class="tria-mobile-hidden tria-text-sm tria-mb-30"
-                  style="height: 30px;"
-                >
-                  <span class="tria-accent">*</span><span data-i18n="team.coreNote">{t("team.coreNote")}</span>
-                </p>
-              <div class="tria-team-card tria-up tria-mb-30">
-                <img src="/assets/img/team/2.jpg" alt="Team member" />
-                <div class="tria-description">
-                  <div class="tria-secrc-text">
-                    <h5 class="tria-dark tria-mb-5" data-i18n="team.member2Name">
-                      {t("team.member2Name")}
-                    </h5>
-                    <p class="tria-link tria-dark-soft tria-mb-10" data-i18n="team.role2">{t("team.role2")}</p>
-                    <ul class="tria-social-icons tria-dark tria-center">
-                      <li>
-                        <a href="#." target="_blank" class="social-icon">
-                          <i class="fab fa-behance"></i></a
-                        >
-                      </li>
-                      <li>
-                        <a href="#." target="_blank" class="social-icon">
-                          <i class="fab fa-dribbble"></i></a
-                        >
-                      </li>
-                      <li>
-                        <a href="#." target="_blank" class="social-icon">
-                          <i class="fab fa-twitter"></i></a
-                        >
-                      </li>
-                      <li>
-                        <a href="#." target="_blank" class="social-icon">
-                          <i class="fab fa-github"></i></a
-                        >
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
@@ -158,6 +145,18 @@ const t = createT(Astro.currentLocale);
       width: 28px;
       height: 28px;
       font-size: 10px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .tria-team-card {
+      border-radius: 12px;
+    }
+    .tria-team-card img {
+      border-radius: 12px;
+    }
+    .tria-team-card .tria-description {
+      padding: 14px 0 0;
     }
   }
 </style>

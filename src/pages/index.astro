@@ -8,124 +8,354 @@ import FeaturedWork from "../components/FeaturedWork.astro";
 import Team from "../components/Team.astro";
 import Partners from "../components/Partners.astro";
 import CTA from "../components/CTA.astro";
+import Pricing from "../components/Pricing.astro";
+import Cotizacion from "../components/Cotizacion.astro";
 import Footer from "../components/Footer.astro";
 import { createT } from "../i18n/utils";
-const t = createT(Astro.currentLocale);
+const t = createT(Astro.currentLocale || 'en');
 ---
 
 <Layout
   title="Tria — Software Solutions"
-  description="Software enterprise crafting digital solutions from Atenas, Costa Rica."
+  description="Software enterprise crafting digital solutions."
 >
-  <Hero />
-  <Stats />
-  <Services />
-  <FeaturedWork />
-  <CTA />
-  <Process />
-  <Partners />
-  <Team />
-  <!-- Footer CTA band -->
-  <div class="tria-footer-cta tria-up" data-section-theme="dark">
-    <div class="tria-footer-cta-glow"></div>
-    <div class="container">
-      <h2 class="tria-footer-cta-title" data-i18n-html="cta.heading" set:html={t("cta.heading")} />
-      <div class="tria-footer-cta-actions">
-        <a href="/contact" class="tria-button tria-arrow-place">
-          <span data-i18n="cta.startProject">{t("cta.startProject")}</span>
-          <i class="fas fa-arrow-right"></i>
-        </a>
-        <a href="/portfolio" class="tria-footer-cta-link" data-i18n="cta.seeWork">{t("cta.seeWork")}</a>
-      </div>
-    </div>
-  </div>
-  <Footer />
+  <Hero 
+    title={t("hero.title") || ""}
+    description={t("hero.description") || ""}
+    buttonText={t("nav.startProject") || "Start a Project"}
+    buttonHref="/contact"
+  />
+  <Stats 
+    stats={[
+      { value: 120, suffix: '+', label: t("stats.projectsLabel") || "" },
+      { value: 48, suffix: '+', label: t("stats.clientsLabel") || "" },
+      { value: 7, suffix: '+', label: t("stats.yearsLabel") || "" },
+      { value: 99, suffix: '%', label: t("stats.satisfactionLabel") || "" }
+    ]}
+  />
+  <Services 
+    suptitle={t("services.suptitle") || ""}
+    heading={t("services.modernSolutions") || ""}
+    viewAllText={t("services.viewAll") || ""}
+    viewAllHref="/services"
+    services={[
+      { 
+        title: t("services.softwareDev") || "", 
+        description: t("services.softwareDevDesc") || "", 
+        href: "/service",
+        icon: "ti-code"
+      },
+      { 
+        title: t("services.cloudDevops") || "", 
+        description: t("services.cloudDevopsDesc") || "", 
+        href: "/service",
+        icon: "ti-cloud"
+      },
+      { 
+        title: t("services.aiMl") || "", 
+        description: t("services.aiMlDesc") || "", 
+        href: "/service",
+        icon: "ti-robot"
+      },
+      { 
+        title: t("services.itCybersecurity") || "", 
+        description: t("services.itCybersecurityDesc") || "", 
+        href: "/service",
+        icon: "ti-shield"
+      }
+    ]}
+  />
+  <FeaturedWork 
+    suptitle={t("featured.suptitle") || ""}
+    heading={t("featured.title") || ""}
+    viewAllText={t("featured.viewAll") || ""}
+    viewAllHref="/portfolio"
+    projects={[
+      {
+        category: t("featured.project1Cat") || "",
+        title: t("featured.project1Title") || "",
+        description: t("featured.project1Desc") || "",
+        href: "/portfolio",
+        gradient: "linear-gradient(135deg, #0b0d17 0%, #1a1f35 50%, #068e8c 100%)",
+        size: "large",
+        abstractType: "fintech"
+      },
+      {
+        category: t("featured.project2Cat") || "",
+        title: t("featured.project2Title") || "",
+        description: t("featured.project2Desc") || "",
+        href: "/portfolio",
+        gradient: "linear-gradient(135deg, #1a1f35 0%, #2d3561 100%)",
+        size: "normal",
+        abstractType: "cloud"
+      },
+      {
+        category: t("featured.project3Cat") || "",
+        title: t("featured.project3Title") || "",
+        description: t("featured.project3Desc") || "",
+        href: "/portfolio",
+        gradient: "linear-gradient(135deg, #0b0d17 0%, #068e8c 100%)",
+        size: "normal",
+        abstractType: "ai"
+      },
+      {
+        category: t("featured.project4Cat") || "",
+        title: t("featured.project4Title") || "",
+        description: t("featured.project4Desc") || "",
+        href: "/portfolio",
+        gradient: "linear-gradient(135deg, #111827 0%, #1f2d40 50%, #0d3050 100%)",
+        size: "wide",
+        abstractType: "none"
+      }
+    ]}
+  />
+  <Partners 
+    partners={[
+      { logo: "/assets/img/partners/1.svg", href: "#.", width: "60px", alt: "logo" },
+      { logo: "/assets/img/partners/2.svg", href: "#.", width: "100px", alt: "logo" },
+      { logo: "/assets/img/partners/1.svg", href: "#.", width: "60px", alt: "logo" },
+      { logo: "/assets/img/partners/2.svg", href: "#.", width: "100px", alt: "logo" }
+    ]}
+  />
+  <CTA 
+    suptitle={t("ctaAlt.suptitle") || ""}
+    heading={t("ctaAlt.heading") || ""}
+    primaryButtonText={t("ctaAlt.startProject") || ""}
+    secondaryButtonText={t("ctaAlt.seeWork") || ""}
+    primaryButtonHref="/contact"
+    secondaryButtonHref="/portfolio"
+    theme="light"
+    bgColor="#eef2f5"
+    showIcon={true}
+  />
+  <Process 
+    suptitle={t("process.suptitle") || ""}
+    heading={t("process.title") || ""}
+    intro={t("process.intro") || ""}
+    steps={[
+      {
+        number: "01",
+        title: t("process.step1Title") || "",
+        description: t("process.step1Desc") || "",
+        tags: [
+          t("process.step1Tag1") || "",
+          t("process.step1Tag2") || "",
+          t("process.step1Tag3") || ""
+        ]
+      },
+      {
+        number: "02",
+        title: t("process.step2Title") || "",
+        description: t("process.step2Desc") || "",
+        tags: [
+          t("process.step2Tag1") || "",
+          t("process.step2Tag2") || "",
+          t("process.step2Tag3") || ""
+        ]
+      },
+      {
+        number: "03",
+        title: t("process.step3Title") || "",
+        description: t("process.step3Desc") || "",
+        tags: [
+          t("process.step3Tag1") || "",
+          t("process.step3Tag2") || "",
+          t("process.step3Tag3") || ""
+        ]
+      },
+      {
+        number: "04",
+        title: t("process.step4Title") || "",
+        description: t("process.step4Desc") || "",
+        tags: [
+          t("process.step4Tag1") || "",
+          t("process.step4Tag2") || "",
+          t("process.step4Tag3") || ""
+        ]
+      }
+    ]}
+  />
+  <Pricing 
+    suptitle={t("pricing.suptitle") || ""}
+    heading={t("pricing.heading") || ""}
+    description={t("pricing.description") || ""}
+    suptitleKey="pricing.suptitle"
+    headingKey="pricing.heading"
+    descriptionKey="pricing.description"
+    theme="light"
+    padding="tria-p-120-120"
+    plans={[
+      {
+        name: t("pricing.plan1Name") || "Starter",
+        price: t("pricing.plan1Price") || "$999",
+        period: t("pricing.plan1Period") || "/project",
+        description: t("pricing.plan1Desc") || "",
+        features: [
+          t("pricing.plan1Feature1") || "",
+          t("pricing.plan1Feature2") || "",
+          t("pricing.plan1Feature3") || "",
+          t("pricing.plan1Feature4") || "",
+          t("pricing.plan1Feature5") || ""
+        ],
+        buttonHref: "/contact"
+      },
+      {
+        name: t("pricing.plan2Name") || "Professional",
+        price: t("pricing.plan2Price") || "$2,499",
+        period: t("pricing.plan2Period") || "/project",
+        description: t("pricing.plan2Desc") || "",
+        features: [
+          t("pricing.plan2Feature1") || "",
+          t("pricing.plan2Feature2") || "",
+          t("pricing.plan2Feature3") || "",
+          t("pricing.plan2Feature4") || "",
+          t("pricing.plan2Feature5") || "",
+          t("pricing.plan2Feature6") || ""
+        ],
+        buttonHref: "/contact"
+      },
+      {
+        name: t("pricing.plan3Name") || "Enterprise",
+        price: t("pricing.plan3Price") || "$4,999",
+        period: t("pricing.plan3Period") || "/project",
+        description: t("pricing.plan3Desc") || "",
+        features: [
+          t("pricing.plan3Feature1") || "",
+          t("pricing.plan3Feature2") || "",
+          t("pricing.plan3Feature3") || "",
+          t("pricing.plan3Feature4") || "",
+          t("pricing.plan3Feature5") || "",
+          t("pricing.plan3Feature6") || "",
+          t("pricing.plan3Feature7") || ""
+        ],
+        buttonHref: "/contact"
+      },
+      {
+        name: t("pricing.plan4Name") || "Custom",
+        price: t("pricing.plan4Price") || "Contact Us",
+        period: t("pricing.plan4Period") || "",
+        description: t("pricing.plan4Desc") || "",
+        features: [
+          t("pricing.plan4Feature1") || "",
+          t("pricing.plan4Feature2") || "",
+          t("pricing.plan4Feature3") || "",
+          t("pricing.plan4Feature4") || "",
+          t("pricing.plan4Feature5") || ""
+        ],
+        buttonText: "Contact Us",
+        buttonHref: "/contact"
+      }
+    ]}
+  />
+  <Cotizacion
+    heading={t("cotizacion.heading") || 'Get a <span class="tria-thin">Custom Quote</span>'}
+    description={t("cotizacion.description") || ""}
+    buttonText={t("cotizacion.buttonText") || "Request a Quote"}
+    buttonHref="/contact"
+    features={[
+      t("cotizacion.feature1") || "",
+      t("cotizacion.feature2") || "",
+      t("cotizacion.feature3") || "",
+      t("cotizacion.feature4") || ""
+    ]}
+  />
+  <Team 
+    suptitle={t("team.suptitle") || ""}
+    heading={t("team.title") || ""}
+    description1={t("team.description1") || ""}
+    description2={t("team.description2") || ""}
+    tagline={t("team.tagline") || ""}
+    readMoreText={t("team.readMore") || ""}
+    readMoreHref="/team"
+    coreNote={t("team.coreNote") || ""}
+    members={[
+      {
+        name: t("team.member1Name") || "",
+        role: t("team.role1") || "",
+        image: "/assets/img/team/1.jpg",
+        socialLinks: [
+          { icon: "fab fa-behance", href: "#." },
+          { icon: "fab fa-dribbble", href: "#." },
+          { icon: "fab fa-twitter", href: "#." },
+          { icon: "fab fa-github", href: "#." }
+        ]
+      },
+      {
+        name: t("team.member2Name") || "",
+        role: t("team.role2") || "",
+        image: "/assets/img/team/2.jpg",
+        socialLinks: [
+          { icon: "fab fa-behance", href: "#." },
+          { icon: "fab fa-dribbble", href: "#." },
+          { icon: "fab fa-twitter", href: "#." },
+          { icon: "fab fa-github", href: "#." }
+        ]
+      }
+    ]}
+  />
+  <CTA 
+    heading={t("cta.heading") || ""}
+    description={t("cta.description") || "From concept to deployment, we build software that scales."}
+    primaryButtonText={t("cta.startProject") || ""}
+    secondaryButtonText={t("cta.seeWork") || ""}
+    primaryButtonHref="/contact"
+    secondaryButtonHref="/portfolio"
+    theme="dark"
+    showIcon={true}
+    padding=""
+    primaryButtonVariant="primary"
+    primaryButtonColor="#0b0d17"
+    primaryButtonHoverColor="#1a1f35"
+  />
+  <Footer 
+    brandName="tria"
+    brandHref="/"
+    brandDescription={t("footer.description") || ""}
+    socialLabel={t("contact.info.followUs") || ""}
+    exploreLabel={t("nav.explore") || ""}
+    servicesLabel={t("nav.services") || ""}
+    projectsLabel={t("nav.projects") || ""}
+    contactLabel={t("nav.contactInfo") || ""}
+    exploreLinks={[
+      { href: "/", label: t("nav.home") || "" },
+      { href: "/about", label: t("nav.about") || "" },
+      { href: "/team", label: t("nav.team") || "" },
+      { href: "/portfolio", label: t("nav.work") || "" },
+      { href: "/blog", label: t("nav.blog") || "Blog" },
+      { href: "/contact", label: t("nav.contact") || "" }
+    ]}
+    serviceLinks={[
+      { href: "/services#software-dev", label: t("nav.softwareDev") || "", html: true },
+      { href: "/services#cloud-devops", label: t("nav.cloudDevops") || "", html: true },
+      { href: "/services#ai-ml", label: t("nav.aiMl") || "", html: true },
+      { href: "/services#cybersecurity", label: t("nav.cybersecurity") || "", html: true }
+    ]}
+    projectLinks={[
+      { href: "/project-1", label: t("nav.fintechDashboard") || "" },
+      { href: "/project-2", label: t("nav.cloudInfra") || "" },
+      { href: "/project-3", label: t("nav.ecommerce") || "" },
+      { href: "/project-4", label: t("nav.aiAnalytics") || "" },
+      { href: "/project-5", label: t("nav.iotFleet") || "" },
+      { href: "/project-6", label: t("nav.healthcareData") || "" }
+    ]}
+    contactLinks={[
+      { href: "mailto:hola@triacr.com", label: t("footer.contactLink") || "", icon: "ti-mail" },
+      { href: "mailto:support@triacr.com", label: t("footer.supportLink") || "", icon: "ti-headset" },
+      { href: "mailto:sales@triacr.com", label: t("footer.salesLink") || "", icon: "ti-briefcase" },
+      { href: "https://wa.me/50662164040", label: t("footer.whatsappLink") || "", icon: "ti-brand-whatsapp", external: true }
+    ]}
+    socialLinks={[
+      { href: "https://linkedin.com", label: "LinkedIn", icon: "ti ti-brand-linkedin" },
+      { href: "https://x.com", label: "X", icon: "ti ti-brand-x" },
+      { href: "https://instagram.com", label: "Instagram", icon: "ti ti-brand-instagram" },
+      { href: "https://github.com", label: "GitHub", icon: "ti ti-brand-github" }
+    ]}
+    copyrightText={t("footer.allRights")?.replace("{year}", String(new Date().getFullYear())) || ""}
+    legalLinks={[
+      { href: "/privacy", label: t("nav.privacyPolicy") || "" },
+      { href: "/terms", label: t("nav.terms") || "" },
+      { href: "/cookies", label: t("nav.cookiePolicy") || "" }
+    ]}
+    showGlow={true}
+  />
 </Layout>
-
-<style>
-  .tria-footer-cta {
-    position: relative;
-    text-align: center;
-    padding: 100px 0 80px;
-    overflow: hidden;
-    background: var(--accent);
-  }
-
-  .tria-footer-cta-glow {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 800px;
-    height: 600px;
-    transform: translate(-50%, -50%);
-    background: radial-gradient(ellipse, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .tria-footer-cta > .container {
-    position: relative;
-    z-index: 1;
-  }
-
-  .tria-footer-cta-title {
-    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-    font-weight: 450;
-    line-height: 1.15;
-    letter-spacing: -0.025em;
-    color: #fff;
-    margin: 0 auto 36px;
-    max-width: 700px;
-  }
-
-  :global(.tria-cta-accent) {
-    color: rgba(255, 255, 255, 0.4) !important;
-    font-weight: 300;
-    font-style: italic;
-  }
-
-  .tria-footer-cta-actions {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 40px;
-    flex-wrap: wrap;
-  }
-
-  .tria-footer-cta-actions .tria-button {
-    background-color: #fff !important;
-    border-color: transparent !important;
-    color: var(--accent) !important;
-  }
-
-  .tria-footer-cta-actions .tria-button > [class*="fa-"] {
-    background-color: var(--accent) !important;
-    color: #fff !important;
-  }
-
-  .tria-footer-cta-actions .tria-button:hover {
-    background-color: rgba(255, 255, 255, 0.95) !important;
-    border-color: transparent !important;
-    color: var(--accent-hover) !important;
-    transform: translateY(-2px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-  }
-
-  .tria-footer-cta-actions .tria-button:hover > [class*="fa-"] {
-    background-color: var(--accent-hover) !important;
-    color: #fff !important;
-  }
-
-  .tria-footer-cta-link {
-    font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.7);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    font-weight: 500;
-    text-decoration: none;
-    transition: color 0.4s var(--ease-spring);
-  }
-
-  .tria-footer-cta-link:hover {
-    color: #fff;
-  }
-</style>

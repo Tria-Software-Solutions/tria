@@ -1,10 +1,24 @@
 ---
 import type { GradProps } from "../scripts/hero-gradient";
-import { createT } from "../i18n/utils";
+import Button from "./Button.astro";
 
-const t = createT(Astro.currentLocale);
+interface Props {
+  title: string;
+  description: string;
+  buttonText: string;
+  buttonHref: string;
+  gradProps?: GradProps;
+}
 
-const gradProps: GradProps = {
+const {
+  title,
+  description,
+  buttonText,
+  buttonHref,
+  gradProps
+} = Astro.props;
+
+const defaultGradProps: GradProps = {
   color1: "#0d2b2b",
   color2: "#1a2f3a",
   color3: "#068e8c",
@@ -26,7 +40,9 @@ const gradProps: GradProps = {
   centerY: 0,
   zoom: 0.9,
 };
-const gradData = JSON.stringify(gradProps);
+
+const finalGradProps = gradProps || defaultGradProps;
+const gradData = JSON.stringify(finalGradProps);
 ---
 
 <!-- banner -->
@@ -35,32 +51,21 @@ const gradData = JSON.stringify(gradProps);
   </div>
   <div class="container">
     <div class="tria-banner-content tria-up">
-      <h1 class="tria-muted tria-mb-60" data-i18n-html="hero.title" set:html={t("hero.title")} />
+      <h1 class="tria-muted tria-mb-60" set:html={title} />
       <div class="row">
         <div class="col-md-7 col-lg-5">
-          <p class="tria-light-soft tria-mb-60" data-i18n="hero.description">{t("hero.description")}</p>
+          <p class="tria-light-soft tria-mb-60">{description}</p>
         </div>
       </div>
 
-      <a href="/services" class="tria-button tria-arrow-place tria-btn-space">
-        <span data-i18n="hero.ourServices">{t("hero.ourServices")}</span>
-      </a>
+      <Button
+        text={buttonText}
+        href={buttonHref}
+        variant="glass"
+        size="lg"
+        showArrow={true}
+      />
 
-      <div class="tria-circle-text">
-        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 300 300" enable-background="new 0 0 300 300" xml:space="preserve" class="tria-ct-svg">
-          <defs>
-            <path id="circlePath" d="M 150, 150 m -60, 0 a 60,60 0 0,1 120,0 a 60,60 0 0,1 -120,0 "></path>
-          </defs>
-          <circle cx="150" cy="100" r="75" fill="none"></circle>
-          <g>
-            <use xlink:href="#circlePath" fill="none"></use>
-            <text style="letter-spacing: 6.5px">
-              <textPath xlink:href="#circlePath" data-i18n="hero.scrollDown">{t("hero.scrollDown")}</textPath>
-            </text>
-          </g>
-        </svg>
-        <a href="#about" class="tria-button tria-icon-button tria-arrow-down"><i class="fas fa-arrow-down"></i></a>
-      </div>
     </div>
   </div>
 </section>
@@ -81,31 +86,7 @@ const gradData = JSON.stringify(gradProps);
     letter-spacing: -0.03em;
     line-height: 1.05;
   }
-  .tria-banner .tria-button {
-    background-color: rgba(255,255,255,0.08) !important;
-    border-color: rgba(255,255,255,0.12) !important;
-    color: #fff !important;
-    backdrop-filter: blur(8px);
-    transition: background 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .tria-banner .tria-button:hover {
-    background-color: rgba(255,255,255,0.14) !important;
-    border-color: rgba(255,255,255,0.2) !important;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
-  }
-  .tria-banner .tria-button.tria-arrow-down i {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    font-size: 18px;
-  }
-  .tria-banner .tria-circle-text .tria-ct-svg text {
-    fill: rgba(255,255,255,0.5) !important;
-  }
+
   .tria-hero-bg {
     position: absolute;
     top: 0;
@@ -121,5 +102,20 @@ const gradData = JSON.stringify(gradProps);
   .tria-banner .container {
     position: relative;
     z-index: 1;
+  }
+
+  @media (max-width: 768px) {
+    .tria-banner-content {
+      padding-bottom: 40px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .tria-banner-content h1 {
+      font-size: clamp(2rem, 8vw, 2.5rem);
+    }
+    .tria-banner-content p {
+      font-size: 0.9rem;
+    }
   }
 </style>

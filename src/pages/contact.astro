@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Button from "../components/Button.astro";
 import Footer from "../components/Footer.astro";
 import { createT } from "../i18n/utils";
 const t = createT(Astro.currentLocale);
@@ -104,9 +105,7 @@ const sendingText = t('contact.form.sending');
                 <textarea class="tria-cf-input tria-cf-textarea" id="cf-message" name="message" data-i18n-placeholder="contact.form.placeholder.message" placeholder={t("contact.form.placeholder.message")} rows="6" required></textarea>
               </div>
 
-              <button type="submit" class="tria-button tria-arrow-place" id="cf-submit-btn" style="width:100%;">
-                <span data-i18n="contact.form.submit">{t("contact.form.submit")}</span>
-              </button>
+              <Button text={t("contact.form.submit")} showArrow={true} fullWidth={true} id="cf-submit-btn" type="submit" />
 
               <p class="tria-cf-note" data-i18n="contact.form.note">{t("contact.form.note")}</p>
             </form>
@@ -187,9 +186,7 @@ const sendingText = t('contact.form.sending');
           <p class="tria-up" style="color:#888;margin-bottom:36px;font-size:0.95rem;" data-i18n="contact.ctaDesc">
             {t("contact.ctaDesc")}
           </p>
-          <a href="/portfolio" class="tria-up tria-button tria-arrow-place">
-            <span data-i18n="contact.ctaButton">{t("contact.ctaButton")}</span>
-          </a>
+          <Button text={t("contact.ctaButton")} href="/portfolio" showArrow={true} />
         </div>
       </div>
     </div>

@@ -1,138 +1,164 @@
 ---
-import { createT } from "../i18n/utils";
-const t = createT(Astro.currentLocale);
+interface FooterLink {
+  href: string;
+  label: string;
+  html?: boolean;
+  external?: boolean;
+}
+
+interface ContactLink extends FooterLink {
+  icon: string;
+}
+
+interface SocialLink {
+  href: string;
+  label: string;
+  icon: string;
+}
+
+interface Props {
+  brandName?: string;
+  brandHref?: string;
+  brandDescription?: string;
+  socialLabel?: string;
+  exploreLabel?: string;
+  servicesLabel?: string;
+  projectsLabel?: string;
+  contactLabel?: string;
+  exploreLinks?: FooterLink[];
+  serviceLinks?: FooterLink[];
+  projectLinks?: FooterLink[];
+  contactLinks?: ContactLink[];
+  socialLinks?: SocialLink[];
+  copyrightText?: string;
+  legalLinks?: FooterLink[];
+  showGlow?: boolean;
+}
+
+const {
+  brandName = "tria",
+  brandHref = "/",
+  brandDescription,
+  socialLabel,
+  exploreLabel,
+  servicesLabel,
+  projectsLabel,
+  contactLabel,
+  exploreLinks = [],
+  serviceLinks = [],
+  projectLinks = [],
+  contactLinks = [],
+  socialLinks = [],
+  copyrightText,
+  legalLinks = [],
+  showGlow = true
+} = Astro.props;
+
 const year = new Date().getFullYear();
-
-const exploreLinks = [
-  { href: "/", label: t("nav.home") },
-  { href: "/about", label: t("nav.about") },
-  { href: "/team", label: t("nav.team") },
-  { href: "/portfolio", label: t("nav.work") },
-  { href: "/blog", label: "Blog" },
-  { href: "/contact", label: t("nav.contact") },
-];
-
-const serviceLinks = [
-  { href: "/services#software-dev", label: t("nav.softwareDev"), html: true },
-  { href: "/services#cloud-devops", label: t("nav.cloudDevops"), html: true },
-  { href: "/services#ai-ml", label: t("nav.aiMl"), html: true },
-  { href: "/services#cybersecurity", label: t("nav.cybersecurity"), html: true },
-];
-
-const projectLinks = [
-  { href: "/project-1", label: t("nav.fintechDashboard") },
-  { href: "/project-2", label: t("nav.cloudInfra") },
-  { href: "/project-3", label: t("nav.ecommerce") },
-  { href: "/project-4", label: t("nav.aiAnalytics") },
-  { href: "/project-5", label: t("nav.iotFleet") },
-  { href: "/project-6", label: t("nav.healthcareData") },
-];
-
-const contactLinks = [
-  { href: "mailto:hola@triacr.com", label: t("footer.contactLink"), icon: "ti-mail" },
-  { href: "mailto:support@triacr.com", label: t("footer.supportLink"), icon: "ti-headset" },
-  { href: "mailto:sales@triacr.com", label: t("footer.salesLink"), icon: "ti-briefcase" },
-  { href: "https://wa.me/50662164040", label: t("footer.whatsappLink"), icon: "ti-brand-whatsapp", external: true },
-];
-
-const socialLinks = [
-  { href: "https://linkedin.com", label: "LinkedIn", icon: "ti ti-brand-linkedin" },
-  { href: "https://x.com", label: "X", icon: "ti ti-brand-x" },
-  { href: "https://instagram.com", label: "Instagram", icon: "ti ti-brand-instagram" },
-  { href: "https://github.com", label: "GitHub", icon: "ti ti-brand-github" },
-];
 ---
 
 <footer class="tria-footer-section" data-section-theme="dark">
-  <div class="tria-footer-glow"></div>
-  <div class="tria-footer-glow tria-footer-glow--accent"></div>
+  {showGlow && <div class="tria-footer-glow"></div>}
+  {showGlow && <div class="tria-footer-glow tria-footer-glow--accent"></div>}
 
   <div class="container">
     <!-- Navigation grid -->
     <div class="tria-footer-grid tria-up">
       <div class="tria-footer-col tria-footer-col--brand">
-        <a href="/" class="tria-footer-logo" aria-label="tria home">
-          tria<span class="tria-footer-logo-dot">.</span>
+        <a href={brandHref} class="tria-footer-logo" aria-label={`${brandName} home`}>
+          {brandName}<span class="tria-footer-logo-dot">.</span>
         </a>
 
-        <p class="tria-footer-brand-desc" data-i18n="footer.description">{t("footer.description")}</p>
+        {brandDescription && <p class="tria-footer-brand-desc">{brandDescription}</p>}
 
-        <span class="tria-footer-label" data-i18n="contact.info.followUs">{t("contact.info.followUs")}</span>
-        <ul class="tria-footer-social">
-          {socialLinks.map((social) => (
-            <li>
-              <a href={social.href} target="_blank" rel="noopener noreferrer" aria-label={social.label}>
-                <i class={social.icon}></i>
-              </a>
-            </li>
-          ))}
-        </ul>
+        {socialLabel && <span class="tria-footer-label">{socialLabel}</span>}
+        {socialLinks.length > 0 && (
+          <ul class="tria-footer-social">
+            {socialLinks.map((social) => (
+              <li>
+                <a href={social.href} target="_blank" rel="noopener noreferrer" aria-label={social.label}>
+                  <i class={social.icon}></i>
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
 
-      <div class="tria-footer-col">
-        <span class="tria-footer-label" data-i18n="nav.explore">{t("nav.explore")}</span>
-        <ul class="tria-footer-nav">
-          {exploreLinks.map((link) => (
-            <li>
-              <a href={link.href}>{link.label}</a>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <div class="tria-footer-col">
-        <span class="tria-footer-label" data-i18n="nav.services">{t("nav.services")}</span>
-        <ul class="tria-footer-nav">
-          {serviceLinks.map((link) => (
-            <li>
-              {link.html ? (
-                <a href={link.href} set:html={link.label}></a>
-              ) : (
+      {exploreLinks.length > 0 && (
+        <div class="tria-footer-col">
+          {exploreLabel && <span class="tria-footer-label">{exploreLabel}</span>}
+          <ul class="tria-footer-nav">
+            {exploreLinks.map((link) => (
+              <li>
                 <a href={link.href}>{link.label}</a>
-              )}
-            </li>
-          ))}
-        </ul>
-      </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
-      <div class="tria-footer-col tria-footer-col--projects">
-        <span class="tria-footer-label" data-i18n="nav.projects">{t("nav.projects")}</span>
-        <ul class="tria-footer-nav">
-          {projectLinks.map((link) => (
-            <li>
-              <a href={link.href}>{link.label}</a>
-            </li>
-          ))}
-        </ul>
-      </div>
+      {serviceLinks.length > 0 && (
+        <div class="tria-footer-col">
+          {servicesLabel && <span class="tria-footer-label">{servicesLabel}</span>}
+          <ul class="tria-footer-nav">
+            {serviceLinks.map((link) => (
+              <li>
+                {link.html ? (
+                  <a href={link.href} set:html={link.label}></a>
+                ) : (
+                  <a href={link.href}>{link.label}</a>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
-      <div class="tria-footer-col">
-        <span class="tria-footer-label" data-i18n="nav.contactInfo">{t("nav.contactInfo")}</span>
-        <ul class="tria-footer-contact">
-          {contactLinks.map((link) => (
-            <li>
-              <a
-                href={link.href}
-                target={link.external ? "_blank" : undefined}
-                rel={link.external ? "noopener noreferrer" : undefined}
-              >
-                <span class="tria-footer-contact-icon"><i class={`ti ${link.icon}`}></i></span>
-                <span>{link.label}</span>
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
+      {projectLinks.length > 0 && (
+        <div class="tria-footer-col tria-footer-col--projects">
+          {projectsLabel && <span class="tria-footer-label">{projectsLabel}</span>}
+          <ul class="tria-footer-nav">
+            {projectLinks.map((link) => (
+              <li>
+                <a href={link.href}>{link.label}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {contactLinks.length > 0 && (
+        <div class="tria-footer-col">
+          {contactLabel && <span class="tria-footer-label">{contactLabel}</span>}
+          <ul class="tria-footer-contact">
+            {contactLinks.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  target={link.external ? "_blank" : undefined}
+                  rel={link.external ? "noopener noreferrer" : undefined}
+                >
+                  <span class="tria-footer-contact-icon"><i class={`ti ${link.icon}`}></i></span>
+                  <span>{link.label}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
 
     <!-- Bottom bar -->
     <div class="tria-footer-bottom tria-up">
-      <p class="tria-footer-copyright">{t("footer.allRights").replace("{year}", String(year))}</p>
-      <nav class="tria-footer-legal" aria-label="Legal">
-        <a href="/privacy">{t("nav.privacyPolicy")}</a>
-        <a href="/terms">{t("nav.terms")}</a>
-        <a href="/cookies">{t("nav.cookiePolicy")}</a>
-      </nav>
+      <p class="tria-footer-copyright">{copyrightText || `© ${year} ${brandName}. All rights reserved.`}</p>
+      {legalLinks.length > 0 && (
+        <nav class="tria-footer-legal" aria-label="Legal">
+          {legalLinks.map((link) => (
+            <a href={link.href}>{link.label}</a>
+          ))}
+        </nav>
+      )}
     </div>
   </div>
 </footer>

@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import Button from "./Button.astro";
 import { createT } from "../i18n/utils";
 
 interface Props {
@@ -45,12 +46,7 @@ const t = createT(Astro.currentLocale);
           <div class="tria-pagination">
             {
               currentPage > 1 && (
-                <a
-                  href={currentPage === 2 ? "/blog" : `/blog/page/${currentPage - 1}`}
-                  class="tria-link tria-dark tria-arrow-place"
-                >
-                  <span data-i18n="pagination.previous">{t("pagination.previous")}</span>
-                </a>
+                <Button text={t("pagination.previous")} href={currentPage === 2 ? "/blog" : `/blog/page/${currentPage - 1}`} variant="ghost" size="sm" arrowPosition="left" showArrow={true} />
               )
             }
             <span class="tria-pagination-info" data-i18n="pagination.page">
@@ -58,12 +54,7 @@ const t = createT(Astro.currentLocale);
             </span>
             {
               currentPage < totalPages && (
-                <a
-                  href={`/blog/page/${currentPage + 1}`}
-                  class="tria-link tria-dark tria-arrow-place"
-                >
-                  <span data-i18n="pagination.next">{t("pagination.next")}</span>
-                </a>
+                <Button text={t("pagination.next")} href={`/blog/page/${currentPage + 1}`} variant="ghost" size="sm" showArrow={true} />
               )
             }
           </div>

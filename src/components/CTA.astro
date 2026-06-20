@@ -1,30 +1,89 @@
 ---
-import { createT } from "../i18n/utils";
-const t = createT(Astro.currentLocale);
+import Button from "./Button.astro";
+
+interface Props {
+  theme?: 'light' | 'dark';
+  suptitle?: string;
+  heading: string;
+  description?: string;
+  primaryButtonText: string;
+  secondaryButtonText: string;
+  primaryButtonHref: string;
+  secondaryButtonHref: string;
+  showIcon?: boolean;
+  padding?: string;
+  accentColor?: string;
+  largeTitle?: boolean;
+  footerLayout?: boolean;
+  bgColor?: string;
+  primaryButtonColor?: string;
+  primaryButtonHoverColor?: string;
+  primaryButtonVariant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'glass';
+}
+
+const {
+  theme = 'light',
+  suptitle,
+  heading,
+  description,
+  primaryButtonText,
+  secondaryButtonText,
+  primaryButtonHref,
+  secondaryButtonHref,
+  showIcon = false,
+  padding = 'tria-p-120-120',
+  accentColor,
+  largeTitle = false,
+  footerLayout = false,
+  bgColor,
+  primaryButtonColor,
+  primaryButtonHoverColor,
+  primaryButtonVariant,
+} = Astro.props;
+
+let sectionStyle = '';
+if (bgColor) sectionStyle += `--cta-bg: ${bgColor};`;
+if (accentColor) sectionStyle += `--cta-accent: ${accentColor}; --cta-accent-hover: ${accentColor}dd;`;
+
+const btnColor = primaryButtonColor || accentColor;
+const btnHoverColor = primaryButtonHoverColor || accentColor;
+const isDefaultDark = theme === 'dark' && !bgColor && !accentColor;
+const btnVariant = primaryButtonVariant || (isDefaultDark ? 'glass' : 'primary');
 ---
 
-<!-- cta -->
-<section class="tria-cta-section" data-section-theme="light">
+<section
+  class={`tria-cta-section${theme === 'dark' || footerLayout ? ' tria-footer-cta' : ''}${accentColor ? ' tria-cta-accented' : ''}${bgColor ? ' tria-cta-custom-bg' : ''}`}
+  data-section-theme={theme}
+  style={sectionStyle}
+>
   <div class="tria-cta-glow"></div>
-  <div class="container tria-p-120-120">
-      <div class="row justify-content-center tria-cta-inner">
-        <div class="col-lg-10 tria-center">
-          <span class="tria-suptitle tria-light-soft tria-up tria-mb-30" style="display:block;text-align:center;" data-i18n="ctaAlt.suptitle">{t("ctaAlt.suptitle")}</span>
-          <h2 class="tria-cta-heading tria-up tria-mb-60" data-i18n-html="ctaAlt.heading" set:html={t("ctaAlt.heading")} />
-          <div class="tria-cta-actions tria-up">
-            <a href="/contact" class="tria-button tria-arrow-place">
-              <span data-i18n="ctaAlt.startProject">{t("ctaAlt.startProject")}</span>
-            </a>
-            <a href="/portfolio" class="tria-cta-link">
-              <span data-i18n="ctaAlt.seeWork">{t("ctaAlt.seeWork")}</span>
-            </a>
-          </div>
+  <div class={`container ${padding}`}>
+    <div class="row justify-content-center tria-cta-inner">
+      <div class="col-lg-10 tria-center">
+        {suptitle && (
+          <span class={`tria-suptitle tria-up tria-mb-30${theme === 'dark' && !accentColor ? '' : ' tria-suptitle-dark'}`} style="display:block;text-align:center;">
+            {suptitle}
+          </span>
+        )}
+        <h2 class={`tria-cta-heading tria-up${largeTitle ? ' tria-cta-heading--large' : ''} tria-mb-60`} set:html={heading} />
+        {description && <p class="tria-cta-description tria-up">{description}</p>}
+        <div class="tria-cta-actions tria-up">
+          <Button
+            text={primaryButtonText}
+            href={primaryButtonHref}
+            variant={btnVariant}
+            color={btnColor}
+            hoverColor={btnHoverColor}
+            showArrow={showIcon}
+          />
+          <a href={secondaryButtonHref} class="tria-cta-link">
+            <span>{secondaryButtonText}</span>
+          </a>
         </div>
       </div>
-
+    </div>
   </div>
 </section>
-<!-- cta end -->
 
 <style>
   .tria-cta-section {
@@ -33,14 +92,43 @@ const t = createT(Astro.currentLocale);
     background: #f5f6fa;
   }
 
+  .tria-cta-section[data-section-theme="dark"] {
+    background: var(--accent);
+  }
+
+  .tria-cta-custom-bg {
+    background: var(--cta-bg) !important;
+  }
+
+  .tria-cta-accented {
+    background: #f0f2f5;
+  }
+
   .tria-cta-glow {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 600px;
-    height: 600px;
+    width: 700px;
+    height: 700px;
     transform: translate(-50%, -50%);
     background: radial-gradient(circle, rgba(6,142,140,0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .tria-cta-section[data-section-theme="dark"] .tria-cta-glow {
+    width: 900px;
+    height: 900px;
+    background: radial-gradient(ellipse at 40% 50%, rgba(6, 142, 140, 0.12) 0%, transparent 60%),
+                radial-gradient(ellipse at 60% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 60%);
+  }
+
+  .tria-cta-section[data-section-theme="dark"]::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.03) 1px, transparent 0);
+    background-size: 32px 32px;
     pointer-events: none;
   }
 
@@ -52,9 +140,38 @@ const t = createT(Astro.currentLocale);
   .tria-cta-heading {
     font-size: clamp(1.8rem, 3.5vw, 2.8rem);
     font-weight: 450;
-    color: #0b0d17;
     line-height: 1.15;
     letter-spacing: -0.025em;
+    color: #0b0d17;
+  }
+
+  .tria-cta-heading br {
+    display: none;
+  }
+
+  .tria-cta-heading--large {
+    font-size: clamp(2.4rem, 5vw, 4rem);
+  }
+
+  .tria-cta-section[data-section-theme="dark"] .tria-cta-heading {
+    color: #fff;
+    margin: 0 auto 24px;
+    max-width: 720px;
+    font-weight: 400;
+  }
+
+  .tria-cta-section[data-section-theme="dark"] :global(.tria-thin) {
+    font-weight: 300;
+    opacity: 0.7;
+  }
+
+  .tria-cta-section[data-section-theme="dark"] :global(.tria-cta-accent) {
+    color: var(--accent) !important;
+    opacity: 1;
+  }
+
+  .tria-cta-accented .tria-cta-heading {
+    color: #0b0d17;
   }
 
   .tria-cta-accent {
@@ -63,27 +180,118 @@ const t = createT(Astro.currentLocale);
     font-style: italic;
   }
 
+  .tria-cta-section[data-section-theme="dark"] :global(.tria-cta-accent) {
+    color: rgba(255, 255, 255, 0.4) !important;
+  }
+
+  .tria-cta-description {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    max-width: 540px;
+    margin: 0 auto 40px;
+    color: rgba(0, 0, 0, 0.5);
+  }
+
+  .tria-cta-section[data-section-theme="dark"] .tria-cta-description {
+    color: rgba(255, 255, 255, 0.55);
+  }
+
   .tria-cta-actions {
     display: flex;
     align-items: center;
-    gap: 40px;
+    gap: 20px;
     justify-content: center;
     flex-wrap: wrap;
   }
 
   .tria-cta-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    height: 64px;
+    padding: 0 2rem;
+    border-radius: 100px;
     font-size: 0.8rem;
-    color: rgba(0, 0, 0, 0.4);
-    letter-spacing: 2px;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
-    font-weight: 500;
-    transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    font-weight: 550;
+    color: rgba(0, 0, 0, 0.45);
+    text-decoration: none;
+    border: 1.5px solid rgba(0, 0, 0, 0.08);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .tria-cta-link:hover {
     color: var(--accent);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .tria-cta-section[data-section-theme="dark"] .tria-cta-link {
+    color: rgba(255, 255, 255, 0.5);
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+
+  .tria-cta-section[data-section-theme="dark"] .tria-cta-link:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: rgba(6, 142, 140, 0.06);
+  }
+
+  .tria-cta-accented .tria-cta-link {
+    color: rgba(0, 0, 0, 0.4);
+  }
+
+  .tria-cta-accented .tria-cta-link:hover {
+    color: var(--cta-accent, var(--accent));
+  }
+
+  .tria-footer-cta {
+    text-align: center;
+    padding: 120px 0 100px;
+  }
+
+  .tria-footer-cta > .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .tria-footer-cta .tria-cta-heading {
+    margin: 0 auto 24px;
+    max-width: 720px;
   }
 
   @media (max-width: 768px) {
+    .tria-cta-heading {
+      font-size: clamp(1.5rem, 4vw, 1.8rem);
+    }
+    .tria-cta-heading--large {
+      font-size: clamp(1.8rem, 5vw, 2.4rem);
+    }
+    .tria-cta-actions {
+      flex-direction: column;
+      align-items: center;
+    }
+    .tria-cta-link {
+      height: 52px;
+      padding: 0 1.5rem;
+      font-size: 0.75rem;
+    }
+    .tria-cta-description {
+      font-size: 0.85rem;
+      margin-bottom: 32px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .tria-cta-heading br {
+      display: inline;
+    }
+    .tria-cta-heading--large {
+      font-size: 1.6rem;
+    }
+    .tria-cta-description {
+      font-size: 0.8rem;
+    }
   }
 </style>

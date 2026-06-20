@@ -1,33 +1,33 @@
 ---
+interface Partner {
+  logo: string;
+  href: string;
+  width?: string;
+  alt?: string;
+}
 
+interface Props {
+  partners: Partner[];
+  padding?: string;
+}
+
+const {
+  partners = [],
+  padding = '80px 0'
+} = Astro.props;
 ---
 
 <!-- partners -->
-<div data-section-theme="light" style="padding: 80px 0;">
-  <div class="container">
-    <div class="swiper-container tria-infinite-show tria-up">
-      <div class="swiper-wrapper tria-partner-wrapper">
+<div data-section-theme="light" style={`padding: ${padding};`}>
+  <div class="swiper-container tria-infinite-show tria-up">
+    <div class="swiper-wrapper tria-partner-wrapper">
+      {partners.map((partner) => (
         <div class="swiper-slide">
-          <a href="#." class="tria-partner-frame" style="width: 60px;"
-            ><img src="/assets/img/partners/1.svg" alt="logo" /></a
-          >
+          <a href={partner.href} class="tria-partner-frame" style={`width: ${partner.width || '60px'};`}>
+            <img src={partner.logo} alt={partner.alt || 'logo'} />
+          </a>
         </div>
-        <div class="swiper-slide">
-          <a href="#." class="tria-partner-frame" style="width: 100px;"
-            ><img src="/assets/img/partners/2.svg" alt="logo" /></a
-          >
-        </div>
-        <div class="swiper-slide">
-          <a href="#." class="tria-partner-frame" style="width: 60px;"
-            ><img src="/assets/img/partners/1.svg" alt="logo" /></a
-          >
-        </div>
-        <div class="swiper-slide">
-          <a href="#." class="tria-partner-frame" style="width: 100px;"
-            ><img src="/assets/img/partners/2.svg" alt="logo" /></a
-          >
-        </div>
-      </div>
+      ))}
     </div>
   </div>
 </div>

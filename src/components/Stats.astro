@@ -1,39 +1,34 @@
 ---
-import { createT } from "../i18n/utils";
-const t = createT(Astro.currentLocale);
+interface StatItem {
+  value: number;
+  suffix: string;
+  label: string;
+}
+
+interface Props {
+  stats: StatItem[];
+  padding?: string;
+}
+
+const {
+  stats = [],
+  padding = 'tria-p-90-90'
+} = Astro.props;
 ---
 
 <!-- stats -->
 <section class="tria-stats-section" data-section-theme="light">
-  <div class="container tria-p-90-90">
+  <div class={`container ${padding}`}>
       <div class="row tria-stats-grid">
-        <div class="col-6 col-lg-3 tria-stat-item tria-up">
-          <div class="tria-stat-number">
-            <span class="tria-counter" data-target="120">0</span><span class="tria-stat-suffix">+</span>
+        {stats.map((stat) => (
+          <div class={`col-6 col-lg-3 tria-stat-item tria-up`}>
+            <div class="tria-stat-number">
+              <span class="tria-counter" data-target={stat.value}>0</span><span class="tria-stat-suffix">{stat.suffix}</span>
+            </div>
+            <p class="tria-stat-label tria-dark-soft">{stat.label}</p>
           </div>
-          <p class="tria-stat-label tria-dark-soft" data-i18n="stats.projectsLabel">{t("stats.projectsLabel")}</p>
-        </div>
-        <div class="col-6 col-lg-3 tria-stat-item tria-up">
-          <div class="tria-stat-number">
-            <span class="tria-counter" data-target="48">0</span><span class="tria-stat-suffix">+</span>
-          </div>
-          <p class="tria-stat-label tria-dark-soft" data-i18n="stats.clientsLabel">{t("stats.clientsLabel")}</p>
-        </div>
-        <div class="col-6 col-lg-3 tria-stat-item tria-up">
-          <div class="tria-stat-number">
-            <span class="tria-counter" data-target="7">0</span><span class="tria-stat-suffix">+</span>
-          </div>
-          <p class="tria-stat-label tria-dark-soft" data-i18n="stats.yearsLabel">{t("stats.yearsLabel")}</p>
-        </div>
-        <div class="col-6 col-lg-3 tria-stat-item tria-up">
-          <div class="tria-stat-number">
-            <span class="tria-counter" data-target="99">0</span><span class="tria-stat-suffix">%</span>
-          </div>
-          <p class="tria-stat-label tria-dark-soft" data-i18n="stats.satisfactionLabel">{t("stats.satisfactionLabel")}</p>
-        </div>
+        ))}
       </div>
-
-
   </div>
 </section>
 <!-- stats end -->
@@ -70,6 +65,24 @@ const t = createT(Astro.currentLocale);
     }
     .tria-stat-item:nth-child(3) {
       border-right: 1px solid rgba(0, 0, 0, 0.06);
+    }
+  }
+
+  @media (max-width: 576px) {
+    .tria-stat-item {
+      padding: 28px 16px;
+    }
+    .tria-stat-number {
+      margin-bottom: 8px;
+    }
+    .tria-counter {
+      font-size: clamp(2.5rem, 10vw, 3.5rem);
+    }
+    .tria-stat-suffix {
+      font-size: clamp(1.4rem, 5vw, 2rem);
+    }
+    .tria-stat-label {
+      font-size: 0.6rem;
     }
   }
 

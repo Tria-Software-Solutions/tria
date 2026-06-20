@@ -1,5 +1,5 @@
 ---
-import { createT } from "../i18n/utils";
+import { createT, localePath } from "../i18n/utils";
 const t = createT(Astro.currentLocale);
 const locale = Astro.currentLocale;
 const pathname = Astro.url.pathname;
@@ -7,6 +7,8 @@ const path = pathname.replace(/\/+$/, "") || "/";
 const barePath = path.startsWith("/es") ? (path.replace(/^\/es/, "") || "/") : path;
 const enHref = barePath;
 const esHref = `/es${barePath === "/" ? "" : barePath}`;
+
+const lp = (p: string) => localePath(locale, p);
 ---
 
 <!-- menu -->
@@ -16,10 +18,10 @@ const esHref = `/es${barePath === "/" ? "" : barePath}`;
   <div class="tria-menu-orb tria-menu-orb-2"></div>
 
   <div class="tria-menu-close">
-    <div class="tria-menu-btn">
-      <span></span>
-      <span></span>
-      <span></span>
+    <div class="tria-menu-close-btn" onclick="document.querySelector('.tria-menu-btn').click()">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M6 6l12 12M18 6l-12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
     </div>
   </div>
   <div class="tria-menu-content">
@@ -27,52 +29,52 @@ const esHref = `/es${barePath === "/" ? "" : barePath}`;
       <div class="tria-menu-pages">
         <ul>
           <li class="tria-active">
-            <a href="/" data-i18n="nav.home">{t("nav.home")}</a>
+            <a href={lp("/")} data-i18n="nav.home">{t("nav.home")}</a>
           </li>
           <li>
-            <a href="/about" data-i18n="nav.about">{t("nav.about")}</a>
+            <a href={lp("/about")} data-i18n="nav.about">{t("nav.about")}</a>
           </li>
           <li>
-            <a href="/portfolio" data-i18n="nav.work">{t("nav.work")}</a>
+            <a href={lp("/portfolio")} data-i18n="nav.work">{t("nav.work")}</a>
           </li>
           <li>
-            <a href="/services" data-i18n="nav.services">{t("nav.services")}</a>
+            <a href={lp("/services")} data-i18n="nav.services">{t("nav.services")}</a>
           </li>
           <li>
-            <a href="/contact" data-i18n="nav.contact">{t("nav.contact")}</a>
+            <a href={lp("/contact")} data-i18n="nav.contact">{t("nav.contact")}</a>
           </li>
         </ul>
       </div>
       <div class="tria-menu-col">
         <div class="tria-menu-list-group">
           <span class="tria-menu-group-label" data-i18n="nav.services">{t("nav.services")}</span>
-          <a href="/services#software-dev" data-i18n="nav.softwareDev">{t("nav.softwareDev")}</a>
-          <a href="/services#cloud-devops" data-i18n="nav.cloudDevops">{t("nav.cloudDevops")}</a>
-          <a href="/services#ai-ml" data-i18n="nav.aiMl">{t("nav.aiMl")}</a>
-          <a href="/services#cybersecurity" data-i18n="nav.cybersecurity">{t("nav.cybersecurity")}</a>
+          <a href={lp("/services#software-dev")} data-i18n="nav.softwareDev">{t("nav.softwareDev")}</a>
+          <a href={lp("/services#cloud-devops")} data-i18n="nav.cloudDevops">{t("nav.cloudDevops")}</a>
+          <a href={lp("/services#ai-ml")} data-i18n="nav.aiMl">{t("nav.aiMl")}</a>
+          <a href={lp("/services#cybersecurity")} data-i18n="nav.cybersecurity">{t("nav.cybersecurity")}</a>
         </div>
         <div class="tria-menu-list-group">
           <span class="tria-menu-group-label" data-i18n="nav.caseStudies">{t("nav.caseStudies")}</span>
-          <a href="/project-1" data-i18n="nav.fintechDashboard">{t("nav.fintechDashboard")}</a>
-          <a href="/project-2" data-i18n="nav.cloudInfra">{t("nav.cloudInfra")}</a>
-          <a href="/project-3" data-i18n="nav.ecommerce">{t("nav.ecommerce")}</a>
-          <a href="/project-4" data-i18n="nav.aiAnalytics">{t("nav.aiAnalytics")}</a>
-          <a href="/project-5" data-i18n="nav.iotFleet">{t("nav.iotFleet")}</a>
-          <a href="/project-6" data-i18n="nav.healthcareData">{t("nav.healthcareData")}</a>
+          <a href={lp("/project-1")} data-i18n="nav.fintechDashboard">{t("nav.fintechDashboard")}</a>
+          <a href={lp("/project-2")} data-i18n="nav.cloudInfra">{t("nav.cloudInfra")}</a>
+          <a href={lp("/project-3")} data-i18n="nav.ecommerce">{t("nav.ecommerce")}</a>
+          <a href={lp("/project-4")} data-i18n="nav.aiAnalytics">{t("nav.aiAnalytics")}</a>
+          <a href={lp("/project-5")} data-i18n="nav.iotFleet">{t("nav.iotFleet")}</a>
+          <a href={lp("/project-6")} data-i18n="nav.healthcareData">{t("nav.healthcareData")}</a>
         </div>
       </div>
       <div class="tria-menu-col">
         <div class="tria-menu-list-group">
           <span class="tria-menu-group-label" data-i18n="nav.usefulLinks">{t("nav.usefulLinks")}</span>
-          <a href="/privacy" data-i18n="nav.privacyPolicy">{t("nav.privacyPolicy")}</a>
-          <a href="/terms" data-i18n="nav.terms">{t("nav.terms")}</a>
-          <a href="/cookies" data-i18n="nav.cookiePolicy">{t("nav.cookiePolicy")}</a>
-          <a href="/careers" data-i18n="nav.careers">{t("nav.careers")}</a>
+          <a href={lp("/privacy")} data-i18n="nav.privacyPolicy">{t("nav.privacyPolicy")}</a>
+          <a href={lp("/terms")} data-i18n="nav.terms">{t("nav.terms")}</a>
+          <a href={lp("/cookies")} data-i18n="nav.cookiePolicy">{t("nav.cookiePolicy")}</a>
+          <a href={lp("/careers")} data-i18n="nav.careers">{t("nav.careers")}</a>
         </div>
         <div class="tria-menu-list-group">
           <span class="tria-menu-group-label" data-i18n="nav.more">More</span>
-          <a href="/team" data-i18n="nav.team">{t("nav.team")}</a>
-          <a href="/blog" data-i18n="nav.blog">{t("nav.blog")}</a>
+          <a href={lp("/team")} data-i18n="nav.team">{t("nav.team")}</a>
+          <a href={lp("/blog")} data-i18n="nav.blog">{t("nav.blog")}</a>
         </div>
       </div>
     </div>
@@ -158,24 +160,21 @@ const esHref = `/es${barePath === "/" ? "" : barePath}`;
     z-index: 10;
   }
   
-  .tria-menu-close:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: var(--accent) !important;
-    transform: rotate(90deg) scale(1.05);
-    box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.25);
+  .tria-menu-close:hover .tria-menu-close-btn {
+    color: #fff;
   }
-  
-  .tria-menu-close .tria-menu-btn {
-    height: 100%;
-    width: 100%;
+
+  .tria-menu-close-btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
+    color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: color 0.3s ease;
   }
-  
-  .tria-menu-close .tria-menu-btn span {
-    background-color: #fff !important;
+
+  .tria-menu-close-btn:hover {
+    color: #fff;
   }
 
   /* Staggered Column Entrance Animation */

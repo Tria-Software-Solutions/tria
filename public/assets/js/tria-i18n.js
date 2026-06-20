@@ -61,9 +61,9 @@
   document.addEventListener("click", function (e) {
     var btn = e.target.closest(".tria-lang-btn");
     if (!btn) return;
+    e.preventDefault();
     var lang = btn.getAttribute("data-lang");
     if (!lang) return;
-    e.preventDefault();
     switchLanguage(lang);
   });
 

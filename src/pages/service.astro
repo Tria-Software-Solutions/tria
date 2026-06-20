@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Button from "../components/Button.astro";
 import Footer from "../components/Footer.astro";
 import { createT } from "../i18n/utils";
 const t = createT(Astro.currentLocale);
@@ -125,9 +126,7 @@ const t = createT(Astro.currentLocale);
           <p class="tria-up" style="color:#888;margin-bottom:36px;font-size:0.95rem;">
             Let's discuss how this service can help your business.
           </p>
-          <a href="/contact" class="tria-up tria-button tria-arrow-place">
-            <span>Let's Talk</span>
-          </a>
+          <Button text="Let's Talk" href="/contact" showArrow={true} />
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import Button from "./Button.astro";
 import { createT } from "../i18n/utils";
 const t = createT(Astro.currentLocale);
 
@@ -19,9 +20,7 @@ const posts = allPosts
       </div>
       <div class="col-lg-6 tria-mb-30">
         <div class="tria-adaptive-right tria-up">
-          <a href="/blog" class="tria-link tria-dark tria-arrow-place">
-            <span data-i18n="blog.viewAll">{t("blog.viewAll")}</span>
-          </a>
+          <Button text={t("blog.viewAll")} href="/blog" variant="ghost" size="sm" showArrow={true} />
         </div>
       </div>
     </div>
