@@ -208,7 +208,7 @@ const year = new Date().getFullYear();
   /* ── Main grid ── */
   .tria-footer-grid {
     display: grid;
-    grid-template-columns: minmax(200px, 2.2fr) minmax(88px, 1fr) minmax(100px, 1.1fr) minmax(150px, 1.7fr) minmax(120px, 1.2fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: clamp(24px, 3vw, 48px);
     padding: clamp(56px, 7vw, 80px) 0 clamp(48px, 6vw, 64px);
     align-items: start;
@@ -216,6 +216,7 @@ const year = new Date().getFullYear();
 
   .tria-footer-col {
     min-width: 0;
+    text-align: left;
   }
 
   .tria-footer-logo {
@@ -264,6 +265,7 @@ const year = new Date().getFullYear();
     display: flex;
     flex-direction: column;
     gap: 10px;
+    align-items: flex-start;
   }
 
   .tria-footer-nav a {
@@ -287,14 +289,15 @@ const year = new Date().getFullYear();
     display: flex;
     flex-direction: column;
     gap: 8px;
+    align-items: flex-start;
   }
 
   .tria-footer-contact a {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 12px;
-    padding: 10px 0;
-    font-size: 0.88rem;
+    gap: 10px;
+    padding: 8px 0;
+    font-size: 0.85rem;
     color: rgba(255, 255, 255, 0.42);
     text-decoration: none;
     transition: color 0.35s var(--ease-spring);
@@ -346,7 +349,7 @@ const year = new Date().getFullYear();
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 24px;
+    gap: 32px;
     padding: 28px 0 40px;
     flex-wrap: wrap;
   }
@@ -362,6 +365,7 @@ const year = new Date().getFullYear();
     align-items: center;
     gap: clamp(16px, 3vw, 32px);
     flex-wrap: wrap;
+    justify-content: center;
   }
 
   .tria-footer-legal a {

@@ -19,16 +19,12 @@ $(function () {
     ***************************/
   if (window.Lenis) {
     const lenis = new Lenis({
-      duration: 1.4,
+      duration: 1.6,
       easing: function (t) { return 1 - Math.pow(1 - t, 3) },
       orientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 0.9,
-      touchMultiplier: 1.5,
-    });
-
-    lenis.on('scroll', function (e) {
-      ScrollTrigger.update();
+      wheelMultiplier: 0.8,
+      touchMultiplier: 1.2,
     });
 
     function raf(time) {
@@ -58,19 +54,6 @@ $(function () {
     // Remove the old native smooth scroll handler since Lenis handles it
     // (the handler is below, we keep it for non-Lenis fallback)
   }
-
-  /***************************
-
-    swup
-
-    ***************************/
-  const options = {
-    containers: ["#swupMain", "#swupMenu"],
-    animateHistoryBrowsing: true,
-    linkSelector: "a:not([data-no-swup])",
-    animationSelector: '[class="tria-main-transition"]',
-  };
-  const swup = new Swup(options);
 
   /***************************
 
@@ -237,13 +220,13 @@ $(function () {
     } else if (p.startsWith("/contact")) {
       name = "Contact"; i18nKey = "nav.contact";
     } else if (p.startsWith("/team")) {
-      name = "Team";
+      name = "Team"; i18nKey = "nav.team";
     } else if (p.startsWith("/blog")) {
-      name = "Blog";
+      name = "Blog"; i18nKey = "nav.blog";
     } else if (p.startsWith("/project")) {
-      name = "Project";
+      name = "Project"; i18nKey = "nav.project";
     } else if (p.startsWith("/portfolio")) {
-      name = "Portfolio";
+      name = "Portfolio"; i18nKey = "nav.portfolio";
     }
 
     $(".tria-current-page a").remove();
@@ -251,18 +234,13 @@ $(function () {
     if (i18nKey) $link.attr("data-i18n", i18nKey);
     $(".tria-current-page").append($link);
   }
+  window.updateCurrentPage = updateCurrentPage;
 
-  /***************************
-
-    append
-
-    ***************************/
-  $(document).ready(function () {
-    $(".tria-arrow").clone().appendTo(".tria-arrow-place");
-    $(".tria-dodecahedron").clone().appendTo(".tria-animation");
-    $(".tria-lines").clone().appendTo(".tria-lines-place");
-    updateCurrentPage();
-  });
+  // run after DOM is fully ready
+  updateCurrentPage();
+  if (window.triaI18n && window.triaI18n.apply) {
+    window.triaI18n.apply();
+  }
   /***************************
 
     accordion
@@ -342,22 +320,27 @@ $(function () {
     ***************************/
   const btt = document.querySelector(".tria-back-to-top .tria-link");
 
-  gsap.set(btt, {
-    x: -30,
-    opacity: 0,
-  });
+  function toggleBtt(scrollY) {
+    var show = scrollY > window.innerHeight * 0.6;
+    gsap.to(btt, {
+      x: show ? 0 : -30,
+      opacity: show ? 1 : 0,
+      duration: 0.4,
+      ease: "sine",
+      overwrite: "auto",
+    });
+  }
 
-  gsap.to(btt, {
-    x: 0,
-    opacity: 1,
-    ease: "sine",
-    scrollTrigger: {
-      trigger: "body",
-      start: "top -40%",
-      end: "top -40%",
-      toggleActions: "play none reverse none",
-    },
-  });
+  if (window.triaLenis) {
+    window.triaLenis.on('scroll', function (e) {
+      toggleBtt(e.animatedScroll || e.targetScroll || window.scrollY);
+    });
+  } else {
+    $(window).on('scroll', function () {
+      toggleBtt(window.scrollY);
+    });
+  }
+  toggleBtt(window.scrollY);
   /***************************
 
     cursor
@@ -665,28 +648,6 @@ $(function () {
     navigation: {
       nextEl: ".tria-revi-next",
       prevEl: ".tria-revi-prev",
-    },
-  });
-
-  /***************************
-
-    infinite slider
-
-    ***************************/
-  var swiper = new Swiper(".tria-infinite-show", {
-    slidesPerView: 2,
-    spaceBetween: 30,
-    speed: 5000,
-    autoplay: true,
-    autoplay: {
-      delay: 0,
-    },
-    loop: true,
-    freeMode: true,
-    breakpoints: {
-      992: {
-        slidesPerView: 4,
-      },
     },
   });
 
@@ -1135,28 +1096,6 @@ $(function () {
       navigation: {
         nextEl: ".tria-revi-next",
         prevEl: ".tria-revi-prev",
-      },
-    });
-
-    /***************************
-
-        infinite slider
-
-        ***************************/
-    var swiper = new Swiper(".tria-infinite-show", {
-      slidesPerView: 2,
-      spaceBetween: 30,
-      speed: 25000,
-      autoplay: true,
-      autoplay: {
-        delay: 0,
-      },
-      loop: true,
-      freeMode: true,
-      breakpoints: {
-        992: {
-          slidesPerView: 4,
-        },
       },
     });
 

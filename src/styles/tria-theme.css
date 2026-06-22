@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap");
-@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css);
 
 /* -------------------------------------------
 
@@ -434,8 +433,7 @@ button
 .tria-button:hover {
   -webkit-transform: translateY(-2px);
   transform: translateY(-2px);
-  opacity: 0.92;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12);
 }
 .tria-button:hover svg {
   -webkit-transform: translateX(4px);
@@ -448,8 +446,7 @@ button
 .tria-button.tria-arrow-down:hover {
   -webkit-transform: translateY(-2px);
   transform: translateY(-2px);
-  opacity: 0.92;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12);
 }
 .tria-button.tria-arrow-down:hover svg {
   -webkit-transform: translateX(4px) rotate(90deg);
@@ -818,137 +815,7 @@ spaces
 preloader
 
 ------------------------------------------- */
-.tria-preloader {
-  position: fixed;
-  z-index: 9;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: rgb(0, 0, 0);
-}
-.tria-preloader .tria-preloader-animation {
-  opacity: 0;
-  position: relative;
-  height: 100vh;
-  color: rgb(255, 255, 255);
-}
-.tria-preloader .tria-preloader-animation .tria-pos-abs {
-  position: absolute;
-  height: 100vh;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-.tria-preloader .tria-preloader-animation .tria-pos-abs p {
-  opacity: 0;
-  margin-right: 15px;
-}
-@media screen and (max-width: 992px) {
-  .tria-preloader .tria-preloader-animation .tria-pos-abs {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-  }
-  .tria-preloader .tria-preloader-animation .tria-pos-abs p {
-    margin-right: 0;
-    margin-bottom: 10px;
-  }
-}
-.tria-preloader .tria-preloader-animation .tria-pos-abs .tria-reveal-frame {
-  position: relative;
-  padding: 0 30px;
-}
-.tria-preloader
-  .tria-preloader-animation
-  .tria-pos-abs
-  .tria-reveal-frame
-  .tria-reveal-box {
-  z-index: 4;
-  position: absolute;
-  opacity: 0;
-  height: 100%;
-  background-color: var(--accent);
-}
-.tria-preloader.tria-hidden {
-  pointer-events: none;
-}
 
-/* -------------------------------------------
-
-cursor
-
-------------------------------------------- */
-.tria-ball {
-  width: 20px;
-  height: 20px;
-  position: fixed;
-  z-index: 10;
-  background-color: rgb(0, 0, 0);
-  border-radius: 50%;
-  pointer-events: none;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  opacity: 0.1;
-}
-.tria-ball .tria-icon-1 {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  -webkit-transform: scale(0);
-  transform: scale(0);
-}
-.tria-ball .tria-icon-1 svg {
-  fill: rgba(255, 255, 255, 0.9);
-}
-.tria-ball .tria-more-text,
-.tria-ball .tria-choose-text {
-  position: absolute;
-  width: 100%;
-  text-align: center;
-  display: block;
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  -webkit-transform: scale(0);
-  transform: scale(0);
-}
-.tria-ball.tria-accent .tria-icon-1 svg {
-  fill: rgb(0, 0, 0);
-}
-.tria-ball.tria-accent .tria-more-text,
-.tria-ball.tria-accent .tria-choose-text {
-  color: rgb(0, 0, 0);
-}
-@media screen and (max-width: 1200px) {
-  .tria-ball {
-    display: none;
-  }
-}
-
-/* -------------------------------------------
-
-hidden elements
-
-------------------------------------------- */
-.tria-hidden-elements .tria-dodecahedron,
 .tria-hidden-elements .tria-lines,
 .tria-hidden-elements .tria-arrow {
   display: none;
@@ -963,31 +830,6 @@ scrollbar
   display: none;
 }
 
-.tria-progress-track {
-  position: fixed;
-  z-index: 10;
-  top: 0;
-  right: 0;
-  width: 4px;
-  height: 100%;
-  background-color: rgb(0, 0, 0);
-}
-.tria-progress-track .tria-progress {
-  width: 4px;
-  height: 0;
-  background-color: var(--accent);
-}
-@media screen and (max-width: 992px) {
-  .tria-progress-track {
-    display: none;
-  }
-}
-
-/* -------------------------------------------
-
-frame
-
-------------------------------------------- */
 .tria-logo {
   font-size: 42px;
   font-weight: 500;
@@ -1150,7 +992,11 @@ frame
 }
 
 .tria-frame-top .tria-logo span[data-i="4"] {
-  color: var(--accent) !important;
+  color: var(--accent);
+}
+.tria-frame-top .tria-logo span[data-i="4"].tria-on-dark,
+.tria-frame-top .tria-logo span[data-i="4"].tria-on-accent {
+  color: #fff !important;
 }
 
 /* -------------------------------------------
@@ -1771,239 +1617,6 @@ lines
 
 /* -------------------------------------------
 
-dodecahedron
-
-------------------------------------------- */
-.tria-animation-frame {
-  width: 100%;
-  height: 100vh;
-  position: absolute;
-  top: 0;
-  -webkit-animation: jump 10s linear infinite;
-  animation: jump 10s linear infinite;
-  pointer-events: none;
-}
-
-.tria-animation {
-  position: absolute;
-  display: inline-block;
-  width: 300px;
-  height: 300px;
-  opacity: 0.2;
-  pointer-events: none;
-}
-
-.tria-position-1 {
-  top: 100px;
-  right: 100px;
-}
-.tria-position-1 .tria-pentagon div {
-  border-top: 0.1px solid rgb(255, 255, 255);
-}
-
-.tria-position-2 {
-  top: -60px;
-  left: 15%;
-}
-.tria-position-2 .tria-pentagon div {
-  border-top: 1px solid rgb(255, 255, 255);
-}
-.tria-position-2 .tria-dodecahedron {
-  -webkit-animation-delay: 0.5s;
-  animation-delay: 0.5s;
-}
-@media screen and (max-width: 1400px) {
-  .tria-position-2 {
-    display: none;
-  }
-}
-
-.tria-position-3 {
-  bottom: -100px;
-  right: 35%;
-}
-.tria-position-3 .tria-pentagon div {
-  border-top: 1px solid rgb(255, 255, 255);
-}
-.tria-position-3 .tria-dodecahedron {
-  -webkit-animation-delay: 1s;
-  animation-delay: 1s;
-}
-@media screen and (max-width: 1400px) {
-  .tria-position-3 {
-    display: none;
-  }
-}
-
-.tria-position-4 {
-  top: -60px;
-  right: 20%;
-}
-.tria-position-4 .tria-pentagon div {
-  border-top: 0.1px solid rgb(255, 255, 255);
-}
-.tria-position-4 .tria-dodecahedron {
-  -webkit-animation-delay: 0.5s;
-  animation-delay: 0.5s;
-}
-@media screen and (max-width: 1400px) {
-  .tria-position-4 {
-    display: none;
-  }
-}
-.tria-position-4.tria-dark .tria-pentagon div {
-  border-top: 0.1px solid rgb(0, 0, 0);
-}
-
-.tria-dodecahedron {
-  position: relative;
-  left: 100px;
-  top: 40px;
-  width: 100px;
-  height: 223px;
-  -webkit-transform-style: preserve-3d;
-  transform-style: preserve-3d;
-  -webkit-animation: rotate 100s infinite linear;
-  animation: rotate 100s infinite linear;
-}
-@-webkit-keyframes rotate {
-  from {
-    -webkit-transform: rotateX(0deg) rotateY(360deg) rotateZ(360deg);
-    transform: rotateX(0deg) rotateY(360deg) rotateZ(360deg);
-  }
-  to {
-    -webkit-transform: rotateX(360deg) rotateY(0deg) rotateZ(-360deg);
-    transform: rotateX(360deg) rotateY(0deg) rotateZ(-360deg);
-  }
-}
-@keyframes rotate {
-  from {
-    -webkit-transform: rotateX(0deg) rotateY(360deg) rotateZ(360deg);
-    transform: rotateX(0deg) rotateY(360deg) rotateZ(360deg);
-  }
-  to {
-    -webkit-transform: rotateX(360deg) rotateY(0deg) rotateZ(-360deg);
-    transform: rotateX(360deg) rotateY(0deg) rotateZ(-360deg);
-  }
-}
-
-.tria-pentagon {
-  position: absolute;
-  width: 100px;
-}
-.tria-pentagon:nth-child(1) {
-  -webkit-transform: rotateY(0.2turn) translateZ(69px) rotateX(26.5deg);
-  transform: rotateY(0.2turn) translateZ(69px) rotateX(26.5deg);
-}
-.tria-pentagon:nth-child(6) {
-  bottom: 0;
-  -webkit-transform: rotateY(0.2turn) translateZ(-69px) rotateX(206.5deg);
-  transform: rotateY(0.2turn) translateZ(-69px) rotateX(206.5deg);
-}
-.tria-pentagon:nth-child(2) {
-  -webkit-transform: rotateY(0.4turn) translateZ(69px) rotateX(26.5deg);
-  transform: rotateY(0.4turn) translateZ(69px) rotateX(26.5deg);
-}
-.tria-pentagon:nth-child(7) {
-  bottom: 0;
-  -webkit-transform: rotateY(0.4turn) translateZ(-69px) rotateX(206.5deg);
-  transform: rotateY(0.4turn) translateZ(-69px) rotateX(206.5deg);
-}
-.tria-pentagon:nth-child(3) {
-  -webkit-transform: rotateY(0.6turn) translateZ(69px) rotateX(26.5deg);
-  transform: rotateY(0.6turn) translateZ(69px) rotateX(26.5deg);
-}
-.tria-pentagon:nth-child(8) {
-  bottom: 0;
-  -webkit-transform: rotateY(0.6turn) translateZ(-69px) rotateX(206.5deg);
-  transform: rotateY(0.6turn) translateZ(-69px) rotateX(206.5deg);
-}
-.tria-pentagon:nth-child(4) {
-  -webkit-transform: rotateY(0.8turn) translateZ(69px) rotateX(26.5deg);
-  transform: rotateY(0.8turn) translateZ(69px) rotateX(26.5deg);
-}
-.tria-pentagon:nth-child(9) {
-  bottom: 0;
-  -webkit-transform: rotateY(0.8turn) translateZ(-69px) rotateX(206.5deg);
-  transform: rotateY(0.8turn) translateZ(-69px) rotateX(206.5deg);
-}
-.tria-pentagon:nth-child(5) {
-  -webkit-transform: rotateY(1turn) translateZ(69px) rotateX(26.5deg);
-  transform: rotateY(1turn) translateZ(69px) rotateX(26.5deg);
-}
-.tria-pentagon:nth-child(10) {
-  bottom: 0;
-  -webkit-transform: rotateY(1turn) translateZ(-69px) rotateX(206.5deg);
-  transform: rotateY(1turn) translateZ(-69px) rotateX(206.5deg);
-}
-.tria-pentagon:nth-child(11) {
-  -webkit-transform: translateZ(69px) rotateX(-90deg);
-  transform: translateZ(69px) rotateX(-90deg);
-}
-.tria-pentagon:nth-child(12) {
-  bottom: 0;
-  -webkit-transform: translateZ(-69px) rotateX(90deg);
-  transform: translateZ(-69px) rotateX(90deg);
-}
-.tria-pentagon div {
-  position: absolute;
-  width: 100px;
-  height: 69px;
-  -webkit-transform-origin: bottom;
-  transform-origin: bottom;
-}
-.tria-pentagon div:nth-child(1) {
-  -webkit-transform: rotate(0.2turn);
-  transform: rotate(0.2turn);
-}
-.tria-pentagon div:nth-child(2) {
-  -webkit-transform: rotate(0.4turn);
-  transform: rotate(0.4turn);
-}
-.tria-pentagon div:nth-child(3) {
-  -webkit-transform: rotate(0.6turn);
-  transform: rotate(0.6turn);
-}
-.tria-pentagon div:nth-child(4) {
-  -webkit-transform: rotate(0.8turn);
-  transform: rotate(0.8turn);
-}
-.tria-pentagon div:nth-child(5) {
-  -webkit-transform: rotate(1turn);
-  transform: rotate(1turn);
-}
-
-@-webkit-keyframes jump {
-  0% {
-    -webkit-transform: translateY(-30px);
-    transform: translateY(-30px);
-  }
-  50% {
-    -webkit-transform: translateY(30px);
-    transform: translateY(30px);
-  }
-  100% {
-    -webkit-transform: translateY(-30px);
-    transform: translateY(-30px);
-  }
-}
-
-@keyframes jump {
-  0% {
-    -webkit-transform: translateY(-30px);
-    transform: translateY(-30px);
-  }
-  50% {
-    -webkit-transform: translateY(30px);
-    transform: translateY(30px);
-  }
-  100% {
-    -webkit-transform: translateY(-30px);
-    transform: translateY(-30px);
-  }
-}
-/* -------------------------------------------
-
 about
 
 ------------------------------------------- */
@@ -2539,25 +2152,25 @@ revievs
   }
 }
 .tria-revi-pagination .swiper-pagination-bullet .tria-custom-dot.tria-slide-1 {
-  background-image: url(../assets/img/testimonials/1.svg);
+  background-image: url(/assets/img/testimonials/1.svg);
 }
 .tria-revi-pagination .swiper-pagination-bullet .tria-custom-dot.tria-slide-2 {
-  background-image: url(../assets/img/testimonials/2.svg);
+  background-image: url(/assets/img/testimonials/2.svg);
 }
 .tria-revi-pagination .swiper-pagination-bullet .tria-custom-dot.tria-slide-3 {
-  background-image: url(../assets/img/testimonials/3.svg);
+  background-image: url(/assets/img/testimonials/3.svg);
 }
 .tria-revi-pagination .swiper-pagination-bullet .tria-custom-dot.tria-slide-4 {
-  background-image: url(../assets/img/testimonials/4.svg);
+  background-image: url(/assets/img/testimonials/4.svg);
 }
 .tria-revi-pagination .swiper-pagination-bullet .tria-custom-dot.tria-slide-5 {
-  background-image: url(../assets/img/testimonials/5.svg);
+  background-image: url(/assets/img/testimonials/5.svg);
 }
 .tria-revi-pagination .swiper-pagination-bullet .tria-custom-dot.tria-slide-6 {
-  background-image: url(../assets/img/testimonials/6.svg);
+  background-image: url(/assets/img/testimonials/6.svg);
 }
 .tria-revi-pagination .swiper-pagination-bullet .tria-custom-dot.tria-slide-7 {
-  background-image: url(../assets/img/testimonials/7.svg);
+  background-image: url(/assets/img/testimonials/7.svg);
 }
 .tria-revi-pagination
   .swiper-pagination-bullet.swiper-pagination-bullet-active {
@@ -3980,71 +3593,3 @@ page transitions
   transition: 0.6s;
 }
 
-.tria-curtain {
-  position: fixed;
-  pointer-events: none;
-  z-index: 4;
-  background-color: rgb(0, 0, 0);
-  opacity: 0;
-  width: 100%;
-  height: 100vh;
-  -webkit-transition: 0.6s;
-  transition: 0.6s;
-}
-
-.tria-main-transition {
-  -webkit-transition: 0.6s;
-  transition: 0.6s;
-  margin-top: 0;
-  -webkit-transition-delay: 0.3s;
-  transition-delay: 0.3s;
-}
-.tria-main-transition .tria-animation-frame {
-  opacity: 1;
-  margin-top: 0;
-  -webkit-transition: 0.6s;
-  transition: 0.6s;
-  -webkit-transition-delay: 0.3s;
-  transition-delay: 0.3s;
-}
-.tria-main-transition .tria-lines-place {
-  opacity: 1;
-  margin-top: 0;
-  -webkit-transition: 0.6s;
-  transition: 0.6s;
-  -webkit-transition-delay: 0.3s;
-  transition-delay: 0.3s;
-}
-
-html.is-animating .tria-frame {
-  opacity: 1;
-  -webkit-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition: 0s;
-  transition: 0s;
-}
-html.is-animating .tria-curtain {
-  opacity: 1;
-  pointer-events: all;
-}
-html.is-animating .tria-main-transition {
-  margin-top: 0.1px;
-}
-html.is-animating .tria-main-transition .tria-animation-frame {
-  opacity: 0;
-  margin-top: -90px;
-  -webkit-transition-delay: 0s;
-  transition-delay: 0s;
-}
-html.is-animating .tria-main-transition .tria-lines-place {
-  opacity: 0;
-  margin-top: 90px;
-  -webkit-transition-delay: 0s;
-  transition-delay: 0s;
-}
-
-html.is-animating .tria-menu-frame {
-  opacity: 0;
-  -webkit-transition-delay: 0.3s;
-  transition-delay: 0.3s;
-}

@@ -44,7 +44,7 @@
             fill="var(--accent)"></path>
         </svg>
 
-        <div class="swiper-container tria-reviews-slider">
+        <div class="swiper tria-reviews-slider">
           <div class="swiper-wrapper">
             <div class="swiper-slide">
               <div
@@ -164,5 +164,18 @@
     font-size: clamp(1rem, 1.5vw, 1.25rem);
     line-height: 1.7;
     color: #444;
+  }
+
+  @media (max-width: 768px) {
+    .tria-testimonials-section .tria-ambient-temp > div {
+      width: 300px !important;
+      height: 300px !important;
+    }
+  }
+  @media (max-width: 576px) {
+    .tria-testimonials-section .tria-ambient-temp > div {
+      width: 200px !important;
+      height: 200px !important;
+    }
   }
 </style>

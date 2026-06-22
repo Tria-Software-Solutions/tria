@@ -15,32 +15,92 @@ const {
   partners = [],
   padding = '80px 0'
 } = Astro.props;
+
+const repeat = (arr: Partner[], n: number) => Array.from({ length: n }, () => arr).flat();
+const full = repeat(partners, 6);
 ---
 
 <!-- partners -->
-<div data-section-theme="light" style={`padding: ${padding};`}>
-  <div class="swiper-container tria-infinite-show tria-up">
-    <div class="swiper-wrapper tria-partner-wrapper">
-      {partners.map((partner) => (
-        <div class="swiper-slide">
-          <a href={partner.href} class="tria-partner-frame" style={`width: ${partner.width || '60px'};`}>
-            <img src={partner.logo} alt={partner.alt || 'logo'} />
-          </a>
+<section data-section-theme="light" style={`padding: ${padding};`}>
+  <div class="tria-tech-marquee tria-up">
+    <div class="tria-tech-marquee-inner">
+      <div class="tria-marquee-row tria-marquee-row--right">
+        <div class="tria-marquee-track">
+          {full.map((partner, i) => (
+            <a key={i} href={partner.href} class="tria-marquee-icon">
+              <img src={partner.logo} alt={partner.alt || 'logo'} />
+            </a>
+          ))}
         </div>
-      ))}
+      </div>
     </div>
   </div>
-</div>
+</section>
+<!-- partners end -->
 
 <style>
-  .tria-partner-wrapper {
-    display: flex;
-    align-items: center;
+  .tria-tech-marquee {
+    margin-top: 8px;
+    padding-bottom: 0;
+    position: relative;
+    z-index: 1;
   }
-  .tria-partner-wrapper .swiper-slide {
+
+  .tria-tech-marquee-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .tria-marquee-row {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+  }
+
+  .tria-marquee-track {
+    display: flex;
+    gap: 64px;
+    width: max-content;
+    animation: tria-marquee-scroll 13s linear infinite;
+    padding: 8px 0;
+  }
+
+  .tria-marquee-row--right .tria-marquee-track {
+    animation-direction: normal;
+  }
+
+  @keyframes tria-marquee-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .tria-marquee-icon {
+    flex-shrink: 0;
+    transition: opacity 0.3s var(--ease-spring), transform 0.3s var(--ease-spring);
+    text-decoration: none;
     display: flex;
     align-items: center;
     justify-content: center;
   }
+
+  .tria-marquee-icon img {
+    height: 44px;
+    width: auto;
+    object-fit: contain;
+    opacity: 1;
+  }
+
+  @media (max-width: 576px) {
+    .tria-marquee-icon img {
+      height: 32px;
+    }
+    .tria-marquee {
+      gap: 48px;
+    }
+  }
+
+  .tria-marquee-icon:hover {
+    transform: scale(1.15);
+  }
 </style>
-<!-- partners end -->

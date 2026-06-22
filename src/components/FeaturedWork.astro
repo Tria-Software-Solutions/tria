@@ -64,7 +64,7 @@ const {
           {project.previewImg && <div class="tria-work-img-glass"></div>}
           <span class="tria-work-category">{project.category}</span>
           <div class="tria-work-arrow">
-            <i class="fas fa-arrow-right"></i>
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
           {project.abstractType === 'fintech' && (
             <div class="tria-work-abstract tria-work-abstract--fintech">
@@ -87,11 +87,13 @@ const {
               <div class="tria-neural-dots"></div>
             </div>
           )}
+          <div class="tria-work-img-overlay"></div>
         </div>
         <div class="tria-work-content">
-          <p class="tria-work-desc">{project.description}</p>
-        </div>
-        <div class="tria-work-gradient-border"></div>
+            <h3 class="tria-work-title">{project.title}</h3>
+            <p class="tria-work-desc">{project.description}</p>
+          </div>
+        <div class="tria-work-hover-glow"></div>
       </a>
     ))}
   </div>
@@ -138,7 +140,7 @@ const {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: auto;
-    gap: 6px;
+    gap: 12px;
     padding: 0 20px;
     max-width: 1400px;
     margin: 0 auto;
@@ -150,52 +152,35 @@ const {
     display: block;
     text-decoration: none;
     position: relative;
-    border-radius: 18px;
+    border-radius: 16px;
     background: #0b0d17;
-    border: 1px solid rgba(0,0,0,0.015);
-    box-shadow: 0 1px 2px rgba(0,0,0,0.015);
-    transition: box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+    border: 0.5px solid rgba(255,255,255,0.06);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2), 0 4px 12px rgba(0,0,0,0.1);
+    transition: border-color 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .tria-work-item:hover {
-    box-shadow: 0 24px 56px rgba(0,0,0,0.06), 0 8px 20px rgba(0,0,0,0.02);
-    border-color: rgba(6,142,140,0.06);
-  }
-
-  .tria-work-gradient-border {
-    position: absolute;
-    inset: 0;
-    border-radius: 18px;
-    padding: 1px;
-    background: transparent;
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
-    z-index: 3;
-    transition: opacity 0.5s ease;
-    opacity: 0;
-  }
-
-  .tria-work-item:hover .tria-work-gradient-border {
-    opacity: 1;
-    background: linear-gradient(135deg, rgba(6,142,140,0.3) 0%, rgba(6,142,140,0.08) 50%, transparent 100%);
+    transform: translateY(-6px) scale(1.005);
+    box-shadow: 0 40px 80px rgba(0,0,0,0.15), 0 0 60px rgba(6,142,140,0.04);
   }
 
   .tria-work-item--large {
-    grid-column: span 7;
+    grid-column: span 8;
     grid-row: span 2;
     align-self: start;
   }
 
   .tria-work-item:not(.tria-work-item--large):not(.tria-work-item--wide) {
-    grid-column: span 5;
+    grid-column: span 4;
   }
 
   .tria-work-item--wide {
     grid-column: span 12;
   }
 
+  /* ── Image wrapper ── */
   .tria-work-img-wrap {
     position: relative;
     width: 100%;
@@ -206,7 +191,7 @@ const {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, transparent 60%, rgba(11,13,23,0.08) 100%);
+    background: linear-gradient(to bottom, transparent 40%, #0b0d17 100%);
     pointer-events: none;
     z-index: 1;
   }
@@ -216,7 +201,7 @@ const {
   }
 
   .tria-work-item--large .tria-work-img-wrap {
-    height: 560px;
+    height: 720px;
   }
 
   .tria-work-item--wide .tria-work-img-wrap {
@@ -228,52 +213,84 @@ const {
     inset: 0;
     background-size: cover;
     background-position: center;
-    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .tria-work-item:hover .tria-work-img {
-    transform: scale(1.05);
+    transform: scale(1.07);
   }
 
   .tria-work-img-glass {
     position: absolute;
     inset: 0;
     z-index: 2;
-    background: linear-gradient(135deg, rgba(11,13,23,0.08) 0%, rgba(11,13,23,0.25) 100%);
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
+    background: linear-gradient(135deg, rgba(11,13,23,0.06) 0%, rgba(11,13,23,0.2) 100%);
+    backdrop-filter: blur(1.5px);
+    -webkit-backdrop-filter: blur(1.5px);
     transition: all 0.6s ease;
   }
 
   .tria-work-item:hover .tria-work-img-glass {
     backdrop-filter: blur(0px);
     -webkit-backdrop-filter: blur(0px);
-    background: linear-gradient(135deg, rgba(11,13,23,0.02) 0%, rgba(6,142,140,0.15) 100%);
+    background: linear-gradient(135deg, rgba(11,13,23,0.01) 0%, rgba(6,142,140,0.1) 100%);
   }
 
+  /* ── Image overlay (accent gradient on hover) ── */
+  .tria-work-img-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: linear-gradient(135deg, rgba(6,142,140,0) 0%, rgba(6,142,140,0) 100%);
+    transition: background 0.6s ease;
+    pointer-events: none;
+  }
+
+  .tria-work-item:hover .tria-work-img-overlay {
+    background: linear-gradient(135deg, rgba(6,142,140,0.04) 0%, rgba(6,142,140,0.12) 100%);
+  }
+
+  /* ── Content area ── */
   .tria-work-content {
-    padding: 14px 20px 16px;
-    background: #fff;
-    border-top: 1px solid rgba(0,0,0,0.05);
+    padding: 22px 24px 24px;
+    background: #0b0d17;
+    position: relative;
+    z-index: 3;
+    border-top: 0.5px solid rgba(255,255,255,0.04);
+  }
+
+  .tria-work-title {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #fff;
+    margin: 0 0 4px;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
   }
 
   .tria-work-desc {
-    color: rgba(11, 13, 23, 0.55);
-    font-size: 0.78rem;
+    font-size: 0.8rem;
     line-height: 1.6;
+    color: rgba(255, 255, 255, 0.4);
     margin: 0;
+    transition: color 0.4s ease;
   }
 
+  .tria-work-item:hover .tria-work-desc {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  /* ── Category badge ── */
   .tria-work-category {
     font-size: 0.55rem;
     font-weight: 600;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #fff;
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 0.5px solid rgba(255,255,255,0.08);
     padding: 5px 12px;
     border-radius: 6px;
     display: inline-block;
@@ -281,21 +298,29 @@ const {
     top: 16px;
     left: 18px;
     z-index: 3;
+    transition: background 0.4s ease, border-color 0.4s ease;
   }
 
+  .tria-work-item:hover .tria-work-category {
+    background: rgba(6, 142, 140, 0.15);
+    border-color: rgba(6, 142, 140, 0.2);
+  }
+
+  /* ── Arrow button ── */
   .tria-work-arrow {
-    width: 36px;
-    height: 36px;
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
-    background: rgba(255,255,255,0.12);
-    backdrop-filter: blur(4px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 0.5px solid rgba(255,255,255,0.08);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 11px;
-    transition: all 0.4s var(--ease-spring);
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 10px;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     position: absolute;
     top: 14px;
     right: 14px;
@@ -306,20 +331,40 @@ const {
     background: var(--accent);
     border-color: var(--accent);
     color: #fff;
-    transform: translateX(4px);
+    transform: translate(4px, -2px);
+    box-shadow: 0 4px 20px rgba(6, 142, 140, 0.35);
   }
 
+  /* ── Hover glow ring ── */
+  .tria-work-hover-glow {
+    position: absolute;
+    inset: -1px;
+    border-radius: 17px;
+    background: transparent;
+    pointer-events: none;
+    z-index: 5;
+    transition: opacity 0.6s ease;
+    opacity: 0;
+    box-shadow: inset 0 0 0 1px transparent;
+  }
+
+  .tria-work-item:hover .tria-work-hover-glow {
+    opacity: 1;
+    box-shadow: inset 0 0 0 1px rgba(6,142,140,0.15), 0 0 30px rgba(6,142,140,0.03);
+  }
+
+  /* ── Abstract decorations ── */
   .tria-work-abstract {
     position: absolute;
     inset: 0;
     pointer-events: none;
     z-index: 1;
-    opacity: 0.08;
+    opacity: 0.06;
     transition: opacity 0.6s ease;
   }
 
   .tria-work-item:hover .tria-work-abstract {
-    opacity: 0.15;
+    opacity: 0.12;
   }
 
   .tria-fa-grid {
@@ -378,7 +423,7 @@ const {
   }
 
   .tria-work-section {
-    padding-bottom: 80px;
+    padding: 80px 0;
   }
 
   .tria-mt-30 { margin-top: 30px; }
@@ -388,7 +433,7 @@ const {
     .tria-work-grid {
       grid-template-columns: 1fr;
       padding: 0 16px;
-      gap: 4px;
+      gap: 6px;
     }
     .tria-work-item--large,
     .tria-work-item:not(.tria-work-item--large):not(.tria-work-item--wide),
@@ -396,7 +441,7 @@ const {
       grid-column: span 1;
     }
     .tria-work-item--large .tria-work-img-wrap {
-      height: 420px;
+      height: 440px;
     }
     .tria-work-item:not(.tria-work-item--large):not(.tria-work-item--wide) .tria-work-img-wrap {
       height: 220px;
@@ -415,19 +460,40 @@ const {
       padding: 0 12px;
     }
     .tria-work-content {
-      padding: 10px 14px 12px;
+      padding: 18px 18px 20px;
+    }
+    .tria-work-title {
+      font-size: 0.85rem;
     }
     .tria-work-desc {
-      font-size: 0.7rem;
+      font-size: 0.72rem;
     }
     .tria-work-item:not(.tria-work-item--large):not(.tria-work-item--wide) .tria-work-img-wrap {
       height: 180px;
     }
     .tria-work-item--large .tria-work-img-wrap {
-      height: 320px;
+      height: 340px;
     }
     .tria-work-item--wide .tria-work-img-wrap {
       height: 200px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .tria-work-item--large .tria-work-img-wrap {
+      height: 260px;
+    }
+    .tria-work-item--wide .tria-work-img-wrap {
+      height: 160px;
+    }
+    .tria-work-item:not(.tria-work-item--large):not(.tria-work-item--wide) .tria-work-img-wrap {
+      height: 140px;
+    }
+    .tria-work-title {
+      font-size: 0.8rem;
+    }
+    .tria-work-content {
+      padding: 14px 14px 16px;
     }
   }
 </style>

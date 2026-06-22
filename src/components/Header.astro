@@ -85,7 +85,7 @@ const lp = (p: string) => localePath(locale, p);
 <style is:global>
   /* Menu Frame Modern overrides */
   .tria-menu-frame {
-    background: rgba(8, 10, 18, 0.88) !important;
+    background: #000 !important;
     backdrop-filter: blur(24px) saturate(1.8) !important;
     -webkit-backdrop-filter: blur(24px) saturate(1.8) !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -302,6 +302,24 @@ const lp = (p: string) => localePath(locale, p);
     .tria-menu-close {
       top: 24px;
       right: 24px;
+    }
+  }
+
+  @media screen and (min-width: 641px) and (max-width: 991px) {
+    .tria-menu-pages ul li a {
+      font-size: 2rem !important;
+    }
+  }
+
+  @media screen and (max-width: 400px) {
+    .tria-menu-pages ul li a {
+      font-size: 1.5rem !important;
+    }
+    .tria-menu-group-label {
+      font-size: 0.6rem !important;
+    }
+    .tria-menu-list-group a {
+      font-size: 0.8rem !important;
     }
   }
 </style>

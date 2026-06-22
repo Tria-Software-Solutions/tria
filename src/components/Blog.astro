@@ -10,8 +10,7 @@ const posts = allPosts
   .slice(0, 2);
 ---
 
-<!-- blog -->
-<section>
+<section data-section-theme="light">
   <div class="container tria-p-120-60">
     <div class="row align-items-center tria-mb-30">
       <div class="col-lg-6 tria-mb-30">
@@ -28,20 +27,23 @@ const posts = allPosts
       {
         posts.map((post) => (
           <div class="col-lg-6">
-            <a href={`/blog/${post.id}`} class="tria-blog-card tria-mb-60">
-              <div class="tria-cover-frame tria-up">
+            <a href={`/blog/${post.id}`} class="tria-blog-card-modern tria-mb-60">
+              <div class="tria-blog-card-img tria-up">
                 <img src={post.data.image} alt={post.data.title} />
               </div>
-              <div class="tria-post-descr">
-                <div class="tria-labels tria-up tria-mb-30">
-                  <div class="tria-label tria-upper tria-accent">{post.data.category.toUpperCase()}</div>
-                  <div class="tria-label tria-upper">{new Date(post.data.pubDate).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}</div>
+              <div class="tria-blog-card-body">
+                <div class="tria-blog-card-meta tria-up">
+                  <span class="tria-blog-card-cat">{post.data.category}</span>
+                  <span class="tria-blog-card-date">{new Date(post.data.pubDate).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}</span>
                 </div>
-                <h4 class="tria-up tria-mb-30">{post.data.title}</h4>
-                <p class="tria-post-text tria-up tria-mb-30">{post.data.description}</p>
-                <div class="tria-link tria-dark tria-arrow-place tria-up">
+                <h4 class="tria-blog-card-title tria-up">{post.data.title}</h4>
+                <p class="tria-blog-card-desc tria-up">{post.data.description}</p>
+                <span class="tria-blog-card-link tria-up">
                   <span data-i18n="blog.readMore">{t("blog.readMore")}</span>
-                </div>
+                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
               </div>
             </a>
           </div>
@@ -50,4 +52,86 @@ const posts = allPosts
     </div>
   </div>
 </section>
-<!-- blog end -->
+
+<style>
+  .tria-blog-card-modern {
+    display: block;
+    border-radius: var(--radius-md, 16px);
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.06);
+    overflow: hidden;
+    text-decoration: none;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .tria-blog-card-modern:hover {
+    transform: translateY(-6px) scale(1.005);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.08),
+                0 0 0 1px rgba(6,142,140,0.15);
+  }
+  .tria-blog-card-img {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+  }
+  .tria-blog-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .tria-blog-card-modern:hover .tria-blog-card-img img {
+    transform: scale(1.06);
+  }
+  .tria-blog-card-body {
+    padding: 28px 28px 32px;
+  }
+  .tria-blog-card-meta {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  .tria-blog-card-cat {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent, #068e8c);
+    background: rgba(6,142,140,0.1);
+    padding: 3px 10px;
+    border-radius: 100px;
+  }
+  .tria-blog-card-date {
+    font-size: 0.7rem;
+    color: rgba(0,0,0,0.4);
+    letter-spacing: 0.05em;
+  }
+  .tria-blog-card-title {
+    font-size: 1.15rem;
+    font-weight: 550;
+    line-height: 1.35;
+    color: #0f111a;
+    margin-bottom: 10px;
+  }
+  .tria-blog-card-desc {
+    font-size: 0.88rem;
+    line-height: 1.65;
+    color: rgba(0,0,0,0.55);
+    margin-bottom: 20px;
+  }
+  .tria-blog-card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.78rem;
+    font-weight: 550;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--accent, #068e8c);
+    transition: gap 0.3s ease;
+  }
+  .tria-blog-card-modern:hover .tria-blog-card-link {
+    gap: 12px;
+  }
+</style>

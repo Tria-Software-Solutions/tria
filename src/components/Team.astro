@@ -76,9 +76,7 @@ const {
                         <ul class="tria-social-icons tria-dark tria-center">
                           {member.socialLinks.map((social) => (
                             <li>
-                              <a href={social.href} target="_blank" class="social-icon">
-                                <i class={social.icon}></i>
-                              </a>
+                              <a href={social.href} target="_blank" class="social-icon" set:html={social.icon} />
                             </li>
                           ))}
                         </ul>

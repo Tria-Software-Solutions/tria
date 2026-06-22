@@ -1,4 +1,6 @@
 ---
+import Button from "./Button.astro";
+
 interface PricingPlan {
   name: string;
   price: string;
@@ -74,8 +76,9 @@ const showTable = fixedPlans.length > 0;
                 <tr>
                   <th class="tria-pricing-th tria-pricing-th--feature"></th>
                   {fixedPlans.map((plan) => (
-                    <th class="tria-pricing-th tria-pricing-th--plan">
+                    <th class={`tria-pricing-th tria-pricing-th--plan${plan.highlighted ? ' tria-pricing-th--plan--highlighted' : ''}`}>
                         <div class="tria-pricing-plan-card">
+                          {plan.highlighted && <span class="tria-pricing-badge">Recommended</span>}
                           <span class="tria-pricing-plan-name">{plan.name}</span>
                           <div class="tria-pricing-plan-price-row">
                             <span class="tria-pricing-plan-price">{plan.price}</span>
@@ -116,7 +119,17 @@ const showTable = fixedPlans.length > 0;
     {contactPlans.map((plan) => (
       <div class="tria-pricing-custom tria-up">
         <div class="tria-pricing-custom-inner">
-          <div class="tria-pricing-custom-name">{plan.name}</div>
+          <div class="tria-pricing-custom-header">
+            <div class="tria-pricing-custom-name">{plan.name}</div>
+            <Button
+              text={plan.buttonText || "Contact Us"}
+              href={plan.buttonHref || "#"}
+              variant="glass"
+              size="sm"
+              showArrow
+              arrowStyle="circle"
+            />
+          </div>
           {plan.description && <p class="tria-pricing-custom-desc">{plan.description}</p>}
           <ul class="tria-pricing-custom-features">
             {plan.features.map((f) => (
@@ -184,12 +197,57 @@ const showTable = fixedPlans.length > 0;
   .tria-pricing-scroll {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0,0,0,0.08) transparent;
+  }
+
+  .tria-pricing-dark .tria-pricing-scroll {
+    scrollbar-color: rgba(255,255,255,0.08) transparent;
+  }
+
+  /* ── Badge ── */
+  .tria-pricing-badge {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 100px;
+    background: var(--accent);
+    color: #fff;
+    margin-bottom: 12px;
   }
 
   /* ── Plan cards (in-table header) ── */
   .tria-pricing-plan-card {
     text-align: center;
-    padding: 24px 16px 20px;
+    padding: 28px 20px 24px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+
+  .tria-pricing-dark .tria-pricing-plan-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-color: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .tria-pricing-th--plan--highlighted .tria-pricing-plan-card {
+    border-color: rgba(6, 142, 140, 0.25);
+    box-shadow: 0 4px 20px rgba(6, 142, 140, 0.08);
+  }
+
+  .tria-pricing-dark .tria-pricing-th--plan--highlighted .tria-pricing-plan-card {
+    border-color: rgba(6, 142, 140, 0.35);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
   }
 
   .tria-pricing-plan-name {
@@ -234,31 +292,30 @@ const showTable = fixedPlans.length > 0;
     color: rgba(255, 255, 255, 0.3);
   }
 
-
-
   /* ── Table ── */
   .tria-pricing-table-wrap {
-    border-radius: 16px;
+    border-radius: 20px;
     overflow: hidden;
     background: #fff;
-    min-width: 600px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03), 0 8px 24px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02), 0 8px 32px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.04);
   }
 
   .tria-pricing-dark .tria-pricing-table-wrap {
     background: rgba(255, 255, 255, 0.02);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2), 0 8px 24px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15), 0 8px 32px rgba(0, 0, 0, 0.1);
+    border-color: rgba(255, 255, 255, 0.05);
   }
 
   .tria-pricing-table {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
-    table-layout: fixed;
   }
 
   .tria-pricing-th--feature {
-    width: 200px;
+    min-width: 140px;
+    max-width: 200px;
     text-align: left;
     padding: 28px 28px;
     font-size: 0.65rem;
@@ -266,7 +323,7 @@ const showTable = fixedPlans.length > 0;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: rgba(0, 0, 0, 0.3);
-    border-right: 1px solid rgba(0, 0, 0, 0.04);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
     background: #fff;
     position: sticky;
     left: 0;
@@ -275,7 +332,7 @@ const showTable = fixedPlans.length > 0;
 
   .tria-pricing-dark .tria-pricing-th--feature {
     color: rgba(255, 255, 255, 0.3);
-    border-right-color: rgba(255, 255, 255, 0.05);
+    border-bottom-color: rgba(255, 255, 255, 0.05);
     background: rgba(255, 255, 255, 0.02);
   }
 
@@ -283,7 +340,8 @@ const showTable = fixedPlans.length > 0;
     text-align: center;
     vertical-align: top;
     background: #fff;
-    border-right: 1px solid rgba(0, 0, 0, 0.04);
+    padding: 24px 20px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
   }
 
   .tria-pricing-th--plan:last-child {
@@ -292,43 +350,50 @@ const showTable = fixedPlans.length > 0;
 
   .tria-pricing-dark .tria-pricing-th--plan {
     background: rgba(255, 255, 255, 0.02);
-    border-right-color: rgba(255, 255, 255, 0.05);
+    border-bottom-color: rgba(255, 255, 255, 0.05);
   }
 
   .tria-pricing-row td {
-    padding: 14px 28px;
+    padding: 16px 28px;
     font-size: 0.85rem;
-    border-right: 1px solid rgba(0, 0, 0, 0.04);
-  }
-
-  .tria-pricing-row td:last-child {
-    border-right: none;
+    transition: background 0.2s ease;
   }
 
   .tria-pricing-row:not(:last-child) td {
     border-bottom: 1px solid rgba(0, 0, 0, 0.04);
   }
 
-  .tria-pricing-dark .tria-pricing-row td {
-    border-right-color: rgba(255, 255, 255, 0.05);
-  }
-
   .tria-pricing-dark .tria-pricing-row:not(:last-child) td {
     border-bottom-color: rgba(255, 255, 255, 0.04);
+  }
+
+  .tria-pricing-row:hover td {
+    background: rgba(6, 142, 140, 0.025);
+  }
+
+  .tria-pricing-dark .tria-pricing-row:hover td {
+    background: rgba(255, 255, 255, 0.025);
   }
 
   .tria-pricing-row--even td {
     background: rgba(0, 0, 0, 0.015);
   }
 
+  .tria-pricing-row--even:hover td {
+    background: rgba(6, 142, 140, 0.035);
+  }
+
   .tria-pricing-dark .tria-pricing-row--even td {
     background: rgba(255, 255, 255, 0.015);
+  }
+
+  .tria-pricing-dark .tria-pricing-row--even:hover td {
+    background: rgba(255, 255, 255, 0.035);
   }
 
   .tria-pricing-cell--label {
     font-weight: 480;
     color: rgba(0, 0, 0, 0.65);
-    border-right: 1px solid rgba(0, 0, 0, 0.04) !important;
     position: sticky;
     left: 0;
     background: inherit;
@@ -337,7 +402,6 @@ const showTable = fixedPlans.length > 0;
 
   .tria-pricing-dark .tria-pricing-cell--label {
     color: rgba(255, 255, 255, 0.55);
-    border-right-color: rgba(255, 255, 255, 0.05) !important;
   }
 
   .tria-pricing-cell--value {
@@ -368,30 +432,37 @@ const showTable = fixedPlans.length > 0;
 
   /* ── Custom / Contact plan section ── */
   .tria-pricing-custom {
-    margin-top: 24px;
+    margin-top: 32px;
   }
 
   .tria-pricing-custom-inner {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-    flex-wrap: wrap;
-    padding: 24px 32px;
-    border-radius: 12px;
+    padding: 32px 36px;
+    border-radius: 20px;
     background: #f5f7fa;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02), 0 8px 32px rgba(0, 0, 0, 0.04);
   }
 
   .tria-pricing-dark .tria-pricing-custom-inner {
     background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15), 0 8px 32px rgba(0, 0, 0, 0.1);
+  }
+
+  .tria-pricing-custom-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
   }
 
   .tria-pricing-custom-name {
-    font-size: 1rem;
+    font-size: 1.15rem;
     font-weight: 600;
     letter-spacing: 0.02em;
     color: #0b0d17;
-    flex-shrink: 0;
   }
 
   .tria-pricing-dark .tria-pricing-custom-name {
@@ -399,10 +470,10 @@ const showTable = fixedPlans.length > 0;
   }
 
   .tria-pricing-custom-desc {
-    margin: 0;
+    margin: 0 0 20px;
     color: rgba(0, 0, 0, 0.45);
     font-size: 0.85rem;
-    flex-shrink: 0;
+    line-height: 1.6;
   }
 
   .tria-pricing-dark .tria-pricing-custom-desc {
@@ -415,16 +486,14 @@ const showTable = fixedPlans.length > 0;
     padding: 0;
     display: flex;
     flex-wrap: wrap;
-    gap: 6px 20px;
-    flex: 1;
-    min-width: 200px;
+    gap: 6px 24px;
   }
 
   .tria-pricing-custom-feature {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 0.82rem;
+    font-size: 0.85rem;
     color: rgba(0, 0, 0, 0.5);
   }
 
@@ -445,7 +514,7 @@ const showTable = fixedPlans.length > 0;
     }
 
     .tria-pricing-plan-card {
-      padding: 16px 8px 12px;
+      padding: 20px 12px 16px;
     }
 
     .tria-pricing-plan-name {
@@ -480,37 +549,35 @@ const showTable = fixedPlans.length > 0;
     }
 
     .tria-pricing-th--plan {
-      padding: 0;
+      padding: 16px 12px 0;
+    }
+
+    .tria-pricing-row td {
+      padding: 12px 16px;
+    }
+
+    .tria-pricing-badge {
+      font-size: 0.55rem;
+      padding: 3px 10px;
     }
 
     .tria-pricing-custom-inner {
       padding: 28px 24px;
-      flex-direction: column;
-      align-items: stretch;
-      gap: 20px;
-    }
-
-    .tria-pricing-custom-inner::after {
-      top: 0;
-      bottom: 0;
-      width: 3px;
     }
 
     .tria-pricing-custom-header {
       flex-direction: column;
-      align-items: flex-start;
-      gap: 12px;
+      align-items: stretch;
     }
 
-    .tria-pricing-custom-btn {
-      width: 100%;
-      justify-content: center;
+    .tria-pricing-custom-desc {
+      font-size: 0.8rem;
     }
   }
 
   @media (max-width: 576px) {
     .tria-pricing-plan-card {
-      padding: 12px 4px 8px;
+      padding: 14px 8px 12px;
     }
     .tria-pricing-plan-name {
       font-size: 0.75rem;
@@ -542,16 +609,45 @@ const showTable = fixedPlans.length > 0;
       width: 14px;
       height: 14px;
     }
+    .tria-pricing-badge {
+      font-size: 0.5rem;
+      padding: 2px 8px;
+      margin-bottom: 8px;
+    }
     .tria-pricing-custom-inner {
-      padding: 20px 16px;
-      gap: 16px;
+      padding: 24px 16px;
     }
     .tria-pricing-custom-features {
       gap: 4px 12px;
-      min-width: auto;
     }
     .tria-pricing-custom-feature {
       font-size: 0.75rem;
     }
   }
 </style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var pricingTable = document.querySelector('.tria-pricing-table');
+    if (!pricingTable || typeof gsap === 'undefined') return;
+
+    var planHeaders = pricingTable.querySelectorAll('.tria-pricing-th--plan');
+    if (planHeaders.length < 2) return;
+
+    gsap.fromTo(planHeaders, {
+      y: 24,
+      opacity: 0,
+    }, {
+      y: 0,
+      opacity: 1,
+      duration: 0.6,
+      stagger: 0.12,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: pricingTable,
+        start: 'top 88%',
+        toggleActions: 'play none none none',
+      },
+    });
+  });
+</script>

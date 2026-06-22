@@ -50,7 +50,7 @@ const gradData = JSON.stringify(finalGradProps);
   <div class="tria-hero-bg" data-grad-props={gradData}>
   </div>
   <div class="container">
-    <div class="tria-banner-content tria-up">
+    <div class="tria-banner-content">
       <h1 class="tria-muted tria-mb-60" set:html={title} />
       <div class="row">
         <div class="col-md-7 col-lg-5">
@@ -79,6 +79,7 @@ const gradData = JSON.stringify(finalGradProps);
   .tria-banner-content {
     position: relative;
     z-index: 1;
+    opacity: 1;
   }
   .tria-banner-content h1 {
     font-size: clamp(2.5rem, 5.5vw, 5rem);

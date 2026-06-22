@@ -48,7 +48,8 @@ if (accentColor) sectionStyle += `--cta-accent: ${accentColor}; --cta-accent-hov
 const btnColor = primaryButtonColor || accentColor;
 const btnHoverColor = primaryButtonHoverColor || accentColor;
 const isDefaultDark = theme === 'dark' && !bgColor && !accentColor;
-const btnVariant = primaryButtonVariant || (isDefaultDark ? 'glass' : 'primary');
+const btnVariant = primaryButtonVariant || (isDefaultDark ? 'primary' : 'primary');
+const secondaryBtnColor = isDefaultDark ? '#0b0d17' : undefined;
 ---
 
 <section
@@ -76,9 +77,12 @@ const btnVariant = primaryButtonVariant || (isDefaultDark ? 'glass' : 'primary')
             hoverColor={btnHoverColor}
             showArrow={showIcon}
           />
-          <a href={secondaryButtonHref} class="tria-cta-link">
-            <span>{secondaryButtonText}</span>
-          </a>
+          <Button
+            text={secondaryButtonText}
+            href={secondaryButtonHref}
+            variant="outline"
+            color={secondaryBtnColor}
+          />
         </div>
       </div>
     </div>
@@ -204,48 +208,10 @@ const btnVariant = primaryButtonVariant || (isDefaultDark ? 'glass' : 'primary')
     flex-wrap: wrap;
   }
 
-  .tria-cta-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    height: 64px;
-    padding: 0 2rem;
-    border-radius: 100px;
-    font-size: 0.8rem;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    font-weight: 550;
-    color: rgba(0, 0, 0, 0.45);
-    text-decoration: none;
-    border: 1.5px solid rgba(0, 0, 0, 0.08);
-    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  }
 
-  .tria-cta-link:hover {
-    color: #0b0d17;
-    border-color: rgba(0, 0, 0, 0.15);
-    background: rgba(0, 0, 0, 0.04);
-    transform: translateY(-2px);
-  }
 
-  .tria-cta-section[data-section-theme="dark"] .tria-cta-link {
-    color: rgba(255, 255, 255, 0.65);
-    border-color: rgba(255, 255, 255, 0.12);
-  }
 
-  .tria-cta-section[data-section-theme="dark"] .tria-cta-link:hover {
-    color: #fff;
-    border-color: rgba(255, 255, 255, 0.25);
-    background: rgba(255, 255, 255, 0.08);
-  }
 
-  .tria-cta-accented .tria-cta-link {
-    color: rgba(0, 0, 0, 0.4);
-  }
-
-  .tria-cta-accented .tria-cta-link:hover {
-    color: var(--cta-accent, var(--accent));
-  }
 
   .tria-footer-cta {
     text-align: center;
@@ -272,11 +238,6 @@ const btnVariant = primaryButtonVariant || (isDefaultDark ? 'glass' : 'primary')
     .tria-cta-actions {
       flex-direction: column;
       align-items: center;
-    }
-    .tria-cta-link {
-      height: 52px;
-      padding: 0 1.5rem;
-      font-size: 0.75rem;
     }
     .tria-cta-description {
       font-size: 0.85rem;

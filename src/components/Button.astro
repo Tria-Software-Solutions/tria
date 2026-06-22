@@ -1,9 +1,9 @@
 ---
 export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'glass';
-export type ButtonSize = 'sm' | 'md' | 'lg';
+export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg';
 
 interface Props {
-  text: string;
+  text?: string;
   href?: string;
   variant?: ButtonVariant;
   size?: ButtonSize;
@@ -18,6 +18,8 @@ interface Props {
   id?: string;
   type?: 'button' | 'submit' | 'reset';
   style?: string;
+  active?: boolean;
+  arrowStyle?: 'circle' | 'inline';
 }
 
 const {
@@ -36,6 +38,8 @@ const {
   id,
   type = 'button',
   style,
+  active = false,
+  arrowStyle = 'circle',
 } = Astro.props;
 
 const isLink = !!href;
@@ -47,12 +51,22 @@ const cls = [
   showArrow ? 'tria-btn--arrow' : '',
   arrowPosition === 'left' ? 'tria-btn--arrow-left' : '',
   fullWidth ? 'tria-btn--full' : '',
+  active ? 'tria-btn--active' : '',
+  arrowStyle === 'inline' ? 'tria-btn-arrow--inline' : '',
   className,
 ].filter(Boolean).join(' ');
+
+const knownProps = new Set(['text', 'href', 'variant', 'size', 'color', 'hoverColor', 'showArrow', 'arrowPosition', 'fullWidth', 'target', 'rel', 'className', 'id', 'type', 'style', 'active', 'arrowStyle']);
+const attrs: Record<string, any> = {};
+for (const [key, val] of Object.entries(Astro.props)) {
+  if (!knownProps.has(key) && val !== undefined) {
+    attrs[key] = val;
+  }
+}
 ---
 
 {isLink ? (
-  <a href={href} class={cls} target={target} rel={rel} id={id} style={styleVars || style}>
+  <a href={href} class={cls} target={target} rel={rel} id={id} style={styleVars || style} {...attrs}>
     {arrowPosition === 'left' && showArrow && (
       <svg class="tria-btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
         <path d="M13 8H3M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -66,7 +80,7 @@ const cls = [
     )}
   </a>
 ) : (
-  <button class={cls} id={id} type={type} style={styleVars}>
+  <button class={cls} id={id} type={type} style={styleVars} {...attrs}>
     {arrowPosition === 'left' && showArrow && (
       <svg class="tria-btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
         <path d="M13 8H3M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -93,36 +107,39 @@ const cls = [
     letter-spacing: 0.04em;
     text-transform: uppercase;
     text-decoration: none;
-    border: 1.5px solid transparent;
     cursor: pointer;
     white-space: nowrap;
-    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-                background 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-                border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-                color 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-                box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                background 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
-    overflow: hidden;
   }
 
-
-
   /* ── Sizes ── */
+  .tria-btn--xs {
+    height: 38px;
+    padding: 0 1.25rem;
+    font-size: 0.72rem;
+    gap: 12px;
+    letter-spacing: 0.08em;
+  }
+
   .tria-btn--sm {
     height: 48px;
-    padding: 0 1.25rem 0 2rem;
+    padding: 0 1.5rem;
     font-size: 0.75rem;
     gap: 16px;
   }
 
   .tria-btn--md {
     height: 64px;
-    padding: 0 2rem 0 3.5rem;
+    padding: 0 2.5rem;
   }
 
   .tria-btn--lg {
     height: 72px;
-    padding: 0 2.5rem 0 4.5rem;
+    padding: 0 3rem;
     font-size: 0.9rem;
     gap: 28px;
   }
@@ -134,78 +151,85 @@ const cls = [
   /* ── Primary ── */
   .tria-btn--primary {
     background-color: var(--btn-color, var(--accent));
-    border-color: var(--btn-color, var(--accent));
-    color: #fff;
-    box-shadow: 0 4px 20px rgba(6, 142, 140, 0.25);
+    color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 20px color-mix(in srgb, var(--accent), transparent 80%);
   }
 
   .tria-btn--primary:hover {
-    background-color: var(--btn-hover, var(--accent-hover));
-    border-color: var(--btn-hover, var(--accent-hover));
+    background-color: var(--btn-hover, color-mix(in srgb, var(--accent), white 15%));
     color: #fff;
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 12px 40px rgba(6, 142, 140, 0.4);
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 16px 48px color-mix(in srgb, var(--accent), transparent 50%),
+                0 4px 20px color-mix(in srgb, var(--accent), transparent 70%);
   }
 
   /* ── Secondary ── */
   .tria-btn--secondary {
     background-color: var(--btn-color, #0b0d17);
-    border-color: var(--btn-color, #0b0d17);
-    color: #fff;
+    color: rgba(255, 255, 255, 0.85);
   }
 
   .tria-btn--secondary:hover {
-    background-color: var(--btn-hover, #1a1f35);
-    border-color: var(--btn-hover, #1a1f35);
+    background-color: var(--btn-hover, #252b4a);
     color: #fff;
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35), 0 4px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  .tria-btn--secondary .tria-btn-arrow {
+    background-color: rgba(255, 255, 255, 0.12);
   }
 
   /* ── Outline ── */
   .tria-btn--outline {
     background-color: transparent;
-    border-color: var(--btn-color, var(--accent));
     color: var(--btn-color, var(--accent));
+    box-shadow: inset 0 0 0 1.5px var(--btn-color, var(--accent));
   }
 
   .tria-btn--outline:hover {
     background-color: var(--btn-color, var(--accent));
-    border-color: var(--btn-color, var(--accent));
     color: #fff;
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 12px 32px rgba(6, 142, 140, 0.25);
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: inset 0 0 0 1.5px var(--btn-color, var(--accent)),
+                0 16px 48px color-mix(in srgb, var(--accent), transparent 50%),
+                0 4px 20px color-mix(in srgb, var(--accent), transparent 70%);
+  }
+
+  .tria-btn--outline.tria-btn--active {
+    background-color: var(--btn-color, var(--accent));
+    color: #fff;
   }
 
   /* ── Ghost ── */
   .tria-btn--ghost {
     background-color: transparent;
-    border-color: transparent;
     color: var(--btn-color, var(--accent));
   }
 
   .tria-btn--ghost:hover {
-    background-color: rgba(6, 142, 140, 0.1);
-    color: var(--btn-hover, var(--accent-hover));
-    transform: translateY(-2px);
+    background-color: var(--accent);
+    color: #fff;
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 12px 40px color-mix(in srgb, var(--accent), transparent 55%);
   }
 
   /* ── Glass ── */
   .tria-btn--glass {
-    background-color: rgba(255, 255, 255, 0.08);
-    border-color: transparent;
-    color: var(--btn-color, #fff);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    background: linear-gradient(135deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.12) 100%);
+    color: #fff;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    position: relative;
+    z-index: 2;
+    will-change: transform;
   }
 
   .tria-btn--glass:hover {
-    background-color: rgba(255, 255, 255, 0.22);
-    border-color: rgba(255, 255, 255, 0.3);
-    color: var(--btn-hover, #fff);
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(135deg, rgba(255,255,255,0.32) 0%, rgba(255,255,255,0.18) 100%);
+    color: #fff;
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.25), 0 4px 20px color-mix(in srgb, var(--accent), transparent 80%);
   }
 
   /* ── Arrow SVG ── */
@@ -215,8 +239,8 @@ const cls = [
     padding: 9px;
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.2);
-    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-                background 0.3s ease;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                background 0.35s ease;
     flex-shrink: 0;
   }
 
@@ -225,17 +249,58 @@ const cls = [
     stroke: currentColor;
   }
 
+  /* Inline arrow — no circle bg, flush with text */
+  .tria-btn-arrow--inline .tria-btn-arrow {
+    width: 14px;
+    height: 14px;
+    padding: 0;
+    border-radius: 0;
+    background: none;
+  }
+
+  .tria-btn-arrow--inline {
+    gap: 8px;
+  }
+
+  .tria-btn-arrow--inline .tria-btn-arrow path {
+    stroke-width: 1.5;
+  }
+
   .tria-btn--outline .tria-btn-arrow,
   .tria-btn--ghost .tria-btn-arrow {
-    background-color: rgba(6, 142, 140, 0.15);
+    background-color: color-mix(in srgb, var(--accent), transparent 82%);
+  }
+
+  .tria-btn-arrow--inline.tria-btn--outline .tria-btn-arrow,
+  .tria-btn-arrow--inline.tria-btn--ghost .tria-btn-arrow {
+    background: none;
   }
 
   .tria-btn:hover .tria-btn-arrow {
     transform: translateX(6px);
+    background-color: rgba(255, 255, 255, 0.25);
+  }
+
+  .tria-btn:hover .tria-btn-arrow--inline .tria-btn-arrow {
+    background: none;
   }
 
   .tria-btn--arrow-left:hover .tria-btn-arrow {
     transform: translateX(-6px);
+  }
+
+  /* ── Force white text on hover for ALL variants ── */
+  .tria-btn:hover,
+  .tria-btn:hover .tria-btn-text,
+  .tria-btn:hover .tria-btn-arrow,
+  .tria-btn:hover .tria-btn-arrow path {
+    color: #fff !important;
+    stroke: #fff !important;
+  }
+
+  .tria-btn-arrow--inline.tria-btn:hover .tria-btn-arrow,
+  .tria-btn-arrow--inline.tria-btn:hover .tria-btn-arrow path {
+    stroke: #fff !important;
   }
 
   /* ── Focus ── */
@@ -250,5 +315,19 @@ const cls = [
     opacity: 0.5;
     cursor: not-allowed;
     pointer-events: none;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 576px) {
+    .tria-btn--md { height: 56px; padding: 0 1.75rem; font-size: 0.8rem; }
+    .tria-btn--lg { height: 62px; padding: 0 2rem; font-size: 0.85rem; }
+    .tria-btn--xs { height: 34px; padding: 0 1rem; }
+    .tria-btn--sm { height: 42px; padding: 0 1.25rem; }
+  }
+  @media (max-width: 400px) {
+    .tria-btn--md { height: 50px; padding: 0 1.25rem; font-size: 0.75rem; }
+    .tria-btn--lg { height: 54px; padding: 0 1.5rem; }
+    .tria-button { gap: 12px; }
+    .tria-btn-arrow { width: 28px; height: 28px; }
   }
 </style>

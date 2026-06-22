@@ -125,7 +125,7 @@
   .container-md,
   .container-sm,
   .container {
-    max-width: 1000px;
+    max-width: 1140px;
   }
 }
 @media (min-width: 1400px) {
@@ -135,7 +135,7 @@
   .container-md,
   .container-sm,
   .container {
-    max-width: 1200px;
+    max-width: 1320px;
   }
 }
 .row {

@@ -56,6 +56,10 @@
       ? (isEs ? (cur.replace(/^\/es/, "") || "/") : cur)
       : (isEs ? cur : "/es" + (cur === "/" ? "" : cur));
     window.history.replaceState(null, "", next);
+
+    if (typeof window.updateCurrentPage === "function") {
+      window.updateCurrentPage();
+    }
   }
 
   document.addEventListener("click", function (e) {
@@ -69,6 +73,10 @@
 
   window.triaI18n = {
     switchTo: switchLanguage,
-    apply: function () {},
+    apply: function () {
+      var path = window.location.pathname.replace(/\/+$/, "") || "/";
+      var detected = path.startsWith("/es") ? "es" : "en";
+      switchLanguage(detected);
+    },
   };
 })();

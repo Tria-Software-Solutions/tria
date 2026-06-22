@@ -1,4 +1,6 @@
 ---
+import Button from "./Button.astro";
+
 interface Props {
   heading?: string;
   description?: string;
@@ -25,12 +27,7 @@ const {
       <div class="col-lg-5 tria-cotizacion-content tria-up">
         <h2 set:html={heading} />
         <p class="tria-cotizacion-desc">{description}</p>
-        <a href={buttonHref} class="tria-cotizacion-btn">
-          <span>{buttonText}</span>
-          <svg class="tria-btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
+        <Button text={buttonText} href={buttonHref} showArrow={true} />
       </div>
       {features.length > 0 && (
       <div class="col-lg-6 offset-lg-1 tria-up">
@@ -83,58 +80,8 @@ const {
     max-width: 400px;
   }
 
-  .tria-cotizacion-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 14px;
-    height: 56px;
-    padding: 0 28px 0 34px;
-    border-radius: 100px;
-    font-size: 0.85rem;
-    font-weight: 550;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    text-decoration: none;
-    background: var(--accent);
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-                box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .tria-cotizacion-btn::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 100px;
-    background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 50%);
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-  }
-
-  .tria-cotizacion-btn:hover::after { opacity: 1; }
-
-  .tria-cotizacion-btn:hover {
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 12px 32px rgba(6, 142, 140, 0.3);
-  }
-
-  .tria-cotizacion-btn .tria-btn-arrow {
-    width: 28px;
-    height: 28px;
-    padding: 6px;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.2);
-    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-    flex-shrink: 0;
-  }
-
-  .tria-cotizacion-btn:hover .tria-btn-arrow {
-    transform: translateX(4px);
+  .tria-cotizacion-section :global(.tria-btn) {
+    margin-top: 8px;
   }
 
   .tria-cotizacion-cards {
@@ -226,16 +173,6 @@ const {
     .tria-cotizacion-desc {
       font-size: 0.85rem;
       margin-bottom: 28px;
-    }
-    .tria-cotizacion-btn {
-      height: 48px;
-      padding: 0 20px 0 24px;
-      font-size: 0.78rem;
-    }
-    .tria-cotizacion-btn .tria-btn-arrow {
-      width: 22px;
-      height: 22px;
-      padding: 4px;
     }
     .tria-cotizacion-card {
       padding: 18px 18px 16px;
