@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
+import Quote from "../components/Quote.astro";
 import CTA from "../components/CTA.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import BlogList from "../components/BlogList.astro";
@@ -19,26 +20,47 @@ const posts = allPosts.slice(0, pageSize);
 <Layout title={t("meta.title")} description={t("meta.description")}>
   <section class="page-hero" data-section-theme="dark">
     <div class="page-hero-bg">
+      <div class="page-hero-bg-dots"></div>
       <div class="page-hero-orb page-hero-orb--1"></div>
       <div class="page-hero-orb page-hero-orb--2"></div>
+      <div class="page-hero-gradient-overlay"></div>
+      <div class="tria-hero-grain"></div>
+      <div class="tria-ambient-temp">
+        <div class="tria-at-glow-1"></div>
+        <div class="tria-at-glow-2"></div>
+      </div>
     </div>
     <div class="container page-hero-inner">
       <span class="tria-suptitle tria-light-soft tria-up" style="display:block;margin-bottom:24px;" data-i18n="blog.newsletter">{t("blog.newsletter")}</span>
       <h1 class="page-hero-heading tria-up" data-i18n-html="blog.popularPublications" set:html={t("blog.popularPublications")} />
+      <p class="page-hero-sub tria-up" data-i18n="blog.heroDesc">{t("blog.heroDesc")}</p>
     </div>
   </section>
 
-  <section class="tria-soft-bg" data-section-theme="light" style="padding:120px 0;">
+  <section class="tria-soft-bg" data-section-theme="light" style="padding:clamp(60px, 8vw, 120px) 0;">
     <BlogList posts={posts} currentPage={currentPage} totalPages={totalPages} />
   </section>
 
+  <Quote
+    heading={t("cotizacion.heading") || 'Get a <span class="tria-thin">Custom Quote</span>'}
+    description={t("cotizacion.description") || ""}
+    buttonText={t("cotizacion.buttonText") || "Request a Quote"}
+    buttonHref="/contact"
+    features={[
+      t("cotizacion.feature1") || "",
+      t("cotizacion.feature2") || "",
+      t("cotizacion.feature3") || "",
+      t("cotizacion.feature4") || ""
+    ]}
+  />
+
   <CTA 
-    heading={t("cta.heading") || ""}
-    description={t("cta.description") || "From concept to deployment, we build software that scales."}
-    primaryButtonText={t("cta.startProject") || ""}
-    secondaryButtonText={t("cta.seeWork") || ""}
+    heading={t("ctaBlog.heading") || ""}
+    description={t("ctaBlog.desc") || ""}
+    primaryButtonText={t("ctaBlog.button") || ""}
+    secondaryButtonText={t("ctaBlog.button2") || ""}
     primaryButtonHref="/contact"
-    secondaryButtonHref="/portfolio"
+    secondaryButtonHref="/contact"
     theme="dark"
     showIcon={true}
     padding=""

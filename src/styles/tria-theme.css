@@ -834,6 +834,7 @@ scrollbar
   font-size: 42px;
   font-weight: 500;
   line-height: 100%;
+  letter-spacing: -0.03em;
 }
 @media screen and (max-width: 992px) {
   .tria-logo {
@@ -861,11 +862,6 @@ scrollbar
 }
 @media screen and (max-width: 1200px) {
   .tria-frame {
-    padding: 30px;
-  }
-}
-@media screen and (max-width: 1200px) {
-  .tria-frame {
     padding: 0;
     z-index: 999;
     height: 90px;
@@ -881,10 +877,86 @@ scrollbar
     backdrop-filter: blur(8px);
   }
   .tria-frame .tria-frame-top .tria-logo {
-    color: rgb(255, 255, 255);
+    color: rgb(255, 255, 255) !important;
   }
   .tria-frame .tria-frame-top .tria-menu-btn span {
-    background: rgb(255, 255, 255);
+    background: rgb(255, 255, 255) !important;
+  }
+  .tria-frame .tria-frame-top .tria-logo span[data-i="4"] {
+    color: #fff !important;
+  }
+
+  /* Mobile language switcher */
+  .tria-mobile-lang {
+    display: flex;
+  }
+  .tria-frame-top-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .tria-mobile-lang {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .tria-mobile-lang-btn {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.45);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    padding: 6px 6px;
+  }
+
+  .tria-mobile-lang-btn.is-active {
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .tria-mobile-lang-btn:hover {
+    color: #fff;
+  }
+
+  .tria-mobile-lang-sep {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.2);
+    margin: 0 2px;
+  }
+}
+@media screen and (max-width: 576px) {
+  .tria-frame {
+    height: 72px;
+  }
+  .tria-frame .tria-frame-top {
+    height: 72px;
+    padding: 0 20px;
+  }
+  .tria-frame .tria-frame-top .tria-logo {
+    font-size: 30px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .tria-frame {
+    height: 64px;
+  }
+  .tria-frame .tria-frame-top {
+    height: 64px;
+    padding: 0 14px;
+  }
+  .tria-frame .tria-frame-top .tria-logo {
+    font-size: 26px;
+  }
+  .tria-mobile-lang-btn {
+    font-size: 10px;
+    padding: 3px 1px;
+  }
+  .tria-frame-top-right {
+    gap: 10px;
   }
 }
 .tria-frame .tria-frame-bottom {
@@ -991,6 +1063,10 @@ scrollbar
   color: var(--accent);
 }
 
+.tria-mobile-lang {
+  display: none;
+}
+
 .tria-frame-top .tria-logo span[data-i="4"] {
   color: var(--accent);
 }
@@ -1029,6 +1105,12 @@ menu button
   .tria-menu-btn {
     -webkit-transform: scale(0.85);
     transform: scale(0.85);
+  }
+}
+@media screen and (max-width: 576px) {
+  .tria-menu-btn {
+    -webkit-transform: scale(0.75);
+    transform: scale(0.75);
   }
 }
 .tria-menu-btn:hover {
@@ -1295,6 +1377,24 @@ menu
   .tria-menu-close {
     top: 24px;
     right: 24px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .tria-menu-content {
+    padding: 70px 16px 30px;
+  }
+  .tria-menu-grid {
+    gap: 20px;
+  }
+  .tria-menu-col {
+    gap: 18px;
+  }
+  .tria-menu-close {
+    top: 18px;
+    right: 14px;
+    width: 40px;
+    height: 40px;
   }
 }
 

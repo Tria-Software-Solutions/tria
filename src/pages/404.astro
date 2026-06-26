@@ -7,19 +7,140 @@ const t = createT(Astro.currentLocale);
 ---
 
 <Layout title={t("meta.title")} description={t("meta.description")}>
-  <section class="page-hero" data-section-theme="dark" style="min-height:80vh;align-items:center;">
+  <section class="page-hero" data-section-theme="dark">
     <div class="page-hero-bg">
-      <div class="page-hero-orb page-hero-orb--1"></div>
-      <div class="page-hero-orb page-hero-orb--2"></div>
+      <div class="page-hero-bg-dots"></div>
+      <div class="page-hero-orb page-hero-orb--1" style="width:800px;height:800px;"></div>
+      <div class="page-hero-orb page-hero-orb--2" style="width:600px;height:600px;"></div>
+      <div class="page-hero-gradient-overlay"></div>
+      <div class="tria-hero-grain"></div>
+      <div class="tria-ambient-temp">
+        <div class="tria-at-glow-1"></div>
+        <div class="tria-at-glow-2"></div>
+        <div class="tria-at-glow-3"></div>
+      </div>
+      <div class="tria-404-particles"></div>
     </div>
     <div class="container page-hero-inner">
       <div class="tria-center">
-        <h1 class="page-hero-heading" style="font-size:clamp(6rem,15vw,12rem);margin-bottom:10px;" data-i18n="404.title">404</h1>
-        <p class="page-hero-sub" style="max-width:none;font-size:1.1rem;margin-bottom:40px;" data-i18n="404.subtitle">Page not found</p>
-        <Button text="Back to home" href="/" variant="primary" showArrow={true} />
+        <div class="tria-404-badge" data-i18n="404.title">404</div>
+        <p class="tria-404-sub" data-i18n="404.subtitle">{t("404.subtitle")}</p>
+        <div class="tria-404-line"></div>
+        <div class="tria-404-links">
+          <Button text={t("404.cta")} href="/" variant="primary" showArrow={true} />
+          <a href="/portfolio" class="tria-404-alt-link">
+            <span data-i18n="404.altLink">{t("404.altLink")}</span>
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
       </div>
     </div>
   </section>
 
   <SiteFooter />
 </Layout>
+
+<style>
+  
+
+  .tria-404-particles {
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(6, 142, 140, 0.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(6, 142, 140, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.02) 1px, transparent 0);
+    background-size: 100% 100%, 100% 100%, 40px 40px;
+    pointer-events: none;
+  }
+
+  .tria-404-badge {
+    display: inline-block;
+    font-family: var(--font-display, 'Outfit', sans-serif);
+    font-size: clamp(6rem, 18vw, 12rem);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: #fff;
+    margin-bottom: 10px;
+    position: relative;
+    transition: text-shadow 0.4s ease;
+    animation: tria-404-float 4s ease-in-out infinite;
+  }
+
+  @keyframes tria-404-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
+  .tria-404-sub {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 32px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .tria-404-line {
+    width: 40px;
+    height: 2px;
+    background: var(--accent);
+    margin: 0 auto 32px;
+    border-radius: 2px;
+    opacity: 0.5;
+  }
+
+  .tria-404-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .tria-404-alt-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    text-decoration: none;
+    transition: color 0.3s ease, gap 0.3s ease;
+  }
+
+  .tria-404-alt-link:hover {
+    color: var(--accent);
+    gap: 12px;
+  }
+
+  .tria-404-alt-link svg {
+    transition: transform 0.3s ease;
+  }
+
+  .tria-404-alt-link:hover svg {
+    transform: translateX(4px);
+  }
+
+  @media (max-width: 576px) {
+    .tria-404-sub {
+      font-size: 0.9rem;
+    }
+    .tria-404-links {
+      gap: 16px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .tria-404-badge {
+      font-size: 5rem;
+    }
+    .tria-404-sub {
+      font-size: 0.8rem;
+    }
+    .tria-404-alt-link {
+      font-size: 0.7rem;
+    }
+  }
+</style>

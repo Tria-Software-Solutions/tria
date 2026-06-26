@@ -10,431 +10,620 @@ const t = createT(Astro.currentLocale);
 
 <Layout title={t("meta.title")} description={t("meta.description")}>
 
-  <PageBanner suptitleKey="portfolio.suptitle" headingKey="portfolio.title" descriptionKey="portfolio.desc">
-    <div class="tria-ph-stats-col">
-      <div class="tria-ph-stats">
-        <div class="tria-ph-stat">
-          <span class="tria-ph-stat-num">120+</span>
-          <span class="tria-ph-stat-label" data-i18n="portfolio.stats.projects">{t("portfolio.stats.projects")}</span>
-        </div>
-        <div class="tria-ph-stat">
-          <span class="tria-ph-stat-num">6</span>
-          <span class="tria-ph-stat-label" data-i18n="portfolio.stats.industries">{t("portfolio.stats.industries")}</span>
-        </div>
-      </div>
-    </div>
-  </PageBanner>
+  <PageBanner suptitleKey="portfolio.suptitle" headingKey="portfolio.title" descriptionKey="portfolio.desc" />
 
   <!-- filter + grid -->
-  <section data-section-theme="light" class="tria-work-section-bg">
-    <div class="container" style="padding-top:80px;padding-bottom:40px;">
-      <div class="tria-work-filter tria-up">
+  <section data-section-theme="light" class="tria-portfolio-section">
+    <div class="tria-ambient-temp">
+      <div class="tria-at-glow-1"></div>
+      <div class="tria-at-glow-2"></div>
+    </div>
+
+    <!-- Filter -->
+    <div class="container" style="padding-top:60px;">
+      <div class="tria-portfolio-filter tria-up">
         <Button variant="outline" size="xs" color="#0b0d17" active data-filter="all" data-i18n="portfolio.filter.all" text={t("portfolio.filter.all")} />
         <Button variant="outline" size="xs" color="#0b0d17" data-filter="fintech" data-i18n="portfolio.filter.fintech" text={t("portfolio.filter.fintech")} />
         <Button variant="outline" size="xs" color="#0b0d17" data-filter="cloud" data-i18n="portfolio.filter.cloud" text={t("portfolio.filter.cloud")} />
         <Button variant="outline" size="xs" color="#0b0d17" data-filter="ai" data-i18n="portfolio.filter.ai" text={t("portfolio.filter.ai")} />
-        <Button variant="outline" size="xs" color="#0b0d17" data-filter="healthcare" data-i18n="portfolio.filter.healthcare" text={t("portfolio.filter.healthcare")} />
-        <Button variant="outline" size="xs" color="#0b0d17" data-filter="ecommerce" data-i18n="portfolio.filter.ecommerce" text={t("portfolio.filter.ecommerce")} />
       </div>
     </div>
 
-    <div class="container">
-      <div class="tria-portfolio-grid tria-up">
+    <!-- Grid -->
+    <div class="container tria-p-120-120">
+      <div class="tria-portfolio-grid" id="portfolioGrid">
 
-        <div class="tria-portfolio-card" data-cat="fintech">
-          <div class="tria-pc-img" style="background:linear-gradient(135deg,#0b0d17 0%,#1a1f35 55%,#068e8c 100%);">
-            <div class="tria-pc-abstract tria-pc-abstract--lines"></div>
+        <!-- Parkit -->
+        <div class="tria-portfolio-card tria-pf-observe" data-cat="fintech" data-index="0">
+          <div class="tria-pf-img" style="background-image:url(/assets/img/featured/parkit-preview.png);background-size:cover;background-position:center;">
+            <div class="tria-pf-img-glass"></div>
+            <div class="tria-pf-abstract tria-pf-abstract--grid"></div>
+            <div class="tria-pf-glow"></div>
           </div>
-          <div class="tria-pc-body">
-            <div class="tria-pc-meta">
-              <span class="tria-pc-cat" data-i18n="featured.project1Cat">{t("featured.project1Cat")}</span>
+          <div class="tria-pf-body">
+            <div class="tria-pf-body-inner">
+              <h3 class="tria-pf-title" data-i18n="featured.project1Title">{t("featured.project1Title")}</h3>
+              <p class="tria-pf-desc" data-i18n="featured.project1Desc">{t("featured.project1Desc")}</p>
             </div>
-            <h3 class="tria-pc-title" data-i18n="featured.project1Title">{t("featured.project1Title")}</h3>
-            <p class="tria-pc-desc" data-i18n="featured.project1Desc">{t("featured.project1Desc")}</p>
-            <div class="tria-pc-tags">
-              <span>React</span><span>Go</span><span>PostgreSQL</span><span>AWS</span>
+            <div class="tria-pf-footer">
+              <div class="tria-pf-tags">
+                <span>React</span><span>Go</span><span>PostgreSQL</span><span>AWS</span>
+              </div>
+              <a href="/projects/parkit" class="tria-pf-link">
+                <span data-i18n="featured.viewProject">{t("featured.viewProject")}</span>
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
             </div>
-            <a href="#" class="tria-pc-link tria-link tria-arrow-place">
-              <span data-i18n="portfolio.card.caseStudy">{t("portfolio.card.caseStudy")}</span>
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
           </div>
         </div>
 
-        <div class="tria-portfolio-card" data-cat="cloud">
-          <div class="tria-pc-img" style="background:linear-gradient(135deg,#111827 0%,#1e3a5f 100%);">
-            <div class="tria-pc-abstract tria-pc-abstract--rings"></div>
+        <!-- Choferes -->
+        <div class="tria-portfolio-card tria-pf-observe" data-cat="cloud" data-index="1">
+          <div class="tria-pf-img" style="background-image:url(/assets/img/featured/choferes-preview.png);background-size:cover;background-position:center;">
+            <div class="tria-pf-img-glass"></div>
+            <div class="tria-pf-abstract tria-pf-abstract--rings"></div>
+            <div class="tria-pf-glow"></div>
           </div>
-          <div class="tria-pc-body">
-            <div class="tria-pc-meta">
-              <span class="tria-pc-cat" data-i18n="featured.project2Cat">{t("featured.project2Cat")}</span>
+          <div class="tria-pf-body">
+            <div class="tria-pf-body-inner">
+              <h3 class="tria-pf-title" data-i18n="featured.project2Title">{t("featured.project2Title")}</h3>
+              <p class="tria-pf-desc" data-i18n="featured.project2Desc">{t("featured.project2Desc")}</p>
             </div>
-            <h3 class="tria-pc-title" data-i18n="featured.project2Title">{t("featured.project2Title")}</h3>
-            <p class="tria-pc-desc" data-i18n="featured.project2Desc">{t("featured.project2Desc")}</p>
-            <div class="tria-pc-tags">
-              <span>Kubernetes</span><span>Terraform</span><span>GCP</span><span>AWS</span>
+            <div class="tria-pf-footer">
+              <div class="tria-pf-tags">
+                <span>Kubernetes</span><span>Terraform</span><span>GCP</span><span>AWS</span>
+              </div>
+              <a href="/projects/choferes" class="tria-pf-link">
+                <span data-i18n="featured.viewProject">{t("featured.viewProject")}</span>
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
             </div>
-            <a href="#" class="tria-pc-link tria-link tria-arrow-place">
-              <span data-i18n="portfolio.card.caseStudy">{t("portfolio.card.caseStudy")}</span>
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
-          </div>
-        </div>
-
-        <div class="tria-portfolio-card" data-cat="ecommerce">
-          <div class="tria-pc-img" style="background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);">
-          </div>
-          <div class="tria-pc-body">
-            <div class="tria-pc-meta">
-              <span class="tria-pc-cat" data-i18n="featured.project5Cat">{t("featured.project5Cat")}</span>
-            </div>
-            <h3 class="tria-pc-title" data-i18n="featured.project5Title">{t("featured.project5Title")}</h3>
-            <p class="tria-pc-desc" data-i18n="featured.project5Desc">{t("featured.project5Desc")}</p>
-            <div class="tria-pc-tags">
-              <span>Next.js</span><span>Node.js</span><span>Redis</span><span>Stripe</span>
-            </div>
-            <a href="#" class="tria-pc-link tria-link tria-arrow-place">
-              <span data-i18n="portfolio.card.caseStudy">{t("portfolio.card.caseStudy")}</span>
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
           </div>
         </div>
 
-        <div class="tria-portfolio-card" data-cat="ai">
-          <div class="tria-pc-img" style="background:linear-gradient(135deg,#0d0d0d 0%,#1a0f0f 50%,#068e8c 100%);">
-            <div class="tria-pc-abstract tria-pc-abstract--dots"></div>
+        <!-- SafeData -->
+        <div class="tria-portfolio-card tria-pf-observe" data-cat="ai" data-index="2">
+          <div class="tria-pf-img" style="background:linear-gradient(135deg,#0d0d0d 0%,#1a0f0f 50%,#068e8c 100%);">
+            <div class="tria-pf-img-glass"></div>
+            <div class="tria-pf-abstract tria-pf-abstract--dots"></div>
+            <div class="tria-pf-glow"></div>
           </div>
-          <div class="tria-pc-body">
-            <div class="tria-pc-meta">
-              <span class="tria-pc-cat" data-i18n="featured.project3Cat">{t("featured.project3Cat")}</span>
+          <div class="tria-pf-body">
+            <div class="tria-pf-body-inner">
+              <h3 class="tria-pf-title" data-i18n="featured.project3Title">{t("featured.project3Title")}</h3>
+              <p class="tria-pf-desc" data-i18n="featured.project3Desc">{t("featured.project3Desc")}</p>
             </div>
-            <h3 class="tria-pc-title" data-i18n="featured.project3Title">{t("featured.project3Title")}</h3>
-            <p class="tria-pc-desc" data-i18n="featured.project3Desc">{t("featured.project3Desc")}</p>
-            <div class="tria-pc-tags">
-              <span>Python</span><span>PyTorch</span><span>Kafka</span><span>Snowflake</span>
+            <div class="tria-pf-footer">
+              <div class="tria-pf-tags">
+                <span>Python</span><span>PyTorch</span><span>Kafka</span><span>Snowflake</span>
+              </div>
+              <a href="#" class="tria-pf-link">
+                <span data-i18n="featured.viewProject">{t("featured.viewProject")}</span>
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
             </div>
-            <a href="#" class="tria-pc-link tria-link tria-arrow-place">
-              <span data-i18n="portfolio.card.caseStudy">{t("portfolio.card.caseStudy")}</span>
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
-          </div>
-        </div>
-
-        <div class="tria-portfolio-card" data-cat="cloud">
-          <div class="tria-pc-img" style="background:linear-gradient(135deg,#0a0a1a 0%,#0d2137 100%);">
-          </div>
-          <div class="tria-pc-body">
-            <div class="tria-pc-meta">
-              <span class="tria-pc-cat" data-i18n="featured.project6Cat">{t("featured.project6Cat")}</span>
-            </div>
-            <h3 class="tria-pc-title" data-i18n="featured.project6Title">{t("featured.project6Title")}</h3>
-            <p class="tria-pc-desc" data-i18n="featured.project6Desc">{t("featured.project6Desc")}</p>
-            <div class="tria-pc-tags">
-              <span>Go</span><span>MQTT</span><span>InfluxDB</span><span>Azure</span>
-            </div>
-            <a href="#" class="tria-pc-link tria-link tria-arrow-place">
-              <span data-i18n="portfolio.card.caseStudy">{t("portfolio.card.caseStudy")}</span>
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
           </div>
         </div>
 
-        <div class="tria-portfolio-card" data-cat="healthcare">
-          <div class="tria-pc-img" style="background:linear-gradient(135deg,#071a2c 0%,#0c3b5e 100%);">
+        <!-- SafePath -->
+        <div class="tria-portfolio-card tria-pf-observe" data-cat="ai" data-index="3">
+          <div class="tria-pf-img" style="background-image:url(/assets/img/featured/safepath-preview.png);background-size:cover;background-position:center;">
+            <div class="tria-pf-img-glass"></div>
+            <div class="tria-pf-abstract tria-pf-abstract--grid"></div>
+            <div class="tria-pf-glow"></div>
           </div>
-          <div class="tria-pc-body">
-            <div class="tria-pc-meta">
-              <span class="tria-pc-cat" data-i18n="featured.project4Cat">{t("featured.project4Cat")}</span>
+          <div class="tria-pf-body">
+            <div class="tria-pf-body-inner">
+              <h3 class="tria-pf-title" data-i18n="featured.project4Title">{t("featured.project4Title")}</h3>
+              <p class="tria-pf-desc" data-i18n="featured.project4Desc">{t("featured.project4Desc")}</p>
             </div>
-            <h3 class="tria-pc-title" data-i18n="featured.project4Title">{t("featured.project4Title")}</h3>
-            <p class="tria-pc-desc" data-i18n="featured.project4Desc">{t("featured.project4Desc")}</p>
-            <div class="tria-pc-tags">
-              <span>Python</span><span>Spark</span><span>dbt</span><span>GCP</span>
+            <div class="tria-pf-footer">
+              <div class="tria-pf-tags">
+                <span>FastAPI</span><span>Python</span><span>OSMnx</span><span>NetworkX</span>
+              </div>
+              <a href="https://github.com/lmhq-94/safepath_api" class="tria-pf-link" target="_blank" rel="noopener noreferrer">
+                <span data-i18n="featured.viewProject">{t("featured.viewProject")}</span>
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
             </div>
-            <a href="#" class="tria-pc-link tria-link tria-arrow-place">
-              <span data-i18n="portfolio.card.caseStudy">{t("portfolio.card.caseStudy")}</span>
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
           </div>
         </div>
 
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA strip -->
-  <section data-section-theme="light" class="tria-work-section-bg">
-    <div class="container" style="padding:0 0 120px;">
-      <div class="tria-work-page-cta tria-up">
-        <div class="tria-wpc-left">
-          <h4 class="tria-wpc-heading" data-i18n="portfolio.cta.heading">{t("portfolio.cta.heading")}</h4>
-          <p class="tria-wpc-sub" data-i18n="portfolio.cta.subtext">{t("portfolio.cta.subtext")}</p>
+        <!-- Fault Diagnosis -->
+        <div class="tria-portfolio-card tria-pf-observe" data-cat="cloud" data-index="4">
+          <div class="tria-pf-img">
+            <div class="tria-pf-iframe-wrap">
+              <iframe src="https://diagnostico-fallas.vercel.app" class="tria-pf-iframe" loading="lazy" title="Fault Diagnosis"></iframe>
+            </div>
+            <div class="tria-pf-img-glass"></div>
+            <div class="tria-pf-abstract tria-pf-abstract--rings"></div>
+            <div class="tria-pf-glow"></div>
+          </div>
+          <div class="tria-pf-body">
+            <div class="tria-pf-body-inner">
+              <h3 class="tria-pf-title" data-i18n="featured.project5Title">{t("featured.project5Title")}</h3>
+              <p class="tria-pf-desc" data-i18n="featured.project5Desc">{t("featured.project5Desc")}</p>
+            </div>
+            <div class="tria-pf-footer">
+              <div class="tria-pf-tags">
+                <span>TypeScript</span><span>Vite</span><span>Tailwind</span><span>jsPDF</span>
+              </div>
+              <a href="https://github.com/lmhq-94/fault_diagnosis" class="tria-pf-link" target="_blank" rel="noopener noreferrer">
+                <span data-i18n="featured.viewProject">{t("featured.viewProject")}</span>
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
         </div>
-        <Button text={t("portfolio.cta.button")} href="/contact" showArrow={true} />
+
       </div>
     </div>
   </section>
 
   <CTA 
-    heading={t("cta.heading") || ""}
-    description={t("cta.description") || "From concept to deployment, we build software that scales."}
-    primaryButtonText={t("cta.startProject") || ""}
-    secondaryButtonText={t("cta.seeWork") || ""}
+    heading={t("ctaPortfolio.heading") || ""}
+    primaryButtonText={t("ctaPortfolio.button") || ""}
+    secondaryButtonText={t("ctaPortfolio.button2") || ""}
     primaryButtonHref="/contact"
-    secondaryButtonHref="/portfolio"
-    theme="dark"
+    secondaryButtonHref="/services"
+    theme="light"
+    bgColor="#e8ebee"
     showIcon={true}
-    padding=""
-    primaryButtonVariant="primary"
-    primaryButtonColor="#0b0d17"
-    primaryButtonHoverColor="#1a1f35"
+    padding="tria-p-120-120"
   />
 
   <SiteFooter />
 </Layout>
 
 <style>
-  .tria-ph-stats-col {
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
-    padding-bottom: 12px;
-  }
-  .tria-ph-stats {
-    display: flex;
-    gap: 50px;
-  }
-  .tria-ph-stat {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-  }
-  .tria-ph-stat-num {
-    font-size: 2.5rem;
-    font-weight: 300;
-    color: rgba(255,255,255,0.8);
-    font-family: var(--font-display, 'Cormorant Garamond', serif);
-    line-height: 1;
-  }
-  .tria-ph-stat-label {
-    font-size: 0.6rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.3);
-    margin-top: 6px;
-  }
-
-  .tria-work-section-bg {
+  /* ── Section ── */
+  .tria-portfolio-section {
     background: #faf7f2;
+    position: relative;
   }
 
-  .tria-work-filter {
+  /* ── Filter ── */
+  .tria-portfolio-filter {
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
-    margin-bottom: 60px;
+    margin-bottom: 20px;
   }
 
+  /* ── Grid ── */
   .tria-portfolio-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 8px;
   }
+
+  /* ── Card ── */
   .tria-portfolio-card {
     background: #fff;
     display: flex;
     flex-direction: column;
     border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
-    transition: box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03), 0 4px 12px rgba(0,0,0,0.02);
+    transition: box-shadow 0.6s var(--ease-spring),
+                transform 0.6s var(--ease-spring),
+                opacity 0.6s var(--ease-spring),
+                filter 0.6s var(--ease-spring);
+    will-change: transform, opacity;
+    position: relative;
   }
-  .tria-portfolio-card:hover {
-    box-shadow: 0 12px 36px rgba(0,0,0,0.07), 0 3px 12px rgba(0,0,0,0.04);
-    transform: translateY(-3px);
+
+  /* ── Filter hide/show with transition ── */
+  .tria-portfolio-card.tria-pf-hidden {
+    opacity: 0;
+    filter: blur(6px) saturate(0.4);
+    transform: scale(0.92);
+    pointer-events: none;
   }
-  .tria-portfolio-card.tria-hidden {
+
+  .tria-portfolio-card.tria-pf-collapsed {
     display: none;
   }
-  .tria-pc-img {
-    height: 240px;
+
+  /* ── Scroll animation initial state ── */
+  .tria-portfolio-card.tria-pf-initial {
+    opacity: 0;
+    filter: blur(6px) saturate(0.4);
+    transform: translateY(30px) scale(0.97);
+  }
+
+  .tria-portfolio-card.tria-pf-visible {
+    opacity: 1;
+    filter: blur(0) saturate(1);
+    transform: translateY(0) scale(1);
+  }
+
+  .tria-portfolio-card.tria-pf-visible:nth-child(1) { transition-delay: 0.05s; }
+  .tria-portfolio-card.tria-pf-visible:nth-child(2) { transition-delay: 0.12s; }
+  .tria-portfolio-card.tria-pf-visible:nth-child(3) { transition-delay: 0.19s; }
+  .tria-portfolio-card.tria-pf-visible:nth-child(4) { transition-delay: 0.26s; }
+  .tria-portfolio-card.tria-pf-visible:nth-child(5) { transition-delay: 0.33s; }
+
+  .tria-portfolio-card:hover {
+    box-shadow: 0 16px 48px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    transform: translateY(-4px);
+  }
+
+  /* ── Image area ── */
+  .tria-pf-img {
+    height: 280px;
     position: relative;
     overflow: hidden;
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.8s var(--ease-spring);
   }
-  .tria-portfolio-card:hover .tria-pc-img {
-    transform: scale(1.04);
+
+  .tria-portfolio-card:hover .tria-pf-img {
+    transform: scale(1.05);
+  }  /* ── Iframe embed ── */
+  .tria-pf-iframe-wrap {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: 0;
+    background: #0b0d17;
   }
-  .tria-pc-abstract {
+
+  .tria-pf-iframe {
+    width: 1440px;
+    height: 900px;
+    border: none;
+    pointer-events: none;
+    transform-origin: 0 0;
+    transform: scale(0.27);
+  }
+
+  .tria-pf-img-glass {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: linear-gradient(135deg, rgba(11,13,23,0.04) 0%, rgba(11,13,23,0.2) 100%);
+    backdrop-filter: blur(1.5px);
+    -webkit-backdrop-filter: blur(1.5px);
+    transition: all 0.6s ease;
+  }
+
+  .tria-portfolio-card:hover .tria-pf-img-glass {
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    background: linear-gradient(135deg, rgba(11,13,23,0.01) 0%, rgba(6,142,140,0.15) 100%);
+  }
+
+  /* ── Abstract decorations ── */
+  .tria-pf-abstract {
     position: absolute;
     inset: 0;
     pointer-events: none;
+    z-index: 1;
+    opacity: 0.07;
+    transition: opacity 0.6s ease;
   }
-  .tria-pc-abstract--lines::after {
+
+  .tria-portfolio-card:hover .tria-pf-abstract {
+    opacity: 0.15;
+  }
+
+  .tria-pf-abstract--grid::after {
     content: '';
     position: absolute;
     width: 200px;
     height: 200px;
-    right: -30px;
-    bottom: -30px;
+    right: -40px;
+    bottom: -40px;
     border: 1px solid rgba(255,255,255,0.08);
     border-radius: 50%;
-    box-shadow: 0 0 0 40px rgba(255,255,255,0.03), 0 0 0 80px rgba(255,255,255,0.015);
+    box-shadow: 0 0 0 40px rgba(6,142,140,0.015),
+                0 0 0 80px rgba(6,142,140,0.008);
+    transition: box-shadow 0.6s ease, border-color 0.6s ease;
   }
-  .tria-pc-abstract--rings::before {
+
+  .tria-portfolio-card:hover .tria-pf-abstract--grid::after {
+    box-shadow: 0 0 0 40px rgba(6,142,140,0.04),
+                0 0 0 80px rgba(6,142,140,0.02);
+    border-color: rgba(6, 142, 140, 0.06);
+  }
+
+  .tria-pf-abstract--rings::before {
     content: '';
     position: absolute;
-    width: 160px;
-    height: 160px;
-    top: 20px;
-    right: 20px;
-    border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.06);
-    box-shadow: 0 0 0 30px rgba(255,255,255,0.03);
-  }
-  .tria-pc-abstract--dots::after {
-    content: '';
-    position: absolute;
-    right: 30px;
+    width: 140px;
+    height: 140px;
     top: 30px;
+    right: 30px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.05);
+    box-shadow: 0 0 0 30px rgba(255,255,255,0.015);
+    transition: border-color 0.6s ease, box-shadow 0.6s ease;
+  }
+
+  .tria-portfolio-card:hover .tria-pf-abstract--rings::before {
+    border-color: rgba(6, 142, 140, 0.08);
+    box-shadow: 0 0 0 30px rgba(6,142,140,0.02);
+  }
+
+  .tria-pf-abstract--dots::after {
+    content: '';
+    position: absolute;
+    right: 28px;
+    top: 28px;
     width: 80px;
     height: 80px;
-    background-image: radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px);
-    background-size: 12px 12px;
+    background-image: radial-gradient(rgba(255,255,255,0.1) 1px, transparent 1px);
+    background-size: 10px 10px;
+    transition: background-image 0.6s ease;
   }
-  .tria-pc-body {
-    padding: 32px;
+
+  .tria-portfolio-card:hover .tria-pf-abstract--dots::after {
+    background-image: radial-gradient(rgba(6,142,140,0.18) 1px, transparent 1px);
+  }
+
+  /* ── Accent glow behind image on hover ── */
+  .tria-pf-glow {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0;
+    background: radial-gradient(ellipse at 50% 100%, rgba(6,142,140,0.15) 0%, transparent 60%);
+    transition: opacity 0.8s var(--ease-spring);
+  }
+
+  .tria-portfolio-card:hover .tria-pf-glow {
+    opacity: 1;
+  }
+
+  /* ── Body ── */
+  .tria-pf-body {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    flex: 1;
+    background: #fff;
+    position: relative;
+    z-index: 1;
+  }
+
+  .tria-pf-body-inner {
+    padding: 28px 24px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
     flex: 1;
   }
-  .tria-pc-meta {
+
+  .tria-pf-title {
+    font-size: 1.2rem;
+    font-weight: 480;
+    color: #0b0d17;
+    line-height: 1.2;
+    margin: 0;
+    letter-spacing: -0.02em;
+    transition: color 0.4s ease;
+  }
+
+  .tria-portfolio-card:hover .tria-pf-title {
+    color: var(--accent);
+  }
+
+  .tria-pf-desc {
+    font-size: 0.82rem;
+    color: #999;
+    line-height: 1.65;
+    margin: 0;
+    flex: 1;
+  }
+
+  .tria-portfolio-card:hover .tria-pf-desc {
+    color: #888;
+  }
+
+  /* ── Footer (tags + link) ── */
+  .tria-pf-footer {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 24px;
+    border-top: 1px solid rgba(0,0,0,0.04);
+    margin-top: 24px;
+    transition: border-color 0.4s var(--ease-spring);
   }
-  .tria-pc-cat {
-    font-size: 0.6rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--accent);
-    font-weight: 500;
+
+  .tria-portfolio-card:hover .tria-pf-footer {
+    border-top-color: rgba(6, 142, 140, 0.1);
   }
-  .tria-pc-title {
-    font-size: 1.25rem;
-    font-weight: 400;
-    color: #0b0d17;
-    line-height: 1.25;
-    margin: 0;
-    transition: color 0.3s ease;
-  }
-  .tria-portfolio-card:hover .tria-pc-title {
-    color: var(--accent);
-  }
-  .tria-pc-desc {
-    font-size: 0.82rem;
-    color: #777;
-    line-height: 1.7;
-    margin: 0;
-    flex: 1;
-  }
-  .tria-pc-tags {
+
+  .tria-pf-tags {
     display: flex;
-    gap: 8px;
+    gap: 6px;
     flex-wrap: wrap;
   }
-  .tria-pc-tags span {
-    font-size: 0.6rem;
+
+  .tria-pf-tags span {
+    font-size: 0.55rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     padding: 4px 10px;
-    border: 1px solid rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.06);
     border-radius: 20px;
-    color: rgba(0,0,0,0.4);
-    transition: border-color 0.3s ease;
+    color: rgba(0,0,0,0.3);
+    transition: border-color 0.3s ease, color 0.3s ease, background 0.3s ease;
   }
-  .tria-portfolio-card:hover .tria-pc-tags span {
-    border-color: rgba(0,0,0,0.18);
+
+  .tria-portfolio-card:hover .tria-pf-tags span {
+    border-color: rgba(6, 142, 140, 0.12);
+    color: rgba(6, 142, 140, 0.5);
+    background: rgba(6, 142, 140, 0.025);
   }
-  .tria-pc-link {
-    font-size: 0.75rem;
+
+  /* ── Link ── */
+  .tria-pf-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.65rem;
+    font-weight: 600;
     letter-spacing: 0.08em;
-    color: #0b0d17;
-    margin-top: 8px;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.25);
+    text-decoration: none;
+    transition: color 0.4s var(--ease-spring), gap 0.4s var(--ease-spring);
+    flex-shrink: 0;
   }
-  .tria-pc-link i {
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+  .tria-pf-link svg {
+    transition: transform 0.4s var(--ease-spring);
   }
-  .tria-pc-link:hover i {
+
+  .tria-pf-link:hover {
+    color: var(--accent) !important;
+    gap: 10px;
+  }
+
+  .tria-pf-link:hover svg {
     transform: translateX(4px);
   }
 
-  .tria-work-page-cta {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    border: 1px solid rgba(0,0,0,0.06);
-    border-radius: 16px;
-    padding: 50px 60px;
-    background: #fff;
-    gap: 24px;
-    transition: box-shadow 0.4s ease;
-  }
-  .tria-work-page-cta:hover {
-    box-shadow: 0 8px 32px rgba(0,0,0,0.06);
-  }
-  .tria-wpc-heading {
-    font-weight: 300;
-    font-size: 1.8rem;
-    margin: 0;
-  }
-  .tria-wpc-sub {
-    color: #888;
-    font-size: 0.9rem;
-    margin: 8px 0 0;
-  }
-
+  /* ── Responsive ── */
   @media (max-width: 991px) {
-    .tria-portfolio-grid { grid-template-columns: repeat(2, 1fr); }
-    .tria-ph-stats-col { display: none; }
-  }
-  @media (max-width: 600px) {
-    .tria-portfolio-grid { grid-template-columns: 1fr; }
-    .tria-work-page-cta { padding: 36px; }
-    .tria-wpc-heading { font-size: 1.4rem; }
+    .tria-portfolio-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .tria-pf-img { height: 220px; }
+    .tria-pf-body-inner { padding: 22px 20px 0; }
+    .tria-pf-footer { padding: 16px 20px; }
   }
 
-  .tria-mb-20 { margin-bottom: 20px; }
+  @media (max-width: 600px) {
+    .tria-portfolio-grid { grid-template-columns: 1fr; gap: 16px; }
+    .tria-pf-img { height: 200px; }
+    .tria-pf-body-inner { padding: 20px 18px 0; gap: 10px; }
+    .tria-pf-title { font-size: 1.05rem; }
+    .tria-pf-desc { font-size: 0.78rem; }
+    .tria-pf-footer { padding: 14px 18px; flex-direction: column; align-items: flex-start; gap: 12px; }
+  }
+
+  @media (max-width: 400px) {
+    .tria-pf-img { height: 180px; }
+    .tria-pf-body-inner { padding: 16px 14px 0; }
+    .tria-pf-title { font-size: 0.95rem; }
+    .tria-pf-desc { font-size: 0.74rem; }
+    .tria-pf-tags span { font-size: 0.5rem; padding: 3px 8px; }
+    .tria-pf-link { font-size: 0.6rem; }
+    .tria-pf-footer { padding: 12px 14px; }
+  }
 </style>
 
 <script is:inline>
   (function () {
+    function initPortfolioAnimations() {
+      var items = document.querySelectorAll('.tria-pf-observe');
+      if (!items.length) return;
+
+      // Add initial state class for scroll animation
+      items.forEach(function (item) {
+        if (!item.classList.contains('tria-pf-initial') && !item.classList.contains('tria-pf-visible') && !item.classList.contains('tria-pf-hidden')) {
+          item.classList.add('tria-pf-initial');
+        }
+      });
+
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.remove('tria-pf-initial');
+              entry.target.classList.add('tria-pf-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+        items.forEach(function (item) {
+          observer.observe(item);
+        });
+      } else {
+        // Fallback: show all immediately
+        items.forEach(function (item) {
+          item.classList.remove('tria-pf-initial');
+          item.classList.add('tria-pf-visible');
+        });
+      }
+    }
+
     function initFilter() {
       var btns = document.querySelectorAll('[data-filter]');
-      var cards = document.querySelectorAll('.tria-portfolio-card');
-      if (!btns.length) return;
+      var grid = document.getElementById('portfolioGrid');
+      if (!btns.length || !grid) return;
+
+      var gridItems = Array.from(grid.children);
+      var hideTimers = {};
+
+      function hideCard(card) {
+        var idx = card.getAttribute('data-index');
+        if (hideTimers[idx]) return;
+        card.classList.remove('tria-pf-visible', 'tria-pf-initial');
+        card.classList.add('tria-pf-hidden');
+        hideTimers[idx] = setTimeout(function () {
+          card.classList.add('tria-pf-collapsed');
+        }, 420);
+      }
+
+      function showCard(card) {
+        var idx = card.getAttribute('data-index');
+        if (hideTimers[idx]) {
+          clearTimeout(hideTimers[idx]);
+          delete hideTimers[idx];
+        }
+        card.classList.remove('tria-pf-collapsed', 'tria-pf-hidden', 'tria-pf-visible');
+        card.classList.add('tria-pf-initial');
+        void card.offsetHeight;
+        card.classList.remove('tria-pf-initial');
+        card.classList.add('tria-pf-visible');
+      }
+
       btns.forEach(function (btn) {
         btn.addEventListener('click', function () {
           btns.forEach(function (b) { b.classList.remove('tria-btn--active'); });
           btn.classList.add('tria-btn--active');
+
           var filter = btn.getAttribute('data-filter');
-          cards.forEach(function (card) {
+
+          gridItems.forEach(function (card) {
             var cat = card.getAttribute('data-cat');
             if (filter === 'all' || cat === filter) {
-              card.classList.remove('tria-hidden');
+              showCard(card);
             } else {
-              card.classList.add('tria-hidden');
+              hideCard(card);
             }
           });
         });
       });
     }
+
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initFilter);
+      document.addEventListener('DOMContentLoaded', function () {
+        initPortfolioAnimations();
+        initFilter();
+      });
     } else {
+      initPortfolioAnimations();
       initFilter();
     }
-    document.addEventListener('swup:contentReplaced', initFilter);
+
+    document.addEventListener('swup:contentReplaced', function () {
+      initPortfolioAnimations();
+      initFilter();
+    });
   })();
 </script>

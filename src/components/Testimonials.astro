@@ -1,9 +1,43 @@
 ---
+interface Testimonial {
+  name: string;
+  title: string;
+  quote: string;
+}
 
+interface Props {
+  suptitle?: string;
+  heading?: string;
+  testimonials?: Testimonial[];
+  theme?: 'light' | 'dark';
+  /** i18n key for client-side language switching (suptitle) */
+  suptitleKey?: string;
+  /** i18n key for client-side language switching (heading) */
+  headingKey?: string;
+}
+
+const { createT } = await import("../i18n/utils");
+const t = createT(Astro.currentLocale);
+
+const {
+  suptitle = t("testimonials.suptitle") || "What our clients say about <br />working with tria.",
+  heading = t("testimonials.title") || "Client <span class=\"tria-thin\">Voices</span>",
+  testimonials = [
+    { name: t("testimonial.1.name") || "", title: t("testimonial.1.title") || "", quote: t("testimonial.1.quote") || "" },
+    { name: t("testimonial.2.name") || "", title: t("testimonial.2.title") || "", quote: t("testimonial.2.quote") || "" },
+    { name: t("testimonial.3.name") || "", title: t("testimonial.3.title") || "", quote: t("testimonial.3.quote") || "" },
+    { name: t("testimonial.4.name") || "", title: t("testimonial.4.title") || "", quote: t("testimonial.4.quote") || "" },
+  ],
+  theme = 'light',
+  suptitleKey = "testimonials.suptitle",
+  headingKey = "testimonials.title",
+} = Astro.props;
+
+const slides = [...testimonials, ...testimonials.slice(0, 3)];
 ---
 
 <!-- reviews -->
-<section class="tria-testimonials-section" data-section-theme="light">
+<section class="tria-testimonials-section" data-section-theme={theme}>
   <div class="tria-ambient-temp">
     <div style="width:550px;height:550px;background:var(--accent);opacity:0.04;top:-150px;right:-100px;filter:blur(160px);"></div>
     <div style="width:400px;height:400px;background:var(--accent);opacity:0.03;bottom:-100px;left:-80px;filter:blur(120px);"></div>
@@ -13,25 +47,25 @@
       <div class="col-lg-10">
           <span
             class="tria-suptitle tria-suptitle-right tria-suptitle-dark tria-up"
-            data-i18n-html="testimonials.suptitle">What our clients say about <br />working with tria.</span
-          >
+            {suptitleKey && `data-i18n-html=${suptitleKey}`}
+            set:html={suptitle}></span>
         </div>
       </div>
 
-      <h2 class="tria-center tria-up tria-mb-60" data-i18n-html="testimonials.title">
-        Client <span class="tria-thin">Voices</span>
-      </h2>
+      <h2 class="tria-center tria-up tria-mb-60" {headingKey && `data-i18n-html=${headingKey}`} set:html={heading}></h2>
 
+    <!-- Pagination: Swiper generates bullets dynamically via its renderBullet callback -->
     <div class="tria-revi-pagination tria-up tria-mb-60"></div>
 
     <div class="row tria-relative justify-content-center">
       <div class="col-lg-8">
         <div class="tria-slider-nav tria-soft tria-reviews-nav tria-up">
-          <div
-            class="tria-slider-arrow tria-prev tria-revi-prev tria-arrow-place"
-          >
+          <div class="tria-slider-arrow tria-prev tria-revi-prev">
+            <i class="ti ti-arrow-right"></i>
           </div>
-          <div class="tria-slider-arrow tria-revi-next tria-arrow-place"></div>
+          <div class="tria-slider-arrow tria-revi-next">
+            <i class="ti ti-arrow-right"></i>
+          </div>
         </div>
 
         <svg
@@ -46,104 +80,22 @@
 
         <div class="swiper tria-reviews-slider">
           <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <div
-                class="tria-review-frame tria-center"
-                data-swiper-parallax="-200"
-                data-swiper-parallax-opacity="0"
-              >
-                <h5 class="tria-up tria-mb-10" data-i18n="testimonial.1.name">{t("testimonial.1.name")}</h5>
-                <p class="tria-mb-5 tria-upper tria-up tria-mb-30" data-i18n="testimonial.1.title">
-                  {t("testimonial.1.title")}
-                </p>
-                <p class="tria-text-xl tria-up" data-i18n="testimonial.1.quote" set:html={t("testimonial.1.quote")}>
-                </p>
+            {slides.map((slide) => (
+              <div class="swiper-slide">
+                <div
+                  class="tria-review-frame tria-center"
+                  data-swiper-parallax="-200"
+                  data-swiper-parallax-opacity="0"
+                >
+                  <h5 class="tria-up tria-mb-10">{slide.name}</h5>
+                  <p class="tria-mb-5 tria-upper tria-up tria-mb-30">
+                    {slide.title}
+                  </p>
+                  <p class="tria-text-xl tria-up" set:html={slide.quote}>
+                  </p>
+                </div>
               </div>
-            </div>
-            <div class="swiper-slide">
-              <div
-                class="tria-review-frame tria-center"
-                data-swiper-parallax="-200"
-                data-swiper-parallax-opacity="0"
-              >
-                <h5 class="tria-up tria-mb-10" data-i18n="testimonial.2.name">{t("testimonial.2.name")}</h5>
-                <p class="tria-mb-5 tria-upper tria-up tria-mb-30" data-i18n="testimonial.2.title">
-                  {t("testimonial.2.title")}
-                </p>
-                <p class="tria-text-xl tria-up" data-i18n="testimonial.2.quote" set:html={t("testimonial.2.quote")}>
-                </p>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div
-                class="tria-review-frame tria-center"
-                data-swiper-parallax="-200"
-                data-swiper-parallax-opacity="0"
-              >
-                <h5 class="tria-up tria-mb-10" data-i18n="testimonial.3.name">{t("testimonial.3.name")}</h5>
-                <p class="tria-mb-5 tria-upper tria-up tria-mb-30" data-i18n="testimonial.3.title">
-                  {t("testimonial.3.title")}
-                </p>
-                <p class="tria-text-xl tria-up" data-i18n="testimonial.3.quote" set:html={t("testimonial.3.quote")}>
-                </p>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div
-                class="tria-review-frame tria-center"
-                data-swiper-parallax="-200"
-                data-swiper-parallax-opacity="0"
-              >
-                <h5 class="tria-up tria-mb-10" data-i18n="testimonial.4.name">{t("testimonial.4.name")}</h5>
-                <p class="tria-mb-5 tria-upper tria-up tria-mb-30" data-i18n="testimonial.4.title">
-                  {t("testimonial.4.title")}
-                </p>
-                <p class="tria-text-xl tria-up" data-i18n="testimonial.4.quote" set:html={t("testimonial.4.quote")}>
-                </p>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div
-                class="tria-review-frame tria-center"
-                data-swiper-parallax="-200"
-                data-swiper-parallax-opacity="0"
-              >
-                <h5 class="tria-up tria-mb-10" data-i18n="testimonial.1.name">{t("testimonial.1.name")}</h5>
-                <p class="tria-mb-5 tria-upper tria-up tria-mb-30" data-i18n="testimonial.1.title">
-                  {t("testimonial.1.title")}
-                </p>
-                <p class="tria-text-xl tria-up" data-i18n="testimonial.1.quote" set:html={t("testimonial.1.quote")}>
-                </p>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div
-                class="tria-review-frame tria-center"
-                data-swiper-parallax="-200"
-                data-swiper-parallax-opacity="0"
-              >
-                <h5 class="tria-up tria-mb-10" data-i18n="testimonial.2.name">{t("testimonial.2.name")}</h5>
-                <p class="tria-mb-5 tria-upper tria-up tria-mb-30" data-i18n="testimonial.2.title">
-                  {t("testimonial.2.title")}
-                </p>
-                <p class="tria-text-xl tria-up" data-i18n="testimonial.2.quote" set:html={t("testimonial.2.quote")}>
-                </p>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div
-                class="tria-review-frame tria-center"
-                data-swiper-parallax="-200"
-                data-swiper-parallax-opacity="0"
-              >
-                <h5 class="tria-up tria-mb-10" data-i18n="testimonial.3.name">{t("testimonial.3.name")}</h5>
-                <p class="tria-mb-5 tria-upper tria-up tria-mb-30" data-i18n="testimonial.3.title">
-                  {t("testimonial.3.title")}
-                </p>
-                <p class="tria-text-xl tria-up" data-i18n="testimonial.3.quote" set:html={t("testimonial.3.quote")}>
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
@@ -164,6 +116,11 @@
     font-size: clamp(1rem, 1.5vw, 1.25rem);
     line-height: 1.7;
     color: #444;
+  }
+
+  .tria-slider-nav .tria-slider-arrow .ti {
+    font-size: 16px;
+    line-height: 1;
   }
 
   @media (max-width: 768px) {

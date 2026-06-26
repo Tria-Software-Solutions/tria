@@ -245,6 +245,10 @@ section[data-section-theme="light"] {
   display: flex;
   align-items: flex-end;
   background: #0b0d17;
+  min-height: 45vh;
+}
+.page-hero--short {
+  min-height: auto;
 }
 .page-hero-bg {
   position: absolute;
@@ -254,38 +258,84 @@ section[data-section-theme="light"] {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 0%, rgba(11,13,23,0.4) 100%);
+  background: linear-gradient(180deg, transparent 0%, rgba(11,13,23,0.5) 100%);
   pointer-events: none;
 }
 .page-hero-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.10;
+  filter: blur(120px);
+  opacity: 0.12;
 }
 .page-hero-orb--1 {
-  width: 400px; height: 400px;
+  width: 600px; height: 600px;
   background: radial-gradient(circle, #068e8c, transparent 70%);
-  top: -100px; right: -80px;
+  top: -250px; right: -150px;
+  animation: heroOrbFloat 16s infinite alternate ease-in-out;
 }
 .page-hero-orb--2 {
-  width: 240px; height: 240px;
+  width: 400px; height: 400px;
   background: radial-gradient(circle, #068e8c, transparent 70%);
-  bottom: -60px; left: 15%;
+  bottom: -120px; left: 5%;
+  animation: heroOrbFloat2 12s infinite alternate ease-in-out;
 }
+
+@keyframes heroOrbFloat {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-30px, 40px) scale(1.1); }
+}
+@keyframes heroOrbFloat2 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(20px, -30px) scale(1.15); }
+}
+
+.page-hero-bg-dots {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.025) 1px, transparent 0);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse at 70% 30%, black 25%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse at 70% 30%, black 25%, transparent 70%);
+}
+
+.page-hero-gradient-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent 0%, rgba(11,13,23,0.7) 70%, #0b0d17 100%);
+}
+
+/* ── Hero grain overlay ── */
+.tria-hero-grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.15;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+}
+
 .page-hero-inner {
-  padding-top: 130px;
-  padding-bottom: 50px;
+  padding-top: 120px;
+  padding-bottom: 70px;
   position: relative;
   z-index: 1;
   width: 100%;
 }
 .page-hero-heading {
-  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
   font-weight: 450;
   color: #fff;
-  line-height: 1.15;
-  letter-spacing: -0.025em;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  max-width: 800px;
+}
+.page-hero-heading + .page-hero-sub {
+  margin-top: 28px;
 }
 .page-hero-em {
   color: rgba(255,255,255,0.3);
@@ -293,15 +343,34 @@ section[data-section-theme="light"] {
   font-style: italic;
 }
 .page-hero-sub {
-  color: rgba(255,255,255,0.45);
-  font-size: 0.92rem;
-  max-width: 480px;
-  line-height: 1.7;
+  color: rgba(255,255,255,0.35);
+  font-size: 1rem;
+  max-width: 520px;
+  line-height: 1.8;
   margin: 0;
 }
+
+/* Align right-column description with the heading, not the suptitle */
+@media (min-width: 992px) {
+  .page-hero .row .col-lg-4.offset-lg-1 .page-hero-sub {
+    margin-top: 42px;
+  }
+}
+@media (max-width: 991px) {
+  .page-hero { min-height: 35vh; }
+  .page-hero-inner { padding-top: 100px; padding-bottom: 60px; }
+  .page-hero-orb--1 { width: 350px; height: 350px; top: -150px; right: -100px; opacity: 0.08; }
+  .page-hero-orb--2 { width: 250px; height: 250px; bottom: -80px; left: 5%; opacity: 0.06; }
+  .page-hero-heading { font-size: clamp(1.8rem, 5vw, 2.4rem); }
+  .page-hero-sub { font-size: 0.9rem; max-width: 100%; }
+}
 @media (max-width: 768px) {
-  .page-hero-orb--1,
-  .page-hero-orb--2 { opacity: 0.08; }
+  .page-hero { min-height: 28vh; }
+  .page-hero-inner { padding-top: 80px; padding-bottom: 50px; }
+  .page-hero-orb--1 { width: 250px; height: 250px; top: -100px; right: -80px; opacity: 0.06; }
+  .page-hero-orb--2 { width: 180px; height: 180px; bottom: -60px; left: 5%; opacity: 0.04; }
+  .page-hero-heading { font-size: clamp(1.5rem, 6vw, 1.8rem); }
+  .page-hero-sub { font-size: 0.85rem; }
 }
 
 /* ── Shared page body ── */
@@ -489,7 +558,7 @@ a:not(.tria-button):hover,
   }
 }
 
-/* ── Ambient section backgrounds ── */
+/* ── Ambient section backgrounds (index look & feel) ── */
 .tria-ambient-glow {
   position: absolute;
   border-radius: 50%;
@@ -498,11 +567,62 @@ a:not(.tria-button):hover,
   will-change: transform;
 }
 
+.tria-ambient-temp {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.tria-ambient-temp > div {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.1;
+  will-change: transform;
+}
+
+.tria-ambient-temp .tria-at-glow-1 {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, #068e8c 0%, transparent 70%);
+  top: -200px; right: -100px;
+  animation: ambientFloat1 18s infinite alternate ease-in-out;
+}
+
+.tria-ambient-temp .tria-at-glow-2 {
+  width: 350px; height: 350px;
+  background: radial-gradient(circle, #068e8c 0%, transparent 70%);
+  bottom: -150px; left: -50px;
+  animation: ambientFloat2 14s infinite alternate ease-in-out;
+}
+
+.tria-ambient-temp .tria-at-glow-3 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(6, 142, 140, 0.5) 0%, transparent 70%);
+  top: 30%; left: 60%;
+  animation: ambientFloat3 20s infinite alternate ease-in-out;
+}
+
+@keyframes ambientFloat1 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-40px, 50px) scale(1.15); }
+}
+@keyframes ambientFloat2 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(30px, -40px) scale(1.1); }
+}
+@keyframes ambientFloat3 {
+  0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  100% { transform: translate(20px, -30px) scale(1.2) rotate(10deg); }
+}
+
 /* ── Subtle dot pattern for light sections ── */
 .tria-dot-pattern {
   position: absolute;
   inset: 0;
   pointer-events: none;
+  z-index: 0;
   background-image: radial-gradient(rgba(0,0,0,0.06) 1px, transparent 1px);
   background-size: 24px 24px;
   mask-image: radial-gradient(ellipse at 30% 20%, black 20%, transparent 70%);
@@ -514,6 +634,7 @@ a:not(.tria-button):hover,
   position: absolute;
   inset: 0;
   pointer-events: none;
+  z-index: 0;
   opacity: 0.3;
   mix-blend-mode: soft-light;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
@@ -584,19 +705,7 @@ img, video, canvas, svg, iframe { max-width: 100%; height: auto; }
 .tria-blog-content table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
 
 /* ── Section-specific ambient light ── */
-.tria-ambient-temp {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
 
-.tria-ambient-temp > div {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(120px);
-  opacity: 0.12;
-}
 
 /* ── Gradient border separator ── */
 .tria-section-bridge {

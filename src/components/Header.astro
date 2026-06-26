@@ -9,6 +9,14 @@ const enHref = barePath;
 const esHref = `/es${barePath === "/" ? "" : barePath}`;
 
 const lp = (p: string) => localePath(locale, p);
+
+// Helper to check if the current bare path matches a given href
+function isCurrentPage(href: string): boolean {
+  const cleanHref = href.replace(/\/+$/, "") || "/";
+  // For hash-anchored links like /services#software-dev, compare the path part
+  const pathPart = cleanHref.split("#")[0];
+  return barePath === pathPart || barePath.startsWith(pathPart + "/");
+}
 ---
 
 <!-- menu -->
@@ -28,21 +36,41 @@ const lp = (p: string) => localePath(locale, p);
     <div class="tria-menu-grid" id="swupMenu">
       <div class="tria-menu-pages">
         <ul>
-          <li class="tria-active">
-            <a href={lp("/")} data-i18n="nav.home">{t("nav.home")}</a>
-          </li>
-          <li>
-            <a href={lp("/about")} data-i18n="nav.about">{t("nav.about")}</a>
-          </li>
-          <li>
-            <a href={lp("/portfolio")} data-i18n="nav.work">{t("nav.work")}</a>
-          </li>
-          <li>
-            <a href={lp("/services")} data-i18n="nav.services">{t("nav.services")}</a>
-          </li>
-          <li>
-            <a href={lp("/contact")} data-i18n="nav.contact">{t("nav.contact")}</a>
-          </li>
+          {!isCurrentPage("/") && (
+            <li>
+              <a href={lp("/")} data-i18n="nav.home">{t("nav.home")}</a>
+            </li>
+          )}
+          {!isCurrentPage("/about") && (
+            <li>
+              <a href={lp("/about")} data-i18n="nav.about">{t("nav.about")}</a>
+            </li>
+          )}
+          {!isCurrentPage("/services") && (
+            <li>
+              <a href={lp("/services")} data-i18n="nav.services">{t("nav.services")}</a>
+            </li>
+          )}
+          {!isCurrentPage("/portfolio") && (
+            <li>
+              <a href={lp("/portfolio")} data-i18n="nav.work">{t("nav.work")}</a>
+            </li>
+          )}
+          {!isCurrentPage("/team") && (
+            <li>
+              <a href={lp("/team")} data-i18n="nav.team">{t("nav.team")}</a>
+            </li>
+          )}
+          {!isCurrentPage("/blog") && (
+            <li>
+              <a href={lp("/blog")} data-i18n="nav.blog">{t("nav.blog")}</a>
+            </li>
+          )}
+          {!isCurrentPage("/contact") && (
+            <li>
+              <a href={lp("/contact")} data-i18n="nav.contact">{t("nav.contact")}</a>
+            </li>
+          )}
         </ul>
       </div>
       <div class="tria-menu-col">
@@ -55,12 +83,17 @@ const lp = (p: string) => localePath(locale, p);
         </div>
         <div class="tria-menu-list-group">
           <span class="tria-menu-group-label" data-i18n="nav.caseStudies">{t("nav.caseStudies")}</span>
-          <a href={lp("/project-1")} data-i18n="nav.fintechDashboard">{t("nav.fintechDashboard")}</a>
-          <a href={lp("/project-2")} data-i18n="nav.cloudInfra">{t("nav.cloudInfra")}</a>
-          <a href={lp("/project-3")} data-i18n="nav.ecommerce">{t("nav.ecommerce")}</a>
-          <a href={lp("/project-4")} data-i18n="nav.aiAnalytics">{t("nav.aiAnalytics")}</a>
-          <a href={lp("/project-5")} data-i18n="nav.iotFleet">{t("nav.iotFleet")}</a>
-          <a href={lp("/project-6")} data-i18n="nav.healthcareData">{t("nav.healthcareData")}</a>
+          {!isCurrentPage("/projects/parkit") && (
+            <a href={lp("/projects/parkit")} data-i18n="nav.fintechDashboard">{t("nav.fintechDashboard")}</a>
+          )}
+          {!isCurrentPage("/projects/choferes") && (
+            <a href={lp("/projects/choferes")} data-i18n="nav.cloudInfra">{t("nav.cloudInfra")}</a>
+          )}
+          {!isCurrentPage("/portfolio") && (
+            <a href={lp("/portfolio")} data-i18n="nav.ecommerce">{t("nav.ecommerce")}</a>
+          )}
+          <a href="https://github.com/lmhq-94/safepath_api" data-i18n="nav.safePath" target="_blank">{t("nav.safePath")}</a>
+          <a href="https://github.com/lmhq-94/fault_diagnosis" data-i18n="nav.faultDiagnosis" target="_blank">{t("nav.faultDiagnosis")}</a>
         </div>
       </div>
       <div class="tria-menu-col">
@@ -71,11 +104,7 @@ const lp = (p: string) => localePath(locale, p);
           <a href={lp("/cookies")} data-i18n="nav.cookiePolicy">{t("nav.cookiePolicy")}</a>
           <a href={lp("/careers")} data-i18n="nav.careers">{t("nav.careers")}</a>
         </div>
-        <div class="tria-menu-list-group">
-          <span class="tria-menu-group-label" data-i18n="nav.more">More</span>
-          <a href={lp("/team")} data-i18n="nav.team">{t("nav.team")}</a>
-          <a href={lp("/blog")} data-i18n="nav.blog">{t("nav.blog")}</a>
-        </div>
+
       </div>
     </div>
   </div>
@@ -303,6 +332,9 @@ const lp = (p: string) => localePath(locale, p);
       top: 24px;
       right: 24px;
     }
+    .tria-menu-pages ul li {
+      margin-bottom: 10px !important;
+    }
   }
 
   @media screen and (min-width: 641px) and (max-width: 991px) {
@@ -313,14 +345,30 @@ const lp = (p: string) => localePath(locale, p);
 
   @media screen and (max-width: 400px) {
     .tria-menu-pages ul li a {
-      font-size: 1.5rem !important;
+      font-size: 1.4rem !important;
+      letter-spacing: -0.02em !important;
+    }
+    .tria-menu-pages ul li {
+      margin-bottom: 6px !important;
     }
     .tria-menu-group-label {
       font-size: 0.6rem !important;
+      letter-spacing: 0.1em !important;
+      padding-bottom: 4px;
+      margin-bottom: 4px !important;
+    }
+    .tria-menu-list-group {
+      gap: 4px !important;
     }
     .tria-menu-list-group a {
-      font-size: 0.8rem !important;
+      font-size: 0.78rem !important;
+      padding: 3px 0 !important;
+    }
+    .tria-menu-close {
+      top: 18px !important;
+      right: 14px !important;
+      width: 40px;
+      height: 40px;
     }
   }
 </style>
-

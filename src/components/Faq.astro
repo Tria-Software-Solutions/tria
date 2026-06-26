@@ -1,0 +1,304 @@
+---
+interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  suptitle?: string;
+  heading: string;
+  items: FaqItem[];
+  padding?: string;
+}
+
+const {
+  suptitle,
+  heading,
+  items = [],
+  padding = 'tria-p-120-120'
+} = Astro.props;
+---
+
+<!-- faq -->
+<section class="tria-faq-section" data-section-theme="light">
+  <div class={`container ${padding}`}>
+    <div class="row">
+      <div class="col-lg-12">
+        {suptitle && <span class="tria-suptitle tria-suptitle-dark tria-up">{suptitle}</span>}
+        <h2 class="tria-up tria-mt-30" set:html={heading} />
+      </div>
+    </div>
+
+    <div class="tria-faq-list tria-up">
+      {items.map((item, i) => (
+        <div class="tria-faq-item">
+          <button
+            class="tria-faq-question"
+            aria-expanded="false"
+            data-index={i}
+          >
+            <span class="tria-faq-q-text">{item.question}</span>
+            <span class="tria-faq-icon">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <line x1="7" y1="1" x2="7" y2="13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <line x1="1" y1="7" x2="13" y2="7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </span>
+          </button>
+          <div class="tria-faq-answer" role="region">
+            <p>{item.answer}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+<!-- faq end -->
+
+<script is:inline>
+(function () {
+  function initFaq() {
+    var items = document.querySelectorAll('.tria-faq-item');
+    if (!items.length) return;
+
+    items.forEach(function (item) {
+      var btn = item.querySelector('.tria-faq-question');
+      var answer = item.querySelector('.tria-faq-answer');
+      if (!btn || !answer) return;
+
+      btn.addEventListener('click', function () {
+        var isOpen = btn.getAttribute('aria-expanded') === 'true';
+
+        // Close all
+        items.forEach(function (other) {
+          var otherBtn = other.querySelector('.tria-faq-question');
+          var otherAnswer = other.querySelector('.tria-faq-answer');
+          if (otherBtn && otherAnswer) {
+            otherBtn.setAttribute('aria-expanded', 'false');
+            otherAnswer.style.maxHeight = '0';
+            otherAnswer.style.opacity = '0';
+          }
+        });
+
+        // Open clicked (if it was closed)
+        if (!isOpen) {
+          btn.setAttribute('aria-expanded', 'true');
+          answer.style.maxHeight = answer.scrollHeight + 48 + 'px';
+          answer.style.opacity = '1';
+        }
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFaq);
+  } else {
+    initFaq();
+  }
+
+  document.addEventListener('swup:contentReplaced', initFaq);
+})();
+</script>
+
+<style>
+  .tria-faq-section {
+    background: #ffffff;
+    position: relative;
+  }
+
+  .tria-faq-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 20%, rgba(6, 142, 140, 0.02) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 80%, rgba(6, 142, 140, 0.015) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .tria-faq-section .tria-suptitle-dark {
+    color: rgba(0, 0, 0, 0.22);
+  }
+
+  .tria-faq-section h2 {
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  }
+
+  .tria-faq-section .tria-thin {
+    color: rgba(0, 0, 0, 0.25);
+  }
+
+  /* ── FAQ list ── */
+  .tria-faq-list {
+    margin-top: 120px;
+  }
+
+  .tria-faq-item {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    padding: 0;
+    transition: border-color 0.3s ease;
+  }
+
+  .tria-faq-item:first-child {
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .tria-faq-item:hover {
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .tria-faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    width: 100%;
+    padding: 28px 28px 28px 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.75);
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.08rem;
+    font-weight: 460;
+    line-height: 1.5;
+    text-align: left;
+    transition: color 0.3s ease, padding 0.3s ease;
+    -webkit-appearance: none;
+    appearance: none;
+    position: relative;
+  }
+
+  .tria-faq-question:hover {
+    color: #000;
+  }
+
+  .tria-faq-question[aria-expanded="true"] {
+    color: #000;
+    padding-bottom: 16px;
+  }
+
+  .tria-faq-q-text {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .tria-faq-icon {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    color: rgba(0, 0, 0, 0.25);
+    transition: background 0.35s ease, color 0.35s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, box-shadow 0.35s ease;
+  }
+
+  .tria-faq-question:hover .tria-faq-icon {
+    background: rgba(0, 0, 0, 0.05);
+    color: rgba(0, 0, 0, 0.5);
+    border-color: rgba(0, 0, 0, 0.12);
+  }
+
+  .tria-faq-question[aria-expanded="true"] .tria-faq-icon {
+    background: rgba(6, 142, 140, 0.08);
+    color: var(--accent, #068e8c);
+    border-color: rgba(6, 142, 140, 0.15);
+    transform: rotate(45deg);
+    box-shadow: 0 0 16px rgba(6, 142, 140, 0.06);
+  }
+
+  .tria-faq-icon svg {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .tria-faq-answer {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                padding 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    padding: 0 0 0 0;
+  }
+
+  .tria-faq-question[aria-expanded="true"] + .tria-faq-answer {
+    max-height: 600px;
+    opacity: 1;
+    padding: 0 0 32px 0;
+  }
+
+  .tria-faq-answer p {
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 0.95rem;
+    line-height: 1.85;
+    margin: 0;
+    max-width: 760px;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .tria-faq-list {
+      margin-top: 40px;
+    }
+
+    .tria-faq-question {
+      font-size: 0.98rem;
+      padding: 24px 16px 24px 0;
+    }
+
+    .tria-faq-question[aria-expanded="true"] {
+      padding-bottom: 12px;
+    }
+
+    .tria-faq-question[aria-expanded="true"] + .tria-faq-answer {
+      max-height: 600px;
+      padding: 0 0 24px 0;
+    }
+
+    .tria-faq-icon {
+      width: 32px;
+      height: 32px;
+    }
+
+    .tria-faq-answer p {
+      font-size: 0.88rem;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .tria-faq-question {
+      font-size: 0.9rem;
+      gap: 16px;
+      padding: 20px 12px 20px 0;
+    }
+
+    .tria-faq-question[aria-expanded="true"] {
+      padding-bottom: 10px;
+    }
+
+    .tria-faq-question[aria-expanded="true"] + .tria-faq-answer {
+      padding: 0 0 20px 0;
+    }
+
+    .tria-faq-icon {
+      width: 28px;
+      height: 28px;
+    }
+
+    .tria-faq-icon svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    .tria-faq-answer p {
+      font-size: 0.85rem;
+    }
+  }
+
+  .tria-mt-30 {
+    margin-top: 30px;
+  }
+</style>

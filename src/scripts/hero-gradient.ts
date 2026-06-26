@@ -220,6 +220,15 @@ export function initGradient(container: HTMLElement, props?: GradProps) {
     const h = Math.max(1, container.clientHeight);
     renderer.setSize(w, h);
     program.uniforms.uResolution.value = [w, h];
+
+    // Scale zoom with screen width so small screens see more of the pattern
+    const baseZoom = p.zoom;
+    const responsiveZoom = w < 576
+      ? baseZoom * 1.6   // phones: zoom out 60%
+      : w < 768
+        ? baseZoom * 1.25 // tablets: zoom out 25%
+        : baseZoom;
+    program.uniforms.uZoom.value = responsiveZoom;
   };
   const ro = new ResizeObserver(resize);
   ro.observe(container);

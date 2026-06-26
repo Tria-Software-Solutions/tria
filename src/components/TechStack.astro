@@ -173,19 +173,59 @@
     color: #0b0d17;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 991px) {
     .tria-logo-item {
-      padding: 10px 18px;
+      padding: 12px 20px;
+      gap: 10px;
+    }
+    .tria-logo-item i {
+      font-size: 20px;
+    }
+    .tria-logo-item span {
+      font-size: 0.78rem;
+    }
+    .tria-logo-marquee {
+      padding: 14px 0;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .tria-logo-item {
+      padding: 10px 16px;
       gap: 8px;
     }
     .tria-logo-item i {
       font-size: 18px;
     }
     .tria-logo-item span {
-      font-size: 0.7rem;
+      font-size: 0.72rem;
     }
     .tria-logo-marquee {
       padding: 10px 0;
+    }
+    @keyframes tria-logo-scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+    .tria-logo-track {
+      animation-duration: 30s;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .tria-logo-item {
+      padding: 8px 12px;
+      gap: 6px;
+      margin: 0 4px;
+    }
+    .tria-logo-item i {
+      font-size: 16px;
+    }
+    .tria-logo-item span {
+      font-size: 0.65rem;
+    }
+    .tria-logo-marquee {
+      padding: 8px 0;
     }
   }
 

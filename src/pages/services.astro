@@ -4,167 +4,192 @@ import PageBanner from "../components/PageBanner.astro";
 import CTA from "../components/CTA.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import { createT } from "../i18n/utils";
-const t = createT(Astro.url);
+const t = createT(Astro.currentLocale);
 ---
 
 <Layout title="Tria — Software Solutions" description="Enterprise software services: Software Development, Cloud & DevOps, AI/ML, and Cybersecurity consulting.">
 
   <PageBanner suptitleKey="services.hero.suptitle" headingKey="services.hero.title" descriptionKey="services.hero.desc" />
 
-  <!-- main services list -->
-  <section data-section-theme="light" style="background:#faf7f2;">
-    <div class="container tria-p-120-0">
-      <div class="tria-services-list">
+  <!-- ── Service Showcase ── -->
+  <section class="tria-sc-section" data-section-theme="light">
+    <div class="tria-sc-ambient">
+      <div class="tria-sc-glow tria-sc-glow--1"></div>
+      <div class="tria-sc-glow tria-sc-glow--2"></div>
+    </div>
 
-        <div class="tria-service-row tria-up" id="software-dev">
-          <div class="tria-sr-num">01</div>
-          <div class="tria-sr-content">
-            <div class="tria-sr-header">
-              <h2 class="tria-sr-title" data-i18n-html="services.softwareDev" set:html={t("services.softwareDev")} />
-            </div>
-            <div class="row">
-              <div class="col-lg-6">
-                <p class="tria-sr-desc" data-i18n="services.desc1">{t("services.desc1")}</p>
-              </div>
-              <div class="col-lg-5 offset-lg-1">
-                <ul class="tria-sr-features">
-                  <li data-i18n="services.feature1">{t("services.feature1")}</li>
-                  <li data-i18n="services.feature2">{t("services.feature2")}</li>
-                  <li data-i18n="services.feature3">{t("services.feature3")}</li>
-                  <li data-i18n="services.feature4">{t("services.feature4")}</li>
-                  <li data-i18n="services.feature5">{t("services.feature5")}</li>
-                </ul>
-              </div>
-            </div>
-            <div class="tria-sr-footer">
-              <div class="tria-sr-tags" data-i18n="services.tech1">{t("services.tech1")}</div>
-            </div>
-          </div>
-        </div>
+    <div class="container tria-p-120-120">
 
-        <div class="tria-service-row tria-up" id="cloud-devops">
-          <div class="tria-sr-num">02</div>
-          <div class="tria-sr-content">
-            <div class="tria-sr-header">
-              <h2 class="tria-sr-title" data-i18n-html="services.cloudDevops" set:html={t("services.cloudDevops")} />
-            </div>
-            <div class="row">
-              <div class="col-lg-6">
-                <p class="tria-sr-desc" data-i18n="services.desc2">{t("services.desc2")}</p>
-              </div>
-              <div class="col-lg-5 offset-lg-1">
-                <ul class="tria-sr-features">
-                  <li data-i18n="services.feature6">{t("services.feature6")}</li>
-                  <li data-i18n="services.feature7">{t("services.feature7")}</li>
-                  <li data-i18n="services.feature8">{t("services.feature8")}</li>
-                  <li data-i18n="services.feature9">{t("services.feature9")}</li>
-                  <li data-i18n="services.feature10">{t("services.feature10")}</li>
-                </ul>
-              </div>
-            </div>
-            <div class="tria-sr-footer">
-              <div class="tria-sr-tags" data-i18n="services.tech2">{t("services.tech2")}</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="tria-service-row tria-up" id="ai-ml">
-          <div class="tria-sr-num">03</div>
-          <div class="tria-sr-content">
-            <div class="tria-sr-header">
-              <h2 class="tria-sr-title" data-i18n-html="services.aiMl" set:html={t("services.aiMl")} />
-            </div>
-            <div class="row">
-              <div class="col-lg-6">
-                <p class="tria-sr-desc" data-i18n="services.desc3">{t("services.desc3")}</p>
-              </div>
-              <div class="col-lg-5 offset-lg-1">
-                <ul class="tria-sr-features">
-                  <li data-i18n="services.feature11">{t("services.feature11")}</li>
-                  <li data-i18n="services.feature12">{t("services.feature12")}</li>
-                  <li data-i18n="services.feature13">{t("services.feature13")}</li>
-                  <li data-i18n="services.feature14">{t("services.feature14")}</li>
-                  <li data-i18n="services.feature15">{t("services.feature15")}</li>
-                </ul>
-              </div>
-            </div>
-            <div class="tria-sr-footer">
-              <div class="tria-sr-tags" data-i18n="services.tech3">{t("services.tech3")}</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="tria-service-row tria-up" id="cybersecurity">
-          <div class="tria-sr-num">04</div>
-          <div class="tria-sr-content">
-            <div class="tria-sr-header">
-              <h2 class="tria-sr-title" data-i18n-html="services.cybersecurity" set:html={t("services.cybersecurity")} />
-            </div>
-            <div class="row">
-              <div class="col-lg-6">
-                <p class="tria-sr-desc" data-i18n="services.desc4">{t("services.desc4")}</p>
-              </div>
-              <div class="col-lg-5 offset-lg-1">
-                <ul class="tria-sr-features">
-                  <li data-i18n="services.feature16">{t("services.feature16")}</li>
-                  <li data-i18n="services.feature17">{t("services.feature17")}</li>
-                  <li data-i18n="services.feature18">{t("services.feature18")}</li>
-                  <li data-i18n="services.feature19">{t("services.feature19")}</li>
-                  <li data-i18n="services.feature20">{t("services.feature20")}</li>
-                </ul>
-              </div>
-            </div>
-            <div class="tria-sr-footer">
-              <div class="tria-sr-tags" data-i18n="services.tech4">{t("services.tech4")}</div>
-            </div>
-          </div>
-        </div>
-
+      <!-- header -->
+      <div class="tria-sc-header tria-up">
+        <span class="tria-suptitle tria-suptitle-dark">{t("services.showcase.suptitle")}</span>
+        <h2 class="tria-sc-heading" data-i18n-html="services.showcase.heading" set:html={t("services.showcase.heading")}></h2>
+        <p class="tria-sc-sub" data-i18n="services.showcase.sub">{t("services.showcase.sub")}</p>
       </div>
+
+      <!-- Service 1: Digital Products -->
+      <div class="tria-sc-row">
+        <div class="tria-sc-visual">
+          <div class="tria-sc-frame tria-sc-frame--1">
+            <img src="/assets/img/services/digital-products.svg" alt="" class="tria-sc-svg" loading="lazy" />
+          </div>
+        </div>
+        <div class="tria-sc-content">
+          <span class="tria-sc-num">01</span>
+          <h3 class="tria-sc-title" set:html={t("services.softwareDev")}></h3>
+          <p class="tria-sc-desc" data-i18n="services.desc1">{t("services.desc1")}</p>
+          <ul class="tria-sc-features">
+            <li data-i18n="services.feature1">{t("services.feature1")}</li>
+            <li data-i18n="services.feature2">{t("services.feature2")}</li>
+            <li data-i18n="services.feature3">{t("services.feature3")}</li>
+            <li data-i18n="services.feature4">{t("services.feature4")}</li>
+          </ul>
+          <div class="tria-sc-tech" data-i18n="services.tech1">{t("services.tech1")}</div>
+          <a href="/service" class="tria-sc-link">
+            <span data-i18n="services.showcase.cta">{t("services.showcase.cta")}</span>
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Service 2: Cloud & Backend -->
+      <div class="tria-sc-row tria-sc-row--reverse">
+        <div class="tria-sc-visual">
+          <div class="tria-sc-frame tria-sc-frame--2">
+            <img src="/assets/img/services/cloud-backend.svg" alt="" class="tria-sc-svg" loading="lazy" />
+          </div>
+        </div>
+        <div class="tria-sc-content">
+          <span class="tria-sc-num">02</span>
+          <h3 class="tria-sc-title" set:html={t("services.cloudDevops")}></h3>
+          <p class="tria-sc-desc" data-i18n="services.desc2">{t("services.desc2")}</p>
+          <ul class="tria-sc-features">
+            <li data-i18n="services.feature6">{t("services.feature6")}</li>
+            <li data-i18n="services.feature7">{t("services.feature7")}</li>
+            <li data-i18n="services.feature8">{t("services.feature8")}</li>
+            <li data-i18n="services.feature9">{t("services.feature9")}</li>
+          </ul>
+          <div class="tria-sc-tech" data-i18n="services.tech2">{t("services.tech2")}</div>
+          <a href="/service" class="tria-sc-link">
+            <span data-i18n="services.showcase.cta">{t("services.showcase.cta")}</span>
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Service 3: AI & Automation -->
+      <div class="tria-sc-row">
+        <div class="tria-sc-visual">
+          <div class="tria-sc-frame tria-sc-frame--3">
+            <img src="/assets/img/services/ai-automation.svg" alt="" class="tria-sc-svg" loading="lazy" />
+          </div>
+        </div>
+        <div class="tria-sc-content">
+          <span class="tria-sc-num">03</span>
+          <h3 class="tria-sc-title" set:html={t("services.aiMl")}></h3>
+          <p class="tria-sc-desc" data-i18n="services.desc3">{t("services.desc3")}</p>
+          <ul class="tria-sc-features">
+            <li data-i18n="services.feature11">{t("services.feature11")}</li>
+            <li data-i18n="services.feature12">{t("services.feature12")}</li>
+            <li data-i18n="services.feature13">{t("services.feature13")}</li>
+            <li data-i18n="services.feature14">{t("services.feature14")}</li>
+          </ul>
+          <div class="tria-sc-tech" data-i18n="services.tech3">{t("services.tech3")}</div>
+          <a href="/service" class="tria-sc-link">
+            <span data-i18n="services.showcase.cta">{t("services.showcase.cta")}</span>
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Service 4: Security -->
+      <div class="tria-sc-row tria-sc-row--reverse">
+        <div class="tria-sc-visual">
+          <div class="tria-sc-frame tria-sc-frame--4">
+            <img src="/assets/img/services/security.svg" alt="" class="tria-sc-svg" loading="lazy" />
+          </div>
+        </div>
+        <div class="tria-sc-content">
+          <span class="tria-sc-num">04</span>
+          <h3 class="tria-sc-title" set:html={t("services.cybersecurity")}></h3>
+          <p class="tria-sc-desc" data-i18n="services.desc4">{t("services.desc4")}</p>
+          <ul class="tria-sc-features">
+            <li data-i18n="services.feature16">{t("services.feature16")}</li>
+            <li data-i18n="services.feature17">{t("services.feature17")}</li>
+            <li data-i18n="services.feature18">{t("services.feature18")}</li>
+            <li data-i18n="services.feature19">{t("services.feature19")}</li>
+          </ul>
+          <div class="tria-sc-tech" data-i18n="services.tech4">{t("services.tech4")}</div>
+          <a href="/service" class="tria-sc-link">
+            <span data-i18n="services.showcase.cta">{t("services.showcase.cta")}</span>
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+
     </div>
   </section>
 
-  <!-- engagement models -->
-  <section class="tria-soft-bg" data-section-theme="light">
+  <!-- ── Engagement Models ── -->
+  <section class="tria-eng-section" data-section-theme="light">
+    <div class="tria-eng-dots"></div>
+    <div class="tria-eng-ambient">
+      <div class="tria-eng-glow tria-eng-glow--1"></div>
+      <div class="tria-eng-glow tria-eng-glow--2"></div>
+    </div>
     <div class="container tria-p-120-120">
       <div class="row tria-mb-60">
         <div class="col-lg-6">
           <span class="tria-suptitle tria-suptitle-dark tria-up" data-i18n="services.engagement.suptitle">{t("services.engagement.suptitle")}</span>
-          <h2 class="tria-up" style="margin-top:20px;" data-i18n-html="services.engagement.title" set:html={t("services.engagement.title")} />
+          <h2 class="tria-up tria-eng-title" data-i18n-html="services.engagement.title" set:html={t("services.engagement.title")} />
+        </div>
+        <div class="col-lg-5 offset-lg-1 tria-up">
+          <p class="tria-eng-intro" data-i18n="services.engagement.intro">{t("services.engagement.intro")}</p>
         </div>
       </div>
-      <div class="row tria-engagement-grid">
+
+      <div class="row tria-eng-grid">
+        <!-- Project-Based -->
         <div class="col-md-4 tria-up">
-          <div class="tria-engagement-card">
-            <div class="tria-ec-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg></div>
-            <h4 class="tria-ec-title" data-i18n="services.engagement.projectBased">{t("services.engagement.projectBased")}</h4>
-            <p class="tria-ec-desc" data-i18n="services.engagement.projectBasedDesc">{t("services.engagement.projectBasedDesc")}</p>
-            <ul class="tria-ec-list">
+          <div class="tria-eng-card">
+            <div class="tria-eng-card-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
+            </div>
+            <h4 class="tria-eng-card-title" data-i18n="services.engagement.projectBased">{t("services.engagement.projectBased")}</h4>
+            <p class="tria-eng-card-desc" data-i18n="services.engagement.projectBasedDesc">{t("services.engagement.projectBasedDesc")}</p>
+            <ul class="tria-eng-card-list">
               <li data-i18n="services.engagement.projectBased1">{t("services.engagement.projectBased1")}</li>
               <li data-i18n="services.engagement.projectBased2">{t("services.engagement.projectBased2")}</li>
               <li data-i18n="services.engagement.projectBased3">{t("services.engagement.projectBased3")}</li>
             </ul>
           </div>
         </div>
+
+        <!-- Sprint-Based -->
         <div class="col-md-4 tria-up">
-          <div class="tria-engagement-card tria-engagement-card--featured">
-            <div class="tria-ec-badge" data-i18n="services.engagement.mostPopular">{t("services.engagement.mostPopular")}</div>
-            <div class="tria-ec-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-            <h4 class="tria-ec-title" data-i18n="services.engagement.dedicatedTeam">{t("services.engagement.dedicatedTeam")}</h4>
-            <p class="tria-ec-desc" data-i18n="services.engagement.dedicatedTeamDesc">{t("services.engagement.dedicatedTeamDesc")}</p>
-            <ul class="tria-ec-list">
-              <li data-i18n="services.engagement.dedicatedTeam1">{t("services.engagement.dedicatedTeam1")}</li>
-              <li data-i18n="services.engagement.dedicatedTeam2">{t("services.engagement.dedicatedTeam2")}</li>
-              <li data-i18n="services.engagement.dedicatedTeam3">{t("services.engagement.dedicatedTeam3")}</li>
+          <div class="tria-eng-card">
+            <div class="tria-eng-card-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <h4 class="tria-eng-card-title" data-i18n="services.engagement.sprintBased">{t("services.engagement.sprintBased")}</h4>
+            <p class="tria-eng-card-desc" data-i18n="services.engagement.sprintBasedDesc">{t("services.engagement.sprintBasedDesc")}</p>
+            <ul class="tria-eng-card-list">
+              <li data-i18n="services.engagement.sprintBased1">{t("services.engagement.sprintBased1")}</li>
+              <li data-i18n="services.engagement.sprintBased2">{t("services.engagement.sprintBased2")}</li>
+              <li data-i18n="services.engagement.sprintBased3">{t("services.engagement.sprintBased3")}</li>
             </ul>
           </div>
         </div>
+
+        <!-- Advisory -->
         <div class="col-md-4 tria-up">
-          <div class="tria-engagement-card">
-            <div class="tria-ec-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg></div>
-            <h4 class="tria-ec-title" data-i18n="services.engagement.advisory">{t("services.engagement.advisory")}</h4>
-            <p class="tria-ec-desc" data-i18n="services.engagement.advisoryDesc">{t("services.engagement.advisoryDesc")}</p>
-            <ul class="tria-ec-list">
+          <div class="tria-eng-card">
+            <div class="tria-eng-card-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
+            </div>
+            <h4 class="tria-eng-card-title" data-i18n="services.engagement.advisory">{t("services.engagement.advisory")}</h4>
+            <p class="tria-eng-card-desc" data-i18n="services.engagement.advisoryDesc">{t("services.engagement.advisoryDesc")}</p>
+            <ul class="tria-eng-card-list">
               <li data-i18n="services.engagement.advisory1">{t("services.engagement.advisory1")}</li>
               <li data-i18n="services.engagement.advisory2">{t("services.engagement.advisory2")}</li>
               <li data-i18n="services.engagement.advisory3">{t("services.engagement.advisory3")}</li>
@@ -176,12 +201,11 @@ const t = createT(Astro.url);
   </section>
 
   <CTA 
-    heading={t("cta.heading") || ""}
-    description={t("cta.description") || "From concept to deployment, we build software that scales."}
-    primaryButtonText={t("cta.startProject") || ""}
-    secondaryButtonText={t("cta.seeWork") || ""}
+    heading={t("ctaServices.heading") || ""}
+    primaryButtonText={t("ctaServices.button") || ""}
+    secondaryButtonText={t("ctaServices.button2") || ""}
     primaryButtonHref="/contact"
-    secondaryButtonHref="/portfolio"
+    secondaryButtonHref="/contact"
     theme="dark"
     showIcon={true}
     padding=""
@@ -193,225 +217,439 @@ const t = createT(Astro.url);
 </Layout>
 
 <style>
-  .tria-sh-right {
-    display: flex;
-    align-items: flex-end;
-    padding-bottom: 12px;
+  /* ═══════════════════════════════════════
+     SERVICE SHOWCASE — Modern Refined
+     ═══════════════════════════════════════ */
+
+  .tria-sc-section {
+    background: #fff;
+    position: relative;
+    overflow: hidden;
   }
 
-  .tria-services-list {
-    border-top: 1px solid rgba(0,0,0,0.06);
-  }
-  .tria-service-row {
-    display: grid;
-    grid-template-columns: 70px 1fr;
-    gap: 0 40px;
-    padding: 60px 0;
-    border-bottom: 1px solid rgba(0,0,0,0.06);
-    position: relative;
-  }
-  .tria-service-row::before {
-    content: '';
+  .tria-sc-ambient {
+    pointer-events: none;
     position: absolute;
-    inset: 8px -16px;
-    background: transparent;
-    border-radius: 16px;
-    transition: background 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    z-index: 0;
+    inset: 0;
   }
-  .tria-service-row:hover::before {
-    background: rgba(6,142,140,0.04);
+
+  .tria-sc-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    pointer-events: none;
   }
-  .tria-service-row > * {
+
+  .tria-sc-glow--1 {
+    width: 500px; height: 500px;
+    background: rgba(6, 142, 140, 0.04);
+    top: -100px; right: -150px;
+  }
+
+  .tria-sc-glow--2 {
+    width: 400px; height: 400px;
+    background: rgba(6, 142, 140, 0.03);
+    bottom: -80px; left: -120px;
+  }
+
+  .tria-sc-header {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 20px;
+  }
+
+  .tria-sc-header + .tria-sc-row {
+    border-top: none;
+  }
+
+  .tria-sc-heading {
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 450;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    color: #0b0d17;
+    margin-top: 20px;
+  }
+
+  .tria-sc-heading .tria-thin {
+    color: rgba(0,0,0,0.2);
+    font-weight: 200;
+  }
+
+  .tria-sc-sub {
+    font-size: 0.95rem;
+    color: #888;
+    max-width: 480px;
+    margin: 16px 0 0;
+    line-height: 1.7;
+  }
+
+  /* ── Alternating rows ── */
+
+  .tria-sc-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 72px;
+    align-items: center;
+    padding: 90px 0;
     position: relative;
     z-index: 1;
   }
-  .tria-sr-num {
-    font-family: var(--font-display, 'Outfit', sans-serif);
-    font-size: 0.9rem;
-    color: rgba(0,0,0,0.15);
-    padding-top: 8px;
-    transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    letter-spacing: 0.05em;
+
+  .tria-sc-row + .tria-sc-row {
+    border-top: 1px solid rgba(0,0,0,0.04);
   }
-  .tria-service-row:hover .tria-sr-num {
-    color: var(--accent);
+
+  .tria-sc-row--reverse .tria-sc-visual {
+    order: 2;
   }
-  .tria-sr-header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    margin-bottom: 32px;
-    gap: 20px;
+  .tria-sc-row--reverse .tria-sc-content {
+    order: 1;
   }
-  .tria-sr-title {
-    font-size: clamp(1.5rem, 3vw, 2.2rem);
-    font-weight: 400;
-    line-height: 1.15;
-    margin: 0;
-    color: #0b0d17;
-    transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .tria-service-row:hover .tria-sr-title {
-    color: var(--accent);
-  }
-  .tria-sr-icon {
-    width: 52px;
-    height: 52px;
-    border-radius: 14px;
-    background: rgba(6,142,140,0.08);
+
+  /* ── SVG frame (illustration container) ── */
+
+  .tria-sc-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--accent);
-    font-size: 20px;
-    flex-shrink: 0;
-    transition: background 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .tria-service-row:hover .tria-sr-icon {
-    background: var(--accent);
-    color: #fff;
-    transform: translateY(-3px) scale(1.05);
+
+  .tria-sc-row:hover .tria-sc-frame {
+    transform: translateY(-4px);
   }
-  .tria-sr-desc {
-    font-size: 0.9rem;
-    color: #666;
-    line-height: 1.8;
-    margin: 0;
+
+  /* (bg and border removed per user request) */
+
+  /* ── SVG image styling ── */
+
+  .tria-sc-svg {
+    position: relative;
+    z-index: 1;
+    width: 92%;
+    height: 92%;
+    object-fit: contain;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .tria-sr-features {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+
+  .tria-sc-row:hover .tria-sc-svg {
+    transform: scale(1.03);
+  }
+
+  /* ── Content block ── */
+
+  .tria-sc-content {
+    position: relative;
     display: flex;
     flex-direction: column;
-    gap: 8px;
   }
-  .tria-sr-features li {
+
+  .tria-sc-num {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.15);
+    display: block;
+    margin-bottom: 14px;
+    transition: color 0.4s ease;
+  }
+
+  .tria-sc-row:hover .tria-sc-num {
+    color: var(--accent);
+  }
+
+  .tria-sc-title {
+    font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+    font-weight: 450;
+    letter-spacing: -0.02em;
+    color: #0b0d17;
+    margin-bottom: 18px;
+    line-height: 1.25;
+    transition: color 0.4s ease;
+  }
+
+  .tria-sc-row:hover .tria-sc-title {
+    color: var(--accent);
+  }
+
+  .tria-sc-desc {
+    font-size: 0.88rem;
+    color: #777;
+    line-height: 1.8;
+    margin-bottom: 28px;
+    max-width: 460px;
+  }
+
+  .tria-sc-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .tria-sc-features li {
     font-size: 0.82rem;
-    color: #444;
-    padding-left: 20px;
+    color: #555;
+    padding-left: 22px;
     position: relative;
+    line-height: 1.6;
     transition: color 0.3s ease;
   }
-  .tria-service-row:hover .tria-sr-features li {
+
+  .tria-sc-row:hover .tria-sc-features li {
     color: #0b0d17;
   }
-  .tria-sr-features li::before {
+
+  .tria-sc-features li::before {
     content: '→';
     position: absolute;
     left: 0;
     color: var(--accent);
-    font-size: 0.7rem;
+    font-weight: 600;
   }
-  .tria-sr-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 40px;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  .tria-sr-tags {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-  .tria-sr-tags span {
+
+  .tria-sc-tech {
     font-size: 0.6rem;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    padding: 6px 14px;
-    border: 1px solid rgba(0,0,0,0.08);
-    border-radius: 20px;
-    color: rgba(0,0,0,0.35);
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    color: rgba(0,0,0,0.4);
+    margin-bottom: 32px;
+    transition: color 0.3s ease;
   }
-  .tria-service-row:hover .tria-sr-tags span {
-    border-color: rgba(6,142,140,0.2);
+
+  .tria-sc-row:hover .tria-sc-tech {
     color: var(--accent);
   }
 
-  .tria-sr-cta {
-    font-size: 0.75rem !important;
+  .tria-sc-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.72rem;
+    font-weight: 550;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    text-decoration: none;
+    position: relative;
+    padding-bottom: 2px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    margin-top: auto;
   }
 
-  /* ── Engagement cards ── */
-  .tria-engagement-card {
-    border: 1px solid rgba(0,0,0,0.06);
+  .tria-sc-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1.5px;
+    background: var(--accent);
+    border-radius: 2px;
+    transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .tria-sc-link:hover {
+    gap: 12px;
+  }
+
+  .tria-sc-link:hover::after {
+    width: 100%;
+  }
+
+  .tria-sc-link svg {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .tria-sc-link:hover svg {
+    transform: translateX(4px);
+  }
+
+  @media (max-width: 991px) {
+    .tria-sc-row {
+      grid-template-columns: 1fr;
+      gap: 48px;
+      padding: 60px 0;
+      text-align: left;
+    }
+    .tria-sc-row--reverse .tria-sc-visual,
+    .tria-sc-row--reverse .tria-sc-content {
+      order: unset;
+    }
+    .tria-sc-features {
+      align-items: flex-start;
+    }
+    .tria-sc-features li {
+      text-align: left;
+      max-width: 400px;
+    }
+    .tria-sc-desc {
+      max-width: 100%;
+    }
+    .tria-sc-frame {
+      max-width: 420px;
+      margin: 0 auto;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .tria-sc-row { padding: 40px 0; gap: 32px; }
+    .tria-sc-title { font-size: 1.15rem; }
+    .tria-sc-desc { font-size: 0.82rem; }
+    .tria-sc-features { gap: 8px; margin-bottom: 24px; }
+    .tria-sc-features li { font-size: 0.75rem; }
+    .tria-sc-tech { margin-bottom: 24px; }
+    .tria-sc-frame { max-width: 320px; }
+  }
+
+  @media (max-width: 400px) {
+    .tria-sc-row { padding: 28px 0; gap: 24px; }
+    .tria-sc-title { font-size: 1rem; }
+    .tria-sc-desc { font-size: 0.78rem; margin-bottom: 20px; }
+    .tria-sc-features li { font-size: 0.7rem; }
+    .tria-sc-tech { font-size: 0.55rem; }
+    .tria-sc-link { font-size: 0.65rem; }
+    .tria-sc-frame { max-width: 260px; }
+    .tria-sc-heading { font-size: 1.4rem; }
+    .tria-sc-sub { font-size: 0.82rem; }
+  }
+
+
+  /* ═══════════════════════════════════════
+     ENGAGEMENT MODELS — Refined Cards
+     ═══════════════════════════════════════ */
+
+  .tria-eng-section {
+    background: #f5f7f9;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tria-eng-dots {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image: radial-gradient(rgba(0,0,0,0.04) 1px, transparent 1px);
+    background-size: 24px 24px;
+    mask-image: radial-gradient(ellipse at 30% 50%, black 20%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at 30% 50%, black 20%, transparent 70%);
+  }
+
+  .tria-eng-ambient {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  .tria-eng-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+  }
+
+  .tria-eng-glow--1 {
+    width: 450px; height: 450px;
+    background: radial-gradient(circle, rgba(6, 142, 140, 0.04), transparent 70%);
+    top: -150px; right: -80px;
+  }
+
+  .tria-eng-glow--2 {
+    width: 350px; height: 350px;
+    background: radial-gradient(circle, rgba(6, 142, 140, 0.03), transparent 70%);
+    bottom: -100px; left: -60px;
+  }
+
+  .tria-eng-title {
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 450;
+    letter-spacing: -0.025em;
+    color: #0b0d17;
+    margin-top: 20px;
+    line-height: 1.15;
+  }
+
+  .tria-eng-intro {
+    font-size: 0.9rem;
+    color: #888;
+    line-height: 1.75;
+    margin-top: 52px;
+  }
+
+  .tria-eng-grid {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── Engagement card ── */
+
+  .tria-eng-card {
+    border: 1px solid rgba(0,0,0,0.05);
     border-radius: 16px;
     padding: 44px 36px;
     height: 100%;
     position: relative;
     background: #fff;
-    transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .tria-engagement-card:hover {
-    border-color: rgba(6,142,140,0.2);
+
+  .tria-eng-card:hover {
+    border-color: rgba(6, 142, 140, 0.15);
     transform: translateY(-6px);
-    box-shadow: 0 24px 64px rgba(0,0,0,0.06);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.04);
   }
-  .tria-engagement-card--featured {
-    border-color: var(--accent);
-    background: #0b0d17;
-  }
-  .tria-engagement-card--featured .tria-ec-title,
-  .tria-engagement-card--featured .tria-ec-desc,
-  .tria-engagement-card--featured .tria-ec-list li {
-    color: rgba(255,255,255,0.85) !important;
-  }
-  .tria-engagement-card--featured:hover {
-    border-color: var(--accent);
-    box-shadow: 0 24px 64px rgba(6,142,140,0.15);
-  }
-  .tria-ec-badge {
-    position: absolute;
-    top: -12px;
-    left: 36px;
-    font-size: 0.55rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    background: var(--accent);
-    color: #fff;
-    padding: 5px 14px;
-    border-radius: 20px;
-    font-weight: 500;
-  }
-  .tria-ec-icon {
-    width: 48px;
-    height: 48px;
+
+
+
+  .tria-eng-card-icon {
+    width: 46px;
+    height: 46px;
     border-radius: 14px;
-    background: rgba(6,142,140,0.08);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--accent);
-    font-size: 20px;
     margin-bottom: 24px;
-    transition: background 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    background: rgba(6, 142, 140, 0.07);
+    color: var(--accent);
+    transition: background 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .tria-engagement-card--featured .tria-ec-icon {
-    background: rgba(255,255,255,0.08);
-    color: rgba(255,255,255,0.7);
-  }
-  .tria-engagement-card:hover .tria-ec-icon {
+
+  .tria-eng-card:hover .tria-eng-card-icon {
     background: var(--accent);
     color: #fff;
     transform: translateY(-3px);
   }
-  .tria-ec-title {
-    font-size: 1.15rem;
-    font-weight: 400;
-    margin-bottom: 16px;
+
+  .tria-eng-card-title {
+    font-size: 1.1rem;
+    font-weight: 450;
     color: #0b0d17;
+    margin-bottom: 14px;
   }
-  .tria-ec-desc {
-    font-size: 0.82rem;
+
+  .tria-eng-card-desc {
+    font-size: 0.8rem;
     color: #777;
     line-height: 1.75;
     margin-bottom: 24px;
   }
-  .tria-ec-list {
+
+  .tria-eng-card-list {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -419,36 +657,81 @@ const t = createT(Astro.url);
     flex-direction: column;
     gap: 8px;
   }
-  .tria-ec-list li {
+
+  .tria-eng-card-list li {
     font-size: 0.78rem;
     color: #555;
     padding-left: 18px;
     position: relative;
+    line-height: 1.6;
   }
-  .tria-ec-list li::before {
+
+  .tria-eng-card-list li::before {
     content: '✓';
     position: absolute;
     left: 0;
     color: var(--accent);
     font-size: 0.7rem;
   }
-  .tria-engagement-card--featured .tria-ec-list li::before {
-    color: rgba(255,255,255,0.35);
-  }
+
+
 
   @media (max-width: 991px) {
-    .tria-service-row {
-      grid-template-columns: 50px 1fr;
-      gap: 0 20px;
-      padding: 50px 0;
+    .tria-eng-card {
+      padding: 36px 28px;
     }
-    .tria-sr-header { flex-direction: column; gap: 16px; }
+    .tria-eng-intro {
+      margin-top: 0;
+    }
   }
+
   @media (max-width: 768px) {
-    .tria-sr-num { display: none; }
-    .tria-service-row {
-      grid-template-columns: 1fr;
-      gap: 0;
+    .tria-eng-card {
+      margin-bottom: 24px;
+    }
+    .tria-eng-card:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .tria-eng-card {
+      padding: 28px 24px;
+      margin-bottom: 28px;
+    }
+    .tria-eng-card-title {
+      font-size: 1rem;
+    }
+    .tria-eng-card-desc {
+      font-size: 0.78rem;
+    }
+    .tria-eng-card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      margin-bottom: 18px;
+    }
+    .tria-eng-card-list li {
+      font-size: 0.72rem;
+    }
+    .tria-eng-title {
+      font-size: 1.5rem;
+    }
+    .tria-eng-intro {
+      font-size: 0.82rem;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .tria-eng-card {
+      padding: 22px 18px;
+      margin-bottom: 20px;
+    }
+    .tria-eng-card-title {
+      font-size: 0.9rem;
+    }
+    .tria-eng-card-desc {
+      font-size: 0.72rem;
     }
   }
 </style>

@@ -13,6 +13,7 @@ interface Props {
   viewAllHref?: string;
   services: ServiceItem[];
   showTechMarquee?: boolean;
+  showArrow?: boolean;
   padding?: string;
 }
 
@@ -23,6 +24,7 @@ const {
   viewAllHref = "/services",
   services = [],
   showTechMarquee = true,
+  showArrow = true,
   padding = 'tria-p-120-120'
 } = Astro.props;
 ---
@@ -55,9 +57,11 @@ const {
                 <h5 class="tria-service-card-title" set:html={service.title} />
                 <p class="tria-service-card-desc">{service.description}</p>
               </div>
-              <div class="tria-service-arrow">
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
+              {showArrow && (
+                <div class="tria-service-arrow">
+                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+              )}
             </a>
           </div>
         ))}
@@ -272,7 +276,7 @@ const {
     border-radius: 0;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
     transition: all 0.5s var(--ease-spring);
-    justify-content: space-between;
+    justify-content: flex-start;
   }
 
   .tria-service-card:hover {
@@ -301,7 +305,7 @@ const {
       font-size: 0.78rem;
     }
     .tria-service-card-icon {
-      font-size: 24px;
+      font-size: 30px;
       margin-bottom: 24px;
     }
     .tria-service-arrow {
@@ -314,7 +318,7 @@ const {
 
   /* ── icon ── */
   .tria-service-card-icon {
-    font-size: 28px;
+    font-size: 36px;
     color: var(--accent);
     opacity: 0.7;
     transition: opacity 0.4s var(--ease-spring), transform 0.4s var(--ease-spring);
@@ -341,6 +345,7 @@ const {
     color: #fff;
     margin-bottom: 14px;
     line-height: 1.35;
+    white-space: nowrap;
     transition: color 0.3s var(--ease-smooth);
   }
 
@@ -375,7 +380,7 @@ const {
     transition: all 0.4s var(--ease-spring);
     flex-shrink: 0;
     align-self: flex-end;
-    margin-top: 32px;
+    margin-top: auto;
     position: relative;
     z-index: 1;
   }
@@ -449,7 +454,7 @@ const {
   }
 
   .tria-marquee-icon {
-    font-size: 44px;
+    font-size: 56px;
     color: rgba(255, 255, 255, 0.12);
     flex-shrink: 0;
     transition: color 0.3s var(--ease-spring), transform 0.3s var(--ease-spring);
@@ -496,7 +501,7 @@ const {
 
   @media (max-width: 768px) {
     .tria-marquee-icon {
-      font-size: 32px;
+      font-size: 40px;
     }
     .tria-marquee-track {
       gap: 36px;
@@ -505,7 +510,7 @@ const {
 
   @media (max-width: 576px) {
     .tria-marquee-icon {
-      font-size: 24px;
+      font-size: 32px;
     }
     .tria-marquee-track {
       gap: 24px;

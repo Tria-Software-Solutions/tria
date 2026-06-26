@@ -1,9 +1,11 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
+import Quote from "../../components/Quote.astro";
 import CTA from "../../components/CTA.astro";
 import SiteFooter from "../../components/SiteFooter.astro";
 import Button from "../../components/Button.astro";
+import { createT } from "../../i18n/utils";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -13,24 +15,34 @@ export async function getStaticPaths() {
   }));
 }
 
+const t = createT(Astro.currentLocale);
 const { post } = Astro.props;
 ---
 
 <Layout title={`${post.data.title} — tria`} description={post.data.description}>
-  <section class="page-hero page-hero--short" data-section-theme="dark">
+  <section class="page-hero" data-section-theme="dark">
     <div class="page-hero-bg">
+      <div class="page-hero-bg-dots"></div>
       <div class="page-hero-orb page-hero-orb--1"></div>
       <div class="page-hero-orb page-hero-orb--2"></div>
+      <div class="page-hero-gradient-overlay"></div>
+      <div class="tria-hero-grain"></div>
+      <div class="tria-ambient-temp">
+        <div class="tria-at-glow-1"></div>
+        <div class="tria-at-glow-2"></div>
+      </div>
     </div>
     <div class="container page-hero-inner">
-      <a href="/blog" class="tria-link tria-light-soft tria-up" style="display:inline-block;margin-bottom:24px;">
-        &larr; Back to Blog
+      <a href="/blog" class="tria-link tria-light-soft tria-up" style="display:inline-flex;align-items:center;gap:6px;margin-bottom:24px;font-size:0.75rem;">
+        <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M11 4L7 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Back to Blog
       </a>
       <div class="tria-labels tria-up tria-mb-20">
         <div class="tria-label tria-upper tria-accent">{post.data.category.toUpperCase()}</div>
         <div class="tria-label tria-upper">{new Date(post.data.pubDate).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</div>
       </div>
       <h1 class="page-hero-heading tria-up">{post.data.title}</h1>
+      <p class="page-hero-sub tria-up">{post.data.description}</p>
     </div>
   </section>
 
@@ -54,13 +66,26 @@ const { post } = Astro.props;
       </div>
     </div>
   </section>
+  <Quote
+    heading={'Get a <span class="tria-thin">Custom Quote</span>'}
+    description="Tell us about your project and we'll create a tailored solution with transparent pricing."
+    buttonText="Request a Quote"
+    buttonHref="/contact"
+    features={[
+      "Personalized scope",
+      "Transparent pricing",
+      "Flexible timeline",
+      "Dedicated support"
+    ]}
+  />
+
   <CTA 
-    heading="Have a project in mind?"
-    description="From concept to deployment, we build software that scales."
-    primaryButtonText="Start a Project"
-    secondaryButtonText="See Our Work"
+    heading={t("ctaBlog.heading") || ""}
+    description={t("ctaBlog.desc") || ""}
+    primaryButtonText={t("ctaBlog.button") || ""}
+    secondaryButtonText={t("ctaBlog.button2") || ""}
     primaryButtonHref="/contact"
-    secondaryButtonHref="/portfolio"
+    secondaryButtonHref="/contact"
     theme="dark"
     showIcon={true}
     padding=""
@@ -72,9 +97,7 @@ const { post } = Astro.props;
 </Layout>
 
 <style>
-  .page-hero--short {
-    padding: 120px 0 80px;
-  }
+  
   .tria-article :global(h2) {
     font-size: 1.75rem;
     font-weight: 600;

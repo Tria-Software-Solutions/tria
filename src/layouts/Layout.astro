@@ -69,10 +69,17 @@ const translData = JSON.stringify({ en: enData, es: esData });
               >i</span
             ><span data-i="3">a</span><span data-i="4">.</span></a
           >
-          <div class="tria-menu-btn">
-            <span></span>
-            <span></span>
-            <span></span>
+          <div class="tria-frame-top-right">
+            <div class="tria-mobile-lang">
+              <a href={enHref} data-lang="en" class:list={["tria-mobile-lang-btn", { "is-active": locale === "en" }]}>EN</a>
+              <span class="tria-mobile-lang-sep">/</span>
+              <a href={esHref} data-lang="es" class:list={["tria-mobile-lang-btn", { "is-active": locale === "es" }]}>ES</a>
+            </div>
+            <div class="tria-menu-btn">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
           </div>
         </div>
         <div class="tria-frame-bottom">

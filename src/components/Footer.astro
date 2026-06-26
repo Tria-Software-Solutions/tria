@@ -33,6 +33,10 @@ interface Props {
   copyrightText?: string;
   legalLinks?: FooterLink[];
   showGlow?: boolean;
+  newsletterLabel?: string;
+  newsletterPlaceholder?: string;
+  newsletterButtonText?: string;
+  newsletterHeading?: string;
 }
 
 const {
@@ -51,7 +55,11 @@ const {
   socialLinks = [],
   copyrightText,
   legalLinks = [],
-  showGlow = true
+  showGlow = true,
+  newsletterLabel,
+  newsletterPlaceholder = "your@email.com",
+  newsletterButtonText = "Subscribe",
+  newsletterHeading = "Let's build something <span class=\"tria-thin\">remarkable</span> together."
 } = Astro.props;
 
 const year = new Date().getFullYear();
@@ -62,8 +70,35 @@ const year = new Date().getFullYear();
   {showGlow && <div class="tria-footer-glow tria-footer-glow--accent"></div>}
 
   <div class="container">
-    <!-- Navigation grid -->
+    <!-- Newsletter / CTA banner -->
+    <div class="tria-footer-cta tria-up">
+      <div class="tria-footer-cta-inner">
+        <div class="tria-footer-cta-content">
+          <h3 set:html={newsletterHeading} />
+          <p class="tria-footer-cta-desc">{brandDescription}</p>
+        </div>
+        <div class="tria-footer-cta-form-wrap">
+          {newsletterLabel && <span class="tria-footer-cta-form-label">{newsletterLabel}</span>}
+          <form class="tria-footer-cta-form" onsubmit="event.preventDefault();">
+            <div class="tria-footer-cta-input-wrap">
+              <input
+                type="email"
+                placeholder={newsletterPlaceholder}
+                aria-label="Email"
+                class="tria-footer-cta-input"
+              />
+              <button type="submit" class="tria-footer-cta-btn">
+                <span>{newsletterButtonText}</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main grid -->
     <div class="tria-footer-grid tria-up">
+      <!-- Brand column - larger -->
       <div class="tria-footer-col tria-footer-col--brand">
         <a href={brandHref} class="tria-footer-logo" aria-label={`${brandName} home`}>
           {brandName}<span class="tria-footer-logo-dot">.</span>
@@ -71,17 +106,19 @@ const year = new Date().getFullYear();
 
         {brandDescription && <p class="tria-footer-brand-desc">{brandDescription}</p>}
 
-        {socialLabel && <span class="tria-footer-label">{socialLabel}</span>}
         {socialLinks.length > 0 && (
-          <ul class="tria-footer-social">
-            {socialLinks.map((social) => (
-              <li>
-                <a href={social.href} target="_blank" rel="noopener noreferrer" aria-label={social.label}>
-                  <i class={social.icon}></i>
-                </a>
-              </li>
-            ))}
-          </ul>
+          <div class="tria-footer-social-section tria-up">
+            {socialLabel && <span class="tria-footer-social-label">{socialLabel}</span>}
+            <ul class="tria-footer-social">
+              {socialLinks.map((social) => (
+                <li>
+                  <a href={social.href} target="_blank" rel="noopener noreferrer" aria-label={social.label}>
+                    <i class={social.icon}></i>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         )}
       </div>
 
@@ -116,7 +153,7 @@ const year = new Date().getFullYear();
       )}
 
       {projectLinks.length > 0 && (
-        <div class="tria-footer-col tria-footer-col--projects">
+        <div class="tria-footer-col">
           {projectsLabel && <span class="tria-footer-label">{projectsLabel}</span>}
           <ul class="tria-footer-nav">
             {projectLinks.map((link) => (
@@ -131,15 +168,11 @@ const year = new Date().getFullYear();
       {contactLinks.length > 0 && (
         <div class="tria-footer-col">
           {contactLabel && <span class="tria-footer-label">{contactLabel}</span>}
-          <ul class="tria-footer-contact">
+          <ul class="tria-footer-nav">
             {contactLinks.map((link) => (
               <li>
-                <a
-                  href={link.href}
-                  target={link.external ? "_blank" : undefined}
-                  rel={link.external ? "noopener noreferrer" : undefined}
-                >
-                  <span class="tria-footer-contact-icon"><i class={`ti ${link.icon}`}></i></span>
+                <a href={link.href} class="tria-footer-contact-item">
+                  <span class="tria-footer-ci-icon"><i class={`ti ${link.icon}`}></i></span>
                   <span>{link.label}</span>
                 </a>
               </li>
@@ -152,13 +185,16 @@ const year = new Date().getFullYear();
     <!-- Bottom bar -->
     <div class="tria-footer-bottom tria-up">
       <p class="tria-footer-copyright">{copyrightText || `© ${year} ${brandName}. All rights reserved.`}</p>
-      {legalLinks.length > 0 && (
-        <nav class="tria-footer-legal" aria-label="Legal">
-          {legalLinks.map((link) => (
-            <a href={link.href}>{link.label}</a>
-          ))}
-        </nav>
-      )}
+      <div class="tria-footer-bottom-right">
+        {legalLinks.length > 0 && (
+          <nav class="tria-footer-legal" aria-label="Legal">
+            {legalLinks.map((link) => (
+              <a href={link.href}>{link.label}</a>
+            ))}
+          </nav>
+        )}
+
+      </div>
     </div>
   </div>
 </footer>
@@ -166,15 +202,20 @@ const year = new Date().getFullYear();
 <style>
   .tria-footer-section {
     position: relative;
-    background: #0b0d17;
+    background: #080a14;
     overflow: hidden;
     color: #fff;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
   }
 
-  .tria-footer-section .tria-suptitle {
-    color: rgba(255, 255, 255, 0.45);
-    margin-bottom: 1rem;
+  .tria-footer-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.02) 1px, transparent 0);
+    background-size: 48px 48px;
+    pointer-events: none;
   }
 
   .tria-footer-glow {
@@ -184,20 +225,20 @@ const year = new Date().getFullYear();
   }
 
   .tria-footer-glow:first-of-type {
-    top: -120px;
+    top: -160px;
     left: 50%;
     transform: translateX(-50%);
-    width: 900px;
-    height: 500px;
-    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.03) 0%, transparent 68%);
+    width: 1000px;
+    height: 600px;
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.025) 0%, transparent 68%);
   }
 
   .tria-footer-glow--accent {
-    bottom: -180px;
-    right: -120px;
-    width: 560px;
-    height: 560px;
-    background: radial-gradient(circle, rgba(var(--accent-rgb), 0.09) 0%, transparent 70%);
+    bottom: -200px;
+    right: -100px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(6, 142, 140, 0.06) 0%, transparent 70%);
   }
 
   .tria-footer-section .container {
@@ -205,12 +246,152 @@ const year = new Date().getFullYear();
     z-index: 1;
   }
 
+  /* ── Newsletter CTA ── */
+  .tria-footer-cta {
+    padding: clamp(48px, 6vw, 72px) 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    margin-bottom: clamp(40px, 4vw, 56px);
+  }
+
+  .tria-footer-cta-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .tria-footer-cta-content {
+    flex: 1;
+    min-width: 280px;
+  }
+
+  .tria-footer-cta-content h3 {
+    color: #fff;
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    font-weight: 450;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    margin: 0 0 12px;
+  }
+
+  .tria-footer-cta-content .tria-thin {
+    color: rgba(255, 255, 255, 0.35);
+    font-weight: 250;
+  }
+
+  .tria-footer-cta-desc {
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 0.85rem;
+    line-height: 1.6;
+    margin: 0;
+    max-width: 400px;
+  }
+
+  .tria-footer-cta-form-wrap {
+    flex-shrink: 0;
+    min-width: 280px;
+    max-width: 420px;
+    width: 100%;
+  }
+
+  .tria-footer-cta-form-label {
+    display: block;
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.2);
+    margin-bottom: 14px;
+  }
+
+  .tria-footer-cta-form {
+    width: 100%;
+  }
+
+  .tria-footer-cta-input-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 60px;
+    padding: 4px;
+    transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .tria-footer-cta-input-wrap:focus-within {
+    border-color: rgba(6, 142, 140, 0.3);
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 0 0 6px rgba(6, 142, 140, 0.03), inset 0 0 0 1px rgba(6, 142, 140, 0.05);
+  }
+
+  .tria-footer-cta-input {
+    flex: 1;
+    min-width: 0;
+    height: 50px;
+    padding: 0 24px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 380;
+    outline: none;
+    margin: 0;
+    letter-spacing: 0.01em;
+  }
+
+  .tria-footer-cta-input::placeholder {
+    color: rgba(255, 255, 255, 0.18);
+    font-size: 0.9rem;
+    font-weight: 380;
+    text-transform: none;
+    letter-spacing: 0.01em;
+  }
+
+  .tria-footer-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 46px;
+    padding: 0 28px;
+    background: var(--accent, #068e8c);
+    border: none;
+    border-radius: 60px;
+    color: #fff;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 550;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .tria-footer-cta-btn:hover {
+    background: #0a7a78;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(6, 142, 140, 0.2);
+  }
+
+  .tria-footer-cta-btn svg {
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .tria-footer-cta-btn:hover svg {
+    transform: translateX(4px);
+  }
+
   /* ── Main grid ── */
   .tria-footer-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: 1.8fr repeat(4, 1fr);
     gap: clamp(24px, 3vw, 48px);
-    padding: clamp(56px, 7vw, 80px) 0 clamp(48px, 6vw, 64px);
+    padding: 0 0 clamp(48px, 6vw, 64px);
     align-items: start;
   }
 
@@ -219,16 +400,20 @@ const year = new Date().getFullYear();
     text-align: left;
   }
 
+  .tria-footer-col--brand {
+    min-width: 0;
+  }
+
   .tria-footer-logo {
     display: inline-flex;
     align-items: center;
-    font-size: 1.75rem;
+    font-size: 2rem;
     font-weight: 500;
     letter-spacing: -0.03em;
     color: #fff;
     text-decoration: none;
-    margin-bottom: 28px;
-    transition: opacity 0.3s var(--ease-smooth);
+    margin-bottom: 24px;
+    transition: opacity 0.3s ease;
   }
 
   .tria-footer-logo:hover {
@@ -236,16 +421,59 @@ const year = new Date().getFullYear();
   }
 
   .tria-footer-logo-dot {
-    color: var(--accent);
-    margin-left: -1px;
+    color: var(--accent, #068e8c);
   }
 
   .tria-footer-brand-desc {
     font-size: 0.82rem;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.35);
-    margin: -12px 0 20px;
-    max-width: 260px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.3);
+    margin: 0 0 24px;
+    max-width: 280px;
+  }
+
+  .tria-footer-contact-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.38);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    position: relative;
+  }
+
+  .tria-footer-contact-item:hover {
+    color: #fff;
+  }
+
+  .tria-footer-contact-item:hover .tria-footer-ci-icon {
+    color: var(--accent, #068e8c);
+  }
+
+  .tria-footer-ci-icon {
+    font-size: 0.9rem;
+    width: 18px;
+    text-align: center;
+    transition: color 0.3s ease;
+  }
+
+  /* ── Social section (inside brand column) ── */
+  .tria-footer-social-section {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 0;
+    margin-top: 40px;
+  }
+
+  .tria-footer-social-label {
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.2);
+    white-space: nowrap;
   }
 
   .tria-footer-label {
@@ -254,8 +482,8 @@ const year = new Date().getFullYear();
     font-weight: 500;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.28);
-    margin-bottom: 22px;
+    color: rgba(255, 255, 255, 0.2);
+    margin-bottom: 24px;
   }
 
   .tria-footer-nav {
@@ -264,7 +492,7 @@ const year = new Date().getFullYear();
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
     align-items: flex-start;
   }
 
@@ -272,54 +500,31 @@ const year = new Date().getFullYear();
     display: inline-block;
     font-size: 0.88rem;
     line-height: 1.5;
-    color: rgba(255, 255, 255, 0.42);
+    color: rgba(255, 255, 255, 0.38);
     text-decoration: none;
-    transition: color 0.35s var(--ease-spring), transform 0.35s var(--ease-spring);
+    position: relative;
+    transition: color 0.3s ease;
+    padding-left: 0;
+  }
+
+  .tria-footer-nav a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0;
+    height: 1px;
+    background: var(--accent, #068e8c);
+    transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .tria-footer-nav a:hover {
     color: #fff;
-    transform: translateX(4px);
+    padding-left: 4px;
   }
 
-  .tria-footer-contact {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    align-items: flex-start;
-  }
-
-  .tria-footer-contact a {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 8px 0;
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.42);
-    text-decoration: none;
-    transition: color 0.35s var(--ease-spring);
-  }
-
-  .tria-footer-contact a:hover {
-    color: #fff;
-  }
-
-  .tria-footer-contact a:hover .tria-footer-contact-icon {
-    color: var(--accent);
-  }
-
-  .tria-footer-contact-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.15rem;
-    color: rgba(255, 255, 255, 0.4);
-    flex-shrink: 0;
-    transition: color 0.3s var(--ease-spring);
-    width: 20px;
+  .tria-footer-nav a:hover::before {
+    width: 100%;
   }
 
   .tria-footer-social {
@@ -328,20 +533,22 @@ const year = new Date().getFullYear();
     margin: 0;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
   }
 
   .tria-footer-social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     font-size: 1.1rem;
-    color: rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.3);
     text-decoration: none;
-    transition: all 0.3s var(--ease-spring);
+    transition: color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     line-height: 1;
   }
 
   .tria-footer-social a:hover {
-    color: var(--accent);
-    transform: translateY(-2px);
+    color: var(--accent, #068e8c);
   }
 
   /* ── Bottom bar ── */
@@ -350,34 +557,44 @@ const year = new Date().getFullYear();
     justify-content: space-between;
     align-items: center;
     gap: 32px;
-    padding: 28px 0 40px;
+    padding: 24px 0 36px;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
     flex-wrap: wrap;
   }
 
   .tria-footer-copyright {
     margin: 0;
-    font-size: 0.78rem;
-    color: rgba(255, 255, 255, 0.28);
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.2);
+    letter-spacing: 0.02em;
+  }
+
+  .tria-footer-bottom-right {
+    display: flex;
+    align-items: center;
+    gap: 24px;
   }
 
   .tria-footer-legal {
     display: flex;
     align-items: center;
-    gap: clamp(16px, 3vw, 32px);
+    gap: clamp(16px, 3vw, 28px);
     flex-wrap: wrap;
     justify-content: center;
   }
 
   .tria-footer-legal a {
-    font-size: 0.78rem;
-    color: rgba(255, 255, 255, 0.28);
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.2);
     text-decoration: none;
-    transition: color 0.3s var(--ease-smooth);
+    transition: color 0.3s ease;
+    letter-spacing: 0.02em;
   }
 
   .tria-footer-legal a:hover {
-    color: #fff;
+    color: var(--accent, #068e8c);
   }
+
 
   /* ── Responsive ── */
   @media (max-width: 991px) {
@@ -388,6 +605,15 @@ const year = new Date().getFullYear();
 
     .tria-footer-col--brand {
       grid-column: 1 / -1;
+    }
+
+    .tria-footer-cta-inner {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .tria-footer-cta-form {
+      max-width: 100%;
     }
   }
 
@@ -400,10 +626,48 @@ const year = new Date().getFullYear();
     .tria-footer-bottom {
       flex-direction: column;
       align-items: flex-start;
+      gap: 16px;
+    }
+
+    .tria-footer-bottom-right {
+      width: 100%;
+      justify-content: space-between;
     }
 
     .tria-footer-legal {
-      gap: 20px;
+      gap: 16px;
+    }
+
+    .tria-footer-cta-form-wrap {
+      min-width: 0;
+      max-width: 100%;
+    }
+
+    .tria-footer-cta-input-wrap {
+      border-radius: 60px;
+    }
+
+    .tria-footer-cta-input {
+      height: 56px;
+      padding: 0 20px;
+      font-size: 1rem;
+    }
+
+    .tria-footer-cta-input::placeholder {
+      font-size: 1rem;
+    }
+
+    .tria-footer-cta-btn {
+      height: 48px;
+      padding: 0 24px;
+    }
+
+    .tria-footer-social-section {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 14px;
     }
   }
 </style>
+
+

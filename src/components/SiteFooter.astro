@@ -2,44 +2,82 @@
 import Footer from "./Footer.astro";
 import { createT } from "../i18n/utils";
 const t = createT(Astro.currentLocale);
+
+// Determine current page path for footer filtering
+const pathname = Astro.url.pathname;
+const path = pathname.replace(/\/+$/, "") || "/";
+const barePath = path.startsWith("/es") ? (path.replace(/^\/es/, "") || "/") : path;
+
+// Filter explore links: exclude the current page
+const allExploreLinks = [
+  { href: "/", label: t("nav.home") || "" },
+  { href: "/about", label: t("nav.about") || "" },
+  { href: "/team", label: t("nav.team") || "" },
+  { href: "/portfolio", label: t("nav.work") || "" },
+  { href: "/blog", label: t("nav.blog") || "Blog" },
+  { href: "/contact", label: t("nav.contact") || "" }
+];
+
+function isCurrent(href: string): boolean {
+  const cleanHref = href.replace(/\/+$/, "") || "/";
+  // Don't filter anchor links (#section) — they're in-page navigation
+  if (cleanHref.includes("#")) return false;
+  const pathPart = cleanHref.split("#")[0];
+  return barePath === pathPart || barePath.startsWith(pathPart + "/");
+}
+
+const exploreLinks = allExploreLinks.filter((link) => !isCurrent(link.href));
+
+// Also filter serviceLinks and projectLinks
+const allServiceLinks = [
+  { href: "/services#software-dev", label: t("nav.softwareDev") || "", html: true as const },
+  { href: "/services#cloud-devops", label: t("nav.cloudDevops") || "", html: true as const },
+  { href: "/services#ai-ml", label: t("nav.aiMl") || "", html: true as const },
+  { href: "/services#cybersecurity", label: t("nav.cybersecurity") || "", html: true as const }
+];
+
+const allProjectLinks = [
+  { href: "/projects/parkit", label: t("nav.fintechDashboard") || "" },
+  { href: "https://choferesdealquiler.vercel.app", label: t("nav.cloudInfra") || "" },
+  { href: "/portfolio", label: t("nav.ecommerce") || "" },
+  { href: "https://github.com/lmhq-94/safepath_api", label: t("nav.safePath") || "" },
+  { href: "https://github.com/lmhq-94/fault_diagnosis", label: t("nav.faultDiagnosis") || "" }
+];
+
+const serviceLinks = allServiceLinks.filter((link) => !isCurrent(link.href));
+const projectLinks = allProjectLinks.filter((link) => !isCurrent(link.href));
+
+const footerExploreLabel = t("nav.explore") || "";
+const footerServicesLabel = t("nav.services") || "";
+const footerProjectsLabel = t("nav.projects") || "";
+const footerContactLabel = t("nav.contactInfo") || "";
+const footerNewsletterLabel = t("footer.stayInLoop") || "";
+const footerNewsletterPlaceholder = t("footer.emailPlaceholder") || "";
+const footerNewsletterHeading = t("footer.newsletterHeading") || "";
+const footerSocialLabel = t("contact.info.followUs") || "";
+const footerBrandDesc = t("footer.description") || "";
+const footerCopyright = t("footer.allRights")?.replace("{year}", String(new Date().getFullYear())) || "";
 ---
 
 <Footer
   brandName="tria"
   brandHref="/"
-  brandDescription={t("footer.description") || ""}
-  socialLabel={t("contact.info.followUs") || ""}
-  exploreLabel={t("nav.explore") || ""}
-  servicesLabel={t("nav.services") || ""}
-  projectsLabel={t("nav.projects") || ""}
-  contactLabel={t("nav.contactInfo") || ""}
-  exploreLinks={[
-    { href: "/", label: t("nav.home") || "" },
-    { href: "/about", label: t("nav.about") || "" },
-    { href: "/team", label: t("nav.team") || "" },
-    { href: "/portfolio", label: t("nav.work") || "" },
-    { href: "/blog", label: t("nav.blog") || "Blog" },
-    { href: "/contact", label: t("nav.contact") || "" }
-  ]}
-  serviceLinks={[
-    { href: "/services#software-dev", label: t("nav.softwareDev") || "", html: true },
-    { href: "/services#cloud-devops", label: t("nav.cloudDevops") || "", html: true },
-    { href: "/services#ai-ml", label: t("nav.aiMl") || "", html: true },
-    { href: "/services#cybersecurity", label: t("nav.cybersecurity") || "", html: true }
-  ]}
-  projectLinks={[
-    { href: "https://choferesdealquiler.vercel.app", label: t("nav.cloudInfra") || "" },
-    { href: "/project-2", label: t("nav.fintechDashboard") || "" },
-    { href: "/project-3", label: t("nav.ecommerce") || "" },
-    { href: "/project-4", label: t("nav.aiAnalytics") || "" },
-    { href: "/project-5", label: t("nav.iotFleet") || "" },
-    { href: "/project-6", label: t("nav.healthcareData") || "" }
-  ]}
+  brandDescription={footerBrandDesc}
+  socialLabel={footerSocialLabel}
+  exploreLabel={footerExploreLabel}
+  servicesLabel={footerServicesLabel}
+  projectsLabel={footerProjectsLabel}
+  contactLabel={footerContactLabel}
+  newsletterLabel={footerNewsletterLabel}
+  newsletterPlaceholder={footerNewsletterPlaceholder}
+  newsletterHeading={footerNewsletterHeading}
+  exploreLinks={exploreLinks}
+  serviceLinks={serviceLinks}
+  projectLinks={projectLinks}
   contactLinks={[
     { href: "mailto:hola@triacr.com", label: t("footer.contactLink") || "", icon: "ti-mail" },
     { href: "mailto:support@triacr.com", label: t("footer.supportLink") || "", icon: "ti-headset" },
-    { href: "mailto:sales@triacr.com", label: t("footer.salesLink") || "", icon: "ti-briefcase" },
-    { href: "https://wa.me/50662164040", label: t("footer.whatsappLink") || "", icon: "ti-brand-whatsapp", external: true }
+    { href: "mailto:sales@triacr.com", label: t("footer.salesLink") || "", icon: "ti-briefcase" }
   ]}
   socialLinks={[
     { href: "https://linkedin.com", label: "LinkedIn", icon: "ti ti-brand-linkedin" },
@@ -47,7 +85,7 @@ const t = createT(Astro.currentLocale);
     { href: "https://instagram.com", label: "Instagram", icon: "ti ti-brand-instagram" },
     { href: "https://github.com", label: "GitHub", icon: "ti ti-brand-github" }
   ]}
-  copyrightText={t("footer.allRights")?.replace("{year}", String(new Date().getFullYear())) || ""}
+  copyrightText={footerCopyright}
   legalLinks={[
     { href: "/privacy", label: t("nav.privacyPolicy") || "" },
     { href: "/terms", label: t("nav.terms") || "" },

@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Button from "../components/Button.astro";
+import Quote from "../components/Quote.astro";
 import CTA from "../components/CTA.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import { createT } from "../i18n/utils";
@@ -11,41 +12,57 @@ const t = createT(Astro.currentLocale);
   <!-- hero -->
   <section class="page-hero" data-section-theme="dark">
     <div class="page-hero-bg">
+      <div class="page-hero-bg-dots"></div>
       <div class="page-hero-orb page-hero-orb--1"></div>
       <div class="page-hero-orb page-hero-orb--2"></div>
+      <div class="page-hero-gradient-overlay"></div>
+      <div class="tria-hero-grain"></div>
+      <div class="tria-ambient-temp">
+        <div class="tria-at-glow-1"></div>
+        <div class="tria-at-glow-2"></div>
+      </div>
     </div>
     <div class="container page-hero-inner">
       <span class="tria-suptitle tria-light-soft tria-up" style="display:block;margin-bottom:24px;" data-i18n="services.hero.suptitle">{t("services.hero.suptitle")}</span>
       <h1 class="page-hero-heading tria-up" data-i18n-html="services.hero.title" set:html={t("services.hero.title")} />
-      <p class="page-hero-sub tria-up" style="margin-top:20px;" data-i18n="services.hero.desc">{t("services.hero.desc")}</p>
+      <p class="page-hero-sub tria-up" data-i18n="services.hero.desc" style="max-width:560px;">{t("services.hero.desc")}</p>
     </div>
   </section>
 
   <!-- overview -->
-  <section class="tria-sd-section" data-section-theme="light">
-    <div class="container tria-p-120-60">
+  <section class="tria-sd-overview" data-section-theme="light">
+    <div class="tria-dot-pattern"></div>
+    <div class="tria-grain-overlay"></div>
+    <div class="tria-sd-overview-glow"></div>
+    <div class="container tria-p-120-120">
       <div class="row justify-content-between align-items-start">
         <div class="col-lg-5">
           <span class="tria-suptitle tria-suptitle-dark tria-up">Overview</span>
-          <h2 class="tria-up tria-mt-30" style="font-size:clamp(1.8rem,3vw,2.5rem);font-weight:300;line-height:1.15;color:#0b0d17;">
-            What We<br /><span style="color:var(--accent);">Deliver</span>
+          <h2 class="tria-up tria-mt-30 tria-sd-section-title">
+            What We<br /><span class="tria-accent-text">Deliver</span>
           </h2>
         </div>
         <div class="col-lg-6">
-          <p class="tria-up" style="font-size:0.95rem;line-height:1.85;color:#555;margin-bottom:24px;">
-            We design and build solutions that align with your business goals. Every engagement starts with understanding your unique challenges and ends with measurable outcomes.
-          </p>
-          <p class="tria-up" style="font-size:0.95rem;line-height:1.85;color:#555;">
-            Our team brings deep expertise across the full technology stack, ensuring your project is built on solid foundations with modern architectures and best practices.
-          </p>
+          <div class="tria-sd-intro-texts">
+            <p class="tria-up">
+              We design and build solutions that align with your business goals. Every engagement starts with understanding your unique challenges and ends with measurable outcomes.
+            </p>
+            <p class="tria-up">
+              Our team brings deep expertise across the full technology stack, ensuring your project is built on solid foundations with modern architectures and best practices.
+            </p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- features -->
-  <section class="tria-sd-feat-section" data-section-theme="light">
-    <div class="container tria-p-60-60">
+  <section class="tria-sd-features" data-section-theme="light">
+    <div class="tria-ambient-temp">
+      <div class="tria-at-glow-1"></div>
+      <div class="tria-at-glow-3"></div>
+    </div>
+    <div class="container tria-p-120-120">
       <div class="row">
         <div class="col-lg-4 tria-up tria-mb-30">
           <div class="tria-sd-feat-card">
@@ -73,41 +90,56 @@ const t = createT(Astro.currentLocale);
   </section>
 
   <!-- process -->
-  <section class="tria-sd-section" data-section-theme="light" style="background:#faf7f2;">
-    <div class="container tria-p-60-60">
+  <section class="tria-sd-process-section" data-section-theme="light">
+    <div class="tria-dot-pattern"></div>
+    <div class="tria-grain-overlay"></div>
+    <div class="tria-sd-process-glow"></div>
+    <div class="container tria-p-120-120">
       <div class="row justify-content-center tria-mb-60">
         <div class="col-lg-8 tria-center">
           <span class="tria-suptitle tria-suptitle-dark tria-up">Our Approach</span>
-          <h2 class="tria-up tria-mt-30" style="font-size:clamp(1.8rem,3vw,2.5rem);font-weight:300;color:#0b0d17;">
-            How We <span style="color:var(--accent);">Work</span>
+          <h2 class="tria-up tria-mt-30 tria-sd-section-title tria-center">
+            How We <span class="tria-accent-text">Work</span>
           </h2>
         </div>
       </div>
-      <div class="row tria-sd-process">
+      <div class="row tria-sd-process-steps">
         <div class="col-md-3 tria-up tria-mb-30">
           <div class="tria-sd-step">
-            <span class="tria-sd-step-num">01</span>
+            <div class="tria-sd-step-num-wrap">
+              <span class="tria-sd-step-connector"></span>
+              <span class="tria-sd-step-num">01</span>
+            </div>
             <h5 class="tria-sd-step-title">Discovery</h5>
             <p class="tria-sd-step-desc">We learn your business, users, and goals to define the right solution.</p>
           </div>
         </div>
         <div class="col-md-3 tria-up tria-mb-30">
           <div class="tria-sd-step">
-            <span class="tria-sd-step-num">02</span>
+            <div class="tria-sd-step-num-wrap">
+              <span class="tria-sd-step-connector"></span>
+              <span class="tria-sd-step-num">02</span>
+            </div>
             <h5 class="tria-sd-step-title">Design</h5>
             <p class="tria-sd-step-desc">Architecture, UX, and technical design validated before building.</p>
           </div>
         </div>
         <div class="col-md-3 tria-up tria-mb-30">
           <div class="tria-sd-step">
-            <span class="tria-sd-step-num">03</span>
+            <div class="tria-sd-step-num-wrap">
+              <span class="tria-sd-step-connector"></span>
+              <span class="tria-sd-step-num">03</span>
+            </div>
             <h5 class="tria-sd-step-title">Build</h5>
             <p class="tria-sd-step-desc">Agile development with continuous feedback and testing.</p>
           </div>
         </div>
         <div class="col-md-3 tria-up tria-mb-30">
           <div class="tria-sd-step">
-            <span class="tria-sd-step-num">04</span>
+            <div class="tria-sd-step-num-wrap">
+              <span class="tria-sd-step-connector tria-sd-step-connector--last"></span>
+              <span class="tria-sd-step-num">04</span>
+            </div>
             <h5 class="tria-sd-step-title">Scale</h5>
             <p class="tria-sd-step-desc">Deploy, monitor, and optimize for growth and reliability.</p>
           </div>
@@ -117,14 +149,14 @@ const t = createT(Astro.currentLocale);
   </section>
 
   <!-- cta -->
-  <section class="tria-sd-section" data-section-theme="light">
-    <div class="container tria-p-60-120">
+  <section class="tria-sd-cta-strip" data-section-theme="light">
+    <div class="container tria-p-120-120">
       <div class="row justify-content-center">
         <div class="col-lg-8 tria-center">
-          <h2 class="tria-up" style="font-size:clamp(1.5rem,3vw,2.2rem);font-weight:300;color:#0b0d17;margin-bottom:20px;">
+          <h2 class="tria-up tria-sd-section-title">
             Ready to get started?
           </h2>
-          <p class="tria-up" style="color:#888;margin-bottom:36px;font-size:0.95rem;">
+          <p class="tria-up tria-sd-cta-desc">
             Let's discuss how this service can help your business.
           </p>
           <Button text="Let's Talk" href="/contact" showArrow={true} />
@@ -133,96 +165,202 @@ const t = createT(Astro.currentLocale);
     </div>
   </section>
 
+  <Quote
+    heading={t("cotizacion.heading") || 'Get a <span class="tria-thin">Custom Quote</span>'}
+    description={t("cotizacion.description") || ""}
+    buttonText={t("cotizacion.buttonText") || "Request a Quote"}
+    buttonHref="/contact"
+    features={[
+      t("cotizacion.feature1") || "",
+      t("cotizacion.feature2") || "",
+      t("cotizacion.feature3") || "",
+      t("cotizacion.feature4") || ""
+    ]}
+  />
+
   <CTA 
-    heading={t("cta.heading") || ""}
-    description={t("cta.description") || "From concept to deployment, we build software that scales."}
-    primaryButtonText={t("cta.startProject") || ""}
-    secondaryButtonText={t("cta.seeWork") || ""}
+    heading={t("ctaService.heading") || ""}
+    primaryButtonText={t("ctaService.button") || ""}
+    secondaryButtonText={t("ctaService.button2") || ""}
     primaryButtonHref="/contact"
-    secondaryButtonHref="/portfolio"
-    theme="dark"
+    secondaryButtonHref="/services"
+    theme="light"
+    bgColor="#f0e8e0"
     showIcon={true}
-    padding=""
-    primaryButtonVariant="primary"
-    primaryButtonColor="#0b0d17"
-    primaryButtonHoverColor="#1a1f35"
+    padding="tria-p-120-120"
   />
 
   <SiteFooter />
 </Layout>
 
 <style>
-  .tria-sd-section {
+  .tria-sd-overview {
     background: #fff;
+    position: relative;
   }
 
-  /* Feature cards */
-  .tria-sd-feat-section {
-    background: #fff;
+  .tria-sd-overview-glow {
+    position: absolute;
+    top: -200px;
+    right: -200px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(ellipse at center, rgba(6, 142, 140, 0.03) 0%, transparent 60%);
+    pointer-events: none;
   }
+
+  .tria-sd-intro-texts p {
+    font-size: 0.95rem;
+    line-height: 1.85;
+    color: #555;
+    margin-bottom: 24px;
+  }
+  .tria-sd-intro-texts p:last-child {
+    margin-bottom: 0;
+  }
+
+  .tria-sd-section-title {
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: #0b0d17;
+    margin-bottom: 20px;
+  }
+
+  .tria-accent-text {
+    color: var(--accent);
+  }
+
+  /* Features section */
+  .tria-sd-features {
+    background: #faf7f2;
+    position: relative;
+  }
+
   .tria-sd-feat-card {
     border: 1px solid rgba(0,0,0,0.06);
     border-radius: 16px;
-    padding: 36px 32px;
+    padding: 40px 34px;
     height: 100%;
-    transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    background: #fff;
+    transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .tria-sd-feat-card:hover {
     border-color: rgba(6,142,140,0.2);
-    transform: translateY(-4px);
-    box-shadow: 0 16px 48px rgba(0,0,0,0.05);
+    transform: translateY(-6px);
+    box-shadow: 0 24px 64px rgba(0,0,0,0.06);
   }
   .tria-sd-feat-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
     background: rgba(6,142,140,0.08);
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--accent);
-    font-size: 18px;
-    margin-bottom: 20px;
-    transition: background 0.3s, transform 0.3s;
+    font-size: 20px;
+    margin-bottom: 24px;
+    transition: background 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .tria-sd-feat-card:hover .tria-sd-feat-icon {
     background: var(--accent);
     color: #fff;
-    transform: translateY(-2px);
+    transform: translateY(-3px);
   }
   .tria-sd-feat-title {
     font-size: 1.05rem;
-    font-weight: 400;
+    font-weight: 450;
     color: #0b0d17;
     margin-bottom: 12px;
+    transition: color 0.3s ease;
+  }
+  .tria-sd-feat-card:hover .tria-sd-feat-title {
+    color: var(--accent);
   }
   .tria-sd-feat-desc {
     font-size: 0.82rem;
     color: #777;
     line-height: 1.7;
     margin: 0;
+    transition: color 0.3s ease;
+  }
+  .tria-sd-feat-card:hover .tria-sd-feat-desc {
+    color: #555;
   }
 
-  /* Process steps */
+  /* Process section */
+  .tria-sd-process-section {
+    background: #fff;
+    position: relative;
+  }
+
+  .tria-sd-process-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 700px;
+    height: 700px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(6, 142, 140, 0.03) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .tria-sd-process-steps {
+    position: relative;
+    z-index: 1;
+  }
+
   .tria-sd-step {
     text-align: center;
-    padding: 0 10px;
+    padding: 40px 20px;
+    border-radius: 16px;
+    border: 1px solid rgba(0,0,0,0.04);
+    background: rgba(255,255,255,0.5);
+    transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
+
+  .tria-sd-step:hover {
+    border-color: rgba(6,142,140,0.15);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.04);
+  }
+
+  .tria-sd-step-num-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
   .tria-sd-step-num {
     font-family: var(--font-display, 'Outfit', sans-serif);
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     font-weight: 200;
-    color: rgba(6,142,140,0.15);
-    display: block;
-    margin-bottom: 16px;
+    color: rgba(6, 142, 140, 0.15);
+    display: inline-block;
     line-height: 1;
+    transition: color 0.4s ease, transform 0.4s ease;
   }
+
+  .tria-sd-step:hover .tria-sd-step-num {
+    color: var(--accent);
+    transform: scale(1.05);
+  }
+
   .tria-sd-step-title {
     font-size: 1rem;
-    font-weight: 400;
+    font-weight: 450;
     color: #0b0d17;
     margin-bottom: 10px;
+    transition: color 0.3s ease;
   }
+
+  .tria-sd-step:hover .tria-sd-step-title {
+    color: var(--accent);
+  }
+
   .tria-sd-step-desc {
     font-size: 0.8rem;
     color: #888;
@@ -232,8 +370,74 @@ const t = createT(Astro.currentLocale);
     margin: 0 auto;
   }
 
+  /* CTA strip */
+  .tria-sd-cta-strip {
+    background: #faf7f2;
+    position: relative;
+  }
+
+  .tria-sd-cta-desc {
+    color: #888;
+    margin-bottom: 36px;
+    font-size: 0.95rem;
+  }
+
   @media (max-width: 768px) {
-    .tria-sd-step { margin-bottom: 40px; }
+    .tria-sd-step { margin-bottom: 20px; margin-top: 0; }
     .tria-sd-step:last-child { margin-bottom: 0; }
+  }
+
+  @media (max-width: 576px) {
+    .tria-sd-intro-texts p {
+      font-size: 0.85rem;
+    }
+    .tria-sd-feat-card {
+      padding: 28px 24px;
+    }
+    .tria-sd-feat-card:not(:last-child) {
+      margin-bottom: 16px;
+    }
+    .tria-sd-feat-title {
+      font-size: 0.95rem;
+    }
+    .tria-sd-feat-desc {
+      font-size: 0.78rem;
+    }
+    .tria-sd-step {
+      padding: 28px 16px;
+    }
+    .tria-sd-step:not(:last-child) {
+      margin-bottom: 16px;
+    }
+    .tria-sd-step-num {
+      font-size: 2.2rem;
+    }
+    .tria-sd-step-title {
+      font-size: 0.9rem;
+    }
+    .tria-sd-step-desc {
+      font-size: 0.75rem;
+    }
+    .tria-sd-cta-desc {
+      font-size: 0.85rem;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .tria-sd-feat-card {
+      padding: 22px 18px;
+    }
+    .tria-sd-feat-card:not(:last-child) {
+      margin-bottom: 12px;
+    }
+    .tria-sd-step:not(:last-child) {
+      margin-bottom: 12px;
+    }
+    .tria-sd-section-title {
+      font-size: 1.4rem;
+    }
+    .tria-sd-intro-texts p {
+      font-size: 0.8rem;
+    }
   }
 </style>
