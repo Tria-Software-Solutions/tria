@@ -363,15 +363,23 @@ section[data-section-theme="light"] {
   .page-hero-orb--2 { width: 250px; height: 250px; bottom: -80px; left: 5%; opacity: 0.06; }
   .page-hero-heading { font-size: clamp(1.8rem, 5vw, 2.4rem); }
   .page-hero-sub { font-size: 0.9rem; max-width: 100%; }
-}
-@media (max-width: 768px) {
-  .page-hero { min-height: 28vh; }
-  .page-hero-inner { padding-top: 80px; padding-bottom: 50px; }
-  .page-hero-orb--1 { width: 250px; height: 250px; top: -100px; right: -80px; opacity: 0.06; }
-  .page-hero-orb--2 { width: 180px; height: 180px; bottom: -60px; left: 5%; opacity: 0.04; }
-  .page-hero-heading { font-size: clamp(1.5rem, 6vw, 1.8rem); }
-  .page-hero-sub { font-size: 0.85rem; }
-}
+}  @media (max-width: 768px) {
+    .page-hero { min-height: 28vh; }
+    .page-hero-inner { padding-top: 100px; padding-bottom: 50px; }
+    .page-hero-orb--1 { width: 250px; height: 250px; top: -100px; right: -80px; opacity: 0.06; }
+    .page-hero-orb--2 { width: 180px; height: 180px; bottom: -60px; left: 5%; opacity: 0.04; }
+    .page-hero-heading { font-size: clamp(1.5rem, 6vw, 1.8rem); }
+    .page-hero-sub { font-size: 0.85rem; }
+  }
+
+  @media (max-width: 400px) {
+    .page-hero { min-height: 25vh; }
+    .page-hero-inner { padding-top: 74px; padding-bottom: 40px; }
+    .page-hero-orb--1 { width: 180px; height: 180px; top: -80px; right: -60px; opacity: 0.04; }
+    .page-hero-orb--2 { width: 120px; height: 120px; bottom: -40px; left: 5%; opacity: 0.03; }
+    .page-hero-heading { font-size: clamp(1.3rem, 6vw, 1.5rem); }
+    .page-hero-sub { font-size: 0.78rem; }
+  }
 
 /* ── Shared page body ── */
 .page-body {
@@ -644,27 +652,59 @@ a:not(.tria-button):hover,
 
 /* ── Responsive utilities ── */
 
-/* Extra small devices (phones < 360px) */
+/* ── Responsive cascade ── */
+
+/* Extra small devices (< 360px) */
 @media (max-width: 359px) {
   html { font-size: 14px; }
   .container { padding-left: 16px; padding-right: 16px; }
   h1 { font-size: clamp(1.6rem, 8vw, 2rem) !important; }
   h2 { font-size: clamp(1.3rem, 6vw, 1.6rem) !important; }
+  .tria-p-120-120 { padding-top: 48px; padding-bottom: 48px; }
+  .tria-p-100-100 { padding-top: 40px; padding-bottom: 40px; }
+  .tria-mb-60 { margin-bottom: 32px; }
+  .tria-mb-30 { margin-bottom: 20px; }
 }
 
-/* Small phones (360px - 480px) */
+/* Small phones (360px → 480px) */
 @media (min-width: 360px) and (max-width: 480px) {
   html { font-size: 15px; }
   h1 { font-size: clamp(1.8rem, 7vw, 2.2rem) !important; }
   h2 { font-size: clamp(1.4rem, 5vw, 1.8rem) !important; }
-  .tria-p-120-120 { padding-top: 60px; padding-bottom: 60px; }
-  .tria-p-100-100 { padding-top: 50px; padding-bottom: 50px; }
+  .tria-p-120-120 { padding-top: 56px; padding-bottom: 56px; }
+  .tria-p-100-100 { padding-top: 44px; padding-bottom: 44px; }
+  .tria-mb-60 { margin-bottom: 36px; }
+  .tria-mb-30 { margin-bottom: 22px; }
 }
 
-/* Phones (480px - 576px) */
-@media (max-width: 576px) {
+/* Large phones (480px → 576px) */
+@media (min-width: 481px) and (max-width: 576px) {
   .tria-p-120-120 { padding-top: 60px; padding-bottom: 60px; }
   .tria-p-100-100 { padding-top: 50px; padding-bottom: 50px; }
+  .tria-mb-60 { margin-bottom: 40px; }
+}  /* All phones (< 577px) */
+  @media (max-width: 576px) {
+    .page-hero {
+      min-height: 28vh;
+    }
+    .page-hero-inner {
+      padding-top: 80px;
+      padding-bottom: 50px;
+    }
+    .page-hero-orb--1 {
+      width: 250px; height: 250px;
+      top: -100px; right: -80px;
+      opacity: 0.06;
+    }
+    .page-hero-orb--2 {
+      width: 180px; height: 180px;
+      bottom: -60px; left: 5%;
+      opacity: 0.04;
+    }
+    .page-hero-heading {
+      font-size: clamp(1.5rem, 6vw, 1.8rem);
+    }
+    .page-hero-sub { font-size: 0.85rem; }
   section[style*="padding:120px"],
   section[style*="padding:100px"],
   section[style*="padding:80px"],
@@ -674,19 +714,23 @@ a:not(.tria-button):hover,
   }
 }
 
-/* Tablets (577px - 768px) */
+/* Tablets (577px → 768px) */
 @media (min-width: 577px) and (max-width: 768px) {
   .tria-p-120-120 { padding-top: 80px; padding-bottom: 80px; }
+  .tria-p-100-100 { padding-top: 60px; padding-bottom: 60px; }
+  .tria-mb-60 { margin-bottom: 48px; }
 }
 
-/* Small desktops / large tablets (769px - 991px) */
+/* Small desktops / large tablets (769px → 991px) */
 @media (min-width: 769px) and (max-width: 991px) {
   .tria-p-120-120 { padding-top: 90px; padding-bottom: 90px; }
+  .tria-p-100-100 { padding-top: 70px; padding-bottom: 70px; }
 }
 
 /* Big screens (1400px+) */
 @media (min-width: 1400px) {
   html { font-size: 17px; }
+  .page-hero-heading { font-size: clamp(2.4rem, 3.5vw, 3.6rem); }
 }
 
 /* Touch-friendly: ensure minimum tap targets on mobile */
@@ -698,11 +742,79 @@ a:not(.tria-button):hover,
   a.tria-link { min-height: 44px; min-width: 44px; }
 }
 
+/* Prevent scrollbar hiding (all devices) */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.1);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0,0,0,0.2);
+}
+
 /* Prevent horizontal overflow on all devices */
 img, video, canvas, svg, iframe { max-width: 100%; height: auto; }
 
 /* Overflow-x: auto for tables in blog content */
 .tria-blog-content table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+/* ── preloader / splash screen ── */
+.tria-preloader {
+  position: fixed;
+  z-index: 9;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgb(0, 0, 0);
+}
+.tria-preloader .tria-preloader-animation {
+  opacity: 0;
+  position: relative;
+  height: 100vh;
+  color: rgb(255, 255, 255);
+}
+.tria-preloader .tria-preloader-animation .tria-pos-abs {
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tria-preloader .tria-preloader-animation .tria-pos-abs p {
+  opacity: 0;
+  margin-right: 15px;
+}
+@media screen and (max-width: 992px) {
+  .tria-preloader .tria-preloader-animation .tria-pos-abs {
+    flex-direction: column;
+  }
+  .tria-preloader .tria-preloader-animation .tria-pos-abs p {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+}
+.tria-preloader .tria-preloader-animation .tria-pos-abs .tria-reveal-frame {
+  position: relative;
+  padding: 0 30px;
+}
+.tria-preloader .tria-preloader-animation .tria-pos-abs .tria-reveal-frame .tria-reveal-box {
+  z-index: 4;
+  position: absolute;
+  opacity: 0;
+  height: 100%;
+  background-color: var(--accent);
+}
+.tria-preloader.tria-hidden {
+  pointer-events: none;
+}
 
 /* ── Section-specific ambient light ── */
 

@@ -1,0 +1,151 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Quote from "../../components/Quote.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import ServiceDetail from "../../components/ServiceDetail.astro";
+import { createT } from "../../i18n/utils";
+const t = createT(Astro.currentLocale);
+const locale = Astro.currentLocale || "en";
+
+const isEs = locale === "es";
+
+const service = {
+  heroSuptitle: isEs ? "Optimización & Seguridad" : "Optimization & Security",
+  heroTitle: isEs
+    ? "Seguridad y<br /><span class=\"page-hero-em\">Optimización</span>"
+    : "Security &amp;<br /><span class=\"page-hero-em\">Optimization</span>",
+  heroDesc: isEs
+    ? "Auditorías de seguridad, modernización de sistemas legacy, optimización de costos cloud y consultoría tecnológica estratégica."
+    : "Security audits, legacy system modernization, cloud cost optimization, and strategic technology consulting.",
+
+  overviewSuptitle: isEs ? "Visión General" : "Overview",
+  overviewTitle: isEs
+    ? "Blindaje Digital<br /><span class=\"tria-accent-text\">y Eficiencia</span> Operativa"
+    : "Digital Armor<br /><span class=\"tria-accent-text\">&amp; Operational</span> Efficiency",
+  overviewDesc1: isEs
+    ? "Una vulnerabilidad es todo lo que necesita un atacante. Auditorías OWASP, pruebas de penetración, cumplimiento HIPAA/SOC2/ISO 27001 — cada capa de seguridad cierra una puerta que no sabías que estaba abierta."
+    : "One vulnerability is all an attacker needs. OWASP audits, penetration testing, HIPAA/SOC2/ISO 27001 compliance — every security layer closes a door you didn't know was open.",
+  overviewDesc2: isEs
+    ? "Sistemas legacy que ralentizan tu equipo, costos cloud que crecen sin control, decisiones técnicas sin una visión clara. Diagnosticamos, priorizamos y ejecutamos — desde modernizar una base de datos hasta redefinir tu estrategia tecnológica."
+    : "Legacy systems slowing your team, cloud costs growing unchecked, technical decisions without clear direction. We diagnose, prioritize, and execute — from modernizing a database to redefining your tech strategy.",
+
+  features: [
+    {
+      icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l9 4v6c0 5.55-3.84 10.74-9 12-5.16-1.26-9-6.45-9-12V6z"/><path d="M9 12l2 2 4-4"/></svg>',
+      title: isEs ? "Seguridad Integral" : "Comprehensive Security",
+      desc: isEs
+        ? "Auditorías de seguridad, pruebas de penetración, implementación Zero Trust y cumplimiento con estándares internacionales."
+        : "Security audits, penetration testing, Zero Trust implementation, and international compliance standards."
+    },
+    {
+      icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16"/><path d="M4 20V4"/><path d="M9 12h6"/><path d="M12 9v6"/></svg>',
+      title: isEs ? "Modernización" : "Modernization",
+      desc: isEs
+        ? "Transformamos sistemas legacy en arquitecturas modernas, escalables y mantenibles sin interrumpir tus operaciones."
+        : "We transform legacy systems into modern, scalable, maintainable architectures without disrupting your operations."
+    },
+    {
+      icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33-1.82l-2.1-3.76a1.66 1.66 0 0 0-2.23-.74L12 10"/><path d="M9.17 4.3a1.66 1.66 0 0 1 .83-2.2l3.76-1.57a1.66 1.66 0 0 1 2.18.86l1.94 4.15"/><path d="M4.6 9a1.65 1.65 0 0 0 .33 1.82l2.1 3.77a1.66 1.66 0 0 0 2.23.74L12 14"/><path d="M14.83 19.7a1.66 1.66 0 0 1-.83 2.2l-3.76 1.57a1.66 1.66 0 0 1-2.18-.86l-1.94-4.15"/></svg>',
+      title: isEs ? "Optimización Cloud" : "Cloud Optimization",
+      desc: isEs
+        ? "Análisis y reducción de costos cloud, optimización de recursos, FinOps y mejora continua del rendimiento."
+        : "Cloud cost analysis and reduction, resource optimization, FinOps, and continuous performance improvement."
+    }
+  ],
+
+  processSuptitle: isEs ? "Nuestro Enfoque" : "Our Approach",
+  processTitle: isEs
+    ? "Cómo <span class=\"tria-accent-text\">Aseguramos</span> tu Negocio"
+    : "How We <span class=\"tria-accent-text\">Secure</span> Your Business",
+  steps: [
+    { num: "01", title: isEs ? "Evaluación" : "Assessment", desc: isEs ? "Auditoría completa de seguridad, arquitectura y costos de tu infraestructura actual." : "Complete audit of your current infrastructure's security, architecture, and costs." },
+    { num: "02", title: isEs ? "Plan" : "Plan", desc: isEs ? "Hoja de ruta con prioridades, cronograma y métricas de éxito para cada mejora." : "Roadmap with priorities, timeline, and success metrics for each improvement." },
+    { num: "03", title: isEs ? "Implementación" : "Implement", desc: isEs ? "Ejecución de mejoras con mínimo impacto en operaciones y validación continua." : "Execute improvements with minimal operational impact and continuous validation." },
+    { num: "04", title: isEs ? "Monitoreo" : "Monitor", desc: isEs ? "Monitoreo continuo, alertas inteligentes y mejoras iterativas de seguridad y costos." : "Continuous monitoring, smart alerts, and iterative security and cost improvements." }
+  ],
+
+  ctaTitle: isEs
+    ? "¿Listo para <span class=\"tria-accent-text\">asegurar</span> tu infraestructura?"
+    : "Ready to <span class=\"tria-accent-text\">secure</span> your infrastructure?",
+  ctaDesc: isEs
+    ? "Hablemos de cómo podemos proteger y optimizar tu tecnología."
+    : "Let's discuss how we can protect and optimize your technology."
+};
+---
+
+<Layout title={`Tria — ${isEs ? "Optimización & Seguridad" : "Optimization & Security"}`} description={service.heroDesc}>
+  <ServiceDetail service={service} />
+
+  <Quote
+    heading={t("cotizacion.heading") || 'Get a <span class="tria-thin">Custom Quote</span>'}
+    description={t("cotizacion.description") || ""}
+    buttonText={t("cotizacion.buttonText") || "Request a Quote"}
+    buttonHref={isEs ? "/es/contact" : "/contact"}
+    features={[
+      t("cotizacion.feature1") || "",
+      t("cotizacion.feature2") || "",
+      t("cotizacion.feature3") || "",
+      t("cotizacion.feature4") || ""
+    ]}
+  />
+
+  <!-- cta -->
+  <section class="tria-sd-cta-strip" data-section-theme="light">
+    <div class="tria-dot-pattern"></div>
+    <div class="tria-grain-overlay"></div>
+    <div class="tria-ambient-temp">
+      <div class="tria-at-glow-1"></div>
+      <div class="tria-at-glow-3"></div>
+    </div>
+    <div class="container tria-p-120-120">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 tria-center">
+          <h2 class="tria-up tria-sd-cta-title" set:html={service.ctaTitle} />
+          <p class="tria-up tria-sd-cta-desc">{service.ctaDesc}</p>
+          <a href={isEs ? "/es/contact" : "/contact"} class="tria-button" data-i18n="ctaService.button" style="display:inline-flex;align-items:center;gap:10px;padding:14px 36px;border-radius:100px;font-size:0.75rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#fff;background:var(--accent);text-decoration:none;transition:all 0.4s cubic-bezier(0.16,1,0.3,1);">
+            {t("ctaService.button") || "Contact Us"}
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <SiteFooter />
+</Layout>
+
+<style>
+  .tria-sd-cta-strip {
+    background: #faf7f2;
+    position: relative;
+  }
+  .tria-sd-cta-title {
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: #0b0d17;
+    margin-bottom: 20px;
+  }
+  .tria-sd-cta-title .tria-accent-text {
+    color: var(--accent);
+  }
+  .tria-sd-cta-desc {
+    color: #888;
+    margin-bottom: 36px;
+    font-size: 0.95rem;
+  }
+  .tria-button:hover {
+    background: color-mix(in srgb, var(--accent), white 12%) !important;
+    filter: brightness(115%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(6,142,140,0.3);
+  }
+  @media (max-width: 576px) {
+    .tria-sd-cta-title { font-size: 1.5rem; }
+    .tria-sd-cta-desc { font-size: 0.85rem; }
+  }
+  @media (max-width: 400px) {
+    .tria-sd-cta-title { font-size: 1.3rem; }
+  }
+</style>
+</Layout>

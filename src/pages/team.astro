@@ -2,8 +2,6 @@
 import Layout from "../layouts/Layout.astro";
 import PageBanner from "../components/PageBanner.astro";
 import Team from "../components/Team.astro";
-import Stats from "../components/Stats.astro";
-import Quote from "../components/Quote.astro";
 import CTA from "../components/CTA.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import { createT } from "../i18n/utils";
@@ -14,8 +12,6 @@ const t = createT(Astro.currentLocale);
   <PageBanner suptitleKey="team.suptitle" headingKey="team.title" descriptionKey="team.heroDesc" />
 
   <Team 
-    suptitle={t("team.suptitle") || ""}
-    heading={t("team.title") || ""}
     description1={t("team.description1") || ""}
     description2={t("team.description2") || ""}
     tagline={t("team.tagline") || ""}
@@ -24,97 +20,72 @@ const t = createT(Astro.currentLocale);
       {
         name: t("team.member1Name") || "",
         role: t("team.role1") || "",
-        image: "/assets/img/team/1.jpg",
+        image: "/assets/img/team/1.jpeg",
         socialLinks: [
-          { icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22 7h-7V2H9v5H2v9h7v5h6v-5h7V7z"/></svg>', href: "#." },
-          { icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 5.46 11.43 5.1 18.5"/><path d="M15.44 2.75c-4.37 6.03-5.46 11.43-5.1 18.5"/><path d="M2 12h20"/><path d="M12 2C7 8 7 16 12 22c5-6 5-14 0-20z"/></svg>', href: "#." },
-          { icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>', href: "#." },
-          { icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>', href: "#." }
+          { icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>', href: "https://www.facebook.com/luisherreracr" },
+          { icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>', href: "https://www.instagram.com/luismigue_l" }
         ]
       },
       {
         name: t("team.member2Name") || "",
         role: t("team.role2") || "",
-        image: "/assets/img/team/2.jpg",
+        image: "/assets/img/team/2.jpeg",
         socialLinks: [
-          { icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22 7h-7V2H9v5H2v9h7v5h6v-5h7V7z"/></svg>', href: "#." },
-          { icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 5.46 11.43 5.1 18.5"/><path d="M15.44 2.75c-4.37 6.03-5.46 11.43-5.1 18.5"/><path d="M2 12h20"/><path d="M12 2C7 8 7 16 12 22c5-6 5-14 0-20z"/></svg>', href: "#." },
-          { icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>', href: "#." },
-          { icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>', href: "#." }
+          { icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>', href: "https://facebook.com/danilumix" },
+          { icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>', href: "https://www.instagram.com/danilumix" }
         ]
       }
     ]}
   />
 
-  <!-- values / approach -->
-  <section class="tria-team-values" data-section-theme="light">
+  <!-- culture / approach — gray bg like engagement models -->
+  <section class="tria-tm-culture" data-section-theme="light">
     <div class="tria-dot-pattern"></div>
     <div class="tria-grain-overlay"></div>
     <div class="tria-ambient-temp">
+      <div class="tria-at-glow-1"></div>
       <div class="tria-at-glow-3"></div>
     </div>
     <div class="container tria-p-120-120">
       <div class="row tria-mb-60">
         <div class="col-lg-6">
           <span class="tria-suptitle tria-suptitle-dark tria-up" data-i18n="team.cultureSuptitle">{t("team.cultureSuptitle")}</span>
-          <h2 class="tria-up" style="margin-top:20px;" data-i18n-html="team.cultureTitle" set:html={t("team.cultureTitle")} />
+          <h2 class="tria-up tria-tm-title" data-i18n-html="team.cultureTitle" set:html={t("team.cultureTitle")} />
         </div>
       </div>
-      <div class="row">
+      <div class="row tria-tm-grid">
         <div class="col-md-4 tria-up tria-mb-30">
-          <div class="tria-tv-card">
-            <div class="tria-tv-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><path d="M9 9h.01"/><path d="M15 9h.01"/></svg>
+          <div class="tria-tm-card">
+            <div class="tria-tm-card-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><path d="M9 9h.01"/><path d="M15 9h.01"/></svg>
             </div>
-            <h4 class="tria-tv-title" data-i18n="team.culture1Title">{t("team.culture1Title")}</h4>
-            <p class="tria-tv-desc" data-i18n="team.culture1Desc">{t("team.culture1Desc")}</p>
+            <h4 class="tria-tm-card-title" data-i18n="team.culture1Title">{t("team.culture1Title")}</h4>
+            <p class="tria-tm-card-desc" data-i18n="team.culture1Desc">{t("team.culture1Desc")}</p>
           </div>
         </div>
         <div class="col-md-4 tria-up tria-mb-30">
-          <div class="tria-tv-card">
-            <div class="tria-tv-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          <div class="tria-tm-card">
+            <div class="tria-tm-card-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
             </div>
-            <h4 class="tria-tv-title" data-i18n="team.culture2Title">{t("team.culture2Title")}</h4>
-            <p class="tria-tv-desc" data-i18n="team.culture2Desc">{t("team.culture2Desc")}</p>
+            <h4 class="tria-tm-card-title" data-i18n="team.culture2Title">{t("team.culture2Title")}</h4>
+            <p class="tria-tm-card-desc" data-i18n="team.culture2Desc">{t("team.culture2Desc")}</p>
           </div>
         </div>
         <div class="col-md-4 tria-up tria-mb-30">
-          <div class="tria-tv-card">
-            <div class="tria-tv-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <div class="tria-tm-card">
+            <div class="tria-tm-card-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             </div>
-            <h4 class="tria-tv-title" data-i18n="team.culture3Title">{t("team.culture3Title")}</h4>
-            <p class="tria-tv-desc" data-i18n="team.culture3Desc">{t("team.culture3Desc")}</p>
+            <h4 class="tria-tm-card-title" data-i18n="team.culture3Title">{t("team.culture3Title")}</h4>
+            <p class="tria-tm-card-desc" data-i18n="team.culture3Desc">{t("team.culture3Desc")}</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <Stats 
-    stats={[
-      { value: 25, suffix: '+', label: t("stats.projectsLabel") || "" },
-      { value: 15, suffix: '+', label: t("stats.clientsLabel") || "" },
-      { value: 7, suffix: '+', label: t("stats.yearsLabel") || "" },
-      { value: 99, suffix: '%', label: t("stats.satisfactionLabel") || "" }
-    ]}
-  />
-
-  <Quote
-    heading={t("cotizacion.heading") || 'Get a <span class="tria-thin">Custom Quote</span>'}
-    description={t("cotizacion.description") || ""}
-    buttonText={t("cotizacion.buttonText") || "Request a Quote"}
-    buttonHref="/contact"
-    features={[
-      t("cotizacion.feature1") || "",
-      t("cotizacion.feature2") || "",
-      t("cotizacion.feature3") || "",
-      t("cotizacion.feature4") || ""
-    ]}
-  />
-
-  <CTA 
+<CTA 
     heading={t("ctaTeam.heading") || ""}
     description={t("ctaTeam.desc") || ""}
     primaryButtonText={t("ctaTeam.button") || ""}
@@ -137,118 +108,124 @@ const t = createT(Astro.currentLocale);
     font-style: italic;
   }
 
-  .tria-team-values {
-    background: #fff;
+  /* ═══════════════════════════════════════
+     CULTURE — Gray bg with cards
+     ═══════════════════════════════════════ */
+  .tria-tm-culture {
+    background: #f5f7f9;
     position: relative;
+    overflow: hidden;
   }
 
-  .tria-team-values::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 20% 30%, rgba(6, 142, 140, 0.02) 0%, transparent 60%),
-                radial-gradient(ellipse at 80% 70%, rgba(6, 142, 140, 0.015) 0%, transparent 50%);
-    pointer-events: none;
+  .tria-tm-title {
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 450;
+    letter-spacing: -0.025em;
+    color: #0b0d17;
+    margin-top: 20px;
+    line-height: 1.15;
+  }
+  .tria-tm-title .tria-thin {
+    color: rgba(0,0,0,0.2);
+    font-weight: 200;
   }
 
-  .tria-team-values .tria-thin {
-    color: rgba(0, 0, 0, 0.2);
+  .tria-tm-grid {
+    position: relative;
+    z-index: 1;
   }
 
-  .tria-tv-card {
-    border: 1px solid rgba(0,0,0,0.06);
-    border-radius: 16px;
-    padding: 40px 34px;
+  .tria-tm-card {
+    border: 1px solid rgba(0,0,0,0.05);
+    border-radius: 20px;
+    padding: 44px 36px;
     height: 100%;
     background: #fff;
-    transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
-
-  .tria-tv-card:hover {
-    border-color: rgba(6,142,140,0.2);
+  .tria-tm-card:hover {
+    border-color: rgba(6,142,140,0.15);
     transform: translateY(-6px);
-    box-shadow: 0 24px 64px rgba(0,0,0,0.06);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.04);
   }
 
-  .tria-tv-icon {
-    width: 48px;
-    height: 48px;
+  .tria-tm-card-icon {
+    width: 46px;
+    height: 46px;
     border-radius: 14px;
-    background: rgba(6,142,140,0.08);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--accent);
-    font-size: 20px;
     margin-bottom: 24px;
-    transition: background 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    background: rgba(6,142,140,0.07);
+    color: var(--accent);
+    transition: background 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
-
-  .tria-tv-card:hover .tria-tv-icon {
+  .tria-tm-card:hover .tria-tm-card-icon {
     background: var(--accent);
     color: #fff;
     transform: translateY(-3px);
   }
 
-  .tria-tv-title {
-    font-size: 1.05rem;
+  .tria-tm-card-title {
+    font-size: 1.1rem;
     font-weight: 450;
     color: #0b0d17;
-    margin-bottom: 12px;
-    transition: color 0.3s ease;
+    margin-bottom: 14px;
   }
-
-  .tria-tv-card:hover .tria-tv-title {
+  .tria-tm-card:hover .tria-tm-card-title {
     color: var(--accent);
   }
 
-  .tria-tv-desc {
+  .tria-tm-card-desc {
     font-size: 0.82rem;
     color: #777;
     line-height: 1.75;
     margin: 0;
     transition: color 0.3s ease;
   }
-
-  .tria-tv-card:hover .tria-tv-desc {
+  .tria-tm-card:hover .tria-tm-card-desc {
     color: #555;
   }
 
+  /* ═══════════════════════════════════════
+     RESPONSIVE
+     ═══════════════════════════════════════ */
+  @media (max-width: 991px) {
+    .tria-tm-card { margin-bottom: 24px; }
+    .tria-tm-card:last-child { margin-bottom: 0; }
+  }
+
   @media (max-width: 768px) {
-    .tria-tv-card {
-      padding: 32px 28px;
-    }
+    .tria-tm-card { padding: 36px 28px; }
   }
 
   @media (max-width: 576px) {
-    .tria-tv-card {
-      padding: 24px 20px;
+    .tria-tm-card {
+      padding: 28px 24px;
       margin-bottom: 20px;
     }
-    .tria-tv-title {
-      font-size: 0.95rem;
-    }
-    .tria-tv-desc {
-      font-size: 0.78rem;
-    }
-    .tria-tv-icon {
+    .tria-tm-card-title { font-size: 1rem; }
+    .tria-tm-card-desc { font-size: 0.78rem; }
+    .tria-tm-card-icon {
       width: 40px;
       height: 40px;
       border-radius: 12px;
       margin-bottom: 18px;
     }
+    .tria-tm-title { font-size: 1.5rem; }
   }
 
   @media (max-width: 400px) {
-    .tria-tv-card {
-      padding: 18px 16px;
+    .tria-tm-card {
+      padding: 22px 18px;
       margin-bottom: 16px;
     }
-    .tria-tv-title {
-      font-size: 0.85rem;
-    }
-    .tria-tv-desc {
-      font-size: 0.72rem;
-    }
+    .tria-tm-card-title { font-size: 0.9rem; }
+    .tria-tm-card-desc { font-size: 0.72rem; }
   }
 </style>

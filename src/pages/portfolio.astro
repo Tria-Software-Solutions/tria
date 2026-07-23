@@ -2,7 +2,6 @@
 import Layout from "../layouts/Layout.astro";
 import PageBanner from "../components/PageBanner.astro";
 import CTA from "../components/CTA.astro";
-import Button from "../components/Button.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import { createT } from "../i18n/utils";
 const t = createT(Astro.currentLocale);
@@ -16,16 +15,29 @@ const t = createT(Astro.currentLocale);
   <section data-section-theme="light" class="tria-portfolio-section">
     <div class="tria-ambient-temp">
       <div class="tria-at-glow-1"></div>
-      <div class="tria-at-glow-2"></div>
+      <div class="tria-at-glow-3"></div>
     </div>
 
     <!-- Filter -->
     <div class="container" style="padding-top:60px;">
       <div class="tria-portfolio-filter tria-up">
-        <Button variant="outline" size="xs" color="#0b0d17" active data-filter="all" data-i18n="portfolio.filter.all" text={t("portfolio.filter.all")} />
-        <Button variant="outline" size="xs" color="#0b0d17" data-filter="fintech" data-i18n="portfolio.filter.fintech" text={t("portfolio.filter.fintech")} />
-        <Button variant="outline" size="xs" color="#0b0d17" data-filter="cloud" data-i18n="portfolio.filter.cloud" text={t("portfolio.filter.cloud")} />
-        <Button variant="outline" size="xs" color="#0b0d17" data-filter="ai" data-i18n="portfolio.filter.ai" text={t("portfolio.filter.ai")} />
+        <button class="tria-pf-filter-btn is-active" data-filter="all">
+          <span class="tria-pf-filter-label" data-i18n="portfolio.filter.all">{t("portfolio.filter.all")}</span>
+          <span class="tria-pf-filter-count">7</span>
+        </button>
+        <button class="tria-pf-filter-btn" data-filter="fintech">
+          <span class="tria-pf-filter-label" data-i18n="portfolio.filter.fintech">{t("portfolio.filter.fintech")}</span>
+          <span class="tria-pf-filter-count">2</span>
+        </button>
+        <button class="tria-pf-filter-btn" data-filter="cloud">
+          <span class="tria-pf-filter-label" data-i18n="portfolio.filter.cloud">{t("portfolio.filter.cloud")}</span>
+          <span class="tria-pf-filter-count">3</span>
+        </button>
+        <button class="tria-pf-filter-btn" data-filter="ai">
+          <span class="tria-pf-filter-label" data-i18n="portfolio.filter.ai">{t("portfolio.filter.ai")}</span>
+          <span class="tria-pf-filter-count">2</span>
+        </button>
+        <div class="tria-pf-filter-indicator" id="filterIndicator"></div>
       </div>
     </div>
 
@@ -35,10 +47,8 @@ const t = createT(Astro.currentLocale);
 
         <!-- Parkit -->
         <div class="tria-portfolio-card tria-pf-observe" data-cat="fintech" data-index="0">
-          <div class="tria-pf-img" style="background-image:url(/assets/img/featured/parkit-preview.png);background-size:cover;background-position:center;">
+          <div class="tria-pf-img" style="background-image:url(/assets/img/featured/parkit.png);background-size:cover;background-position:center;">
             <div class="tria-pf-img-glass"></div>
-            <div class="tria-pf-abstract tria-pf-abstract--grid"></div>
-            <div class="tria-pf-glow"></div>
           </div>
           <div class="tria-pf-body">
             <div class="tria-pf-body-inner">
@@ -61,10 +71,8 @@ const t = createT(Astro.currentLocale);
 
         <!-- Choferes -->
         <div class="tria-portfolio-card tria-pf-observe" data-cat="cloud" data-index="1">
-          <div class="tria-pf-img" style="background-image:url(/assets/img/featured/choferes-preview.png);background-size:cover;background-position:center;">
+          <div class="tria-pf-img" style="background-image:url(/assets/img/featured/choferes.png);background-size:cover;background-position:center;">
             <div class="tria-pf-img-glass"></div>
-            <div class="tria-pf-abstract tria-pf-abstract--rings"></div>
-            <div class="tria-pf-glow"></div>
           </div>
           <div class="tria-pf-body">
             <div class="tria-pf-body-inner">
@@ -85,67 +93,10 @@ const t = createT(Astro.currentLocale);
           </div>
         </div>
 
-        <!-- SafeData -->
-        <div class="tria-portfolio-card tria-pf-observe" data-cat="ai" data-index="2">
-          <div class="tria-pf-img" style="background-image:url(/assets/img/featured/safedata-preview.svg);background-size:cover;background-position:center;background-color:#0b0d17;">
-            <div class="tria-pf-img-glass"></div>
-            <div class="tria-pf-abstract tria-pf-abstract--dots"></div>
-            <div class="tria-pf-glow"></div>
-          </div>
-          <div class="tria-pf-body">
-            <div class="tria-pf-body-inner">
-              <h3 class="tria-pf-title" data-i18n="featured.project3Title">{t("featured.project3Title")}</h3>
-              <p class="tria-pf-desc" data-i18n="featured.project3Desc">{t("featured.project3Desc")}</p>
-            </div>
-            <div class="tria-pf-footer">
-              <div class="tria-pf-tags">
-                <span>Python</span><span>PyTorch</span><span>Kafka</span><span>Snowflake</span>
-              </div>
-              <a href="#" class="tria-pf-link">
-                <span data-i18n="featured.viewProject">{t("featured.viewProject")}</span>
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- SafePath -->
-        <div class="tria-portfolio-card tria-pf-observe" data-cat="ai" data-index="3">
-          <div class="tria-pf-img" style="background-image:url(/assets/img/featured/safepath-preview.svg);background-size:cover;background-position:center;background-color:#0b0d17;">
-            <div class="tria-pf-img-glass"></div>
-            <div class="tria-pf-abstract tria-pf-abstract--grid"></div>
-            <div class="tria-pf-glow"></div>
-          </div>
-          <div class="tria-pf-body">
-            <div class="tria-pf-body-inner">
-              <h3 class="tria-pf-title" data-i18n="featured.project4Title">{t("featured.project4Title")}</h3>
-              <p class="tria-pf-desc" data-i18n="featured.project4Desc">{t("featured.project4Desc")}</p>
-            </div>
-            <div class="tria-pf-footer">
-              <div class="tria-pf-tags">
-                <span>FastAPI</span><span>Python</span><span>OSMnx</span><span>NetworkX</span>
-              </div>
-              <a href="https://github.com/lmhq-94/safepath_api" class="tria-pf-link" target="_blank" rel="noopener noreferrer">
-                <span data-i18n="featured.viewProject">{t("featured.viewProject")}</span>
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
-
         <!-- Fault Diagnosis -->
-        <div class="tria-portfolio-card tria-pf-observe" data-cat="cloud" data-index="4">
-          <div class="tria-pf-img">
-            <div class="tria-pf-iframe-wrap">
-              <iframe src="https://diagnostico-fallas.vercel.app" class="tria-pf-iframe" loading="lazy" title="Fault Diagnosis"></iframe>
-            </div>
+        <div class="tria-portfolio-card tria-pf-observe" data-cat="cloud" data-index="2">
+          <div class="tria-pf-img" style="background-image:url(/assets/img/featured/fault-diagnosis.png);background-size:cover;background-position:center;background-color:#0b0d17;">
             <div class="tria-pf-img-glass"></div>
-            <div class="tria-pf-abstract tria-pf-abstract--rings"></div>
-            <div class="tria-pf-glow"></div>
           </div>
           <div class="tria-pf-body">
             <div class="tria-pf-body-inner">
@@ -157,6 +108,102 @@ const t = createT(Astro.currentLocale);
                 <span>TypeScript</span><span>Vite</span><span>Tailwind</span><span>jsPDF</span>
               </div>
               <a href="https://github.com/lmhq-94/fault_diagnosis" class="tria-pf-link" target="_blank" rel="noopener noreferrer">
+                <span data-i18n="featured.viewProject">{t("featured.viewProject")}</span>
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Goalr -->
+        <div class="tria-portfolio-card tria-pf-observe" data-cat="fintech" data-index="3">
+          <div class="tria-pf-img" style="background-image:url(/assets/img/featured/goalr.png);background-size:cover;background-position:center;background-color:#0b0d17;">
+            <div class="tria-pf-img-glass"></div>
+          </div>
+          <div class="tria-pf-body">
+            <div class="tria-pf-body-inner">
+              <h3 class="tria-pf-title" data-i18n="featured.project6Title">{t("featured.project6Title")}</h3>
+              <p class="tria-pf-desc" data-i18n="featured.project6Desc">{t("featured.project6Desc")}</p>
+            </div>
+            <div class="tria-pf-footer">
+              <div class="tria-pf-tags">
+                <span>Next.js</span><span>NestJS</span><span>TypeScript</span><span>PostgreSQL</span>
+              </div>
+              <a href="https://github.com/Tria-Software-Solutions/goalr" class="tria-pf-link" target="_blank" rel="noopener noreferrer">
+                <span data-i18n="featured.viewProject">{t("featured.viewProject")}</span>
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Las Granas -->
+        <div class="tria-portfolio-card tria-pf-observe" data-cat="cloud" data-index="4">
+          <div class="tria-pf-img" style="background-image:url(/assets/img/featured/lasgranas.png);background-size:cover;background-position:center;background-color:#0b0d17;">
+            <div class="tria-pf-img-glass"></div>
+          </div>
+          <div class="tria-pf-body">
+            <div class="tria-pf-body-inner">
+              <h3 class="tria-pf-title" data-i18n="featured.project7Title">{t("featured.project7Title")}</h3>
+              <p class="tria-pf-desc" data-i18n="featured.project7Desc">{t("featured.project7Desc")}</p>
+            </div>
+            <div class="tria-pf-footer">
+              <div class="tria-pf-tags">
+                <span>Astro</span><span>TypeScript</span><span>CSS</span><span>Responsive</span>
+              </div>
+              <a href="https://github.com/Tria-Software-Solutions/las_granas" class="tria-pf-link" target="_blank" rel="noopener noreferrer">
+                <span data-i18n="featured.viewProject">{t("featured.viewProject")}</span>
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- SafeData (API) -->
+        <div class="tria-portfolio-card tria-pf-observe" data-cat="ai" data-index="5">
+          <div class="tria-pf-img" style="background-image:url(/assets/img/featured/safedata-preview.svg);background-size:cover;background-position:center;background-color:#0b0d17;">
+            <div class="tria-pf-img-glass"></div>
+          </div>
+          <div class="tria-pf-body">
+            <div class="tria-pf-body-inner">
+              <h3 class="tria-pf-title" data-i18n="featured.project3Title">{t("featured.project3Title")}</h3>
+              <p class="tria-pf-desc" data-i18n="featured.project3Desc">{t("featured.project3Desc")}</p>
+            </div>
+            <div class="tria-pf-footer">
+              <div class="tria-pf-tags">
+                <span>Python</span><span>PyTorch</span><span>Kafka</span><span>Snowflake</span>
+              </div>
+              <a href="https://github.com/lmhq-94/safedata_api" class="tria-pf-link" target="_blank" rel="noopener noreferrer">
+                <span data-i18n="featured.viewProject">{t("featured.viewProject")}</span>
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- SafePath (API) -->
+        <div class="tria-portfolio-card tria-pf-observe" data-cat="ai" data-index="6">
+          <div class="tria-pf-img" style="background-image:url(/assets/img/featured/safepath-preview.svg);background-size:cover;background-position:center;background-color:#0b0d17;">
+            <div class="tria-pf-img-glass"></div>
+          </div>
+          <div class="tria-pf-body">
+            <div class="tria-pf-body-inner">
+              <h3 class="tria-pf-title" data-i18n="featured.project4Title">{t("featured.project4Title")}</h3>
+              <p class="tria-pf-desc" data-i18n="featured.project4Desc">{t("featured.project4Desc")}</p>
+            </div>
+            <div class="tria-pf-footer">
+              <div class="tria-pf-tags">
+                <span>FastAPI</span><span>Python</span><span>OSMnx</span><span>NetworkX</span>
+              </div>
+              <a href="https://github.com/lmhq-94/safepath_api" class="tria-pf-link" target="_blank" rel="noopener noreferrer">
                 <span data-i18n="featured.viewProject">{t("featured.viewProject")}</span>
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
                   <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -188,23 +235,125 @@ const t = createT(Astro.currentLocale);
 <style>
   /* ── Section ── */
   .tria-portfolio-section {
-    background: #faf7f2;
+    background: #fff;
     position: relative;
   }
 
   /* ── Filter ── */
   .tria-portfolio-filter {
-    display: flex;
+    position: relative;
+    display: inline-flex;
+    gap: 4px;
+    flex-wrap: nowrap;
+    margin-bottom: 40px;
+    padding: 4px;
+    background: #f2f4f8;
+    border-radius: 60px;
+    width: auto;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    max-width: 100%;
+  }
+
+  .tria-portfolio-filter::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tria-pf-filter-btn {
+    position: relative;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
     gap: 8px;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
+    padding: 10px 20px;
+    border: none;
+    background: none;
+    border-radius: 60px;
+    cursor: pointer;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 450;
+    color: rgba(0,0,0,0.35);
+    letter-spacing: 0.02em;
+    transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    white-space: nowrap;
+    outline: none;
+  }
+
+  .tria-pf-filter-btn:hover {
+    color: rgba(0,0,0,0.6);
+  }
+
+  .tria-pf-filter-btn.is-active {
+    color: #fff;
+  }
+
+  .tria-pf-filter-label {
+    position: relative;
+  }
+
+  .tria-pf-filter-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    border-radius: 20px;
+    font-size: 0.6rem;
+    font-weight: 550;
+    background: rgba(0,0,0,0.06);
+    color: rgba(0,0,0,0.25);
+    transition: background 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .tria-pf-filter-btn:hover .tria-pf-filter-count {
+    background: rgba(0,0,0,0.1);
+    color: rgba(0,0,0,0.4);
+  }
+
+  .tria-pf-filter-btn.is-active .tria-pf-filter-count {
+    background: rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.7);
+  }
+
+  /* ── Sliding indicator ── */
+  .tria-pf-filter-indicator {
+    position: absolute;
+    z-index: 1;
+    top: 4px;
+    left: 4px;
+    height: calc(100% - 8px);
+    border-radius: 60px;
+    background: #0b0d17;
+    pointer-events: none;
+    transition: left 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   /* ── Grid ── */
   .tria-portfolio-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
+    gap: 24px;
+  }
+
+  @media (max-width: 991px) {
+    .tria-portfolio-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .tria-portfolio-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
   }
 
   /* ── Card ── */
@@ -212,13 +361,15 @@ const t = createT(Astro.currentLocale);
     background: #fff;
     display: flex;
     flex-direction: column;
-    border-radius: 16px;
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.03), 0 4px 12px rgba(0,0,0,0.02);
+    border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
     transition: box-shadow 0.6s var(--ease-spring),
                 transform 0.6s var(--ease-spring),
                 opacity 0.6s var(--ease-spring),
-                filter 0.6s var(--ease-spring);
+                filter 0.6s var(--ease-spring),
+                border-color 0.6s var(--ease-spring);
     will-change: transform, opacity;
     position: relative;
   }
@@ -249,141 +400,41 @@ const t = createT(Astro.currentLocale);
   }
 
   .tria-portfolio-card.tria-pf-visible:nth-child(1) { transition-delay: 0.05s; }
-  .tria-portfolio-card.tria-pf-visible:nth-child(2) { transition-delay: 0.12s; }
-  .tria-portfolio-card.tria-pf-visible:nth-child(3) { transition-delay: 0.19s; }
-  .tria-portfolio-card.tria-pf-visible:nth-child(4) { transition-delay: 0.26s; }
-  .tria-portfolio-card.tria-pf-visible:nth-child(5) { transition-delay: 0.33s; }
+  .tria-portfolio-card.tria-pf-visible:nth-child(2) { transition-delay: 0.10s; }
+  .tria-portfolio-card.tria-pf-visible:nth-child(3) { transition-delay: 0.15s; }
+  .tria-portfolio-card.tria-pf-visible:nth-child(4) { transition-delay: 0.20s; }
+  .tria-portfolio-card.tria-pf-visible:nth-child(5) { transition-delay: 0.25s; }
+  .tria-portfolio-card.tria-pf-visible:nth-child(6) { transition-delay: 0.30s; }
+  .tria-portfolio-card.tria-pf-visible:nth-child(7) { transition-delay: 0.35s; }
 
   .tria-portfolio-card:hover {
-    box-shadow: 0 16px 48px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
-    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.06), 0 6px 20px rgba(0,0,0,0.03);
+    transform: translateY(-6px);
+    border-color: rgba(6, 142, 140, 0.08);
   }
 
   /* ── Image area ── */
   .tria-pf-img {
-    height: 280px;
+    height: 240px;
     position: relative;
     overflow: hidden;
     transition: transform 0.8s var(--ease-spring);
   }
 
   .tria-portfolio-card:hover .tria-pf-img {
-    transform: scale(1.05);
-  }  /* ── Iframe embed ── */
-  .tria-pf-iframe-wrap {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-    z-index: 0;
-    background: #0b0d17;
-  }
-
-  .tria-pf-iframe {
-    width: 1440px;
-    height: 900px;
-    border: none;
-    pointer-events: none;
-    transform-origin: 0 0;
-    transform: scale(0.27);
+    transform: scale(1.06);
   }
 
   .tria-pf-img-glass {
     position: absolute;
     inset: 0;
     z-index: 2;
-    background: linear-gradient(135deg, rgba(11,13,23,0.04) 0%, rgba(11,13,23,0.2) 100%);
-    backdrop-filter: blur(1.5px);
-    -webkit-backdrop-filter: blur(1.5px);
-    transition: all 0.6s ease;
-  }
-
-  .tria-portfolio-card:hover .tria-pf-img-glass {
-    backdrop-filter: blur(0px);
-    -webkit-backdrop-filter: blur(0px);
-    background: linear-gradient(135deg, rgba(11,13,23,0.01) 0%, rgba(6,142,140,0.15) 100%);
-  }
-
-  /* ── Abstract decorations ── */
-  .tria-pf-abstract {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 1;
-    opacity: 0.07;
+    background: linear-gradient(180deg, rgba(0,0,0,0.01) 0%, rgba(0,0,0,0.3) 100%);
     transition: opacity 0.6s ease;
   }
 
-  .tria-portfolio-card:hover .tria-pf-abstract {
-    opacity: 0.15;
-  }
-
-  .tria-pf-abstract--grid::after {
-    content: '';
-    position: absolute;
-    width: 200px;
-    height: 200px;
-    right: -40px;
-    bottom: -40px;
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 50%;
-    box-shadow: 0 0 0 40px rgba(6,142,140,0.015),
-                0 0 0 80px rgba(6,142,140,0.008);
-    transition: box-shadow 0.6s ease, border-color 0.6s ease;
-  }
-
-  .tria-portfolio-card:hover .tria-pf-abstract--grid::after {
-    box-shadow: 0 0 0 40px rgba(6,142,140,0.04),
-                0 0 0 80px rgba(6,142,140,0.02);
-    border-color: rgba(6, 142, 140, 0.06);
-  }
-
-  .tria-pf-abstract--rings::before {
-    content: '';
-    position: absolute;
-    width: 140px;
-    height: 140px;
-    top: 30px;
-    right: 30px;
-    border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.05);
-    box-shadow: 0 0 0 30px rgba(255,255,255,0.015);
-    transition: border-color 0.6s ease, box-shadow 0.6s ease;
-  }
-
-  .tria-portfolio-card:hover .tria-pf-abstract--rings::before {
-    border-color: rgba(6, 142, 140, 0.08);
-    box-shadow: 0 0 0 30px rgba(6,142,140,0.02);
-  }
-
-  .tria-pf-abstract--dots::after {
-    content: '';
-    position: absolute;
-    right: 28px;
-    top: 28px;
-    width: 80px;
-    height: 80px;
-    background-image: radial-gradient(rgba(255,255,255,0.1) 1px, transparent 1px);
-    background-size: 10px 10px;
-    transition: background-image 0.6s ease;
-  }
-
-  .tria-portfolio-card:hover .tria-pf-abstract--dots::after {
-    background-image: radial-gradient(rgba(6,142,140,0.18) 1px, transparent 1px);
-  }
-
-  /* ── Accent glow behind image on hover ── */
-  .tria-pf-glow {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    pointer-events: none;
+  .tria-portfolio-card:hover .tria-pf-img-glass {
     opacity: 0;
-    background: radial-gradient(ellipse at 50% 100%, rgba(6,142,140,0.15) 0%, transparent 60%);
-    transition: opacity 0.8s var(--ease-spring);
-  }
-
-  .tria-portfolio-card:hover .tria-pf-glow {
-    opacity: 1;
   }
 
   /* ── Body ── */
@@ -397,15 +448,15 @@ const t = createT(Astro.currentLocale);
   }
 
   .tria-pf-body-inner {
-    padding: 28px 24px 0;
+    padding: 24px 24px 0;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 10px;
     flex: 1;
   }
 
   .tria-pf-title {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 480;
     color: #0b0d17;
     line-height: 1.2;
@@ -419,15 +470,15 @@ const t = createT(Astro.currentLocale);
   }
 
   .tria-pf-desc {
-    font-size: 0.82rem;
+    font-size: 0.8rem;
     color: #999;
     line-height: 1.65;
     margin: 0;
     flex: 1;
-  }
-
-  .tria-portfolio-card:hover .tria-pf-desc {
-    color: #888;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   /* ── Footer (tags + link) ── */
@@ -436,9 +487,9 @@ const t = createT(Astro.currentLocale);
     align-items: center;
     justify-content: space-between;
     gap: 16px;
-    padding: 20px 24px;
+    padding: 18px 24px;
     border-top: 1px solid rgba(0,0,0,0.04);
-    margin-top: 24px;
+    margin-top: 16px;
     transition: border-color 0.4s var(--ease-spring);
   }
 
@@ -453,7 +504,7 @@ const t = createT(Astro.currentLocale);
   }
 
   .tria-pf-tags span {
-    font-size: 0.55rem;
+    font-size: 0.5rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     padding: 4px 10px;
@@ -474,7 +525,7 @@ const t = createT(Astro.currentLocale);
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    font-size: 0.65rem;
+    font-size: 0.62rem;
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -499,29 +550,29 @@ const t = createT(Astro.currentLocale);
 
   /* ── Responsive ── */
   @media (max-width: 991px) {
-    .tria-portfolio-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    .tria-pf-img { height: 220px; }
-    .tria-pf-body-inner { padding: 22px 20px 0; }
-    .tria-pf-footer { padding: 16px 20px; }
+    .tria-portfolio-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .tria-pf-img { height: 200px; }
+    .tria-pf-body-inner { padding: 20px 20px 0; }
+    .tria-pf-footer { padding: 14px 20px; }
   }
 
   @media (max-width: 600px) {
-    .tria-portfolio-grid { grid-template-columns: 1fr; gap: 16px; }
-    .tria-pf-img { height: 200px; }
-    .tria-pf-body-inner { padding: 20px 18px 0; gap: 10px; }
-    .tria-pf-title { font-size: 1.05rem; }
-    .tria-pf-desc { font-size: 0.78rem; }
-    .tria-pf-footer { padding: 14px 18px; flex-direction: column; align-items: flex-start; gap: 12px; }
+    .tria-portfolio-grid { grid-template-columns: 1fr; gap: 20px; }
+    .tria-pf-img { height: 180px; }
+    .tria-pf-body-inner { padding: 18px 18px 0; gap: 8px; }
+    .tria-pf-title { font-size: 1rem; }
+    .tria-pf-desc { font-size: 0.76rem; }
+    .tria-pf-footer { padding: 12px 18px; flex-direction: column; align-items: flex-start; gap: 12px; }
   }
 
   @media (max-width: 400px) {
-    .tria-pf-img { height: 180px; }
-    .tria-pf-body-inner { padding: 16px 14px 0; }
-    .tria-pf-title { font-size: 0.95rem; }
-    .tria-pf-desc { font-size: 0.74rem; }
-    .tria-pf-tags span { font-size: 0.5rem; padding: 3px 8px; }
-    .tria-pf-link { font-size: 0.6rem; }
-    .tria-pf-footer { padding: 12px 14px; }
+    .tria-pf-img { height: 160px; }
+    .tria-pf-body-inner { padding: 14px 14px 0; }
+    .tria-pf-title { font-size: 0.9rem; }
+    .tria-pf-desc { font-size: 0.72rem; }
+    .tria-pf-tags span { font-size: 0.45rem; padding: 3px 8px; }
+    .tria-pf-link { font-size: 0.55rem; }
+    .tria-pf-footer { padding: 10px 14px; }
   }
 </style>
 
@@ -592,10 +643,23 @@ const t = createT(Astro.currentLocale);
         card.classList.add('tria-pf-visible');
       }
 
+      var indicator = document.getElementById('filterIndicator');
+
+      function moveIndicator(btn) {
+        if (!indicator) return;
+        var container = btn.closest('.tria-portfolio-filter');
+        if (!container) return;
+        var cRect = container.getBoundingClientRect();
+        var bRect = btn.getBoundingClientRect();
+        indicator.style.left = (bRect.left - cRect.left) + 'px';
+        indicator.style.width = bRect.width + 'px';
+      }
+
       btns.forEach(function (btn) {
         btn.addEventListener('click', function () {
-          btns.forEach(function (b) { b.classList.remove('tria-btn--active'); });
-          btn.classList.add('tria-btn--active');
+          btns.forEach(function (b) { b.classList.remove('is-active'); });
+          btn.classList.add('is-active');
+          moveIndicator(btn);
 
           var filter = btn.getAttribute('data-filter');
 
@@ -608,6 +672,26 @@ const t = createT(Astro.currentLocale);
             }
           });
         });
+      });          // Set initial indicator position
+      var activeBtn = document.querySelector('.tria-pf-filter-btn.is-active');
+      if (activeBtn && indicator) {
+        requestAnimationFrame(function () {
+          moveIndicator(activeBtn);
+        });
+      }
+
+      // Reposition indicator on resize
+      function repositionOnResize() {
+        var active = document.querySelector('.tria-pf-filter-btn.is-active');
+        if (active && indicator) {
+          moveIndicator(active);
+        }
+      }
+
+      var resizeTimer;
+      window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(repositionOnResize, 150);
       });
     }
 

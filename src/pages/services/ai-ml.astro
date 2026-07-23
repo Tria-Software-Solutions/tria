@@ -1,0 +1,151 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Quote from "../../components/Quote.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import ServiceDetail from "../../components/ServiceDetail.astro";
+import { createT } from "../../i18n/utils";
+const t = createT(Astro.currentLocale);
+const locale = Astro.currentLocale || "en";
+
+const isEs = locale === "es";
+
+const service = {
+  heroSuptitle: isEs ? "IA & Automatización" : "AI & Automation",
+  heroTitle: isEs
+    ? "Inteligencia Artificial<br /><span class=\"page-hero-em\">y Automatización</span>"
+    : "Artificial Intelligence<br /><span class=\"page-hero-em\">&amp; Automation</span>",
+  heroDesc: isEs
+    ? "Sistemas inteligentes, modelos predictivos y automatización impulsada por IA. Desde asistentes privados hasta visión por computadora, llevamos la IA a tu negocio."
+    : "Intelligent systems, predictive models, and AI-driven automation. From private assistants to computer vision, we bring AI to your business.",
+
+  overviewSuptitle: isEs ? "Visión General" : "Overview",
+  overviewTitle: isEs
+    ? "Máquinas que<br /><span class=\"tria-accent-text\">Aprenden</span>, Negocios que Crecen"
+    : "Machines That<br /><span class=\"tria-accent-text\">Learn</span>, Businesses That Grow",
+  overviewDesc1: isEs
+    ? "No es magia, es machine learning bien aplicado. Desde un chatbot que conoce tu documentación interna hasta modelos que predicen demanda con semanas de anticipación — la IA práctica resuelve problemas reales, no solo impresiona."
+    : "It's not magic, it's machine learning done right. From a chatbot that knows your internal docs to models that forecast demand weeks ahead — practical AI solves real problems, not just impresses.",
+  overviewDesc2: isEs
+    ? "PyTorch, LangChain, OpenAI, modelos open-source — el stack importa menos que el resultado. Datos limpios, entrenamiento riguroso, despliegue monitoreado. Así es como la IA deja de ser experimental y se vuelve parte de tu negocio."
+    : "PyTorch, LangChain, OpenAI, open-source models — the stack matters less than the outcome. Clean data, rigorous training, monitored deployment. That's how AI stops being experimental and becomes part of your business.",
+
+  features: [
+    {
+      icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"/><path d="M8.5 8.5v.01"/><path d="M16 15.5v.01"/><path d="M12 12v.01"/><path d="M11 17v.01"/><path d="M7 14v.01"/></svg>',
+      title: isEs ? "Modelos Predictivos" : "Predictive Models",
+      desc: isEs
+        ? "Modelos de machine learning entrenados con tus datos para pronosticar tendencias, detectar anomalías y optimizar decisiones."
+        : "Machine learning models trained on your data to forecast trends, detect anomalies, and optimize decisions."
+    },
+    {
+      icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 10h.01"/><path d="M12 10h.01"/><path d="M16 10h.01"/></svg>',
+      title: isEs ? "Asistentes IA Privados" : "Private AI Assistants",
+      desc: isEs
+        ? "Chatbots con RAG que responden sobre tu documentación interna. Privados, seguros y entrenados con tu conocimiento corporativo."
+        : "RAG-powered chatbots that answer from your internal documentation. Private, secure, and trained on your corporate knowledge."
+    },
+    {
+      icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 4-6"/></svg>',
+      title: isEs ? "Automatización Inteligente" : "Intelligent Automation",
+      desc: isEs
+        ? "Automatización de flujos de trabajo con IA: procesamiento de documentos, extracción de datos, clasificación y más."
+        : "Workflow automation powered by AI: document processing, data extraction, classification, and more."
+    }
+  ],
+
+  processSuptitle: isEs ? "Nuestro Proceso" : "Our Process",
+  processTitle: isEs
+    ? "Cómo <span class=\"tria-accent-text\">Implementamos</span> IA"
+    : "How We <span class=\"tria-accent-text\">Implement</span> AI",
+  steps: [
+    { num: "01", title: isEs ? "Descubrimiento" : "Discovery", desc: isEs ? "Identificamos oportunidades de IA en tus procesos y evaluamos viabilidad técnica." : "We identify AI opportunities in your processes and assess technical feasibility." },
+    { num: "02", title: isEs ? "Datos" : "Data", desc: isEs ? "Preparamos, limpiamos y estructuramos tus datos para entrenar modelos efectivos." : "We prepare, clean, and structure your data to train effective models." },
+    { num: "03", title: isEs ? "Modelo" : "Model", desc: isEs ? "Entrenamos, validamos y optimizamos modelos de IA con métricas claras de éxito." : "We train, validate, and optimize AI models with clear success metrics." },
+    { num: "04", title: isEs ? "Producción" : "Production", desc: isEs ? "Desplegamos, monitoreamos y mejoramos continuamente tus modelos en producción." : "We deploy, monitor, and continuously improve your models in production." }
+  ],
+
+  ctaTitle: isEs
+    ? "¿Listo para integrar <span class=\"tria-accent-text\">IA</span> en tu negocio?"
+    : "Ready to integrate <span class=\"tria-accent-text\">AI</span> into your business?",
+  ctaDesc: isEs
+    ? "Descubre cómo la inteligencia artificial puede transformar tus operaciones."
+    : "Discover how artificial intelligence can transform your operations."
+};
+---
+
+<Layout title={`Tria — ${isEs ? "IA & Automatización" : "AI & Automation"}`} description={service.heroDesc}>
+  <ServiceDetail service={service} />
+
+  <Quote
+    heading={t("cotizacion.heading") || 'Get a <span class="tria-thin">Custom Quote</span>'}
+    description={t("cotizacion.description") || ""}
+    buttonText={t("cotizacion.buttonText") || "Request a Quote"}
+    buttonHref={isEs ? "/es/contact" : "/contact"}
+    features={[
+      t("cotizacion.feature1") || "",
+      t("cotizacion.feature2") || "",
+      t("cotizacion.feature3") || "",
+      t("cotizacion.feature4") || ""
+    ]}
+  />
+
+  <!-- cta -->
+  <section class="tria-sd-cta-strip" data-section-theme="light">
+    <div class="tria-dot-pattern"></div>
+    <div class="tria-grain-overlay"></div>
+    <div class="tria-ambient-temp">
+      <div class="tria-at-glow-1"></div>
+      <div class="tria-at-glow-3"></div>
+    </div>
+    <div class="container tria-p-120-120">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 tria-center">
+          <h2 class="tria-up tria-sd-cta-title" set:html={service.ctaTitle} />
+          <p class="tria-up tria-sd-cta-desc">{service.ctaDesc}</p>
+          <a href={isEs ? "/es/contact" : "/contact"} class="tria-button" data-i18n="ctaService.button" style="display:inline-flex;align-items:center;gap:10px;padding:14px 36px;border-radius:100px;font-size:0.75rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#fff;background:var(--accent);text-decoration:none;transition:all 0.4s cubic-bezier(0.16,1,0.3,1);">
+            {t("ctaService.button") || "Contact Us"}
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <SiteFooter />
+</Layout>
+
+<style>
+  .tria-sd-cta-strip {
+    background: #faf7f2;
+    position: relative;
+  }
+  .tria-sd-cta-title {
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: #0b0d17;
+    margin-bottom: 20px;
+  }
+  .tria-sd-cta-title .tria-accent-text {
+    color: var(--accent);
+  }
+  .tria-sd-cta-desc {
+    color: #888;
+    margin-bottom: 36px;
+    font-size: 0.95rem;
+  }
+  .tria-button:hover {
+    background: color-mix(in srgb, var(--accent), white 12%) !important;
+    filter: brightness(115%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(6,142,140,0.3);
+  }
+  @media (max-width: 576px) {
+    .tria-sd-cta-title { font-size: 1.5rem; }
+    .tria-sd-cta-desc { font-size: 0.85rem; }
+  }
+  @media (max-width: 400px) {
+    .tria-sd-cta-title { font-size: 1.3rem; }
+  }
+</style>
+</Layout>

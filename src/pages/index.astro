@@ -42,25 +42,25 @@ const t = createT(Astro.currentLocale || 'en');
       { 
         title: t("services.softwareDev") || "", 
         description: t("services.softwareDevDesc") || "", 
-        href: "/service",
+        href: "/services/software-dev",
         icon: "ti-code"
       },
       { 
         title: t("services.cloudDevops") || "", 
         description: t("services.cloudDevopsDesc") || "", 
-        href: "/service",
+        href: "/services/cloud-devops",
         icon: "ti-cloud"
       },
       { 
         title: t("services.aiMl") || "", 
         description: t("services.aiMlDesc") || "", 
-        href: "/service",
+        href: "/services/ai-ml",
         icon: "ti-robot"
       },
       { 
         title: t("services.itCybersecurity") || "", 
         description: t("services.itCybersecurityDesc") || "", 
-        href: "/service",
+        href: "/services/cybersecurity",
         icon: "ti-shield"
       }
     ]}
@@ -78,9 +78,10 @@ const t = createT(Astro.currentLocale || 'en');
         description: t("featured.project1Desc") || "",
         href: "/projects/parkit",
         gradient: "linear-gradient(135deg, #0b0d17 0%, #1a1f35 50%, #068e8c 100%)",
-        previewUrl: "https://parkit-valet.vercel.app/",
-        size: "large",
-        abstractType: "none",
+        tags: ["Express", "React Native", "Next.js", "PostgreSQL"],
+        stat: "Multi-tenant",
+        statLabel: "Architecture",
+        previewImg: "/assets/img/featured/parkit.png"
       },
       {
         category: t("featured.project2Cat") || "",
@@ -88,9 +89,32 @@ const t = createT(Astro.currentLocale || 'en');
         description: t("featured.project2Desc") || "",
         href: "/projects/choferes",
         gradient: "linear-gradient(135deg, #1a1f35 0%, #2d3561 100%)",
-        previewImg: "/assets/img/featured/choferes-preview.png",
-        size: "normal",
-        abstractType: "fintech"
+        tags: ["React", "Material UI", "Node.js", "PostgreSQL"],
+        stat: "OCR Pipeline",
+        statLabel: "Automation",
+        previewImg: "/assets/img/featured/choferes.png"
+      },
+      {
+        category: t("featured.project6Cat") || "",
+        title: t("featured.project6Title") || "",
+        description: t("featured.project6Desc") || "",
+        href: "https://github.com/Tria-Software-Solutions/goalr",
+        gradient: "linear-gradient(135deg, #0f0c29 0%, #1a1a3e 40%, #068e8c 100%)",
+        tags: ["NestJS", "Next.js", "React", "PostgreSQL"],
+        stat: "Monorepo",
+        statLabel: "Architecture",
+        previewImg: "/assets/img/featured/goalr.png"
+      },
+      {
+        category: t("featured.project7Cat") || "",
+        title: t("featured.project7Title") || "",
+        description: t("featured.project7Desc") || "",
+        href: "https://github.com/Tria-Software-Solutions/las_granas",
+        gradient: "linear-gradient(135deg, #1a0a2e 0%, #2d1b4e 50%, #068e8c 100%)",
+        tags: ["Next.js", "TypeScript", "Tailwind", "shadcn/ui"],
+        stat: "B2B Trade",
+        statLabel: "Platform",
+        previewImg: "/assets/img/featured/lasgranas.png"
       },
       {
         category: t("featured.project5Cat") || "",
@@ -98,54 +122,25 @@ const t = createT(Astro.currentLocale || 'en');
         description: t("featured.project5Desc") || "",
         href: "https://github.com/lmhq-94/fault_diagnosis",
         gradient: "linear-gradient(135deg, #1a0a2e 0%, #2d1b4e 50%, #068e8c 100%)",
-        previewUrl: "https://proquinal-diagnostico-fallas.vercel.app/",
-        size: "normal",
-        abstractType: "fintech"
+        tags: ["TypeScript", "Vite", "Tailwind", "jsPDF"],
+        stat: "Root Cause",
+        statLabel: "Analysis",
+        previewImg: "/assets/img/featured/fault-diagnosis.png"
       },
-      {
-        category: t("featured.project3Cat") || "",
-        title: t("featured.project3Title") || "",
-        description: t("featured.project3Desc") || "",
-        href: "/portfolio",
-        gradient: "linear-gradient(135deg, #0b0d17 0%, #0b0d17 100%)",
-        previewImg: "/assets/img/featured/safedata-preview.svg",
-        size: "normal",
-        abstractType: "ai"
-      },
-      {
-        category: t("featured.project4Cat") || "",
-        title: t("featured.project4Title") || "",
-        description: t("featured.project4Desc") || "",
-        href: "https://github.com/lmhq-94/safepath_api",
-        gradient: "linear-gradient(135deg, #0b1424 0%, #0b0d17 50%, #068e8c 100%)",
-        previewImg: "/assets/img/featured/safepath-preview.svg",
-        size: "medium",
-        abstractType: "cloud"
-      }
     ]}
   />
   <Partners 
     partners={[
-      { logo: "/assets/img/partners/1.svg", href: "#.", width: "60px", alt: "logo" },
-      { logo: "/assets/img/partners/2.svg", href: "#.", width: "100px", alt: "logo" },
-      { logo: "/assets/img/partners/3.png", href: "#.", width: "120px", alt: "logo" },
-      { logo: "/assets/img/partners/4.png", href: "#.", width: "120px", alt: "logo" },
-      { logo: "/assets/img/partners/1.svg", href: "#.", width: "60px", alt: "logo" },
-      { logo: "/assets/img/partners/2.svg", href: "#.", width: "100px", alt: "logo" },
-      { logo: "/assets/img/partners/3.png", href: "#.", width: "120px", alt: "logo" },
-      { logo: "/assets/img/partners/4.png", href: "#.", width: "120px", alt: "logo" },
+      { logo: "/assets/img/partners/1.png", href: "#.", alt: "logo" },
+      { logo: "/assets/img/partners/2.png", href: "#.", alt: "logo" },
+      { logo: "/assets/img/partners/3.png", href: "#.", alt: "logo" },
+      { logo: "/assets/img/partners/4.png", href: "#.", alt: "logo" },
+      { logo: "/assets/img/partners/5.png", href: "#.", alt: "logo" },
+      { logo: "/assets/img/partners/6.png", href: "#.", alt: "logo" },
+      { logo: "/assets/img/partners/7.png", href: "#.", alt: "logo" },
+      { logo: "/assets/img/partners/8.png", href: "#.", alt: "logo" },
+      { logo: "/assets/img/partners/9.png", href: "#.", alt: "logo" },
     ]}
-  />
-  <CTA 
-    suptitle={t("ctaAlt.suptitle") || ""}
-    heading={t("ctaAlt.heading") || ""}
-    primaryButtonText={t("ctaAlt.startProject") || ""}
-    secondaryButtonText={t("ctaAlt.seeWork") || ""}
-    primaryButtonHref="/contact"
-    secondaryButtonHref="/portfolio"
-    theme="light"
-    bgColor="#eef2f5"
-    showIcon={true}
   />
   <Process 
     suptitle={t("process.suptitle") || ""}

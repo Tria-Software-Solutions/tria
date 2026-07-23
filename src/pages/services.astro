@@ -5,24 +5,25 @@ import CTA from "../components/CTA.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import { createT } from "../i18n/utils";
 const t = createT(Astro.currentLocale);
+const locale = Astro.currentLocale || "en";
 ---
 
 <Layout title="Tria — Software Solutions" description="Enterprise software services: Software Development, Cloud & DevOps, AI/ML, and Cybersecurity consulting.">
 
   <PageBanner suptitleKey="services.hero.suptitle" headingKey="services.hero.title" descriptionKey="services.hero.desc" />
 
-  <!-- ── Service Showcase ── -->
+  <!-- ── Service Showcase — white bg, frameless illustrations ── -->
   <section class="tria-sc-section" data-section-theme="light">
-    <div class="tria-sc-ambient">
-      <div class="tria-sc-glow tria-sc-glow--1"></div>
-      <div class="tria-sc-glow tria-sc-glow--2"></div>
+    <div class="tria-ambient-temp">
+      <div class="tria-at-glow-1"></div>
+      <div class="tria-at-glow-2"></div>
     </div>
 
     <div class="container tria-p-120-120">
 
       <!-- header -->
       <div class="tria-sc-header tria-up">
-        <span class="tria-suptitle tria-suptitle-dark">{t("services.showcase.suptitle")}</span>
+        <span class="tria-suptitle" style="color:rgba(0,0,0,0.35);">{t("services.showcase.suptitle")}</span>
         <h2 class="tria-sc-heading" data-i18n-html="services.showcase.heading" set:html={t("services.showcase.heading")}></h2>
         <p class="tria-sc-sub" data-i18n="services.showcase.sub">{t("services.showcase.sub")}</p>
       </div>
@@ -30,9 +31,7 @@ const t = createT(Astro.currentLocale);
       <!-- Service 1: Digital Products -->
       <div class="tria-sc-row">
         <div class="tria-sc-visual">
-          <div class="tria-sc-frame tria-sc-frame--1">
-            <img src="/assets/img/services/digital-products.svg" alt="" class="tria-sc-svg" loading="lazy" />
-          </div>
+          <img src="/assets/img/services/digital-products.svg" alt="" class="tria-sc-svg" loading="lazy" />
         </div>
         <div class="tria-sc-content">
           <span class="tria-sc-num">01</span>
@@ -45,7 +44,7 @@ const t = createT(Astro.currentLocale);
             <li data-i18n="services.feature4">{t("services.feature4")}</li>
           </ul>
           <div class="tria-sc-tech" data-i18n="services.tech1">{t("services.tech1")}</div>
-          <a href="/service" class="tria-sc-link">
+          <a href="/services/software-dev" class="tria-sc-link">
             <span data-i18n="services.showcase.cta">{t("services.showcase.cta")}</span>
             <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
@@ -55,9 +54,7 @@ const t = createT(Astro.currentLocale);
       <!-- Service 2: Cloud & Backend -->
       <div class="tria-sc-row tria-sc-row--reverse">
         <div class="tria-sc-visual">
-          <div class="tria-sc-frame tria-sc-frame--2">
-            <img src="/assets/img/services/cloud-backend.svg" alt="" class="tria-sc-svg" loading="lazy" />
-          </div>
+          <img src="/assets/img/services/cloud-backend.svg" alt="" class="tria-sc-svg" loading="lazy" />
         </div>
         <div class="tria-sc-content">
           <span class="tria-sc-num">02</span>
@@ -70,7 +67,7 @@ const t = createT(Astro.currentLocale);
             <li data-i18n="services.feature9">{t("services.feature9")}</li>
           </ul>
           <div class="tria-sc-tech" data-i18n="services.tech2">{t("services.tech2")}</div>
-          <a href="/service" class="tria-sc-link">
+          <a href="/services/cloud-devops" class="tria-sc-link">
             <span data-i18n="services.showcase.cta">{t("services.showcase.cta")}</span>
             <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
@@ -80,9 +77,7 @@ const t = createT(Astro.currentLocale);
       <!-- Service 3: AI & Automation -->
       <div class="tria-sc-row">
         <div class="tria-sc-visual">
-          <div class="tria-sc-frame tria-sc-frame--3">
-            <img src="/assets/img/services/ai-automation.svg" alt="" class="tria-sc-svg" loading="lazy" />
-          </div>
+          <img src="/assets/img/services/ai-automation.svg" alt="" class="tria-sc-svg" loading="lazy" />
         </div>
         <div class="tria-sc-content">
           <span class="tria-sc-num">03</span>
@@ -95,7 +90,7 @@ const t = createT(Astro.currentLocale);
             <li data-i18n="services.feature14">{t("services.feature14")}</li>
           </ul>
           <div class="tria-sc-tech" data-i18n="services.tech3">{t("services.tech3")}</div>
-          <a href="/service" class="tria-sc-link">
+          <a href="/services/ai-ml" class="tria-sc-link">
             <span data-i18n="services.showcase.cta">{t("services.showcase.cta")}</span>
             <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
@@ -105,9 +100,7 @@ const t = createT(Astro.currentLocale);
       <!-- Service 4: Security -->
       <div class="tria-sc-row tria-sc-row--reverse">
         <div class="tria-sc-visual">
-          <div class="tria-sc-frame tria-sc-frame--4">
-            <img src="/assets/img/services/security.svg" alt="" class="tria-sc-svg" loading="lazy" />
-          </div>
+          <img src="/assets/img/services/security.svg" alt="" class="tria-sc-svg" loading="lazy" />
         </div>
         <div class="tria-sc-content">
           <span class="tria-sc-num">04</span>
@@ -120,7 +113,7 @@ const t = createT(Astro.currentLocale);
             <li data-i18n="services.feature19">{t("services.feature19")}</li>
           </ul>
           <div class="tria-sc-tech" data-i18n="services.tech4">{t("services.tech4")}</div>
-          <a href="/service" class="tria-sc-link">
+          <a href="/services/cybersecurity" class="tria-sc-link">
             <span data-i18n="services.showcase.cta">{t("services.showcase.cta")}</span>
             <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
@@ -130,12 +123,13 @@ const t = createT(Astro.currentLocale);
     </div>
   </section>
 
-  <!-- ── Engagement Models ── -->
+  <!-- ── Engagement Models — dark glass ── -->
   <section class="tria-eng-section" data-section-theme="light">
-    <div class="tria-eng-dots"></div>
-    <div class="tria-eng-ambient">
-      <div class="tria-eng-glow tria-eng-glow--1"></div>
-      <div class="tria-eng-glow tria-eng-glow--2"></div>
+    <div class="tria-dot-pattern"></div>
+    <div class="tria-grain-overlay"></div>
+    <div class="tria-ambient-temp">
+      <div class="tria-at-glow-1"></div>
+      <div class="tria-at-glow-3"></div>
     </div>
     <div class="container tria-p-120-120">
       <div class="row tria-mb-60">
@@ -204,8 +198,8 @@ const t = createT(Astro.currentLocale);
     heading={t("ctaServices.heading") || ""}
     primaryButtonText={t("ctaServices.button") || ""}
     secondaryButtonText={t("ctaServices.button2") || ""}
-    primaryButtonHref="/contact"
-    secondaryButtonHref="/contact"
+    primaryButtonHref={locale === "es" ? "/es/contact" : "/contact"}
+    secondaryButtonHref={locale === "es" ? "/es/contact" : "/contact"}
     theme="dark"
     showIcon={true}
     padding=""
@@ -218,48 +212,22 @@ const t = createT(Astro.currentLocale);
 
 <style>
   /* ═══════════════════════════════════════
-     SERVICE SHOWCASE — Modern Refined
+     SERVICE SHOWCASE — Light
      ═══════════════════════════════════════ */
-
   .tria-sc-section {
     background: #fff;
     position: relative;
     overflow: hidden;
   }
 
-  .tria-sc-ambient {
-    pointer-events: none;
-    position: absolute;
-    inset: 0;
-  }
-
-  .tria-sc-glow {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(120px);
-    pointer-events: none;
-  }
-
-  .tria-sc-glow--1 {
-    width: 500px; height: 500px;
-    background: rgba(6, 142, 140, 0.04);
-    top: -100px; right: -150px;
-  }
-
-  .tria-sc-glow--2 {
-    width: 400px; height: 400px;
-    background: rgba(6, 142, 140, 0.03);
-    bottom: -80px; left: -120px;
+  .tria-sc-section .tria-suptitle::before {
+    background-color: rgba(0,0,0,0.1);
   }
 
   .tria-sc-header {
     position: relative;
     z-index: 1;
     margin-bottom: 20px;
-  }
-
-  .tria-sc-header + .tria-sc-row {
-    border-top: none;
   }
 
   .tria-sc-heading {
@@ -272,23 +240,22 @@ const t = createT(Astro.currentLocale);
   }
 
   .tria-sc-heading .tria-thin {
-    color: rgba(0,0,0,0.2);
+    color: rgba(0,0,0,0.18);
     font-weight: 200;
   }
 
   .tria-sc-sub {
     font-size: 0.95rem;
-    color: #888;
+    color: rgba(0,0,0,0.4);
     max-width: 480px;
     margin: 16px 0 0;
     line-height: 1.7;
   }
 
   /* ── Alternating rows ── */
-
   .tria-sc-row {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 0.85fr 1.15fr;
     gap: 72px;
     align-items: center;
     padding: 90px 0;
@@ -297,54 +264,34 @@ const t = createT(Astro.currentLocale);
   }
 
   .tria-sc-row + .tria-sc-row {
-    border-top: 1px solid rgba(0,0,0,0.04);
+    border-top: 1px solid rgba(0,0,0,0.05);
   }
 
-  .tria-sc-row--reverse .tria-sc-visual {
-    order: 2;
-  }
-  .tria-sc-row--reverse .tria-sc-content {
-    order: 1;
-  }
+  .tria-sc-row--reverse .tria-sc-visual { order: 2; }
+  .tria-sc-row--reverse .tria-sc-content { order: 1; }
 
-  /* ── SVG frame (illustration container) ── */
-
-  .tria-sc-frame {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    border-radius: 20px;
+  .tria-sc-visual {
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-                box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    padding: 20px 0;
   }
-
-  .tria-sc-row:hover .tria-sc-frame {
-    transform: translateY(-4px);
-  }
-
-  /* (bg and border removed per user request) */
-
-  /* ── SVG image styling ── */
 
   .tria-sc-svg {
-    position: relative;
-    z-index: 1;
-    width: 92%;
-    height: 92%;
+    width: 100%;
+    max-width: 380px;
+    height: auto;
     object-fit: contain;
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    filter: saturate(0.85);
   }
 
   .tria-sc-row:hover .tria-sc-svg {
-    transform: scale(1.03);
+    transform: scale(1.04);
+    filter: saturate(1);
   }
 
-  /* ── Content block ── */
-
+  /* ── Content ── */
   .tria-sc-content {
     position: relative;
     display: flex;
@@ -362,9 +309,7 @@ const t = createT(Astro.currentLocale);
     transition: color 0.4s ease;
   }
 
-  .tria-sc-row:hover .tria-sc-num {
-    color: var(--accent);
-  }
+  .tria-sc-row:hover .tria-sc-num { color: var(--accent); }
 
   .tria-sc-title {
     font-size: clamp(1.4rem, 2.2vw, 1.85rem);
@@ -376,13 +321,11 @@ const t = createT(Astro.currentLocale);
     transition: color 0.4s ease;
   }
 
-  .tria-sc-row:hover .tria-sc-title {
-    color: var(--accent);
-  }
+  .tria-sc-title .tria-thin { color: rgba(0,0,0,0.25); }
 
   .tria-sc-desc {
     font-size: 0.88rem;
-    color: #777;
+    color: rgba(0,0,0,0.4);
     line-height: 1.8;
     margin-bottom: 28px;
     max-width: 460px;
@@ -399,16 +342,14 @@ const t = createT(Astro.currentLocale);
 
   .tria-sc-features li {
     font-size: 0.82rem;
-    color: #555;
+    color: rgba(0,0,0,0.4);
     padding-left: 22px;
     position: relative;
     line-height: 1.6;
     transition: color 0.3s ease;
   }
 
-  .tria-sc-row:hover .tria-sc-features li {
-    color: #0b0d17;
-  }
+  .tria-sc-row:hover .tria-sc-features li { color: rgba(0,0,0,0.6); }
 
   .tria-sc-features li::before {
     content: '→';
@@ -422,14 +363,12 @@ const t = createT(Astro.currentLocale);
     font-size: 0.6rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: rgba(0,0,0,0.4);
+    color: rgba(0,0,0,0.3);
     margin-bottom: 32px;
     transition: color 0.3s ease;
   }
 
-  .tria-sc-row:hover .tria-sc-tech {
-    color: var(--accent);
-  }
+  .tria-sc-row:hover .tria-sc-tech { color: var(--accent); }
 
   .tria-sc-link {
     display: inline-flex;
@@ -440,135 +379,23 @@ const t = createT(Astro.currentLocale);
     letter-spacing: 0.04em;
     color: var(--accent);
     text-decoration: none;
-    position: relative;
-    padding-bottom: 2px;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     margin-top: auto;
   }
 
-  .tria-sc-link::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 1.5px;
-    background: var(--accent);
-    border-radius: 2px;
-    transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .tria-sc-link:hover {
-    gap: 12px;
-  }
-
-  .tria-sc-link:hover::after {
-    width: 100%;
-  }
+  .tria-sc-link:hover { gap: 12px; opacity: 0.7; }
 
   .tria-sc-link svg {
     transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .tria-sc-link:hover svg {
-    transform: translateX(4px);
-  }
+  .tria-sc-link:hover svg { transform: translateX(4px); }
 
-  @media (max-width: 991px) {
-    .tria-sc-row {
-      grid-template-columns: 1fr;
-      gap: 48px;
-      padding: 60px 0;
-      text-align: left;
-    }
-    .tria-sc-row--reverse .tria-sc-visual,
-    .tria-sc-row--reverse .tria-sc-content {
-      order: unset;
-    }
-    .tria-sc-features {
-      align-items: flex-start;
-    }
-    .tria-sc-features li {
-      text-align: left;
-      max-width: 400px;
-    }
-    .tria-sc-desc {
-      max-width: 100%;
-    }
-    .tria-sc-frame {
-      max-width: 420px;
-      margin: 0 auto;
-    }
-  }
-
-  @media (max-width: 576px) {
-    .tria-sc-row { padding: 40px 0; gap: 32px; }
-    .tria-sc-title { font-size: 1.15rem; }
-    .tria-sc-desc { font-size: 0.82rem; }
-    .tria-sc-features { gap: 8px; margin-bottom: 24px; }
-    .tria-sc-features li { font-size: 0.75rem; }
-    .tria-sc-tech { margin-bottom: 24px; }
-    .tria-sc-frame { max-width: 320px; }
-  }
-
-  @media (max-width: 400px) {
-    .tria-sc-row { padding: 28px 0; gap: 24px; }
-    .tria-sc-title { font-size: 1rem; }
-    .tria-sc-desc { font-size: 0.78rem; margin-bottom: 20px; }
-    .tria-sc-features li { font-size: 0.7rem; }
-    .tria-sc-tech { font-size: 0.55rem; }
-    .tria-sc-link { font-size: 0.65rem; }
-    .tria-sc-frame { max-width: 260px; }
-    .tria-sc-heading { font-size: 1.4rem; }
-    .tria-sc-sub { font-size: 0.82rem; }
-  }
-
-
-  /* ═══════════════════════════════════════
-     ENGAGEMENT MODELS — Refined Cards
-     ═══════════════════════════════════════ */
-
+  /* ── Engagement Models — light with texture ── */
   .tria-eng-section {
     background: #f5f7f9;
     position: relative;
     overflow: hidden;
-  }
-
-  .tria-eng-dots {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-    background-image: radial-gradient(rgba(0,0,0,0.04) 1px, transparent 1px);
-    background-size: 24px 24px;
-    mask-image: radial-gradient(ellipse at 30% 50%, black 20%, transparent 70%);
-    -webkit-mask-image: radial-gradient(ellipse at 30% 50%, black 20%, transparent 70%);
-  }
-
-  .tria-eng-ambient {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    overflow: hidden;
-    z-index: 0;
-  }
-
-  .tria-eng-glow {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(120px);
-  }
-
-  .tria-eng-glow--1 {
-    width: 450px; height: 450px;
-    background: radial-gradient(circle, rgba(6, 142, 140, 0.04), transparent 70%);
-    top: -150px; right: -80px;
-  }
-
-  .tria-eng-glow--2 {
-    width: 350px; height: 350px;
-    background: radial-gradient(circle, rgba(6, 142, 140, 0.03), transparent 70%);
-    bottom: -100px; left: -60px;
   }
 
   .tria-eng-title {
@@ -580,6 +407,8 @@ const t = createT(Astro.currentLocale);
     line-height: 1.15;
   }
 
+  .tria-eng-title .tria-thin { color: rgba(0,0,0,0.2); font-weight: 200; }
+
   .tria-eng-intro {
     font-size: 0.9rem;
     color: #888;
@@ -587,12 +416,7 @@ const t = createT(Astro.currentLocale);
     margin-top: 52px;
   }
 
-  .tria-eng-grid {
-    position: relative;
-    z-index: 1;
-  }
-
-  /* ── Engagement card ── */
+  .tria-eng-grid { position: relative; z-index: 1; }
 
   .tria-eng-card {
     border: 1px solid rgba(0,0,0,0.05);
@@ -611,8 +435,6 @@ const t = createT(Astro.currentLocale);
     transform: translateY(-6px);
     box-shadow: 0 20px 50px rgba(0,0,0,0.04);
   }
-
-
 
   .tria-eng-card-icon {
     width: 46px;
@@ -674,64 +496,51 @@ const t = createT(Astro.currentLocale);
     font-size: 0.7rem;
   }
 
-
-
   @media (max-width: 991px) {
-    .tria-eng-card {
-      padding: 36px 28px;
-    }
-    .tria-eng-intro {
-      margin-top: 0;
-    }
+    .tria-sc-row { grid-template-columns: 1fr; gap: 48px; padding: 60px 0; }
+    .tria-sc-row--reverse .tria-sc-visual,
+    .tria-sc-row--reverse .tria-sc-content { order: unset; }
+    .tria-sc-features { align-items: flex-start; }
+    .tria-sc-desc { max-width: 100%; }
+    .tria-sc-svg { max-width: 320px; }
+    .tria-eng-card { padding: 36px 28px; }
+    .tria-eng-intro { margin-top: 0; }
   }
 
   @media (max-width: 768px) {
-    .tria-eng-card {
-      margin-bottom: 24px;
-    }
-    .tria-eng-card:last-child {
-      margin-bottom: 0;
-    }
+    .tria-eng-card { margin-bottom: 24px; }
+    .tria-eng-card:last-child { margin-bottom: 0; }
   }
 
   @media (max-width: 576px) {
-    .tria-eng-card {
-      padding: 28px 24px;
-      margin-bottom: 28px;
-    }
-    .tria-eng-card-title {
-      font-size: 1rem;
-    }
-    .tria-eng-card-desc {
-      font-size: 0.78rem;
-    }
-    .tria-eng-card-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 12px;
-      margin-bottom: 18px;
-    }
-    .tria-eng-card-list li {
-      font-size: 0.72rem;
-    }
-    .tria-eng-title {
-      font-size: 1.5rem;
-    }
-    .tria-eng-intro {
-      font-size: 0.82rem;
-    }
+    .tria-sc-row { padding: 40px 0; gap: 32px; }
+    .tria-sc-title { font-size: 1.15rem; }
+    .tria-sc-desc { font-size: 0.82rem; }
+    .tria-sc-features { gap: 8px; margin-bottom: 24px; }
+    .tria-sc-features li { font-size: 0.75rem; }
+    .tria-sc-tech { margin-bottom: 24px; }
+    .tria-sc-svg { max-width: 280px; }
+    .tria-eng-card { padding: 28px 24px; margin-bottom: 28px; }
+    .tria-eng-card-title { font-size: 1rem; }
+    .tria-eng-card-desc { font-size: 0.78rem; }
+    .tria-eng-card-icon { width: 40px; height: 40px; border-radius: 12px; margin-bottom: 18px; }
+    .tria-eng-card-list li { font-size: 0.72rem; }
+    .tria-eng-title { font-size: 1.5rem; }
+    .tria-eng-intro { font-size: 0.82rem; }
   }
 
   @media (max-width: 400px) {
-    .tria-eng-card {
-      padding: 22px 18px;
-      margin-bottom: 20px;
-    }
-    .tria-eng-card-title {
-      font-size: 0.9rem;
-    }
-    .tria-eng-card-desc {
-      font-size: 0.72rem;
-    }
+    .tria-sc-row { padding: 28px 0; gap: 24px; }
+    .tria-sc-title { font-size: 1rem; }
+    .tria-sc-desc { font-size: 0.78rem; margin-bottom: 20px; }
+    .tria-sc-features li { font-size: 0.7rem; }
+    .tria-sc-tech { font-size: 0.55rem; }
+    .tria-sc-link { font-size: 0.65rem; }
+    .tria-sc-svg { max-width: 220px; }
+    .tria-sc-heading { font-size: 1.4rem; }
+    .tria-sc-sub { font-size: 0.82rem; }
+    .tria-eng-card { padding: 22px 18px; margin-bottom: 20px; }
+    .tria-eng-card-title { font-size: 0.9rem; }
+    .tria-eng-card-desc { font-size: 0.72rem; }
   }
 </style>

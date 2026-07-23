@@ -45,6 +45,16 @@ const translData = JSON.stringify({ en: enData, es: esData });
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap" />
 
+    <!-- Hide splash if already shown this session (runs before body renders) -->
+    <script is:inline>
+    (function() {
+      if (sessionStorage.getItem('triaSplashShown')) {
+        var s = document.createElement('style');
+        s.textContent = '.tria-preloader { display: none !important; }';
+        document.head.appendChild(s);
+      }
+    })();
+    </script>
   </head>
   <body>
     <script is:inline set:html={`window.__triaTranslations=${translData};`}></script>
@@ -59,6 +69,23 @@ const translData = JSON.stringify({ en: enData, es: esData });
         <span class="tria-arrow fa-arrow-right">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </span>
+      </div>
+
+      <!-- preloader -->
+      <div class="tria-preloader">
+        <div class="tria-preloader-animation">
+          <div class="tria-pos-abs tria-animation-1">
+            <p class="tria-h3 tria-muted tria-thin" data-i18n="splash.design">{t("splash.design")}</p>
+            <p class="tria-h3 tria-muted" data-i18n="splash.build">{t("splash.build")}</p>
+            <p class="tria-h3 tria-muted tria-thin" data-i18n="splash.grow">{t("splash.grow")}</p>
+          </div>
+          <div class="tria-pos-abs tria-animation-2">
+            <div class="tria-reveal-frame">
+              <p class="tria-reveal-box"></p>
+              <p class="tria-h3 tria-muted tria-thin">triacr.com</p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- frame -->
@@ -340,6 +367,21 @@ const translData = JSON.stringify({ en: enData, es: esData });
     if (document.querySelector(".tria-hero-bg") && window.__reinitHeroBg) {
       window.__reinitHeroBg();
     }
+    </script>
+
+    <!-- Set sessionStorage flag after splash animation completes -->
+    <script is:inline>
+    (function() {
+      var preloader = document.querySelector('.tria-preloader');
+      if (!preloader || sessionStorage.getItem('triaSplashShown')) return;
+      var obs = new MutationObserver(function() {
+        if (preloader.classList.contains('tria-hidden')) {
+          try { sessionStorage.setItem('triaSplashShown', '1'); } catch(e) {}
+          obs.disconnect();
+        }
+      });
+      obs.observe(preloader, { attributes: true, attributeFilter: ['class'] });
+    })();
     </script>
   </body>
 </html>

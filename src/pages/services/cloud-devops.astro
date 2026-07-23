@@ -1,0 +1,151 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Quote from "../../components/Quote.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import ServiceDetail from "../../components/ServiceDetail.astro";
+import { createT } from "../../i18n/utils";
+const t = createT(Astro.currentLocale);
+const locale = Astro.currentLocale || "en";
+
+const isEs = locale === "es";
+
+const service = {
+  heroSuptitle: isEs ? "Backend, APIs & Datos" : "Backend, APIs & Data",
+  heroTitle: isEs
+    ? "Infraestructura Escalable<br /><span class=\"page-hero-em\">Backend &amp; APIs</span>"
+    : "Scalable Infrastructure<br /><span class=\"page-hero-em\">Backend &amp; APIs</span>",
+  heroDesc: isEs
+    ? "Arquitecturas backend robustas, APIs REST/GraphQL, sistemas de datos escalables e infraestructura cloud que crece con tu negocio."
+    : "Robust backend architectures, REST/GraphQL APIs, scalable data systems, and cloud infrastructure that grows with your business.",
+
+  overviewSuptitle: isEs ? "Visión General" : "Overview",
+  overviewTitle: isEs
+    ? "Backend que<br /><span class=\"tria-accent-text\">No se Detiene</span>"
+    : "Backend That<br /><span class=\"tria-accent-text\">Never Stops</span>",
+  overviewDesc1: isEs
+    ? "Millones de solicitudes, latencia de milisegundos, disponibilidad 24/7. Tu backend necesita ser invisible — y eso solo se logra con arquitectura bien pensada, despliegues automatizados y monitoreo constante."
+    : "Millions of requests, millisecond latency, 24/7 availability. Your backend should be invisible — and that only happens with well-architected systems, automated deployments, and constant monitoring.",
+  overviewDesc2: isEs
+    ? "AWS, GCP, Azure — elegimos la nube correcta para tu carga de trabajo. Kubernetes orquesta, Terraform versiona, CI/CD despliega. Tu equipo se enfoca en el producto, nosotros en que todo funcione."
+    : "AWS, GCP, Azure — we pick the right cloud for your workload. Kubernetes orchestrates, Terraform versions, CI/CD deploys. Your team focuses on the product, we make sure everything runs.",
+
+  features: [
+    {
+      icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>',
+      title: isEs ? "Cloud Nativo" : "Cloud Native",
+      desc: isEs
+        ? "Arquitectura en la nube con AWS, GCP o Azure. Escalado automático, balanceo de carga y alta disponibilidad desde el diseño."
+        : "Cloud architecture on AWS, GCP, or Azure. Auto-scaling, load balancing, and high availability built-in."
+    },
+    {
+      icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><polyline points="3 8 3 3 8 3"/><line x1="3" y1="3" x2="9" y2="9"/></svg>',
+      title: isEs ? "CI/CD Automatizado" : "Automated CI/CD",
+      desc: isEs
+        ? "Tuberías de integración y despliegue continuo. Cada commit se prueba, construye y despliega automáticamente."
+        : "Continuous integration and deployment pipelines. Every commit is tested, built, and deployed automatically."
+    },
+    {
+      icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9l-3 3 3 3"/><path d="M9 5l3-3 3 3"/><path d="M15 19l-3 3-3-3"/><path d="M19 9l3 3-3 3"/><path d="M2 12h20"/><path d="M12 2v20"/></svg>',
+      title: isEs ? "Infraestructura como Código" : "Infrastructure as Code",
+      desc: isEs
+        ? "Todo tu entorno definido en código con Terraform. Entornos reproducibles, versionados y sin desviaciones."
+        : "Your entire environment defined in code with Terraform. Reproducible, versioned, drift-free environments."
+    }
+  ],
+
+  processSuptitle: isEs ? "Nuestro Enfoque" : "Our Approach",
+  processTitle: isEs
+    ? "Cómo <span class=\"tria-accent-text\">Arquitectamos</span> tu Sistema"
+    : "How We <span class=\"tria-accent-text\">Architect</span> Your System",
+  steps: [
+    { num: "01", title: isEs ? "Auditoría" : "Audit", desc: isEs ? "Evaluamos tu infraestructura actual, cuellos de botella y necesidades de escalabilidad." : "We assess your current infrastructure, bottlenecks, and scalability needs." },
+    { num: "02", title: isEs ? "Diseño" : "Design", desc: isEs ? "Arquitectura cloud, definición de APIs y plan de migración validado con tu equipo." : "Cloud architecture, API design, and validated migration plan with your team." },
+    { num: "03", title: isEs ? "Implementación" : "Build", desc: isEs ? "Despliegue automatizado, pruebas de carga y optimización de rendimiento." : "Automated deployment, load testing, and performance optimization." },
+    { num: "04", title: isEs ? "Operación" : "Operate", desc: isEs ? "Monitoreo 24/7, alertas inteligentes y soporte continuo para tu infraestructura." : "24/7 monitoring, smart alerts, and ongoing infrastructure support." }
+  ],
+
+  ctaTitle: isEs
+    ? "¿Listo para escalar tu <span class=\"tria-accent-text\">infraestructura</span>?"
+    : "Ready to scale your <span class=\"tria-accent-text\">infrastructure</span>?",
+  ctaDesc: isEs
+    ? "Hablemos de cómo podemos optimizar y escalar tu plataforma."
+    : "Let's discuss how we can optimize and scale your platform."
+};
+---
+
+<Layout title={`Tria — ${isEs ? "Backend, APIs & Datos" : "Backend, APIs & Data"}`} description={service.heroDesc}>
+  <ServiceDetail service={service} />
+
+  <Quote
+    heading={t("cotizacion.heading") || 'Get a <span class="tria-thin">Custom Quote</span>'}
+    description={t("cotizacion.description") || ""}
+    buttonText={t("cotizacion.buttonText") || "Request a Quote"}
+    buttonHref={isEs ? "/es/contact" : "/contact"}
+    features={[
+      t("cotizacion.feature1") || "",
+      t("cotizacion.feature2") || "",
+      t("cotizacion.feature3") || "",
+      t("cotizacion.feature4") || ""
+    ]}
+  />
+
+  <!-- cta -->
+  <section class="tria-sd-cta-strip" data-section-theme="light">
+    <div class="tria-dot-pattern"></div>
+    <div class="tria-grain-overlay"></div>
+    <div class="tria-ambient-temp">
+      <div class="tria-at-glow-1"></div>
+      <div class="tria-at-glow-3"></div>
+    </div>
+    <div class="container tria-p-120-120">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 tria-center">
+          <h2 class="tria-up tria-sd-cta-title" set:html={service.ctaTitle} />
+          <p class="tria-up tria-sd-cta-desc">{service.ctaDesc}</p>
+          <a href={isEs ? "/es/contact" : "/contact"} class="tria-button" data-i18n="ctaService.button" style="display:inline-flex;align-items:center;gap:10px;padding:14px 36px;border-radius:100px;font-size:0.75rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#fff;background:var(--accent);text-decoration:none;transition:all 0.4s cubic-bezier(0.16,1,0.3,1);">
+            {t("ctaService.button") || "Contact Us"}
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <SiteFooter />
+</Layout>
+
+<style>
+  .tria-sd-cta-strip {
+    background: #faf7f2;
+    position: relative;
+  }
+  .tria-sd-cta-title {
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: #0b0d17;
+    margin-bottom: 20px;
+  }
+  .tria-sd-cta-title .tria-accent-text {
+    color: var(--accent);
+  }
+  .tria-sd-cta-desc {
+    color: #888;
+    margin-bottom: 36px;
+    font-size: 0.95rem;
+  }
+  .tria-button:hover {
+    background: color-mix(in srgb, var(--accent), white 12%) !important;
+    filter: brightness(115%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(6,142,140,0.3);
+  }
+  @media (max-width: 576px) {
+    .tria-sd-cta-title { font-size: 1.5rem; }
+    .tria-sd-cta-desc { font-size: 0.85rem; }
+  }
+  @media (max-width: 400px) {
+    .tria-sd-cta-title { font-size: 1.3rem; }
+  }
+</style>
+</Layout>

@@ -12,10 +12,7 @@ const barePath = path.startsWith("/es") ? (path.replace(/^\/es/, "") || "/") : p
 const allExploreLinks = [
   { href: "/", label: t("nav.home") || "" },
   { href: "/about", label: t("nav.about") || "" },
-  { href: "/team", label: t("nav.team") || "" },
-  { href: "/portfolio", label: t("nav.work") || "" },
-  { href: "/blog", label: t("nav.blog") || "Blog" },
-  { href: "/contact", label: t("nav.contact") || "" }
+  { href: "/team", label: t("nav.team") || "" }
 ];
 
 function isCurrent(href: string): boolean {
@@ -30,18 +27,16 @@ const exploreLinks = allExploreLinks.filter((link) => !isCurrent(link.href));
 
 // Also filter serviceLinks and projectLinks
 const allServiceLinks = [
-  { href: "/services#software-dev", label: t("nav.softwareDev") || "", html: true as const },
-  { href: "/services#cloud-devops", label: t("nav.cloudDevops") || "", html: true as const },
-  { href: "/services#ai-ml", label: t("nav.aiMl") || "", html: true as const },
-  { href: "/services#cybersecurity", label: t("nav.cybersecurity") || "", html: true as const }
+  { href: "/services/software-dev", label: t("nav.softwareDev") || "" },
+  { href: "/services/cloud-devops", label: t("nav.cloudDevops") || "" },
+  { href: "/services/ai-ml", label: t("nav.aiMl") || "" },
+  { href: "/services/cybersecurity", label: t("nav.cybersecurity") || "" }
 ];
 
 const allProjectLinks = [
-  { href: "/projects/parkit", label: t("nav.fintechDashboard") || "" },
-  { href: "https://choferesdealquiler.vercel.app", label: t("nav.cloudInfra") || "" },
-  { href: "/portfolio", label: t("nav.ecommerce") || "" },
-  { href: "https://github.com/lmhq-94/safepath_api", label: t("nav.safePath") || "" },
-  { href: "https://github.com/lmhq-94/fault_diagnosis", label: t("nav.faultDiagnosis") || "" }
+  { href: "/portfolio", label: t("nav.work") || "" },
+  { href: "/blog", label: t("nav.blog") || "Blog" },
+  { href: "/contact", label: t("nav.contact") || "" }
 ];
 
 const serviceLinks = allServiceLinks.filter((link) => !isCurrent(link.href));
@@ -49,7 +44,7 @@ const projectLinks = allProjectLinks.filter((link) => !isCurrent(link.href));
 
 const footerExploreLabel = t("nav.explore") || "";
 const footerServicesLabel = t("nav.services") || "";
-const footerProjectsLabel = t("nav.projects") || "";
+const footerProjectsLabel = t("nav.usefulLinks") || "";
 const footerContactLabel = t("nav.contactInfo") || "";
 const footerNewsletterLabel = t("footer.stayInLoop") || "";
 const footerNewsletterPlaceholder = t("footer.emailPlaceholder") || "";

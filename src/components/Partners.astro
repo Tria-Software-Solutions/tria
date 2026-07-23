@@ -2,7 +2,6 @@
 interface Partner {
   logo: string;
   href: string;
-  width?: string;
   alt?: string;
 }
 
@@ -62,7 +61,7 @@ const full = repeat(partners, 6);
     display: flex;
     gap: 64px;
     width: max-content;
-    animation: tria-marquee-scroll 13s linear infinite;
+    animation: tria-marquee-scroll 22s linear infinite;
     padding: 8px 0;
   }
 
@@ -85,16 +84,19 @@ const full = repeat(partners, 6);
   }
 
   .tria-marquee-icon img {
-    height: 44px;
+    height: 80px;
     width: auto;
+    max-width: 160px;
     object-fit: contain;
     opacity: 1;
   }
 
   @media (max-width: 576px) {
     .tria-marquee-icon img {
-      height: 32px;
+      height: 56px;
+      width: auto;
     }
+    /* Mobile widths handled inline */
     .tria-marquee {
       gap: 48px;
     }

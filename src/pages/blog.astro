@@ -37,7 +37,13 @@ const posts = allPosts.slice(0, pageSize);
     </div>
   </section>
 
-  <section class="tria-soft-bg" data-section-theme="light" style="padding:clamp(60px, 8vw, 120px) 0;">
+  <section class="tria-soft-bg" data-section-theme="light" style="padding:clamp(60px, 8vw, 120px) 0;position:relative;">
+    <div class="tria-dot-pattern"></div>
+    <div class="tria-grain-overlay"></div>
+    <div class="tria-ambient-temp">
+      <div class="tria-at-glow-1"></div>
+      <div class="tria-at-glow-2"></div>
+    </div>
     <BlogList posts={posts} currentPage={currentPage} totalPages={totalPages} />
   </section>
 

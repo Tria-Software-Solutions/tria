@@ -102,8 +102,8 @@ const {
     transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .tria-team-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+    transform: translateY(-8px);
+    box-shadow: 0 30px 70px rgba(0,0,0,0.1);
   }
   .tria-team-card img {
     border-radius: 16px;
@@ -112,37 +112,142 @@ const {
     display: block;
   }
   .tria-team-card:hover img {
-    transform: scale(1.03);
+    transform: scale(1.05);
   }
+
+  /* ── Modern glass overlay ── */
   .tria-team-card .tria-description {
-    padding: 20px 0 0;
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    padding: 0;
+    display: flex;
+    align-items: flex-end;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    background: linear-gradient(
+      to top,
+      rgba(0,0,0,0.85) 0%,
+      rgba(0,0,0,0.4) 50%,
+      transparent 100%
+    );
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
   }
+  .tria-team-card:hover .tria-description {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .tria-team-card .tria-secrc-text {
+    padding: 30px 24px;
+    width: 100%;
+    transform: translateY(20px);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .tria-team-card:hover .tria-secrc-text {
+    transform: translateY(0);
+  }
+
+  .tria-team-card .tria-secrc-text h5 {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #fff;
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+    transform: translateY(12px);
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: 0.05s;
+  }
+  .tria-team-card:hover .tria-secrc-text h5 {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .tria-team-card .tria-secrc-text p.tria-link {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    text-decoration: none;
+    transform: translateY(12px);
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: 0.1s;
+  }
+  .tria-team-card:hover .tria-secrc-text p.tria-link {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
   .tria-team-card .tria-social-icons {
-    gap: 12px;
+    gap: 10px;
+    transform: translateY(12px);
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: 0.15s;
   }
+  .tria-team-card:hover .tria-social-icons {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
   .tria-team-card .tria-social-icons li a {
-    width: 32px;
-    height: 32px;
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
-    border: 1px solid rgba(0,0,0,0.08);
+    border: 1px solid rgba(255,255,255,0.2);
     display: inline-flex;
     align-items: center;
     justify-content: center;
     font-size: 11px;
-    color: rgba(0,0,0,0.4);
+    color: rgba(255,255,255,0.5);
     transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    background: rgba(255,255,255,0.05);
   }
   .tria-team-card .tria-social-icons li a:hover {
     background: var(--accent);
     border-color: var(--accent);
     color: #fff;
-    transform: translateY(-2px);
+    transform: translateY(-3px) scale(1.1);
   }
+
+  /* ── Accent bar at bottom of card ── */
+  .tria-team-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    border-radius: 0 0 16px 16px;
+  }
+  .tria-team-card:hover::after {
+    transform: scaleX(1);
+  }
+
   @media (max-width: 768px) {
     .tria-team-card .tria-social-icons li a {
-      width: 28px;
-      height: 28px;
+      width: 30px;
+      height: 30px;
       font-size: 10px;
+    }
+    .tria-team-card .tria-secrc-text {
+      padding: 24px 20px;
+    }
+    .tria-team-card .tria-secrc-text h5 {
+      font-size: 1rem;
     }
   }
 
@@ -153,8 +258,23 @@ const {
     .tria-team-card img {
       border-radius: 12px;
     }
-    .tria-team-card .tria-description {
-      padding: 14px 0 0;
+    .tria-team-card::after {
+      height: 2px;
+    }
+    .tria-team-card .tria-secrc-text {
+      padding: 20px 16px;
+    }
+    .tria-team-card .tria-secrc-text h5 {
+      font-size: 0.9rem;
+    }
+    .tria-team-card .tria-secrc-text p.tria-link {
+      font-size: 0.65rem;
+      margin-bottom: 12px;
+    }
+    .tria-team-card .tria-social-icons li a {
+      width: 26px;
+      height: 26px;
+      font-size: 9px;
     }
   }
 </style>

@@ -1,0 +1,151 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Quote from "../../components/Quote.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import ServiceDetail from "../../components/ServiceDetail.astro";
+import { createT } from "../../i18n/utils";
+const t = createT(Astro.currentLocale);
+const locale = Astro.currentLocale || "en";
+
+const isEs = locale === "es";
+
+const service = {
+  heroSuptitle: isEs ? "Productos Digitales" : "Digital Products",
+  heroTitle: isEs
+    ? "Web, Móvil &amp;<br /><span class=\"page-hero-em\">Más Allá</span>"
+    : "Web, Mobile &amp;<br /><span class=\"page-hero-em\">Beyond</span>",
+  heroDesc: isEs
+    ? "Aplicaciones web y móviles, APIs, y ecosistemas digitales completos construidos con arquitecturas modernas y las mejores prácticas de la industria."
+    : "Web and mobile applications, APIs, and complete digital ecosystems built with modern architectures and industry best practices.",
+
+  overviewSuptitle: isEs ? "Visión General" : "Overview",
+  overviewTitle: isEs
+    ? "De la Idea al<br /><span class=\"tria-accent-text\">Producto</span> Digital"
+    : "From Idea to<br /><span class=\"tria-accent-text\">Digital Product</span>",
+  overviewDesc1: isEs
+    ? "Cada gran producto comienza con una idea y un usuario con una necesidad real. Traducimos esa necesidad en experiencias digitales intuitivas — desde dashboards complejos hasta apps móviles que la gente usa a diario."
+    : "Every great product starts with an idea and a user with a real need. We translate that need into intuitive digital experiences — from complex dashboards to mobile apps people use every day.",
+  overviewDesc2: isEs
+    ? "React, Next.js, React Native, Node.js — no son solo herramientas, son el medio para entregar interfaces rápidas, APIs sólidas y experiencias consistentes en cualquier pantalla. Tu producto, multiplataforma, desde el día uno."
+    : "React, Next.js, React Native, Node.js — not just tools, but the means to deliver fast interfaces, solid APIs, and consistent experiences on any screen. Your product, cross-platform, from day one.",
+
+  features: [
+    {
+      icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>',
+      title: isEs ? "Multiplataforma" : "Cross-Platform",
+      desc: isEs
+        ? "Una sola base de código para web, iOS y Android con React Native y Next.js. Lanzamientos más rápidos, menor costo."
+        : "Single codebase for web, iOS, and Android with React Native and Next.js. Faster releases, lower cost."
+    },
+    {
+      icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>',
+      title: isEs ? "API-First" : "API-First Architecture",
+      desc: isEs
+        ? "Diseñamos APIs REST y GraphQL robustas desde el día uno. Tu frontend, apps móviles y servicios externos se conectan sin fricción."
+        : "We design robust REST and GraphQL APIs from day one. Your frontend, mobile apps, and external services connect seamlessly."
+    },
+    {
+      icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>',
+      title: isEs ? "Alta Velocidad" : "Lightning Fast",
+      desc: isEs
+        ? "Rendimiento optimizado con server-side rendering, lazy loading y CDN. Puntajes 90+ en PageSpeed y Core Web Vitals."
+        : "Performance optimized with SSR, lazy loading, and CDN. Scores 90+ on PageSpeed and Core Web Vitals."
+    }
+  ],
+
+  processSuptitle: isEs ? "Nuestro Proceso" : "Our Process",
+  processTitle: isEs
+    ? "Cómo <span class=\"tria-accent-text\">Creamos</span> tu Producto"
+    : "How We <span class=\"tria-accent-text\">Create</span> Your Product",
+  steps: [
+    { num: "01", title: isEs ? "Descubrimiento" : "Discovery", desc: isEs ? "Entendemos tu negocio, usuarios y objetivos para definir el producto correcto." : "We learn your business, users, and goals to define the right product." },
+    { num: "02", title: isEs ? "Diseño" : "Design", desc: isEs ? "UX, prototipos y arquitectura técnica validados antes de escribir código." : "UX, prototypes, and technical architecture validated before writing code." },
+    { num: "03", title: isEs ? "Desarrollo" : "Development", desc: isEs ? "Sprints ágiles con entregas continuas, pruebas automatizadas y revisiones de código." : "Agile sprints with continuous delivery, automated testing, and code reviews." },
+    { num: "04", title: isEs ? "Lanzamiento" : "Launch", desc: isEs ? "Despliegue, monitoreo y soporte continuo para escalar tu producto." : "Deploy, monitor, and provide ongoing support to scale your product." }
+  ],
+
+  ctaTitle: isEs
+    ? "¿Listo para construir tu <span class=\"tria-accent-text\">producto digital</span>?"
+    : "Ready to build your <span class=\"tria-accent-text\">digital product</span>?",
+  ctaDesc: isEs
+    ? "Hablemos de tu proyecto y creemos algo extraordinario juntos."
+    : "Let's discuss your project and build something extraordinary together."
+};
+---
+
+<Layout title={`Tria — ${isEs ? "Productos Digitales" : "Digital Products"}`} description={service.heroDesc}>
+  <ServiceDetail service={service} />
+
+  <Quote
+    heading={t("cotizacion.heading") || 'Get a <span class="tria-thin">Custom Quote</span>'}
+    description={t("cotizacion.description") || ""}
+    buttonText={t("cotizacion.buttonText") || "Request a Quote"}
+    buttonHref={isEs ? "/es/contact" : "/contact"}
+    features={[
+      t("cotizacion.feature1") || "",
+      t("cotizacion.feature2") || "",
+      t("cotizacion.feature3") || "",
+      t("cotizacion.feature4") || ""
+    ]}
+  />
+
+  <!-- cta -->
+  <section class="tria-sd-cta-strip" data-section-theme="light">
+    <div class="tria-dot-pattern"></div>
+    <div class="tria-grain-overlay"></div>
+    <div class="tria-ambient-temp">
+      <div class="tria-at-glow-1"></div>
+      <div class="tria-at-glow-3"></div>
+    </div>
+    <div class="container tria-p-120-120">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 tria-center">
+          <h2 class="tria-up tria-sd-cta-title" set:html={service.ctaTitle} />
+          <p class="tria-up tria-sd-cta-desc">{service.ctaDesc}</p>
+          <a href={isEs ? "/es/contact" : "/contact"} class="tria-button" data-i18n="ctaService.button" style="display:inline-flex;align-items:center;gap:10px;padding:14px 36px;border-radius:100px;font-size:0.75rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#fff;background:var(--accent);text-decoration:none;transition:all 0.4s cubic-bezier(0.16,1,0.3,1);">
+            {t("ctaService.button") || "Contact Us"}
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <SiteFooter />
+</Layout>
+
+<style>
+  .tria-sd-cta-strip {
+    background: #faf7f2;
+    position: relative;
+  }
+  .tria-sd-cta-title {
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: #0b0d17;
+    margin-bottom: 20px;
+  }
+  .tria-sd-cta-title .tria-accent-text {
+    color: var(--accent);
+  }
+  .tria-sd-cta-desc {
+    color: #888;
+    margin-bottom: 36px;
+    font-size: 0.95rem;
+  }
+  .tria-button:hover {
+    background: color-mix(in srgb, var(--accent), white 12%) !important;
+    filter: brightness(115%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(6,142,140,0.3);
+  }
+  @media (max-width: 576px) {
+    .tria-sd-cta-title { font-size: 1.5rem; }
+    .tria-sd-cta-desc { font-size: 0.85rem; }
+  }
+  @media (max-width: 400px) {
+    .tria-sd-cta-title { font-size: 1.3rem; }
+  }
+</style>
+</Layout>

@@ -1,0 +1,331 @@
+---
+interface ServiceDetail {
+  heroSuptitle: string;
+  heroTitle: string;
+  heroDesc: string;
+  overviewSuptitle: string;
+  overviewTitle: string;
+  overviewDesc1: string;
+  overviewDesc2: string;
+  features: Array<{
+    icon: string;
+    title: string;
+    desc: string;
+  }>;
+  processSuptitle: string;
+  processTitle: string;
+  steps: Array<{
+    num: string;
+    title: string;
+    desc: string;
+  }>;
+}
+
+interface Props {
+  service: ServiceDetail;
+}
+
+const { service } = Astro.props;
+const t = (await import("../i18n/utils")).createT(Astro.currentLocale);
+const locale = Astro.currentLocale || "en";
+---
+
+<!-- hero -->
+<section class="page-hero" data-section-theme="dark">
+  <div class="page-hero-bg">
+    <div class="page-hero-bg-dots"></div>
+    <div class="page-hero-orb page-hero-orb--1"></div>
+    <div class="page-hero-orb page-hero-orb--2"></div>
+    <div class="page-hero-gradient-overlay"></div>
+    <div class="tria-hero-grain"></div>
+    <div class="tria-ambient-temp">
+      <div class="tria-at-glow-1"></div>
+      <div class="tria-at-glow-2"></div>
+    </div>
+  </div>
+  <div class="container page-hero-inner">
+    <span class="tria-suptitle tria-light-soft tria-up" style="display:block;margin-bottom:24px;">{service.heroSuptitle}</span>
+    <h1 class="page-hero-heading tria-up" set:html={service.heroTitle} />
+    <p class="page-hero-sub tria-up" style="max-width:560px;">{service.heroDesc}</p>
+  </div>
+</section>
+
+<!-- overview — clean light panel, no cards -->
+<section class="tria-sd-overview" data-section-theme="dark">
+  <div class="tria-dot-pattern"></div>
+  <div class="tria-grain-overlay"></div>
+  <div class="tria-ambient-temp">
+    <div class="tria-at-glow-1"></div>
+    <div class="tria-at-glow-3"></div>
+  </div>
+  <div class="container tria-p-120-120">
+    <div class="row align-items-start">
+      <div class="col-lg-5 tria-up">
+        <span class="tria-suptitle" style="color:rgba(0,0,0,0.35);">{service.overviewSuptitle}</span>
+        <h2 class="tria-mt-30 tria-sd-section-title" set:html={service.overviewTitle} />
+      </div>
+      <div class="col-lg-6 offset-lg-1 tria-up">
+        <p class="tria-sd-overview-text">{service.overviewDesc1}</p>
+        <p class="tria-sd-overview-text">{service.overviewDesc2}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- features — light gray columns -->
+<section class="tria-sd-features" data-section-theme="dark">
+  <div class="tria-dot-pattern"></div>
+  <div class="tria-grain-overlay"></div>
+  <div class="tria-ambient-temp">
+    <div class="tria-at-glow-1"></div>
+    <div class="tria-at-glow-3"></div>
+  </div>
+  <div class="container tria-p-120-120">
+    <div class="row tria-sd-feat-grid">
+      {service.features.map((feat) => (
+        <div class="col-lg-4 tria-up">
+          <div class="tria-sd-feat-icon" set:html={feat.icon}></div>
+          <h4 class="tria-sd-feat-title">{feat.title}</h4>
+          <p class="tria-sd-feat-desc">{feat.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- process — white bg, minimal steps -->
+<section class="tria-sd-process-section" data-section-theme="light">
+  <div class="tria-ambient-temp">
+    <div class="tria-at-glow-1"></div>
+    <div class="tria-at-glow-3"></div>
+  </div>
+  <div class="container tria-p-120-120">
+    <div class="row">
+      <div class="col-lg-8 tria-up">
+        <span class="tria-suptitle" style="color:rgba(0,0,0,0.35);">{service.processSuptitle}</span>
+        <h2 class="tria-mt-30 tria-sd-process-title" set:html={service.processTitle} />
+      </div>
+    </div>
+    <div class="tria-sd-process-steps">
+      {service.steps.map((step) => (
+        <div class="tria-sd-process-step">
+          <div class="tria-sd-process-num-wrap">
+            <span class="tria-sd-process-num">{step.num}</span>
+            <div class="tria-sd-process-line"></div>
+          </div>
+          <div class="tria-sd-process-content">
+            <h4 class="tria-sd-process-step-title">{step.title}</h4>
+            <p class="tria-sd-process-step-desc">{step.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ═══════════════════════════════════════
+     OVERVIEW — Clean light panel, frameless
+     ═══════════════════════════════════════ */
+  .tria-sd-overview {
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tria-sd-section-title {
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: #0b0d17;
+    margin-bottom: 20px;
+  }
+
+  .tria-sd-section-title .tria-accent-text {
+    color: var(--accent);
+  }
+
+  .tria-sd-overview-text {
+    font-size: 0.9rem;
+    line-height: 1.85;
+    color: rgba(0,0,0,0.5);
+    margin-bottom: 24px;
+  }
+
+  .tria-sd-overview-text:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ═══════════════════════════════════════
+     FEATURES — Light gray columns
+     ═══════════════════════════════════════ */
+  .tria-sd-features {
+    background: #f2f4f8;
+    position: relative;
+  }
+
+  .tria-sd-feat-grid {
+    gap: 48px 0;
+  }
+
+  .tria-sd-feat-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    font-size: 18px;
+    margin-bottom: 20px;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .tria-sd-feat-icon:hover {
+    transform: translateY(-2px);
+  }
+  .tria-sd-feat-title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #0b0d17;
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+  .tria-sd-feat-desc {
+    font-size: 0.85rem;
+    color: rgba(0,0,0,0.45);
+    line-height: 1.75;
+    margin: 0;
+    max-width: 320px;
+  }
+
+  /* ═══════════════════════════════════════
+     PROCESS — White bg, minimal steps
+     ═══════════════════════════════════════ */
+  .tria-sd-process-section {
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tria-sd-process-title {
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: #0b0d17;
+    margin-bottom: 20px;
+  }
+
+  .tria-sd-process-title .tria-accent-text {
+    color: var(--accent);
+  }
+
+  .tria-sd-process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    margin-top: 64px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .tria-sd-process-step {
+    display: flex;
+    gap: 20px;
+  }
+
+  .tria-sd-process-num-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .tria-sd-process-num {
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: rgba(0,0,0,0.12);
+    font-variant-numeric: tabular-nums;
+    transition: color 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .tria-sd-process-step:hover .tria-sd-process-num {
+    color: var(--accent);
+  }
+
+  .tria-sd-process-line {
+    width: 1px;
+    flex: 1;
+    min-height: 40px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.06), transparent);
+  }
+
+  .tria-sd-process-step:last-child .tria-sd-process-line {
+    display: none;
+  }
+
+  .tria-sd-process-content {
+    flex: 1;
+    padding-top: 4px;
+  }
+
+  .tria-sd-process-step-title {
+    font-size: 1rem;
+    font-weight: 450;
+    color: #0b0d17;
+    margin-bottom: 10px;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+    transition: color 0.3s ease;
+  }
+
+  .tria-sd-process-step:hover .tria-sd-process-step-title {
+    color: rgba(0,0,0,0.7);
+  }
+
+  .tria-sd-process-step-desc {
+    font-size: 0.8rem;
+    color: rgba(0,0,0,0.35);
+    line-height: 1.7;
+    margin: 0;
+    transition: color 0.3s ease;
+  }
+
+  .tria-sd-process-step:hover .tria-sd-process-step-desc {
+    color: rgba(0,0,0,0.5);
+  }
+
+  .tria-mt-30 { margin-top: 30px; }
+  .tria-mb-60 { margin-bottom: 60px; }
+
+  /* ═══════════════════════════════════════
+     RESPONSIVE
+     ═══════════════════════════════════════ */
+  @media (max-width: 991px) {
+    .tria-sd-overview-text { font-size: 0.85rem; }
+    .tria-sd-process-steps { grid-template-columns: repeat(2, 1fr); gap: 40px 32px; }
+  }
+
+  @media (max-width: 768px) {
+
+
+  }
+
+  @media (max-width: 576px) {
+    .tria-sd-overview-text { font-size: 0.82rem; }
+    .tria-sd-process-steps { grid-template-columns: 1fr; gap: 32px; margin-top: 48px; }
+    .tria-sd-process-step-title { font-size: 0.9rem; }
+    .tria-sd-process-step-desc { font-size: 0.78rem; }
+    .tria-sd-feat-title { font-size: 0.9rem; }
+    .tria-sd-feat-desc { font-size: 0.78rem; }
+
+  }
+
+  @media (max-width: 400px) {
+    .tria-sd-overview-text { font-size: 0.78rem; }
+    .tria-sd-process-step-title { font-size: 0.85rem; }
+    .tria-sd-process-step-desc { font-size: 0.72rem; }
+    .tria-sd-section-title { font-size: 1.4rem; }
+
+  }
+</style>
