@@ -8,12 +8,12 @@ const t = createT(Astro.currentLocale);
 const locale = Astro.currentLocale || "en";
 ---
 
-<Layout title="Tria — Software Solutions" description="Enterprise software services: Software Development, Cloud & DevOps, AI/ML, and Cybersecurity consulting.">
+<Layout title={t("meta.servicesTitle")} description={t("meta.servicesDesc")}>
 
   <PageBanner suptitleKey="services.hero.suptitle" headingKey="services.hero.title" descriptionKey="services.hero.desc" />
 
   <!-- ── Service Showcase — white bg, frameless illustrations ── -->
-  <section class="tria-sc-section" data-section-theme="light">
+  <section id="showcase" class="tria-sc-section" data-section-theme="light">
     <div class="tria-ambient-temp">
       <div class="tria-at-glow-1"></div>
       <div class="tria-at-glow-2"></div>
@@ -23,7 +23,7 @@ const locale = Astro.currentLocale || "en";
 
       <!-- header -->
       <div class="tria-sc-header tria-up">
-        <span class="tria-suptitle" style="color:rgba(0,0,0,0.35);">{t("services.showcase.suptitle")}</span>
+        <span class="tria-suptitle tria-suptitle-dark tria-up">{t("services.showcase.suptitle")}</span>
         <h2 class="tria-sc-heading" data-i18n-html="services.showcase.heading" set:html={t("services.showcase.heading")}></h2>
         <p class="tria-sc-sub" data-i18n="services.showcase.sub">{t("services.showcase.sub")}</p>
       </div>
@@ -42,6 +42,7 @@ const locale = Astro.currentLocale || "en";
             <li data-i18n="services.feature2">{t("services.feature2")}</li>
             <li data-i18n="services.feature3">{t("services.feature3")}</li>
             <li data-i18n="services.feature4">{t("services.feature4")}</li>
+            <li data-i18n="services.feature5">{t("services.feature5")}</li>
           </ul>
           <div class="tria-sc-tech" data-i18n="services.tech1">{t("services.tech1")}</div>
           <a href="/services/software-dev" class="tria-sc-link">
@@ -124,7 +125,7 @@ const locale = Astro.currentLocale || "en";
   </section>
 
   <!-- ── Engagement Models — dark glass ── -->
-  <section class="tria-eng-section" data-section-theme="light">
+  <section id="engagement" class="tria-eng-section" data-section-theme="light">
     <div class="tria-dot-pattern"></div>
     <div class="tria-grain-overlay"></div>
     <div class="tria-ambient-temp">
@@ -149,7 +150,7 @@ const locale = Astro.currentLocale || "en";
             <div class="tria-eng-card-icon">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
             </div>
-            <h4 class="tria-eng-card-title" data-i18n="services.engagement.projectBased">{t("services.engagement.projectBased")}</h4>
+            <h3 class="tria-eng-card-title" data-i18n="services.engagement.projectBased">{t("services.engagement.projectBased")}</h3>
             <p class="tria-eng-card-desc" data-i18n="services.engagement.projectBasedDesc">{t("services.engagement.projectBasedDesc")}</p>
             <ul class="tria-eng-card-list">
               <li data-i18n="services.engagement.projectBased1">{t("services.engagement.projectBased1")}</li>
@@ -165,7 +166,7 @@ const locale = Astro.currentLocale || "en";
             <div class="tria-eng-card-icon">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
             </div>
-            <h4 class="tria-eng-card-title" data-i18n="services.engagement.sprintBased">{t("services.engagement.sprintBased")}</h4>
+            <h3 class="tria-eng-card-title" data-i18n="services.engagement.sprintBased">{t("services.engagement.sprintBased")}</h3>
             <p class="tria-eng-card-desc" data-i18n="services.engagement.sprintBasedDesc">{t("services.engagement.sprintBasedDesc")}</p>
             <ul class="tria-eng-card-list">
               <li data-i18n="services.engagement.sprintBased1">{t("services.engagement.sprintBased1")}</li>
@@ -181,7 +182,7 @@ const locale = Astro.currentLocale || "en";
             <div class="tria-eng-card-icon">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
             </div>
-            <h4 class="tria-eng-card-title" data-i18n="services.engagement.advisory">{t("services.engagement.advisory")}</h4>
+            <h3 class="tria-eng-card-title" data-i18n="services.engagement.advisory">{t("services.engagement.advisory")}</h3>
             <p class="tria-eng-card-desc" data-i18n="services.engagement.advisoryDesc">{t("services.engagement.advisoryDesc")}</p>
             <ul class="tria-eng-card-list">
               <li data-i18n="services.engagement.advisory1">{t("services.engagement.advisory1")}</li>
@@ -411,7 +412,7 @@ const locale = Astro.currentLocale || "en";
 
   .tria-eng-intro {
     font-size: 0.9rem;
-    color: #888;
+    color: #666;
     line-height: 1.75;
     margin-top: 52px;
   }

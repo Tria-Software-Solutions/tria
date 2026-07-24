@@ -50,7 +50,7 @@ const {
           {tagline && <p class="tria-up tria-mb-30" style="font-size:1rem;line-height:1.6;font-weight:450;color:rgb(0,0,0);" set:html={tagline} />}
           {readMoreText && (
             <div class="tria-up">
-              <Button text={readMoreText} href={readMoreHref} showArrow={true} />
+              <Button text={readMoreText} href={readMoreHref} showArrow={true} arrowStyle="inline" size="sm" />
             </div>
           )}
         </div>
@@ -74,11 +74,18 @@ const {
                       <p class="tria-link tria-dark-soft tria-mb-10">{member.role}</p>
                       {member.socialLinks && (
                         <ul class="tria-social-icons tria-dark tria-center">
-                          {member.socialLinks.map((social) => (
-                            <li>
-                              <a href={social.href} target="_blank" class="social-icon" set:html={social.icon} />
-                            </li>
-                          ))}
+                          {member.socialLinks.map((social) => {
+                            const platform = social.href.includes('facebook') ? 'Facebook' :
+                              social.href.includes('instagram') ? 'Instagram' :
+                              social.href.includes('github') ? 'GitHub' :
+                              social.href.includes('linkedin') ? 'LinkedIn' :
+                              social.href.includes('x.com') || social.href.includes('twitter') ? 'X' : 'Social';
+                            return (
+                              <li>
+                                <a href={social.href} target="_blank" aria-label={platform} class="social-icon" set:html={social.icon} />
+                              </li>
+                            );
+                          })}
                         </ul>
                       )}
                     </div>

@@ -53,7 +53,7 @@ const service = {
     }
   ],
 
-  processSuptitle: isEs ? "Nuestro Enfoque" : "Our Approach",
+  processSuptitle: isEs ? "Nuestro Proceso" : "Our Process",
   processTitle: isEs
     ? "Cómo <span class=\"tria-accent-text\">Arquitectamos</span> tu Sistema"
     : "How We <span class=\"tria-accent-text\">Architect</span> Your System",
@@ -73,7 +73,7 @@ const service = {
 };
 ---
 
-<Layout title={`Tria — ${isEs ? "Backend, APIs & Datos" : "Backend, APIs & Data"}`} description={service.heroDesc}>
+<Layout title={t("meta.serviceCloudDevops")} description={service.heroDesc}>
   <ServiceDetail service={service} />
 
   <Quote

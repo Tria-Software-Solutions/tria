@@ -51,7 +51,7 @@ const locale = Astro.currentLocale || "en";
 </section>
 
 <!-- overview — clean light panel, no cards -->
-<section class="tria-sd-overview" data-section-theme="dark">
+<section id="overview" class="tria-sd-overview" data-section-theme="light">
   <div class="tria-dot-pattern"></div>
   <div class="tria-grain-overlay"></div>
   <div class="tria-ambient-temp">
@@ -61,7 +61,7 @@ const locale = Astro.currentLocale || "en";
   <div class="container tria-p-120-120">
     <div class="row align-items-start">
       <div class="col-lg-5 tria-up">
-        <span class="tria-suptitle" style="color:rgba(0,0,0,0.35);">{service.overviewSuptitle}</span>
+        <span class="tria-suptitle tria-suptitle-dark tria-up">{service.overviewSuptitle}</span>
         <h2 class="tria-mt-30 tria-sd-section-title" set:html={service.overviewTitle} />
       </div>
       <div class="col-lg-6 offset-lg-1 tria-up">
@@ -73,7 +73,7 @@ const locale = Astro.currentLocale || "en";
 </section>
 
 <!-- features — light gray columns -->
-<section class="tria-sd-features" data-section-theme="dark">
+<section id="features" class="tria-sd-features" data-section-theme="light">
   <div class="tria-dot-pattern"></div>
   <div class="tria-grain-overlay"></div>
   <div class="tria-ambient-temp">
@@ -85,7 +85,7 @@ const locale = Astro.currentLocale || "en";
       {service.features.map((feat) => (
         <div class="col-lg-4 tria-up">
           <div class="tria-sd-feat-icon" set:html={feat.icon}></div>
-          <h4 class="tria-sd-feat-title">{feat.title}</h4>
+          <h3 class="tria-sd-feat-title">{feat.title}</h3>
           <p class="tria-sd-feat-desc">{feat.desc}</p>
         </div>
       ))}
@@ -94,7 +94,7 @@ const locale = Astro.currentLocale || "en";
 </section>
 
 <!-- process — white bg, minimal steps -->
-<section class="tria-sd-process-section" data-section-theme="light">
+<section id="process" class="tria-sd-process-section" data-section-theme="light">
   <div class="tria-ambient-temp">
     <div class="tria-at-glow-1"></div>
     <div class="tria-at-glow-3"></div>
@@ -102,7 +102,7 @@ const locale = Astro.currentLocale || "en";
   <div class="container tria-p-120-120">
     <div class="row">
       <div class="col-lg-8 tria-up">
-        <span class="tria-suptitle" style="color:rgba(0,0,0,0.35);">{service.processSuptitle}</span>
+        <span class="tria-suptitle tria-suptitle-dark tria-up">{service.processSuptitle}</span>
         <h2 class="tria-mt-30 tria-sd-process-title" set:html={service.processTitle} />
       </div>
     </div>
@@ -114,7 +114,7 @@ const locale = Astro.currentLocale || "en";
             <div class="tria-sd-process-line"></div>
           </div>
           <div class="tria-sd-process-content">
-            <h4 class="tria-sd-process-step-title">{step.title}</h4>
+            <h3 class="tria-sd-process-step-title">{step.title}</h3>
             <p class="tria-sd-process-step-desc">{step.desc}</p>
           </div>
         </div>

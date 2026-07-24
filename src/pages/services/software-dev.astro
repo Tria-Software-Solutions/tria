@@ -15,27 +15,27 @@ const service = {
     ? "Web, Móvil &amp;<br /><span class=\"page-hero-em\">Más Allá</span>"
     : "Web, Mobile &amp;<br /><span class=\"page-hero-em\">Beyond</span>",
   heroDesc: isEs
-    ? "Aplicaciones web y móviles, APIs, y ecosistemas digitales completos construidos con arquitecturas modernas y las mejores prácticas de la industria."
-    : "Web and mobile applications, APIs, and complete digital ecosystems built with modern architectures and industry best practices.",
+    ? "Aplicaciones web, móviles y de escritorio, APIs, y ecosistemas digitales completos construidos con arquitecturas modernas y las mejores prácticas de la industria."
+    : "Web, mobile, and desktop applications, APIs, and complete digital ecosystems built with modern architectures and industry best practices.",
 
   overviewSuptitle: isEs ? "Visión General" : "Overview",
   overviewTitle: isEs
     ? "De la Idea al<br /><span class=\"tria-accent-text\">Producto</span> Digital"
     : "From Idea to<br /><span class=\"tria-accent-text\">Digital Product</span>",
   overviewDesc1: isEs
-    ? "Cada gran producto comienza con una idea y un usuario con una necesidad real. Traducimos esa necesidad en experiencias digitales intuitivas — desde dashboards complejos hasta apps móviles que la gente usa a diario."
-    : "Every great product starts with an idea and a user with a real need. We translate that need into intuitive digital experiences — from complex dashboards to mobile apps people use every day.",
+    ? "Cada gran producto comienza con una idea y un usuario con una necesidad real. Traducimos esa necesidad en experiencias digitales intuitivas — desde dashboards complejos hasta apps móviles y de escritorio que la gente usa a diario."
+    : "Every great product starts with an idea and a user with a real need. We translate that need into intuitive digital experiences — from complex dashboards to mobile and desktop apps people use every day.",
   overviewDesc2: isEs
-    ? "React, Next.js, React Native, Node.js — no son solo herramientas, son el medio para entregar interfaces rápidas, APIs sólidas y experiencias consistentes en cualquier pantalla. Tu producto, multiplataforma, desde el día uno."
-    : "React, Next.js, React Native, Node.js — not just tools, but the means to deliver fast interfaces, solid APIs, and consistent experiences on any screen. Your product, cross-platform, from day one.",
+    ? "React, Next.js, React Native, Electron, Tauri, Node.js — no son solo herramientas, son el medio para entregar interfaces rápidas, APIs sólidas y experiencias consistentes en cualquier pantalla. Tu producto, multiplataforma, desde el día uno."
+    : "React, Next.js, React Native, Electron, Tauri, Node.js — not just tools, but the means to deliver fast interfaces, solid APIs, and consistent experiences on any screen. Your product, cross-platform, from day one.",
 
   features: [
     {
       icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>',
       title: isEs ? "Multiplataforma" : "Cross-Platform",
       desc: isEs
-        ? "Una sola base de código para web, iOS y Android con React Native y Next.js. Lanzamientos más rápidos, menor costo."
-        : "Single codebase for web, iOS, and Android with React Native and Next.js. Faster releases, lower cost."
+        ? "Una sola base de código para web, iOS, Android y escritorio con React Native, Electron y Tauri. Lanzamientos más rápidos, menor costo."
+        : "Single codebase for web, iOS, Android, and desktop with React Native, Electron, and Tauri. Faster releases, lower cost."
     },
     {
       icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>',
@@ -50,6 +50,13 @@ const service = {
       desc: isEs
         ? "Rendimiento optimizado con server-side rendering, lazy loading y CDN. Puntajes 90+ en PageSpeed y Core Web Vitals."
         : "Performance optimized with SSR, lazy loading, and CDN. Scores 90+ on PageSpeed and Core Web Vitals."
+    },
+    {
+      icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2z"/><path d="M14 3v4a2 2 0 0 0 2 2h4"/><rect x="8" y="12" width="8" height="6" rx="1"/></svg>',
+      title: isEs ? "Aplicaciones de Escritorio" : "Desktop Applications",
+      desc: isEs
+        ? "Aplicaciones nativas de escritorio con Electron, Tauri, .NET y Java. Experiencias ricas, offline-first y con acceso completo al hardware del sistema."
+        : "Native desktop applications with Electron, Tauri, .NET, and Java. Rich, offline-first experiences with full system hardware access."
     }
   ],
 
@@ -73,7 +80,7 @@ const service = {
 };
 ---
 
-<Layout title={`Tria — ${isEs ? "Productos Digitales" : "Digital Products"}`} description={service.heroDesc}>
+<Layout title={t("meta.serviceSoftwareDev")} description={service.heroDesc}>
   <ServiceDetail service={service} />
 
   <Quote

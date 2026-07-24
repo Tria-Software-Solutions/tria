@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import PageBanner from "../../components/PageBanner.astro";
 import Button from "../../components/Button.astro";
 import Quote from "../../components/Quote.astro";
 import CTA from "../../components/CTA.astro";
@@ -8,30 +9,15 @@ import { createT } from "../../i18n/utils";
 const t = createT(Astro.currentLocale);
 const deepwikiUrl = "https://deepwiki.com/Tria-Building-Digital-Solutions/parkit";
 const deepwikiCta = Astro.currentLocale === "es" ? "Leer caso de estudio completo en DeepWiki" : "Read full case study on DeepWiki";
+const liveUrl = "https://parkit-valet.vercel.app";
+const liveCta = Astro.currentLocale === "es" ? "Ver sitio en vivo" : "View Live Site";
 ---
 
 <Layout title={t("featured.project1Title")} description={t("featured.project1Desc")}>
-  <section class="page-hero" data-section-theme="dark">
-    <div class="page-hero-bg">
-      <div class="page-hero-bg-dots"></div>
-      <div class="page-hero-orb page-hero-orb--1"></div>
-      <div class="page-hero-orb page-hero-orb--2"></div>
-      <div class="page-hero-gradient-overlay"></div>
-      <div class="tria-hero-grain"></div>
-      <div class="tria-ambient-temp">
-        <div class="tria-at-glow-1"></div>
-        <div class="tria-at-glow-2"></div>
-      </div>
-    </div>
-    <div class="container page-hero-inner">
-      <span class="tria-suptitle tria-light-soft tria-up" style="display:block;margin-bottom:24px;">{t("featured.project1Cat")}</span>
-      <h1 class="page-hero-heading tria-up">{t("featured.project1Title")}</h1>
-      <p class="page-hero-sub tria-up">{t("featured.project1Desc")}</p>
-    </div>
-  </section>
+  <PageBanner suptitleKey="featured.project1Cat" headingKey="featured.project1Title" descriptionKey="featured.project1Desc" />
 
   <!-- overview -->
-  <section class="tria-project-section" data-section-theme="dark">
+  <section class="tria-project-section" data-section-theme="light">
     <div class="tria-dot-pattern"></div>
     <div class="tria-grain-overlay"></div>
     <div class="tria-ambient-temp">
@@ -39,58 +25,71 @@ const deepwikiCta = Astro.currentLocale === "es" ? "Leer caso de estudio complet
       <div class="tria-at-glow-3"></div>
     </div>
     <div class="container tria-p-120-120">
-      <div class="row justify-content-center">
-        <div class="col-lg-10">
-          <div class="tria-project-body tria-up">
-            <div class="tria-project-tags">
-              <span>React</span>
-              <span>Go</span>
-              <span>PostgreSQL</span>
-              <span>AWS</span>
-              <span>React Native</span>
-            </div>
-            <h2 class="tria-project-title">Project Overview</h2>
-            <p class="tria-project-desc">{t("featured.project1Desc")}</p>
+      <div class="tria-project-overview-grid">
+        <!-- Screenshot -->
+        <div class="tria-project-visual tria-up">
+          <img src="/assets/img/featured/parkit.png" alt="Parkit app preview" class="tria-project-img" loading="lazy" />
+        </div>
+        <!-- Content -->
+        <div class="tria-project-content tria-up">
+          <div class="tria-project-tags">
+            <span>React</span>
+            <span>Go</span>
+            <span>PostgreSQL</span>
+            <span>AWS</span>
+            <span>React Native</span>
+          </div>
+          <h2 class="tria-project-title">Project Overview</h2>
+          <p class="tria-project-desc">{t("featured.project1Desc")}</p>
 
-            <div class="tria-project-stats">
-              <div class="tria-project-stat">
-                <div class="tria-project-stat-icon">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-                </div>
-                <span class="tria-project-stat-num">3</span>
-                <span class="tria-project-stat-label">Platforms</span>
-              </div>
-              <div class="tria-project-stat-divider"></div>
-              <div class="tria-project-stat">
-                <div class="tria-project-stat-icon">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                </div>
-                <span class="tria-project-stat-num">Multi</span>
-                <span class="tria-project-stat-label">Tenant</span>
-              </div>
-              <div class="tria-project-stat-divider"></div>
-              <div class="tria-project-stat">
-                <div class="tria-project-stat-icon">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                </div>
-                <span class="tria-project-stat-num">Real</span>
-                <span class="tria-project-stat-label">Time</span>
+          <div class="tria-project-stats">
+            <div class="tria-project-stat">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              <div>
+                <div class="tria-project-stat-val">3</div>
+                <div class="tria-project-stat-lbl">Platforms</div>
               </div>
             </div>
+            <div class="tria-project-stat">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              <div>
+                <div class="tria-project-stat-val">Multi</div>
+                <div class="tria-project-stat-lbl">Tenant</div>
+              </div>
+            </div>
+            <div class="tria-project-stat">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <div>
+                <div class="tria-project-stat-val">Real</div>
+                <div class="tria-project-stat-lbl">Time</div>
+              </div>
+            </div>
+          </div>
 
-            <div class="tria-project-cta-wrap">
-              <Button
-                href={deepwikiUrl}
-                variant="primary"
-                color="#0b0d17"
-                hoverColor="#068e8c"
-                text={deepwikiCta}
-                showArrow
-                arrowStyle="inline"
-                target="_blank"
-                rel="noopener noreferrer"
-              />
-            </div>
+          <div class="tria-project-cta-wrap">
+            <Button
+              href={deepwikiUrl}
+              variant="primary"
+              color="#0b0d17"
+              hoverColor="#068e8c"
+              text={deepwikiCta}
+              showArrow
+              arrowStyle="inline"
+              size="sm"
+              target="_blank"
+              rel="noopener noreferrer"
+            />
+            <Button
+              href={liveUrl}
+              variant="outline"
+              color="#068e8c"
+              text={liveCta}
+              showArrow
+              arrowStyle="inline"
+              size="sm"
+              target="_blank"
+              rel="noopener noreferrer"
+            />
           </div>
         </div>
       </div>
@@ -106,7 +105,7 @@ const deepwikiCta = Astro.currentLocale === "es" ? "Leer caso de estudio complet
     <div class="container tria-p-120-120">
       <div class="row justify-content-center tria-mb-30">
         <div class="col-lg-8 tria-center">
-          <span class="tria-suptitle" style="color:rgba(0,0,0,0.35);">Deep Dive</span>
+          <span class="tria-suptitle tria-suptitle-dark tria-up">Deep Dive</span>
           <h2 class="tria-up tria-pd-section-title">Understanding the <span class="tria-accent-text">Process</span></h2>
         </div>
       </div>
@@ -168,165 +167,138 @@ const deepwikiCta = Astro.currentLocale === "es" ? "Leer caso de estudio complet
 
 <style>
   /* ═══════════════════════════════════════
-     OVERVIEW — light clean
+     OVERVIEW — minimal split layout
      ═══════════════════════════════════════ */
   .tria-project-section {
     background: #f5f7f9;
     position: relative;
   }
 
-  .tria-project-body {
-    text-align: center;
+  .tria-project-overview-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 0.7fr;
+    gap: 60px;
+    align-items: center;
     position: relative;
     z-index: 2;
   }
 
-  /* ── Tags ── */
+  /* ── Image ── */
+  .tria-project-visual {
+    position: relative;
+  }
+
+  .tria-project-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 0;
+  }
+
+  /* ── Content ── */
+  .tria-project-content {
+    position: relative;
+    z-index: 2;
+  }
+
   .tria-project-tags {
     display: flex;
-    justify-content: center;
-    gap: 8px;
     flex-wrap: wrap;
-    margin-bottom: 40px;
+    gap: 6px;
+    margin-bottom: 20px;
   }
 
   .tria-project-tags span {
-    font-size: 0.6rem;
-    letter-spacing: 0.12em;
+    font-size: 0.5rem;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    padding: 6px 14px;
-    border: 1px solid rgba(0,0,0,0.08);
-    border-radius: 20px;
+    padding: 5px 12px;
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 100px;
     color: rgba(0,0,0,0.35);
-    transition: border-color 0.4s var(--ease-spring), color 0.4s var(--ease-spring), background 0.4s var(--ease-spring);
+    transition: color 0.3s ease, border-color 0.3s ease;
   }
 
   .tria-project-tags span:hover {
-    border-color: rgba(6,142,140,0.2);
     color: var(--accent);
-    background: rgba(6,142,140,0.04);
+    border-color: rgba(6,142,140,0.2);
   }
 
-  /* ── Title & Desc ── */
   .tria-project-title {
     font-size: clamp(1.3rem, 2.5vw, 1.8rem);
-    font-weight: 400;
+    font-weight: 350;
     color: #0b0d17;
-    margin-bottom: 20px;
-    letter-spacing: -0.02em;
+    margin-bottom: 14px;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
   }
 
   .tria-project-desc {
-    font-size: 1rem;
+    font-size: 0.85rem;
     line-height: 1.85;
-    color: rgba(11, 13, 23, 0.6);
-    margin-bottom: 48px;
-    max-width: 640px;
-    margin-left: auto;
-    margin-right: auto;
+    color: rgba(11, 13, 23, 0.5);
+    margin-bottom: 36px;
+    max-width: 480px;
   }
 
   /* ── Stats ── */
   .tria-project-stats {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0;
-    margin-bottom: 48px;
-    padding: 0;
-    border: 1px solid rgba(0,0,0,0.06);
-    border-radius: 20px;
-    background: #fff;
-    max-width: 520px;
-    margin-left: auto;
-    margin-right: auto;
-    overflow: hidden;
-    transition: box-shadow 0.6s var(--ease-spring), border-color 0.6s var(--ease-spring), transform 0.6s var(--ease-spring);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-  }
-
-  .tria-project-stats:hover {
-    border-color: rgba(6,142,140,0.12);
-    box-shadow: 0 16px 48px rgba(6,142,140,0.06), 0 4px 16px rgba(0,0,0,0.03);
-    transform: translateY(-3px);
+    gap: 6px;
+    margin-bottom: 36px;
+    flex-wrap: wrap;
   }
 
   .tria-project-stat {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 8px;
-    padding: 32px 28px;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.5);
+    transition: background 0.3s ease;
     flex: 1;
-    transition: background 0.4s var(--ease-spring);
-    position: relative;
+    min-width: 110px;
   }
 
   .tria-project-stat:hover {
-    background: rgba(6,142,140,0.025);
+    background: rgba(255,255,255,0.85);
   }
 
-  .tria-project-stat-icon {
-    width: 36px;
-    height: 36px;
-    border-radius: 10px;
-    background: rgba(6,142,140,0.08);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .tria-project-stat svg {
+    width: 14px;
+    height: 14px;
     color: var(--accent);
-    transition: background 0.4s var(--ease-spring), transform 0.4s var(--ease-spring), color 0.4s var(--ease-spring);
-    margin-bottom: 4px;
-  }
-
-  .tria-project-stat:hover .tria-project-stat-icon {
-    background: var(--accent);
-    color: #fff;
-    transform: translateY(-2px) scale(1.05);
-  }
-
-  .tria-project-stat-divider {
-    width: 1px;
-    height: 48px;
-    background: rgba(0,0,0,0.05);
     flex-shrink: 0;
-    transition: background 0.4s var(--ease-spring);
+    opacity: 0.5;
   }
 
-  .tria-project-stats:hover .tria-project-stat-divider {
-    background: rgba(6,142,140,0.06);
+  .tria-project-stat-val {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #0b0d17;
+    line-height: 1.2;
   }
 
-  .tria-project-stat-num {
-    font-family: var(--font-display, 'Outfit', sans-serif);
-    font-size: 1.4rem;
-    font-weight: 400;
-    color: var(--accent);
-    letter-spacing: -0.02em;
-    line-height: 1;
-    transition: transform 0.4s var(--ease-spring);
-  }
-
-  .tria-project-stat:hover .tria-project-stat-num {
-    transform: scale(1.05);
-  }
-
-  .tria-project-stat-label {
-    font-size: 0.55rem;
-    letter-spacing: 0.15em;
+  .tria-project-stat-lbl {
+    font-size: 0.45rem;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: rgba(0,0,0,0.3);
-    transition: color 0.4s var(--ease-spring);
-  }
-
-  .tria-project-stat:hover .tria-project-stat-label {
-    color: rgba(0,0,0,0.45);
+    color: rgba(0,0,0,0.25);
+    margin-top: 1px;
   }
 
   .tria-project-cta-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 1;
+    min-width: 0;
     position: relative;
     z-index: 1;
   }
+
+
 
   /* ═══════════════════════════════════════
      DEEP DIVE — clean columns, frameless
@@ -387,45 +359,52 @@ const deepwikiCta = Astro.currentLocale === "es" ? "Leer caso de estudio complet
      RESPONSIVE
      ═══════════════════════════════════════ */
   @media (max-width: 991px) {
+    .tria-project-overview-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    .tria-project-img {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .tria-project-content {
+      text-align: center;
+    }
+    .tria-project-desc {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .tria-project-stats {
+      justify-content: center;
+    }
+    .tria-project-tags {
+      justify-content: center;
+    }
     .tria-pd-section-title {
       margin-bottom: 28px;
     }
   }
 
   @media (max-width: 576px) {
+    .tria-project-cta-wrap {
+      flex-wrap: wrap;
+    }
     .tria-project-stats {
-      flex-direction: row;
-      border-radius: 16px;
+      flex-direction: column;
+      align-items: stretch;
     }
     .tria-project-stat {
-      padding: 24px 16px;
-      gap: 6px;
-    }
-    .tria-project-stat-icon {
-      width: 34px;
-      height: 34px;
-      border-radius: 10px;
-    }
-    .tria-project-stat-icon svg {
-      width: 15px;
-      height: 15px;
-    }
-    .tria-project-stat-num {
-      font-size: 1.1rem;
-    }
-    .tria-project-stat-divider {
-      height: 36px;
+      min-width: auto;
     }
     .tria-project-desc {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
     }
     .tria-project-tags span {
-      font-size: 0.55rem;
-      padding: 5px 10px;
+      font-size: 0.5rem;
+      padding: 4px 10px;
     }
-    .tria-pd-card {
-      padding: 28px 24px;
-      margin-bottom: 20px;
+    .tria-project-title {
+      font-size: 1.3rem;
     }
     .tria-pd-section-title {
       font-size: 1.3rem;
@@ -433,29 +412,8 @@ const deepwikiCta = Astro.currentLocale === "es" ? "Leer caso de estudio complet
   }
 
   @media (max-width: 400px) {
-    .tria-project-stat {
-      padding: 18px 12px;
-    }
-    .tria-project-stat-icon {
-      width: 28px;
-      height: 28px;
-    }
-    .tria-project-stat-icon svg {
-      width: 13px;
-      height: 13px;
-    }
-    .tria-project-stat-num {
-      font-size: 1rem;
-    }
-    .tria-project-stat-label {
-      font-size: 0.5rem;
-    }
-    .tria-project-stat-divider {
-      height: 28px;
-    }
-    .tria-pd-card {
-      padding: 22px 18px;
-      margin-bottom: 16px;
+    .tria-project-title {
+      font-size: 1.1rem;
     }
   }
 </style>

@@ -52,7 +52,7 @@ const btnVariant = primaryButtonVariant || (isDefaultDark ? 'primary' : 'primary
 const secondaryBtnColor = isDefaultDark ? '#0b0d17' : undefined;
 ---
 
-<section
+<section id="cta"
   class={`tria-cta-section${theme === 'dark' || footerLayout ? ' tria-footer-cta' : ''}${accentColor ? ' tria-cta-accented' : ''}${bgColor ? ' tria-cta-custom-bg' : ''}`}
   data-section-theme={theme}
   style={sectionStyle}
@@ -76,12 +76,16 @@ const secondaryBtnColor = isDefaultDark ? '#0b0d17' : undefined;
             color={btnColor}
             hoverColor={btnHoverColor}
             showArrow={showIcon}
+            arrowStyle="inline"
+            size="sm"
           />
           <Button
             text={secondaryButtonText}
             href={secondaryButtonHref}
             variant="outline"
             color={secondaryBtnColor}
+            arrowStyle="inline"
+            size="sm"
           />
         </div>
       </div>

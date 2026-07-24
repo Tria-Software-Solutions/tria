@@ -51,26 +51,12 @@ function isCurrentPage(href: string): boolean {
               <a href={lp("/services")} data-i18n="nav.services">{t("nav.services")}</a>
             </li>
           )}
-          {!isCurrentPage("/portfolio") && (
-            <li>
-              <a href={lp("/portfolio")} data-i18n="nav.work">{t("nav.work")}</a>
-            </li>
-          )}
           {!isCurrentPage("/team") && (
             <li>
               <a href={lp("/team")} data-i18n="nav.team">{t("nav.team")}</a>
             </li>
           )}
-          {!isCurrentPage("/blog") && (
-            <li>
-              <a href={lp("/blog")} data-i18n="nav.blog">{t("nav.blog")}</a>
-            </li>
-          )}
-          {!isCurrentPage("/contact") && (
-            <li>
-              <a href={lp("/contact")} data-i18n="nav.contact">{t("nav.contact")}</a>
-            </li>
-          )}
+          {/* blog hidden for now */}
         </ul>
       </div>
       <div class="tria-menu-col">
@@ -89,24 +75,31 @@ function isCurrentPage(href: string): boolean {
           {!isCurrentPage("/projects/choferes") && (
             <a href={lp("/projects/choferes")} data-i18n="nav.cloudInfra">{t("nav.cloudInfra")}</a>
           )}
-          {!isCurrentPage("/portfolio") && (
-            <a href={lp("/portfolio")} data-i18n="nav.ecommerce">{t("nav.ecommerce")}</a>
-          )}
-          <a href="https://github.com/lmhq-94/safepath_api" data-i18n="nav.safePath" target="_blank">{t("nav.safePath")}</a>
-          <a href="https://github.com/lmhq-94/fault_diagnosis" data-i18n="nav.faultDiagnosis" target="_blank">{t("nav.faultDiagnosis")}</a>
           <a href="https://github.com/Tria-Software-Solutions/goalr" data-i18n="nav.goalr" target="_blank">{t("nav.goalr")}</a>
           <a href="https://github.com/Tria-Software-Solutions/las_granas" data-i18n="nav.lasGranas" target="_blank">{t("nav.lasGranas")}</a>
+          <a href="https://github.com/lmhq-94/fault_diagnosis" data-i18n="nav.faultDiagnosis" target="_blank">{t("nav.faultDiagnosis")}</a>
         </div>
       </div>
       <div class="tria-menu-col">
         <div class="tria-menu-list-group">
           <span class="tria-menu-group-label" data-i18n="nav.usefulLinks">{t("nav.usefulLinks")}</span>
+          {!isCurrentPage("/portfolio") && (
+            <a href={lp("/portfolio")} data-i18n="nav.work">{t("nav.work")}</a>
+          )}
+          {!isCurrentPage("/contact") && (
+            <a href={lp("/contact")} data-i18n="nav.contact">{t("nav.contact")}</a>
+          )}
           <a href={lp("/privacy")} data-i18n="nav.privacyPolicy">{t("nav.privacyPolicy")}</a>
           <a href={lp("/terms")} data-i18n="nav.terms">{t("nav.terms")}</a>
           <a href={lp("/cookies")} data-i18n="nav.cookiePolicy">{t("nav.cookiePolicy")}</a>
-          <a href={lp("/careers")} data-i18n="nav.careers">{t("nav.careers")}</a>
+          {/* careers hidden for now */}
         </div>
 
+      </div>
+      <div class="tria-menu-lang">
+        <a href={enHref} data-lang="en" class:list={["tria-menu-lang-btn", { "is-active": locale === "en" }]}>EN</a>
+        <span class="tria-menu-lang-sep">/</span>
+        <a href={esHref} data-lang="es" class:list={["tria-menu-lang-btn", { "is-active": locale === "es" }]}>ES</a>
       </div>
     </div>
   </div>
@@ -116,7 +109,7 @@ function isCurrentPage(href: string): boolean {
 <style is:global>
   /* Menu Frame Modern overrides */
   .tria-menu-frame {
-    background: #000 !important;
+    background: #080a14 !important;
     backdrop-filter: blur(24px) saturate(1.8) !important;
     -webkit-backdrop-filter: blur(24px) saturate(1.8) !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -175,6 +168,7 @@ function isCurrentPage(href: string): boolean {
 
   /* Close Button Redesign */
   .tria-menu-close {
+    position: absolute;
     top: 40px;
     right: 48px;
     display: flex;
@@ -208,7 +202,11 @@ function isCurrentPage(href: string): boolean {
     color: #fff;
   }
 
-  /* Staggered Column Entrance Animation */
+  /* ═══════════════════════════════════════
+     COLUMN ENTRANCE ANIMATIONS
+     ═══════════════════════════════════════ */
+
+  /* Columns slide up */
   .tria-menu-grid > * {
     opacity: 0;
     transform: translateY(35px);
@@ -220,18 +218,69 @@ function isCurrentPage(href: string): boolean {
     transform: translateY(0);
     transition-delay: 0.15s;
   }
-  
   .tria-menu-frame.tria-active .tria-menu-grid > *:nth-child(2) {
     opacity: 1;
     transform: translateY(0);
     transition-delay: 0.25s;
   }
-  
   .tria-menu-frame.tria-active .tria-menu-grid > *:nth-child(3) {
     opacity: 1;
     transform: translateY(0);
     transition-delay: 0.35s;
   }
+
+  /* ═══════════════════════════════════════
+     SECONDARY LINK ENTRANCE ANIMATIONS
+     ═══════════════════════════════════════ */
+
+  /* Base: hidden, shifted */
+  .tria-menu-list-group > * {
+    opacity: 0;
+    transition: transform 0.6s var(--ease-spring), opacity 0.6s ease;
+  }
+
+  .tria-menu-list-group > .tria-menu-group-label {
+    transform: translateY(12px);
+  }
+
+  .tria-menu-list-group > a {
+    transform: translateX(-14px);
+  }
+
+  /* Active: fade in with staggered delays per item within each group */
+  .tria-menu-frame.tria-active .tria-menu-list-group > .tria-menu-group-label {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .tria-menu-frame.tria-active .tria-menu-list-group > a {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* ── Group 1 labels & links (Services + Useful Links, same depth) ── */
+  .tria-menu-col .tria-menu-list-group:nth-child(1) > .tria-menu-group-label {
+    transition-delay: 0.38s;
+  }
+  .tria-menu-col .tria-menu-list-group:nth-child(1) > a:nth-child(2) { transition-delay: 0.43s; }
+  .tria-menu-col .tria-menu-list-group:nth-child(1) > a:nth-child(3) { transition-delay: 0.48s; }
+  .tria-menu-col .tria-menu-list-group:nth-child(1) > a:nth-child(4) { transition-delay: 0.53s; }
+  .tria-menu-col .tria-menu-list-group:nth-child(1) > a:nth-child(5) { transition-delay: 0.58s; }
+  .tria-menu-col .tria-menu-list-group:nth-child(1) > a:nth-child(6) { transition-delay: 0.63s; }
+  .tria-menu-col .tria-menu-list-group:nth-child(1) > a:nth-child(7) { transition-delay: 0.68s; }
+  .tria-menu-col .tria-menu-list-group:nth-child(1) > a:nth-child(8) { transition-delay: 0.73s; }
+
+  /* ── Group 2 (Case Studies) — longer stagger since it's the second group ── */
+  .tria-menu-col .tria-menu-list-group:nth-child(2) > .tria-menu-group-label {
+    transition-delay: 0.62s;
+  }
+  .tria-menu-col .tria-menu-list-group:nth-child(2) > a:nth-child(2) { transition-delay: 0.67s; }
+  .tria-menu-col .tria-menu-list-group:nth-child(2) > a:nth-child(3) { transition-delay: 0.72s; }
+  .tria-menu-col .tria-menu-list-group:nth-child(2) > a:nth-child(4) { transition-delay: 0.77s; }
+  .tria-menu-col .tria-menu-list-group:nth-child(2) > a:nth-child(5) { transition-delay: 0.82s; }
+  .tria-menu-col .tria-menu-list-group:nth-child(2) > a:nth-child(6) { transition-delay: 0.87s; }
+  .tria-menu-col .tria-menu-list-group:nth-child(2) > a:nth-child(7) { transition-delay: 0.92s; }
+  .tria-menu-col .tria-menu-list-group:nth-child(2) > a:nth-child(8) { transition-delay: 0.97s; }
+  .tria-menu-col .tria-menu-list-group:nth-child(2) > a:nth-child(9) { transition-delay: 1.02s; }
 
   /* Main Links Styling */
   .tria-menu-pages ul li {
@@ -246,7 +295,8 @@ function isCurrentPage(href: string): boolean {
     color: rgba(255, 255, 255, 0.45) !important;
     transition: color 0.4s ease, transform 0.4s var(--ease-spring), text-shadow 0.4s ease !important;
     position: relative;
-    display: inline-block !important;
+    display: block !important;
+    width: 100%;
   }
   
   .tria-menu-pages ul li a:hover {
@@ -295,35 +345,15 @@ function isCurrentPage(href: string): boolean {
   .tria-menu-list-group a {
     color: rgba(255, 255, 255, 0.45) !important;
     font-size: 0.9rem !important;
-    transition: color 0.3s ease, padding-left 0.4s var(--ease-spring), transform 0.4s var(--ease-spring) !important;
+    transition: color 0.3s ease;
     padding: 4px 0 !important;
-    display: inline-flex !important;
+    display: flex !important;
     align-items: center;
-    position: relative;
+    width: 100%;
   }
   
   .tria-menu-list-group a:hover {
-    color: #fff !important;
-    padding-left: 14px !important;
-    transform: translateX(0) !important;
-  }
-  
-  .tria-menu-list-group a::before {
-    content: "" !important;
-    position: absolute;
-    left: 0;
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: var(--accent);
-    opacity: 0;
-    transform: scale(0);
-    transition: transform 0.3s var(--ease-spring), opacity 0.3s ease;
-  }
-  
-  .tria-menu-list-group a:hover::before {
-    opacity: 1;
-    transform: scale(1);
+    color: rgba(255, 255, 255, 0.85) !important;
   }
 
   @media screen and (max-width: 640px) {
@@ -342,6 +372,50 @@ function isCurrentPage(href: string): boolean {
   @media screen and (min-width: 641px) and (max-width: 991px) {
     .tria-menu-pages ul li a {
       font-size: 2rem !important;
+    }
+  }
+
+  /* ── Menu language switcher ── */
+  .tria-menu-lang {
+    position: absolute;
+    bottom: 36px;
+    left: 60px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    z-index: 10;
+  }
+
+  .tria-menu-lang-btn {
+    pointer-events: all;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.3);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    padding: 8px 8px;
+  }
+
+  .tria-menu-lang-btn.is-active {
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .tria-menu-lang-btn:hover {
+    color: #fff;
+  }
+
+  .tria-menu-lang-sep {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.15);
+  }
+
+  @media screen and (max-width: 640px) {
+    .tria-menu-lang {
+      left: 24px;
+      bottom: 28px;
     }
   }
 
@@ -371,6 +445,14 @@ function isCurrentPage(href: string): boolean {
       right: 14px !important;
       width: 40px;
       height: 40px;
+    }
+    .tria-menu-lang {
+      left: 16px;
+      bottom: 22px;
+    }
+    .tria-menu-lang-btn {
+      font-size: 0.65rem;
+      padding: 6px 6px;
     }
   }
 </style>

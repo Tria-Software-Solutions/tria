@@ -19,7 +19,7 @@ interface Props {
   type?: 'button' | 'submit' | 'reset';
   style?: string;
   active?: boolean;
-  arrowStyle?: 'circle' | 'inline';
+  iconOnly?: boolean;
 }
 
 const {
@@ -39,7 +39,7 @@ const {
   type = 'button',
   style,
   active = false,
-  arrowStyle = 'circle',
+  iconOnly = false,
 } = Astro.props;
 
 const isLink = !!href;
@@ -52,11 +52,11 @@ const cls = [
   arrowPosition === 'left' ? 'tria-btn--arrow-left' : '',
   fullWidth ? 'tria-btn--full' : '',
   active ? 'tria-btn--active' : '',
-  arrowStyle === 'inline' ? 'tria-btn-arrow--inline' : '',
+  iconOnly ? 'tria-btn--icon-only' : '',
   className,
 ].filter(Boolean).join(' ');
 
-const knownProps = new Set(['text', 'href', 'variant', 'size', 'color', 'hoverColor', 'showArrow', 'arrowPosition', 'fullWidth', 'target', 'rel', 'className', 'id', 'type', 'style', 'active', 'arrowStyle']);
+const knownProps = new Set(['text', 'href', 'variant', 'size', 'color', 'hoverColor', 'showArrow', 'arrowPosition', 'fullWidth', 'target', 'rel', 'className', 'id', 'type', 'style', 'active', 'arrowStyle', 'iconOnly']);
 const attrs: Record<string, any> = {};
 for (const [key, val] of Object.entries(Astro.props)) {
   if (!knownProps.has(key) && val !== undefined) {
@@ -67,30 +67,42 @@ for (const [key, val] of Object.entries(Astro.props)) {
 
 {isLink ? (
   <a href={href} class={cls} target={target} rel={rel} id={id} style={styleVars || style} {...attrs}>
-    {arrowPosition === 'left' && showArrow && (
-      <svg class="tria-btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <path d="M13 8H3M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    )}
-    <span class="tria-btn-text">{text}</span>
-    {arrowPosition === 'right' && showArrow && (
-      <svg class="tria-btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
+    {iconOnly ? (
+      <slot name="icon" />
+    ) : (
+      <>
+        {arrowPosition === 'left' && showArrow && (
+          <svg class="tria-btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M13 8H3M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        )}
+        <span class="tria-btn-text">{text}</span>
+        {arrowPosition === 'right' && showArrow && (
+          <svg class="tria-btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        )}
+      </>
     )}
   </a>
 ) : (
   <button class={cls} id={id} type={type} style={styleVars} {...attrs}>
-    {arrowPosition === 'left' && showArrow && (
-      <svg class="tria-btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <path d="M13 8H3M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    )}
-    <span class="tria-btn-text">{text}</span>
-    {arrowPosition === 'right' && showArrow && (
-      <svg class="tria-btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
+    {iconOnly ? (
+      <slot name="icon" />
+    ) : (
+      <>
+        {arrowPosition === 'left' && showArrow && (
+          <svg class="tria-btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M13 8H3M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        )}
+        <span class="tria-btn-text">{text}</span>
+        {arrowPosition === 'right' && showArrow && (
+          <svg class="tria-btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        )}
+      </>
     )}
   </button>
 )}
@@ -100,84 +112,106 @@ for (const [key, val] of Object.entries(Astro.props)) {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 24px;
+    gap: 8px;
     border-radius: 100px;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     font-weight: 550;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     text-decoration: none;
     cursor: pointer;
     white-space: nowrap;
-    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-                background 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                background 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
   }
 
   /* ── Sizes ── */
   .tria-btn--xs {
-    height: 38px;
-    padding: 0 1.25rem;
-    font-size: 0.72rem;
-    gap: 12px;
+    height: 36px;
+    padding: 0 1rem;
+    font-size: 0.65rem;
+    gap: 6px;
     letter-spacing: 0.08em;
   }
 
   .tria-btn--sm {
-    height: 48px;
-    padding: 0 1.5rem;
-    font-size: 0.75rem;
-    gap: 16px;
+    height: 44px;
+    padding: 0 1.25rem;
+    font-size: 0.7rem;
+    gap: 8px;
   }
 
   .tria-btn--md {
-    height: 64px;
-    padding: 0 2.5rem;
+    height: 52px;
+    padding: 0 1.75rem;
+    font-size: 0.75rem;
+    gap: 8px;
   }
 
   .tria-btn--lg {
-    height: 72px;
-    padding: 0 3rem;
-    font-size: 0.9rem;
-    gap: 28px;
+    height: 60px;
+    padding: 0 2.25rem;
+    font-size: 0.82rem;
+    gap: 10px;
   }
 
   .tria-btn--full {
     width: 100%;
   }
 
+  /* ── Arrow (always inline style — no circle card) ── */
+  .tria-btn-arrow {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .tria-btn-arrow path {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+  }
+
+  .tria-btn--arrow-left .tria-btn-arrow {
+    order: -1;
+  }
+
+  .tria-btn:hover .tria-btn-arrow {
+    transform: translateX(4px);
+  }
+
+  .tria-btn--arrow-left:hover .tria-btn-arrow {
+    transform: translateX(-4px);
+  }
+
   /* ── Primary ── */
   .tria-btn--primary {
     background-color: var(--btn-color, var(--accent));
-    color: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 4px 20px color-mix(in srgb, var(--accent), transparent 80%);
+    color: #fff;
   }
 
   .tria-btn--primary:hover {
     background-color: var(--btn-hover, color-mix(in srgb, var(--accent), white 15%));
     color: #fff;
-    transform: translateY(-3px) scale(1.04);
-    box-shadow: 0 16px 48px color-mix(in srgb, var(--accent), transparent 50%),
-                0 4px 20px color-mix(in srgb, var(--accent), transparent 70%);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px color-mix(in srgb, var(--accent), transparent 55%);
   }
 
-  /* ── Secondary ── */
+  /* ── Secondary (dark) ── */
   .tria-btn--secondary {
     background-color: var(--btn-color, #0b0d17);
-    color: rgba(255, 255, 255, 0.85);
+    color: #fff;
   }
 
   .tria-btn--secondary:hover {
     background-color: var(--btn-hover, #252b4a);
     color: #fff;
-    transform: translateY(-3px) scale(1.04);
-    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35), 0 4px 16px rgba(0, 0, 0, 0.2);
-  }
-
-  .tria-btn--secondary .tria-btn-arrow {
-    background-color: rgba(255, 255, 255, 0.12);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
   }
 
   /* ── Outline ── */
@@ -190,10 +224,8 @@ for (const [key, val] of Object.entries(Astro.props)) {
   .tria-btn--outline:hover {
     background-color: var(--btn-color, var(--accent));
     color: #fff;
-    transform: translateY(-3px) scale(1.04);
-    box-shadow: inset 0 0 0 1.5px var(--btn-color, var(--accent)),
-                0 16px 48px color-mix(in srgb, var(--accent), transparent 50%),
-                0 4px 20px color-mix(in srgb, var(--accent), transparent 70%);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px color-mix(in srgb, var(--accent), transparent 55%);
   }
 
   .tria-btn--outline.tria-btn--active {
@@ -208,99 +240,27 @@ for (const [key, val] of Object.entries(Astro.props)) {
   }
 
   .tria-btn--ghost:hover {
-    background-color: var(--accent);
+    background-color: var(--btn-hover, var(--btn-color, var(--accent)));
     color: #fff;
-    transform: translateY(-2px) scale(1.03);
-    box-shadow: 0 12px 40px color-mix(in srgb, var(--accent), transparent 55%);
+    transform: translateY(-1px);
   }
 
-  /* ── Glass ── */
+  /* ── Glass (hero only — true glassmorphism, sin gradient) ── */
   .tria-btn--glass {
-    background: linear-gradient(135deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.12) 100%);
+    background: rgba(255, 255, 255, 0.10);
     color: #fff;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
     border: 1px solid rgba(255, 255, 255, 0.15);
-    position: relative;
-    z-index: 2;
-    will-change: transform;
+    backdrop-filter: blur(12px) saturate(1.4);
+    -webkit-backdrop-filter: blur(12px) saturate(1.4);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255,255,255,0.1);
   }
 
   .tria-btn--glass:hover {
-    background: linear-gradient(135deg, rgba(255,255,255,0.32) 0%, rgba(255,255,255,0.18) 100%);
+    background: rgba(255, 255, 255, 0.18);
     color: #fff;
-    transform: translateY(-3px) scale(1.04);
-    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.25), 0 4px 20px color-mix(in srgb, var(--accent), transparent 80%);
-  }
-
-  /* ── Arrow SVG ── */
-  .tria-btn-arrow {
-    width: 36px;
-    height: 36px;
-    padding: 9px;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.2);
-    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-                background 0.35s ease;
-    flex-shrink: 0;
-  }
-
-  .tria-btn-arrow path {
-    fill: none !important;
-    stroke: currentColor;
-  }
-
-  /* Inline arrow — no circle bg, flush with text */
-  .tria-btn-arrow--inline .tria-btn-arrow {
-    width: 14px;
-    height: 14px;
-    padding: 0;
-    border-radius: 0;
-    background: none;
-  }
-
-  .tria-btn-arrow--inline {
-    gap: 8px;
-  }
-
-  .tria-btn-arrow--inline .tria-btn-arrow path {
-    stroke-width: 1.5;
-  }
-
-  .tria-btn--outline .tria-btn-arrow,
-  .tria-btn--ghost .tria-btn-arrow {
-    background-color: color-mix(in srgb, var(--accent), transparent 82%);
-  }
-
-  .tria-btn-arrow--inline.tria-btn--outline .tria-btn-arrow,
-  .tria-btn-arrow--inline.tria-btn--ghost .tria-btn-arrow {
-    background: none;
-  }
-
-  .tria-btn:hover .tria-btn-arrow {
-    transform: translateX(6px);
-    background-color: rgba(255, 255, 255, 0.25);
-  }
-
-  .tria-btn:hover .tria-btn-arrow--inline .tria-btn-arrow {
-    background: none;
-  }
-
-  .tria-btn--arrow-left:hover .tria-btn-arrow {
-    transform: translateX(-6px);
-  }
-
-  /* ── Force white text on hover for ALL variants ── */
-  .tria-btn:hover,
-  .tria-btn:hover .tria-btn-text,
-  .tria-btn:hover .tria-btn-arrow,
-  .tria-btn:hover .tria-btn-arrow path {
-    color: #fff !important;
-    stroke: #fff !important;
-  }
-
-  .tria-btn-arrow--inline.tria-btn:hover .tria-btn-arrow,
-  .tria-btn-arrow--inline.tria-btn:hover .tria-btn-arrow path {
-    stroke: #fff !important;
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255,255,255,0.15);
   }
 
   /* ── Focus ── */
@@ -312,22 +272,54 @@ for (const [key, val] of Object.entries(Astro.props)) {
   /* ── Disabled ── */
   .tria-btn:disabled,
   .tria-btn[aria-disabled="true"] {
-    opacity: 0.5;
+    opacity: 0.4;
     cursor: not-allowed;
     pointer-events: none;
   }
 
+  /* ── Icon-only (circular) ── */
+  .tria-btn--icon-only {
+    padding: 0;
+    border-radius: 50%;
+    justify-content: center;
+  }
+  .tria-btn--icon-only.tria-btn--xs {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+  }
+  .tria-btn--icon-only.tria-btn--sm {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+  }
+  .tria-btn--icon-only.tria-btn--md {
+    width: 52px;
+    height: 52px;
+    padding: 0;
+  }
+  .tria-btn--icon-only.tria-btn--lg {
+    width: 60px;
+    height: 60px;
+    padding: 0;
+  }
+  .tria-btn--icon-only :slotted(svg) {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    display: block;
+  }
+
   /* ── Responsive ── */
   @media (max-width: 576px) {
-    .tria-btn--md { height: 56px; padding: 0 1.75rem; font-size: 0.8rem; }
-    .tria-btn--lg { height: 62px; padding: 0 2rem; font-size: 0.85rem; }
-    .tria-btn--xs { height: 34px; padding: 0 1rem; }
-    .tria-btn--sm { height: 42px; padding: 0 1.25rem; }
+    .tria-btn--md { height: 48px; padding: 0 1.5rem; }
+    .tria-btn--lg { height: 54px; padding: 0 1.75rem; font-size: 0.78rem; }
+    .tria-btn--xs { height: 32px; padding: 0 0.75rem; }
+    .tria-btn--sm { height: 40px; padding: 0 1rem; }
+    .tria-btn--icon-only.tria-btn--xs { width: 32px; height: 32px; }
   }
   @media (max-width: 400px) {
-    .tria-btn--md { height: 50px; padding: 0 1.25rem; font-size: 0.75rem; }
-    .tria-btn--lg { height: 54px; padding: 0 1.5rem; }
-    .tria-button { gap: 12px; }
-    .tria-btn-arrow { width: 28px; height: 28px; }
+    .tria-btn--md { height: 44px; padding: 0 1.25rem; }
+    .tria-btn--lg { height: 50px; padding: 0 1.5rem; }
   }
 </style>

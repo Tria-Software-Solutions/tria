@@ -53,7 +53,7 @@ const service = {
     }
   ],
 
-  processSuptitle: isEs ? "Nuestro Enfoque" : "Our Approach",
+  processSuptitle: isEs ? "Nuestro Proceso" : "Our Process",
   processTitle: isEs
     ? "Cómo <span class=\"tria-accent-text\">Aseguramos</span> tu Negocio"
     : "How We <span class=\"tria-accent-text\">Secure</span> Your Business",
@@ -73,7 +73,7 @@ const service = {
 };
 ---
 
-<Layout title={`Tria — ${isEs ? "Optimización & Seguridad" : "Optimization & Security"}`} description={service.heroDesc}>
+<Layout title={t("meta.serviceCybersecurity")} description={service.heroDesc}>
   <ServiceDetail service={service} />
 
   <Quote

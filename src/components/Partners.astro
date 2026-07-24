@@ -20,7 +20,7 @@ const full = repeat(partners, 6);
 ---
 
 <!-- partners -->
-<section data-section-theme="light" style={`padding: ${padding};`}>
+<section id="partners" class="tria-partners-section" data-section-theme="light" style={`padding: ${padding};`}>
   <div class="tria-tech-marquee tria-up">
     <div class="tria-tech-marquee-inner">
       <div class="tria-marquee-row tria-marquee-row--right">
@@ -38,6 +38,19 @@ const full = repeat(partners, 6);
 <!-- partners end -->
 
 <style>
+  .tria-partners-section {
+    background: #faf8f5;
+    position: relative;
+  }
+
+  .tria-partners-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(6,142,140,0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
   .tria-tech-marquee {
     margin-top: 8px;
     padding-bottom: 0;

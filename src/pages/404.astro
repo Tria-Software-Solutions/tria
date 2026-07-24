@@ -6,7 +6,7 @@ import { createT } from "../i18n/utils";
 const t = createT(Astro.currentLocale);
 ---
 
-<Layout title={t("meta.title")} description={t("meta.description")}>
+<Layout title={t("meta.404Title")} description={t("meta.404Desc")}>
   <section class="page-hero" data-section-theme="dark">
     <div class="page-hero-bg">
       <div class="page-hero-bg-dots"></div>
@@ -27,7 +27,7 @@ const t = createT(Astro.currentLocale);
         <p class="tria-404-sub" data-i18n="404.subtitle">{t("404.subtitle")}</p>
         <div class="tria-404-line"></div>
         <div class="tria-404-links">
-          <Button text={t("404.cta")} href="/" variant="primary" showArrow={true} />
+          <Button text={t("404.cta")} href="/" variant="primary" showArrow={true} arrowStyle="inline" size="sm" />
           <a href="/portfolio" class="tria-404-alt-link">
             <span data-i18n="404.altLink">{t("404.altLink")}</span>
             <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>

@@ -6,14 +6,72 @@ import SiteFooter from "../components/SiteFooter.astro";
 import { createT } from "../i18n/utils";
 const t = createT(Astro.currentLocale);
 const sendingText = t('contact.form.sending');
+
+const serviceGroups = [
+  {
+    categoryKey: 'contact.form.svcCat.digital',
+    services: [
+      { value: 'website', key: 'contact.form.service.website' },
+      { value: 'webapp', key: 'contact.form.service.webapp' },
+      { value: 'mobile', key: 'contact.form.service.mobile' },
+      { value: 'desktop', key: 'contact.form.service.desktop' },
+      { value: 'ecommerce', key: 'contact.form.service.ecommerce' },
+    ],
+  },
+  {
+    categoryKey: 'contact.form.svcCat.backend',
+    services: [
+      { value: 'api', key: 'contact.form.service.api' },
+      { value: 'microservices', key: 'contact.form.service.microservices' },
+      { value: 'database', key: 'contact.form.service.database' },
+      { value: 'legacy', key: 'contact.form.service.legacy' },
+    ],
+  },
+  {
+    categoryKey: 'contact.form.svcCat.cloud',
+    services: [
+      { value: 'cloudMigration', key: 'contact.form.service.cloudMigration' },
+      { value: 'kubernetes', key: 'contact.form.service.kubernetes' },
+      { value: 'cicd', key: 'contact.form.service.cicd' },
+      { value: 'iac', key: 'contact.form.service.iac' },
+    ],
+  },
+  {
+    categoryKey: 'contact.form.svcCat.ai',
+    services: [
+      { value: 'chatbot', key: 'contact.form.service.chatbot' },
+      { value: 'llm', key: 'contact.form.service.llm' },
+      { value: 'automation', key: 'contact.form.service.automation' },
+      { value: 'computerVision', key: 'contact.form.service.computerVision' },
+      { value: 'dataPipeline', key: 'contact.form.service.dataPipeline' },
+    ],
+  },
+  {
+    categoryKey: 'contact.form.svcCat.security',
+    services: [
+      { value: 'securityAudit', key: 'contact.form.service.securityAudit' },
+      { value: 'pentest', key: 'contact.form.service.pentest' },
+      { value: 'compliance', key: 'contact.form.service.compliance' },
+      { value: 'incidentResponse', key: 'contact.form.service.incidentResponse' },
+    ],
+  },
+  {
+    categoryKey: 'contact.form.svcCat.advisory',
+    services: [
+      { value: 'techStrategy', key: 'contact.form.service.techStrategy' },
+      { value: 'architectureReview', key: 'contact.form.service.architectureReview' },
+      { value: 'codeAudit', key: 'contact.form.service.codeAudit' },
+    ],
+  },
+];
 ---
 
-<Layout title="Tria — Software Solutions" description="Start a project with tria. Get in touch with our team to discuss your software needs.">
+<Layout title={t("meta.contactTitle")} description={t("meta.contactDesc")}>
 
   <PageBanner suptitleKey="contact.getInTouch" headingKey="contact.letsBuild" descriptionKey="contact.heroSub" />
 
   <!-- contact form - white, frameless -->
-  <section class="tria-cf-section" data-section-theme="light" style="position:relative;">
+  <section id="contact-form" class="tria-cf-section" data-section-theme="light" style="position:relative;">
     <div class="tria-ambient-temp">
       <div class="tria-at-glow-1"></div>
       <div class="tria-at-glow-3"></div>
@@ -21,7 +79,7 @@ const sendingText = t('contact.form.sending');
     <div class="container tria-p-120-120">
       <div class="row">
         <div class="col-lg-7">
-          <span class="tria-suptitle tria-up" data-i18n="contact.suptitle">{t("contact.suptitle")}</span>
+          <span class="tria-suptitle tria-suptitle-dark tria-up" data-i18n="contact.suptitle">{t("contact.suptitle")}</span>
           <h2 class="tria-up tria-cf-heading" data-i18n-html="contact.heading" set:html={t("contact.heading")} />
           <p class="tria-cf-hero-desc tria-up" data-i18n="contact.heroSub">{t("contact.heroSub")}</p>
         </div>
@@ -57,41 +115,41 @@ const sendingText = t('contact.form.sending');
                     <svg class="tria-dd-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
                   </button>
                   <div class="tria-dd-menu">
-                    <div class="tria-dd-option" data-value="under-10k" role="option">
+                    <div class="tria-dd-option" data-value="website" role="option">
                       <div class="tria-dd-opt-main">
-                        <span class="tria-dd-opt-label" data-i18n="contact.form.option.under10k">{t("contact.form.option.under10k")}</span>
+                        <span class="tria-dd-opt-label" data-i18n="contact.form.option.website">{t("contact.form.option.website")}</span>
                         <span class="tria-dd-opt-check">
                           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
                         </span>
                       </div>
-                      <span class="tria-dd-opt-desc" data-i18n="contact.form.dropdown.under10k">{t("contact.form.dropdown.under10k")}</span>
+                      <span class="tria-dd-opt-desc" data-i18n="contact.form.dropdown.website">{t("contact.form.dropdown.website")}</span>
                     </div>
-                    <div class="tria-dd-option" data-value="10k-50k" role="option">
+                    <div class="tria-dd-option" data-value="webapp" role="option">
                       <div class="tria-dd-opt-main">
-                        <span class="tria-dd-opt-label" data-i18n="contact.form.option.10k50k">{t("contact.form.option.10k50k")}</span>
+                        <span class="tria-dd-opt-label" data-i18n="contact.form.option.webapp">{t("contact.form.option.webapp")}</span>
                         <span class="tria-dd-opt-check">
                           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
                         </span>
                       </div>
-                      <span class="tria-dd-opt-desc" data-i18n="contact.form.dropdown.10k50k">{t("contact.form.dropdown.10k50k")}</span>
+                      <span class="tria-dd-opt-desc" data-i18n="contact.form.dropdown.webapp">{t("contact.form.dropdown.webapp")}</span>
                     </div>
-                    <div class="tria-dd-option" data-value="50k-150k" role="option">
+                    <div class="tria-dd-option" data-value="backend" role="option">
                       <div class="tria-dd-opt-main">
-                        <span class="tria-dd-opt-label" data-i18n="contact.form.option.50k150k">{t("contact.form.option.50k150k")}</span>
+                        <span class="tria-dd-opt-label" data-i18n="contact.form.option.backend">{t("contact.form.option.backend")}</span>
                         <span class="tria-dd-opt-check">
                           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
                         </span>
                       </div>
-                      <span class="tria-dd-opt-desc" data-i18n="contact.form.dropdown.50k150k">{t("contact.form.dropdown.50k150k")}</span>
+                      <span class="tria-dd-opt-desc" data-i18n="contact.form.dropdown.backend">{t("contact.form.dropdown.backend")}</span>
                     </div>
-                    <div class="tria-dd-option" data-value="150k-plus" role="option">
+                    <div class="tria-dd-option" data-value="enterprise" role="option">
                       <div class="tria-dd-opt-main">
-                        <span class="tria-dd-opt-label" data-i18n="contact.form.option.150kPlus">{t("contact.form.option.150kPlus")}</span>
+                        <span class="tria-dd-opt-label" data-i18n="contact.form.option.enterprise">{t("contact.form.option.enterprise")}</span>
                         <span class="tria-dd-opt-check">
                           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
                         </span>
                       </div>
-                      <span class="tria-dd-opt-desc" data-i18n="contact.form.dropdown.150kPlus">{t("contact.form.dropdown.150kPlus")}</span>
+                      <span class="tria-dd-opt-desc" data-i18n="contact.form.dropdown.enterprise">{t("contact.form.dropdown.enterprise")}</span>
                     </div>
                     <div class="tria-dd-divider"></div>
                     <div class="tria-dd-option" data-value="tbd" role="option">
@@ -111,28 +169,32 @@ const sendingText = t('contact.form.sending');
 
         <div class="tria-cf-group">
           <label class="tria-cf-label" data-i18n="contact.form.label.services">{t("contact.form.label.services")}</label>
-          <div class="tria-cf-chips">
-            <label class="tria-cf-chip">
-              <input type="checkbox" name="services" value="software" />
-              <span data-i18n="contact.form.chip.software">{t("contact.form.chip.software")}</span>
-            </label>
-            <label class="tria-cf-chip">
-              <input type="checkbox" name="services" value="cloud" />
-              <span data-i18n="contact.form.chip.cloud">{t("contact.form.chip.cloud")}</span>
-            </label>
-            <label class="tria-cf-chip">
-              <input type="checkbox" name="services" value="ai" />
-              <span data-i18n="contact.form.chip.ai">{t("contact.form.chip.ai")}</span>
-            </label>
-            <label class="tria-cf-chip">
-              <input type="checkbox" name="services" value="security" />
-              <span data-i18n="contact.form.chip.security">{t("contact.form.chip.security")}</span>
-            </label>
-            <label class="tria-cf-chip">
-              <input type="checkbox" name="services" value="advisory" />
-              <span data-i18n="contact.form.chip.advisory">{t("contact.form.chip.advisory")}</span>
-            </label>
+          <!-- Multi-select grouped dropdown for services -->
+          <div class="tria-svdd" id="cf-services-dd">
+            <button class="tria-svdd-trigger" type="button">
+              <span class="tria-svdd-label" data-i18n="contact.form.servicesPlaceholder">{t("contact.form.servicesPlaceholder")}</span>
+              <span class="tria-svdd-count" style="display:none;"></span>
+              <svg class="tria-svdd-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="tria-svdd-menu">
+              {serviceGroups.map((group) => (
+                <>
+                  <div class="tria-svdd-group-label" data-i18n={group.categoryKey}>{t(group.categoryKey)}</div>
+                  {group.services.map((svc) => (
+                    <div class="tria-svdd-option" data-value={svc.value} role="option">
+                      <div class="tria-svdd-opt-main">
+                        <span class="tria-svdd-opt-label" data-i18n={svc.key}>{t(svc.key)}</span>
+                        <span class="tria-svdd-opt-check">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </>
+              ))}
+            </div>
           </div>
+          <input type="hidden" id="cf-services" name="services" value="" />
         </div>
 
         <div class="tria-cf-group">
@@ -140,7 +202,7 @@ const sendingText = t('contact.form.sending');
           <textarea class="tria-cf-input tria-cf-textarea" id="cf-message" name="message" data-i18n-placeholder="contact.form.placeholder.message" placeholder={t("contact.form.placeholder.message")} rows="6" required></textarea>
         </div>
 
-        <Button text={t("contact.form.submit")} showArrow={true} fullWidth={true} id="cf-submit-btn" type="submit" />
+        <Button text={t("contact.form.submit")} showArrow={true} arrowStyle="inline" size="sm" fullWidth={true} id="cf-submit-btn" type="submit" />
 
         <p class="tria-cf-note" data-i18n="contact.form.note">{t("contact.form.note")}</p>
       </form>
@@ -149,21 +211,29 @@ const sendingText = t('contact.form.sending');
             <aside class="tria-cf-sidebar">
               <div class="tria-cfs-card">
                 <div class="tria-cfs-card-icon">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                  <i class="ti ti-message-2"></i>
                 </div>
                 <h4 class="tria-cfs-card-title" data-i18n="contact.sidebar.direct">{t("contact.sidebar.direct")}</h4>
                 <a href="mailto:hola@triacr.com" class="tria-cfs-link">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4l-10 8L2 4"/></svg>
-                  hola@triacr.com
+                  <i class="ti ti-mail"></i>
+                  {t("footer.contactLink")}
                 </a>
-                <a href="tel:+50662164040" class="tria-cfs-link">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                  +506 6216 4040
+                <a href="mailto:support@triacr.com" class="tria-cfs-link">
+                  <i class="ti ti-headset"></i>
+                  {t("footer.supportLink")}
+                </a>
+                <a href="mailto:sales@triacr.com" class="tria-cfs-link">
+                  <i class="ti ti-briefcase"></i>
+                  {t("footer.salesLink")}
+                </a>
+                <a href="https://wa.me/50662164040" class="tria-cfs-link" target="_blank" rel="noopener noreferrer">
+                  <i class="ti ti-brand-whatsapp"></i>
+                  {t("contact.sidebar.whatsapp")}
                 </a>
               </div>
               <div class="tria-cfs-card">
                 <div class="tria-cfs-card-icon">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                  <i class="ti ti-clock"></i>
                 </div>
                 <h4 class="tria-cfs-card-title" data-i18n="contact.sidebar.response">{t("contact.sidebar.response")}</h4>
                 <p class="tria-cfs-card-desc" data-i18n="contact.sidebar.responseDesc">{t("contact.sidebar.responseDesc")}</p>
@@ -175,7 +245,7 @@ const sendingText = t('contact.form.sending');
               <!-- Location -->
               <div class="tria-cfs-card">
                 <div class="tria-cfs-card-icon">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  <i class="ti ti-map-pin"></i>
                 </div>
                 <h4 class="tria-cfs-card-label-sm" data-i18n="contact.info.location">{t("contact.info.location")}</h4>
                 <p class="tria-cfs-card-value-sm" set:html={t("contact.info.locationValue")} />
@@ -185,7 +255,7 @@ const sendingText = t('contact.form.sending');
         </div> <!-- /row tria-cf-main-row -->
 
       <div class="tria-cf-success" id="triaFormSuccess" style="display:none;">
-        <div class="tria-cfs-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></div>
+        <div class="tria-cfs-icon"><i class="ti ti-check"></i></div>
         <h4 data-i18n="contact.form.success.title">{t("contact.form.success.title")}</h4>
         <p data-i18n="contact.form.success.text">{t("contact.form.success.text")}</p>
       </div>
@@ -206,12 +276,8 @@ const sendingText = t('contact.form.sending');
   .tria-cf-section {
     background: #fff;
     position: relative;
-  }
-  .tria-cf-section .tria-suptitle::before {
+  }  .tria-cf-section .tria-suptitle-dark::before {
     background-color: rgba(0,0,0,0.1);
-  }
-  .tria-cf-section .tria-suptitle {
-    color: rgba(0,0,0,0.4);
   }
 
   .tria-cf-heading {
@@ -470,14 +536,6 @@ const sendingText = t('contact.form.sending');
     border-radius: 20px;
     padding: 28px 26px;
     background: #fff;
-    transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-                box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .tria-cfs-card:hover {
-    border-color: rgba(6,142,140,0.12);
-    transform: translateY(-3px);
-    box-shadow: 0 12px 32px rgba(0,0,0,0.04);
   }
 
   .tria-cfs-card-icon {
@@ -490,14 +548,6 @@ const sendingText = t('contact.form.sending');
     margin-bottom: 16px;
     background: rgba(6,142,140,0.07);
     color: var(--accent);
-    transition: background 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .tria-cfs-card:hover .tria-cfs-card-icon {
-    background: var(--accent);
-    color: #fff;
-    transform: translateY(-2px);
   }
 
   .tria-cfs-card-title {
@@ -517,19 +567,17 @@ const sendingText = t('contact.form.sending');
     color: rgba(0,0,0,0.55);
     text-decoration: none;
     padding: 6px 0;
-    transition: color 0.3s ease, gap 0.3s ease;
   }
-  .tria-cfs-link:hover {
-    color: var(--accent);
-    gap: 14px;
-  }
-  .tria-cfs-link svg {
+  .tria-cfs-link .ti {
     flex-shrink: 0;
     opacity: 0.4;
-    transition: opacity 0.3s ease;
+    font-size: 1.05rem;
   }
-  .tria-cfs-link:hover svg {
-    opacity: 1;
+  .tria-cfs-card-icon .ti {
+    font-size: 1.25rem;
+  }
+  .tria-cfs-icon .ti {
+    font-size: 1.35rem;
   }
 
   .tria-cfs-card-desc {
@@ -559,36 +607,160 @@ const sendingText = t('contact.form.sending');
     letter-spacing: 0.04em;
   }
 
-  /* ── Service chips ── */
-  .tria-cf-chips {
+  /* ═══════════════════════════════════════
+     SERVICES MULTI-SELECT DROPDOWN
+     ═══════════════════════════════════════ */
+  .tria-svdd {
+    position: relative;
+    width: 100%;
+  }
+  .tria-svdd-trigger {
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
     gap: 8px;
-  }
-  .tria-cf-chip { cursor: pointer; }
-  .tria-cf-chip input { display: none; }
-  .tria-cf-chip span {
-    display: block;
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
-    padding: 10px 18px;
+    width: 100%;
+    height: 50px;
+    padding: 0 24px;
     border: 1px solid rgba(0,0,0,0.06);
-    border-radius: 30px;
-    color: rgba(0,0,0,0.45);
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    border-radius: 60px;
+    background: #f5f7f9;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 380;
+    color: rgba(0,0,0,0.2);
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    transition: border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                background 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    text-align: left;
   }
-  .tria-cf-chip input:checked + span {
+  .tria-svdd-trigger:hover {
+    border-color: rgba(0,0,0,0.12);
+  }
+  .tria-svdd--open .tria-svdd-trigger,
+  .tria-svdd-trigger:focus-visible {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 6px rgba(6,142,140,0.06), inset 0 0 0 1px rgba(6,142,140,0.05);
+    background: #fff;
+  }
+  .tria-svdd-chevron {
+    flex-shrink: 0;
+    color: rgba(0,0,0,0.2);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                color 0.3s ease;
+    margin-left: auto;
+  }
+  .tria-svdd--open .tria-svdd-chevron {
+    transform: rotate(180deg);
+    color: var(--accent);
+  }
+  .tria-svdd-label {
+    transition: color 0.3s ease;
+    flex: 1;
+  }
+  .tria-svdd-count {
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--accent);
+    background: rgba(6,142,140,0.08);
+    padding: 2px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  /* ── Dropdown menu ── */
+  .tria-svdd-menu {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 16px;
+    padding: 6px;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                visibility 0s 0.3s;
+    max-height: 360px;
+    overflow-y: auto;
+  }
+  .tria-svdd--open .tria-svdd-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* ── Category group label ── */
+  .tria-svdd-group-label {
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.2);
+    padding: 10px 14px 4px;
+    pointer-events: none;
+  }
+  .tria-svdd-group-label:not(:first-child) {
+    margin-top: 2px;
+    border-top: 1px solid rgba(0,0,0,0.04);
+  }
+
+  /* ── Service option ── */
+  .tria-svdd-option {
+    padding: 8px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  .tria-svdd-option:hover {
+    background: #f5f7f9;
+  }
+  .tria-svdd-option--selected {
+    background: rgba(6,142,140,0.06);
+  }
+  .tria-svdd-option--selected:hover {
+    background: rgba(6,142,140,0.10);
+  }
+
+  .tria-svdd-opt-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .tria-svdd-opt-label {
+    font-size: 0.82rem;
+    font-weight: 450;
+    color: #0b0d17;
+    letter-spacing: -0.01em;
+  }
+  .tria-svdd-opt-check {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid rgba(0,0,0,0.12);
+    color: transparent;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .tria-svdd-option--selected .tria-svdd-opt-check {
     background: var(--accent);
     border-color: var(--accent);
     color: #fff;
-  }
-  .tria-cf-chip:hover span {
-    border-color: rgba(0,0,0,0.15);
-    color: rgba(0,0,0,0.65);
-  }
-  .tria-cf-chip input:checked + span:hover {
-    background: #0a7a78;
-    border-color: #0a7a78;
   }
 
   .tria-cf-note {
@@ -625,12 +797,12 @@ const sendingText = t('contact.form.sending');
      SIDEBAR — location card
      ═══════════════════════════════════════ */
   .tria-cfs-card-label-sm {
-    font-size: 0.6rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(0,0,0,0.3);
-    margin-bottom: 8px;
-    font-weight: 500;
+    font-size: 0.78rem;
+    font-weight: 520;
+    color: #0b0d17;
+    margin: 0 0 12px;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
   }
   .tria-cfs-card-value-sm {
     font-size: 0.82rem;
@@ -718,12 +890,71 @@ const sendingText = t('contact.form.sending');
       });
 
       document.addEventListener('click', closeAll);
-      document.addEventListener('scroll', closeAll, { passive: true });
+    }
+
+    /* ── Multi-select Services Dropdown ── */
+    function initServicesDropdown() {
+      var dd = document.getElementById('cf-services-dd');
+      if (!dd) return;
+
+      var trigger = dd.querySelector('.tria-svdd-trigger');
+      var menu = dd.querySelector('.tria-svdd-menu');
+      var options = dd.querySelectorAll('.tria-svdd-option');
+      var hiddenInput = document.getElementById('cf-services');
+      var label = dd.querySelector('.tria-svdd-label');
+      var countEl = dd.querySelector('.tria-svdd-count');
+      var selected = new Set();
+
+      function updateLabel() {
+        var count = selected.size;
+        if (count === 0) {
+          label.style.display = '';
+          countEl.textContent = '';
+        } else {
+          label.style.display = 'none';
+          countEl.textContent = count + ' selected';
+          countEl.style.display = '';
+        }
+        hiddenInput.value = Array.from(selected).join(',');
+      }
+
+      function closeAll() {
+        document.querySelectorAll('.tria-svdd--open').forEach(function (d) {
+          d.classList.remove('tria-svdd--open');
+        });
+      }
+
+      trigger.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var isOpen = dd.classList.contains('tria-svdd--open');
+        closeAll();
+        if (!isOpen) {
+          dd.classList.add('tria-svdd--open');
+        }
+      });
+
+      options.forEach(function (opt) {
+        opt.addEventListener('click', function (e) {
+          e.stopPropagation();
+          var value = opt.getAttribute('data-value');
+          if (selected.has(value)) {
+            selected.delete(value);
+            opt.classList.remove('tria-svdd-option--selected');
+          } else {
+            selected.add(value);
+            opt.classList.add('tria-svdd-option--selected');
+          }
+          updateLabel();
+        });
+      });
+
+      document.addEventListener('click', closeAll);
     }
 
     function getServices() {
-      var checked = document.querySelectorAll('input[name="services"]:checked');
-      return Array.from(checked).map(function (cb) { return cb.value; });
+      var input = document.getElementById('cf-services');
+      if (!input || !input.value) return [];
+      return input.value.split(',').filter(Boolean);
     }
 
     function initForm() {
@@ -775,6 +1006,7 @@ const sendingText = t('contact.form.sending');
 
     function init() {
       initDropdown();
+      initServicesDropdown();
       initForm();
     }
 

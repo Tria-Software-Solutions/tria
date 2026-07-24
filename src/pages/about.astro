@@ -8,7 +8,7 @@ import { createT } from "../i18n/utils";
 const t = createT(Astro.currentLocale);
 ---
 
-<Layout title={t("meta.title")} description={t("meta.description")}>
+<Layout title={t("meta.aboutTitle")} description={t("meta.aboutDesc")}>
   <PageBanner suptitleKey="about.suptitleAlt" headingKey="about.title" descriptionKey="about.heroDesc" />
 
   <!-- about content — white frameless -->
@@ -39,7 +39,7 @@ const t = createT(Astro.currentLocale);
   </section>
 
   <!-- values — gray bg with cards like engagement models -->
-  <section class="tria-ab-values" data-section-theme="light">
+  <section id="values" class="tria-ab-values" data-section-theme="light">
     <div class="tria-dot-pattern"></div>
     <div class="tria-grain-overlay"></div>
     <div class="tria-ambient-temp">
@@ -63,7 +63,7 @@ const t = createT(Astro.currentLocale);
             <div class="tria-ab-value-card-icon">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
             </div>
-            <h4 class="tria-ab-value-card-title" data-i18n="about.value1Title">{t("about.value1Title")}</h4>
+            <h3 class="tria-ab-value-card-title" data-i18n="about.value1Title">{t("about.value1Title")}</h3>
             <p class="tria-ab-value-card-desc" data-i18n="about.value1Desc">{t("about.value1Desc")}</p>
           </div>
         </div>
@@ -72,7 +72,7 @@ const t = createT(Astro.currentLocale);
             <div class="tria-ab-value-card-icon">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
             </div>
-            <h4 class="tria-ab-value-card-title" data-i18n="about.value2Title">{t("about.value2Title")}</h4>
+            <h3 class="tria-ab-value-card-title" data-i18n="about.value2Title">{t("about.value2Title")}</h3>
             <p class="tria-ab-value-card-desc" data-i18n="about.value2Desc">{t("about.value2Desc")}</p>
           </div>
         </div>
@@ -81,7 +81,7 @@ const t = createT(Astro.currentLocale);
             <div class="tria-ab-value-card-icon">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9l-3 3 3 3"/><path d="M9 5l3-3 3 3"/><path d="M15 19l-3 3-3-3"/><path d="M19 9l3 3-3 3"/><path d="M2 12h20"/><path d="M12 2v20"/></svg>
             </div>
-            <h4 class="tria-ab-value-card-title" data-i18n="about.value3Title">{t("about.value3Title")}</h4>
+            <h3 class="tria-ab-value-card-title" data-i18n="about.value3Title">{t("about.value3Title")}</h3>
             <p class="tria-ab-value-card-desc" data-i18n="about.value3Desc">{t("about.value3Desc")}</p>
           </div>
         </div>
@@ -90,7 +90,7 @@ const t = createT(Astro.currentLocale);
             <div class="tria-ab-value-card-icon">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
             </div>
-            <h4 class="tria-ab-value-card-title" data-i18n="about.value4Title">{t("about.value4Title")}</h4>
+            <h3 class="tria-ab-value-card-title" data-i18n="about.value4Title">{t("about.value4Title")}</h3>
             <p class="tria-ab-value-card-desc" data-i18n="about.value4Desc">{t("about.value4Desc")}</p>
           </div>
         </div>

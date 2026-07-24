@@ -19,12 +19,14 @@ $(function () {
     ***************************/
   if (window.Lenis) {
     const lenis = new Lenis({
-      duration: 1.6,
-      easing: function (t) { return 1 - Math.pow(1 - t, 3) },
+      duration: 1.8,
+      easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)) },
       orientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 0.8,
-      touchMultiplier: 1.2,
+      smoothTouch: true,
+      wheelMultiplier: 0.7,
+      touchMultiplier: 1.0,
+      infinite: false,
     });
 
     function raf(time) {
@@ -32,6 +34,9 @@ $(function () {
       requestAnimationFrame(raf);
     }
     requestAnimationFrame(raf);
+
+    // Sync GSAP ScrollTrigger with Lenis — critical for smooth GSAP animations
+    lenis.on('scroll', ScrollTrigger.update);
 
     // Expose so animations can reference it
     window.triaLenis = lenis;
@@ -48,7 +53,12 @@ $(function () {
       var target = document.querySelector($(this).attr('href'));
       if (!target) return;
       var offset = $(window).width() < 1200 ? 90 : 0;
-      lenis.scrollTo(target, { offset: -offset, duration: 1.6 });
+      lenis.scrollTo(target, { offset: -offset, duration: 1.8 });
+    });
+
+    // Update the back-to-top button visibility on Lenis scroll
+    lenis.on('scroll', function (e) {
+      toggleBtt(e.animatedScroll || e.targetScroll || window.scrollY);
     });
 
     // Remove the old native smooth scroll handler since Lenis handles it
@@ -331,11 +341,7 @@ $(function () {
     });
   }
 
-  if (window.triaLenis) {
-    window.triaLenis.on('scroll', function (e) {
-      toggleBtt(e.animatedScroll || e.targetScroll || window.scrollY);
-    });
-  } else {
+  if (!window.triaLenis) {
     $(window).on('scroll', function () {
       toggleBtt(window.scrollY);
     });

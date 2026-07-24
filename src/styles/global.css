@@ -423,6 +423,39 @@ a:not(.tria-button):hover,
   color: var(--accent) !important;
 }
 
+/* ── Skip to main content link ── */
+.tria-skip-link {
+  position: fixed;
+  top: -100%;
+  left: 16px;
+  z-index: 10000;
+  padding: 12px 24px;
+  background: #068e8c;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border-radius: 0 0 8px 8px;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+.tria-skip-link:focus {
+  top: 0;
+  outline: 3px solid #068e8c;
+  outline-offset: 2px;
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 /* ── Selection ── */
 ::selection {
   background-color: rgba(var(--accent-rgb), 0.3);

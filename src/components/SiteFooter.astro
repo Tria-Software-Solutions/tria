@@ -35,12 +35,78 @@ const allServiceLinks = [
 
 const allProjectLinks = [
   { href: "/portfolio", label: t("nav.work") || "" },
-  { href: "/blog", label: t("nav.blog") || "Blog" },
   { href: "/contact", label: t("nav.contact") || "" }
 ];
 
 const serviceLinks = allServiceLinks.filter((link) => !isCurrent(link.href));
 const projectLinks = allProjectLinks.filter((link) => !isCurrent(link.href));
+
+/* ── Page sections for "On this page" column ── */
+
+function getPageSections(): { href: string; label: string }[] {
+  const p = barePath;
+  const sections: Record<string, { href: string; label: string }[]> = {
+    "/": [
+      { href: "/#services", label: t("nav.services") || "Services" },
+      { href: "/#featured", label: t("featured.title")?.replace(/<[^>]*>/g, "") || "Featured Work" },
+      { href: "/#process", label: t("process.title")?.replace(/<[^>]*>/g, "") || "Process" },
+      { href: "/#pricing", label: "Pricing" },
+      { href: "/#faq", label: "FAQ" }
+    ],
+    "/services": [
+      { href: "/services/#showcase", label: t("services.showcase.suptitle") || "Capabilities" },
+      { href: "/services/#engagement", label: t("services.engagement.suptitle") || "Engagement" }
+    ],
+    "/about": [
+      { href: "/about#values", label: t("about.valuesSuptitle") || "Values" },
+      { href: "/about#testimonials", label: "Testimonials" }
+    ],
+    "/team": [
+      { href: "/team#team", label: t("team.suptitle") || "Team" },
+      { href: "/team#culture", label: t("team.cultureSuptitle") || "Culture" }
+    ],
+    "/portfolio": [
+      { href: "/portfolio#projects", label: t("portfolio.suptitle") || "Projects" }
+    ],
+    "/contact": [
+      { href: "/contact#contact-form", label: t("contact.heading")?.replace(/<[^>]*>/g, "") || "Contact" },
+      { href: "/contact#location", label: t("contact.info.location") || "Location" }
+    ]
+  };
+  // Check service detail pages
+  if (p.startsWith("/services/software-dev")) {
+    return [
+      { href: "/services/software-dev#overview", label: "Overview" },
+      { href: "/services/software-dev#features", label: "Features" },
+      { href: "/services/software-dev#process", label: "Process" }
+    ];
+  }
+  if (p.startsWith("/services/cloud-devops")) {
+    return [
+      { href: "/services/cloud-devops#overview", label: "Overview" },
+      { href: "/services/cloud-devops#features", label: "Features" },
+      { href: "/services/cloud-devops#process", label: "Process" }
+    ];
+  }
+  if (p.startsWith("/services/ai-ml")) {
+    return [
+      { href: "/services/ai-ml#overview", label: "Overview" },
+      { href: "/services/ai-ml#features", label: "Features" },
+      { href: "/services/ai-ml#process", label: "Process" }
+    ];
+  }
+  if (p.startsWith("/services/cybersecurity")) {
+    return [
+      { href: "/services/cybersecurity#overview", label: "Overview" },
+      { href: "/services/cybersecurity#features", label: "Features" },
+      { href: "/services/cybersecurity#process", label: "Process" }
+    ];
+  }
+  return sections[p] || [];
+}
+
+const pageSections = getPageSections();
+const footerSectionsLabel = Astro.currentLocale === "es" ? "En esta página" : "On this page";
 
 const footerExploreLabel = t("nav.explore") || "";
 const footerServicesLabel = t("nav.services") || "";
@@ -66,6 +132,8 @@ const footerCopyright = t("footer.allRights")?.replace("{year}", String(new Date
   newsletterLabel={footerNewsletterLabel}
   newsletterPlaceholder={footerNewsletterPlaceholder}
   newsletterHeading={footerNewsletterHeading}
+  sectionsLabel={footerSectionsLabel}
+  pageSections={pageSections}
   exploreLinks={exploreLinks}
   serviceLinks={serviceLinks}
   projectLinks={projectLinks}

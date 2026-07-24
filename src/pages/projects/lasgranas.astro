@@ -7,14 +7,13 @@ import CTA from "../../components/CTA.astro";
 import SiteFooter from "../../components/SiteFooter.astro";
 import { createT } from "../../i18n/utils";
 const t = createT(Astro.currentLocale);
-const deepwikiUrl = "https://deepwiki.com/Tria-Building-Digital-Solutions/choferes";
-const deepwikiCta = Astro.currentLocale === "es" ? "Leer caso de estudio completo en DeepWiki" : "Read full case study on DeepWiki";
-const liveUrl = "https://choferesdealquiler.vercel.app";
+const githubCta = Astro.currentLocale === "es" ? "Ver en GitHub" : "View on GitHub";
+const liveUrl = "https://las-granas.vercel.app";
 const liveCta = Astro.currentLocale === "es" ? "Ver sitio en vivo" : "View Live Site";
 ---
 
-<Layout title={t("featured.project2Title")} description={t("featured.project2Desc")}>
-  <PageBanner suptitleKey="featured.project2Cat" headingKey="featured.project2Title" descriptionKey="featured.project2Desc" />
+<Layout title={t("featured.project7Title")} description={t("featured.project7Desc")}>
+  <PageBanner suptitleKey="featured.project7Cat" headingKey="featured.project7Title" descriptionKey="featured.project7Desc" />
 
   <!-- overview -->
   <section class="tria-project-section" data-section-theme="light">
@@ -28,51 +27,50 @@ const liveCta = Astro.currentLocale === "es" ? "Ver sitio en vivo" : "View Live 
       <div class="tria-project-overview-grid">
         <!-- Screenshot -->
         <div class="tria-project-visual tria-up">
-          <img src="/assets/img/featured/choferes.png" alt="Choferes de Alquiler app preview" class="tria-project-img" loading="lazy" />
+          <img src="/assets/img/featured/lasgranas.png" alt="Las Granas website preview" class="tria-project-img" loading="lazy" />
         </div>
         <!-- Content -->
         <div class="tria-project-content tria-up">
           <div class="tria-project-tags">
-            <span>Kubernetes</span>
-            <span>Python</span>
-            <span>OCR</span>
-            <span>RBAC</span>
-            <span>PostgreSQL</span>
+            <span>Astro</span>
+            <span>TypeScript</span>
+            <span>CSS</span>
+            <span>Responsive</span>
           </div>
           <h2 class="tria-project-title">Project Overview</h2>
-          <p class="tria-project-desc">{t("featured.project2Desc")}</p>
+          <p class="tria-project-desc">{t("featured.project7Desc")}</p>
 
           <div class="tria-project-stats">
             <div class="tria-project-stat">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8l6 6"/><path d="M4 14l4 4 6-6"/><circle cx="18" cy="6" r="3"/><path d="M6 5l4 4"/></svg>
               <div>
-                <div class="tria-project-stat-val">OCR</div>
-                <div class="tria-project-stat-lbl">Pipeline</div>
+                <div class="tria-project-stat-val">Bi</div>
+                <div class="tria-project-stat-lbl">Lingual</div>
               </div>
             </div>
             <div class="tria-project-stat">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
               <div>
-                <div class="tria-project-stat-val">Real</div>
-                <div class="tria-project-stat-lbl">Time</div>
+                <div class="tria-project-stat-val">SEO</div>
+                <div class="tria-project-stat-lbl">Optimized</div>
               </div>
             </div>
             <div class="tria-project-stat">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
               <div>
-                <div class="tria-project-stat-val">RBAC</div>
-                <div class="tria-project-stat-lbl">Security</div>
+                <div class="tria-project-stat-val">100</div>
+                <div class="tria-project-stat-lbl">Score</div>
               </div>
             </div>
           </div>
 
           <div class="tria-project-cta-wrap">
             <Button
-              href={deepwikiUrl}
+              href={liveUrl}
               variant="primary"
               color="#0b0d17"
               hoverColor="#068e8c"
-              text={deepwikiCta}
+              text={liveCta}
               showArrow
               arrowStyle="inline"
               size="sm"
@@ -80,10 +78,10 @@ const liveCta = Astro.currentLocale === "es" ? "Ver sitio en vivo" : "View Live 
               rel="noopener noreferrer"
             />
             <Button
-              href={liveUrl}
+              href="https://github.com/Tria-Software-Solutions/las_granas"
               variant="outline"
               color="#068e8c"
-              text={liveCta}
+              text={githubCta}
               showArrow
               arrowStyle="inline"
               size="sm"
@@ -115,21 +113,21 @@ const liveCta = Astro.currentLocale === "es" ? "Ver sitio en vivo" : "View Live 
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
           </div>
           <h4 class="tria-pd-title" data-i18n="project.challenge">{t("project.challenge")}</h4>
-          <p class="tria-pd-desc" data-i18n="choferes.challenge">{t("choferes.challenge")}</p>
+          <p class="tria-pd-desc" data-i18n="lasgranas.challenge">{t("lasgranas.challenge")}</p>
         </div>
         <div class="col-lg-4 tria-up">
           <div class="tria-pd-icon">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
           </div>
           <h4 class="tria-pd-title" data-i18n="project.approach">{t("project.approach")}</h4>
-          <p class="tria-pd-desc" data-i18n="choferes.approach">{t("choferes.approach")}</p>
+          <p class="tria-pd-desc" data-i18n="lasgranas.approach">{t("lasgranas.approach")}</p>
         </div>
         <div class="col-lg-4 tria-up">
           <div class="tria-pd-icon">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
           </div>
           <h4 class="tria-pd-title" data-i18n="project.result">{t("project.result")}</h4>
-          <p class="tria-pd-desc" data-i18n="choferes.result">{t("choferes.result")}</p>
+          <p class="tria-pd-desc" data-i18n="lasgranas.result">{t("lasgranas.result")}</p>
         </div>
       </div>
     </div>

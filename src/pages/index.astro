@@ -9,15 +9,15 @@ import Partners from "../components/Partners.astro";
 import CTA from "../components/CTA.astro";
 import Pricing from "../components/Pricing.astro";
 import Faq from "../components/Faq.astro";
-import Quote from "../components/Quote.astro";
+
 import SiteFooter from "../components/SiteFooter.astro";
 import { createT } from "../i18n/utils";
 const t = createT(Astro.currentLocale || 'en');
 ---
 
 <Layout
-  title="Tria — Software Solutions"
-  description="Software enterprise crafting digital solutions."
+  title={t("meta.homeTitle")}
+  description={t("meta.homeDesc")}
 >
   <Hero 
     title={t("hero.title") || ""}
@@ -27,8 +27,8 @@ const t = createT(Astro.currentLocale || 'en');
   />
   <Stats 
     stats={[
-      { value: 120, suffix: '+', label: t("stats.projectsLabel") || "" },
-      { value: 48, suffix: '+', label: t("stats.clientsLabel") || "" },
+      { value: 50, suffix: '+', label: t("stats.projectsLabel") || "" },
+      { value: 20, suffix: '+', label: t("stats.clientsLabel") || "" },
       { value: 7, suffix: '+', label: t("stats.yearsLabel") || "" },
       { value: 99, suffix: '%', label: t("stats.satisfactionLabel") || "" }
     ]}
@@ -98,7 +98,7 @@ const t = createT(Astro.currentLocale || 'en');
         category: t("featured.project6Cat") || "",
         title: t("featured.project6Title") || "",
         description: t("featured.project6Desc") || "",
-        href: "https://github.com/Tria-Software-Solutions/goalr",
+        href: "/projects/goalr",
         gradient: "linear-gradient(135deg, #0f0c29 0%, #1a1a3e 40%, #068e8c 100%)",
         tags: ["NestJS", "Next.js", "React", "PostgreSQL"],
         stat: "Monorepo",
@@ -109,7 +109,7 @@ const t = createT(Astro.currentLocale || 'en');
         category: t("featured.project7Cat") || "",
         title: t("featured.project7Title") || "",
         description: t("featured.project7Desc") || "",
-        href: "https://github.com/Tria-Software-Solutions/las_granas",
+        href: "/projects/lasgranas",
         gradient: "linear-gradient(135deg, #1a0a2e 0%, #2d1b4e 50%, #068e8c 100%)",
         tags: ["Next.js", "TypeScript", "Tailwind", "shadcn/ui"],
         stat: "B2B Trade",
@@ -120,7 +120,7 @@ const t = createT(Astro.currentLocale || 'en');
         category: t("featured.project5Cat") || "",
         title: t("featured.project5Title") || "",
         description: t("featured.project5Desc") || "",
-        href: "https://github.com/lmhq-94/fault_diagnosis",
+        href: "/projects/fault-diagnosis",
         gradient: "linear-gradient(135deg, #1a0a2e 0%, #2d1b4e 50%, #068e8c 100%)",
         tags: ["TypeScript", "Vite", "Tailwind", "jsPDF"],
         stat: "Root Cause",
@@ -131,15 +131,15 @@ const t = createT(Astro.currentLocale || 'en');
   />
   <Partners 
     partners={[
-      { logo: "/assets/img/partners/1.png", href: "#.", alt: "logo" },
-      { logo: "/assets/img/partners/2.png", href: "#.", alt: "logo" },
-      { logo: "/assets/img/partners/3.png", href: "#.", alt: "logo" },
-      { logo: "/assets/img/partners/4.png", href: "#.", alt: "logo" },
-      { logo: "/assets/img/partners/5.png", href: "#.", alt: "logo" },
-      { logo: "/assets/img/partners/6.png", href: "#.", alt: "logo" },
-      { logo: "/assets/img/partners/7.png", href: "#.", alt: "logo" },
-      { logo: "/assets/img/partners/8.png", href: "#.", alt: "logo" },
-      { logo: "/assets/img/partners/9.png", href: "#.", alt: "logo" },
+      { logo: "/assets/img/partners/1.png", href: "#.", alt: "Partner logo 1" },
+      { logo: "/assets/img/partners/2.png", href: "#.", alt: "Partner logo 2" },
+      { logo: "/assets/img/partners/3.png", href: "#.", alt: "Partner logo 3" },
+      { logo: "/assets/img/partners/4.png", href: "#.", alt: "Partner logo 4" },
+      { logo: "/assets/img/partners/5.png", href: "#.", alt: "Partner logo 5" },
+      { logo: "/assets/img/partners/6.png", href: "#.", alt: "Partner logo 6" },
+      { logo: "/assets/img/partners/7.png", href: "#.", alt: "Partner logo 7" },
+      { logo: "/assets/img/partners/8.png", href: "#.", alt: "Partner logo 8" },
+      { logo: "/assets/img/partners/9.png", href: "#.", alt: "Partner logo 9" },
     ]}
   />
   <Process 
@@ -201,38 +201,26 @@ const t = createT(Astro.currentLocale || 'en');
     plans={[
       {
         name: t("pricing.plan1Name") || "Starter",
-        price: t("pricing.plan1Price") || "$999",
+        price: t("pricing.plan1Price") || "$400",
         period: t("pricing.plan1Period") || "/project",
         description: t("pricing.plan1Desc") || "",
-        features: (() => {
-          const f1 = [t("pricing.plan1Feature1"), t("pricing.plan1Feature2"), t("pricing.plan1Feature3"), t("pricing.plan1Feature4"), t("pricing.plan1Feature5")].filter(Boolean);
-          return f1;
-        })(),
+        featureCategories: ['website', 'seoPerf', 'ecom', 'support'],
         buttonHref: "/contact"
       },
       {
         name: t("pricing.plan2Name") || "Professional",
-        price: t("pricing.plan2Price") || "$2,499",
+        price: t("pricing.plan2Price") || "$1,800",
         period: t("pricing.plan2Period") || "/project",
         description: t("pricing.plan2Desc") || "",
-        features: (() => {
-          const f1 = [t("pricing.plan1Feature1"), t("pricing.plan1Feature2"), t("pricing.plan1Feature3"), t("pricing.plan1Feature4"), t("pricing.plan1Feature5")].filter(Boolean);
-          const f2 = [t("pricing.plan2Feature1"), t("pricing.plan2Feature2"), t("pricing.plan2Feature3"), t("pricing.plan2Feature4"), t("pricing.plan2Feature5"), t("pricing.plan2Feature6")].filter(Boolean);
-          return [...f1, ...f2];
-        })(),
+        featureCategories: ['website', 'seoPerf', 'ecom', 'webApp', 'mobile', 'backend', 'desktop', 'support'],
         buttonHref: "/contact"
       },
       {
         name: t("pricing.plan3Name") || "Enterprise",
-        price: t("pricing.plan3Price") || "$4,999",
+        price: t("pricing.plan3Price") || "$2,500",
         period: t("pricing.plan3Period") || "/project",
         description: t("pricing.plan3Desc") || "",
-        features: (() => {
-          const f1 = [t("pricing.plan1Feature1"), t("pricing.plan1Feature2"), t("pricing.plan1Feature3"), t("pricing.plan1Feature4"), t("pricing.plan1Feature5")].filter(Boolean);
-          const f2 = [t("pricing.plan2Feature1"), t("pricing.plan2Feature2"), t("pricing.plan2Feature3"), t("pricing.plan2Feature4"), t("pricing.plan2Feature5"), t("pricing.plan2Feature6")].filter(Boolean);
-          const f3 = [t("pricing.plan3Feature1"), t("pricing.plan3Feature2"), t("pricing.plan3Feature3"), t("pricing.plan3Feature4"), t("pricing.plan3Feature5"), t("pricing.plan3Feature6"), t("pricing.plan3Feature7")].filter(Boolean);
-          return [...f1, ...f2, ...f3];
-        })(),
+        featureCategories: ['website', 'seoPerf', 'ecom', 'webApp', 'mobile', 'desktop', 'backend', 'aiAuto', 'devops', 'security', 'support'],
         buttonHref: "/contact"
       },
       {
@@ -240,28 +228,10 @@ const t = createT(Astro.currentLocale || 'en');
         price: t("pricing.plan4Price") || "Contact Us",
         period: t("pricing.plan4Period") || "",
         description: t("pricing.plan4Desc") || "",
-        features: [
-          t("pricing.plan4Feature1") || "",
-          t("pricing.plan4Feature2") || "",
-          t("pricing.plan4Feature3") || "",
-          t("pricing.plan4Feature4") || "",
-          t("pricing.plan4Feature5") || ""
-        ],
-        buttonText: "Contact Us",
+        featureCategories: [],
+        buttonText: t("pricing.plan4Button") || "Contact Us",
         buttonHref: "/contact"
       }
-    ]}
-  />
-  <Quote
-    heading={t("cotizacion.heading") || 'Get a <span class="tria-thin">Custom Quote</span>'}
-    description={t("cotizacion.description") || ""}
-    buttonText={t("cotizacion.buttonText") || "Request a Quote"}
-    buttonHref="/contact"
-    features={[
-      t("cotizacion.feature1") || "",
-      t("cotizacion.feature2") || "",
-      t("cotizacion.feature3") || "",
-      t("cotizacion.feature4") || ""
     ]}
   />
   <Faq

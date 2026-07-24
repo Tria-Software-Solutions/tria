@@ -7,7 +7,7 @@ import { createT } from "../i18n/utils";
 const t = createT(Astro.currentLocale);
 ---
 
-<Layout title={t("meta.title")} description={t("meta.description")}>
+<Layout title={t("meta.portfolioTitle")} description={t("meta.portfolioDesc")}>
 
   <PageBanner suptitleKey="portfolio.suptitle" headingKey="portfolio.title" descriptionKey="portfolio.desc" />
 
@@ -280,7 +280,11 @@ const t = createT(Astro.currentLocale);
     letter-spacing: 0.02em;
     transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     white-space: nowrap;
-    outline: none;
+  }
+
+  .tria-pf-filter-btn:focus-visible {
+    outline: 2px solid #068e8c;
+    outline-offset: 2px;
   }
 
   .tria-pf-filter-btn:hover {

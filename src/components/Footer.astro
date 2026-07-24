@@ -1,4 +1,6 @@
 ---
+import Button from "./Button.astro";
+
 interface FooterLink {
   href: string;
   label: string;
@@ -25,6 +27,8 @@ interface Props {
   servicesLabel?: string;
   projectsLabel?: string;
   contactLabel?: string;
+  sectionsLabel?: string;
+  pageSections?: FooterLink[];
   exploreLinks?: FooterLink[];
   serviceLinks?: FooterLink[];
   projectLinks?: FooterLink[];
@@ -48,6 +52,8 @@ const {
   servicesLabel,
   projectsLabel,
   contactLabel,
+  sectionsLabel,
+  pageSections = [],
   exploreLinks = [],
   serviceLinks = [],
   projectLinks = [],
@@ -87,9 +93,7 @@ const year = new Date().getFullYear();
                 aria-label="Email"
                 class="tria-footer-cta-input"
               />
-              <button type="submit" class="tria-footer-cta-btn">
-                <span>{newsletterButtonText}</span>
-              </button>
+              <Button text={newsletterButtonText} showArrow={true} size="sm" type="submit" />
             </div>
           </form>
         </div>
@@ -132,8 +136,23 @@ const year = new Date().getFullYear();
               </li>
             ))}
           </ul>
+          <!-- Useful links nested under Explore -->
+          {projectLinks.length > 0 && (
+            <div class="tria-footer-subsection">
+              <span class="tria-footer-label">{projectsLabel}</span>
+              <ul class="tria-footer-nav">
+                {projectLinks.map((link) => (
+                  <li>
+                    <a href={link.href} target={link.external ? "_blank" : undefined} rel={link.external ? "noopener noreferrer" : undefined}>{link.label}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       )}
+
+
 
       {serviceLinks.length > 0 && (
         <div class="tria-footer-col">
@@ -152,11 +171,12 @@ const year = new Date().getFullYear();
         </div>
       )}
 
-      {projectLinks.length > 0 && (
+      <!-- On this page — page-specific sections -->
+      {pageSections.length > 0 && (
         <div class="tria-footer-col">
-          {projectsLabel && <span class="tria-footer-label">{projectsLabel}</span>}
+          {sectionsLabel && <span class="tria-footer-label">{sectionsLabel}</span>}
           <ul class="tria-footer-nav">
-            {projectLinks.map((link) => (
+            {pageSections.map((link) => (
               <li>
                 <a href={link.href}>{link.label}</a>
               </li>
@@ -165,6 +185,7 @@ const year = new Date().getFullYear();
         </div>
       )}
 
+      <!-- Contact column - simple list -->
       {contactLinks.length > 0 && (
         <div class="tria-footer-col">
           {contactLabel && <span class="tria-footer-label">{contactLabel}</span>}
@@ -350,46 +371,14 @@ const year = new Date().getFullYear();
     letter-spacing: 0.01em;
   }
 
-  .tria-footer-cta-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    height: 46px;
-    padding: 0 28px;
-    background: var(--accent, #068e8c);
-    border: none;
-    border-radius: 60px;
-    color: #fff;
-    font-family: 'Outfit', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 550;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    cursor: pointer;
-    white-space: nowrap;
+  .tria-footer-cta-form-wrap :global(.tria-btn) {
     flex-shrink: 0;
-    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .tria-footer-cta-btn:hover {
-    background: #0a7a78;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 20px rgba(6, 142, 140, 0.2);
-  }
-
-  .tria-footer-cta-btn svg {
-    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .tria-footer-cta-btn:hover svg {
-    transform: translateX(4px);
   }
 
   /* ── Main grid ── */
   .tria-footer-grid {
     display: grid;
-    grid-template-columns: 1.8fr repeat(4, 1fr);
+    grid-template-columns: 1.8fr 1fr 1fr 1fr 1fr;
     gap: clamp(24px, 3vw, 48px);
     padding: 0 0 clamp(48px, 6vw, 64px);
     align-items: start;
@@ -404,6 +393,37 @@ const year = new Date().getFullYear();
     min-width: 0;
   }
 
+  /* ── Contact item (icon + label) ── */
+  .tria-footer-nav .tria-footer-contact-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.38);
+    text-decoration: none;
+    transition: color 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+  }
+
+  .tria-footer-nav .tria-footer-contact-item:hover {
+    color: #fff;
+    transform: translateY(-2px);
+  }
+
+  .tria-footer-nav .tria-footer-contact-item:hover .tria-footer-ci-icon {
+    color: var(--accent, #068e8c);
+  }
+
+  .tria-footer-ci-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    font-size: 1.05rem;
+    transition: color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    flex-shrink: 0;
+  }
+
   .tria-footer-logo {
     display: inline-flex;
     align-items: center;
@@ -413,11 +433,12 @@ const year = new Date().getFullYear();
     color: #fff;
     text-decoration: none;
     margin-bottom: 24px;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .tria-footer-logo:hover {
-    opacity: 0.85;
+    opacity: 0.8;
+    transform: translateY(-1px);
   }
 
   .tria-footer-logo-dot {
@@ -430,32 +451,6 @@ const year = new Date().getFullYear();
     color: rgba(255, 255, 255, 0.3);
     margin: 0 0 24px;
     max-width: 280px;
-  }
-
-  .tria-footer-contact-item {
-    display: inline-flex;
-    align-items: center;
-    gap: 40px;
-    font-size: 0.88rem;
-    color: rgba(255, 255, 255, 0.38);
-    text-decoration: none;
-    transition: color 0.3s ease;
-    position: relative;
-  }
-
-  .tria-footer-contact-item:hover {
-    color: #fff;
-  }
-
-  .tria-footer-contact-item:hover .tria-footer-ci-icon {
-    color: var(--accent, #068e8c);
-  }
-
-  .tria-footer-ci-icon {
-    font-size: 1.1rem;
-    width: 26px;
-    text-align: center;
-    transition: color 0.3s ease;
   }
 
   /* ── Social section (inside brand column) ── */
@@ -502,29 +497,17 @@ const year = new Date().getFullYear();
     line-height: 1.5;
     color: rgba(255, 255, 255, 0.38);
     text-decoration: none;
-    position: relative;
-    transition: color 0.3s ease;
-    padding-left: 0;
-  }
-
-  .tria-footer-nav a::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -2px;
-    width: 0;
-    height: 1px;
-    background: var(--accent, #068e8c);
-    transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .tria-footer-nav a:hover {
-    color: #fff;
-    padding-left: 4px;
+    color: rgba(255, 255, 255, 0.85);
   }
 
-  .tria-footer-nav a:hover::before {
-    width: 100%;
+  .tria-footer-subsection {
+    margin-top: 16px;
+    padding-top: 0;
+    border-top: none;
   }
 
   .tria-footer-social {
@@ -543,12 +526,13 @@ const year = new Date().getFullYear();
     font-size: 1.1rem;
     color: rgba(255, 255, 255, 0.3);
     text-decoration: none;
-    transition: color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: color 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     line-height: 1;
   }
 
   .tria-footer-social a:hover {
     color: var(--accent, #068e8c);
+    transform: translateY(-2px) scale(1.15);
   }
 
   /* ── Bottom bar ── */
@@ -587,16 +571,23 @@ const year = new Date().getFullYear();
     font-size: 0.75rem;
     color: rgba(255, 255, 255, 0.2);
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: color 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     letter-spacing: 0.02em;
   }
 
   .tria-footer-legal a:hover {
     color: var(--accent, #068e8c);
+    transform: translateY(-1px);
   }
 
 
   /* ── Responsive ── */
+  @media (max-width: 1100px) {
+    .tria-footer-grid {
+      grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr;
+    }
+  }
+
   @media (max-width: 991px) {
     .tria-footer-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -667,9 +658,5 @@ const year = new Date().getFullYear();
       align-items: flex-start;
       gap: 14px;
     }
-
-
   }
 </style>
-
-

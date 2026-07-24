@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import PageBanner from "../components/PageBanner.astro";
 import Button from "../components/Button.astro";
 import Quote from "../components/Quote.astro";
 import CTA from "../components/CTA.astro";
@@ -8,26 +9,8 @@ import { createT } from "../i18n/utils";
 const t = createT(Astro.currentLocale);
 ---
 
-<Layout title={t("meta.title")} description={t("meta.description")}>
-  <!-- hero -->
-  <section class="page-hero" data-section-theme="dark">
-    <div class="page-hero-bg">
-      <div class="page-hero-bg-dots"></div>
-      <div class="page-hero-orb page-hero-orb--1"></div>
-      <div class="page-hero-orb page-hero-orb--2"></div>
-      <div class="page-hero-gradient-overlay"></div>
-      <div class="tria-hero-grain"></div>
-      <div class="tria-ambient-temp">
-        <div class="tria-at-glow-1"></div>
-        <div class="tria-at-glow-2"></div>
-      </div>
-    </div>
-    <div class="container page-hero-inner">
-      <span class="tria-suptitle tria-light-soft tria-up" style="display:block;margin-bottom:24px;" data-i18n="services.hero.suptitle">{t("services.hero.suptitle")}</span>
-      <h1 class="page-hero-heading tria-up" data-i18n-html="services.hero.title" set:html={t("services.hero.title")} />
-      <p class="page-hero-sub tria-up" data-i18n="services.hero.desc" style="max-width:560px;">{t("services.hero.desc")}</p>
-    </div>
-  </section>
+<Layout title={t("meta.servicesTitle")} description={t("meta.servicesDesc")}>
+  <PageBanner suptitleKey="services.hero.suptitle" headingKey="services.hero.title" descriptionKey="services.hero.desc" />
 
   <!-- overview -->
   <section class="tria-sd-overview" data-section-theme="light">
@@ -159,7 +142,7 @@ const t = createT(Astro.currentLocale);
           <p class="tria-up tria-sd-cta-desc">
             Let's discuss how this service can help your business.
           </p>
-          <Button text="Let's Talk" href="/contact" showArrow={true} />
+          <Button text="Let's Talk" href="/contact" showArrow={true} arrowStyle="inline" size="sm" />
         </div>
       </div>
     </div>
