@@ -7,6 +7,12 @@ import { createT } from "../i18n/utils";
 const t = createT(Astro.currentLocale);
 const sendingText = t('contact.form.sending');
 const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
+const valRequired = t('contact.form.validation.required');
+const valEmail = t('contact.form.validation.email');
+const valBudget = t('contact.form.validation.budget');
+const valServices = t('contact.form.validation.services');
+const valMessage = t('contact.form.validation.message');
+const submitText = t('contact.form.submit');
 
 const serviceGroups = [
   {
@@ -67,7 +73,35 @@ const serviceGroups = [
 ];
 ---
 
-<Layout title={t("meta.contactTitle")} description={t("meta.contactDesc")}>
+<Layout title={t("meta.contactTitle")} description={t("meta.contactDesc")}
+  structuredData={{
+    "@type": "ContactPage",
+    name: "Contact Tria Software Solutions",
+    description: t("meta.contactDesc"),
+    mainEntity: {
+      "@type": "Organization",
+      name: "Tria Software Solutions",
+      email: "hola@triacr.com",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Atenas",
+        addressRegion: "Alajuela",
+        addressCountry: "CR",
+      },
+      contactPoint: [
+        {
+          "@type": "ContactPoint",
+          contactType: "sales",
+          email: "sales@triacr.com",
+        },
+        {
+          "@type": "ContactPoint",
+          contactType: "support",
+          email: "support@triacr.com",
+        },
+      ],
+    },
+  }}>
 
   <PageBanner suptitleKey="contact.getInTouch" headingKey="contact.letsBuild" descriptionKey="contact.heroSub" />
 
@@ -95,10 +129,12 @@ const serviceGroups = [
               <div class="tria-cf-group">
                 <label class="tria-cf-label" for="cf-name" data-i18n="contact.form.label.name">{t("contact.form.label.name")}</label>
                 <input class="tria-cf-input" type="text" id="cf-name" name="name" data-i18n-placeholder="contact.form.placeholder.name" placeholder={t("contact.form.placeholder.name")} required />
+                <span class="tria-cf-error" id="cf-name-error" role="alert"></span>
               </div>
               <div class="tria-cf-group">
                 <label class="tria-cf-label" for="cf-email" data-i18n="contact.form.label.email">{t("contact.form.label.email")}</label>
                 <input class="tria-cf-input" type="email" id="cf-email" name="email" data-i18n-placeholder="contact.form.placeholder.email" placeholder={t("contact.form.placeholder.email")} required />
+                <span class="tria-cf-error" id="cf-email-error" role="alert"></span>
               </div>
             </div>
 
@@ -165,6 +201,7 @@ const serviceGroups = [
                   </div>
                 </div>
                 <input type="hidden" id="cf-budget" name="budget" value="" />
+                <span class="tria-cf-error" id="cf-budget-error" role="alert"></span>
               </div>
             </div>
 
@@ -196,11 +233,18 @@ const serviceGroups = [
             </div>
           </div>
           <input type="hidden" id="cf-services" name="services" value="" />
+          <span class="tria-cf-error" id="cf-services-error" role="alert"></span>
         </div>
 
         <div class="tria-cf-group">
           <label class="tria-cf-label" for="cf-message" data-i18n="contact.form.label.message">{t("contact.form.label.message")}</label>
           <textarea class="tria-cf-input tria-cf-textarea" id="cf-message" name="message" data-i18n-placeholder="contact.form.placeholder.message" placeholder={t("contact.form.placeholder.message")} rows="6" required></textarea>
+          <span class="tria-cf-error" id="cf-message-error" role="alert"></span>
+        </div>
+
+        <div class="tria-cf-server-error" id="cf-server-error">
+          <h4 data-i18n="contact.form.error.title">{t("contact.form.error.title")}</h4>
+          <p data-i18n="contact.form.error.text">{t("contact.form.error.text")}</p>
         </div>
 
         <Button text={t("contact.form.submit")} showArrow={true} arrowStyle="inline" size="sm" fullWidth={true} id="cf-submit-btn" type="submit" />
@@ -215,15 +259,15 @@ const serviceGroups = [
                   <i class="ti ti-message-2"></i>
                 </div>
                 <h4 class="tria-cfs-card-title" data-i18n="contact.sidebar.direct">{t("contact.sidebar.direct")}</h4>
-                <a href="mailto:hola@triacr.com" class="tria-cfs-link">
+                <a class="tria-cfs-link" data-mailto="hola@triacr.com" tabindex="0">
                   <i class="ti ti-mail"></i>
                   {t("footer.contactLink")}
                 </a>
-                <a href="mailto:support@triacr.com" class="tria-cfs-link">
+                <a class="tria-cfs-link" data-mailto="support@triacr.com" tabindex="0">
                   <i class="ti ti-headset"></i>
                   {t("footer.supportLink")}
                 </a>
-                <a href="mailto:sales@triacr.com" class="tria-cfs-link">
+                <a class="tria-cfs-link" data-mailto="sales@triacr.com" tabindex="0">
                   <i class="ti ti-briefcase"></i>
                   {t("footer.salesLink")}
                 </a>
@@ -569,6 +613,9 @@ const serviceGroups = [
     text-decoration: none;
     padding: 6px 0;
   }
+  .tria-cfs-link {
+    cursor: pointer;
+  }
   .tria-cfs-link .ti {
     flex-shrink: 0;
     opacity: 0.4;
@@ -764,6 +811,77 @@ const serviceGroups = [
     color: #fff;
   }
 
+  /* ═══════════════════════════════════════
+     VALIDATION ERROR STATES
+     ═══════════════════════════════════════ */
+  .tria-cf-error {
+    display: block;
+    font-size: 0.68rem;
+    color: #e74c3c;
+    line-height: 1.4;
+    min-height: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                min-height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0;
+    padding: 0;
+  }
+  .tria-cf-error--visible {
+    max-height: 40px;
+    min-height: 18px;
+    opacity: 1;
+    padding: 4px 4px 0;
+  }
+
+  .tria-cf-input--error {
+    border-color: #e74c3c !important;
+    box-shadow: 0 0 0 6px rgba(231, 76, 60, 0.06), inset 0 0 0 1px rgba(231, 76, 60, 0.08) !important;
+    background: #fffdfa !important;
+  }
+  .tria-cf-input--error:focus {
+    border-color: #e74c3c !important;
+    box-shadow: 0 0 0 6px rgba(231, 76, 60, 0.10), inset 0 0 0 1px rgba(231, 76, 60, 0.10) !important;
+  }
+
+  /* ── Shake animation for form ── */
+  @keyframes tria-shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+    20%, 40%, 60%, 80% { transform: translateX(4px); }
+  }
+  .tria-cf-form--shake {
+    animation: tria-shake 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* ── Server error state ── */
+  .tria-cf-server-error {
+    text-align: center;
+    padding: 24px 20px;
+    margin-bottom: 24px;
+    border: 1px solid rgba(231, 76, 60, 0.15);
+    border-radius: 16px;
+    background: rgba(231, 76, 60, 0.03);
+    display: none;
+  }
+  .tria-cf-server-error--visible {
+    display: block;
+  }
+  .tria-cf-server-error h4 {
+    font-size: 0.85rem;
+    font-weight: 550;
+    color: #e74c3c;
+    margin: 0 0 6px;
+    letter-spacing: -0.01em;
+  }
+  .tria-cf-server-error p {
+    font-size: 0.78rem;
+    color: rgba(0,0,0,0.45);
+    margin: 0;
+    line-height: 1.5;
+  }
+
   .tria-cf-note {
     font-size: 0.7rem;
     color: rgba(0,0,0,0.3);
@@ -849,6 +967,12 @@ const serviceGroups = [
   (function () {
     var SENDING_TEXT = "{sendingText}";
     var TURNSTILE_SITE_KEY = "{turnstileSiteKey}";
+    var VAL_REQUIRED = "{valRequired}";
+    var VAL_EMAIL = "{valEmail}";
+    var VAL_BUDGET = "{valBudget}";
+    var VAL_SERVICES = "{valServices}";
+    var VAL_MESSAGE = "{valMessage}";
+    var SUBMIT_TEXT = "{submitText}";
 
     /* ── Load Cloudflare Turnstile ── */
     function loadTurnstile() {
@@ -992,6 +1116,84 @@ const serviceGroups = [
       document.addEventListener('click', closeAll);
     }
 
+    /* ═══════════════════════════════════════
+       VALIDATION HELPERS
+       ═══════════════════════════════════════ */
+
+    function clearFieldError(el) {
+      el.classList.remove('tria-cf-input--error');
+      var dd = el.closest('.tria-dd');
+      if (dd) dd.classList.remove('tria-dd--error');
+      var svdd = el.closest('.tria-svdd');
+      if (svdd) svdd.classList.remove('tria-svdd--error');
+      var errorEl = document.getElementById(el.id + '-error');
+      if (errorEl) {
+        errorEl.classList.remove('tria-cf-error--visible');
+        errorEl.textContent = '';
+      }
+    }
+
+    function showFieldError(el, message) {
+      el.classList.add('tria-cf-input--error');
+      var dd = el.closest('.tria-dd');
+      if (dd) dd.classList.add('tria-dd--error');
+      var svdd = el.closest('.tria-svdd');
+      if (svdd) svdd.classList.add('tria-svdd--error');
+      var errorEl = document.getElementById(el.id + '-error');
+      if (errorEl) {
+        errorEl.textContent = message;
+        // Force reflow to restart animation
+        void errorEl.offsetWidth;
+        errorEl.classList.add('tria-cf-error--visible');
+      }
+    }
+
+    function validateField(el) {
+      clearFieldError(el);
+
+      if (el.hasAttribute('required') && !el.value.trim()) {
+        showFieldError(el, VAL_REQUIRED);
+        return false;
+      }
+
+      if (el.type === 'email' && el.value.trim()) {
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(el.value.trim())) {
+          showFieldError(el, VAL_EMAIL);
+          return false;
+        }
+      }
+
+      if (el.id === 'cf-message' && el.value.trim()) {
+        if (el.value.trim().length < 20) {
+          showFieldError(el, VAL_MESSAGE);
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+    function validateAllFields() {
+      var valid = true;
+      var fields = [
+        document.getElementById('cf-name'),
+        document.getElementById('cf-email'),
+        document.getElementById('cf-budget'),
+        document.getElementById('cf-services'),
+        document.getElementById('cf-message'),
+      ];
+
+      fields.forEach(function (el) {
+        if (!el) return;
+        if (!validateField(el)) {
+          valid = false;
+        }
+      });
+
+      return valid;
+    }
+
     function getServices() {
       var input = document.getElementById('cf-services');
       if (!input || !input.value) return [];
@@ -1001,10 +1203,41 @@ const serviceGroups = [
     function initForm() {
       var form = document.getElementById('triaContactForm');
       var success = document.getElementById('triaFormSuccess');
+      var serverError = document.getElementById('cf-server-error');
       if (!form) return;
+
+      /* ── Real-time validation on blur and input ── */
+      var validateFields = ['cf-name', 'cf-email', 'cf-message'];
+      validateFields.forEach(function (id) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        el.addEventListener('blur', function () {
+          validateField(el);
+        });
+        el.addEventListener('input', function () {
+          if (el.classList.contains('tria-cf-input--error')) {
+            validateField(el);
+          }
+        });
+      });
 
       form.addEventListener('submit', function (e) {
         e.preventDefault();
+
+        // Clear server error
+        if (serverError) serverError.classList.remove('tria-cf-server-error--visible');
+
+        // Validate all fields
+        if (!validateAllFields()) {
+          // Shake form
+          form.classList.remove('tria-cf-form--shake');
+          void form.offsetWidth;
+          form.classList.add('tria-cf-form--shake');
+          // Focus first error field
+          var firstError = form.querySelector('.tria-cf-input--error');
+          if (firstError) firstError.focus({ preventScroll: true });
+          return;
+        }
 
         var btn = document.getElementById('cf-submit-btn');
         if (btn) {
@@ -1040,9 +1273,16 @@ const serviceGroups = [
           })
           .catch(function (err) {
             console.error('Jira ticket creation failed:', err);
-            // fallback: show success anyway so the user isn't left hanging
-            form.style.display = 'none';
-            if (success) success.style.display = 'block';
+            // Show server error feedback so the user knows what happened
+            if (serverError) {
+              serverError.classList.add('tria-cf-server-error--visible');
+            }
+            // Re-enable the button
+            if (btn) {
+              btn.disabled = false;
+              var btnSpan = btn.querySelector('span');
+              if (btnSpan) btnSpan.textContent = SUBMIT_TEXT;
+            }
           });
         });
       });

@@ -9,7 +9,16 @@ import { createT } from "../i18n/utils";
 const t = createT(Astro.currentLocale);
 ---
 
-<Layout title={t("meta.servicesTitle")} description={t("meta.servicesDesc")}>
+<Layout title={t("meta.servicesTitle")} description={t("meta.servicesDesc")}
+  structuredData={{
+    "@type": "CollectionPage",
+    name: "Tria Services Overview",
+    description: t("meta.servicesDesc"),
+    about: {
+      "@type": "Organization",
+      name: "Tria Software Solutions",
+    },
+  }}>
   <PageBanner suptitleKey="services.hero.suptitle" headingKey="services.hero.title" descriptionKey="services.hero.desc" />
 
   <!-- overview -->

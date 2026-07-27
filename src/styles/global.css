@@ -28,7 +28,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 /* tria brand — refined palette */
@@ -314,6 +314,18 @@ section[data-section-theme="light"] {
   background: linear-gradient(180deg, transparent 0%, rgba(var(--hero-r), var(--hero-g), var(--hero-b), 0.7) 70%, rgb(var(--hero-r), var(--hero-g), var(--hero-b)) 100%);
 }
 
+/* ── WebGL gradient container (used in all hero variants) ── */
+.tria-hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
 /* ── Hero grain overlay ── */
 .tria-hero-grain {
   position: absolute;
@@ -576,6 +588,23 @@ a:not(.tria-button):hover,
   }
 }
 
+/* ── Swup page transition animations ── */
+html.is-changing .transition-fade {
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+html.is-animating .transition-fade {
+  opacity: 0;
+  transform: translateY(12px);
+}
+html.is-leaving .transition-fade {
+  opacity: 0;
+  transform: translateY(-12px);
+}
+html.is-rendering .transition-fade {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* ── Smooth transitions for frame color switching ── */
 .tria-menu-btn span {
   transition: background 0.4s cubic-bezier(0, 0, 0.3642, 1),
@@ -800,6 +829,42 @@ a:not(.tria-button):hover,
 
 /* Prevent horizontal overflow on all devices */
 img, video, canvas, svg, iframe { max-width: 100%; height: auto; }
+
+img[src$=".svg"] {
+  aspect-ratio: auto;
+}
+
+/* ── Scroll-triggered animation initial states ── */
+.tria-up,
+.tria-slide-left,
+.tria-slide-right,
+.tria-blur-in {
+  will-change: transform, opacity, filter;
+}
+
+.tria-slide-left {
+  opacity: 0;
+}
+
+.tria-slide-right {
+  opacity: 0;
+}
+
+.tria-blur-in {
+  opacity: 0;
+}
+
+/* Disable scroll animations for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .tria-up,
+  .tria-slide-left,
+  .tria-slide-right,
+  .tria-blur-in {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
 
 /* ── Blog article typography ── */
 .tria-article {

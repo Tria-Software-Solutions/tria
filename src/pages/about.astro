@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import PageBanner from "../components/PageBanner.astro";
+import Stats from "../components/Stats.astro";
 import Testimonials from "../components/Testimonials.astro";
 import CTA from "../components/CTA.astro";
 import SiteFooter from "../components/SiteFooter.astro";
@@ -8,10 +9,38 @@ import { createT } from "../i18n/utils";
 const t = createT(Astro.currentLocale);
 ---
 
-<Layout title={t("meta.aboutTitle")} description={t("meta.aboutDesc")}>
+<Layout title={t("meta.aboutTitle")} description={t("meta.aboutDesc")}
+  structuredData={{
+    "@type": "AboutPage",
+    name: "About Tria Software Solutions",
+    description: t("meta.aboutDesc"),
+    mainContentOfPage: {
+      "@type": "WebPageElement",
+      about: {
+        "@type": "Organization",
+        name: "Tria Software Solutions",
+        foundingDate: "2018",
+        foundingLocation: "Atenas, Alajuela, Costa Rica",
+      },
+    },
+  }}>
   <PageBanner suptitleKey="about.suptitleAlt" headingKey="about.title" descriptionKey="about.heroDesc" />
 
-  <!-- about content — white frameless -->
+  <!-- ════════════════════════════════════
+       STATS
+       ════════════════════════════════════ -->
+  <Stats 
+    stats={[
+      { value: 50, suffix: '+', label: t("stats.projectsLabel") || "" },
+      { value: 20, suffix: '+', label: t("stats.clientsLabel") || "" },
+      { value: 7, suffix: '+', label: t("stats.yearsLabel") || "" },
+      { value: 99, suffix: '%', label: t("stats.satisfactionLabel") || "" }
+    ]}
+  />
+
+  <!-- ════════════════════════════════════
+       ABOUT CONTENT + MISSION
+       ════════════════════════════════════ -->
   <section class="tria-ab-section" data-section-theme="light">
     <div class="tria-ambient-temp">
       <div class="tria-at-glow-1"></div>
@@ -35,10 +64,22 @@ const t = createT(Astro.currentLocale);
           </div>
         </div>
       </div>
+
+      <!-- Mission -->
+      <div class="row justify-content-center tria-mt-120">
+        <div class="col-lg-8 text-center">
+          <span class="tria-suptitle tria-suptitle-dark tria-up" data-i18n="about.missionSuptitle">{t("about.missionSuptitle")}</span>
+          <h2 class="tria-up tria-ab-mission-title" data-i18n-html="about.missionTitle" set:html={t("about.missionTitle")} />
+          <p class="tria-up tria-ab-mission-text" data-i18n="about.missionDesc">{t("about.missionDesc")}</p>
+          <div class="tria-ab-mission-accent"></div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- values — gray bg with cards like engagement models -->
+  <!-- ════════════════════════════════════
+       VALUES — Gray bg with cards
+       ════════════════════════════════════ -->
   <section id="values" class="tria-ab-values" data-section-theme="light">
     <div class="tria-dot-pattern"></div>
     <div class="tria-grain-overlay"></div>
@@ -98,8 +139,249 @@ const t = createT(Astro.currentLocale);
     </div>
   </section>
 
-<Testimonials />
+  <!-- ════════════════════════════════════
+       HISTORY TIMELINE
+       ════════════════════════════════════ -->
+  <section id="history" class="tria-ab-history" data-section-theme="light">
+    <div class="container tria-p-120-120">
+      <div class="row tria-mb-60">
+        <div class="col-lg-6">
+          <span class="tria-suptitle tria-suptitle-dark tria-up" data-i18n="about.historySuptitle">{t("about.historySuptitle")}</span>
+          <h2 class="tria-up tria-ab-section-title" data-i18n-html="about.historyTitle" set:html={t("about.historyTitle")} />
+        </div>
+      </div>
 
+      <div class="tria-timeline">
+        <div class="tria-timeline-line"></div>
+        
+        <div class="tria-timeline-item tria-up">
+          <div class="tria-timeline-dot"></div>
+          <div class="tria-timeline-content">
+            <span class="tria-timeline-year" data-i18n="about.history1Year">{t("about.history1Year")}</span>
+            <h3 class="tria-timeline-title" data-i18n="about.history1Title">{t("about.history1Title")}</h3>
+            <p class="tria-timeline-desc" data-i18n="about.history1Desc">{t("about.history1Desc")}</p>
+          </div>
+        </div>
+
+        <div class="tria-timeline-item tria-up">
+          <div class="tria-timeline-dot"></div>
+          <div class="tria-timeline-content">
+            <span class="tria-timeline-year" data-i18n="about.history2Year">{t("about.history2Year")}</span>
+            <h3 class="tria-timeline-title" data-i18n="about.history2Title">{t("about.history2Title")}</h3>
+            <p class="tria-timeline-desc" data-i18n="about.history2Desc">{t("about.history2Desc")}</p>
+          </div>
+        </div>
+
+        <div class="tria-timeline-item tria-up">
+          <div class="tria-timeline-dot"></div>
+          <div class="tria-timeline-content">
+            <span class="tria-timeline-year" data-i18n="about.history3Year">{t("about.history3Year")}</span>
+            <h3 class="tria-timeline-title" data-i18n="about.history3Title">{t("about.history3Title")}</h3>
+            <p class="tria-timeline-desc" data-i18n="about.history3Desc">{t("about.history3Desc")}</p>
+          </div>
+        </div>
+
+        <div class="tria-timeline-item tria-up">
+          <div class="tria-timeline-dot"></div>
+          <div class="tria-timeline-content">
+            <span class="tria-timeline-year" data-i18n="about.history4Year">{t("about.history4Year")}</span>
+            <h3 class="tria-timeline-title" data-i18n="about.history4Title">{t("about.history4Title")}</h3>
+            <p class="tria-timeline-desc" data-i18n="about.history4Desc">{t("about.history4Desc")}</p>
+          </div>
+        </div>
+
+        <div class="tria-timeline-item tria-up">
+          <div class="tria-timeline-dot"></div>
+          <div class="tria-timeline-content">
+            <span class="tria-timeline-year" data-i18n="about.history5Year">{t("about.history5Year")}</span>
+            <h3 class="tria-timeline-title" data-i18n="about.history5Title">{t("about.history5Title")}</h3>
+            <p class="tria-timeline-desc" data-i18n="about.history5Desc">{t("about.history5Desc")}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+       DIFFERENTIATORS — Gray bg with cards
+       ════════════════════════════════════ -->
+  <section id="differentiators" class="tria-ab-diff" data-section-theme="light">
+    <div class="tria-dot-pattern"></div>
+    <div class="tria-grain-overlay"></div>
+    <div class="tria-ambient-temp">
+      <div class="tria-at-glow-1"></div>
+      <div class="tria-at-glow-3"></div>
+    </div>
+    <div class="container tria-p-120-120">
+      <div class="row tria-mb-60">
+        <div class="col-lg-6">
+          <span class="tria-suptitle tria-suptitle-dark tria-up" data-i18n="about.diffSuptitle">{t("about.diffSuptitle")}</span>
+          <h2 class="tria-up tria-ab-section-title" data-i18n-html="about.diffTitle" set:html={t("about.diffTitle")} />
+        </div>
+      </div>
+
+      <div class="row tria-ab-diff-grid">
+        <div class="col-md-6 tria-up tria-mb-30">
+          <div class="tria-ab-diff-card">
+            <div class="tria-ab-diff-number">01</div>
+            <h3 class="tria-ab-diff-title" data-i18n="about.diff1Title">{t("about.diff1Title")}</h3>
+            <p class="tria-ab-diff-desc" data-i18n="about.diff1Desc">{t("about.diff1Desc")}</p>
+          </div>
+        </div>
+        <div class="col-md-6 tria-up tria-mb-30">
+          <div class="tria-ab-diff-card">
+            <div class="tria-ab-diff-number">02</div>
+            <h3 class="tria-ab-diff-title" data-i18n="about.diff2Title">{t("about.diff2Title")}</h3>
+            <p class="tria-ab-diff-desc" data-i18n="about.diff2Desc">{t("about.diff2Desc")}</p>
+          </div>
+        </div>
+        <div class="col-md-6 tria-up tria-mb-30">
+          <div class="tria-ab-diff-card">
+            <div class="tria-ab-diff-number">03</div>
+            <h3 class="tria-ab-diff-title" data-i18n="about.diff3Title">{t("about.diff3Title")}</h3>
+            <p class="tria-ab-diff-desc" data-i18n="about.diff3Desc">{t("about.diff3Desc")}</p>
+          </div>
+        </div>
+        <div class="col-md-6 tria-up tria-mb-30">
+          <div class="tria-ab-diff-card">
+            <div class="tria-ab-diff-number">04</div>
+            <h3 class="tria-ab-diff-title" data-i18n="about.diff4Title">{t("about.diff4Title")}</h3>
+            <p class="tria-ab-diff-desc" data-i18n="about.diff4Desc">{t("about.diff4Desc")}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+       CULTURE — Gray bg with cards
+       ════════════════════════════════════ -->
+  <section id="culture" class="tria-ab-culture" data-section-theme="light">
+    <div class="tria-dot-pattern"></div>
+    <div class="tria-grain-overlay"></div>
+    <div class="tria-ambient-temp">
+      <div class="tria-at-glow-1"></div>
+      <div class="tria-at-glow-3"></div>
+    </div>
+    <div class="container tria-p-120-120">
+      <div class="row tria-mb-60">
+        <div class="col-lg-6">
+          <span class="tria-suptitle tria-suptitle-dark tria-up" data-i18n="team.cultureSuptitle">{t("team.cultureSuptitle")}</span>
+          <h2 class="tria-up tria-ab-section-title" data-i18n-html="team.cultureTitle" set:html={t("team.cultureTitle")} />
+        </div>
+      </div>
+      <div class="row tria-ab-culture-grid">
+        <div class="col-md-4 tria-up tria-mb-30">
+          <div class="tria-ab-culture-card">
+            <div class="tria-ab-culture-card-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><path d="M9 9h.01"/><path d="M15 9h.01"/></svg>
+            </div>
+            <h3 class="tria-ab-culture-card-title" data-i18n="team.culture1Title">{t("team.culture1Title")}</h3>
+            <p class="tria-ab-culture-card-desc" data-i18n="team.culture1Desc">{t("team.culture1Desc")}</p>
+          </div>
+        </div>
+        <div class="col-md-4 tria-up tria-mb-30">
+          <div class="tria-ab-culture-card">
+            <div class="tria-ab-culture-card-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
+            <h3 class="tria-ab-culture-card-title" data-i18n="team.culture2Title">{t("team.culture2Title")}</h3>
+            <p class="tria-ab-culture-card-desc" data-i18n="team.culture2Desc">{t("team.culture2Desc")}</p>
+          </div>
+        </div>
+        <div class="col-md-4 tria-up tria-mb-30">
+          <div class="tria-ab-culture-card">
+            <div class="tria-ab-culture-card-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3 class="tria-ab-culture-card-title" data-i18n="team.culture3Title">{t("team.culture3Title")}</h3>
+            <p class="tria-ab-culture-card-desc" data-i18n="team.culture3Desc">{t("team.culture3Desc")}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+       TEAM PHOTO + MEMBER CARDS
+       ════════════════════════════════════ -->
+  <section id="team" class="tria-ab-team-section" data-section-theme="light">
+    <div class="container tria-p-120-120">
+      <div class="row justify-content-center tria-mb-80">
+        <div class="col-lg-7 text-center">
+          <span class="tria-suptitle tria-suptitle-dark tria-up" data-i18n="about.teamSuptitle">{t("about.teamSuptitle")}</span>
+          <h2 class="tria-up tria-ab-section-title" data-i18n-html="about.teamTitle" set:html={t("about.teamTitle")} style="text-align:center;" />
+          <p class="tria-up tria-ab-team-desc" data-i18n="about.teamDesc">{t("about.teamDesc")}</p>
+        </div>
+      </div>
+      <!-- Member cards — exact copy of Team.astro pattern with glass overlay -->
+      <div class="row justify-content-center tria-ab-members-row">
+        <div class="col-md-6 col-lg-5 tria-up tria-mb-30">
+          <div class="tria-team-card">
+            <picture>
+              <source srcset="/assets/img/team/luis-herrera.avif" type="image/avif" />
+              <source srcset="/assets/img/team/luis-herrera.webp" type="image/webp" />
+              <img src="/assets/img/team/luis-herrera.jpeg" alt="Luis M. Herrera Q." loading="lazy" />
+            </picture>
+            <div class="tria-description">
+              <div class="tria-secrc-text">
+                <h5 class="tria-dark tria-mb-5" data-i18n="team.member1Name">{t("team.member1Name")}</h5>
+                <p class="tria-link tria-dark-soft tria-mb-10" data-i18n="team.role1">{t("team.role1")}</p>
+                <ul class="tria-social-icons tria-dark tria-center">
+                  <li>
+                    <a href="https://www.facebook.com/luisherreracr" target="_blank" aria-label="Facebook">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.instagram.com/luismigue_l" target="_blank" aria-label="Instagram">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-5 tria-up tria-mb-30">
+          <div class="tria-team-card">
+            <picture>
+              <source srcset="/assets/img/team/daniela-miranda.avif" type="image/avif" />
+              <source srcset="/assets/img/team/daniela-miranda.webp" type="image/webp" />
+              <img src="/assets/img/team/daniela-miranda.jpeg" alt="Daniela Miranda M." loading="lazy" />
+            </picture>
+            <div class="tria-description">
+              <div class="tria-secrc-text">
+                <h5 class="tria-dark tria-mb-5" data-i18n="team.member2Name">{t("team.member2Name")}</h5>
+                <p class="tria-link tria-dark-soft tria-mb-10" data-i18n="team.role2">{t("team.role2")}</p>
+                <ul class="tria-social-icons tria-dark tria-center">
+                  <li>
+                    <a href="https://facebook.com/danilumix" target="_blank" aria-label="Facebook">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.instagram.com/danilumix" target="_blank" aria-label="Instagram">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+       TESTIMONIALS
+       ════════════════════════════════════ -->
+  <Testimonials />
+
+  <!-- ════════════════════════════════════
+       CTA
+       ════════════════════════════════════ -->
   <CTA 
     heading={t("ctaAbout.heading") || ""}
     description={t("ctaAbout.desc") || ""}
@@ -175,7 +457,6 @@ const t = createT(Astro.currentLocale);
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-
   .tria-ab-visual {
     display: flex;
     align-items: center;
@@ -185,6 +466,41 @@ const t = createT(Astro.currentLocale);
     width: 100%;
     height: auto;
     display: block;
+  }
+
+  /* ── Mission ── */
+  .tria-mt-120 {
+    margin-top: 120px;
+  }
+
+  .tria-ab-mission-title {
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 450;
+    letter-spacing: -0.025em;
+    color: #0b0d17;
+    margin-top: 20px;
+    line-height: 1.15;
+  }
+  .tria-ab-mission-title .tria-thin {
+    color: rgba(0,0,0,0.2);
+    font-weight: 200;
+  }
+
+  .tria-ab-mission-text {
+    font-size: 1.05rem;
+    color: rgba(0, 0, 0, 0.55);
+    line-height: 1.85;
+    max-width: 680px;
+    margin: 28px auto 0;
+  }
+
+  .tria-ab-mission-accent {
+    width: 60px;
+    height: 3px;
+    background: var(--accent, #068e8c);
+    border-radius: 4px;
+    margin: 32px auto 0;
+    opacity: 0.4;
   }
 
   /* ═══════════════════════════════════════
@@ -252,7 +568,6 @@ const t = createT(Astro.currentLocale);
                 color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-
   .tria-ab-value-card-title {
     font-size: 1.1rem;
     font-weight: 450;
@@ -275,6 +590,398 @@ const t = createT(Astro.currentLocale);
   }
 
   /* ═══════════════════════════════════════
+     TIMELINE
+     ═══════════════════════════════════════ */
+  .tria-ab-history {
+    background: #ffffff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tria-timeline {
+    position: relative;
+    max-width: 720px;
+    margin: 0 auto;
+    padding-left: 40px;
+  }
+
+  .tria-timeline-line {
+    position: absolute;
+    left: 15px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, rgba(6,142,140,0.1), rgba(6,142,140,0.4), rgba(6,142,140,0.1));
+    border-radius: 4px;
+  }
+
+  .tria-timeline-item {
+    position: relative;
+    margin-bottom: 56px;
+    padding-left: 40px;
+  }
+  .tria-timeline-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .tria-timeline-dot {
+    position: absolute;
+    left: -33px;
+    top: 4px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--accent, #068e8c);
+    border: 3px solid #fff;
+    box-shadow: 0 0 0 3px rgba(6,142,140,0.15);
+    z-index: 1;
+  }
+
+  .tria-timeline-content {
+    background: #f8f9fb;
+    border: 1px solid rgba(0,0,0,0.04);
+    border-radius: 16px;
+    padding: 28px 32px;
+    transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .tria-timeline-content:hover {
+    border-color: rgba(6,142,140,0.12);
+    transform: translateX(4px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.03);
+  }
+
+  .tria-timeline-year {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent, #068e8c);
+    background: rgba(6,142,140,0.07);
+    padding: 4px 14px;
+    border-radius: 100px;
+    margin-bottom: 12px;
+  }
+
+  .tria-timeline-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #0b0d17;
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+
+  .tria-timeline-desc {
+    font-size: 0.85rem;
+    color: #777;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* ═══════════════════════════════════════
+     DIFFERENTIATORS — Gray bg
+     ═══════════════════════════════════════ */
+  .tria-ab-diff {
+    background: #f5f7f9;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tria-ab-diff-grid {
+    position: relative;
+    z-index: 1;
+  }
+
+  .tria-ab-diff-card {
+    border: 1px solid rgba(0,0,0,0.05);
+    border-radius: 20px;
+    padding: 40px 34px;
+    height: 100%;
+    background: #fff;
+    transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .tria-ab-diff-card:hover {
+    border-color: rgba(6,142,140,0.15);
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.04);
+  }
+
+  .tria-ab-diff-number {
+    font-size: 2rem;
+    font-weight: 200;
+    color: rgba(6,142,140,0.15);
+    line-height: 1;
+    margin-bottom: 16px;
+    letter-spacing: -0.04em;
+  }
+
+  .tria-ab-diff-title {
+    font-size: 1.1rem;
+    font-weight: 450;
+    color: #0b0d17;
+    margin-bottom: 14px;
+  }
+  .tria-ab-diff-card:hover .tria-ab-diff-title {
+    color: var(--accent);
+  }
+
+  .tria-ab-diff-desc {
+    font-size: 0.82rem;
+    color: #777;
+    line-height: 1.75;
+    margin: 0;
+    transition: color 0.3s ease;
+  }
+  .tria-ab-diff-card:hover .tria-ab-diff-desc {
+    color: #555;
+  }
+
+  /* ═══════════════════════════════════════
+     CULTURE — Gray bg with 3 cards
+     ═══════════════════════════════════════ */
+  .tria-ab-culture {
+    background: #f5f7f9;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tria-ab-culture-grid {
+    position: relative;
+    z-index: 1;
+  }
+
+  .tria-ab-culture-card {
+    border: 1px solid rgba(0,0,0,0.05);
+    border-radius: 20px;
+    padding: 44px 36px;
+    height: 100%;
+    background: #fff;
+    text-align: center;
+    transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .tria-ab-culture-card:hover {
+    border-color: rgba(6,142,140,0.15);
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.04);
+  }
+
+  .tria-ab-culture-card-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+    background: rgba(6,142,140,0.07);
+    color: var(--accent);
+    transition: background 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .tria-ab-culture-card-title {
+    font-size: 1.1rem;
+    font-weight: 450;
+    color: #0b0d17;
+    margin-bottom: 14px;
+  }
+  .tria-ab-culture-card:hover .tria-ab-culture-card-title {
+    color: var(--accent);
+  }
+
+  .tria-ab-culture-card-desc {
+    font-size: 0.82rem;
+    color: #777;
+    line-height: 1.75;
+    margin: 0;
+    transition: color 0.3s ease;
+  }
+  .tria-ab-culture-card:hover .tria-ab-culture-card-desc {
+    color: #555;
+  }
+
+  /* ═══════════════════════════════════════
+     TEAM PHOTO + MEMBER CARDS
+     ═══════════════════════════════════════ */
+  .tria-ab-team-section {
+    background: #ffffff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tria-ab-team-desc {
+    font-size: 0.95rem;
+    color: rgba(0, 0, 0, 0.5);
+    line-height: 1.75;
+    max-width: 520px;
+    margin: 16px auto 0;
+  }
+
+  /* ── Member cards — exact copy of Team.astro pattern ── */
+  .tria-ab-members-row {
+    margin-top: 80px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .tria-team-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .tria-team-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 30px 70px rgba(0,0,0,0.1);
+  }
+  .tria-team-card img {
+    border-radius: 16px;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    width: 100%;
+    display: block;
+  }
+  .tria-team-card:hover img {
+    transform: scale(1.05);
+  }
+
+  /* ── Modern glass overlay ── */
+  .tria-team-card .tria-description {
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    padding: 0;
+    display: flex;
+    align-items: flex-end;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    background: linear-gradient(
+      to top,
+      rgba(0,0,0,0.85) 0%,
+      rgba(0,0,0,0.4) 50%,
+      transparent 100%
+    );
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+  .tria-team-card:hover .tria-description {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .tria-team-card .tria-secrc-text {
+    padding: 30px 24px;
+    width: 100%;
+    transform: translateY(20px);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .tria-team-card:hover .tria-secrc-text {
+    transform: translateY(0);
+  }
+
+  .tria-team-card .tria-secrc-text h5 {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #fff;
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+    transform: translateY(12px);
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: 0.05s;
+  }
+  .tria-team-card:hover .tria-secrc-text h5 {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .tria-team-card .tria-secrc-text p.tria-link {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    text-decoration: none;
+    transform: translateY(12px);
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: 0.1s;
+  }
+  .tria-team-card:hover .tria-secrc-text p.tria-link {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .tria-team-card .tria-social-icons {
+    gap: 10px;
+    transform: translateY(12px);
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: 0.15s;
+  }
+  .tria-team-card:hover .tria-social-icons {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .tria-team-card .tria-social-icons li a {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.2);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    background: rgba(255,255,255,0.05);
+  }
+  .tria-team-card .tria-social-icons li a:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+    transform: translateY(-3px) scale(1.1);
+  }
+
+  /* ── Accent bar at bottom of card ── */
+  .tria-team-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    border-radius: 0 0 16px 16px;
+  }
+  .tria-team-card:hover::after {
+    transform: scaleX(1);
+  }
+
+  .tria-ab-team-section .tria-ab-section-title {
+    text-align: center;
+  }
+
+  .tria-mb-80 {
+    margin-bottom: 80px;
+  }
+
+  /* ═══════════════════════════════════════
      RESPONSIVE
      ═══════════════════════════════════════ */
   @media (max-width: 991px) {
@@ -282,10 +989,22 @@ const t = createT(Astro.currentLocale);
     .tria-ab-values-intro { margin-top: 0; }
     .tria-ab-value-card { margin-bottom: 24px; }
     .tria-ab-value-card:last-child { margin-bottom: 0; }
+    .tria-ab-diff-card { margin-bottom: 24px; }
+    .tria-ab-diff-card:last-child { margin-bottom: 0; }
+    .tria-ab-culture-card { margin-bottom: 24px; }
+    .tria-ab-culture-card:last-child { margin-bottom: 0; }
+    .tria-mt-120 { margin-top: 80px; }
+    .tria-ab-mission-text { font-size: 0.95rem; }
   }
 
   @media (max-width: 768px) {
     .tria-ab-value-card { padding: 32px 28px; }
+    .tria-ab-diff-card { padding: 32px 28px; }
+    .tria-timeline { padding-left: 30px; }
+    .tria-timeline-item { padding-left: 30px; }
+    .tria-timeline-dot { left: -25px; width: 12px; height: 12px; }
+    .tria-timeline-content { padding: 24px 24px; }
+    .tria-mb-80 { margin-bottom: 60px; }
   }
 
   @media (max-width: 576px) {
@@ -312,6 +1031,40 @@ const t = createT(Astro.currentLocale);
     }
     .tria-ab-section-title { font-size: 1.5rem; }
     .tria-ab-values-intro { font-size: 0.82rem; }
+
+    .tria-ab-diff-card {
+      padding: 28px 24px;
+      margin-bottom: 20px;
+    }
+    .tria-ab-diff-title { font-size: 1rem; }
+    .tria-ab-diff-desc { font-size: 0.78rem; }
+    .tria-ab-diff-number { font-size: 1.6rem; margin-bottom: 12px; }
+    .tria-ab-culture-card {
+      padding: 36px 28px;
+      margin-bottom: 20px;
+    }
+    .tria-ab-culture-card-title { font-size: 1rem; }
+    .tria-ab-culture-card-desc { font-size: 0.78rem; }
+    .tria-ab-culture-card-icon {
+      width: 40px; height: 40px;
+      border-radius: 12px;
+      margin-bottom: 18px;
+    }
+    .tria-ab-members-row { margin-top: 60px; }
+
+    .tria-timeline { padding-left: 24px; }
+    .tria-timeline-item { padding-left: 24px; margin-bottom: 40px; }
+    .tria-timeline-dot { left: -19px; width: 10px; height: 10px; }
+    .tria-timeline-content { padding: 20px 20px; border-radius: 14px; }
+    .tria-timeline-year { font-size: 0.7rem; }
+    .tria-timeline-title { font-size: 1rem; }
+    .tria-timeline-desc { font-size: 0.8rem; }
+
+    .tria-ab-mission-text { font-size: 0.88rem; }
+    .tria-mt-120 { margin-top: 60px; }
+    .tria-ab-mission-accent { margin-top: 24px; }
+    .tria-ab-team-desc { font-size: 0.88rem; }
+    .tria-mb-80 { margin-bottom: 40px; }
   }
 
   @media (max-width: 400px) {
@@ -323,5 +1076,37 @@ const t = createT(Astro.currentLocale);
     }
     .tria-ab-value-card-title { font-size: 0.9rem; }
     .tria-ab-value-card-desc { font-size: 0.72rem; }
+    .tria-ab-diff-card {
+      padding: 22px 18px;
+      margin-bottom: 16px;
+    }
+    .tria-ab-diff-title { font-size: 0.9rem; }
+    .tria-ab-diff-desc { font-size: 0.72rem; }
+    .tria-ab-diff-number { font-size: 1.4rem; }
+    .tria-ab-culture-card {
+      padding: 28px 22px;
+      margin-bottom: 16px;
+    }
+    .tria-ab-culture-card-title { font-size: 0.9rem; }
+    .tria-ab-culture-card-desc { font-size: 0.72rem; }
+    .tria-ab-culture-card-icon {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      margin-bottom: 14px;
+    }
+    .tria-ab-members-row { margin-top: 40px; }
+    .tria-team-card .tria-social-icons li a {
+      width: 30px;
+      height: 30px;
+      font-size: 10px;
+    }
+    .tria-team-card .tria-secrc-text {
+      padding: 24px 20px;
+    }
+    .tria-team-card .tria-secrc-text h5 {
+      font-size: 1rem;
+    }
+    .tria-timeline-item { margin-bottom: 32px; }
+    .tria-timeline-content { padding: 16px 16px; }
   }
 </style>

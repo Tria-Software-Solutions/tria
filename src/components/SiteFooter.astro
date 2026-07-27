@@ -12,7 +12,9 @@ const barePath = path.startsWith("/es") ? (path.replace(/^\/es/, "") || "/") : p
 const allExploreLinks = [
   { href: "/", label: t("nav.home") || "" },
   { href: "/about", label: t("nav.about") || "" },
-  { href: "/team", label: t("nav.team") || "" },
+  { href: "/services", label: t("nav.services") || "" },
+  { href: "/portfolio", label: t("nav.work") || "" },
+  { href: "/contact", label: t("nav.contact") || "" },
   { href: "/blog", label: t("nav.blog") || "Blog" }
 ];
 
@@ -34,13 +36,7 @@ const allServiceLinks = [
   { href: "/services/cybersecurity", label: t("nav.cybersecurity") || "" }
 ];
 
-const allProjectLinks = [
-  { href: "/portfolio", label: t("nav.work") || "" },
-  { href: "/contact", label: t("nav.contact") || "" }
-];
-
 const serviceLinks = allServiceLinks.filter((link) => !isCurrent(link.href));
-const projectLinks = allProjectLinks.filter((link) => !isCurrent(link.href));
 
 /* ── Page sections for "On this page" column ── */
 
@@ -60,11 +56,11 @@ function getPageSections(): { href: string; label: string }[] {
     ],
     "/about": [
       { href: "/about#values", label: t("about.valuesSuptitle") || "Values" },
+      { href: "/about#history", label: t("about.historySuptitle") || "Timeline" },
+      { href: "/about#differentiators", label: t("about.diffSuptitle") || "Why Tria" },
+      { href: "/about#culture", label: t("team.cultureSuptitle") || "Culture" },
+      { href: "/about#team", label: t("team.suptitle") || "Team" },
       { href: "/about#testimonials", label: "Testimonials" }
-    ],
-    "/team": [
-      { href: "/team#team", label: t("team.suptitle") || "Team" },
-      { href: "/team#culture", label: t("team.cultureSuptitle") || "Culture" }
     ],
     "/portfolio": [
       { href: "/portfolio#projects", label: t("portfolio.suptitle") || "Projects" }
@@ -115,7 +111,7 @@ const footerSectionsLabel = labelByLocale[Astro.currentLocale || "en"] || "On th
 
 const footerExploreLabel = t("nav.explore") || "";
 const footerServicesLabel = t("nav.services") || "";
-const footerProjectsLabel = t("nav.usefulLinks") || "";
+
 const footerContactLabel = t("nav.contactInfo") || "";
 const footerNewsletterLabel = t("footer.stayInLoop") || "";
 const footerNewsletterPlaceholder = t("footer.emailPlaceholder") || "";
@@ -132,7 +128,6 @@ const footerCopyright = t("footer.allRights")?.replace("{year}", String(new Date
   socialLabel={footerSocialLabel}
   exploreLabel={footerExploreLabel}
   servicesLabel={footerServicesLabel}
-  projectsLabel={footerProjectsLabel}
   contactLabel={footerContactLabel}
   newsletterLabel={footerNewsletterLabel}
   newsletterPlaceholder={footerNewsletterPlaceholder}
@@ -141,11 +136,10 @@ const footerCopyright = t("footer.allRights")?.replace("{year}", String(new Date
   pageSections={pageSections}
   exploreLinks={exploreLinks}
   serviceLinks={serviceLinks}
-  projectLinks={projectLinks}
   contactLinks={[
-    { href: "mailto:hola@triacr.com", label: t("footer.contactLink") || "", icon: "ti-mail" },
-    { href: "mailto:support@triacr.com", label: t("footer.supportLink") || "", icon: "ti-headset" },
-    { href: "mailto:sales@triacr.com", label: t("footer.salesLink") || "", icon: "ti-briefcase" }
+    { href: "#", label: t("footer.contactLink") || "", icon: "ti-mail", mailto: "hola@triacr.com" },
+    { href: "#", label: t("footer.supportLink") || "", icon: "ti-headset", mailto: "support@triacr.com" },
+    { href: "#", label: t("footer.salesLink") || "", icon: "ti-briefcase", mailto: "sales@triacr.com" }
   ]}
   socialLinks={[
     { href: "https://linkedin.com", label: "LinkedIn", icon: "ti ti-brand-linkedin" },

@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap");
-
 /* -------------------------------------------
 
 main
@@ -173,6 +171,11 @@ blockquote {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+/* Converted links (href removed to hide status bar preview) need explicit pointer cursor */
+a[data-href] {
+  cursor: pointer;
 }
 
 .tria-complex-title {
@@ -913,12 +916,32 @@ scrollbar
     border-radius: 12px;
   }
 
+  .tria-mobile-lang-btn {
+    position: relative;
+  }
+
+  .tria-mobile-lang-btn::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #fff;
+    border-radius: 2px;
+    -webkit-transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1), left 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1), left 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
   .tria-mobile-lang-btn.is-active {
     color: #fff;
     font-weight: 700;
   }
 
-
+  .tria-mobile-lang-btn.is-active::after {
+    width: 100%;
+    left: 0;
+  }
 
   .tria-mobile-lang-btn:hover {
     color: #fff;
@@ -1056,10 +1079,28 @@ scrollbar
   color: rgba(255, 255, 255, 0.8) !important;
 }
 
+.tria-frame .tria-frame-bottom .tria-frame-bottom-left .tria-lang-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 1px;
+  left: 50%;
+  width: 0;
+  height: 1.5px;
+  background: currentColor;
+  border-radius: 2px;
+  -webkit-transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 .tria-frame .tria-frame-bottom .tria-frame-bottom-left .tria-lang-btn.is-active {
   color: rgb(0, 0, 0);
   font-weight: 600;
   letter-spacing: 0.1em;
+}
+
+.tria-frame .tria-frame-bottom .tria-frame-bottom-left .tria-lang-btn.is-active::after {
+  width: calc(100% - 12px);
+  left: 6px;
 }
 
 .tria-frame .tria-frame-bottom .tria-frame-bottom-left .tria-lang-btn.is-active.tria-on-dark {

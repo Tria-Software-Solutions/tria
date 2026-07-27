@@ -19,13 +19,13 @@ $(function () {
     ***************************/
   if (window.Lenis) {
     const lenis = new Lenis({
-      duration: 1.8,
-      easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)) },
+      duration: 1.2,
+      easing: function (t) { return 1 - Math.pow(1 - t, 3) },
       orientation: 'vertical',
       smoothWheel: true,
       smoothTouch: true,
-      wheelMultiplier: 0.7,
-      touchMultiplier: 1.0,
+      wheelMultiplier: 0.8,
+      touchMultiplier: 0.5,
       infinite: false,
     });
 
@@ -41,10 +41,17 @@ $(function () {
     // Expose so animations can reference it
     window.triaLenis = lenis;
 
-    // GSAP + Lenis integration
+    // Pause Lenis during Swup page transitions to prevent scroll interference
+    document.addEventListener('swup:willReplaceContent', function () {
+      lenis.stop();
+    });
+
     document.addEventListener('swup:contentReplaced', function () {
       lenis.scrollTo(0, { immediate: true });
-      setTimeout(function () { ScrollTrigger.refresh(); }, 100);
+      setTimeout(function () {
+        ScrollTrigger.refresh();
+        lenis.start();
+      }, 100);
     });
 
     // Override anchor scroll to use Lenis
@@ -53,7 +60,7 @@ $(function () {
       var target = document.querySelector($(this).attr('href'));
       if (!target) return;
       var offset = $(window).width() < 1200 ? 90 : 0;
-      lenis.scrollTo(target, { offset: -offset, duration: 1.8 });
+      lenis.scrollTo(target, { offset: -offset, duration: 1.4 });
     });
 
     // Update the back-to-top button visibility on Lenis scroll
@@ -167,27 +174,11 @@ $(function () {
     {
       opacity: 0,
       ease: "sine",
-    },
-    "+=.2",
-  );
-  timeline.fromTo(
-    ".tria-up",
-    0.8,
-    {
-      opacity: 0,
-      y: 40,
-      scale: 0.98,
-      ease: "sine",
-    },
-    {
-      y: 0,
-      opacity: 1,
-      scale: 1,
       onComplete: function () {
         $(".tria-preloader").addClass("tria-hidden");
       },
     },
-    "-=1",
+    "+=.2",
   );
   /***************************
 
@@ -522,112 +513,219 @@ $(function () {
   }
   /***************************
 
-    scroll animations
+    scroll-triggered animations (fade-in, stagger, parallax, scale, rotate)
 
     ***************************/
 
-  const appearance = document.querySelectorAll(".tria-up");
+  function initScrollAnimations() {
+    // ── .tria-up: fade-in + slide-up (with auto-stagger for siblings) ──
+    var upElements = document.querySelectorAll(".tria-up");
+    if (upElements.length) {
+      // Group siblings that share the same parent for stagger effect
+      var parentGroups = [];
+      var seen = new Set();
+      upElements.forEach(function(el) {
+        if (el.classList.contains('tria-skip-gsap') || el.closest('.tria-preloader')) return;
+        var parent = el.parentElement;
+        if (!parent) return;
+        if (!seen.has(parent)) {
+          seen.add(parent);
+          parentGroups.push({ parent: parent, items: [el] });
+        } else {
+          var grp = parentGroups.filter(function(g) { return g.parent === parent; })[0];
+          if (grp) grp.items.push(el);
+        }
+      });
 
-  appearance.forEach((section) => {
-    // Skip elements already handled by Lenis or that should animate differently
-    if (section.classList.contains('tria-skip-gsap')) return;
-    gsap.fromTo(
-      section,
-      {
+      parentGroups.forEach(function(group) {
+        var items = group.items;
+        if (items.length > 1) {
+          // Stagger reveal for grid children
+          gsap.fromTo(items, {
+            opacity: 0,
+            y: 30,
+          }, {
+            y: 0,
+            opacity: 1,
+            duration: 0.6,
+            stagger: 0.08,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: group.parent,
+              toggleActions: "play none none none",
+              start: "top 88%",
+            },
+          });
+        } else {
+          // Single element
+          gsap.fromTo(items[0], {
+            opacity: 0,
+            y: 30,
+          }, {
+            y: 0,
+            opacity: 1,
+            duration: 0.7,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: items[0],
+              toggleActions: "play none none none",
+              start: "top 90%",
+            },
+          });
+        }
+      });
+    }
+
+    // ── .tria-slide-left: slide in from left ──
+    gsap.utils.toArray(".tria-slide-left").forEach(function(el) {
+      if (el.classList.contains('tria-skip-gsap')) return;
+      gsap.fromTo(el, {
         opacity: 0,
-        y: 30,
-      },
-      {
-        y: 0,
+        x: -40,
+      }, {
+        x: 0,
         opacity: 1,
         duration: 0.7,
-        ease: "power3.out",
+        ease: "power2.out",
         scrollTrigger: {
-          trigger: section,
-          toggleActions: "play none none reverse",
-          start: "top 90%",
+          trigger: el,
+          toggleActions: "play none none none",
+          start: "top 88%",
         },
-      },
-    );
-  });
+      });
+    });
 
-  const scaleImage = document.querySelectorAll(".tria-scale");
+    // ── .tria-slide-right: slide in from right ──
+    gsap.utils.toArray(".tria-slide-right").forEach(function(el) {
+      if (el.classList.contains('tria-skip-gsap')) return;
+      gsap.fromTo(el, {
+        opacity: 0,
+        x: 40,
+      }, {
+        x: 0,
+        opacity: 1,
+        duration: 0.7,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: el,
+          toggleActions: "play none none none",
+          start: "top 88%",
+        },
+      });
+    });
 
-  scaleImage.forEach((section) => {
-    var value1 = $(section).data("value-1");
-    var value2 = $(section).data("value-2");
-    gsap.fromTo(
-      section,
-      {
+    // ── .tria-blur-in: blur reveal ──
+    gsap.utils.toArray(".tria-blur-in").forEach(function(el) {
+      if (el.classList.contains('tria-skip-gsap')) return;
+      gsap.fromTo(el, {
+        opacity: 0,
+        filter: "blur(12px)",
+      }, {
+        opacity: 1,
+        filter: "blur(0px)",
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: el,
+          toggleActions: "play none none none",
+          start: "top 88%",
+        },
+      });
+    });
+
+    // ── .tria-scale: scale transform via data-value-1 / data-value-2 ──
+    gsap.utils.toArray(".tria-scale").forEach(function(el) {
+      var v1 = $(el).data("value-1");
+      var v2 = $(el).data("value-2");
+      if (v1 === undefined || v2 === undefined) return;
+      gsap.fromTo(el, {
+        scale: v1,
         ease: "sine",
-        scale: value1,
-      },
-      {
-        scale: value2,
+      }, {
+        scale: v2,
         scrollTrigger: {
-          trigger: section,
+          trigger: el,
           scrub: true,
-          toggleActions: "play none none reverse",
+          toggleActions: "play none none none",
         },
-      },
-    );
-  });
+      });
+    });
 
-  const parallaxImage = document.querySelectorAll(".tria-parallax");
-
-  if ($(window).width() > 960) {
-    parallaxImage.forEach((section) => {
-      var value1 = $(section).data("value-1");
-      var value2 = $(section).data("value-2");
-      gsap.fromTo(
-        section,
-        {
+    // ── .tria-parallax: parallax via data-value-1 / data-value-2 ──
+    if ($(window).width() > 960) {
+      gsap.utils.toArray(".tria-parallax").forEach(function(el) {
+        if (el.classList.contains('tria-skip-gsap')) return;
+        var v1 = $(el).data("value-1");
+        var v2 = $(el).data("value-2");
+        if (v1 === undefined || v2 === undefined) return;
+        gsap.fromTo(el, {
           ease: "sine",
-          y: value1,
-        },
-        {
-          y: value2,
+          y: v1,
+        }, {
+          y: v2,
           scrollTrigger: {
-            trigger: section,
+            trigger: el,
             scrub: true,
-            toggleActions: "play none none reverse",
+            toggleActions: "play none none none",
           },
+        });
+      });
+    }
+
+    // ── .tria-parallax-slow: gentle parallax (default 20% speed) ──
+    if ($(window).width() > 960) {
+      gsap.utils.toArray(".tria-parallax-slow").forEach(function(el) {
+        if (el.classList.contains('tria-skip-gsap')) return;
+        gsap.fromTo(el, {
+          y: 0,
+        }, {
+          y: function() { return -(el.offsetHeight * 0.15); },
+          ease: "sine",
+          scrollTrigger: {
+            trigger: el,
+            scrub: true,
+          },
+        });
+      });
+    }
+
+    // ── .tria-parallax-fast: more pronounced parallax (default 40% speed) ──
+    if ($(window).width() > 960) {
+      gsap.utils.toArray(".tria-parallax-fast").forEach(function(el) {
+        if (el.classList.contains('tria-skip-gsap')) return;
+        gsap.fromTo(el, {
+          y: 0,
+        }, {
+          y: function() { return -(el.offsetHeight * 0.4); },
+          ease: "sine",
+          scrollTrigger: {
+            trigger: el,
+            scrub: true,
+          },
+        });
+      });
+    }
+
+    // ── .tria-rotate: rotation via data-value ──
+    gsap.utils.toArray(".tria-rotate").forEach(function(el) {
+      var val = $(el).data("value");
+      if (val === undefined) return;
+      gsap.fromTo(el, {
+        rotate: 0,
+        ease: "sine",
+      }, {
+        rotate: val,
+        scrollTrigger: {
+          trigger: el,
+          scrub: true,
+          toggleActions: "play none none none",
         },
-      );
+      });
     });
   }
 
-  const rotate = document.querySelectorAll(".tria-rotate");
+  initScrollAnimations();
 
-  rotate.forEach((section) => {
-    var value = $(section).data("value");
-    gsap.fromTo(
-      section,
-      {
-        ease: "sine",
-        rotate: 0,
-      },
-      {
-        rotate: value,
-        scrollTrigger: {
-          trigger: section,
-          scrub: true,
-          toggleActions: "play none none reverse",
-        },
-      },
-    );
-  });
-  /***************************
-
-    fancybox
-
-    ***************************/
-  $('[data-fancybox="gallery"]').fancybox({
-    buttons: ["slideShow", "zoom", "fullScreen", "close"],
-    loop: false,
-    protect: true,
-  });
-  $.fancybox.defaults.hash = false;
   /***************************
 
     reviews slider
@@ -655,6 +753,10 @@ $(function () {
     speed: 800,
     effect: "fade",
     parallax: true,
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false,
+    },
     navigation: {
       nextEl: ".tria-revi-next",
       prevEl: ".tria-revi-prev",
@@ -973,111 +1075,11 @@ $(function () {
     });
     /***************************
 
-        scroll animations
+        scroll-triggered animations (re-init after page transition)
 
         ***************************/
+    initScrollAnimations();
 
-    const appearance = document.querySelectorAll(".tria-up");
-
-    appearance.forEach((section) => {
-      if (section.classList.contains('tria-skip-gsap')) return;
-      gsap.fromTo(
-        section,
-        {
-          opacity: 0,
-          y: 30,
-        },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.7,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: section,
-            toggleActions: "play none none reverse",
-            start: "top 90%",
-          },
-        },
-      );
-    });
-
-    const scaleImage = document.querySelectorAll(".tria-scale");
-
-    scaleImage.forEach((section) => {
-      var value1 = $(section).data("value-1");
-      var value2 = $(section).data("value-2");
-      gsap.fromTo(
-        section,
-        {
-          ease: "sine",
-          scale: value1,
-        },
-        {
-          scale: value2,
-          scrollTrigger: {
-            trigger: section,
-            scrub: true,
-            toggleActions: "play none none reverse",
-          },
-        },
-      );
-    });
-
-    const parallaxImage = document.querySelectorAll(".tria-parallax");
-
-    if ($(window).width() > 960) {
-      parallaxImage.forEach((section) => {
-        var value1 = $(section).data("value-1");
-        var value2 = $(section).data("value-2");
-        gsap.fromTo(
-          section,
-          {
-            ease: "sine",
-            y: value1,
-          },
-          {
-            y: value2,
-            scrollTrigger: {
-              trigger: section,
-              scrub: true,
-              toggleActions: "play none none reverse",
-            },
-          },
-        );
-      });
-    }
-
-    const rotate = document.querySelectorAll(".tria-rotate");
-
-    rotate.forEach((section) => {
-      var value = $(section).data("value");
-      gsap.fromTo(
-        section,
-        {
-          ease: "sine",
-          rotate: 0,
-        },
-        {
-          rotate: value,
-          scrollTrigger: {
-            trigger: section,
-            scrub: true,
-            toggleActions: "play none none reverse",
-          },
-        },
-      );
-    });
-    /***************************
-
-        fancybox
-
-        ***************************/
-    $('[data-fancybox="gallery"]').fancybox({
-      buttons: ["slideShow", "zoom", "fullScreen", "close"],
-      loop: false,
-      protect: true,
-    });
-    $.fancybox.defaults.hash = false;
     /***************************
 
         reviews slider
@@ -1105,6 +1107,10 @@ $(function () {
       speed: 800,
       effect: "fade",
       parallax: true,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+      },
       navigation: {
         nextEl: ".tria-revi-next",
         prevEl: ".tria-revi-prev",

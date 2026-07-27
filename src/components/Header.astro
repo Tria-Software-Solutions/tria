@@ -51,9 +51,14 @@ function isCurrentPage(href: string): boolean {
               <a href={lp("/services")} data-i18n="nav.services">{t("nav.services")}</a>
             </li>
           )}
-          {!isCurrentPage("/team") && (
+          {!isCurrentPage("/portfolio") && (
             <li>
-              <a href={lp("/team")} data-i18n="nav.team">{t("nav.team")}</a>
+              <a href={lp("/portfolio")} data-i18n="nav.work">{t("nav.work")}</a>
+            </li>
+          )}
+          {!isCurrentPage("/contact") && (
+            <li>
+              <a href={lp("/contact")} data-i18n="nav.contact">{t("nav.contact")}</a>
             </li>
           )}
           {!isCurrentPage("/blog") && (
@@ -87,12 +92,6 @@ function isCurrentPage(href: string): boolean {
       <div class="tria-menu-col">
         <div class="tria-menu-list-group">
           <span class="tria-menu-group-label" data-i18n="nav.usefulLinks">{t("nav.usefulLinks")}</span>
-          {!isCurrentPage("/portfolio") && (
-            <a href={lp("/portfolio")} data-i18n="nav.work">{t("nav.work")}</a>
-          )}
-          {!isCurrentPage("/contact") && (
-            <a href={lp("/contact")} data-i18n="nav.contact">{t("nav.contact")}</a>
-          )}
           <a href={lp("/privacy")} data-i18n="nav.privacyPolicy">{t("nav.privacyPolicy")}</a>
           <a href={lp("/terms")} data-i18n="nav.terms">{t("nav.terms")}</a>
           <a href={lp("/cookies")} data-i18n="nav.cookiePolicy">{t("nav.cookiePolicy")}</a>

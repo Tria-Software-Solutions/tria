@@ -6,11 +6,11 @@ import { createT } from "../i18n/utils";
 const t = createT(Astro.currentLocale);
 ---
 
-<Layout title={t("meta.404Title")} description={t("meta.404Desc")}>
+<Layout title={t("meta.500Title")} description={t("meta.500Desc")}>
   <ErrorPage
-    code="404"
-    titleKey="error.404title"
-    descriptionKey="error.404desc"
+    code="500"
+    titleKey="error.500title"
+    descriptionKey="error.500desc"
     searchPlaceholderKey="error.searchPlaceholder"
   />
   <SiteFooter />

@@ -16,9 +16,37 @@ const t = createT(Astro.currentLocale);
 const { post } = Astro.props;
 ---
 
-<Layout title={`${post.data.title} — tria`} description={post.data.description} pubDate={post.data.pubDate.toISOString()}>
+<Layout
+  title={`${post.data.title} — tria`}
+  description={post.data.description}
+  pubDate={post.data.pubDate.toISOString()}
+  ogImage={post.data.image}
+  structuredData={{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.data.title,
+    description: post.data.description,
+    image: post.data.image,
+    datePublished: post.data.pubDate.toISOString(),
+    author: {
+      "@type": "Organization",
+      name: "Tria Software Solutions",
+      url: "https://triacr.com",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Tria Software Solutions",
+      url: "https://triacr.com",
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://triacr.com${Astro.url.pathname}`,
+    },
+  }}>
   <section class="page-hero page-hero--secondary" data-section-theme="dark">
     <div class="page-hero-bg">
+      <!-- WebGL interactive gradient (canvas injected here) -->
+      <div class="tria-hero-bg" data-grad-props='{"color1":"#0f111a","color2":"#1a1d2e","color3":"#1a3538","timeSpeed":1.2,"warpStrength":0.6,"warpFrequency":4,"blendAngle":45,"rotationAmount":300,"noiseScale":1.5,"contrast":1.3,"saturation":0.5,"zoom":0.7,"centerY":-0.1}'></div>
       <div class="page-hero-bg-dots"></div>
       <div class="page-hero-orb page-hero-orb--1"></div>
       <div class="page-hero-orb page-hero-orb--2"></div>

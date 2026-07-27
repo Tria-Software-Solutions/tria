@@ -16,7 +16,17 @@ const totalPages = Math.ceil(allPosts.length / pageSize);
 const posts = allPosts.slice(0, pageSize);
 ---
 
-<Layout title={t("meta.blogTitle")} description={t("meta.blogDesc")}>
+<Layout title={t("meta.blogTitle")} description={t("meta.blogDesc")}
+  structuredData={{
+    "@type": "Blog",
+    name: "Tria Blog",
+    description: t("meta.blogDesc"),
+    publisher: {
+      "@type": "Organization",
+      name: "Tria Software Solutions",
+      url: "https://triacr.com",
+    },
+  }}>
   <PageBanner suptitleKey="blog.newsletter" headingKey="blog.popularPublications" descriptionKey="blog.heroDesc" />
 
   <section style="background:#fff;position:relative;">

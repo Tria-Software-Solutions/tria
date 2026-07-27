@@ -93,6 +93,9 @@ const combinedStructured = structuredData
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
+    <!-- Preload the critical woff2 font file for the default weight (400) -->
+    <link rel="preload" href="https://fonts.gstatic.com/s/outfit/v11/QGYvz_MVcBeNP4NJtEtqUYLknw.woff2" as="font" type="font/woff2" crossorigin />
+
     <meta name="description" content={description} />
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#0b0d17" />
@@ -120,6 +123,8 @@ const combinedStructured = structuredData
     <meta property="og:site_name" content={companyName} />
     {pubDate && <meta property="article:published_time" content={pubDate} />}
     {modifiedDate && <meta property="article:modified_time" content={modifiedDate} />}
+    {pubDate && <meta property="article:author" content="Tria Software Solutions" />}
+    {pubDate && <meta property="article:publisher" content="https://triacr.com" />}
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -136,13 +141,16 @@ const combinedStructured = structuredData
     <link rel="alternate icon" href="/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-    <!-- Preload critical fonts -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap" as="style" />
+    <!-- Load critical grid CSS synchronously (needed for layout) -->
     <link rel="stylesheet" href="/assets/css/vendor/bootstrap-grid.css" />
-    <link rel="stylesheet" href="/assets/css/vendor/swiper.min.css" />
-    <link rel="stylesheet" href="/assets/css/vendor/fancybox.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap" />
+
+    <!-- Defer non-critical CSS: swiper, tabler-icons, Google Fonts -->
+    <link rel="preload" href="/assets/css/vendor/swiper.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="/assets/css/vendor/swiper.min.css" /></noscript>
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" /></noscript>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap" /></noscript>
 
     <!-- Hide splash if already shown this session (runs before body renders) -->
     <script is:inline>
@@ -231,7 +239,9 @@ const combinedStructured = structuredData
 
       <!-- content -->
       <main class="tria-content" id="main-content">
-        <slot />
+        <div id="swup" class="transition-fade">
+          <slot />
+        </div>
       </main>
     </div>
     <!-- wrapper end -->
@@ -460,21 +470,142 @@ const combinedStructured = structuredData
         };
       })();
     </script>
-    <script is:inline src="/assets/js/vendor/jquery.min.js"></script>
-    <script is:inline src="/assets/js/vendor/swiper.min.js"></script>
-    <script is:inline src="/assets/js/vendor/fancybox.min.js"></script>
-    <script is:inline src="/assets/js/vendor/gsap.min.js"></script>
-    <script is:inline src="/assets/js/vendor/ScrollTrigger.min.js"></script>
-    <script is:inline src="/assets/js/vendor/ScrollTo.min.js"></script>
-    <script is:inline src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
-    <script is:inline src="/assets/js/tria-main.js"></script>
-    <script is:inline src="/assets/js/tria-i18n.js"></script>
+
+    <!-- Global link handler: hides browser status bar preview for all links (converts href → data-href) -->
+    <script is:inline>
+    (function() {
+      function navigate(href, target, el) {
+        if (!href) return;
+        // Handle download links (e.g. PDFs, images)
+        if (el && el.hasAttribute('download')) {
+          var tmp = document.createElement('a');
+          tmp.href = href;
+          tmp.download = el.getAttribute('download') || '';
+          tmp.click();
+          return;
+        }
+        if (target === '_blank') {
+          window.open(href, '_blank', 'noopener,noreferrer');
+        } else if (window.__swup && typeof window.__swup.navigate === 'function') {
+          window.__swup.navigate(href);
+        } else {
+          window.location.href = href;
+        }
+      }
+
+      function openMail(target) {
+        var addr = target.getAttribute('data-mailto');
+        if (addr) window.location.href = 'mailto:' + addr;
+      }
+
+      function hideLinkPreviews() {
+        document.querySelectorAll('a[href]').forEach(function(a) {
+          var href = a.getAttribute('href');
+          // Skip hash-only, mailto:, tel:, javascript: — they don't show external URLs
+          if (href === '#' || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:')) return;
+          a.setAttribute('data-href', href);
+          a.removeAttribute('href');
+          if (!a.hasAttribute('tabindex')) a.setAttribute('tabindex', '0');
+        });
+      }
+      window.hideLinkPreviews = hideLinkPreviews;
+      window.triaNavigate = navigate;
+
+      // Handle clicks: data-href (navigation) + data-mailto (mail)
+      document.addEventListener('click', function(e) {
+        var target = e.target.closest('[data-href]');
+        if (target) {
+          // Skip language switcher buttons — handled by tria-i18n.js (seamless Swup switching)
+          if (target.closest('[data-lang]')) return;
+          e.preventDefault();
+          navigate(target.getAttribute('data-href'), target.getAttribute('target'), target);
+          return;
+        }
+        target = e.target.closest('[data-mailto]');
+        if (target) {
+          e.preventDefault();
+          openMail(target);
+        }
+      });
+
+      // Handle keyboard: Enter/Space on data-href and data-mailto
+      document.addEventListener('keydown', function(e) {
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+        var target = e.target.closest('[data-href]');
+        if (target) {
+          e.preventDefault();
+          navigate(target.getAttribute('data-href'), target.getAttribute('target'), target);
+          return;
+        }
+        target = e.target.closest('[data-mailto]');
+        if (target) {
+          e.preventDefault();
+          openMail(target);
+        }
+      });
+
+      // Run conversion on load and after Swup page transitions
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', hideLinkPreviews);
+      } else {
+        hideLinkPreviews();
+      }
+      document.addEventListener('swup:contentReplaced', hideLinkPreviews);
+    })();
+    </script>
+    <!-- Defer non-critical vendor JS (loaded after initial render) -->
+    <script src="/assets/js/vendor/jquery.min.js" defer></script>
+    <script src="/assets/js/vendor/swiper.min.js" defer></script>
+    <script src="/assets/js/vendor/gsap.min.js" defer></script>
+    <script src="/assets/js/vendor/ScrollTrigger.min.js" defer></script>
+    <script src="/assets/js/vendor/ScrollTo.min.js" defer></script>
+    <script src="/assets/js/vendor/swup.min.js" defer></script>
+    <script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js" defer></script>
+    <script src="/assets/js/tria-main.js" defer></script>
+    <script src="/assets/js/tria-i18n.js" defer></script>
     <script>
     import { initGradient } from "../scripts/hero-gradient";
     window.__initHeroGradient = initGradient;
     if (document.querySelector(".tria-hero-bg") && window.__reinitHeroBg) {
       window.__reinitHeroBg();
     }
+    </script>
+
+    <!-- Swup initialization for smooth page transitions -->
+    <script is:inline>
+    (function() {
+      document.addEventListener('DOMContentLoaded', function() {
+        if (typeof Swup !== 'undefined' && !document.querySelector('html.swup-enabled')) {
+          var swup = new Swup({
+            containers: ['#swup'],
+            animateHistoryBrowsing: true,
+            cache: true,
+          });
+          window.__swup = swup;
+
+          // Reinitialize components after each page transition
+          swup.on('contentReplaced', function() {
+            // Clean up previous hero gradient (always — handles pages w/o gradient too)
+            if (window.__heroCleanup) {
+              try { window.__heroCleanup(); } catch(e) {}
+              window.__heroCleanup = null;
+            }
+            // Re-inject the data-href mechanism for new links
+            if (window.hideLinkPreviews) {
+              window.hideLinkPreviews();
+            }
+            // Re-apply i18n translations to new content
+            if (window.triaI18n && window.triaI18n.apply) {
+              window.triaI18n.apply();
+            }
+            // Initialize hero WebGL gradient on new page (if it has one)
+            if (window.__reinitHeroBg) {
+              window.__reinitHeroBg();
+            }
+          });
+        }
+      });
+    })();
     </script>
 
     <!-- Set sessionStorage flag after splash animation completes -->

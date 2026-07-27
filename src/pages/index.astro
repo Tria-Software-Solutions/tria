@@ -18,7 +18,21 @@ const t = createT(Astro.currentLocale || 'en');
 <Layout
   title={t("meta.homeTitle")}
   description={t("meta.homeDesc")}
->
+  structuredData={{
+    "@type": "WebPage",
+    name: t("meta.homeTitle"),
+    description: t("meta.homeDesc"),
+    url: "https://triacr.com",
+    about: {
+      "@type": "Organization",
+      name: "Tria Software Solutions",
+    },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: "https://triacr.com/?q={search_term_string}",
+      "query-input": "required name=search_term_string",
+    },
+  }}>
   <Hero 
     title={t("hero.title") || ""}
     description={t("hero.description") || ""}

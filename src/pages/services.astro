@@ -8,7 +8,16 @@ const t = createT(Astro.currentLocale);
 const locale = Astro.currentLocale || "en";
 ---
 
-<Layout title={t("meta.servicesTitle")} description={t("meta.servicesDesc")}>
+<Layout title={t("meta.servicesTitle")} description={t("meta.servicesDesc")}
+  structuredData={{
+    "@type": "CollectionPage",
+    name: "Tria Services",
+    description: t("meta.servicesDesc"),
+    about: {
+      "@type": "Organization",
+      name: "Tria Software Solutions",
+    },
+  }}>
 
   <PageBanner suptitleKey="services.hero.suptitle" headingKey="services.hero.title" descriptionKey="services.hero.desc" />
 

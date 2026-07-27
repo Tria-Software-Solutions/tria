@@ -27,7 +27,17 @@ const { posts, currentPage, totalPages } = Astro.props;
 const t = createT(Astro.currentLocale);
 ---
 
-<Layout title={t("meta.blogTitle")} description={t("meta.blogDesc")}>
+<Layout title={t("meta.blogTitle")} description={t("meta.blogDesc")}
+  structuredData={{
+    "@type": "Blog",
+    name: `Tria Blog — Page ${currentPage}`,
+    description: t("meta.blogDesc"),
+    publisher: {
+      "@type": "Organization",
+      name: "Tria Software Solutions",
+      url: "https://triacr.com",
+    },
+  }}>
   <PageBanner suptitleKey="blog.newsletter" headingKey="blog.popularPublications" descriptionKey="blog.heroDesc" />
 
   <section style="background:#fff;position:relative;">

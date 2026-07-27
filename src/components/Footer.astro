@@ -10,6 +10,7 @@ interface FooterLink {
 
 interface ContactLink extends FooterLink {
   icon: string;
+  mailto?: string;
 }
 
 interface SocialLink {
@@ -154,6 +155,20 @@ const year = new Date().getFullYear();
 
 
 
+      <!-- On this page — page-specific sections -->
+      {pageSections.length > 0 && (
+        <div class="tria-footer-col">
+          {sectionsLabel && <span class="tria-footer-label">{sectionsLabel}</span>}
+          <ul class="tria-footer-nav">
+            {pageSections.map((link) => (
+              <li>
+                <a href={link.href}>{link.label}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       {serviceLinks.length > 0 && (
         <div class="tria-footer-col">
           {servicesLabel && <span class="tria-footer-label">{servicesLabel}</span>}
@@ -171,20 +186,6 @@ const year = new Date().getFullYear();
         </div>
       )}
 
-      <!-- On this page — page-specific sections -->
-      {pageSections.length > 0 && (
-        <div class="tria-footer-col">
-          {sectionsLabel && <span class="tria-footer-label">{sectionsLabel}</span>}
-          <ul class="tria-footer-nav">
-            {pageSections.map((link) => (
-              <li>
-                <a href={link.href}>{link.label}</a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-
       <!-- Contact column - simple list -->
       {contactLinks.length > 0 && (
         <div class="tria-footer-col">
@@ -192,7 +193,7 @@ const year = new Date().getFullYear();
           <ul class="tria-footer-nav">
             {contactLinks.map((link) => (
               <li>
-                <a href={link.href} class="tria-footer-contact-item">
+                <a href={link.mailto ? undefined : link.href} class="tria-footer-contact-item" data-mailto={link.mailto} tabindex={link.mailto ? "0" : undefined}>
                   <span class="tria-footer-ci-icon"><i class={`ti ${link.icon}`}></i></span>
                   <span>{link.label}</span>
                 </a>
@@ -410,6 +411,10 @@ const year = new Date().getFullYear();
     transform: translateY(-2px);
   }
 
+  .tria-footer-nav .tria-footer-contact-item[data-mailto] {
+    cursor: pointer;
+  }
+
 
 
   .tria-footer-ci-icon {
@@ -495,11 +500,12 @@ const year = new Date().getFullYear();
     line-height: 1.5;
     color: rgba(255, 255, 255, 0.38);
     text-decoration: none;
-    transition: color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: color 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .tria-footer-nav a:hover {
     color: rgba(255, 255, 255, 0.85);
+    transform: translateY(-2px);
   }
 
   .tria-footer-subsection {
@@ -575,7 +581,7 @@ const year = new Date().getFullYear();
 
   .tria-footer-legal a:hover {
     color: var(--accent, #068e8c);
-    transform: translateY(-1px);
+    transform: translateY(-2px);
   }
 
 
