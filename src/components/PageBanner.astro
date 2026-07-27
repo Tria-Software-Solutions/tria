@@ -3,15 +3,17 @@ interface Props {
   suptitleKey?: string;
   headingKey: string;
   descriptionKey?: string;
+  variant?: "primary" | "secondary";
 }
 
-const { suptitleKey, headingKey, descriptionKey } = Astro.props;
+const { suptitleKey, headingKey, descriptionKey, variant = "secondary" } = Astro.props;
 const { createT } = await import("../i18n/utils");
 const t = createT(Astro.currentLocale);
 const hasChildren = await Astro.slots.render("default");
+const heroClass = variant === "primary" ? "page-hero" : "page-hero page-hero--secondary";
 ---
 
-<section class="page-hero" data-section-theme="dark">
+<section class={heroClass} data-section-theme="dark">
   <div class="page-hero-bg">
     <div class="page-hero-bg-dots"></div>
     <div class="page-hero-orb page-hero-orb--1"></div>

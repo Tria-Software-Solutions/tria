@@ -11,7 +11,15 @@ const repoUrl = "https://github.com/lmhq-94/fault_diagnosis";
 const ctaText = Astro.currentLocale === "es" ? "Ver en GitHub" : "View on GitHub";
 ---
 
-<Layout title={t("featured.project5Title")} description={t("featured.project5Desc")}>
+<Layout title={t("featured.project5Title")} description={t("featured.project5Desc")}
+  structuredData={{
+    "@type": "SoftwareApplication",
+    name: "Fault Diagnosis",
+    description: t("featured.project5Desc"),
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  }}>
   <PageBanner suptitleKey="featured.project5Cat" headingKey="featured.project5Title" descriptionKey="featured.project5Desc" />
 
   <!-- overview -->
@@ -26,7 +34,11 @@ const ctaText = Astro.currentLocale === "es" ? "Ver en GitHub" : "View on GitHub
       <div class="tria-project-overview-grid">
         <!-- Screenshot -->
         <div class="tria-project-visual tria-up">
-          <img src="/assets/img/featured/fault-diagnosis.png" alt="Fault Diagnosis app preview" class="tria-project-img" loading="lazy" />
+          <picture>
+            <source srcset="/assets/img/featured/fault-diagnosis.avif" type="image/avif" />
+            <source srcset="/assets/img/featured/fault-diagnosis.webp" type="image/webp" />
+            <img src="/assets/img/featured/fault-diagnosis.png" alt="Fault Diagnosis app preview" class="tria-project-img" loading="lazy" />
+          </picture>
         </div>
         <!-- Content -->
         <div class="tria-project-content tria-up">
@@ -321,9 +333,7 @@ const ctaText = Astro.currentLocale === "es" ? "Ver en GitHub" : "View on GitHub
     transition: transform 0.4s var(--ease-spring);
   }
 
-  .tria-pd-icon:hover {
-    transform: translateY(-2px);
-  }
+
 
   .tria-pd-title {
     font-size: 1rem;

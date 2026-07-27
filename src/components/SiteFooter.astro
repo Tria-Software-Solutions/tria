@@ -12,7 +12,8 @@ const barePath = path.startsWith("/es") ? (path.replace(/^\/es/, "") || "/") : p
 const allExploreLinks = [
   { href: "/", label: t("nav.home") || "" },
   { href: "/about", label: t("nav.about") || "" },
-  { href: "/team", label: t("nav.team") || "" }
+  { href: "/team", label: t("nav.team") || "" },
+  { href: "/blog", label: t("nav.blog") || "Blog" }
 ];
 
 function isCurrent(href: string): boolean {
@@ -106,7 +107,11 @@ function getPageSections(): { href: string; label: string }[] {
 }
 
 const pageSections = getPageSections();
-const footerSectionsLabel = Astro.currentLocale === "es" ? "En esta página" : "On this page";
+const labelByLocale: Record<string, string> = {
+  en: "On this page",
+  es: "En esta página",
+};
+const footerSectionsLabel = labelByLocale[Astro.currentLocale || "en"] || "On this page";
 
 const footerExploreLabel = t("nav.explore") || "";
 const footerServicesLabel = t("nav.services") || "";

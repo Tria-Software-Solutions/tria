@@ -7,6 +7,7 @@ interface FormData {
   budget?: string;
   services?: string[];
   message: string;
+  turnstileToken?: string;
 }
 
 /** Minimal body parser for Vercel JSON POST */
@@ -146,6 +147,34 @@ async function sendEmailNotification(data: FormData, ticketKey: string) {
   }
 }
 
+/** Verify Cloudflare Turnstile token server-side */
+async function verifyTurnstile(token: string): Promise<boolean> {
+  const secret = process.env.TURNSTILE_SECRET_KEY;
+  if (!secret) {
+    console.error('Missing TURNSTILE_SECRET_KEY environment variable');
+    return false;
+  }
+
+  try {
+    const params = new URLSearchParams({
+      secret,
+      response: token,
+    });
+
+    const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: params.toString(),
+    });
+
+    const result = await res.json();
+    return result.success === true;
+  } catch (err) {
+    console.error('Turnstile verification failed:', err);
+    return false;
+  }
+}
+
 export default async function handler(
   request: IncomingMessage,
   response: ServerResponse
@@ -173,6 +202,20 @@ export default async function handler(
     // Basic validation
     if (!data.name || !data.email || !data.message) {
       json(response, 400, { error: 'Name, email, and message are required' });
+      return;
+    }
+
+    // Verify Cloudflare Turnstile token
+    if (!data.turnstileToken) {
+      json(response, 400, { error: 'Turnstile verification is required' });
+      return;
+    }
+
+    const turnstileValid = await verifyTurnstile(data.turnstileToken);
+
+    if (!turnstileValid) {
+      console.error('Turnstile verification failed');
+      json(response, 403, { error: 'Verification failed. Please try again or contact us directly.' });
       return;
     }
 

@@ -18,7 +18,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display, 'Outfit', sans-serif);
   font-size: 16px;
   font-weight: 300;
   color: var(--text-muted, rgba(0, 0, 0, 0.5));
@@ -109,7 +109,7 @@ h5,
 .tria-h5,
 h6,
 .tria-h6 {
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display, 'Outfit', sans-serif);
   color: rgb(0, 0, 0);
   font-weight: 450;
   font-size: clamp(1.8rem, 3.5vw, 2.8rem);
@@ -468,7 +468,7 @@ textarea {
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: 500;
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display, 'Outfit', sans-serif);
   color: rgb(0, 0, 0);
   border: none;
   border-bottom: solid 1px rgba(0, 0, 0, 0.2);
@@ -887,32 +887,30 @@ scrollbar
     color: #fff !important;
   }
 
-  /* Mobile language switcher */
+  /* ── Mobile language switcher (modern pill design) ── */
   .tria-mobile-lang {
     display: flex;
+    align-items: center;
+    gap: 4px;
   }
+
   .tria-frame-top-right {
     display: flex;
     align-items: center;
     gap: 14px;
   }
 
-  .tria-mobile-lang {
-    display: flex;
-    align-items: center;
-    gap: 2px;
-  }
-
   .tria-mobile-lang-btn {
     pointer-events: all;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.45);
+    color: rgba(255, 255, 255, 0.4);
     text-decoration: none;
-    transition: color 0.3s ease;
-    padding: 6px 6px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    padding: 4px 10px;
+    border-radius: 12px;
   }
 
   .tria-mobile-lang-btn.is-active {
@@ -920,14 +918,22 @@ scrollbar
     font-weight: 700;
   }
 
+
+
   .tria-mobile-lang-btn:hover {
     color: #fff;
   }
 
+  .tria-mobile-lang-btn.tria-on-dark {
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  .tria-mobile-lang-btn.is-active.tria-on-dark {
+    color: #fff;
+  }
+
   .tria-mobile-lang-sep {
-    font-size: 11px;
-    color: rgba(255, 255, 255, 0.2);
-    margin: 0 2px;
+    display: none;
   }
 }
 
@@ -1017,44 +1023,97 @@ scrollbar
   color: inherit;
   text-decoration: none;
 }
-.tria-frame .tria-frame-bottom .tria-frame-bottom-left .tria-lang-sep {
-  margin: 0 10px;
-  color: rgb(0, 0, 0);
-  -webkit-transition: color 0.4s cubic-bezier(0, 0, 0.3642, 1);
-  transition: color 0.4s cubic-bezier(0, 0, 0.3642, 1);
-}
-.tria-frame .tria-frame-bottom .tria-frame-bottom-left .tria-lang-sep.tria-on-dark {
-  color: #fff !important;
-}
+
+/* ── Modern language switcher (desktop bottom frame, rotated -90°) ── */
 .tria-frame .tria-frame-bottom .tria-frame-bottom-left .tria-lang-btn {
   pointer-events: all;
   cursor: pointer;
   text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: 12px;
-  color: rgba(0, 0, 0, 0.35);
-  -webkit-transition: color 0.4s cubic-bezier(0, 0, 0.3642, 1);
-  transition: color 0.4s cubic-bezier(0, 0, 0.3642, 1);
+  letter-spacing: 0.12em;
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.25);
+  -webkit-transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   -webkit-user-select: none;
   user-select: none;
-  margin: 0 3px;
-  font-weight: 400;
+  padding: 5px 6px;
+  position: relative;
+  margin: 0;
+  text-decoration: none;
+  display: inline-block;
 }
+
+.tria-frame .tria-frame-bottom .tria-frame-bottom-left .tria-lang-btn:hover {
+  color: rgba(0, 0, 0, 0.7);
+}
+
 .tria-frame .tria-frame-bottom .tria-frame-bottom-left .tria-lang-btn.tria-on-dark {
-  color: rgba(255, 255, 255, 0.35) !important;
+  color: rgba(255, 255, 255, 0.3) !important;
 }
+
+.tria-frame .tria-frame-bottom .tria-frame-bottom-left .tria-lang-btn.tria-on-dark:hover {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
 .tria-frame .tria-frame-bottom .tria-frame-bottom-left .tria-lang-btn.is-active {
   color: rgb(0, 0, 0);
   font-weight: 600;
+  letter-spacing: 0.1em;
 }
+
 .tria-frame .tria-frame-bottom .tria-frame-bottom-left .tria-lang-btn.is-active.tria-on-dark {
   color: #fff !important;
+}
+
+/* ── Divider between page name and language switcher ── */
+.tria-frame .tria-frame-bottom .tria-frame-bottom-left .tria-lang-divider {
+  display: inline-block;
+  width: 1px;
+  height: 14px;
+  background: rgba(0, 0, 0, 0.15);
+  margin: 0 14px;
+  flex-shrink: 0;
+  -webkit-transition: background 0.4s cubic-bezier(0, 0, 0.3642, 1);
+  transition: background 0.4s cubic-bezier(0, 0, 0.3642, 1);
+}
+
+.tria-frame .tria-frame-bottom .tria-frame-bottom-left .tria-lang-divider.tria-on-dark {
+  background: rgba(255, 255, 255, 0.2) !important;
 }
 .tria-frame .tria-frame-bottom .tria-back-to-top {
   width: 300px;
   -webkit-transform: rotate(-90deg) translateX(130px) translateY(130px);
   transform: rotate(-90deg) translateX(130px) translateY(130px);
   pointer-events: all;
+}
+
+.tria-btt-arrow {
+  margin-left: 8px;
+  opacity: 0.4;
+  -webkit-transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), -webkit-transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), -webkit-transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), -webkit-transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
+  /* Override .tria-link svg circle styles — match clean arrow style like "ver todo" links */
+  width: 16px !important;
+  height: 16px !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  background: none !important;
+  stroke: currentColor;
+  color: rgb(0, 0, 0);
+}
+
+.tria-btt-arrow.tria-on-dark {
+  color: #fff;
+}
+
+.tria-back-to-top:hover .tria-btt-arrow {
+  opacity: 0.8;
+  -webkit-transform: translateX(3px);
+  transform: translateX(3px);
 }
 
 .tria-frame-top {
@@ -2258,25 +2317,25 @@ revievs
   }
 }
 .tria-revi-pagination .swiper-pagination-bullet .tria-custom-dot.tria-slide-1 {
-  background-image: url(/assets/img/testimonials/1.svg);
+  background-image: url(/assets/img/testimonials/testimonial-01.svg);
 }
 .tria-revi-pagination .swiper-pagination-bullet .tria-custom-dot.tria-slide-2 {
-  background-image: url(/assets/img/testimonials/2.svg);
+  background-image: url(/assets/img/testimonials/testimonial-02.svg);
 }
 .tria-revi-pagination .swiper-pagination-bullet .tria-custom-dot.tria-slide-3 {
-  background-image: url(/assets/img/testimonials/3.svg);
+  background-image: url(/assets/img/testimonials/testimonial-03.svg);
 }
 .tria-revi-pagination .swiper-pagination-bullet .tria-custom-dot.tria-slide-4 {
-  background-image: url(/assets/img/testimonials/4.svg);
+  background-image: url(/assets/img/testimonials/testimonial-04.svg);
 }
 .tria-revi-pagination .swiper-pagination-bullet .tria-custom-dot.tria-slide-5 {
-  background-image: url(/assets/img/testimonials/5.svg);
+  background-image: url(/assets/img/testimonials/testimonial-05.svg);
 }
 .tria-revi-pagination .swiper-pagination-bullet .tria-custom-dot.tria-slide-6 {
-  background-image: url(/assets/img/testimonials/6.svg);
+  background-image: url(/assets/img/testimonials/testimonial-06.svg);
 }
 .tria-revi-pagination .swiper-pagination-bullet .tria-custom-dot.tria-slide-7 {
-  background-image: url(/assets/img/testimonials/7.svg);
+  background-image: url(/assets/img/testimonials/testimonial-07.svg);
 }
 .tria-revi-pagination
   .swiper-pagination-bullet.swiper-pagination-bullet-active {
@@ -2614,7 +2673,7 @@ footer
 }
 .tria-subscribe-form input::-webkit-input-placeholder {
   color: rgb(128, 128, 128);
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display, 'Outfit', sans-serif);
   font-size: 12px;
   font-weight: 500;
   text-transform: uppercase;
@@ -2622,7 +2681,7 @@ footer
 }
 .tria-subscribe-form input::-moz-placeholder {
   color: rgb(128, 128, 128);
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display, 'Outfit', sans-serif);
   font-size: 12px;
   font-weight: 500;
   text-transform: uppercase;
@@ -2630,7 +2689,7 @@ footer
 }
 .tria-subscribe-form input:-ms-input-placeholder {
   color: rgb(128, 128, 128);
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display, 'Outfit', sans-serif);
   font-size: 12px;
   font-weight: 500;
   text-transform: uppercase;
@@ -2638,7 +2697,7 @@ footer
 }
 .tria-subscribe-form input::-ms-input-placeholder {
   color: rgb(128, 128, 128);
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display, 'Outfit', sans-serif);
   font-size: 12px;
   font-weight: 500;
   text-transform: uppercase;
@@ -2646,7 +2705,7 @@ footer
 }
 .tria-subscribe-form input::placeholder {
   color: rgb(128, 128, 128);
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display, 'Outfit', sans-serif);
   font-size: 12px;
   font-weight: 500;
   text-transform: uppercase;

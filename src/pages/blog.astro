@@ -2,8 +2,6 @@
 import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
 import PageBanner from "../components/PageBanner.astro";
-import Quote from "../components/Quote.astro";
-import CTA from "../components/CTA.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import BlogList from "../components/BlogList.astro";
 import { createT } from "../i18n/utils";
@@ -12,7 +10,7 @@ const t = createT(Astro.currentLocale);
 const allPosts = await getCollection("blog");
 allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-const pageSize = 6;
+const pageSize = 7;
 const currentPage = 1;
 const totalPages = Math.ceil(allPosts.length / pageSize);
 const posts = allPosts.slice(0, pageSize);
@@ -21,7 +19,7 @@ const posts = allPosts.slice(0, pageSize);
 <Layout title={t("meta.blogTitle")} description={t("meta.blogDesc")}>
   <PageBanner suptitleKey="blog.newsletter" headingKey="blog.popularPublications" descriptionKey="blog.heroDesc" />
 
-  <section class="tria-soft-bg" data-section-theme="light" style="padding:clamp(60px, 8vw, 120px) 0;position:relative;">
+  <section style="background:#fff;position:relative;">
     <div class="tria-dot-pattern"></div>
     <div class="tria-grain-overlay"></div>
     <div class="tria-ambient-temp">
@@ -31,32 +29,5 @@ const posts = allPosts.slice(0, pageSize);
     <BlogList posts={posts} currentPage={currentPage} totalPages={totalPages} />
   </section>
 
-  <Quote
-    heading={t("cotizacion.heading") || 'Get a <span class="tria-thin">Custom Quote</span>'}
-    description={t("cotizacion.description") || ""}
-    buttonText={t("cotizacion.buttonText") || "Request a Quote"}
-    buttonHref="/contact"
-    features={[
-      t("cotizacion.feature1") || "",
-      t("cotizacion.feature2") || "",
-      t("cotizacion.feature3") || "",
-      t("cotizacion.feature4") || ""
-    ]}
-  />
-
-  <CTA 
-    heading={t("ctaBlog.heading") || ""}
-    description={t("ctaBlog.desc") || ""}
-    primaryButtonText={t("ctaBlog.button") || ""}
-    secondaryButtonText={t("ctaBlog.button2") || ""}
-    primaryButtonHref="/contact"
-    secondaryButtonHref="/contact"
-    theme="dark"
-    showIcon={true}
-    padding=""
-    primaryButtonVariant="primary"
-    primaryButtonColor="#0b0d17"
-    primaryButtonHoverColor="#1a1f35"
-  />
   <SiteFooter />
 </Layout>

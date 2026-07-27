@@ -240,13 +240,20 @@ section[data-section-theme="light"] {
 
 /* ── Shared page hero ── */
 .page-hero {
+  --hero-r: 11; --hero-g: 13; --hero-b: 23; /* #0b0d17 — default / primary */
   position: relative;
   overflow: hidden;
   display: flex;
   align-items: flex-end;
-  background: #0b0d17;
+  background: rgb(var(--hero-r), var(--hero-g), var(--hero-b));
   min-height: 45vh;
 }
+
+/* Secondary pages (about, services, portfolio, blog, etc.) — subtle differentiation */
+.page-hero--secondary {
+  --hero-r: 15; --hero-g: 17; --hero-b: 26; /* #0f111a */
+}
+
 .page-hero--short {
   min-height: auto;
 }
@@ -258,14 +265,14 @@ section[data-section-theme="light"] {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 0%, rgba(11,13,23,0.5) 100%);
+  background: linear-gradient(180deg, transparent 0%, rgba(var(--hero-r), var(--hero-g), var(--hero-b), 0.5) 100%);
   pointer-events: none;
 }
 .page-hero-orb {
   position: absolute;
   border-radius: 50%;
   filter: blur(120px);
-  opacity: 0.12;
+  opacity: 0.10;
 }
 .page-hero-orb--1 {
   width: 600px; height: 600px;
@@ -304,7 +311,7 @@ section[data-section-theme="light"] {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(180deg, transparent 0%, rgba(11,13,23,0.7) 70%, #0b0d17 100%);
+  background: linear-gradient(180deg, transparent 0%, rgba(var(--hero-r), var(--hero-g), var(--hero-b), 0.7) 70%, rgb(var(--hero-r), var(--hero-g), var(--hero-b)) 100%);
 }
 
 /* ── Hero grain overlay ── */
@@ -794,8 +801,131 @@ a:not(.tria-button):hover,
 /* Prevent horizontal overflow on all devices */
 img, video, canvas, svg, iframe { max-width: 100%; height: auto; }
 
-/* Overflow-x: auto for tables in blog content */
-.tria-blog-content table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+/* ── Blog article typography ── */
+.tria-article {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+}
+.tria-article h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  color: #111;
+  letter-spacing: -0.02em;
+}
+.tria-article h3 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  color: #111;
+  letter-spacing: -0.02em;
+}
+.tria-article p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  margin-bottom: 1.25rem;
+  color: rgba(0, 0, 0, 0.75);
+}
+.tria-article ul,
+.tria-article ol {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  margin-bottom: 1.25rem;
+  padding-left: 1.5rem;
+  color: rgba(0, 0, 0, 0.75);
+}
+.tria-article li {
+  margin-bottom: 0.5rem;
+}
+.tria-article strong {
+  font-weight: 600;
+  color: #111;
+}
+.tria-article pre {
+  background: #111;
+  color: #f5f5f5;
+  padding: 1.5rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+.tria-article code {
+  font-family: "SF Mono", "Fira Code", monospace;
+  font-size: 0.9em;
+}
+.tria-article :not(pre) > code {
+  background: rgba(0, 0, 0, 0.06);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+}
+.tria-article blockquote {
+  border-left: 3px solid var(--accent, #555);
+  padding-left: 1.25rem;
+  margin: 1.5rem 0;
+  color: rgba(0, 0, 0, 0.6);
+  font-style: italic;
+}
+.tria-article table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+.tria-article th,
+.tria-article td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  text-align: left;
+}
+.tria-article th {
+  font-weight: 600;
+  color: #111;
+}
+
+/* ── Blog post meta labels ── */
+.tria-article-meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* ── Blog post tags ── */
+.tria-article-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* ── Blog post footer ── */
+.tria-article-footer {
+  margin-top: 60px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* ── Blog back link ── */
+.tria-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 24px;
+  font-size: 0.75rem;
+}
+
+/* ── Blog content section padding ── */
+.tria-section-blog-content {
+  padding: 80px 0;
+  position: relative;
+}
+@media (max-width: 576px) {
+  .tria-section-blog-content {
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
+  }
+}
 
 /* ── preloader / splash screen ── */
 .tria-preloader {

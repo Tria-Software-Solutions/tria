@@ -13,6 +13,13 @@ interface WorkItem {
   previewImg?: string;
 }
 
+function toAvif(path: string): string {
+  return path.replace(/\.(png|jpe?g)$/, ".avif");
+}
+function toWebp(path: string): string {
+  return path.replace(/\.(png|jpe?g)$/, ".webp");
+}
+
 interface Props {
   suptitle?: string;
   heading: string;
@@ -79,7 +86,11 @@ const allCards = projects.length > 0 ? [...projects, ...projects, ...projects] :
               {card.previewImg && (
                 <div class="tria-feat-img-outer">
                   <div class="tria-feat-img-wrap">
-                    <img src={card.previewImg} alt={card.title} class="tria-feat-img" loading="lazy" />
+                    <picture>
+                      <source srcset={toAvif(card.previewImg)} type="image/avif" />
+                      <source srcset={toWebp(card.previewImg)} type="image/webp" />
+                      <img src={card.previewImg} alt={card.title} class="tria-feat-img" loading="lazy" />
+                    </picture>
                     <div class="tria-feat-img-glare"></div>
                   </div>
                 </div>

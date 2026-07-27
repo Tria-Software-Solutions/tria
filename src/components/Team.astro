@@ -67,7 +67,11 @@ const {
                   </p>
                 )}
                 <div class="tria-team-card tria-up tria-mb-30">
-                  <img src={member.image} alt="Team member" />
+                  <picture>
+                    <source srcset={member.image.replace(/\.jpe?g$/, ".avif")} type="image/avif" />
+                    <source srcset={member.image.replace(/\.jpe?g$/, ".webp")} type="image/webp" />
+                    <img src={member.image} alt="Team member" />
+                  </picture>
                   <div class="tria-description">
                     <div class="tria-secrc-text">
                       <h5 class="tria-dark tria-mb-5">{member.name}</h5>

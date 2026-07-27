@@ -8,7 +8,7 @@ const blog = defineCollection({
     description: z.string(),
     pubDate: z.coerce.date(),
     author: z.string().default("tria team"),
-    image: z.string().default("/assets/img/blog/1.jpg"),
+    image: z.string().default("/assets/img/blog/ai-ml.jpg"),
     category: z.string().default("Technology"),
     tags: z.array(z.string()).default([]),
   }),

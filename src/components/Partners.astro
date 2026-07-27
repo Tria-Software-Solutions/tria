@@ -15,6 +15,13 @@ const {
   padding = '80px 0'
 } = Astro.props;
 
+function toAvif(path: string): string {
+  return path.replace(/\.png$/, ".avif");
+}
+function toWebp(path: string): string {
+  return path.replace(/\.png$/, ".webp");
+}
+
 const repeat = (arr: Partner[], n: number) => Array.from({ length: n }, () => arr).flat();
 const full = repeat(partners, 6);
 ---
@@ -27,7 +34,11 @@ const full = repeat(partners, 6);
         <div class="tria-marquee-track">
           {full.map((partner, i) => (
             <a key={i} href={partner.href} class="tria-marquee-icon">
-              <img src={partner.logo} alt={partner.alt || 'logo'} />
+              <picture>
+                <source srcset={toAvif(partner.logo)} type="image/avif" />
+                <source srcset={toWebp(partner.logo)} type="image/webp" />
+                <img src={partner.logo} alt={partner.alt || 'logo'} />
+              </picture>
             </a>
           ))}
         </div>

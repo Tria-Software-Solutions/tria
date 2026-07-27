@@ -73,7 +73,15 @@ const service = {
 };
 ---
 
-<Layout title={t("meta.serviceCybersecurity")} description={service.heroDesc}>
+<Layout title={t("meta.serviceCybersecurity")} description={service.heroDesc}
+  structuredData={{
+    "@type": "Service",
+    name: "Cybersecurity & Optimization",
+    description: service.heroDesc,
+    provider: { "@type": "Organization", name: "Tria Software Solutions" },
+    areaServed: "Worldwide",
+    serviceType: "Security Audit",
+  }}>
   <ServiceDetail service={service} />
 
   <Quote

@@ -6,6 +6,7 @@ import SiteFooter from "../components/SiteFooter.astro";
 import { createT } from "../i18n/utils";
 const t = createT(Astro.currentLocale);
 const sendingText = t('contact.form.sending');
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
 
 const serviceGroups = [
   {
@@ -345,7 +346,7 @@ const serviceGroups = [
     font-weight: 380;
     color: #0b0d17;
     background: #f5f7f9;
-    font-family: 'Outfit', sans-serif;
+    font-family: var(--font-display, 'Outfit', sans-serif);
     transition: border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     outline: none;
     width: 100%;
@@ -391,7 +392,7 @@ const serviceGroups = [
     border: 1px solid rgba(0,0,0,0.06);
     border-radius: 60px;
     background: #f5f7f9;
-    font-family: 'Outfit', sans-serif;
+    font-family: var(--font-display, 'Outfit', sans-serif);
     font-size: 0.88rem;
     font-weight: 380;
     color: rgba(0,0,0,0.2);
@@ -624,7 +625,7 @@ const serviceGroups = [
     border: 1px solid rgba(0,0,0,0.06);
     border-radius: 60px;
     background: #f5f7f9;
-    font-family: 'Outfit', sans-serif;
+    font-family: var(--font-display, 'Outfit', sans-serif);
     font-size: 0.88rem;
     font-weight: 380;
     color: rgba(0,0,0,0.2);
@@ -847,6 +848,46 @@ const serviceGroups = [
 <script is:inline>
   (function () {
     var SENDING_TEXT = "{sendingText}";
+    var TURNSTILE_SITE_KEY = "{turnstileSiteKey}";
+
+    /* ── Load Cloudflare Turnstile ── */
+    function loadTurnstile() {
+      if (typeof turnstile !== 'undefined') return;
+      var script = document.createElement('script');
+      script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+      script.async = true;
+      script.defer = true;
+      document.head.appendChild(script);
+    }
+
+    /* ── Get Turnstile token ── */
+    function getTurnstileToken() {
+      return new Promise(function (resolve) {
+        if (typeof turnstile === 'undefined' || !turnstile.execute) {
+          resolve('');
+          return;
+        }
+        var container = document.getElementById('cf-turnstile-container');
+        if (!container) {
+          container = document.createElement('div');
+          container.id = 'cf-turnstile-container';
+          container.style.display = 'none';
+          document.getElementById('triaContactForm').appendChild(container);
+        }
+        turnstile.render(container, {
+          sitekey: TURNSTILE_SITE_KEY,
+          callback: function (token) {
+            resolve(token);
+          },
+          'error-callback': function () {
+            resolve('');
+          },
+          'expired-callback': function () {
+            resolve('');
+          },
+        });
+      });
+    }
 
     /* ── Custom Dropdown ── */
     function initDropdown() {
@@ -972,20 +1013,22 @@ const serviceGroups = [
           if (btnSpan) btnSpan.textContent = SENDING_TEXT;
         }
 
-        var data = {
-          name: document.getElementById('cf-name').value,
-          email: document.getElementById('cf-email').value,
-          company: document.getElementById('cf-company').value,
-          budget: document.getElementById('cf-budget').value,
-          services: getServices(),
-          message: document.getElementById('cf-message').value,
-        };
+        getTurnstileToken().then(function (turnstileToken) {
+          var data = {
+            name: document.getElementById('cf-name').value,
+            email: document.getElementById('cf-email').value,
+            company: document.getElementById('cf-company').value,
+            budget: document.getElementById('cf-budget').value,
+            services: getServices(),
+            message: document.getElementById('cf-message').value,
+            turnstileToken: turnstileToken,
+          };
 
-        fetch('/api/create-jira-ticket', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data),
-        })
+          fetch('/api/create-jira-ticket', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+          })
           .then(function (res) { return res.json(); })
           .then(function (result) {
             if (result.success) {
@@ -1001,10 +1044,12 @@ const serviceGroups = [
             form.style.display = 'none';
             if (success) success.style.display = 'block';
           });
+        });
       });
     }
 
     function init() {
+      loadTurnstile();
       initDropdown();
       initServicesDropdown();
       initForm();

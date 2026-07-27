@@ -157,7 +157,7 @@ const {
     border: none;
     cursor: pointer;
     color: rgba(0, 0, 0, 0.75);
-    font-family: 'Outfit', sans-serif;
+    font-family: var(--font-display, 'Outfit', sans-serif);
     font-size: 1.08rem;
     font-weight: 460;
     line-height: 1.5;
@@ -196,11 +196,7 @@ const {
     transition: background 0.35s ease, color 0.35s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, box-shadow 0.35s ease;
   }
 
-  .tria-faq-question:hover .tria-faq-icon {
-    background: rgba(0, 0, 0, 0.05);
-    color: rgba(0, 0, 0, 0.5);
-    border-color: rgba(0, 0, 0, 0.12);
-  }
+
 
   .tria-faq-question[aria-expanded="true"] .tria-faq-icon {
     background: rgba(6, 142, 140, 0.08);

@@ -12,7 +12,15 @@ const liveUrl = "https://las-granas.vercel.app";
 const liveCta = Astro.currentLocale === "es" ? "Ver sitio en vivo" : "View Live Site";
 ---
 
-<Layout title={t("featured.project7Title")} description={t("featured.project7Desc")}>
+<Layout title={t("featured.project7Title")} description={t("featured.project7Desc")}
+  structuredData={{
+    "@type": "SoftwareApplication",
+    name: "Las Granas",
+    description: t("featured.project7Desc"),
+    applicationCategory: "WebApplication",
+    operatingSystem: "Web",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  }}>
   <PageBanner suptitleKey="featured.project7Cat" headingKey="featured.project7Title" descriptionKey="featured.project7Desc" />
 
   <!-- overview -->
@@ -27,7 +35,11 @@ const liveCta = Astro.currentLocale === "es" ? "Ver sitio en vivo" : "View Live 
       <div class="tria-project-overview-grid">
         <!-- Screenshot -->
         <div class="tria-project-visual tria-up">
-          <img src="/assets/img/featured/lasgranas.png" alt="Las Granas website preview" class="tria-project-img" loading="lazy" />
+          <picture>
+            <source srcset="/assets/img/featured/lasgranas.avif" type="image/avif" />
+            <source srcset="/assets/img/featured/lasgranas.webp" type="image/webp" />
+            <img src="/assets/img/featured/lasgranas.png" alt="Las Granas website preview" class="tria-project-img" loading="lazy" />
+          </picture>
         </div>
         <!-- Content -->
         <div class="tria-project-content tria-up">
@@ -333,9 +345,7 @@ const liveCta = Astro.currentLocale === "es" ? "Ver sitio en vivo" : "View Live 
     transition: transform 0.4s var(--ease-spring);
   }
 
-  .tria-pd-icon:hover {
-    transform: translateY(-2px);
-  }
+
 
   .tria-pd-title {
     font-size: 1rem;

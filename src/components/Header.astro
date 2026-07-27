@@ -4,7 +4,7 @@ const t = createT(Astro.currentLocale);
 const locale = Astro.currentLocale;
 const pathname = Astro.url.pathname;
 const path = pathname.replace(/\/+$/, "") || "/";
-const barePath = path.startsWith("/es") ? (path.replace(/^\/es/, "") || "/") : path;
+const barePath = locale === "en" ? path : (path.replace(new RegExp(`^/${locale}`), "") || "/");
 const enHref = barePath;
 const esHref = `/es${barePath === "/" ? "" : barePath}`;
 
@@ -56,7 +56,11 @@ function isCurrentPage(href: string): boolean {
               <a href={lp("/team")} data-i18n="nav.team">{t("nav.team")}</a>
             </li>
           )}
-          {/* blog hidden for now */}
+          {!isCurrentPage("/blog") && (
+            <li>
+              <a href={lp("/blog")} data-i18n="nav.blog">{t("nav.blog")}</a>
+            </li>
+          )}
         </ul>
       </div>
       <div class="tria-menu-col">

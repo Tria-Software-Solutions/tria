@@ -354,12 +354,14 @@ $(function () {
     ***************************/
   const cursor = document.querySelector(".tria-ball");
 
-  gsap.set(cursor, {
-    xPercent: -50,
-    yPercent: -50,
-  });
+  if (cursor) {
+    gsap.set(cursor, {
+      xPercent: -50,
+      yPercent: -50,
+    });
 
-  document.addEventListener("pointermove", movecursor);
+    document.addEventListener("pointermove", movecursor);
+  }
 
   function movecursor(e) {
     gsap.to(cursor, {
@@ -509,13 +511,15 @@ $(function () {
     progressbar
 
     ***************************/
-  gsap.to(".tria-progress", {
-    height: "100%",
-    ease: "sine",
-    scrollTrigger: {
-      scrub: 0.3,
-    },
-  });
+  if (document.querySelector(".tria-progress")) {
+    gsap.to(".tria-progress", {
+      height: "100%",
+      ease: "sine",
+      scrollTrigger: {
+        scrub: 0.3,
+      },
+    });
+  }
   /***************************
 
     scroll animations
@@ -733,13 +737,15 @@ $(function () {
   document.addEventListener("swup:contentReplaced", function () {
     window.scrollTo(0, 0);
 
-    gsap.to(".tria-progress", {
-      height: 0,
-      ease: "sine",
-      onComplete: () => {
-        ScrollTrigger.refresh();
-      },
-    });
+    if (document.querySelector(".tria-progress")) {
+      gsap.to(".tria-progress", {
+        height: 0,
+        ease: "sine",
+        onComplete: () => {
+          ScrollTrigger.refresh();
+        },
+      });
+    }
     /***************************
 
          menu

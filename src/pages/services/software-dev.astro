@@ -80,7 +80,15 @@ const service = {
 };
 ---
 
-<Layout title={t("meta.serviceSoftwareDev")} description={service.heroDesc}>
+<Layout title={t("meta.serviceSoftwareDev")} description={service.heroDesc}
+  structuredData={{
+    "@type": "Service",
+    name: "Digital Products Development",
+    description: service.heroDesc,
+    provider: { "@type": "Organization", name: "Tria Software Solutions" },
+    areaServed: "Worldwide",
+    serviceType: "Software Development",
+  }}>
   <ServiceDetail service={service} />
 
   <Quote

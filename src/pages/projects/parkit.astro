@@ -13,7 +13,15 @@ const liveUrl = "https://parkit-valet.vercel.app";
 const liveCta = Astro.currentLocale === "es" ? "Ver sitio en vivo" : "View Live Site";
 ---
 
-<Layout title={t("featured.project1Title")} description={t("featured.project1Desc")}>
+<Layout title={t("featured.project1Title")} description={t("featured.project1Desc")}
+  structuredData={{
+    "@type": "SoftwareApplication",
+    name: "Parkit",
+    description: t("featured.project1Desc"),
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web, iOS, Android",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  }}>
   <PageBanner suptitleKey="featured.project1Cat" headingKey="featured.project1Title" descriptionKey="featured.project1Desc" />
 
   <!-- overview -->
@@ -28,7 +36,11 @@ const liveCta = Astro.currentLocale === "es" ? "Ver sitio en vivo" : "View Live 
       <div class="tria-project-overview-grid">
         <!-- Screenshot -->
         <div class="tria-project-visual tria-up">
-          <img src="/assets/img/featured/parkit.png" alt="Parkit app preview" class="tria-project-img" loading="lazy" />
+          <picture>
+            <source srcset="/assets/img/featured/parkit.avif" type="image/avif" />
+            <source srcset="/assets/img/featured/parkit.webp" type="image/webp" />
+            <img src="/assets/img/featured/parkit.png" alt="Parkit app preview" class="tria-project-img" loading="lazy" />
+          </picture>
         </div>
         <!-- Content -->
         <div class="tria-project-content tria-up">
@@ -335,9 +347,7 @@ const liveCta = Astro.currentLocale === "es" ? "Ver sitio en vivo" : "View Live 
     transition: transform 0.4s var(--ease-spring);
   }
 
-  .tria-pd-icon:hover {
-    transform: translateY(-2px);
-  }
+
 
   .tria-pd-title {
     font-size: 1rem;

@@ -3,13 +3,17 @@ import Header from "../components/Header.astro";
 import "../styles/global.css";
 import "../styles/tria-theme.css";
 import { createT } from "../i18n/utils";
-import enData from "../i18n/en.json";
-import esData from "../i18n/es.json";
 
 interface Props {
   title?: string;
   description?: string;
   ogImage?: string;
+  /** For blog posts: ISO date string e.g. "2024-01-15" */
+  pubDate?: string;
+  /** For blog posts: ISO date string */
+  modifiedDate?: string;
+  /** Page-specific JSON-LD snippets to merge */
+  structuredData?: Record<string, any>;
 }
 
 const locale = Astro.currentLocale || "en";
@@ -19,19 +23,63 @@ const {
   title = t("meta.title"),
   description = t("meta.description"),
   ogImage = "",
+  pubDate = "",
+  modifiedDate = "",
+  structuredData,
 } = Astro.props;
 
 const siteUrl = "https://triacr.com";
+const companyName = "Tria Software Solutions";
+const twitterHandle = "@triacr";
+
 const pathname = Astro.url.pathname;
 const path = pathname.replace(/\/+$/, "") || "/";
-const barePath = path.startsWith("/es") ? (path.replace(/^\/es/, "") || "/") : path;
+const barePath = locale === "en" ? path : (path.replace(new RegExp(`^/${locale}`), "") || "/");
 const enHref = barePath;
 const esHref = `/es${barePath === "/" ? "" : barePath}`;
 
-const canonicalUrl = `${siteUrl}${locale === "es" ? "/es" : ""}${barePath === "/" ? "" : barePath}`;
+const ogLocales: Record<string, string> = { en: "en_US", es: "es_CR" };
+const localePrefix = locale === "en" ? "" : `/${locale}`;
+const canonicalUrl = `${siteUrl}${localePrefix}${barePath === "/" ? "" : barePath}`;
 const metaTitle = title;
-const translData = JSON.stringify({ en: enData, es: esData });
 const ogImageUrl = ogImage ? (ogImage.startsWith("http") ? ogImage : `${siteUrl}${ogImage}`) : "";
+
+// ── Default OG image (1200×630) ──
+const defaultOgImage = `${siteUrl}/assets/img/og/default.png`;
+const resolvedOgImage = ogImageUrl || defaultOgImage;
+
+// ── JSON-LD Structured Data ──
+const orgSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: companyName,
+  url: siteUrl,
+  logo: `${siteUrl}/favicon.svg`,
+  description: t("meta.description"),
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Atenas",
+    addressRegion: "Alajuela",
+    addressCountry: "CR",
+  },
+  sameAs: [
+    "https://linkedin.com/company/triacr",
+    "https://github.com/Tria-Software-Solutions",
+  ],
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: companyName,
+  url: canonicalUrl,
+  description: t("meta.description"),
+  inLanguage: locale,
+};
+
+const combinedStructured = structuredData
+  ? [orgSchema, websiteSchema, structuredData]
+  : [orgSchema, websiteSchema];
 ---
 
 <!doctype html>
@@ -40,7 +88,16 @@ const ogImageUrl = ogImage ? (ogImage.startsWith("http") ? ogImage : `${siteUrl}
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <!-- Preconnect to Google Fonts origins (eliminates DNS/connection latency) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
     <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#0b0d17" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <title>{metaTitle}</title>
 
     <!-- Canonical URL -->
@@ -54,20 +111,33 @@ const ogImageUrl = ogImage ? (ogImage.startsWith("http") ? ogImage : `${siteUrl}
     <!-- Open Graph -->
     <meta property="og:title" content={metaTitle} />
     <meta property="og:description" content={description} />
-    {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
+    <meta property="og:image" content={resolvedOgImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content={locale === "es" ? "es_CR" : "en_US"} />
-    <meta property="og:site_name" content="Tria" />
+    <meta property="og:type" content={pubDate ? "article" : "website"} />
+    <meta property="og:locale" content={ogLocales[locale] || "en_US"} />
+    <meta property="og:site_name" content={companyName} />
+    {pubDate && <meta property="article:published_time" content={pubDate} />}
+    {modifiedDate && <meta property="article:modified_time" content={modifiedDate} />}
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content={twitterHandle} />
     <meta name="twitter:title" content={metaTitle} />
     <meta name="twitter:description" content={description} />
-    {ogImageUrl && <meta name="twitter:image" content={ogImageUrl} />}
+    <meta name="twitter:image" content={resolvedOgImage} />
 
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json" set:html={JSON.stringify(combinedStructured)}></script>
+
+    <!-- Icons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="alternate icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap" as="style" />
     <link rel="stylesheet" href="/assets/css/vendor/bootstrap-grid.css" />
     <link rel="stylesheet" href="/assets/css/vendor/swiper.min.css" />
     <link rel="stylesheet" href="/assets/css/vendor/fancybox.min.css" />
@@ -91,7 +161,6 @@ const ogImageUrl = ogImage ? (ogImage.startsWith("http") ? ogImage : `${siteUrl}
       {t("layout.skipToContent") || "Skip to main content"}
     </a>
     
-    <script is:inline set:html={`window.__triaTranslations=${translData};`}></script>
     <!-- wrapper -->
     <div class="tria-wrapper" id="top">
       
@@ -133,7 +202,6 @@ const ogImageUrl = ogImage ? (ogImage.startsWith("http") ? ogImage : `${siteUrl}
           <div class="tria-frame-top-right">
             <div class="tria-mobile-lang">
               <a href={enHref} data-lang="en" class:list={["tria-mobile-lang-btn", { "is-active": locale === "en" }]}>EN</a>
-              <span class="tria-mobile-lang-sep">/</span>
               <a href={esHref} data-lang="es" class:list={["tria-mobile-lang-btn", { "is-active": locale === "es" }]}>ES</a>
             </div>
             <div class="tria-menu-btn">
@@ -143,16 +211,18 @@ const ogImageUrl = ogImage ? (ogImage.startsWith("http") ? ogImage : `${siteUrl}
             </div>
           </div>
         </div>
-        <div class="tria-frame-bottom">
-          <div class="tria-frame-bottom-left">
+        <div class="tria-frame-bottom">            <div class="tria-frame-bottom-left">
             <div class="tria-current-page"></div>
-            <span class="tria-lang-sep">|</span>
+            <span class="tria-lang-divider"></span>
             <a href={enHref} data-lang="en" class:list={["tria-lang-btn", { "is-active": locale === "en" }]}>EN</a>
             <a href={esHref} data-lang="es" class:list={["tria-lang-btn", { "is-active": locale === "es" }]}>ES</a>
           </div>
           <div class="tria-back-to-top">
-            <a href="#top" class="tria-link tria-dark tria-arrow-place">
+            <a href="#top" class="tria-link tria-dark">
               <span data-i18n="layout.backToTop">{t("layout.backToTop")}</span>
+              <svg class="tria-btt-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
             </a>
           </div>
         </div>
@@ -286,25 +356,38 @@ const ogImageUrl = ogImage ? (ogImage.startsWith("http") ? ogImage : `${siteUrl}
             }
           }
 
-          // Language switcher (bottom frame)
+          // Language switcher (desktop bottom frame — rotated, so getBoundingClientRect is unreliable)
+          // Use a fixed offset from viewport bottom instead
+          var bottomY = window.innerHeight - 80;
+          var isBottomDark = getThemeAt(bottomY) === "dark";
           var langBtns = document.querySelectorAll(
             ".tria-frame-bottom-left .tria-lang-btn",
           );
           for (var b = 0; b < langBtns.length; b++) {
-            var r = langBtns[b].getBoundingClientRect();
             langBtns[b].classList.toggle(
               "tria-on-dark",
-              getThemeAt(r.top + r.height / 2) === "dark",
+              isBottomDark,
             );
           }
-          var langSep = document.querySelector(
-            ".tria-frame-bottom-left .tria-lang-sep",
+          var langDivider = document.querySelector(
+            ".tria-frame-bottom-left .tria-lang-divider",
           );
-          if (langSep) {
-            var rs = langSep.getBoundingClientRect();
-            langSep.classList.toggle(
+          if (langDivider) {
+            langDivider.classList.toggle(
               "tria-on-dark",
-              getThemeAt(rs.top + rs.height / 2) === "dark",
+              isBottomDark,
+            );
+          }
+
+          // Mobile language switcher (top-right frame)
+          var mobileLangBtns = document.querySelectorAll(
+            ".tria-mobile-lang-btn",
+          );
+          for (var m = 0; m < mobileLangBtns.length; m++) {
+            var r = mobileLangBtns[m].getBoundingClientRect();
+            mobileLangBtns[m].classList.toggle(
+              "tria-on-dark",
+              getThemeAt(r.top + r.height / 2) === "dark",
             );
           }
 
@@ -327,6 +410,18 @@ const ogImageUrl = ogImage ? (ogImage.startsWith("http") ? ogImage : `${siteUrl}
             ),
             false,
           );
+
+          // Back-to-top arrow: solid theme color
+          var bttArrow = document.querySelector(
+            ".tria-frame .tria-frame-bottom .tria-back-to-top .tria-btt-arrow",
+          );
+          if (bttArrow) {
+            var ra = bttArrow.getBoundingClientRect();
+            bttArrow.classList.toggle(
+              "tria-on-dark",
+              getThemeAt(ra.top + ra.height / 2) === "dark",
+            );
+          }
         }
 
         function initFrameTheme() {
