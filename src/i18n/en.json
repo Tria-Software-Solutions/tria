@@ -226,6 +226,7 @@
   "contact.form.label.message": "Tell us about your project",
   "contact.form.placeholder.message": "Describe your challenge, goals, timeline, or anything relevant...",
   "contact.form.submit": "Send message",
+"contact.form.sending": "Sending...",
   "contact.form.note": "We respond to all inquiries quickly — usually within a few hours during business days.",
   "contact.form.validation.required": "This field is required",
   "contact.form.validation.email": "Please enter a valid email address",

@@ -226,6 +226,7 @@
   "contact.form.label.message": "Cuéntanos sobre tu proyecto",
   "contact.form.placeholder.message": "Describe tu desafío, objetivos, cronograma o cualquier cosa relevante...",
   "contact.form.submit": "Enviar mensaje",
+"contact.form.sending": "Enviando...",
   "contact.form.note": "Respondemos a todas las consultas rápidamente — usualmente en pocas horas durante días hábiles.",
   "contact.form.validation.required": "Este campo es obligatorio",
   "contact.form.validation.email": "Por favor ingresa un correo electrónico válido",
