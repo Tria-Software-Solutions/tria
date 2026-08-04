@@ -6,6 +6,346 @@ import SiteFooter from "../components/SiteFooter.astro";
 import { createT } from "../i18n/utils";
 const t = createT(Astro.currentLocale);
 const locale = Astro.currentLocale || "en";
+const isEs = locale === "es";
+
+// Core services — fully detailed, self-contained (no need to visit detail pages)
+const services = [
+  {
+    num: "01",
+    slug: "software-dev",
+    titleKey: "services.softwareDev",
+    descKey: "services.softwareDevDesc",
+    overview: [
+      isEs
+        ? "Cada gran producto comienza con una idea y un usuario con una necesidad real. Traducimos esa necesidad en experiencias digitales intuitivas — desde dashboards complejos hasta apps móviles y de escritorio que la gente usa a diario."
+        : "Every great product starts with an idea and a user with a real need. We translate that need into intuitive digital experiences — from complex dashboards to mobile and desktop apps people use every day.",
+      isEs
+        ? "React, Next.js, React Native, Electron, Tauri, Node.js — no son solo herramientas, son el medio para entregar interfaces rápidas, APIs sólidas y experiencias consistentes en cualquier pantalla. Tu producto, multiplataforma, desde el día uno."
+        : "React, Next.js, React Native, Electron, Tauri, Node.js — not just tools, but the means to deliver fast interfaces, solid APIs, and consistent experiences on any screen. Your product, cross-platform, from day one.",
+    ],
+    features: [
+      {
+        icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>',
+        title: isEs ? "Multiplataforma" : "Cross-Platform",
+        desc: isEs ? "Una sola base de código para web, iOS, Android y escritorio con React Native, Electron y Tauri. Lanzamientos más rápidos, menor costo." : "Single codebase for web, iOS, Android, and desktop with React Native, Electron, and Tauri. Faster releases, lower cost.",
+      },
+      {
+        icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>',
+        title: isEs ? "API-First" : "API-First Architecture",
+        desc: isEs ? "Diseñamos APIs REST y GraphQL robustas desde el día uno. Tu frontend, apps móviles y servicios externos se conectan sin fricción." : "We design robust REST and GraphQL APIs from day one. Your frontend, mobile apps, and external services connect seamlessly.",
+      },
+      {
+        icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>',
+        title: isEs ? "Alta Velocidad" : "Lightning Fast",
+        desc: isEs ? "Rendimiento optimizado con server-side rendering, lazy loading y CDN. Puntajes 90+ en PageSpeed y Core Web Vitals." : "Performance optimized with SSR, lazy loading, and CDN. Scores 90+ on PageSpeed and Core Web Vitals.",
+      },
+      {
+        icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2z"/><path d="M14 3v4a2 2 0 0 0 2 2h4"/><rect x="8" y="12" width="8" height="6" rx="1"/></svg>',
+        title: isEs ? "Aplicaciones de Escritorio" : "Desktop Applications",
+        desc: isEs ? "Aplicaciones nativas de escritorio con Electron, Tauri, .NET y Java. Experiencias ricas, offline-first y con acceso completo al hardware." : "Native desktop applications with Electron, Tauri, .NET, and Java. Rich, offline-first experiences with full system hardware access.",
+      },
+    ],
+    tools: [
+      { group: t("serviceDetail.toolGroup.frontendMobile"), items: ["React", "Next.js", "Vue", "Angular", "Svelte", "TypeScript", "React Native", "Flutter", "Swift", "Kotlin"] },
+      { group: t("serviceDetail.toolGroup.desktop"), items: ["Electron", "Tauri", ".NET", "Java"] },
+      { group: t("serviceDetail.toolGroup.backendApis"), items: ["Node.js", "Go", "Python", ".NET", "REST", "GraphQL"] },
+      { group: t("serviceDetail.toolGroup.qualityDelivery"), items: ["Playwright", "Jest", "Cypress", "Vitest", "CI/CD"] },
+    ],
+  },
+  {
+    num: "02",
+    slug: "uiux-design",
+    titleKey: "services.uiuxDesign",
+    descKey: "services.uiuxDesignDesc",
+    overview: [
+      isEs
+        ? "El diseño es la primera línea de código. Investigamos a tus usuarios, mapeamos sus recorridos y validamos cada decisión con prototipos antes de escribir una sola línea — para que el producto que construimos sea el producto que la gente realmente quiere usar."
+        : "Design is the first line of code. We research your users, map their journeys, and validate every decision with prototypes before writing a single line — so the product we build is the product people actually want to use.",
+      isEs
+        ? "Desde talleres de descubrimiento hasta design systems completos: investigación UX, wireframes, prototipos de alta fidelidad e interfaces pulidas que convierten. Diseñamos la experiencia antes de construir el producto."
+        : "From discovery workshops to complete design systems: UX research, wireframes, high-fidelity prototypes, and polished interfaces that convert. We design the experience before building the product.",
+    ],
+    features: [
+      {
+        icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>',
+        title: isEs ? "Investigación UX" : "UX Research",
+        desc: isEs ? "Entrevistas, benchmarks y mapas de recorrido que revelan lo que tus usuarios necesitan — y lo que tu negocio necesita de ellos." : "Interviews, benchmarks, and journey maps that reveal what your users need — and what your business needs from them.",
+      },
+      {
+        icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>',
+        title: isEs ? "Wireframes & Prototipos" : "Wireframes & Prototypes",
+        desc: isEs ? "Prototipos rápidos y testables que validan flujos y arquitectura de información antes de invertir en desarrollo." : "Fast, testable prototypes that validate flows and information architecture before investing in development.",
+      },
+      {
+        icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>',
+        title: isEs ? "Design Systems" : "Design Systems",
+        desc: isEs ? "Librerías de componentes y guías de estilo que mantienen consistencia total en todos tus productos y plataformas." : "Component libraries and style guides that keep full consistency across all your products and platforms.",
+      },
+      {
+        icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>',
+        title: isEs ? "Pruebas de Usabilidad" : "Usability Testing",
+        desc: isEs ? "Sesiones con usuarios reales que detectan fricciones invisibles antes del lanzamiento. Iteramos hasta que fluye." : "Sessions with real users that surface invisible friction before launch. We iterate until it flows.",
+      },
+    ],
+    tools: [
+      { group: t("serviceDetail.toolGroup.designResearch"), items: ["Figma", "Miro", "Maze", "Hotjar", "Notion"] },
+      { group: t("serviceDetail.toolGroup.prototyping"), items: ["Framer", "ProtoPie", "Storybook", "InVision"] },
+      { group: t("serviceDetail.toolGroup.frontendMobile"), items: ["Tailwind", "Design Tokens", "WCAG", "Accessibility"] },
+    ],
+  },
+  {
+    num: "03",
+    slug: "cloud-devops",
+    titleKey: "services.cloudDevops",
+    descKey: "services.cloudDevopsDesc",
+    overview: [
+      isEs
+        ? "Millones de solicitudes, latencia de milisegundos, disponibilidad 24/7. Tu backend necesita ser invisible — y eso solo se logra con arquitectura bien pensada, despliegues automatizados y monitoreo constante."
+        : "Millions of requests, millisecond latency, 24/7 availability. Your backend should be invisible — and that only happens with well-architected systems, automated deployments, and constant monitoring.",
+      isEs
+        ? "AWS, GCP, Azure — elegimos la nube correcta para tu carga de trabajo. Kubernetes orquesta, Terraform versiona, CI/CD despliega. Tu equipo se enfoca en el producto, nosotros en que todo funcione."
+        : "AWS, GCP, Azure — we pick the right cloud for your workload. Kubernetes orchestrates, Terraform versions, CI/CD deploys. Your team focuses on the product, we make sure everything runs.",
+    ],
+    features: [
+      {
+        icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>',
+        title: isEs ? "Cloud Nativo" : "Cloud Native",
+        desc: isEs ? "Arquitectura en la nube con AWS, GCP o Azure. Escalado automático, balanceo de carga y alta disponibilidad desde el diseño." : "Cloud architecture on AWS, GCP, or Azure. Auto-scaling, load balancing, and high availability built-in.",
+      },
+      {
+        icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><polyline points="3 8 3 3 8 3"/><line x1="3" y1="3" x2="9" y2="9"/></svg>',
+        title: isEs ? "CI/CD Automatizado" : "Automated CI/CD",
+        desc: isEs ? "Tuberías de integración y despliegue continuo. Cada commit se prueba, construye y despliega automáticamente." : "Continuous integration and deployment pipelines. Every commit is tested, built, and deployed automatically.",
+      },
+      {
+        icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9l-3 3 3 3"/><path d="M9 5l3-3 3 3"/><path d="M15 19l-3 3-3-3"/><path d="M19 9l3 3-3 3"/><path d="M2 12h20"/><path d="M12 2v20"/></svg>',
+        title: isEs ? "Infraestructura como Código" : "Infrastructure as Code",
+        desc: isEs ? "Todo tu entorno definido en código con Terraform. Entornos reproducibles, versionados y sin desviaciones." : "Your entire environment defined in code with Terraform. Reproducible, versioned, drift-free environments.",
+      },
+      {
+        icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>',
+        title: isEs ? "Event-Driven & Datos" : "Event-Driven & Data",
+        desc: isEs ? "Sistemas de mensajería con Kafka y pipelines de datos en tiempo real para arquitecturas que escalan horizontalmente." : "Kafka messaging and real-time data pipelines for architectures that scale horizontally.",
+      },
+    ],
+    tools: [
+      { group: t("serviceDetail.toolGroup.cloudProviders"), items: ["AWS", "GCP", "Azure"] },
+      { group: t("serviceDetail.toolGroup.containersIaC"), items: ["Kubernetes", "Docker", "Terraform", "Helm"] },
+      { group: t("serviceDetail.toolGroup.cicdDelivery"), items: ["GitHub Actions", "GitLab CI", "ArgoCD", "Jenkins"] },
+      { group: t("serviceDetail.toolGroup.dataObservability"), items: ["PostgreSQL", "MongoDB", "Redis", "Kafka", "Prometheus", "Grafana"] },
+    ],
+  },
+  {
+    num: "04",
+    slug: "qa-testing",
+    titleKey: "services.qaTesting",
+    descKey: "services.qaTestingDesc",
+    overview: [
+      isEs
+        ? "Un bug en producción cuesta mucho más que una prueba en CI. Integramos calidad en cada etapa del ciclo de desarrollo — pruebas automatizadas, manuales y de rendimiento — para que tu equipo lance con confianza, no con esperanza."
+        : "A bug in production costs far more than a test in CI. We build quality into every stage of the development cycle — automated, manual, and performance testing — so your team ships with confidence, not hope.",
+      isEs
+        ? "Creamos planes de prueba, suites automatizadas y quality gates en tus pipelines. Web, móvil, APIs o infraestructura: cada release sale verificado, medido y documentado."
+        : "We create test plans, automated suites, and quality gates in your pipelines. Web, mobile, APIs, or infrastructure: every release ships verified, measured, and documented.",
+    ],
+    features: [
+      {
+        icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>',
+        title: isEs ? "QA Automatizado" : "Automated Testing",
+        desc: isEs ? "Suites de pruebas E2E, de integración y unitarias que corren en cada commit y bloquean regresiones." : "E2E, integration, and unit test suites that run on every commit and block regressions.",
+      },
+      {
+        icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>',
+        title: isEs ? "QA Manual & UAT" : "Manual QA & UAT",
+        desc: isEs ? "Pruebas exploratorias y aceptación de usuario con escenarios reales que la automatización no puede cubrir." : "Exploratory testing and user acceptance with real-world scenarios that automation can't cover.",
+      },
+      {
+        icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>',
+        title: isEs ? "Rendimiento & Carga" : "Performance & Load",
+        desc: isEs ? "Benchmarks, pruebas de carga y análisis de cuellos de botella antes de cada lanzamiento." : "Benchmarks, load testing, and bottleneck analysis before every launch.",
+      },
+      {
+        icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',
+        title: isEs ? "Integración con CI" : "CI Integration",
+        desc: isEs ? "Quality gates en tus pipelines: si la cobertura o el rendimiento caen, el release se detiene automáticamente." : "Quality gates in your pipelines: if coverage or performance drops, the release stops automatically.",
+      },
+    ],
+    tools: [
+      { group: t("serviceDetail.toolGroup.testingTools"), items: ["Playwright", "Cypress", "Jest", "Vitest", "Selenium"] },
+      { group: t("serviceDetail.toolGroup.qaProcess"), items: ["Test Plans", "UAT", "Regression Suites", "Bug Tracking"] },
+      { group: t("serviceDetail.toolGroup.performance"), items: ["k6", "Lighthouse", "WebPageTest", "JMeter"] },
+      { group: t("serviceDetail.toolGroup.cicdDelivery"), items: ["GitHub Actions", "Jenkins", "Quality Gates", "Coverage"] },
+    ],
+  },
+  {
+    num: "05",
+    slug: "ai-ml",
+    titleKey: "services.aiMl",
+    descKey: "services.aiMlDesc",
+    overview: [
+      isEs
+        ? "No es magia, es machine learning bien aplicado. Desde un chatbot que conoce tu documentación interna hasta modelos que predicen demanda con semanas de anticipación — la IA práctica resuelve problemas reales, no solo impresiona."
+        : "It's not magic, it's machine learning done right. From a chatbot that knows your internal docs to models that forecast demand weeks ahead — practical AI solves real problems, not just impresses.",
+      isEs
+        ? "PyTorch, LangChain, OpenAI, modelos open-source — el stack importa menos que el resultado. Datos limpios, entrenamiento riguroso, despliegue monitoreado. Así es como la IA deja de ser experimental y se vuelve parte de tu negocio."
+        : "PyTorch, LangChain, OpenAI, open-source models — the stack matters less than the outcome. Clean data, rigorous training, monitored deployment. That's how AI stops being experimental and becomes part of your business.",
+    ],
+    features: [
+      {
+        icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"/><path d="M8.5 8.5v.01"/><path d="M16 15.5v.01"/><path d="M12 12v.01"/><path d="M11 17v.01"/><path d="M7 14v.01"/></svg>',
+        title: isEs ? "Modelos Predictivos" : "Predictive Models",
+        desc: isEs ? "Modelos de machine learning entrenados con tus datos para pronosticar tendencias, detectar anomalías y optimizar decisiones." : "Machine learning models trained on your data to forecast trends, detect anomalies, and optimize decisions.",
+      },
+      {
+        icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 10h.01"/><path d="M12 10h.01"/><path d="M16 10h.01"/></svg>',
+        title: isEs ? "Asistentes IA Privados" : "Private AI Assistants",
+        desc: isEs ? "Chatbots con RAG que responden sobre tu documentación interna. Privados, seguros y entrenados con tu conocimiento corporativo." : "RAG-powered chatbots that answer from your internal documentation. Private, secure, and trained on your corporate knowledge.",
+      },
+      {
+        icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 4-6"/></svg>',
+        title: isEs ? "Automatización Inteligente" : "Intelligent Automation",
+        desc: isEs ? "Automatización de flujos de trabajo con IA: procesamiento de documentos, extracción de datos, clasificación y más." : "Workflow automation powered by AI: document processing, data extraction, classification, and more.",
+      },
+      {
+        icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-7 7v4a7 7 0 0 0 14 0V9a7 7 0 0 0-7-7z"/><path d="M8 16v1a4 4 0 0 0 8 0v-1"/><circle cx="12" cy="7" r="1.5"/><path d="M21 14v.01"/><path d="M3 14v.01"/></svg>',
+        title: isEs ? "Visión por Computadora" : "Computer Vision",
+        desc: isEs ? "OCR, detección de objetos y análisis de imágenes para industrias que procesan documentos y contenido visual a escala." : "OCR, object detection, and image analysis for industries that process documents and visual content at scale.",
+      },
+    ],
+    tools: [
+      { group: t("serviceDetail.toolGroup.mlLlm"), items: ["PyTorch", "TensorFlow", "LangChain", "OpenAI", "Hugging Face", "scikit-learn"] },
+      { group: t("serviceDetail.toolGroup.dataEngineering"), items: ["Spark", "dbt", "Airflow", "PostgreSQL", "Kafka"] },
+      { group: t("serviceDetail.toolGroup.mlopsDelivery"), items: ["MLflow", "ONNX", "Docker", "Kubernetes", "CI/CD"] },
+      { group: t("serviceDetail.toolGroup.intelligenceApps"), items: ["RAG", "Vector Databases", "Function Calling", "Fine-tuning"] },
+    ],
+  },
+  {
+    num: "06",
+    slug: "dedicated-teams",
+    titleKey: "services.dedicatedTeams",
+    descKey: "services.dedicatedTeamsDesc",
+    overview: [
+      isEs
+        ? "A veces no necesitas un proyecto — necesitas talento. Equipos dedicados y staff augmentation que se integran al tuyo: tus ceremonias, tus herramientas, tu roadmap, y nuestros ingenieros senior como una extensión natural de tu organización."
+        : "Sometimes you don't need a project — you need talent. Dedicated teams and staff augmentation that embed with yours: your ceremonies, your tools, your roadmap, and our senior engineers as a natural extension of your organization.",
+      isEs
+        ? "Full-stack, DevOps, data, QA o IA — cubrimos cualquier stack con perfiles senior verificados. Escala hacia arriba o hacia abajo según tu carga, sin fricción ni traspasos de contexto."
+        : "Full-stack, DevOps, data, QA, or AI — we cover any stack with vetted senior profiles. Scale up or down with your workload, without friction or context handoffs.",
+    ],
+    features: [
+      {
+        icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+        title: isEs ? "Talentos Senior" : "Senior Talent",
+        desc: isEs ? "Ingenieros senior con años de experiencia en producción, verificados técnicamente y con soft skills comprobadas." : "Senior engineers with years of production experience, technically vetted with proven soft skills.",
+      },
+      {
+        icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>',
+        title: isEs ? "Tu Roadmap, Tus Herramientas" : "Your Roadmap, Your Tools",
+        desc: isEs ? "Nos integramos a tus procesos, tu Jira, tu Slack y tus ceremonias — cero fricción cultural, misma forma de trabajar." : "We integrate into your processes, your Jira, your Slack, and your ceremonies — zero cultural friction, same way of working.",
+      },
+      {
+        icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>',
+        title: isEs ? "Cobertura Full-Stack" : "Full-Stack Coverage",
+        desc: isEs ? "Frontend, backend, cloud, QA e IA — un solo equipo con todas las habilidades que tu producto necesita." : "Frontend, backend, cloud, QA, and AI — one team with every skill your product needs.",
+      },
+      {
+        icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 17H2a3 3 0 0 0 3-3V8a3 3 0 0 1 3-3h2"/><polyline points="8 2 12 6 8 10"/><path d="M22 17v2a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3"/></svg>',
+        title: isEs ? "Escalado Flexible" : "Flexible Scaling",
+        desc: isEs ? "Crece o reduce el equipo según tu carga de trabajo. Compromisos por sprint, sin contratos rígidos." : "Grow or shrink the team with your workload. Sprint-level commitments, no rigid contracts.",
+      },
+    ],
+    tools: [
+      { group: t("serviceDetail.toolGroup.teamCollaboration"), items: ["Jira", "Slack", "GitHub", "Notion", "Zoom"] },
+      { group: t("serviceDetail.toolGroup.teamDelivery"), items: ["Agile", "Scrum", "Kanban", "CI/CD", "Code Reviews"] },
+      { group: t("serviceDetail.toolGroup.backendApis"), items: ["React", "Node.js", "Go", "Python", "AWS", "Kubernetes"] },
+    ],
+  },
+  {
+    num: "07",
+    slug: "cybersecurity",
+    titleKey: "services.itCybersecurity",
+    descKey: "services.itCybersecurityDesc",
+    overview: [
+      isEs
+        ? "Una vulnerabilidad es todo lo que necesita un atacante. Auditorías OWASP, pruebas de penetración, cumplimiento HIPAA/SOC2/ISO 27001 — cada capa de seguridad cierra una puerta que no sabías que estaba abierta."
+        : "One vulnerability is all an attacker needs. OWASP audits, penetration testing, HIPAA/SOC2/ISO 27001 compliance — every security layer closes a door you didn't know was open.",
+      isEs
+        ? "Sistemas legacy que ralentizan tu equipo, costos cloud que crecen sin control, decisiones técnicas sin una visión clara. Diagnosticamos, priorizamos y ejecutamos — desde modernizar una base de datos hasta redefinir tu estrategia tecnológica."
+        : "Legacy systems slowing your team, cloud costs growing unchecked, technical decisions without clear direction. We diagnose, prioritize, and execute — from modernizing a database to redefining your tech strategy.",
+    ],
+    features: [
+      {
+        icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l9 4v6c0 5.55-3.84 10.74-9 12-5.16-1.26-9-6.45-9-12V6z"/><path d="M9 12l2 2 4-4"/></svg>',
+        title: isEs ? "Seguridad Integral" : "Comprehensive Security",
+        desc: isEs ? "Auditorías de seguridad, pruebas de penetración, implementación Zero Trust y cumplimiento con estándares internacionales." : "Security audits, penetration testing, Zero Trust implementation, and international compliance standards.",
+      },
+      {
+        icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16"/><path d="M4 20V4"/><path d="M9 12h6"/><path d="M12 9v6"/></svg>',
+        title: isEs ? "Modernización" : "Modernization",
+        desc: isEs ? "Transformamos sistemas legacy en arquitecturas modernas, escalables y mantenibles sin interrumpir tus operaciones." : "We transform legacy systems into modern, scalable, maintainable architectures without disrupting your operations.",
+      },
+      {
+        icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33-1.82l-2.1-3.76a1.66 1.66 0 0 0-2.23-.74L12 10"/><path d="M9.17 4.3a1.66 1.66 0 0 1 .83-2.2l3.76-1.57a1.66 1.66 0 0 1 2.18.86l1.94 4.15"/><path d="M4.6 9a1.65 1.65 0 0 0 .33 1.82l2.1 3.77a1.66 1.66 0 0 0 2.23.74L12 14"/><path d="M14.83 19.7a1.66 1.66 0 0 1-.83 2.2l-3.76 1.57a1.66 1.66 0 0 1-2.18-.86l-1.94-4.15"/></svg>',
+        title: isEs ? "Optimización Cloud" : "Cloud Optimization",
+        desc: isEs ? "Análisis y reducción de costos cloud, optimización de recursos, FinOps y mejora continua del rendimiento." : "Cloud cost analysis and reduction, resource optimization, FinOps, and continuous performance improvement.",
+      },
+      {
+        icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-9.33-5"/><path d="M6 9a6 6 0 0 0 .3 6"/><path d="M8 12h8"/><path d="M12 8v8"/><circle cx="12" cy="12" r="10"/><path d="M12 2v2"/><path d="M12 20v2"/></svg>',
+        title: isEs ? "Consultoría Estratégica" : "Strategic Consulting",
+        desc: isEs ? "Arquitectura de referencia, selección de tecnologías y hoja de ruta tecnológica alineada con tus objetivos de negocio." : "Reference architecture, technology selection, and a technology roadmap aligned with your business goals.",
+      },
+    ],
+    tools: [
+      { group: t("serviceDetail.toolGroup.securityTesting"), items: ["OWASP", "Burp Suite", "Metasploit", "Nmap", "ZAP"] },
+      { group: t("serviceDetail.toolGroup.complianceFrameworks"), items: ["SOC 2", "ISO 27001", "HIPAA", "GDPR"] },
+      { group: t("serviceDetail.toolGroup.architectureDefense"), items: ["Zero Trust", "IAM", "SIEM", "WAF", "Cloud Security"] },
+      { group: t("serviceDetail.toolGroup.observabilityResponse"), items: ["Incident Response", "Threat Modeling", "Vulnerability Management"] },
+    ],
+  },
+  {
+    num: "08",
+    slug: "modernization",
+    titleKey: "services.modernization",
+    descKey: "services.modernizationDesc",
+    overview: [
+      isEs
+        ? "Tu sistema legacy sigue pagando las cuentas, pero ya no puede crecer. Modernizamos lo que existe en vez de tirarlo: refactorizamos, migramos e integramos paso a paso, con riesgo controlado y sin detener tu operación."
+        : "Your legacy system still pays the bills, but it can't grow anymore. We modernize what exists instead of throwing it away: refactor, migrate, and integrate step by step, with controlled risk and no operational downtime.",
+      isEs
+        ? "ERP, CRM, APIs de terceros — conectamos todo tu ecosistema en un flujo de datos único. Bases de datos migradas, procesos automatizados y una arquitectura que por fin respira."
+        : "ERP, CRM, third-party APIs — we connect your entire ecosystem into a single data flow. Migrated databases, automated processes, and an architecture that can finally breathe.",
+    ],
+    features: [
+      {
+        icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>',
+        title: isEs ? "Modernización de Legados" : "Legacy Modernization",
+        desc: isEs ? "Refactorización incremental y migración a arquitecturas modernas con cero tiempo de inactividad." : "Incremental refactoring and migration to modern architectures with zero downtime.",
+      },
+      {
+        icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>',
+        title: isEs ? "Integraciones ERP / CRM" : "ERP / CRM Integration",
+        desc: isEs ? "SAP, Salesforce, HubSpot y más — un solo flujo de datos entre tus sistemas de negocio críticos." : "SAP, Salesforce, HubSpot, and more — a single data flow between your critical business systems.",
+      },
+      {
+        icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>',
+        title: isEs ? "Integración de APIs" : "API Integration",
+        desc: isEs ? "REST, GraphQL y SOAP — conectamos sistemas antiguos y nuevos en una capa de integración limpia." : "REST, GraphQL, and SOAP — we connect old and new systems through a clean integration layer.",
+      },
+      {
+        icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>',
+        title: isEs ? "Migración de Datos" : "Data Migration",
+        desc: isEs ? "Migraciones de datos planificadas, validadas y sin pérdidas — con rollback y verificación en cada fase." : "Planned, validated, lossless data migrations — with rollback and verification at every phase.",
+      },
+    ],
+    tools: [
+      { group: t("serviceDetail.toolGroup.integrationTech"), items: ["REST", "GraphQL", "SOAP", "Webhooks", "Message Queues"] },
+      { group: t("serviceDetail.toolGroup.erpCrm"), items: ["SAP", "Salesforce", "HubSpot", "Dynamics", "NetSuite"] },
+      { group: t("serviceDetail.toolGroup.dataMigration"), items: ["ETL", "dbt", "Fivetran", "PostgreSQL", "MongoDB"] },
+      { group: t("serviceDetail.toolGroup.backendApis"), items: ["Node.js", "Go", "Python", "Java", ".NET"] },
+    ],
+  },
+];
+
 ---
 
 <Layout title={t("meta.servicesTitle")} description={t("meta.servicesDesc")}
@@ -21,119 +361,95 @@ const locale = Astro.currentLocale || "en";
 
   <PageBanner suptitleKey="services.hero.suptitle" headingKey="services.hero.title" descriptionKey="services.hero.desc" />
 
-  <!-- ── Service Showcase — white bg, frameless illustrations ── -->
-  <section id="showcase" class="tria-sc-section" data-section-theme="light">
+  <!-- ═══════════════════════════════════════════════
+       SERVICES & CAPABILITIES — light
+       Fully detailed, self-contained service accordions
+       ═══════════════════════════════════════════════ -->
+  <section id="practices" class="tria-sc-section" data-section-theme="light">
     <div class="tria-ambient-temp">
       <div class="tria-at-glow-1"></div>
       <div class="tria-at-glow-2"></div>
     </div>
-
     <div class="container tria-p-120-120">
 
       <!-- header -->
       <div class="tria-sc-header tria-up">
-        <span class="tria-suptitle tria-suptitle-dark tria-up">{t("services.showcase.suptitle")}</span>
+        <span class="tria-suptitle tria-suptitle-dark tria-up" data-i18n="services.showcase.suptitle">{t("services.showcase.suptitle")}</span>
         <h2 class="tria-sc-heading" data-i18n-html="services.showcase.heading" set:html={t("services.showcase.heading")}></h2>
         <p class="tria-sc-sub" data-i18n="services.showcase.sub">{t("services.showcase.sub")}</p>
       </div>
 
-      <!-- Service 1: Digital Products -->
-      <div class="tria-sc-row">
-        <div class="tria-sc-visual">
-          <img src="/assets/img/services/digital-products.svg" alt="" class="tria-sc-svg" loading="lazy" />
-        </div>
-        <div class="tria-sc-content">
-          <span class="tria-sc-num">01</span>
-          <h3 class="tria-sc-title" set:html={t("services.softwareDev")}></h3>
-          <p class="tria-sc-desc" data-i18n="services.desc1">{t("services.desc1")}</p>
-          <ul class="tria-sc-features">
-            <li data-i18n="services.feature1">{t("services.feature1")}</li>
-            <li data-i18n="services.feature2">{t("services.feature2")}</li>
-            <li data-i18n="services.feature3">{t("services.feature3")}</li>
-            <li data-i18n="services.feature4">{t("services.feature4")}</li>
-            <li data-i18n="services.feature5">{t("services.feature5")}</li>
-          </ul>
-          <div class="tria-sc-tech" data-i18n="services.tech1">{t("services.tech1")}</div>
-          <a href="/services/software-dev" class="tria-sc-link">
-            <span data-i18n="services.showcase.cta">{t("services.showcase.cta")}</span>
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-        </div>
+      <!-- services — detailed accordion table -->
+      <div class="tria-tbl">
+        {services.map((service) => (
+          <div class="tria-tbl-item tria-up" id={service.slug}>
+            <div class="tria-tbl-row">
+              <span class="tria-tbl-num">{service.num}</span>
+              <div class="tria-tbl-main">
+                <h3 class="tria-tbl-title" data-i18n={service.titleKey}>{t(service.titleKey)}</h3>
+                <p class="tria-tbl-desc" data-i18n={service.descKey}>{t(service.descKey)}</p>
+              </div>
+              <button class="tria-tbl-toggle" type="button" aria-expanded="false" aria-controls={`detail-${service.slug}`} data-accordion-toggle>
+                <span class="tria-tbl-toggle-more" data-i18n="services.showcase.viewMore">{t("services.showcase.viewMore")}</span>
+                <span class="tria-tbl-toggle-less" data-i18n="services.showcase.viewLess">{t("services.showcase.viewLess")}</span>
+                <svg class="tria-tbl-toggle-icon" width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+            <div class="tria-tbl-detail" id={`detail-${service.slug}`} data-accordion-panel>
+              <div class="tria-tbl-detail-inner">
+
+              <!-- overview -->
+              <div class="tria-tbl-overview">
+                {service.overview.map((paragraph) => (
+                  <p>{paragraph}</p>
+                ))}
+              </div>
+
+              <!-- features -->
+              <div class="tria-tbl-feats">
+                {service.features.map((feat) => (
+                  <div class="tria-tbl-feat">
+                    <span class="tria-tbl-feat-icon" set:html={feat.icon}></span>
+                    <h4 class="tria-tbl-feat-title">{feat.title}</h4>
+                    <p class="tria-tbl-feat-desc">{feat.desc}</p>
+                  </div>
+                ))}
+              </div>
+
+              <!-- tools -->
+              <div class="tria-tbl-tools">
+                {service.tools.map((toolGroup) => (
+                  <div class="tria-tbl-tool-group">
+                    <h5 class="tria-tbl-tool-group-title">{toolGroup.group}</h5>
+                    <div class="tria-tbl-tool-chips">
+                      {toolGroup.items.map((item) => (
+                        <span>{item}</span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
 
-      <!-- Service 2: Cloud & Backend -->
-      <div class="tria-sc-row tria-sc-row--reverse">
-        <div class="tria-sc-visual">
-          <img src="/assets/img/services/cloud-backend.svg" alt="" class="tria-sc-svg" loading="lazy" />
-        </div>
-        <div class="tria-sc-content">
-          <span class="tria-sc-num">02</span>
-          <h3 class="tria-sc-title" set:html={t("services.cloudDevops")}></h3>
-          <p class="tria-sc-desc" data-i18n="services.desc2">{t("services.desc2")}</p>
-          <ul class="tria-sc-features">
-            <li data-i18n="services.feature6">{t("services.feature6")}</li>
-            <li data-i18n="services.feature7">{t("services.feature7")}</li>
-            <li data-i18n="services.feature8">{t("services.feature8")}</li>
-            <li data-i18n="services.feature9">{t("services.feature9")}</li>
-          </ul>
-          <div class="tria-sc-tech" data-i18n="services.tech2">{t("services.tech2")}</div>
-          <a href="/services/cloud-devops" class="tria-sc-link">
-            <span data-i18n="services.showcase.cta">{t("services.showcase.cta")}</span>
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- Service 3: AI & Automation -->
-      <div class="tria-sc-row">
-        <div class="tria-sc-visual">
-          <img src="/assets/img/services/ai-automation.svg" alt="" class="tria-sc-svg" loading="lazy" />
-        </div>
-        <div class="tria-sc-content">
-          <span class="tria-sc-num">03</span>
-          <h3 class="tria-sc-title" set:html={t("services.aiMl")}></h3>
-          <p class="tria-sc-desc" data-i18n="services.desc3">{t("services.desc3")}</p>
-          <ul class="tria-sc-features">
-            <li data-i18n="services.feature11">{t("services.feature11")}</li>
-            <li data-i18n="services.feature12">{t("services.feature12")}</li>
-            <li data-i18n="services.feature13">{t("services.feature13")}</li>
-            <li data-i18n="services.feature14">{t("services.feature14")}</li>
-          </ul>
-          <div class="tria-sc-tech" data-i18n="services.tech3">{t("services.tech3")}</div>
-          <a href="/services/ai-ml" class="tria-sc-link">
-            <span data-i18n="services.showcase.cta">{t("services.showcase.cta")}</span>
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- Service 4: Security -->
-      <div class="tria-sc-row tria-sc-row--reverse">
-        <div class="tria-sc-visual">
-          <img src="/assets/img/services/security.svg" alt="" class="tria-sc-svg" loading="lazy" />
-        </div>
-        <div class="tria-sc-content">
-          <span class="tria-sc-num">04</span>
-          <h3 class="tria-sc-title" set:html={t("services.cybersecurity")}></h3>
-          <p class="tria-sc-desc" data-i18n="services.desc4">{t("services.desc4")}</p>
-          <ul class="tria-sc-features">
-            <li data-i18n="services.feature16">{t("services.feature16")}</li>
-            <li data-i18n="services.feature17">{t("services.feature17")}</li>
-            <li data-i18n="services.feature18">{t("services.feature18")}</li>
-            <li data-i18n="services.feature19">{t("services.feature19")}</li>
-          </ul>
-          <div class="tria-sc-tech" data-i18n="services.tech4">{t("services.tech4")}</div>
-          <a href="/services/cybersecurity" class="tria-sc-link">
-            <span data-i18n="services.showcase.cta">{t("services.showcase.cta")}</span>
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-        </div>
+      <!-- CTA — "not a closed list" -->
+      <div class="tria-cap-cta tria-up">
+        <p class="tria-cap-cta-title" data-i18n="services.cap.cta">{t("services.cap.cta")}</p>
+        <p class="tria-cap-cta-sub" data-i18n="services.cap.ctaSub">{t("services.cap.ctaSub")}</p>
+        <a href={locale === "es" ? "/es/contact" : "/contact"} class="tria-sc-link">
+          <span data-i18n="ctaService.button">{t("ctaService.button")}</span>
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
       </div>
 
     </div>
   </section>
 
-  <!-- ── Engagement Models — dark glass ── -->
+  <!-- ── Engagement Models — light with texture ── -->
   <section id="engagement" class="tria-eng-section" data-section-theme="light">
     <div class="tria-dot-pattern"></div>
     <div class="tria-grain-overlay"></div>
@@ -154,7 +470,7 @@ const locale = Astro.currentLocale || "en";
 
       <div class="row tria-eng-grid">
         <!-- Project-Based -->
-        <div class="col-md-4 tria-up">
+        <div class="col-lg-3 col-md-6 tria-up">
           <div class="tria-eng-card">
             <div class="tria-eng-card-icon">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
@@ -170,7 +486,7 @@ const locale = Astro.currentLocale || "en";
         </div>
 
         <!-- Sprint-Based -->
-        <div class="col-md-4 tria-up">
+        <div class="col-lg-3 col-md-6 tria-up">
           <div class="tria-eng-card">
             <div class="tria-eng-card-icon">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
@@ -185,8 +501,24 @@ const locale = Astro.currentLocale || "en";
           </div>
         </div>
 
+        <!-- Dedicated Team -->
+        <div class="col-lg-3 col-md-6 tria-up">
+          <div class="tria-eng-card">
+            <div class="tria-eng-card-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h3 class="tria-eng-card-title" data-i18n="services.engagement.dedicatedTeam">{t("services.engagement.dedicatedTeam")}</h3>
+            <p class="tria-eng-card-desc" data-i18n="services.engagement.dedicatedTeamDesc">{t("services.engagement.dedicatedTeamDesc")}</p>
+            <ul class="tria-eng-card-list">
+              <li data-i18n="services.engagement.dedicatedTeam1">{t("services.engagement.dedicatedTeam1")}</li>
+              <li data-i18n="services.engagement.dedicatedTeam2">{t("services.engagement.dedicatedTeam2")}</li>
+              <li data-i18n="services.engagement.dedicatedTeam3">{t("services.engagement.dedicatedTeam3")}</li>
+            </ul>
+          </div>
+        </div>
+
         <!-- Advisory -->
-        <div class="col-md-4 tria-up">
+        <div class="col-lg-3 col-md-6 tria-up">
           <div class="tria-eng-card">
             <div class="tria-eng-card-icon">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
@@ -222,7 +554,7 @@ const locale = Astro.currentLocale || "en";
 
 <style>
   /* ═══════════════════════════════════════
-     SERVICE SHOWCASE — Light
+     SERVICES & CAPABILITIES — Light
      ═══════════════════════════════════════ */
   .tria-sc-section {
     background: #fff;
@@ -262,123 +594,255 @@ const locale = Astro.currentLocale || "en";
     line-height: 1.7;
   }
 
-  /* ── Alternating rows ── */
-  .tria-sc-row {
-    display: grid;
-    grid-template-columns: 0.85fr 1.15fr;
-    gap: 72px;
-    align-items: center;
-    padding: 90px 0;
+  /* ── Detailed service accordion table ── */
+  .tria-tbl {
+    margin-top: 64px;
     position: relative;
     z-index: 1;
   }
 
-  .tria-sc-row + .tria-sc-row {
-    border-top: 1px solid rgba(0,0,0,0.05);
+  .tria-tbl-item {
+    border-radius: 20px;
+    scroll-margin-top: 120px;
+    transition: background 0.45s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .tria-sc-row--reverse .tria-sc-visual { order: 2; }
-  .tria-sc-row--reverse .tria-sc-content { order: 1; }
+  .tria-tbl-item + .tria-tbl-item {
+    margin-top: 4px;
+  }
 
-  .tria-sc-visual {
-    display: flex;
+  .tria-tbl-item.is-open {
+    background: rgba(6, 142, 140, 0.04);
+  }
+
+  .tria-tbl-row {
+    display: grid;
+    grid-template-areas: "num main arrow";
+    grid-template-columns: 88px minmax(0, 1fr) auto;
+    gap: 40px;
     align-items: center;
-    justify-content: center;
-    padding: 20px 0;
+    padding: 40px 32px;
   }
 
-  .tria-sc-svg {
-    width: 100%;
-    max-width: 380px;
-    height: auto;
-    object-fit: contain;
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    filter: saturate(0.85);
-  }
-
-  .tria-sc-row:hover .tria-sc-svg {
-    transform: scale(1.04);
-    filter: saturate(1);
-  }
-
-  /* ── Content ── */
-  .tria-sc-content {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .tria-sc-num {
-    font-size: 0.65rem;
+  /* ── Number ── */
+  .tria-tbl-num {
+    grid-area: num;
+    font-size: 0.7rem;
     font-weight: 600;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(0,0,0,0.15);
-    display: block;
-    margin-bottom: 14px;
-    transition: color 0.4s ease;
+    letter-spacing: 0.22em;
+    color: rgba(0,0,0,0.18);
+    transition: color 0.35s ease;
   }
 
-  .tria-sc-row:hover .tria-sc-num { color: var(--accent); }
+  .tria-tbl-item.is-open .tria-tbl-num { color: var(--accent); }
 
-  .tria-sc-title {
-    font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  /* ── Main content ── */
+  .tria-tbl-main {
+    grid-area: main;
+    min-width: 0;
+  }
+
+  .tria-tbl-title {
+    font-size: clamp(1.3rem, 2vw, 1.65rem);
     font-weight: 450;
     letter-spacing: -0.02em;
     color: #0b0d17;
-    margin-bottom: 18px;
+    margin-bottom: 10px;
     line-height: 1.25;
-    transition: color 0.4s ease;
+    transition: color 0.35s ease;
   }
 
-  .tria-sc-title .tria-thin { color: rgba(0,0,0,0.25); }
+  .tria-tbl-item.is-open .tria-tbl-title { color: var(--accent); }
 
-  .tria-sc-desc {
-    font-size: 0.88rem;
-    color: rgba(0,0,0,0.4);
-    line-height: 1.8;
-    margin-bottom: 28px;
-    max-width: 460px;
+  .tria-tbl-desc {
+    font-size: 0.85rem;
+    color: rgba(0,0,0,0.45);
+    line-height: 1.75;
+    margin: 0;
+    max-width: 560px;
   }
 
-  .tria-sc-features {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 32px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .tria-sc-features li {
-    font-size: 0.82rem;
-    color: rgba(0,0,0,0.4);
-    padding-left: 22px;
-    position: relative;
-    line-height: 1.6;
-    transition: color 0.3s ease;
-  }
-
-  .tria-sc-row:hover .tria-sc-features li { color: rgba(0,0,0,0.6); }
-
-  .tria-sc-features li::before {
-    content: '→';
-    position: absolute;
-    left: 0;
-    color: var(--accent);
+  /* ── View more / View less toggle ── */
+  .tria-tbl-toggle {
+    grid-area: arrow;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border: 1px solid rgba(0,0,0,0.09);
+    border-radius: 100px;
+    background: transparent;
+    font-family: inherit;
+    font-size: 0.72rem;
     font-weight: 600;
-  }
-
-  .tria-sc-tech {
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: rgba(0,0,0,0.3);
-    margin-bottom: 32px;
-    transition: color 0.3s ease;
+    color: rgba(0,0,0,0.5);
+    white-space: nowrap;
+    cursor: pointer;
+    justify-self: end;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .tria-sc-row:hover .tria-sc-tech { color: var(--accent); }
+  .tria-tbl-toggle:hover {
+    border-color: rgba(6, 142, 140, 0.4);
+    background: rgba(6, 142, 140, 0.05);
+    color: var(--accent);
+  }
+
+  .tria-tbl-toggle:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .tria-tbl-toggle-icon {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .tria-tbl-toggle-less { display: none; }
+
+  .tria-tbl-item.is-open .tria-tbl-toggle {
+    border-color: rgba(6, 142, 140, 0.25);
+    background: rgba(6, 142, 140, 0.06);
+    color: var(--accent);
+  }
+  .tria-tbl-item.is-open .tria-tbl-toggle-more { display: none; }
+  .tria-tbl-item.is-open .tria-tbl-toggle-less { display: inline; }
+  .tria-tbl-item.is-open .tria-tbl-toggle-icon { transform: rotate(90deg); }
+
+  /* ── Expanded detail — smooth height animation ── */
+  .tria-tbl-detail {
+    display: grid;
+    grid-template-rows: 0fr;
+    visibility: hidden;
+    transition: grid-template-rows 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+                visibility 0s linear 0.55s;
+  }
+
+  .tria-tbl-item.is-open .tria-tbl-detail {
+    grid-template-rows: 1fr;
+    visibility: visible;
+    transition: grid-template-rows 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+                visibility 0s;
+  }
+
+  .tria-tbl-detail-inner {
+    overflow: hidden;
+    min-height: 0;
+    padding: 8px 32px 48px 160px;
+  }
+
+  .tria-tbl-overview p {
+    font-size: 0.88rem;
+    color: rgba(0,0,0,0.5);
+    line-height: 1.8;
+    margin: 0 0 16px;
+    max-width: 720px;
+  }
+
+  .tria-tbl-overview p:last-child { margin-bottom: 0; }
+
+  .tria-tbl-feats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px 48px;
+    margin-top: 44px;
+    padding-top: 44px;
+    border-top: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .tria-tbl-feat-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    font-size: 18px;
+    margin-bottom: 16px;
+    background: rgba(6, 142, 140, 0.06);
+    border-radius: 12px;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .tria-tbl-feat:hover .tria-tbl-feat-icon { transform: translateY(-2px); }
+
+  .tria-tbl-feat-title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #0b0d17;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+
+  .tria-tbl-feat-desc {
+    font-size: 0.82rem;
+    color: rgba(0,0,0,0.45);
+    line-height: 1.7;
+    margin: 0;
+    max-width: 380px;
+  }
+
+  .tria-tbl-tools {
+    margin-top: 44px;
+    padding-top: 44px;
+    border-top: 1px solid rgba(0,0,0,0.06);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px 24px;
+  }
+
+  .tria-tbl-tool-group-title {
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+
+  .tria-tbl-tool-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tria-tbl-tool-chips span {
+    font-size: 0.7rem;
+    color: rgba(0,0,0,0.55);
+    border: 1px solid rgba(0,0,0,0.08);
+    background: rgba(0,0,0,0.02);
+    padding: 5px 12px;
+    border-radius: 100px;
+    transition: color 0.3s ease, border-color 0.3s ease;
+  }
+
+  /* ── CTA strip ── */
+  .tria-cap-cta {
+    margin-top: 64px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    padding: 48px 32px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 20px;
+    background:
+      radial-gradient(600px 200px at 50% 0%, rgba(6, 142, 140, 0.06), transparent 70%),
+      #fafbfc;
+  }
+
+  .tria-cap-cta-title {
+    font-size: 1.35rem;
+    font-weight: 450;
+    color: #0b0d17;
+    margin-bottom: 8px;
+  }
+
+  .tria-cap-cta-sub {
+    font-size: 0.85rem;
+    color: rgba(0, 0, 0, 0.45);
+    margin-bottom: 24px;
+  }
 
   .tria-sc-link {
     display: inline-flex;
@@ -390,7 +854,6 @@ const locale = Astro.currentLocale || "en";
     color: var(--accent);
     text-decoration: none;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    margin-top: auto;
   }
 
   .tria-sc-link:hover { gap: 12px; opacity: 0.7; }
@@ -401,7 +864,9 @@ const locale = Astro.currentLocale || "en";
 
   .tria-sc-link:hover svg { transform: translateX(4px); }
 
-  /* ── Engagement Models — light with texture ── */
+  /* ═══════════════════════════════════════
+     ENGAGEMENT MODELS — Light with texture
+     ═══════════════════════════════════════ */
   .tria-eng-section {
     background: #f5f7f9;
     position: relative;
@@ -417,7 +882,10 @@ const locale = Astro.currentLocale || "en";
     line-height: 1.15;
   }
 
-  .tria-eng-title .tria-thin { color: rgba(0,0,0,0.2); font-weight: 200; }
+  .tria-eng-title .tria-thin {
+    color: rgba(0, 0, 0, 0.2);
+    font-weight: 200;
+  }
 
   .tria-eng-intro {
     font-size: 0.9rem;
@@ -426,10 +894,13 @@ const locale = Astro.currentLocale || "en";
     margin-top: 52px;
   }
 
-  .tria-eng-grid { position: relative; z-index: 1; }
+  .tria-eng-grid {
+    position: relative;
+    z-index: 1;
+  }
 
   .tria-eng-card {
-    border: 1px solid rgba(0,0,0,0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
     border-radius: 16px;
     padding: 44px 36px;
     height: 100%;
@@ -443,7 +914,7 @@ const locale = Astro.currentLocale || "en";
   .tria-eng-card:hover {
     border-color: rgba(6, 142, 140, 0.15);
     transform: translateY(-6px);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.04);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.04);
   }
 
   .tria-eng-card-icon {
@@ -460,8 +931,6 @@ const locale = Astro.currentLocale || "en";
                 transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
                 color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
-
-
 
   .tria-eng-card-title {
     font-size: 1.1rem;
@@ -502,30 +971,46 @@ const locale = Astro.currentLocale || "en";
     font-size: 0.7rem;
   }
 
+  .tria-mb-60 { margin-bottom: 60px; }
+
+  /* ═══════════════════════════════════════
+     RESPONSIVE
+     ═══════════════════════════════════════ */
   @media (max-width: 991px) {
-    .tria-sc-row { grid-template-columns: 1fr; gap: 48px; padding: 60px 0; }
-    .tria-sc-row--reverse .tria-sc-visual,
-    .tria-sc-row--reverse .tria-sc-content { order: unset; }
-    .tria-sc-features { align-items: flex-start; }
-    .tria-sc-desc { max-width: 100%; }
-    .tria-sc-svg { max-width: 320px; }
-    .tria-eng-card { padding: 36px 28px; }
+    .tria-tbl-row { gap: 24px 32px; }
+    .tria-tbl-detail-inner { padding-left: 120px; }
+    .tria-tbl-tools { grid-template-columns: repeat(2, 1fr); }
+    .tria-eng-card { padding: 36px 28px; margin-bottom: 24px; }
+    .tria-eng-card:last-child { margin-bottom: 0; }
     .tria-eng-intro { margin-top: 0; }
+    .tria-cap-cta { margin-top: 56px; }
   }
 
   @media (max-width: 768px) {
-    .tria-eng-card { margin-bottom: 24px; }
-    .tria-eng-card:last-child { margin-bottom: 0; }
+    .tria-cap-cta { padding: 40px 24px; }
+    .tria-tbl-feats { grid-template-columns: 1fr; }
   }
 
   @media (max-width: 576px) {
-    .tria-sc-row { padding: 40px 0; gap: 32px; }
-    .tria-sc-title { font-size: 1.15rem; }
-    .tria-sc-desc { font-size: 0.82rem; }
-    .tria-sc-features { gap: 8px; margin-bottom: 24px; }
-    .tria-sc-features li { font-size: 0.75rem; }
-    .tria-sc-tech { margin-bottom: 24px; }
-    .tria-sc-svg { max-width: 280px; }
+    .tria-tbl { margin-top: 48px; }
+    .tria-tbl-row {
+      grid-template-areas:
+        "num arrow"
+        "main main";
+      grid-template-columns: 1fr auto;
+      gap: 12px 20px;
+      padding: 28px 16px;
+    }
+    .tria-tbl-title { font-size: 1.15rem; }
+    .tria-tbl-desc { font-size: 0.8rem; }
+    .tria-tbl-toggle { font-size: 0.62rem; gap: 6px; padding: 8px 14px; }
+    .tria-tbl-detail-inner { padding: 8px 20px 40px 20px; }
+    .tria-tbl-overview p { font-size: 0.82rem; }
+    .tria-tbl-feats { gap: 24px; margin-top: 36px; padding-top: 36px; }
+    .tria-tbl-feat-title { font-size: 0.9rem; }
+    .tria-tbl-feat-desc { font-size: 0.78rem; }
+    .tria-tbl-tools { grid-template-columns: 1fr 1fr; gap: 24px 16px; margin-top: 36px; padding-top: 36px; }
+    .tria-tbl-tool-chips span { font-size: 0.66rem; padding: 4px 10px; }
     .tria-eng-card { padding: 28px 24px; margin-bottom: 28px; }
     .tria-eng-card-title { font-size: 1rem; }
     .tria-eng-card-desc { font-size: 0.78rem; }
@@ -533,20 +1018,78 @@ const locale = Astro.currentLocale || "en";
     .tria-eng-card-list li { font-size: 0.72rem; }
     .tria-eng-title { font-size: 1.5rem; }
     .tria-eng-intro { font-size: 0.82rem; }
+    .tria-cap-cta { margin-top: 40px; padding: 32px 20px; }
+    .tria-cap-cta-title { font-size: 1.1rem; }
+    .tria-cap-cta-sub { font-size: 0.78rem; }
   }
 
   @media (max-width: 400px) {
-    .tria-sc-row { padding: 28px 0; gap: 24px; }
-    .tria-sc-title { font-size: 1rem; }
-    .tria-sc-desc { font-size: 0.78rem; margin-bottom: 20px; }
-    .tria-sc-features li { font-size: 0.7rem; }
-    .tria-sc-tech { font-size: 0.55rem; }
-    .tria-sc-link { font-size: 0.65rem; }
-    .tria-sc-svg { max-width: 220px; }
+    .tria-tbl-tools { grid-template-columns: 1fr; }
     .tria-sc-heading { font-size: 1.4rem; }
     .tria-sc-sub { font-size: 0.82rem; }
-    .tria-eng-card { padding: 22px 18px; margin-bottom: 20px; }
-    .tria-eng-card-title { font-size: 0.9rem; }
-    .tria-eng-card-desc { font-size: 0.72rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tria-tbl-detail { transition: none; }
   }
 </style>
+
+<script>
+  // Controlled accordion: only the "View More / View Less" button toggles each item,
+  // and only one item can be open at a time.
+  // Event delegation on the container so it survives swup navigation.
+  function initAccordion() {
+    const container = document.querySelector(".tria-tbl");
+    if (!container) return;
+    // Guard against duplicate initialization (swup may re-fire contentReplaced)
+    if (container.dataset.accordionInit === "1") return;
+    container.dataset.accordionInit = "1";
+
+    function setOpen(item, open) {
+      if (open) {
+        // Close any other open item — one open at a time (query live DOM)
+        container.querySelectorAll(".tria-tbl-item.is-open").forEach((other) => {
+          if (other === item) return;
+          other.classList.remove("is-open");
+          const otherToggle = other.querySelector("[data-accordion-toggle]");
+          if (otherToggle) otherToggle.setAttribute("aria-expanded", "false");
+        });
+        item.classList.add("is-open");
+        const toggle = item.querySelector("[data-accordion-toggle]");
+        if (toggle) toggle.setAttribute("aria-expanded", "true");
+      } else {
+        item.classList.remove("is-open");
+        const toggle = item.querySelector("[data-accordion-toggle]");
+        if (toggle) toggle.setAttribute("aria-expanded", "false");
+      }
+    }
+
+    container.addEventListener("click", (e) => {
+      const toggle = e.target.closest("[data-accordion-toggle]");
+      if (!toggle) return;
+      const item = toggle.closest(".tria-tbl-item");
+      if (!item) return;
+      setOpen(item, !item.classList.contains("is-open"));
+    });
+  }
+
+  // Open the accordion item targeted by the URL hash (e.g. /services#software-dev)
+  function openFromHash() {
+    const hash = window.location.hash;
+    if (!hash) return;
+    const target = document.querySelector(hash);
+    if (!target || !target.classList.contains("tria-tbl-item") || target.classList.contains("is-open")) return;
+    const toggle = target.querySelector("[data-accordion-toggle]");
+    if (toggle) toggle.click();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => { initAccordion(); openFromHash(); });
+  } else {
+    initAccordion();
+    openFromHash();
+  }
+  // Also open on in-page anchor clicks (footer/header links while already on /services)
+  window.addEventListener("hashchange", openFromHash);
+  document.addEventListener("swup:contentReplaced", () => { initAccordion(); openFromHash(); });
+</script>

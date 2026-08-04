@@ -17,376 +17,432 @@ function isCurrentPage(href: string): boolean {
   const pathPart = cleanHref.split("#")[0];
   return barePath === pathPart || barePath.startsWith(pathPart + "/");
 }
+
+// Main navigation pages — the current page is highlighted, not hidden
+const pages = [
+  { href: "/", key: "nav.home" },
+  { href: "/about", key: "nav.about" },
+  { href: "/services", key: "nav.services" },
+  { href: "/portfolio", key: "nav.work" },
+  { href: "/contact", key: "nav.contact" },
+  { href: "/blog", key: "nav.blog" },
+];
+
+// All 8 services (anchors on /services)
+const menuServices = [
+  { slug: "software-dev", key: "nav.softwareDev" },
+  { slug: "uiux-design", key: "nav.uiuxDesign" },
+  { slug: "cloud-devops", key: "nav.cloudDevops" },
+  { slug: "qa-testing", key: "nav.qaTesting" },
+  { slug: "ai-ml", key: "nav.aiMl" },
+  { slug: "dedicated-teams", key: "nav.dedicatedTeams" },
+  { slug: "cybersecurity", key: "nav.cybersecurity" },
+  { slug: "modernization", key: "nav.modernization" },
+];
+
+// Social links (same as footer)
+const menuSocials = [
+  { href: "https://linkedin.com", label: "LinkedIn", icon: "ti ti-brand-linkedin" },
+  { href: "https://x.com", label: "X", icon: "ti ti-brand-x" },
+  { href: "https://instagram.com", label: "Instagram", icon: "ti ti-brand-instagram" },
+  { href: "https://github.com", label: "GitHub", icon: "ti ti-brand-github" },
+];
 ---
 
 <!-- menu -->
 <div class="tria-menu-frame">
-  <!-- Dynamic premium orbs for visual depth -->
-  <div class="tria-menu-orb tria-menu-orb-1"></div>
-  <div class="tria-menu-orb tria-menu-orb-2"></div>
 
-  <div class="tria-menu-close">
-    <div class="tria-menu-close-btn" onclick="document.querySelector('.tria-menu-btn').click()">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <path d="M6 6l12 12M18 6l-12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-      </svg>
+  <!-- frame top: logo + close -->
+  <div class="tria-menu-top">
+    <a href={lp("/")} class="tria-menu-logo" aria-label="tria">
+      <span class="tria-menu-logo-text">tria<span class="tria-menu-logo-dot">.</span></span>
+    </a>
+    <div class="tria-menu-close">
+      <div class="tria-menu-btn" role="button" aria-label="Close menu" tabindex="0">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
   </div>
+
   <div class="tria-menu-content">
     <div class="tria-menu-grid" id="swupMenu">
-      <div class="tria-menu-pages">
-        <ul>
-          {!isCurrentPage("/") && (
-            <li>
-              <a href={lp("/")} data-i18n="nav.home">{t("nav.home")}</a>
-            </li>
-          )}
-          {!isCurrentPage("/about") && (
-            <li>
-              <a href={lp("/about")} data-i18n="nav.about">{t("nav.about")}</a>
-            </li>
-          )}
-          {!isCurrentPage("/services") && (
-            <li>
-              <a href={lp("/services")} data-i18n="nav.services">{t("nav.services")}</a>
-            </li>
-          )}
-          {!isCurrentPage("/portfolio") && (
-            <li>
-              <a href={lp("/portfolio")} data-i18n="nav.work">{t("nav.work")}</a>
-            </li>
-          )}
-          {!isCurrentPage("/contact") && (
-            <li>
-              <a href={lp("/contact")} data-i18n="nav.contact">{t("nav.contact")}</a>
-            </li>
-          )}
-          {!isCurrentPage("/blog") && (
-            <li>
-              <a href={lp("/blog")} data-i18n="nav.blog">{t("nav.blog")}</a>
-            </li>
-          )}
-        </ul>
-      </div>
-      <div class="tria-menu-col">
-        <div class="tria-menu-list-group">
-          <span class="tria-menu-group-label" data-i18n="nav.services">{t("nav.services")}</span>
-          <a href={lp("/services#software-dev")} data-i18n="nav.softwareDev">{t("nav.softwareDev")}</a>
-          <a href={lp("/services#cloud-devops")} data-i18n="nav.cloudDevops">{t("nav.cloudDevops")}</a>
-          <a href={lp("/services#ai-ml")} data-i18n="nav.aiMl">{t("nav.aiMl")}</a>
-          <a href={lp("/services#cybersecurity")} data-i18n="nav.cybersecurity">{t("nav.cybersecurity")}</a>
-        </div>
-        <div class="tria-menu-list-group">
-          <span class="tria-menu-group-label" data-i18n="nav.caseStudies">{t("nav.caseStudies")}</span>
-          {!isCurrentPage("/projects/parkit") && (
-            <a href={lp("/projects/parkit")} data-i18n="nav.fintechDashboard">{t("nav.fintechDashboard")}</a>
-          )}
-          {!isCurrentPage("/projects/choferes") && (
-            <a href={lp("/projects/choferes")} data-i18n="nav.cloudInfra">{t("nav.cloudInfra")}</a>
-          )}
-          <a href="https://github.com/Tria-Software-Solutions/goalr" data-i18n="nav.goalr" target="_blank">{t("nav.goalr")}</a>
-          <a href="https://github.com/Tria-Software-Solutions/las_granas" data-i18n="nav.lasGranas" target="_blank">{t("nav.lasGranas")}</a>
-          <a href="https://github.com/lmhq-94/fault_diagnosis" data-i18n="nav.faultDiagnosis" target="_blank">{t("nav.faultDiagnosis")}</a>
-        </div>
-      </div>
-      <div class="tria-menu-col">
-        <div class="tria-menu-list-group">
-          <span class="tria-menu-group-label" data-i18n="nav.usefulLinks">{t("nav.usefulLinks")}</span>
-          <a href={lp("/privacy")} data-i18n="nav.privacyPolicy">{t("nav.privacyPolicy")}</a>
-          <a href={lp("/terms")} data-i18n="nav.terms">{t("nav.terms")}</a>
-          <a href={lp("/cookies")} data-i18n="nav.cookiePolicy">{t("nav.cookiePolicy")}</a>
-          {/* careers hidden for now */}
-        </div>
 
+      <!-- Left: main pages — large type, dot indicator -->
+      <nav class="tria-menu-pages" aria-label="Main navigation">
+        <ul>
+          {pages.map((p) => (
+            <li class:list={[{ "tria-current": isCurrentPage(p.href) }]}>
+              <a href={lp(p.href)} data-i18n={p.key}>{t(p.key)}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <!-- Right: side panel — bordered, bottom anchored -->
+      <div class="tria-menu-side">
+        <div class="tria-menu-side-inner">
+
+          <!-- Two columns: services | useful links -->
+          <div class="tria-menu-columns">
+
+            <!-- Services -->
+            <div class="tria-menu-block">
+              <h6 class="tria-menu-block-title" data-i18n="nav.services">{t("nav.services")}</h6>
+              <ul class="tria-menu-block-list">
+                {menuServices.map((s) => (
+                  <li>
+                    <a href={lp(`/services#${s.slug}`)} data-i18n={s.key}>{t(s.key)}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <!-- Useful links -->
+            <div class="tria-menu-block">
+              <h6 class="tria-menu-block-title" data-i18n="nav.usefulLinks">{t("nav.usefulLinks")}</h6>
+              <ul class="tria-menu-block-list">
+                <li><a href={lp("/privacy")} data-i18n="nav.privacyPolicy">{t("nav.privacyPolicy")}</a></li>
+                <li><a href={lp("/terms")} data-i18n="nav.terms">{t("nav.terms")}</a></li>
+                <li><a href={lp("/cookies")} data-i18n="nav.cookiePolicy">{t("nav.cookiePolicy")}</a></li>
+              </ul>
+            </div>
+
+          </div>
+
+          <div class="tria-menu-divider"></div>
+
+          <!-- Bottom meta row: location + lang + socials -->
+          <div class="tria-menu-bottom">
+            <div class="tria-menu-contact">
+              <h6 class="tria-menu-block-title" data-i18n="contact.info.location">{t("contact.info.location")}</h6>
+              <p class="tria-menu-contact-text" set:html={t("contact.info.locationValue")}></p>
+            </div>
+            <div class="tria-menu-bottom-right">
+              <div class="tria-menu-lang">
+                <span class="tria-menu-lang-label" data-i18n="nav.language">{t("nav.language")}</span>
+                <a href={enHref} data-lang="en" class:list={["tria-menu-lang-btn", { "is-active": locale === "en" }]}>EN</a>
+                <span class="tria-menu-lang-sep">/</span>
+                <a href={esHref} data-lang="es" class:list={["tria-menu-lang-btn", { "is-active": locale === "es" }]}>ES</a>
+              </div>
+              <div class="tria-menu-socials">
+                {menuSocials.map((social) => (
+                  <a href={social.href} aria-label={social.label} target="_blank" rel="noopener noreferrer">
+                    <i class={social.icon}></i>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
-      <div class="tria-menu-lang">
-        <a href={enHref} data-lang="en" class:list={["tria-menu-lang-btn", { "is-active": locale === "en" }]}>EN</a>
-        <span class="tria-menu-lang-sep">/</span>
-        <a href={esHref} data-lang="es" class:list={["tria-menu-lang-btn", { "is-active": locale === "es" }]}>ES</a>
-      </div>
+
     </div>
   </div>
 </div>
 <!-- menu end -->
 
 <style is:global>
-  /* Menu Frame Modern overrides */
+  /* ═══════════════════════════════════════
+     FULLSCREEN MENU — editorial, Ashley-inspired
+     ═══════════════════════════════════════ */
+
+  /* ── Frame: solid dark, no effects ── */
   .tria-menu-frame {
-    background: #080a14 !important;
-    backdrop-filter: blur(24px) saturate(1.8) !important;
-    -webkit-backdrop-filter: blur(24px) saturate(1.8) !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    background: #000 !important;
     overflow-y: auto;
+    transition: opacity 0.4s cubic-bezier(0, 0, 0.3642, 1) !important;
   }
 
-  /* Dynamic premium orbs for visual depth */
-  .tria-menu-orb {
+  /* ── Frame top: logo + close (clone of the outside frame) ── */
+  .tria-menu-top {
     position: absolute;
-    border-radius: 50%;
-    filter: blur(120px);
-    opacity: 0;
-    pointer-events: none;
-    mix-blend-mode: screen;
-    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1);
-    z-index: 0;
-  }
-  
-  .tria-menu-orb-1 {
-    width: 450px;
-    height: 450px;
-    background: radial-gradient(circle, rgba(var(--accent-rgb), 0.2) 0%, transparent 70%);
-    top: -100px;
-    left: -100px;
-  }
-  
-  .tria-menu-orb-2 {
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, rgba(79, 70, 229, 0.15) 0%, transparent 70%);
-    bottom: -50px;
-    right: -50px;
-  }
-
-  .tria-menu-frame.tria-active .tria-menu-orb {
-    opacity: 1;
-  }
-
-  .tria-menu-frame.tria-active .tria-menu-orb-1 {
-    animation: menuOrbPulse1 14s infinite alternate ease-in-out;
-  }
-  
-  .tria-menu-frame.tria-active .tria-menu-orb-2 {
-    animation: menuOrbPulse2 11s infinite alternate ease-in-out;
-  }
-
-  @keyframes menuOrbPulse1 {
-    0% { transform: scale(1) translate(0, 0); }
-    100% { transform: scale(1.2) translate(30px, 40px); }
-  }
-  
-  @keyframes menuOrbPulse2 {
-    0% { transform: scale(1) translate(0, 0); }
-    100% { transform: scale(1.15) translate(-40px, -30px); }
-  }
-
-  /* Close Button Redesign */
-  .tria-menu-close {
-    position: absolute;
-    top: 40px;
-    right: 48px;
-    display: flex;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex !important;
     align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
-    cursor: pointer;
-    transition: all 0.4s var(--ease-spring) !important;
-    padding: 0;
+    justify-content: space-between;
+    padding: 50px 60px;
     z-index: 10;
-  }
-  
-  .tria-menu-close:hover .tria-menu-close-btn {
-    color: #fff;
+    opacity: 0;
+    transition: opacity 0.4s ease;
   }
 
-  .tria-menu-close-btn {
+  .tria-menu-frame.tria-active .tria-menu-top {
+    opacity: 1;
+  }
+
+  .tria-menu-logo {
+    display: flex !important;
+    align-items: baseline;
+    font-family: var(--font-display);
+    font-size: 42px !important;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: #fff !important;
+    text-decoration: none;
+    pointer-events: all;
+  }
+
+  .tria-menu-frame .tria-menu-logo:hover {
+    color: #fff !important;
+  }
+
+  .tria-menu-logo-dot {
+    color: var(--accent) !important;
+  }
+
+  .tria-menu-top .tria-menu-close {
+    position: static !important;
+    top: auto !important;
+    right: auto !important;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: rgba(255, 255, 255, 0.5);
+    padding: 0;
     cursor: pointer;
-    transition: color 0.3s ease;
   }
 
-  .tria-menu-close-btn:hover {
-    color: #fff;
+  .tria-menu-top .tria-menu-close .tria-menu-btn span {
+    background: #fff !important;
+  }
+
+  .tria-menu-top .tria-menu-close .tria-menu-btn:hover {
+    opacity: 0.7;
+  }
+
+  /* ── Content: container-like, fills viewport ── */
+  .tria-menu-content {
+    position: relative;
+    z-index: 1;
+    height: 100vh;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+  }
+
+  @media screen and (min-width: 1200px) and (max-width: 1399px) {
+    .tria-menu-content {
+      max-width: 1000px;
+    }
+  }
+
+  .tria-menu-grid {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: 30px;
+    width: 100%;
+    height: 100vh;
+    align-items: stretch;
   }
 
   /* ═══════════════════════════════════════
-     COLUMN ENTRANCE ANIMATIONS
+     MAIN PAGES — centered, compact type
      ═══════════════════════════════════════ */
-
-  /* Columns slide up */
-  .tria-menu-grid > * {
+  .tria-menu-pages {
+    display: flex;
+    align-items: center;
+    height: 100vh;
     opacity: 0;
-    transform: translateY(35px);
-    transition: transform 0.8s var(--ease-spring), opacity 0.8s ease;
-  }
-  
-  .tria-menu-frame.tria-active .tria-menu-grid > *:nth-child(1) {
-    opacity: 1;
-    transform: translateY(0);
-    transition-delay: 0.15s;
-  }
-  .tria-menu-frame.tria-active .tria-menu-grid > *:nth-child(2) {
-    opacity: 1;
-    transform: translateY(0);
-    transition-delay: 0.25s;
-  }
-  .tria-menu-frame.tria-active .tria-menu-grid > *:nth-child(3) {
-    opacity: 1;
-    transform: translateY(0);
-    transition-delay: 0.35s;
+    transform: translateX(-30px);
+    transition: transform 0.4s cubic-bezier(0, 0, 0.3642, 1), opacity 0.4s ease;
   }
 
-  /* ═══════════════════════════════════════
-     SECONDARY LINK ENTRANCE ANIMATIONS
-     ═══════════════════════════════════════ */
-
-  /* Base: hidden, shifted */
-  .tria-menu-list-group > * {
-    opacity: 0;
-    transition: transform 0.6s var(--ease-spring), opacity 0.6s ease;
-  }
-
-  .tria-menu-list-group > .tria-menu-group-label {
-    transform: translateY(12px);
-  }
-
-  .tria-menu-list-group > a {
-    transform: translateX(-14px);
-  }
-
-  /* Active: fade in with staggered delays per item within each group */
-  .tria-menu-frame.tria-active .tria-menu-list-group > .tria-menu-group-label {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  .tria-menu-frame.tria-active .tria-menu-list-group > a {
+  .tria-menu-frame.tria-active .tria-menu-pages {
     opacity: 1;
     transform: translateX(0);
+    transition-delay: 0.4s;
   }
 
-  /* ── Group 1 labels & links (Services + Useful Links, same depth) ── */
-  .tria-menu-col .tria-menu-list-group:nth-child(1) > .tria-menu-group-label {
-    transition-delay: 0.38s;
+  .tria-menu-pages ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
   }
-  .tria-menu-col .tria-menu-list-group:nth-child(1) > a:nth-child(2) { transition-delay: 0.43s; }
-  .tria-menu-col .tria-menu-list-group:nth-child(1) > a:nth-child(3) { transition-delay: 0.48s; }
-  .tria-menu-col .tria-menu-list-group:nth-child(1) > a:nth-child(4) { transition-delay: 0.53s; }
-  .tria-menu-col .tria-menu-list-group:nth-child(1) > a:nth-child(5) { transition-delay: 0.58s; }
-  .tria-menu-col .tria-menu-list-group:nth-child(1) > a:nth-child(6) { transition-delay: 0.63s; }
-  .tria-menu-col .tria-menu-list-group:nth-child(1) > a:nth-child(7) { transition-delay: 0.68s; }
-  .tria-menu-col .tria-menu-list-group:nth-child(1) > a:nth-child(8) { transition-delay: 0.73s; }
 
-  /* ── Group 2 (Case Studies) — longer stagger since it's the second group ── */
-  .tria-menu-col .tria-menu-list-group:nth-child(2) > .tria-menu-group-label {
-    transition-delay: 0.62s;
-  }
-  .tria-menu-col .tria-menu-list-group:nth-child(2) > a:nth-child(2) { transition-delay: 0.67s; }
-  .tria-menu-col .tria-menu-list-group:nth-child(2) > a:nth-child(3) { transition-delay: 0.72s; }
-  .tria-menu-col .tria-menu-list-group:nth-child(2) > a:nth-child(4) { transition-delay: 0.77s; }
-  .tria-menu-col .tria-menu-list-group:nth-child(2) > a:nth-child(5) { transition-delay: 0.82s; }
-  .tria-menu-col .tria-menu-list-group:nth-child(2) > a:nth-child(6) { transition-delay: 0.87s; }
-  .tria-menu-col .tria-menu-list-group:nth-child(2) > a:nth-child(7) { transition-delay: 0.92s; }
-  .tria-menu-col .tria-menu-list-group:nth-child(2) > a:nth-child(8) { transition-delay: 0.97s; }
-  .tria-menu-col .tria-menu-list-group:nth-child(2) > a:nth-child(9) { transition-delay: 1.02s; }
-
-  /* Main Links Styling */
   .tria-menu-pages ul li {
-    margin-bottom: 12px !important;
+    margin-bottom: 30px !important;
+  }
+
+  .tria-menu-pages ul li:last-child {
+    margin-bottom: 0 !important;
   }
 
   .tria-menu-pages ul li a {
-    font-size: 2.3rem !important;
-    font-weight: 500 !important;
-    font-family: var(--font-display);
-    letter-spacing: -0.03em !important;
-    color: rgba(255, 255, 255, 0.45) !important;
-    transition: color 0.4s ease, transform 0.4s var(--ease-spring), text-shadow 0.4s ease !important;
-    position: relative;
-    display: block !important;
-    width: 100%;
-  }
-  
-  .tria-menu-pages ul li a:hover {
-    color: #fff !important;
-    transform: translateX(8px) !important;
-    text-shadow: 0 0 20px rgba(var(--accent-rgb), 0.35);
-  }
-  
-  .tria-menu-pages ul li.tria-active > a {
-    color: var(--accent) !important;
-    padding-left: 20px !important;
-  }
-  
-  .tria-menu-pages ul li.tria-active > a::before {
-    content: "" !important;
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%) !important;
-    width: 4px !important;
-    height: 24px !important;
-    background: var(--accent) !important;
-    border-radius: 2px;
-    transition: height 0.3s ease;
-  }
-  
-  .tria-menu-pages ul li.tria-active > a:hover::before {
-    height: 32px !important;
-  }
-
-  /* Secondary Links Styling */
-  .tria-menu-list-group {
-    gap: 8px !important;
-  }
-  
-  .tria-menu-group-label {
-    color: rgba(255, 255, 255, 0.2) !important;
-    font-size: 0.7rem !important;
-    letter-spacing: 0.15em !important;
-    font-weight: 600 !important;
-    margin-bottom: 8px !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-    padding-bottom: 6px;
-  }
-  
-  .tria-menu-list-group a {
-    color: rgba(255, 255, 255, 0.45) !important;
-    font-size: 0.9rem !important;
-    transition: color 0.3s ease;
-    padding: 4px 0 !important;
     display: flex !important;
     align-items: center;
+    font-family: var(--font-display);
+    font-size: 26px !important;
+    font-weight: 500 !important;
+    letter-spacing: 0 !important;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.8) !important;
+    text-decoration: none;
+    padding-left: 0;
+    transition: color 0.4s cubic-bezier(0, 0, 0.3642, 1), padding-left 0.4s cubic-bezier(0, 0, 0.3642, 1) !important;
+  }
+
+  .tria-menu-pages ul li a:hover {
+    color: #fff !important;
+    padding-left: 20px !important;
+  }
+
+  /* ── Current page: accent only ── */
+  .tria-menu-pages ul li.tria-current > a {
+    color: var(--accent) !important;
+    padding-left: 0 !important;
+  }
+
+  .tria-menu-pages ul li.tria-current > a:hover {
+    color: var(--accent) !important;
+    filter: brightness(110%);
+    padding-left: 20px !important;
+  }
+
+  /* ═══════════════════════════════════════
+     SIDE PANEL — bordered, bottom anchored
+     ═══════════════════════════════════════ */
+  .tria-menu-side {
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    padding-left: 60px;
+    display: flex;
+    align-items: flex-end;
+    height: 100vh;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: transform 0.4s cubic-bezier(0, 0, 0.3642, 1), opacity 0.4s ease;
+  }
+
+  .tria-menu-frame.tria-active .tria-menu-side {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.6s;
+  }
+
+  .tria-menu-side-inner {
     width: 100%;
-  }
-  
-  .tria-menu-list-group a:hover {
-    color: rgba(255, 255, 255, 0.85) !important;
+    padding-bottom: 60px;
   }
 
-  @media screen and (max-width: 640px) {
-    .tria-menu-pages ul li a {
-      font-size: 1.8rem !important;
-    }
-    .tria-menu-close {
-      top: 24px;
-      right: 24px;
-    }
-    .tria-menu-pages ul li {
-      margin-bottom: 10px !important;
-    }
+  .tria-menu-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 60px;
   }
 
-  @media screen and (min-width: 641px) and (max-width: 991px) {
-    .tria-menu-pages ul li a {
-      font-size: 2rem !important;
-    }
+  .tria-menu-columns .tria-menu-block {
+    margin-bottom: 0;
   }
 
-  /* ── Menu language switcher ── */
+  .tria-menu-block-title {
+    font-size: 18px !important;
+    font-weight: 500 !important;
+    letter-spacing: normal !important;
+    text-transform: none !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    margin: 0 0 30px !important;
+    line-height: 1.5;
+  }
+
+  .tria-menu-block-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .tria-menu-block-list li {
+    margin-bottom: 15px;
+  }
+
+  .tria-menu-block-list li:last-child {
+    margin-bottom: 0;
+  }
+
+  .tria-menu-block-list li a {
+    display: block;
+    font-size: 16px !important;
+    font-weight: 300 !important;
+    color: rgba(255, 255, 255, 0.4) !important;
+    text-decoration: none;
+    line-height: 1.5;
+    transition: color 0.2s cubic-bezier(0, 0, 0.3642, 1), transform 0.2s cubic-bezier(0, 0, 0.3642, 1) !important;
+  }
+
+  .tria-menu-block-list li a:hover {
+    color: #fff !important;
+    transform: translateX(5px);
+  }
+
+  /* ── Divider + bottom meta row ── */
+  .tria-menu-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 0 0 60px;
+  }
+
+  .tria-menu-bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 48px;
+  }
+
+  .tria-menu-contact-text {
+    margin: 0 !important;
+    font-size: 16px !important;
+    font-weight: 300 !important;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  .tria-menu-bottom-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 22px;
+    white-space: nowrap;
+  }
+
+  .tria-menu-socials {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .tria-menu-socials a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 1.05rem;
+    text-decoration: none;
+    transition: all 0.35s var(--ease-spring) !important;
+  }
+
+  .tria-menu-socials a:hover {
+    border-color: rgba(var(--accent-rgb), 0.5);
+    color: var(--accent) !important;
+    transform: translateY(-3px);
+  }
+
+  /* ── Language switcher ── */
   .tria-menu-lang {
-    position: absolute;
-    bottom: 36px;
-    left: 60px;
     display: flex;
     align-items: center;
     gap: 4px;
-    z-index: 10;
+  }
+
+  .tria-menu-lang-label {
+    display: none;
   }
 
   .tria-menu-lang-btn {
@@ -395,18 +451,18 @@ function isCurrentPage(href: string): boolean {
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.35);
     text-decoration: none;
     transition: color 0.3s ease;
-    padding: 8px 8px;
+    padding: 4px 6px;
   }
 
   .tria-menu-lang-btn.is-active {
-    color: #fff;
+    color: var(--accent);
     font-weight: 700;
   }
 
-  .tria-menu-lang-btn:hover {
+  .tria-menu-frame .tria-menu-lang-btn:hover {
     color: #fff;
   }
 
@@ -415,47 +471,58 @@ function isCurrentPage(href: string): boolean {
     color: rgba(255, 255, 255, 0.15);
   }
 
-  @media screen and (max-width: 640px) {
-    .tria-menu-lang {
-      left: 24px;
-      bottom: 28px;
+  /* ═══════════════════════════════════════
+     RESPONSIVE — mirrors the reference
+     ═══════════════════════════════════════ */
+
+  /* ≤1200px: hide the in-menu top bar (the sticky header covers it),
+     hide the right panel and center the main menu — like the reference. */
+  @media screen and (max-width: 1200px) {
+    .tria-menu-top {
+      display: none !important;
+    }
+    .tria-menu-side {
+      display: none;
+    }
+    .tria-menu-content {
+      padding: 0 24px;
+    }
+    .tria-menu-grid {
+      grid-template-columns: 1fr;
+      gap: 0;
+      height: 100vh;
+    }
+    .tria-menu-pages {
+      justify-content: center;
+      padding-left: 0;
+    }
+    .tria-menu-pages ul {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .tria-menu-pages ul li {
+      margin-bottom: 30px !important;
+    }
+    .tria-menu-pages ul li a {
+      justify-content: center;
+    }
+    .tria-menu-pages ul li.tria-current > a {
+      padding-left: 0 !important;
     }
   }
 
-  @media screen and (max-width: 400px) {
+  /* ≤992px: smaller nav type, like the reference */
+  @media screen and (max-width: 992px) {
     .tria-menu-pages ul li a {
-      font-size: 1.4rem !important;
-      letter-spacing: -0.02em !important;
+      font-size: 26px !important;
     }
-    .tria-menu-pages ul li {
-      margin-bottom: 6px !important;
-    }
-    .tria-menu-group-label {
-      font-size: 0.6rem !important;
-      letter-spacing: 0.1em !important;
-      padding-bottom: 4px;
-      margin-bottom: 4px !important;
-    }
-    .tria-menu-list-group {
-      gap: 4px !important;
-    }
-    .tria-menu-list-group a {
-      font-size: 0.78rem !important;
-      padding: 3px 0 !important;
-    }
-    .tria-menu-close {
-      top: 18px !important;
-      right: 14px !important;
-      width: 40px;
-      height: 40px;
-    }
-    .tria-menu-lang {
-      left: 16px;
-      bottom: 22px;
-    }
-    .tria-menu-lang-btn {
-      font-size: 0.65rem;
-      padding: 6px 6px;
+  }
+
+  /* Short desktop viewport: keep only the main menu (reference hides the right panel) */
+  @media screen and (max-height: 800px) and (min-width: 1201px) {
+    .tria-menu-side {
+      display: none;
     }
   }
 </style>

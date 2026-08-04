@@ -1,4 +1,6 @@
 ---
+import TechMarquee from "./TechMarquee.astro";
+
 interface ServiceItem {
   title: string;
   description: string;
@@ -70,129 +72,7 @@ const {
   </div>
 
       {showTechMarquee && (
-        /* Tech marquee */
-        <div class="tria-tech-marquee tria-up">
-          <div class="tria-tech-marquee-inner">
-              <div class="tria-marquee-row tria-marquee-row--right">
-                <div class="tria-marquee-track">
-                  <i class="tria-marquee-icon ti ti-brand-react" data-tip="React"></i>
-                  <i class="tria-marquee-icon ti ti-brand-vue" data-tip="Vue"></i>
-                  <i class="tria-marquee-icon ti ti-brand-angular" data-tip="Angular"></i>
-                  <i class="tria-marquee-icon ti ti-brand-svelte" data-tip="Svelte"></i>
-                  <i class="tria-marquee-icon ti ti-brand-solidjs" data-tip="SolidJS"></i>
-                  <i class="tria-marquee-icon ti ti-brand-nextjs" data-tip="Next.js"></i>
-                  <i class="tria-marquee-icon ti ti-brand-astro" data-tip="Astro"></i>
-                  <i class="tria-marquee-icon ti ti-brand-flutter" data-tip="Flutter"></i>
-                  <i class="tria-marquee-icon ti ti-brand-python" data-tip="Python"></i>
-                  <i class="tria-marquee-icon ti ti-brand-rust" data-tip="Rust"></i>
-                  <i class="tria-marquee-icon ti ti-brand-golang" data-tip="Go"></i>
-                  <i class="tria-marquee-icon ti ti-brand-swift" data-tip="Swift"></i>
-                  <i class="tria-marquee-icon ti ti-brand-kotlin" data-tip="Kotlin"></i>
-                  <i class="tria-marquee-icon ti ti-brand-php" data-tip="PHP"></i>
-                  <i class="tria-marquee-icon ti ti-brand-django" data-tip="Django"></i>
-                  <i class="tria-marquee-icon ti ti-brand-laravel" data-tip="Laravel"></i>
-                  <i class="tria-marquee-icon ti ti-brand-nodejs" data-tip="Node.js"></i>
-                  <i class="tria-marquee-icon ti ti-brand-deno" data-tip="Deno"></i>
-                  <i class="tria-marquee-icon ti ti-brand-javascript" data-tip="JavaScript"></i>
-                  <i class="tria-marquee-icon ti ti-brand-typescript" data-tip="TypeScript"></i>
-                  <i class="tria-marquee-icon ti ti-brand-sass" data-tip="Sass"></i>
-                  <i class="tria-marquee-icon ti ti-brand-graphql" data-tip="GraphQL"></i>
-                  <i class="tria-marquee-icon ti ti-brand-redux" data-tip="Redux"></i>
-                  <i class="tria-marquee-icon ti ti-brand-threejs" data-tip="Three.js"></i>
-                  <i class="tria-marquee-icon ti ti-brand-docker" data-tip="Docker"></i>
-                  <i class="tria-marquee-icon ti ti-brand-vite" data-tip="Vite"></i>
-                  <i class="tria-marquee-icon ti ti-brand-react" data-tip="React"></i>
-                  <i class="tria-marquee-icon ti ti-brand-vue" data-tip="Vue"></i>
-                  <i class="tria-marquee-icon ti ti-brand-angular" data-tip="Angular"></i>
-                  <i class="tria-marquee-icon ti ti-brand-svelte" data-tip="Svelte"></i>
-                  <i class="tria-marquee-icon ti ti-brand-solidjs" data-tip="SolidJS"></i>
-                  <i class="tria-marquee-icon ti ti-brand-nextjs" data-tip="Next.js"></i>
-                  <i class="tria-marquee-icon ti ti-brand-astro" data-tip="Astro"></i>
-                  <i class="tria-marquee-icon ti ti-brand-flutter" data-tip="Flutter"></i>
-                  <i class="tria-marquee-icon ti ti-brand-python" data-tip="Python"></i>
-                  <i class="tria-marquee-icon ti ti-brand-rust" data-tip="Rust"></i>
-                  <i class="tria-marquee-icon ti ti-brand-golang" data-tip="Go"></i>
-                  <i class="tria-marquee-icon ti ti-brand-swift" data-tip="Swift"></i>
-                  <i class="tria-marquee-icon ti ti-brand-kotlin" data-tip="Kotlin"></i>
-                  <i class="tria-marquee-icon ti ti-brand-php" data-tip="PHP"></i>
-                  <i class="tria-marquee-icon ti ti-brand-django" data-tip="Django"></i>
-                  <i class="tria-marquee-icon ti ti-brand-laravel" data-tip="Laravel"></i>
-                  <i class="tria-marquee-icon ti ti-brand-nodejs" data-tip="Node.js"></i>
-                  <i class="tria-marquee-icon ti ti-brand-deno" data-tip="Deno"></i>
-                  <i class="tria-marquee-icon ti ti-brand-javascript" data-tip="JavaScript"></i>
-                  <i class="tria-marquee-icon ti ti-brand-typescript" data-tip="TypeScript"></i>
-                  <i class="tria-marquee-icon ti ti-brand-sass" data-tip="Sass"></i>
-                  <i class="tria-marquee-icon ti ti-brand-graphql" data-tip="GraphQL"></i>
-                  <i class="tria-marquee-icon ti ti-brand-redux" data-tip="Redux"></i>
-                  <i class="tria-marquee-icon ti ti-brand-threejs" data-tip="Three.js"></i>
-                  <i class="tria-marquee-icon ti ti-brand-docker" data-tip="Docker"></i>
-                  <i class="tria-marquee-icon ti ti-brand-vite" data-tip="Vite"></i>
-                </div>
-              </div>
-              <div class="tria-marquee-row tria-marquee-row--left">
-                <div class="tria-marquee-track">
-                  <i class="tria-marquee-icon ti ti-brand-aws" data-tip="AWS"></i>
-                  <i class="tria-marquee-icon ti ti-brand-google" data-tip="Google Cloud"></i>
-                  <i class="tria-marquee-icon ti ti-brand-azure" data-tip="Azure"></i>
-                  <i class="tria-marquee-icon ti ti-brand-cloudflare" data-tip="Cloudflare"></i>
-                  <i class="tria-marquee-icon ti ti-brand-vercel" data-tip="Vercel"></i>
-                  <i class="tria-marquee-icon ti ti-brand-ansible" data-tip="Ansible"></i>
-                  <i class="tria-marquee-icon ti ti-brand-terraform" data-tip="Terraform"></i>
-                  <i class="tria-marquee-icon ti ti-brand-openai" data-tip="OpenAI"></i>
-                  <i class="tria-marquee-icon ti ti-brand-databricks" data-tip="Databricks"></i>
-                  <i class="tria-marquee-icon ti ti-brand-meta" data-tip="Meta"></i>
-                  <i class="tria-marquee-icon ti ti-brand-mongodb" data-tip="MongoDB"></i>
-                  <i class="tria-marquee-icon ti ti-brand-mysql" data-tip="MySQL"></i>
-                  <i class="tria-marquee-icon ti ti-brand-elastic" data-tip="Elastic"></i>
-                  <i class="tria-marquee-icon ti ti-brand-firebase" data-tip="Firebase"></i>
-                  <i class="tria-marquee-icon ti ti-brand-supabase" data-tip="Supabase"></i>
-                  <i class="tria-marquee-icon ti ti-brand-prisma" data-tip="Prisma"></i>
-                  <i class="tria-marquee-icon ti ti-brand-notion" data-tip="Notion"></i>
-                  <i class="tria-marquee-icon ti ti-brand-jira" data-tip="Jira"></i>
-                  <i class="tria-marquee-icon ti ti-brand-trello" data-tip="Trello"></i>
-                  <i class="tria-marquee-icon ti ti-brand-asana" data-tip="Asana"></i>
-                  <i class="tria-marquee-icon ti ti-brand-github" data-tip="GitHub"></i>
-                  <i class="tria-marquee-icon ti ti-brand-gitlab" data-tip="GitLab"></i>
-                  <i class="tria-marquee-icon ti ti-brand-tailwind" data-tip="Tailwind"></i>
-                  <i class="tria-marquee-icon ti ti-brand-figma" data-tip="Figma"></i>
-                  <i class="tria-marquee-icon ti ti-brand-storybook" data-tip="Storybook"></i>
-                  <i class="tria-marquee-icon ti ti-brand-cypress" data-tip="Cypress"></i>
-                  <i class="tria-marquee-icon ti ti-brand-sentry" data-tip="Sentry"></i>
-                  <i class="tria-marquee-icon ti ti-brand-mantine" data-tip="Mantine"></i>
-                  <i class="tria-marquee-icon ti ti-brand-headlessui" data-tip="Headless UI"></i>
-                  <i class="tria-marquee-icon ti ti-brand-aws" data-tip="AWS"></i>
-                  <i class="tria-marquee-icon ti ti-brand-google" data-tip="Google Cloud"></i>
-                  <i class="tria-marquee-icon ti ti-brand-azure" data-tip="Azure"></i>
-                  <i class="tria-marquee-icon ti ti-brand-cloudflare" data-tip="Cloudflare"></i>
-                  <i class="tria-marquee-icon ti ti-brand-vercel" data-tip="Vercel"></i>
-                  <i class="tria-marquee-icon ti ti-brand-ansible" data-tip="Ansible"></i>
-                  <i class="tria-marquee-icon ti ti-brand-terraform" data-tip="Terraform"></i>
-                  <i class="tria-marquee-icon ti ti-brand-openai" data-tip="OpenAI"></i>
-                  <i class="tria-marquee-icon ti ti-brand-databricks" data-tip="Databricks"></i>
-                  <i class="tria-marquee-icon ti ti-brand-meta" data-tip="Meta"></i>
-                  <i class="tria-marquee-icon ti ti-brand-mongodb" data-tip="MongoDB"></i>
-                  <i class="tria-marquee-icon ti ti-brand-mysql" data-tip="MySQL"></i>
-                  <i class="tria-marquee-icon ti ti-brand-elastic" data-tip="Elastic"></i>
-                  <i class="tria-marquee-icon ti ti-brand-firebase" data-tip="Firebase"></i>
-                  <i class="tria-marquee-icon ti ti-brand-supabase" data-tip="Supabase"></i>
-                  <i class="tria-marquee-icon ti ti-brand-prisma" data-tip="Prisma"></i>
-                  <i class="tria-marquee-icon ti ti-brand-notion" data-tip="Notion"></i>
-                  <i class="tria-marquee-icon ti ti-brand-jira" data-tip="Jira"></i>
-                  <i class="tria-marquee-icon ti ti-brand-trello" data-tip="Trello"></i>
-                  <i class="tria-marquee-icon ti ti-brand-asana" data-tip="Asana"></i>
-                  <i class="tria-marquee-icon ti ti-brand-github" data-tip="GitHub"></i>
-                  <i class="tria-marquee-icon ti ti-brand-gitlab" data-tip="GitLab"></i>
-                  <i class="tria-marquee-icon ti ti-brand-tailwind" data-tip="Tailwind"></i>
-                  <i class="tria-marquee-icon ti ti-brand-figma" data-tip="Figma"></i>
-                  <i class="tria-marquee-icon ti ti-brand-storybook" data-tip="Storybook"></i>
-                  <i class="tria-marquee-icon ti ti-brand-cypress" data-tip="Cypress"></i>
-                  <i class="tria-marquee-icon ti ti-brand-sentry" data-tip="Sentry"></i>
-                  <i class="tria-marquee-icon ti ti-brand-mantine" data-tip="Mantine"></i>
-                  <i class="tria-marquee-icon ti ti-brand-headlessui" data-tip="Headless UI"></i>
-                </div>
-              </div>
-          </div>
-        </div>
+        <TechMarquee />
       )}
 </section>
 <!-- services end -->
@@ -342,7 +222,7 @@ const {
     color: #fff;
     margin-bottom: 14px;
     line-height: 1.35;
-    white-space: nowrap;
+    white-space: normal;
     transition: color 0.3s var(--ease-smooth);
   }
 
@@ -409,108 +289,4 @@ const {
     opacity: 1;
   }
 
-  /* ── Tech marquee ── */
-  .tria-tech-marquee {
-    margin-top: 8px;
-    padding-bottom: 120px;
-    position: relative;
-    z-index: 1;
-  }
-
-  .tria-tech-marquee-inner {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .tria-marquee-row {
-    overflow: hidden;
-    -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
-    mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
-  }
-
-  .tria-marquee-track {
-    display: flex;
-    gap: 10px;
-    width: max-content;
-    animation: tria-marquee-scroll 160s linear infinite;
-    padding: 8px 0;
-  }
-
-  .tria-marquee-row--right .tria-marquee-track {
-    animation-direction: normal;
-  }
-
-  .tria-marquee-row--left .tria-marquee-track {
-    animation-direction: reverse;
-  }
-
-  @keyframes tria-marquee-scroll {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
-
-  .tria-marquee-icon {
-    font-size: 56px;
-    color: rgba(255, 255, 255, 0.12);
-    flex-shrink: 0;
-    transition: color 0.3s var(--ease-spring), transform 0.3s var(--ease-spring);
-    cursor: default;
-    position: relative;
-  }
-
-
-
-  .tria-marquee-icon::after {
-    content: attr(data-tip);
-    position: absolute;
-    bottom: calc(100% + 8px);
-    left: 50%;
-    transform: translateX(-50%) scale(0.8);
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    color: #fff;
-    font-size: 0.7rem;
-    font-weight: 500;
-    white-space: nowrap;
-    padding: 4px 10px;
-    border-radius: 6px;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.25s ease, transform 0.25s var(--ease-spring);
-    font-style: normal;
-    letter-spacing: 0.02em;
-    text-transform: none;
-  }
-
-  .tria-marquee-icon:hover::after {
-    opacity: 1;
-    transform: translateX(-50%) scale(1);
-  }
-
-  .tria-marquee-track {
-    gap: 64px;
-  }
-
-  @media (max-width: 768px) {
-    .tria-marquee-icon {
-      font-size: 40px;
-    }
-    .tria-marquee-track {
-      gap: 36px;
-    }
-  }
-
-  @media (max-width: 576px) {
-    .tria-marquee-icon {
-      font-size: 32px;
-    }
-    .tria-marquee-track {
-      gap: 24px;
-    }
-    .tria-marquee-icon::after {
-      display: none;
-    }
-  }
 </style>

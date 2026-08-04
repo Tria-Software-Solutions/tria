@@ -11,8 +11,9 @@ import Pricing from "../components/Pricing.astro";
 import Faq from "../components/Faq.astro";
 
 import SiteFooter from "../components/SiteFooter.astro";
-import { createT } from "../i18n/utils";
+import { createT, localePath } from "../i18n/utils";
 const t = createT(Astro.currentLocale || 'en');
+const locale = Astro.currentLocale || "en";
 ---
 
 <Layout
@@ -56,26 +57,50 @@ const t = createT(Astro.currentLocale || 'en');
       { 
         title: t("services.softwareDev") || "", 
         description: t("services.softwareDevDesc") || "", 
-        href: "/services/software-dev",
+        href: localePath(locale, "/services#software-dev"),
         icon: "ti-code"
+      },
+      { 
+        title: t("services.uiuxDesign") || "", 
+        description: t("services.uiuxDesignDesc") || "", 
+        href: localePath(locale, "/services#uiux-design"),
+        icon: "ti-palette"
       },
       { 
         title: t("services.cloudDevops") || "", 
         description: t("services.cloudDevopsDesc") || "", 
-        href: "/services/cloud-devops",
+        href: localePath(locale, "/services#cloud-devops"),
         icon: "ti-cloud"
+      },
+      { 
+        title: t("services.qaTesting") || "", 
+        description: t("services.qaTestingDesc") || "", 
+        href: localePath(locale, "/services#qa-testing"),
+        icon: "ti-bug"
       },
       { 
         title: t("services.aiMl") || "", 
         description: t("services.aiMlDesc") || "", 
-        href: "/services/ai-ml",
+        href: localePath(locale, "/services#ai-ml"),
         icon: "ti-robot"
+      },
+      { 
+        title: t("services.dedicatedTeams") || "", 
+        description: t("services.dedicatedTeamsDesc") || "", 
+        href: localePath(locale, "/services#dedicated-teams"),
+        icon: "ti-users"
       },
       { 
         title: t("services.itCybersecurity") || "", 
         description: t("services.itCybersecurityDesc") || "", 
-        href: "/services/cybersecurity",
+        href: localePath(locale, "/services#cybersecurity"),
         icon: "ti-shield"
+      },
+      { 
+        title: t("services.modernization") || "", 
+        description: t("services.modernizationDesc") || "", 
+        href: localePath(locale, "/services#modernization"),
+        icon: "ti-puzzle"
       }
     ]}
   />
@@ -199,6 +224,26 @@ const t = createT(Astro.currentLocale || 'en');
           t("process.step4Tag1") || "",
           t("process.step4Tag2") || "",
           t("process.step4Tag3") || ""
+        ]
+      },
+      {
+        number: "05",
+        title: t("process.step5Title") || "",
+        description: t("process.step5Desc") || "",
+        tags: [
+          t("process.step5Tag1") || "",
+          t("process.step5Tag2") || "",
+          t("process.step5Tag3") || ""
+        ]
+      },
+      {
+        number: "06",
+        title: t("process.step6Title") || "",
+        description: t("process.step6Desc") || "",
+        tags: [
+          t("process.step6Tag1") || "",
+          t("process.step6Tag2") || "",
+          t("process.step6Tag3") || ""
         ]
       }
     ]}

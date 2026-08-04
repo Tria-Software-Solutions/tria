@@ -1,7 +1,8 @@
 ---
 import Footer from "./Footer.astro";
-import { createT } from "../i18n/utils";
+import { createT, localePath } from "../i18n/utils";
 const t = createT(Astro.currentLocale);
+const locale = Astro.currentLocale || "en";
 
 // Determine current page path for footer filtering
 const pathname = Astro.url.pathname;
@@ -12,6 +13,7 @@ const barePath = path.startsWith("/es") ? (path.replace(/^\/es/, "") || "/") : p
 const allExploreLinks = [
   { href: "/", label: t("nav.home") || "" },
   { href: "/about", label: t("nav.about") || "" },
+  { href: "/team", label: t("nav.team") || "" },
   { href: "/services", label: t("nav.services") || "" },
   { href: "/portfolio", label: t("nav.work") || "" },
   { href: "/contact", label: t("nav.contact") || "" },
@@ -26,17 +28,25 @@ function isCurrent(href: string): boolean {
   return barePath === pathPart || barePath.startsWith(pathPart + "/");
 }
 
-const exploreLinks = allExploreLinks.filter((link) => !isCurrent(link.href));
+const exploreLinks = allExploreLinks
+  .filter((link) => !isCurrent(link.href))
+  .map((link) => ({ ...link, href: localePath(locale, link.href) }));
 
-// Also filter serviceLinks and projectLinks
+// Also filter serviceLinks
 const allServiceLinks = [
-  { href: "/services/software-dev", label: t("nav.softwareDev") || "" },
-  { href: "/services/cloud-devops", label: t("nav.cloudDevops") || "" },
-  { href: "/services/ai-ml", label: t("nav.aiMl") || "" },
-  { href: "/services/cybersecurity", label: t("nav.cybersecurity") || "" }
+  { href: "/services#software-dev", label: t("nav.softwareDev") || "" },
+  { href: "/services#uiux-design", label: t("nav.uiuxDesign") || "" },
+  { href: "/services#cloud-devops", label: t("nav.cloudDevops") || "" },
+  { href: "/services#qa-testing", label: t("nav.qaTesting") || "" },
+  { href: "/services#ai-ml", label: t("nav.aiMl") || "" },
+  { href: "/services#dedicated-teams", label: t("nav.dedicatedTeams") || "" },
+  { href: "/services#cybersecurity", label: t("nav.cybersecurity") || "" },
+  { href: "/services#modernization", label: t("nav.modernization") || "" }
 ];
 
-const serviceLinks = allServiceLinks.filter((link) => !isCurrent(link.href));
+const serviceLinks = allServiceLinks
+  .filter((link) => !isCurrent(link.href))
+  .map((link) => ({ ...link, href: localePath(locale, link.href) }));
 
 /* ── Page sections for "On this page" column ── */
 
@@ -51,7 +61,7 @@ function getPageSections(): { href: string; label: string }[] {
       { href: "/#faq", label: "FAQ" }
     ],
     "/services": [
-      { href: "/services/#showcase", label: t("services.showcase.suptitle") || "Capabilities" },
+      { href: "/services/#practices", label: t("services.subnav.practices") || "Core Practices" },
       { href: "/services/#engagement", label: t("services.engagement.suptitle") || "Engagement" }
     ],
     "/about": [
@@ -70,39 +80,10 @@ function getPageSections(): { href: string; label: string }[] {
       { href: "/contact#location", label: t("contact.info.location") || "Location" }
     ]
   };
-  // Check service detail pages
-  if (p.startsWith("/services/software-dev")) {
-    return [
-      { href: "/services/software-dev#overview", label: "Overview" },
-      { href: "/services/software-dev#features", label: "Features" },
-      { href: "/services/software-dev#process", label: "Process" }
-    ];
-  }
-  if (p.startsWith("/services/cloud-devops")) {
-    return [
-      { href: "/services/cloud-devops#overview", label: "Overview" },
-      { href: "/services/cloud-devops#features", label: "Features" },
-      { href: "/services/cloud-devops#process", label: "Process" }
-    ];
-  }
-  if (p.startsWith("/services/ai-ml")) {
-    return [
-      { href: "/services/ai-ml#overview", label: "Overview" },
-      { href: "/services/ai-ml#features", label: "Features" },
-      { href: "/services/ai-ml#process", label: "Process" }
-    ];
-  }
-  if (p.startsWith("/services/cybersecurity")) {
-    return [
-      { href: "/services/cybersecurity#overview", label: "Overview" },
-      { href: "/services/cybersecurity#features", label: "Features" },
-      { href: "/services/cybersecurity#process", label: "Process" }
-    ];
-  }
   return sections[p] || [];
 }
 
-const pageSections = getPageSections();
+const pageSections = getPageSections().map((s) => ({ ...s, href: localePath(locale, s.href) }));
 const labelByLocale: Record<string, string> = {
   en: "On this page",
   es: "En esta página",
