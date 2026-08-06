@@ -4,6 +4,7 @@ import PageBanner from "../components/PageBanner.astro";
 import Testimonials from "../components/Testimonials.astro";
 import CTA from "../components/CTA.astro";
 import SiteFooter from "../components/SiteFooter.astro";
+import NumberedList from "../components/NumberedList.astro";
 import { createT, localePath } from "../i18n/utils";
 const t = createT(Astro.currentLocale);
 const locale = Astro.currentLocale || "en";
@@ -78,44 +79,13 @@ const locale = Astro.currentLocale || "en";
         </div>
       </div>
 
-      <div class="tria-ab-values-list">
-        <div class="tria-ab-value-row tria-up">
-          <span class="tria-ab-value-row-num">01</span>
-          <div class="tria-ab-value-row-body">
-            <h4 class="tria-ab-value-row-title" data-i18n="about.value1Title">{t("about.value1Title")}</h4>
-            <p class="tria-ab-value-row-desc" data-i18n="about.value1Desc">{t("about.value1Desc")}</p>
-          </div>
-        </div>
-        <div class="tria-ab-value-row tria-up">
-          <span class="tria-ab-value-row-num">02</span>
-          <div class="tria-ab-value-row-body">
-            <h4 class="tria-ab-value-row-title" data-i18n="about.value2Title">{t("about.value2Title")}</h4>
-            <p class="tria-ab-value-row-desc" data-i18n="about.value2Desc">{t("about.value2Desc")}</p>
-          </div>
-        </div>
-        <div class="tria-ab-value-row tria-up">
-          <span class="tria-ab-value-row-num">03</span>
-          <div class="tria-ab-value-row-body">
-            <h4 class="tria-ab-value-row-title" data-i18n="about.value3Title">{t("about.value3Title")}</h4>
-            <p class="tria-ab-value-row-desc" data-i18n="about.value3Desc">{t("about.value3Desc")}</p>
-          </div>
-        </div>
-        <div class="tria-ab-value-row tria-up">
-          <span class="tria-ab-value-row-num">04</span>
-          <div class="tria-ab-value-row-body">
-            <h4 class="tria-ab-value-row-title" data-i18n="about.value4Title">{t("about.value4Title")}</h4>
-            <p class="tria-ab-value-row-desc" data-i18n="about.value4Desc">{t("about.value4Desc")}</p>
-          </div>
-        </div>
-        <div class="tria-ab-value-row tria-up">
-          <span class="tria-ab-value-row-num">05</span>
-          <div class="tria-ab-value-row-body">
-            <h4 class="tria-ab-value-row-title" data-i18n="about.value5Title">{t("about.value5Title")}</h4>
-            <p class="tria-ab-value-row-desc" data-i18n="about.value5Desc">{t("about.value5Desc")}</p>
-          </div>
-        </div>
-      </div>
-
+      <NumberedList items={[
+        { number: "01", titleKey: "about.value1Title", title: t("about.value1Title"), descKey: "about.value1Desc", description: t("about.value1Desc") },
+        { number: "02", titleKey: "about.value2Title", title: t("about.value2Title"), descKey: "about.value2Desc", description: t("about.value2Desc") },
+        { number: "03", titleKey: "about.value3Title", title: t("about.value3Title"), descKey: "about.value3Desc", description: t("about.value3Desc") },
+        { number: "04", titleKey: "about.value4Title", title: t("about.value4Title"), descKey: "about.value4Desc", description: t("about.value4Desc") },
+        { number: "05", titleKey: "about.value5Title", title: t("about.value5Title"), descKey: "about.value5Desc", description: t("about.value5Desc") },
+      ]} />
     </div>
   </section>
 
@@ -442,68 +412,6 @@ const locale = Astro.currentLocale || "en";
     color: rgba(255, 255, 255, 0.5);
     line-height: 1.75;
     margin-top: 52px;
-  }
-
-  /* ── Values editorial list (5 rows) ── */
-  .tria-ab-values-list {
-    position: relative;
-    z-index: 1;
-    margin-top: 48px;
-  }
-
-  .tria-ab-value-row {
-    display: grid;
-    grid-template-columns: 84px 1fr;
-    gap: 32px;
-    align-items: start;
-    padding: 36px 0;
-    margin: 0 -8px;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    transition: background 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                padding 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    border-radius: 16px;
-  }
-  .tria-ab-value-row:first-child {
-    border-top: 1px solid rgba(255,255,255,0.08);
-  }
-  .tria-ab-value-row:hover {
-    background: rgba(6,142,140,0.06);
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  .tria-ab-value-row-num {
-    font-family: var(--font-display, 'Outfit', sans-serif);
-    font-size: 1.4rem;
-    font-weight: 200;
-    letter-spacing: -0.02em;
-    color: rgba(47,212,209,0.5);
-    line-height: 1.1;
-    padding-top: 2px;
-  }
-
-  .tria-ab-value-row-title {
-    font-size: 1.25rem;
-    font-weight: 450;
-    letter-spacing: -0.01em;
-    color: #fff;
-    margin-bottom: 10px;
-    transition: color 0.3s ease;
-  }
-  .tria-ab-value-row:hover .tria-ab-value-row-title {
-    color: #2fd4d1;
-  }
-
-  .tria-ab-value-row-desc {
-    font-size: 0.9rem;
-    color: rgba(255,255,255,0.5);
-    line-height: 1.75;
-    margin: 0;
-    max-width: 560px;
-    transition: color 0.3s ease;
-  }
-  .tria-ab-value-row:hover .tria-ab-value-row-desc {
-    color: rgba(255,255,255,0.7);
   }
 
   /* ── Culture cards (inside fused section) ── */
@@ -875,14 +783,6 @@ const locale = Astro.currentLocale || "en";
       line-height: 1.75;
     }
     .tria-ab-visual { margin-top: 40px; }
-    .tria-ab-value-row {
-      grid-template-columns: 1fr;
-      gap: 12px;
-      padding: 26px 4px;
-    }
-    .tria-ab-value-row-num { font-size: 1.1rem; }
-    .tria-ab-value-row-title { font-size: 1.1rem; }
-    .tria-ab-value-row-desc { font-size: 0.82rem; }
     .tria-ab-section-title { font-size: 1.5rem; }
     .tria-ab-values-intro { font-size: 0.82rem; }
 
@@ -915,9 +815,6 @@ const locale = Astro.currentLocale || "en";
 
   @media (max-width: 400px) {
     .tria-ab-text { font-size: 0.82rem; }
-    .tria-ab-value-row { padding: 22px 2px; }
-    .tria-ab-value-row-title { font-size: 1rem; }
-    .tria-ab-value-row-desc { font-size: 0.78rem; }
     .tria-ab-culture-card {
       padding: 28px 22px;
       margin-bottom: 16px;

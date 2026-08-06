@@ -1,16 +1,11 @@
 ---
-interface ProcessStep {
-  number: string;
-  title: string;
-  description: string;
-  tags: string[];
-}
+import NumberedList, { type NumberedListItem } from "./NumberedList.astro";
 
 interface Props {
   suptitle?: string;
   heading: string;
   intro?: string;
-  steps: ProcessStep[];
+  steps: NumberedListItem[];
   padding?: string;
 }
 
@@ -38,26 +33,7 @@ const {
       )}
     </div>
 
-    <div class="tria-process-steps">
-      {steps.map((step) => (
-        <div class="tria-process-step tria-up">
-          <div class="tria-process-card">
-            <div class="tria-process-card-top">
-              <span class="tria-process-num">{step.number}</span>
-            </div>
-            <div class="tria-process-body">
-              <h4 class="tria-process-title">{step.title}</h4>
-              <p class="tria-process-desc">{step.description}</p>
-            </div>
-            <div class="tria-process-tags">
-              {step.tags.map((tag) => (
-                <span>{tag}</span>
-              ))}
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
+    <NumberedList items={steps} />
   </div>
 </section>
 <!-- process end -->
@@ -91,161 +67,6 @@ const {
     color: rgba(255,255,255,0.6);
     font-size: 1rem;
     margin: 0;
-  }
-
-  .tria-process-steps {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .tria-process-step {
-    position: relative;
-  }
-
-  .tria-process-card {
-    position: relative;
-    display: flex;
-    align-items: flex-start;
-    gap: 40px;
-    padding: 44px 40px;
-    background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
-    transition: all 0.5s var(--ease-spring);
-    overflow: hidden;
-  }
-
-  .tria-process-card:hover {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.15);
-  }
-
-  .tria-process-card::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    padding: 1px;
-    background: linear-gradient(135deg, transparent 40%, rgba(6, 142, 140, 0.15) 60%, transparent 80%);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0;
-    transition: opacity 0.5s var(--ease-spring);
-    pointer-events: none;
-  }
-
-  .tria-process-card:hover::after {
-    opacity: 1;
-  }
-
-  .tria-process-card-top {
-    flex-shrink: 0;
-    width: 80px;
-    padding-top: 4px;
-  }
-
-  .tria-process-num {
-    font-size: 0.7rem;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.15);
-    letter-spacing: 0.08em;
-    font-variant-numeric: tabular-nums;
-    transition: color 0.4s var(--ease-spring);
-  }
-
-  .tria-process-card:hover .tria-process-num {
-    color: rgba(255, 255, 255, 0.4);
-  }
-
-  .tria-process-body {
-    flex: 1;
-    min-width: 0;
-  }
-
-  .tria-process-title {
-    font-size: 1.3rem;
-    font-weight: 450;
-    margin-bottom: 14px;
-    color: #fff;
-    line-height: 1.35;
-    transition: color 0.3s var(--ease-smooth);
-  }
-
-  .tria-process-card:hover .tria-process-title {
-    color: rgba(255,255,255,0.85);
-  }
-
-  .tria-process-desc {
-    color: rgba(255, 255, 255, 0.3);
-    font-size: 0.82rem;
-    line-height: 1.7;
-    max-width: 500px;
-    margin: 0;
-    transition: color 0.3s var(--ease-smooth);
-  }
-
-  .tria-process-card:hover .tria-process-desc {
-    color: rgba(255, 255, 255, 0.5);
-  }
-
-  .tria-process-tags {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    flex-shrink: 0;
-    padding-top: 2px;
-    align-items: flex-end;
-  }
-
-  .tria-process-tags span {
-    font-size: 0.62rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.2);
-    white-space: nowrap;
-    transition: color 0.4s var(--ease-spring);
-  }
-
-  .tria-process-card:hover .tria-process-tags span {
-    color: rgba(255, 255, 255, 0.45);
-  }
-
-  @media (max-width: 768px) {
-    .tria-process-card {
-      flex-wrap: wrap;
-      gap: 20px;
-      padding: 36px 28px 30px;
-    }
-    .tria-process-tags {
-      display: none;
-    }
-    .tria-process-card-top {
-      width: auto;
-    }
-  }
-
-  @media (max-width: 576px) {
-    .tria-process-card {
-      padding: 24px 20px 24px;
-      gap: 14px;
-    }
-    .tria-process-title {
-      font-size: 1.1rem;
-      margin-bottom: 10px;
-    }
-    .tria-process-desc {
-      font-size: 0.78rem;
-    }
-    .tria-process-num {
-      font-size: 0.6rem;
-    }
-    .tria-process-card-top {
-      width: auto;
-    }
   }
 
   .tria-mt-30 {

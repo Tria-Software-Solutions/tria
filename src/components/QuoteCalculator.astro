@@ -3,6 +3,9 @@ import Button from "./Button.astro";
 import { createT } from "../i18n/utils";
 const t = createT(Astro.currentLocale);
 
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
+
+/* ── Project type (base price + timeline) ── */
 const types = [
   { key: 'landing', label: t("quote.typeLanding"), desc: t("quote.typeLandingDesc"), base: 400, weeks: [2, 4] },
   { key: 'website', label: t("quote.typeWebsite"), desc: t("quote.typeWebsiteDesc"), base: 800, weeks: [3, 6] },
@@ -14,18 +17,55 @@ const types = [
   { key: 'custom', label: t("quote.typeCustom"), desc: t("quote.typeCustomDesc"), base: 6000, weeks: [12, 24] },
 ];
 
-const scopes = [
-  { key: 'minimal', label: t("quote.scopeMinimal"), desc: t("quote.scopeMinimalDesc"), mult: 1 },
-  { key: 'standard', label: t("quote.scopeStandard"), desc: t("quote.scopeStandardDesc"), mult: 1.35 },
-  { key: 'extensive', label: t("quote.scopeExtensive"), desc: t("quote.scopeExtensiveDesc"), mult: 1.8 },
+/* ── Screens & pages ── */
+const screens = [
+  { key: 's1', label: t("quote.screens1"), desc: t("quote.screens1Desc"), mult: 1 },
+  { key: 's2', label: t("quote.screens2"), desc: t("quote.screens2Desc"), mult: 1.35 },
+  { key: 's3', label: t("quote.screens3"), desc: t("quote.screens3Desc"), mult: 1.8 },
+  { key: 's4', label: t("quote.screens4"), desc: t("quote.screens4Desc"), mult: 2.4 },
+  { key: 's5', label: t("quote.screens5"), desc: t("quote.screens5Desc"), mult: 3.2 },
 ];
 
+/* ── Complexity ── */
 const complexities = [
   { key: 'basic', label: t("quote.complexityBasic"), desc: t("quote.complexityBasicDesc"), mult: 1 },
   { key: 'standard', label: t("quote.complexityStandard"), desc: t("quote.complexityStandardDesc"), mult: 1.25 },
   { key: 'advanced', label: t("quote.complexityAdvanced"), desc: t("quote.complexityAdvancedDesc"), mult: 1.6 },
 ];
 
+/* ── Expected users ── */
+const users = [
+  { key: 'u1', label: t("quote.users1"), desc: t("quote.users1Desc"), mult: 1 },
+  { key: 'u2', label: t("quote.users2"), desc: t("quote.users2Desc"), mult: 1.12 },
+  { key: 'u3', label: t("quote.users3"), desc: t("quote.users3Desc"), mult: 1.3 },
+  { key: 'u4', label: t("quote.users4"), desc: t("quote.users4Desc"), mult: 1.55 },
+  { key: 'u5', label: t("quote.users5"), desc: t("quote.users5Desc"), mult: 1.85 },
+];
+
+/* ── Deadline ── */
+const deadlines = [
+  { key: 'd1', label: t("quote.deadline1"), desc: t("quote.deadline1Desc"), mult: 0.9 },
+  { key: 'd2', label: t("quote.deadline2"), desc: t("quote.deadline2Desc"), mult: 1 },
+  { key: 'd3', label: t("quote.deadline3"), desc: t("quote.deadline3Desc"), mult: 1.2 },
+  { key: 'd4', label: t("quote.deadline4"), desc: t("quote.deadline4Desc"), mult: 1.35 },
+];
+
+/* ── UI/UX design ── */
+const designs = [
+  { key: 'ds1', label: t("quote.design1"), desc: t("quote.design1Desc"), mult: 0.92 },
+  { key: 'ds2', label: t("quote.design2"), desc: t("quote.design2Desc"), mult: 1 },
+  { key: 'ds3', label: t("quote.design3"), desc: t("quote.design3Desc"), mult: 1.25 },
+];
+
+/* ── Integrations ── */
+const integrations = [
+  { key: 'i1', label: t("quote.integrations1"), desc: t("quote.integrations1Desc"), mult: 1 },
+  { key: 'i2', label: t("quote.integrations2"), desc: t("quote.integrations2Desc"), mult: 1.1 },
+  { key: 'i3', label: t("quote.integrations3"), desc: t("quote.integrations3Desc"), mult: 1.22 },
+  { key: 'i4', label: t("quote.integrations4"), desc: t("quote.integrations4Desc"), mult: 1.4 },
+];
+
+/* ── Features (additive) ── */
 const features = [
   { key: 'auth', label: t("quote.featureAuth"), price: 350 },
   { key: 'admin', label: t("quote.featureAdmin"), price: 600 },
@@ -49,9 +89,23 @@ const { showHeader = false } = Astro.props;
 
 const quoteTexts = {
   weeks: t("quote.resultTimelineValue"),
+  base: t("quote.resultBase"),
+  screens: t("quote.resultScreens"),
+  complexity: t("quote.resultComplexity"),
+  users: t("quote.resultUsers"),
+  deadline: t("quote.resultDeadline"),
+  design: t("quote.resultDesign"),
+  integrations: t("quote.resultIntegrations"),
   features: t("quote.resultFeatures"),
   total: t("quote.resultTotal"),
-  more: "+{n} ",
+  more: "+{n}",
+  sendCta: t("quote.sendCta"),
+  sending: t("quote.sending"),
+  successTitle: t("quote.successTitle"),
+  successText: t("quote.successText"),
+  contactRequired: t("quote.contactRequired"),
+  resultCta: t("quote.resultCta"),
+  reset: t("quote.resultReset"),
 };
 
 /* Minimal line icons per project type (24×24, stroke-based) — inner SVG markup */
@@ -98,7 +152,7 @@ function typeIconSvg(key: string) {
       </div>
     )}
 
-    <div class="tria-quote-layout tria-up">
+    <div class="tria-quote-layout tria-up" id="tria-quote-layout">
       {/* ── Form ── */}
       <form class="tria-quote-form" id="tria-quote-form" novalidate>
         {/* Step 1 — Type */}
@@ -125,13 +179,13 @@ function typeIconSvg(key: string) {
           </div>
         </fieldset>
 
-        {/* Step 2 — Scope */}
+        {/* Step 2 — Screens */}
         <fieldset class="tria-quote-step">
-          <legend class="tria-quote-step-label" data-i18n="quote.stepScope">{t("quote.stepScope")}</legend>
+          <legend class="tria-quote-step-label" data-i18n="quote.stepScreens">{t("quote.stepScreens")}</legend>
           <div class="tria-quote-pills">
-            {scopes.map((s, i) => (
+            {screens.map((s, i) => (
               <label class="tria-quote-pill">
-                <input type="radio" name="scope" value={s.key} data-mult={s.mult} data-label={s.label} checked={i === 1} />
+                <input type="radio" name="screens" value={s.key} data-mult={s.mult} data-label={s.label} checked={i === 1} />
                 <span class="tria-quote-pill-inner">
                   <span class="tria-quote-pill-name">{s.label}</span>
                   <span class="tria-quote-pill-desc">{s.desc}</span>
@@ -144,7 +198,7 @@ function typeIconSvg(key: string) {
         {/* Step 3 — Complexity */}
         <fieldset class="tria-quote-step">
           <legend class="tria-quote-step-label" data-i18n="quote.stepComplexity">{t("quote.stepComplexity")}</legend>
-          <div class="tria-quote-pills">
+          <div class="tria-quote-pills tria-quote-pills--3">
             {complexities.map((c, i) => (
               <label class="tria-quote-pill">
                 <input type="radio" name="complexity" value={c.key} data-mult={c.mult} data-label={c.label} checked={i === 1} />
@@ -157,7 +211,71 @@ function typeIconSvg(key: string) {
           </div>
         </fieldset>
 
-        {/* Step 4 — Features */}
+        {/* Step 4 — Users */}
+        <fieldset class="tria-quote-step">
+          <legend class="tria-quote-step-label" data-i18n="quote.stepUsers">{t("quote.stepUsers")}</legend>
+          <div class="tria-quote-pills">
+            {users.map((u, i) => (
+              <label class="tria-quote-pill">
+                <input type="radio" name="users" value={u.key} data-mult={u.mult} data-label={u.label} checked={i === 1} />
+                <span class="tria-quote-pill-inner">
+                  <span class="tria-quote-pill-name">{u.label}</span>
+                  <span class="tria-quote-pill-desc">{u.desc}</span>
+                </span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
+        {/* Step 5 — Deadline */}
+        <fieldset class="tria-quote-step">
+          <legend class="tria-quote-step-label" data-i18n="quote.stepDeadline">{t("quote.stepDeadline")}</legend>
+          <div class="tria-quote-pills tria-quote-pills--4">
+            {deadlines.map((dl, i) => (
+              <label class="tria-quote-pill">
+                <input type="radio" name="deadline" value={dl.key} data-mult={dl.mult} data-label={dl.label} checked={i === 1} />
+                <span class="tria-quote-pill-inner">
+                  <span class="tria-quote-pill-name">{dl.label}</span>
+                  <span class="tria-quote-pill-desc">{dl.desc}</span>
+                </span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
+        {/* Step 6 — Design */}
+        <fieldset class="tria-quote-step">
+          <legend class="tria-quote-step-label" data-i18n="quote.stepDesign">{t("quote.stepDesign")}</legend>
+          <div class="tria-quote-pills tria-quote-pills--3">
+            {designs.map((ds, i) => (
+              <label class="tria-quote-pill">
+                <input type="radio" name="design" value={ds.key} data-mult={ds.mult} data-label={ds.label} checked={i === 1} />
+                <span class="tria-quote-pill-inner">
+                  <span class="tria-quote-pill-name">{ds.label}</span>
+                  <span class="tria-quote-pill-desc">{ds.desc}</span>
+                </span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
+        {/* Step 7 — Integrations */}
+        <fieldset class="tria-quote-step">
+          <legend class="tria-quote-step-label" data-i18n="quote.stepIntegrations">{t("quote.stepIntegrations")}</legend>
+          <div class="tria-quote-pills tria-quote-pills--4">
+            {integrations.map((ig, i) => (
+              <label class="tria-quote-pill">
+                <input type="radio" name="integrations" value={ig.key} data-mult={ig.mult} data-label={ig.label} checked={i === 0} />
+                <span class="tria-quote-pill-inner">
+                  <span class="tria-quote-pill-name">{ig.label}</span>
+                  <span class="tria-quote-pill-desc">{ig.desc}</span>
+                </span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
+        {/* Step 8 — Features */}
         <fieldset class="tria-quote-step">
           <legend class="tria-quote-step-label" data-i18n="quote.stepFeatures">{t("quote.stepFeatures")}</legend>
           <div class="tria-quote-features">
@@ -172,6 +290,28 @@ function typeIconSvg(key: string) {
                 <span class="tria-quote-feature-label">{f.label}</span>
               </label>
             ))}
+          </div>
+        </fieldset>
+
+        {/* Step 9 — Contact */}
+        <fieldset class="tria-quote-step tria-quote-step--contact">
+          <legend class="tria-quote-step-label" data-i18n="quote.stepContact">{t("quote.stepContact")}</legend>
+          <div class="tria-quote-contact">
+            <div class="tria-quote-contact-row">
+              <div class="tria-quote-field">
+                <label class="tria-quote-field-label" for="quote-name" data-i18n="quote.contactName">{t("quote.contactName")}</label>
+                <input class="tria-quote-input" type="text" id="quote-name" name="name" data-i18n-placeholder="quote.contactNamePh" placeholder={t("quote.contactNamePh")} />
+              </div>
+              <div class="tria-quote-field">
+                <label class="tria-quote-field-label" for="quote-email" data-i18n="quote.contactEmail">{t("quote.contactEmail")}</label>
+                <input class="tria-quote-input" type="email" id="quote-email" name="email" data-i18n-placeholder="quote.contactEmailPh" placeholder={t("quote.contactEmailPh")} />
+              </div>
+            </div>
+            <div class="tria-quote-field">
+              <label class="tria-quote-field-label" for="quote-company" data-i18n="quote.contactCompany">{t("quote.contactCompany")}</label>
+              <input class="tria-quote-input" type="text" id="quote-company" name="company" data-i18n-placeholder="quote.contactCompanyPh" placeholder={t("quote.contactCompanyPh")} />
+            </div>
+            <p class="tria-quote-contact-error" id="quote-contact-error" role="alert"></p>
           </div>
         </fieldset>
       </form>
@@ -193,9 +333,24 @@ function typeIconSvg(key: string) {
 
         <p class="tria-quote-result-disclaimer" data-i18n="quote.resultDisclaimer">{t("quote.resultDisclaimer")}</p>
 
-        <Button text={t("quote.resultCta")} href="/contact" size="sm" showArrow={true} fullWidth={true} />
+        <Button id="quote-submit" type="submit" form="tria-quote-form" text={t("quote.sendCta")} size="sm" fullWidth={true} />
+        <Button text={t("quote.resultCta")} href="/contact" variant="outline" size="sm" showArrow={true} fullWidth={true} className="tria-quote-result-cta2" />
         <button type="button" class="tria-quote-reset" id="quote-reset" data-i18n="quote.resultReset">{t("quote.resultReset")}</button>
       </aside>
+    </div>
+
+    {/* ── Success state ── */}
+    <div class="tria-quote-success" id="tria-quote-success" hidden>
+      <div class="tria-quote-success-card">
+        <span class="tria-quote-success-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+            <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <h3 class="tria-quote-success-title" data-i18n="quote.successTitle">{t("quote.successTitle")}</h3>
+        <p class="tria-quote-success-text" data-i18n="quote.successText">{t("quote.successText")}</p>
+        <button type="button" class="tria-quote-success-reset" id="quote-success-reset" data-i18n="quote.resultReset">{t("quote.resultReset")}</button>
+      </div>
     </div>
   </div>
 </section>
@@ -408,7 +563,6 @@ function typeIconSvg(key: string) {
     line-height: 1.4;
   }
 
-  /* Selected radio indicator */
   .tria-quote-type-radio {
     flex-shrink: 0;
     width: 20px;
@@ -428,11 +582,19 @@ function typeIconSvg(key: string) {
     color: #fff;
   }
 
-  /* Pills (scope / complexity) */
+  /* Pills (screens / complexity / users / deadline / design / integrations) */
   .tria-quote-pills {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
     gap: 12px;
+  }
+
+  .tria-quote-pills--3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .tria-quote-pills--4 {
+    grid-template-columns: repeat(4, 1fr);
   }
 
   .tria-quote-pill {
@@ -555,6 +717,71 @@ function typeIconSvg(key: string) {
     transition: color 0.3s ease;
   }
 
+  /* ── Contact step ── */
+  .tria-quote-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 28px;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02), 0 8px 32px rgba(0, 0, 0, 0.04);
+  }
+
+  .tria-quote-contact-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .tria-quote-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .tria-quote-field-label {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.45);
+  }
+
+  .tria-quote-input {
+    height: 50px;
+    padding: 0 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: #ffffff;
+    font-family: var(--font-display, 'Outfit', sans-serif);
+    font-size: 0.9rem;
+    color: #0b0d17;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .tria-quote-input::placeholder {
+    color: rgba(0, 0, 0, 0.28);
+  }
+
+  .tria-quote-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(6, 142, 140, 0.12);
+  }
+
+  .tria-quote-input--error {
+    border-color: #d64545;
+  }
+
+  .tria-quote-contact-error {
+    margin: 0;
+    font-size: 0.78rem;
+    color: #d64545;
+    min-height: 1em;
+  }
+
   /* ── Result panel — white card with teal glow ── */
   .tria-quote-result {
     position: sticky;
@@ -664,6 +891,10 @@ function typeIconSvg(key: string) {
     flex-direction: column;
     gap: 10px;
     position: relative;
+    max-height: 300px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.1) transparent;
   }
 
   .tria-quote-result-breakdown li {
@@ -704,8 +935,20 @@ function typeIconSvg(key: string) {
   }
 
   .tria-quote-result :global(.tria-btn) {
-    width: 100%;
     position: relative;
+  }
+
+  .tria-quote-result-cta2 {
+    margin-top: 10px;
+  }
+
+  .tria-quote-result :global(#quote-submit) {
+    margin-bottom: 10px;
+  }
+
+  .tria-quote-result :global(#quote-submit:disabled) {
+    opacity: 0.6;
+    cursor: wait;
   }
 
   .tria-quote-reset {
@@ -727,6 +970,74 @@ function typeIconSvg(key: string) {
     color: var(--accent);
   }
 
+  /* ── Success state ── */
+  .tria-quote-success {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    padding: 40px 0 0;
+  }
+
+  .tria-quote-success[hidden] {
+    display: none;
+  }
+
+  .tria-quote-success-card {
+    max-width: 560px;
+    width: 100%;
+    text-align: center;
+    padding: 56px 48px;
+    border-radius: 24px;
+    border: 1px solid rgba(6, 142, 140, 0.22);
+    background: #ffffff;
+    box-shadow: 0 8px 40px rgba(6, 142, 140, 0.08), 0 2px 8px rgba(0, 0, 0, 0.03);
+  }
+
+  .tria-quote-success-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(6, 142, 140, 0.1);
+    color: var(--accent);
+    margin-bottom: 24px;
+  }
+
+  .tria-quote-success-title {
+    font-size: 1.6rem;
+    font-weight: 560;
+    letter-spacing: -0.02em;
+    color: #0b0d17;
+    margin: 0 0 12px;
+  }
+
+  .tria-quote-success-text {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: rgba(0, 0, 0, 0.55);
+    margin: 0 0 32px;
+  }
+
+  .tria-quote-success-reset {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-display, 'Outfit', sans-serif);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.4);
+    transition: color 0.3s ease;
+  }
+
+  .tria-quote-success-reset:hover {
+    color: var(--accent);
+  }
+
   /* ── Responsive ── */
   @media (max-width: 991px) {
     .tria-quote-layout {
@@ -737,6 +1048,11 @@ function typeIconSvg(key: string) {
     .tria-quote-result {
       position: static;
     }
+
+    .tria-quote-pills--3,
+    .tria-quote-pills--4 {
+      grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+    }
   }
 
   @media (max-width: 768px) {
@@ -746,6 +1062,10 @@ function typeIconSvg(key: string) {
 
     .tria-quote-types,
     .tria-quote-features {
+      grid-template-columns: 1fr;
+    }
+
+    .tria-quote-contact-row {
       grid-template-columns: 1fr;
     }
   }
@@ -760,8 +1080,10 @@ function typeIconSvg(key: string) {
       margin-bottom: 36px;
     }
 
-    .tria-quote-pills {
-      grid-template-columns: 1fr;
+    .tria-quote-pills,
+    .tria-quote-pills--3,
+    .tria-quote-pills--4 {
+      grid-template-columns: 1fr 1fr;
     }
 
     .tria-quote-result {
@@ -771,29 +1093,33 @@ function typeIconSvg(key: string) {
     .tria-quote-result-range {
       font-size: clamp(2.1rem, 9vw, 2.7rem);
     }
+
+    .tria-quote-contact {
+      padding: 22px 18px;
+    }
+
+    .tria-quote-success-card {
+      padding: 40px 24px;
+    }
   }
 </style>
 
-<script define:vars={{ quoteTexts }}>
+<script define:vars={{ quoteTexts, turnstileSiteKey }}>
   (function () {
     var form = document.getElementById('tria-quote-form');
+    var layout = document.getElementById('tria-quote-layout');
+    var success = document.getElementById('tria-quote-success');
     var rangeEl = document.getElementById('quote-range');
     var weeksEl = document.getElementById('quote-weeks');
     var breakdownEl = document.getElementById('quote-breakdown');
     var resetBtn = document.getElementById('quote-reset');
+    var successReset = document.getElementById('quote-success-reset');
     if (!form || !rangeEl) return;
 
     var weeksTemplate = quoteTexts.weeks;
-    var labels = {
-      base: '',
-      scope: '',
-      complexity: '',
-      features: quoteTexts.features,
-    };
 
     function getSelected(name) {
-      var el = form.querySelector('input[name="' + name + '"]:checked');
-      return el;
+      return form.querySelector('input[name="' + name + '"]:checked');
     }
 
     function round50(n) {
@@ -804,22 +1130,36 @@ function typeIconSvg(key: string) {
       return '$' + n.toLocaleString('en-US');
     }
 
+    function fmtMult(m) {
+      return '×' + parseFloat(m.toFixed(2)).toString();
+    }
+
     function calc() {
       var typeEl = getSelected('type');
-      var scopeEl = getSelected('scope');
+      var screensEl = getSelected('screens');
       var compEl = getSelected('complexity');
-      if (!typeEl || !scopeEl || !compEl) return;
+      var usersEl = getSelected('users');
+      var deadlineEl = getSelected('deadline');
+      var designEl = getSelected('design');
+      var integEl = getSelected('integrations');
+      if (!typeEl || !screensEl || !compEl || !usersEl || !deadlineEl || !designEl || !integEl) return;
 
       var base = parseFloat(typeEl.getAttribute('data-base')) || 0;
-      var scopeMult = parseFloat(scopeEl.getAttribute('data-mult')) || 1;
-      var compMult = parseFloat(compEl.getAttribute('data-mult')) || 1;
+      var sMult = parseFloat(screensEl.getAttribute('data-mult')) || 1;
+      var cMult = parseFloat(compEl.getAttribute('data-mult')) || 1;
+      var uMult = parseFloat(usersEl.getAttribute('data-mult')) || 1;
+      var dMult = parseFloat(deadlineEl.getAttribute('data-mult')) || 1;
+      var dsMult = parseFloat(designEl.getAttribute('data-mult')) || 1;
+      var iMult = parseFloat(integEl.getAttribute('data-mult')) || 1;
 
       var weeks = JSON.parse(typeEl.getAttribute('data-weeks') || '[2,4]');
-      var compFactor = compMult;
-      var wMin = Math.max(1, Math.round(weeks[0] * (0.75 + compFactor * 0.25)));
-      var wMax = Math.max(wMin, Math.round(weeks[1] * (0.75 + compFactor * 0.25)));
+      var compFactor = cMult;
+      var screensIdx = ['s1', 's2', 's3', 's4', 's5'].indexOf(screensEl.value);
+      var screensWeekFactor = 0.8 + Math.max(0, screensIdx) * 0.15;
+      var wMin = Math.max(1, Math.round(weeks[0] * screensWeekFactor * (0.75 + compFactor * 0.25)));
+      var wMax = Math.max(wMin, Math.round(weeks[1] * screensWeekFactor * (0.75 + compFactor * 0.25)));
 
-      var subtotal = base * scopeMult * compMult;
+      var subtotal = base * sMult * cMult * uMult * dMult * dsMult * iMult;
       var featureTotal = 0;
       var featureNames = [];
       var feats = form.querySelectorAll('input[name="features"]:checked');
@@ -836,41 +1176,197 @@ function typeIconSvg(key: string) {
       weeksEl.textContent = weeksTemplate.replace('{min}', wMin).replace('{max}', wMax);
 
       var bd = [];
-      bd.push({ label: typeEl.getAttribute('data-label'), value: money(base) });
-      if (scopeMult !== 1) bd.push({ label: scopeEl.getAttribute('data-label') + ' \u00d7' + scopeMult.toFixed(2).replace(/\.?0+$/, ''), value: '\u00d7' + scopeMult.toFixed(2).replace(/\.?0+$/, '') });
-      if (compMult !== 1) bd.push({ label: compEl.getAttribute('data-label') + ' \u00d7' + compMult.toFixed(2).replace(/\.?0+$/, ''), value: '\u00d7' + compMult.toFixed(2).replace(/\.?0+$/, '') });
-      featureNames.slice(0, 4).forEach(function (n) {
-        bd.push({ label: n, value: '' });
-      });
-      if (featureNames.length > 4) bd.push({ label: quoteTexts.more.replace('{n}', featureNames.length - 4), value: '' });
-      if (featureTotal > 0) bd.push({ label: labels.features || 'Extras', value: money(featureTotal) });
+      bd.push({ label: typeEl.getAttribute('data-label'), value: money(base), sub: quoteTexts.base });
+      if (sMult !== 1) bd.push({ label: screensEl.getAttribute('data-label'), value: fmtMult(sMult), sub: quoteTexts.screens });
+      if (cMult !== 1) bd.push({ label: compEl.getAttribute('data-label'), value: fmtMult(cMult), sub: quoteTexts.complexity });
+      if (uMult !== 1) bd.push({ label: usersEl.getAttribute('data-label'), value: fmtMult(uMult), sub: quoteTexts.users });
+      if (dMult !== 1) bd.push({ label: deadlineEl.getAttribute('data-label'), value: fmtMult(dMult), sub: quoteTexts.deadline });
+      if (dsMult !== 1) bd.push({ label: designEl.getAttribute('data-label'), value: fmtMult(dsMult), sub: quoteTexts.design });
+      if (iMult !== 1) bd.push({ label: integEl.getAttribute('data-label'), value: fmtMult(iMult), sub: quoteTexts.integrations });
+      if (featureNames.length) {
+        bd.push({ label: featureNames.slice(0, 3).join(', ') + (featureNames.length > 3 ? ' ' + quoteTexts.more.replace('{n}', featureNames.length - 3) : ''), value: money(featureTotal), sub: quoteTexts.features });
+      }
       bd.push({ label: quoteTexts.total, value: money(mid), total: true });
 
       breakdownEl.innerHTML = '';
       bd.forEach(function (row) {
         var li = document.createElement('li');
         if (row.total) li.className = 'tria-quote-bd-total';
-        li.innerHTML = '<span>' + row.label + '</span><span>' + row.value + '</span>';
+        var left = row.sub && row.sub !== row.label
+          ? '<span>' + row.label + '</span>'
+          : '<span>' + row.label + '</span>';
+        li.innerHTML = left + '<span>' + row.value + '</span>';
         breakdownEl.appendChild(li);
       });
     }
 
     form.addEventListener('change', calc);
 
-    if (resetBtn) {
-      resetBtn.addEventListener('click', function () {
-        form.querySelectorAll('input[type="radio"]').forEach(function (el, i) {
-          if (el.name === 'type') el.checked = i === 0;
-          if (el.name === 'scope') el.checked = i === 1;
-          if (el.name === 'complexity') el.checked = i === 1;
+    function resetAll() {
+      form.querySelectorAll('input[type="radio"]').forEach(function (el) {
+        if (el.name === 'type') el.checked = el.value === 'landing';
+        if (el.name === 'screens') el.checked = el.value === 's2';
+        if (el.name === 'complexity') el.checked = el.value === 'standard';
+        if (el.name === 'users') el.checked = el.value === 'u2';
+        if (el.name === 'deadline') el.checked = el.value === 'd2';
+        if (el.name === 'design') el.checked = el.value === 'ds2';
+        if (el.name === 'integrations') el.checked = el.value === 'i1';
+      });
+      form.querySelectorAll('input[type="checkbox"]').forEach(function (el) {
+        el.checked = false;
+      });
+      var nameEl = document.getElementById('quote-name');
+      var emailEl = document.getElementById('quote-email');
+      var companyEl = document.getElementById('quote-company');
+      if (nameEl) nameEl.value = '';
+      if (emailEl) emailEl.value = '';
+      if (companyEl) companyEl.value = '';
+      clearContactError();
+      calc();
+    }
+
+    if (resetBtn) resetBtn.addEventListener('click', resetAll);
+    if (successReset) successReset.addEventListener('click', function () {
+      resetAll();
+      layout.hidden = false;
+      success.hidden = true;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    /* ── Contact validation ── */
+    var contactError = document.getElementById('quote-contact-error');
+
+    function clearContactError() {
+      var nameEl = document.getElementById('quote-name');
+      var emailEl = document.getElementById('quote-email');
+      if (nameEl) nameEl.classList.remove('tria-quote-input--error');
+      if (emailEl) emailEl.classList.remove('tria-quote-input--error');
+      if (contactError) contactError.textContent = '';
+    }
+
+    /* ── Turnstile ── */
+    function loadTurnstile() {
+      if (typeof turnstile !== 'undefined') return;
+      var script = document.createElement('script');
+      script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+      script.async = true;
+      script.defer = true;
+      document.head.appendChild(script);
+    }
+
+    function getTurnstileToken() {
+      return new Promise(function (resolve) {
+        if (typeof turnstile === 'undefined' || !turnstile.render) {
+          resolve('');
+          return;
+        }
+        var container = document.getElementById('quote-turnstile-container');
+        if (!container) {
+          container = document.createElement('div');
+          container.id = 'quote-turnstile-container';
+          container.style.display = 'none';
+          form.appendChild(container);
+        }
+        turnstile.render(container, {
+          sitekey: turnstileSiteKey,
+          callback: function (token) { resolve(token); },
+          'error-callback': function () { resolve(''); },
+          'expired-callback': function () { resolve(''); },
         });
-        form.querySelectorAll('input[type="checkbox"]').forEach(function (el) {
-          el.checked = false;
-        });
-        calc();
       });
     }
 
+    /* ── Build the message summary for the lead ── */
+    function buildSummary() {
+      var lines = [];
+      lines.push(typeElLabel('type') + ': ' + getSelected('type').getAttribute('data-label'));
+      lines.push(quoteTexts.screens + ': ' + getSelected('screens').getAttribute('data-label'));
+      lines.push(quoteTexts.complexity + ': ' + getSelected('complexity').getAttribute('data-label'));
+      lines.push(quoteTexts.users + ': ' + getSelected('users').getAttribute('data-label'));
+      lines.push(quoteTexts.deadline + ': ' + getSelected('deadline').getAttribute('data-label'));
+      lines.push(quoteTexts.design + ': ' + getSelected('design').getAttribute('data-label'));
+      lines.push(quoteTexts.integrations + ': ' + getSelected('integrations').getAttribute('data-label'));
+      var featNames = Array.prototype.map.call(form.querySelectorAll('input[name="features"]:checked'), function (el) {
+        return el.getAttribute('data-label');
+      });
+      lines.push(quoteTexts.features + ': ' + (featNames.length ? featNames.join(', ') : '-'));
+      lines.push(quoteTexts.total + ': ' + rangeEl.textContent + ' (' + weeksEl.textContent + ')');
+      return lines.join('\n');
+    }
+
+    function typeElLabel() {
+      return getSelected('type').getAttribute('data-label');
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      clearContactError();
+
+      var nameEl = document.getElementById('quote-name');
+      var emailEl = document.getElementById('quote-email');
+      var companyEl = document.getElementById('quote-company');
+      var name = nameEl ? nameEl.value.trim() : '';
+      var email = emailEl ? emailEl.value.trim() : '';
+      var company = companyEl ? companyEl.value.trim() : '';
+
+      var valid = true;
+      if (!name) { if (nameEl) nameEl.classList.add('tria-quote-input--error'); valid = false; }
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { if (emailEl) emailEl.classList.add('tria-quote-input--error'); valid = false; }
+      if (!valid) {
+        if (contactError) contactError.textContent = quoteTexts.contactRequired;
+        return;
+      }
+
+      var btn = document.getElementById('quote-submit');
+      if (btn) {
+        btn.disabled = true;
+        var btnText = btn.querySelector('.tria-btn-text');
+        if (btnText) btnText.textContent = quoteTexts.sending;
+      }
+
+      getTurnstileToken().then(function (turnstileToken) {
+        var data = {
+          name: name,
+          email: email,
+          company: company,
+          budget: rangeEl.textContent,
+          services: [typeElLabel(), getSelected('screens').getAttribute('data-label'), getSelected('complexity').getAttribute('data-label')],
+          message: buildSummary(),
+          turnstileToken: turnstileToken,
+        };
+
+        fetch('/api/create-jira-ticket', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        })
+        .then(function (res) { return res.json(); })
+        .then(function (result) {
+          if (btn) {
+            btn.disabled = false;
+            var btnText = btn.querySelector('.tria-btn-text');
+            if (btnText) btnText.textContent = quoteTexts.sendCta;
+          }
+          if (result && result.success) {
+            layout.hidden = true;
+            success.hidden = false;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          } else {
+            if (contactError) contactError.textContent = (result && result.error) || '';
+          }
+        })
+        .catch(function () {
+          if (btn) {
+            btn.disabled = false;
+            var btnText = btn.querySelector('.tria-btn-text');
+            if (btnText) btnText.textContent = quoteTexts.sendCta;
+          }
+          if (contactError) contactError.textContent = quoteTexts.contactRequired;
+        });
+      });
+    });
+
     calc();
+    loadTurnstile();
   })();
 </script>
