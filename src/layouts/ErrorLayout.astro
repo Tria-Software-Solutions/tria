@@ -1,0 +1,148 @@
+---
+import "../styles/global.css";
+import "../styles/tria-theme.css";
+import { createT } from "../i18n/utils";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const locale = Astro.currentLocale || "en";
+const t = createT(locale);
+
+const {
+  title = t("meta.title"),
+  description = t("meta.description"),
+} = Astro.props;
+
+const siteUrl = "https://triacr.com";
+const companyName = "Tria Software Solutions";
+const twitterHandle = "@triacr";
+
+const pathname = Astro.url.pathname;
+const path = pathname.replace(/\/+$/, "") || "/";
+const barePath = locale === "en" ? path : (path.replace(new RegExp(`^/${locale}`), "") || "/");
+const enHref = barePath;
+const esHref = `/es${barePath === "/" ? "" : barePath}`;
+
+const ogLocales: Record<string, string> = { en: "en_US", es: "es_CR" };
+const localePrefix = locale === "en" ? "" : `/${locale}`;
+const canonicalUrl = `${siteUrl}${localePrefix}${barePath === "/" ? "" : barePath}`;
+const ogImageUrl = `${siteUrl}/assets/img/og/default.png`;
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <!-- Preconnect to Google Fonts origins (eliminates DNS/connection latency) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Preload the critical woff2 font file for the default weight (400) -->
+    <link rel="preload" href="https://fonts.gstatic.com/s/outfit/v11/QGYvz_MVcBeNP4NJtEtqUYLknw.woff2" as="font" type="font/woff2" crossorigin />
+
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#0b0d17" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>{title}</title>
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- hreflang for multilingual -->
+    <link rel="alternate" hreflang="en" href={`${siteUrl}${enHref}`} />
+    <link rel="alternate" hreflang="es" href={`${siteUrl}/es${enHref === "/" ? "" : enHref}`} />
+    <link rel="alternate" hreflang="x-default" href={`${siteUrl}${enHref}`} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content={ogLocales[locale] || "en_US"} />
+    <meta property="og:site_name" content={companyName} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content={twitterHandle} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <!-- Icons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Load critical grid CSS synchronously (needed for layout) -->
+    <link rel="stylesheet" href="/assets/css/vendor/bootstrap-grid.css" />
+
+    <!-- Defer non-critical CSS: tabler-icons, Google Fonts -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" /></noscript>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap" /></noscript>
+  </head>
+  <body>
+    <!-- Skip to main content -->
+    <a href="#main-content" class="tria-skip-link" data-i18n="layout.skipToContent">
+      {t("layout.skipToContent") || "Skip to main content"}
+    </a>
+
+    <!-- wrapper -->
+    <div class="tria-wrapper">
+      <!-- content -->
+      <main class="tria-content" id="main-content">
+        <slot />
+      </main>
+    </div>
+    <!-- wrapper end -->
+
+    <!-- Hero gradient init (WebGL background used by ErrorPage) -->
+    <script is:inline>
+    (function() {
+      window.__heroCleanup = null;
+      window.__reinitHeroBg = function () {
+        var bg = document.querySelector(".tria-hero-bg");
+        if (!bg) return;
+        if (window.__heroCleanup) {
+          try { window.__heroCleanup(); } catch (e) {}
+          window.__heroCleanup = null;
+        }
+        if (bg.dataset.gradProps && window.__initHeroGradient) {
+          try {
+            window.__heroCleanup = window.__initHeroGradient(bg, JSON.parse(bg.dataset.gradProps));
+          } catch (e) {
+            console.error("Failed to init hero bg:", e);
+          }
+        }
+      };
+      if (document.readyState === "complete") {
+        window.__reinitHeroBg();
+      } else {
+        window.addEventListener("load", window.__reinitHeroBg);
+      }
+    })();
+    </script>
+    <script>
+      import { initGradient } from "../scripts/hero-gradient";
+      window.__initHeroGradient = initGradient;
+      if (document.querySelector(".tria-hero-bg") && window.__reinitHeroBg) {
+        window.__reinitHeroBg();
+      }
+    </script>
+
+    <!-- i18n: applies data-i18n attributes on load -->
+    <script src="/assets/js/tria-i18n.js" defer></script>
+  </body>
+</html>

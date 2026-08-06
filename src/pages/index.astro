@@ -107,78 +107,69 @@ const locale = Astro.currentLocale || "en";
   <FeaturedWork 
     suptitle={t("featured.suptitle") || ""}
     heading={t("featured.title") || ""}
-    viewAllText={t("featured.viewAll") || ""}
-    viewAllHref="/portfolio"
     ctaText={t("featured.viewProject") || "View project"}
+    wikiText={t("featured.viewWiki") || "View wiki"}
     projects={[
       {
         category: t("featured.project1Cat") || "",
         title: t("featured.project1Title") || "",
         description: t("featured.project1Desc") || "",
-        href: "/projects/parkit",
+        liveUrl: "https://parkit-valet.vercel.app",
+        wikiUrl: "https://deepwiki.com/Tria-Building-Digital-Solutions/parkit",
         gradient: "linear-gradient(135deg, #0b0d17 0%, #1a1f35 50%, #068e8c 100%)",
-        tags: ["Express", "React Native", "Next.js", "PostgreSQL"],
+        tags: ["React", "Go", "React Native", "PostgreSQL", "AWS"],
         stat: "Multi-tenant",
         statLabel: "Architecture",
-        previewImg: "/assets/img/featured/parkit.png"
+        previewImg: "/assets/img/featured/parkit.avif"
       },
       {
         category: t("featured.project2Cat") || "",
         title: t("featured.project2Title") || "",
         description: t("featured.project2Desc") || "",
-        href: "/projects/choferes",
+        liveUrl: "https://choferesdealquiler.vercel.app",
+        wikiUrl: "https://deepwiki.com/Tria-Building-Digital-Solutions/choferes",
         gradient: "linear-gradient(135deg, #1a1f35 0%, #2d3561 100%)",
-        tags: ["React", "Material UI", "Node.js", "PostgreSQL"],
+        tags: ["Python", "OCR", "Kubernetes", "React", "Node.js", "PostgreSQL"],
         stat: "OCR Pipeline",
         statLabel: "Automation",
-        previewImg: "/assets/img/featured/choferes.png"
+        previewImg: "/assets/img/featured/choferes.avif"
       },
       {
         category: t("featured.project6Cat") || "",
         title: t("featured.project6Title") || "",
         description: t("featured.project6Desc") || "",
-        href: "/projects/goalr",
+        liveUrl: "https://goalr-tria.vercel.app",
+        wikiUrl: "https://deepwiki.com/Tria-Building-Digital-Solutions/goalr",
         gradient: "linear-gradient(135deg, #0f0c29 0%, #1a1a3e 40%, #068e8c 100%)",
-        tags: ["NestJS", "Next.js", "React", "PostgreSQL"],
+        tags: ["NestJS", "Next.js", "TypeScript", "PostgreSQL", "Prisma"],
         stat: "Monorepo",
         statLabel: "Architecture",
-        previewImg: "/assets/img/featured/goalr.png"
+        previewImg: "/assets/img/featured/goalr.avif"
       },
       {
         category: t("featured.project7Cat") || "",
         title: t("featured.project7Title") || "",
         description: t("featured.project7Desc") || "",
-        href: "/projects/lasgranas",
+        liveUrl: "https://las-granas.vercel.app",
+        wikiUrl: "https://deepwiki.com/Tria-Building-Digital-Solutions/lasgranas",
         gradient: "linear-gradient(135deg, #1a0a2e 0%, #2d1b4e 50%, #068e8c 100%)",
-        tags: ["Next.js", "TypeScript", "Tailwind", "shadcn/ui"],
+        tags: ["Astro", "Next.js", "TypeScript", "Tailwind", "shadcn/ui"],
         stat: "B2B Trade",
         statLabel: "Platform",
-        previewImg: "/assets/img/featured/lasgranas.png"
+        previewImg: "/assets/img/featured/lasgranas.avif"
       },
       {
         category: t("featured.project5Cat") || "",
         title: t("featured.project5Title") || "",
         description: t("featured.project5Desc") || "",
-        href: "/projects/fault-diagnosis",
+        liveUrl: "https://proquinal-diagnostico-fallas.vercel.app",
+        wikiUrl: "https://deepwiki.com/Tria-Building-Digital-Solutions/fault-diagnosis",
         gradient: "linear-gradient(135deg, #1a0a2e 0%, #2d1b4e 50%, #068e8c 100%)",
         tags: ["TypeScript", "Vite", "Tailwind", "jsPDF"],
         stat: "Root Cause",
         statLabel: "Analysis",
-        previewImg: "/assets/img/featured/fault-diagnosis.png"
+        previewImg: "/assets/img/featured/fault-diagnosis.avif"
       },
-    ]}
-  />
-  <Partners 
-    partners={[
-      { logo: "/assets/img/partners/partner-01.png", href: "#.", alt: "Partner logo 1" },
-      { logo: "/assets/img/partners/partner-02.png", href: "#.", alt: "Partner logo 2" },
-      { logo: "/assets/img/partners/partner-03.png", href: "#.", alt: "Partner logo 3" },
-      { logo: "/assets/img/partners/partner-04.png", href: "#.", alt: "Partner logo 4" },
-      { logo: "/assets/img/partners/partner-05.png", href: "#.", alt: "Partner logo 5" },
-      { logo: "/assets/img/partners/partner-06.png", href: "#.", alt: "Partner logo 6" },
-      { logo: "/assets/img/partners/partner-07.png", href: "#.", alt: "Partner logo 7" },
-      { logo: "/assets/img/partners/partner-08.png", href: "#.", alt: "Partner logo 8" },
-      { logo: "/assets/img/partners/partner-09.png", href: "#.", alt: "Partner logo 9" },
     ]}
   />
   <Process 
@@ -256,12 +247,14 @@ const locale = Astro.currentLocale || "en";
     headingKey="pricing.heading"
     descriptionKey="pricing.description"
     theme="light"
-    padding="tria-p-120-120"
+    padding="tria-p-120-60"
     plans={[
       {
         name: t("pricing.plan1Name") || "Starter",
         price: t("pricing.plan1Price") || "$400",
-        period: t("pricing.plan1Period") || "/project",
+        amount: t("pricing.plan1Amount") || "$400",
+        prefix: t("pricing.fromLabel") || "From",
+        suffix: t("pricing.projectSuffix") || "/ project",
         description: t("pricing.plan1Desc") || "",
         featureCategories: ['website', 'seoPerf', 'ecom', 'support'],
         buttonHref: "/contact"
@@ -269,15 +262,20 @@ const locale = Astro.currentLocale || "en";
       {
         name: t("pricing.plan2Name") || "Professional",
         price: t("pricing.plan2Price") || "$1,800",
-        period: t("pricing.plan2Period") || "/project",
+        amount: t("pricing.plan2Amount") || "$1,800",
+        prefix: t("pricing.fromLabel") || "From",
+        suffix: t("pricing.projectSuffix") || "/ project",
         description: t("pricing.plan2Desc") || "",
+        highlighted: true,
         featureCategories: ['website', 'seoPerf', 'ecom', 'webApp', 'mobile', 'backend', 'desktop', 'support'],
         buttonHref: "/contact"
       },
       {
         name: t("pricing.plan3Name") || "Enterprise",
         price: t("pricing.plan3Price") || "$2,500",
-        period: t("pricing.plan3Period") || "/project",
+        amount: t("pricing.plan3Amount") || "$2,500",
+        prefix: t("pricing.fromLabel") || "From",
+        suffix: t("pricing.projectSuffix") || "/ project",
         description: t("pricing.plan3Desc") || "",
         featureCategories: ['website', 'seoPerf', 'ecom', 'webApp', 'mobile', 'desktop', 'backend', 'aiAuto', 'devops', 'security', 'support'],
         buttonHref: "/contact"
@@ -328,7 +326,24 @@ const locale = Astro.currentLocale || "en";
       {
         question: t("faq.q8") || "",
         answer: t("faq.a8") || ""
+      },
+      {
+        question: t("faq.q9") || "",
+        answer: t("faq.a9") || ""
       }
+    ]}
+  />
+  <Partners 
+    partners={[
+      { logo: "/assets/img/partners/partner-01.png", href: "#.", alt: "Partner logo 1" },
+      { logo: "/assets/img/partners/partner-02.png", href: "#.", alt: "Partner logo 2" },
+      { logo: "/assets/img/partners/partner-03.png", href: "#.", alt: "Partner logo 3" },
+      { logo: "/assets/img/partners/partner-04.png", href: "#.", alt: "Partner logo 4" },
+      { logo: "/assets/img/partners/partner-05.png", href: "#.", alt: "Partner logo 5" },
+      { logo: "/assets/img/partners/partner-06.png", href: "#.", alt: "Partner logo 6" },
+      { logo: "/assets/img/partners/partner-07.png", href: "#.", alt: "Partner logo 7" },
+      { logo: "/assets/img/partners/partner-08.png", href: "#.", alt: "Partner logo 8" },
+      { logo: "/assets/img/partners/partner-09.png", href: "#.", alt: "Partner logo 9" },
     ]}
   />
 
@@ -338,7 +353,7 @@ const locale = Astro.currentLocale || "en";
     primaryButtonText={t("cta.startProject") || ""}
     secondaryButtonText={t("cta.seeWork") || ""}
     primaryButtonHref="/contact"
-    secondaryButtonHref="/portfolio"
+    secondaryButtonHref="/quote"
     theme="dark"
     showIcon={true}
     padding=""

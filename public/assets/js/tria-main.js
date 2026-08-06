@@ -212,8 +212,6 @@ $(function () {
 
     if (p === "/" || p === "") {
       name = "Home"; i18nKey = "nav.home";
-    } else if (p.startsWith("/work")) {
-      name = "Work"; i18nKey = "nav.work";
     } else if (p.startsWith("/services") || p.startsWith("/service")) {
       name = "Services"; i18nKey = "nav.services";
     } else if (p.startsWith("/about")) {
@@ -222,12 +220,8 @@ $(function () {
       name = "Contact"; i18nKey = "nav.contact";
     } else if (p.startsWith("/team")) {
       name = "Team"; i18nKey = "nav.team";
-    } else if (p.startsWith("/blog")) {
-      name = "Blog"; i18nKey = "nav.blog";
     } else if (p.startsWith("/project")) {
       name = "Project"; i18nKey = "nav.project";
-    } else if (p.startsWith("/portfolio")) {
-      name = "Portfolio"; i18nKey = "nav.portfolio";
     }
 
     $(".tria-current-page a").remove();

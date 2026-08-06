@@ -1,12 +1,12 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import PageBanner from "../components/PageBanner.astro";
-import Stats from "../components/Stats.astro";
 import Testimonials from "../components/Testimonials.astro";
 import CTA from "../components/CTA.astro";
 import SiteFooter from "../components/SiteFooter.astro";
-import { createT } from "../i18n/utils";
+import { createT, localePath } from "../i18n/utils";
 const t = createT(Astro.currentLocale);
+const locale = Astro.currentLocale || "en";
 ---
 
 <Layout title={t("meta.aboutTitle")} description={t("meta.aboutDesc")}
@@ -19,7 +19,7 @@ const t = createT(Astro.currentLocale);
       about: {
         "@type": "Organization",
         name: "Tria Software Solutions",
-        foundingDate: "2018",
+        foundingDate: "2025",
         foundingLocation: "Atenas, Alajuela, Costa Rica",
       },
     },
@@ -27,19 +27,7 @@ const t = createT(Astro.currentLocale);
   <PageBanner suptitleKey="about.suptitleAlt" headingKey="about.title" descriptionKey="about.heroDesc" />
 
   <!-- ════════════════════════════════════
-       STATS
-       ════════════════════════════════════ -->
-  <Stats 
-    stats={[
-      { value: 50, suffix: '+', label: t("stats.projectsLabel") || "" },
-      { value: 20, suffix: '+', label: t("stats.clientsLabel") || "" },
-      { value: 7, suffix: '+', label: t("stats.yearsLabel") || "" },
-      { value: 99, suffix: '%', label: t("stats.satisfactionLabel") || "" }
-    ]}
-  />
-
-  <!-- ════════════════════════════════════
-       ABOUT CONTENT + MISSION
+       STORY — Who we are
        ════════════════════════════════════ -->
   <section class="tria-ab-section" data-section-theme="light">
     <div class="tria-ambient-temp">
@@ -49,90 +37,139 @@ const t = createT(Astro.currentLocale);
     <div class="container tria-p-120-120">
       <div class="row justify-content-between align-items-center">
         <div class="col-lg-5">
+          <span class="tria-suptitle tria-suptitle-dark tria-up" data-i18n="about.storySuptitle">{t("about.storySuptitle")}</span>
           <p class="tria-up tria-ab-text" data-i18n="about.description1">{t("about.description1")}</p>
           <p class="tria-up tria-ab-text" data-i18n="about.description2">{t("about.description2")}</p>
-          <div class="tria-ab-tagline tria-up">
-            <div class="tria-ab-badge">
-              <img src="/assets/img/logo/logo-avatar.svg" alt="tria" class="tria-ab-badge-icon" />
-              <span data-i18n-html="about.tagline" set:html={t("about.tagline")} />
-            </div>
+
+          <!-- Mission — merged into "Who We Are" -->
+          <div class="tria-ab-story-mission tria-up">
+            <span class="tria-suptitle tria-suptitle-dark" data-i18n="about.missionSuptitle">{t("about.missionSuptitle")}</span>
+            <p class="tria-ab-story-mission-text" data-i18n="about.missionDesc">{t("about.missionDesc")}</p>
           </div>
         </div>
         <div class="col-lg-6">
           <div class="tria-ab-visual tria-up">
-            <img src="/assets/img/about/about.svg" alt="Software engineering illustration" class="tria-ab-image" />
+            <img src="/assets/img/about/about.svg" alt={t("about.storyAlt")} class="tria-ab-illo" loading="lazy" />
           </div>
-        </div>
-      </div>
-
-      <!-- Mission -->
-      <div class="row justify-content-center tria-mt-120">
-        <div class="col-lg-8 text-center">
-          <span class="tria-suptitle tria-suptitle-dark tria-up" data-i18n="about.missionSuptitle">{t("about.missionSuptitle")}</span>
-          <h2 class="tria-up tria-ab-mission-title" data-i18n-html="about.missionTitle" set:html={t("about.missionTitle")} />
-          <p class="tria-up tria-ab-mission-text" data-i18n="about.missionDesc">{t("about.missionDesc")}</p>
-          <div class="tria-ab-mission-accent"></div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ════════════════════════════════════
-       VALUES — Gray bg with cards
+       MISSION + VALUES — What Drives Us (dark)
        ════════════════════════════════════ -->
-  <section id="values" class="tria-ab-values" data-section-theme="light">
+  <section id="values" class="tria-ab-mission-values" data-section-theme="dark">
     <div class="tria-dot-pattern"></div>
     <div class="tria-grain-overlay"></div>
     <div class="tria-ambient-temp">
       <div class="tria-at-glow-1"></div>
-      <div class="tria-at-glow-3"></div>
+      <div class="tria-at-glow-2"></div>
     </div>
     <div class="container tria-p-120-120">
-      <div class="row tria-mb-60">
+      <!-- What Drives Us -->
+      <div class="row tria-ab-values-head tria-up">
         <div class="col-lg-6">
-          <span class="tria-suptitle tria-suptitle-dark tria-up" data-i18n="about.valuesSuptitle">{t("about.valuesSuptitle")}</span>
-          <h2 class="tria-up tria-ab-section-title" data-i18n-html="about.valuesTitle" set:html={t("about.valuesTitle")} />
+          <span class="tria-suptitle tria-light-soft tria-up" data-i18n="about.valuesSuptitle">{t("about.valuesSuptitle")}</span>
+          <h3 class="tria-up tria-ab-values-title" data-i18n-html="about.valuesTitle" set:html={t("about.valuesTitle")} />
         </div>
         <div class="col-lg-5 offset-lg-1 tria-up">
           <p class="tria-ab-values-intro" data-i18n="about.valuesIntro">{t("about.valuesIntro")}</p>
         </div>
       </div>
 
-      <div class="row tria-ab-values-grid">
-        <div class="col-md-6 tria-up tria-mb-30">
-          <div class="tria-ab-value-card">
-            <div class="tria-ab-value-card-icon">
+      <div class="tria-ab-values-list">
+        <div class="tria-ab-value-row tria-up">
+          <span class="tria-ab-value-row-num">01</span>
+          <div class="tria-ab-value-row-body">
+            <h4 class="tria-ab-value-row-title" data-i18n="about.value1Title">{t("about.value1Title")}</h4>
+            <p class="tria-ab-value-row-desc" data-i18n="about.value1Desc">{t("about.value1Desc")}</p>
+          </div>
+        </div>
+        <div class="tria-ab-value-row tria-up">
+          <span class="tria-ab-value-row-num">02</span>
+          <div class="tria-ab-value-row-body">
+            <h4 class="tria-ab-value-row-title" data-i18n="about.value2Title">{t("about.value2Title")}</h4>
+            <p class="tria-ab-value-row-desc" data-i18n="about.value2Desc">{t("about.value2Desc")}</p>
+          </div>
+        </div>
+        <div class="tria-ab-value-row tria-up">
+          <span class="tria-ab-value-row-num">03</span>
+          <div class="tria-ab-value-row-body">
+            <h4 class="tria-ab-value-row-title" data-i18n="about.value3Title">{t("about.value3Title")}</h4>
+            <p class="tria-ab-value-row-desc" data-i18n="about.value3Desc">{t("about.value3Desc")}</p>
+          </div>
+        </div>
+        <div class="tria-ab-value-row tria-up">
+          <span class="tria-ab-value-row-num">04</span>
+          <div class="tria-ab-value-row-body">
+            <h4 class="tria-ab-value-row-title" data-i18n="about.value4Title">{t("about.value4Title")}</h4>
+            <p class="tria-ab-value-row-desc" data-i18n="about.value4Desc">{t("about.value4Desc")}</p>
+          </div>
+        </div>
+        <div class="tria-ab-value-row tria-up">
+          <span class="tria-ab-value-row-num">05</span>
+          <div class="tria-ab-value-row-body">
+            <h4 class="tria-ab-value-row-title" data-i18n="about.value5Title">{t("about.value5Title")}</h4>
+            <p class="tria-ab-value-row-desc" data-i18n="about.value5Desc">{t("about.value5Desc")}</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+       CULTURE + DIFFERENTIATORS — How We Work & Why Tria
+       ════════════════════════════════════ -->
+  <section id="culture" class="tria-ab-culture-diff" data-section-theme="light">
+    <div class="tria-ambient-temp">
+      <div class="tria-at-glow-1"></div>
+      <div class="tria-at-glow-3"></div>
+    </div>
+    <div class="container tria-p-120-120">
+      <!-- How We Work -->
+      <div class="row tria-mb-60">
+        <div class="col-lg-6">
+          <span class="tria-suptitle tria-suptitle-dark tria-up" data-i18n="team.cultureSuptitle">{t("team.cultureSuptitle")}</span>
+          <h2 class="tria-up tria-ab-section-title" data-i18n-html="team.cultureTitle" set:html={t("team.cultureTitle")} />
+        </div>
+      </div>
+      <div class="row tria-ab-culture-grid">
+        <div class="col-md-6 col-lg-3 tria-up tria-mb-30">
+          <div class="tria-ab-culture-card">
+            <div class="tria-ab-culture-card-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><path d="M9 9h.01"/><path d="M15 9h.01"/></svg>
+            </div>
+            <h3 class="tria-ab-culture-card-title" data-i18n="team.culture1Title">{t("team.culture1Title")}</h3>
+            <p class="tria-ab-culture-card-desc" data-i18n="team.culture1Desc">{t("team.culture1Desc")}</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 tria-up tria-mb-30">
+          <div class="tria-ab-culture-card">
+            <div class="tria-ab-culture-card-icon">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
             </div>
-            <h3 class="tria-ab-value-card-title" data-i18n="about.value1Title">{t("about.value1Title")}</h3>
-            <p class="tria-ab-value-card-desc" data-i18n="about.value1Desc">{t("about.value1Desc")}</p>
+            <h3 class="tria-ab-culture-card-title" data-i18n="team.culture2Title">{t("team.culture2Title")}</h3>
+            <p class="tria-ab-culture-card-desc" data-i18n="team.culture2Desc">{t("team.culture2Desc")}</p>
           </div>
         </div>
-        <div class="col-md-6 tria-up tria-mb-30">
-          <div class="tria-ab-value-card">
-            <div class="tria-ab-value-card-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+        <div class="col-md-6 col-lg-3 tria-up tria-mb-30">
+          <div class="tria-ab-culture-card">
+            <div class="tria-ab-culture-card-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             </div>
-            <h3 class="tria-ab-value-card-title" data-i18n="about.value2Title">{t("about.value2Title")}</h3>
-            <p class="tria-ab-value-card-desc" data-i18n="about.value2Desc">{t("about.value2Desc")}</p>
+            <h3 class="tria-ab-culture-card-title" data-i18n="team.culture3Title">{t("team.culture3Title")}</h3>
+            <p class="tria-ab-culture-card-desc" data-i18n="team.culture3Desc">{t("team.culture3Desc")}</p>
           </div>
         </div>
-        <div class="col-md-6 tria-up tria-mb-30">
-          <div class="tria-ab-value-card">
-            <div class="tria-ab-value-card-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9l-3 3 3 3"/><path d="M9 5l3-3 3 3"/><path d="M15 19l-3 3-3-3"/><path d="M19 9l3 3-3 3"/><path d="M2 12h20"/><path d="M12 2v20"/></svg>
+        <div class="col-md-6 col-lg-3 tria-up tria-mb-30">
+          <div class="tria-ab-culture-card">
+            <div class="tria-ab-culture-card-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M7 8l5-5 5 5"/><path d="M7 16l5 5 5-5"/></svg>
             </div>
-            <h3 class="tria-ab-value-card-title" data-i18n="about.value3Title">{t("about.value3Title")}</h3>
-            <p class="tria-ab-value-card-desc" data-i18n="about.value3Desc">{t("about.value3Desc")}</p>
-          </div>
-        </div>
-        <div class="col-md-6 tria-up tria-mb-30">
-          <div class="tria-ab-value-card">
-            <div class="tria-ab-value-card-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-            </div>
-            <h3 class="tria-ab-value-card-title" data-i18n="about.value4Title">{t("about.value4Title")}</h3>
-            <p class="tria-ab-value-card-desc" data-i18n="about.value4Desc">{t("about.value4Desc")}</p>
+            <h3 class="tria-ab-culture-card-title" data-i18n="team.culture4Title">{t("team.culture4Title")}</h3>
+            <p class="tria-ab-culture-card-desc" data-i18n="team.culture4Desc">{t("team.culture4Desc")}</p>
           </div>
         </div>
       </div>
@@ -153,7 +190,7 @@ const t = createT(Astro.currentLocale);
 
       <div class="tria-timeline">
         <div class="tria-timeline-line"></div>
-        
+
         <div class="tria-timeline-item tria-up">
           <div class="tria-timeline-dot"></div>
           <div class="tria-timeline-content">
@@ -203,109 +240,13 @@ const t = createT(Astro.currentLocale);
   </section>
 
   <!-- ════════════════════════════════════
-       DIFFERENTIATORS — Gray bg with cards
-       ════════════════════════════════════ -->
-  <section id="differentiators" class="tria-ab-diff" data-section-theme="light">
-    <div class="tria-dot-pattern"></div>
-    <div class="tria-grain-overlay"></div>
-    <div class="tria-ambient-temp">
-      <div class="tria-at-glow-1"></div>
-      <div class="tria-at-glow-3"></div>
-    </div>
-    <div class="container tria-p-120-120">
-      <div class="row tria-mb-60">
-        <div class="col-lg-6">
-          <span class="tria-suptitle tria-suptitle-dark tria-up" data-i18n="about.diffSuptitle">{t("about.diffSuptitle")}</span>
-          <h2 class="tria-up tria-ab-section-title" data-i18n-html="about.diffTitle" set:html={t("about.diffTitle")} />
-        </div>
-      </div>
-
-      <div class="row tria-ab-diff-grid">
-        <div class="col-md-6 tria-up tria-mb-30">
-          <div class="tria-ab-diff-card">
-            <div class="tria-ab-diff-number">01</div>
-            <h3 class="tria-ab-diff-title" data-i18n="about.diff1Title">{t("about.diff1Title")}</h3>
-            <p class="tria-ab-diff-desc" data-i18n="about.diff1Desc">{t("about.diff1Desc")}</p>
-          </div>
-        </div>
-        <div class="col-md-6 tria-up tria-mb-30">
-          <div class="tria-ab-diff-card">
-            <div class="tria-ab-diff-number">02</div>
-            <h3 class="tria-ab-diff-title" data-i18n="about.diff2Title">{t("about.diff2Title")}</h3>
-            <p class="tria-ab-diff-desc" data-i18n="about.diff2Desc">{t("about.diff2Desc")}</p>
-          </div>
-        </div>
-        <div class="col-md-6 tria-up tria-mb-30">
-          <div class="tria-ab-diff-card">
-            <div class="tria-ab-diff-number">03</div>
-            <h3 class="tria-ab-diff-title" data-i18n="about.diff3Title">{t("about.diff3Title")}</h3>
-            <p class="tria-ab-diff-desc" data-i18n="about.diff3Desc">{t("about.diff3Desc")}</p>
-          </div>
-        </div>
-        <div class="col-md-6 tria-up tria-mb-30">
-          <div class="tria-ab-diff-card">
-            <div class="tria-ab-diff-number">04</div>
-            <h3 class="tria-ab-diff-title" data-i18n="about.diff4Title">{t("about.diff4Title")}</h3>
-            <p class="tria-ab-diff-desc" data-i18n="about.diff4Desc">{t("about.diff4Desc")}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════════════════════════════════
-       CULTURE — Gray bg with cards
-       ════════════════════════════════════ -->
-  <section id="culture" class="tria-ab-culture" data-section-theme="light">
-    <div class="tria-dot-pattern"></div>
-    <div class="tria-grain-overlay"></div>
-    <div class="tria-ambient-temp">
-      <div class="tria-at-glow-1"></div>
-      <div class="tria-at-glow-3"></div>
-    </div>
-    <div class="container tria-p-120-120">
-      <div class="row tria-mb-60">
-        <div class="col-lg-6">
-          <span class="tria-suptitle tria-suptitle-dark tria-up" data-i18n="team.cultureSuptitle">{t("team.cultureSuptitle")}</span>
-          <h2 class="tria-up tria-ab-section-title" data-i18n-html="team.cultureTitle" set:html={t("team.cultureTitle")} />
-        </div>
-      </div>
-      <div class="row tria-ab-culture-grid">
-        <div class="col-md-4 tria-up tria-mb-30">
-          <div class="tria-ab-culture-card">
-            <div class="tria-ab-culture-card-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><path d="M9 9h.01"/><path d="M15 9h.01"/></svg>
-            </div>
-            <h3 class="tria-ab-culture-card-title" data-i18n="team.culture1Title">{t("team.culture1Title")}</h3>
-            <p class="tria-ab-culture-card-desc" data-i18n="team.culture1Desc">{t("team.culture1Desc")}</p>
-          </div>
-        </div>
-        <div class="col-md-4 tria-up tria-mb-30">
-          <div class="tria-ab-culture-card">
-            <div class="tria-ab-culture-card-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-            </div>
-            <h3 class="tria-ab-culture-card-title" data-i18n="team.culture2Title">{t("team.culture2Title")}</h3>
-            <p class="tria-ab-culture-card-desc" data-i18n="team.culture2Desc">{t("team.culture2Desc")}</p>
-          </div>
-        </div>
-        <div class="col-md-4 tria-up tria-mb-30">
-          <div class="tria-ab-culture-card">
-            <div class="tria-ab-culture-card-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            </div>
-            <h3 class="tria-ab-culture-card-title" data-i18n="team.culture3Title">{t("team.culture3Title")}</h3>
-            <p class="tria-ab-culture-card-desc" data-i18n="team.culture3Desc">{t("team.culture3Desc")}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════════════════════════════════
-       TEAM PHOTO + MEMBER CARDS
+       TEAM
        ════════════════════════════════════ -->
   <section id="team" class="tria-ab-team-section" data-section-theme="light">
+    <div class="tria-ambient-temp">
+      <div class="tria-at-glow-1"></div>
+      <div class="tria-at-glow-3"></div>
+    </div>
     <div class="container tria-p-120-120">
       <div class="row justify-content-center tria-mb-80">
         <div class="col-lg-7 text-center">
@@ -382,13 +323,13 @@ const t = createT(Astro.currentLocale);
   <!-- ════════════════════════════════════
        CTA
        ════════════════════════════════════ -->
-  <CTA 
+  <CTA
     heading={t("ctaAbout.heading") || ""}
     description={t("ctaAbout.desc") || ""}
     primaryButtonText={t("ctaAbout.button") || ""}
     secondaryButtonText={t("ctaAbout.button2") || ""}
-    primaryButtonHref="/contact"
-    secondaryButtonHref="/services"
+    primaryButtonHref={localePath(locale, "/contact")}
+    secondaryButtonHref={localePath(locale, "/services")}
     theme="dark"
     showIcon={true}
     padding=""
@@ -401,7 +342,7 @@ const t = createT(Astro.currentLocale);
 
 <style>
   /* ═══════════════════════════════════════
-     ABOUT CONTENT — White frameless
+     STORY — White frameless
      ═══════════════════════════════════════ */
   .tria-ab-section {
     position: relative;
@@ -413,48 +354,11 @@ const t = createT(Astro.currentLocale);
     color: rgba(0, 0, 0, 0.6);
     font-size: 1rem;
     line-height: 1.85;
-    margin-bottom: 24px;
+    margin: 18px 0 24px;
     max-width: 520px;
   }
   .tria-ab-text:last-of-type {
     margin-bottom: 0;
-  }
-
-  .tria-ab-tagline {
-    margin-top: 40px;
-    padding-top: 28px;
-    border-top: 1px solid rgba(0, 0, 0, 0.06);
-  }
-
-  .tria-ab-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    padding: 8px 22px 8px 16px;
-    background: rgba(0, 0, 0, 0.03);
-    border-radius: 100px;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    font-size: 0.82rem;
-    color: rgba(0, 0, 0, 0.4);
-    line-height: 1.5;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    max-width: 100%;
-  }
-  .tria-ab-badge:hover {
-    background: rgba(0, 0, 0, 0.05);
-    border-color: rgba(6, 142, 140, 0.2);
-    box-shadow: 0 4px 20px rgba(6, 142, 140, 0.06);
-  }
-  .tria-ab-badge .tria-thin {
-    color: rgba(0, 0, 0, 0.2);
-  }
-
-  .tria-ab-badge-icon {
-    width: 28px;
-    height: 28px;
-    flex-shrink: 0;
-    border-radius: 50%;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .tria-ab-visual {
@@ -462,131 +366,221 @@ const t = createT(Astro.currentLocale);
     align-items: center;
     justify-content: center;
   }
-  .tria-ab-image {
-    width: 100%;
-    height: auto;
+
+  /* ── New About illustration (about.svg) ── */
+  .tria-ab-illo {
     display: block;
+    width: 100%;
+    max-width: 620px;
+    filter: drop-shadow(0 24px 48px rgba(11, 13, 23, 0.18));
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .tria-ab-visual:hover .tria-ab-illo {
+    transform: translateY(-6px);
   }
 
-  /* ── Mission ── */
-  .tria-mt-120 {
-    margin-top: 120px;
+  /* ── Mission — merged into "Who We Are" ── */
+  .tria-ab-story-mission {
+    position: relative;
+    margin-top: 8px;
   }
-
-  .tria-ab-mission-title {
-    font-size: clamp(1.8rem, 3vw, 2.5rem);
-    font-weight: 450;
-    letter-spacing: -0.025em;
-    color: #0b0d17;
-    margin-top: 20px;
-    line-height: 1.15;
-  }
-  .tria-ab-mission-title .tria-thin {
-    color: rgba(0,0,0,0.2);
-    font-weight: 200;
-  }
-
-  .tria-ab-mission-text {
-    font-size: 1.05rem;
+  .tria-ab-story-mission-text {
+    font-size: 0.9rem;
     color: rgba(0, 0, 0, 0.55);
-    line-height: 1.85;
-    max-width: 680px;
-    margin: 28px auto 0;
-  }
-
-  .tria-ab-mission-accent {
-    width: 60px;
-    height: 3px;
-    background: var(--accent, #068e8c);
-    border-radius: 4px;
-    margin: 32px auto 0;
-    opacity: 0.4;
+    line-height: 1.8;
+    margin: 0;
+    max-width: 480px;
   }
 
   /* ═══════════════════════════════════════
-     VALUES — Gray bg with cards
+     MISSION + VALUES — dark featured
      ═══════════════════════════════════════ */
-  .tria-ab-values {
-    background: #f5f7f9;
+  .tria-ab-mission-values {
     position: relative;
     overflow: hidden;
+    background: #0b0d17;
+  }
+  .tria-ab-mission-values::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 30% 20%, rgba(6, 142, 140, 0.08) 0%, transparent 55%),
+      radial-gradient(ellipse at 70% 80%, rgba(6, 142, 140, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .tria-ab-mission-values .container {
+    position: relative;
+    z-index: 1;
+  }
+  .tria-ab-mission-values .tria-suptitle::before {
+    background: var(--accent);
   }
 
-  .tria-ab-section-title {
+  /* ── Values block on dark ── */
+  .tria-ab-values-head {
+    margin-top: 0;
+    padding-top: 0;
+  }
+
+  .tria-ab-values-title {
     font-size: clamp(1.8rem, 3vw, 2.5rem);
     font-weight: 450;
     letter-spacing: -0.025em;
-    color: #0b0d17;
+    color: #fff;
     margin-top: 20px;
     line-height: 1.15;
   }
-  .tria-ab-section-title .tria-thin {
-    color: rgba(0,0,0,0.2);
+  .tria-ab-values-title .tria-thin {
+    color: rgba(255, 255, 255, 0.3);
     font-weight: 200;
   }
 
   .tria-ab-values-intro {
     font-size: 0.9rem;
-    color: #888;
+    color: rgba(255, 255, 255, 0.5);
     line-height: 1.75;
     margin-top: 52px;
   }
 
-  .tria-ab-values-grid {
+  /* ── Values editorial list (5 rows) ── */
+  .tria-ab-values-list {
+    position: relative;
+    z-index: 1;
+    margin-top: 48px;
+  }
+
+  .tria-ab-value-row {
+    display: grid;
+    grid-template-columns: 84px 1fr;
+    gap: 32px;
+    align-items: start;
+    padding: 36px 0;
+    margin: 0 -8px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    transition: background 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                padding 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    border-radius: 16px;
+  }
+  .tria-ab-value-row:first-child {
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .tria-ab-value-row:hover {
+    background: rgba(6,142,140,0.06);
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .tria-ab-value-row-num {
+    font-family: var(--font-display, 'Outfit', sans-serif);
+    font-size: 1.4rem;
+    font-weight: 200;
+    letter-spacing: -0.02em;
+    color: rgba(47,212,209,0.5);
+    line-height: 1.1;
+    padding-top: 2px;
+  }
+
+  .tria-ab-value-row-title {
+    font-size: 1.25rem;
+    font-weight: 450;
+    letter-spacing: -0.01em;
+    color: #fff;
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+  }
+  .tria-ab-value-row:hover .tria-ab-value-row-title {
+    color: #2fd4d1;
+  }
+
+  .tria-ab-value-row-desc {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.75;
+    margin: 0;
+    max-width: 560px;
+    transition: color 0.3s ease;
+  }
+  .tria-ab-value-row:hover .tria-ab-value-row-desc {
+    color: rgba(255,255,255,0.7);
+  }
+
+  /* ── Culture cards (inside fused section) ── */
+  .tria-ab-culture-grid {
     position: relative;
     z-index: 1;
   }
 
-  .tria-ab-value-card {
+  .tria-ab-culture-card-title {
+    font-size: 1.05rem;
+    font-weight: 450;
+    color: #0b0d17;
+    margin-bottom: 12px;
+  }
+  .tria-ab-culture-card:hover .tria-ab-culture-card-title {
+    color: var(--accent);
+  }
+
+  .tria-ab-culture-card {
     border: 1px solid rgba(0,0,0,0.05);
     border-radius: 20px;
-    padding: 40px 34px;
+    padding: 40px 32px;
     height: 100%;
-    background: #fff;
+    background: linear-gradient(180deg, #fff 0%, #fafbfd 100%);
+    text-align: center;
     transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
                 transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
                 box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .tria-ab-value-card:hover {
+  .tria-ab-culture-card:hover {
     border-color: rgba(6,142,140,0.15);
     transform: translateY(-6px);
     box-shadow: 0 20px 50px rgba(0,0,0,0.04);
   }
 
-  .tria-ab-value-card-icon {
-    width: 46px;
-    height: 46px;
-    border-radius: 14px;
+  .tria-ab-culture-card-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 24px;
-    background: rgba(6,142,140,0.07);
+    margin: 0 auto 24px;
+    background: rgba(6,142,140,0.08);
     color: var(--accent);
     transition: background 0.4s cubic-bezier(0.16, 1, 0.3, 1),
                 transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
                 color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
-
-  .tria-ab-value-card-title {
-    font-size: 1.1rem;
-    font-weight: 450;
-    color: #0b0d17;
-    margin-bottom: 14px;
-  }
-  .tria-ab-value-card:hover .tria-ab-value-card-title {
-    color: var(--accent);
+  .tria-ab-culture-card:hover .tria-ab-culture-card-icon {
+    background: var(--accent);
+    color: #fff;
+    transform: translateY(-4px) scale(1.05);
   }
 
-  .tria-ab-value-card-desc {
+  .tria-ab-culture-card-desc {
     font-size: 0.82rem;
     color: #777;
     line-height: 1.75;
     margin: 0;
     transition: color 0.3s ease;
   }
-  .tria-ab-value-card:hover .tria-ab-value-card-desc {
+  .tria-ab-culture-card:hover .tria-ab-culture-card-desc {
     color: #555;
+  }
+
+  /* ═══════════════════════════════════════
+     CULTURE + DIFFERENTIATORS — Gray bg
+     ═══════════════════════════════════════ */
+  .tria-ab-culture-diff {
+    background: #f5f7f9;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tria-ab-culture-diff .tria-ab-culture-card {
+    background: linear-gradient(180deg, #fff 0%, #f5f7f9 100%);
   }
 
   /* ═══════════════════════════════════════
@@ -681,137 +675,10 @@ const t = createT(Astro.currentLocale);
   }
 
   /* ═══════════════════════════════════════
-     DIFFERENTIATORS — Gray bg
-     ═══════════════════════════════════════ */
-  .tria-ab-diff {
-    background: #f5f7f9;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .tria-ab-diff-grid {
-    position: relative;
-    z-index: 1;
-  }
-
-  .tria-ab-diff-card {
-    border: 1px solid rgba(0,0,0,0.05);
-    border-radius: 20px;
-    padding: 40px 34px;
-    height: 100%;
-    background: #fff;
-    transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-                box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .tria-ab-diff-card:hover {
-    border-color: rgba(6,142,140,0.15);
-    transform: translateY(-6px);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.04);
-  }
-
-  .tria-ab-diff-number {
-    font-size: 2rem;
-    font-weight: 200;
-    color: rgba(6,142,140,0.15);
-    line-height: 1;
-    margin-bottom: 16px;
-    letter-spacing: -0.04em;
-  }
-
-  .tria-ab-diff-title {
-    font-size: 1.1rem;
-    font-weight: 450;
-    color: #0b0d17;
-    margin-bottom: 14px;
-  }
-  .tria-ab-diff-card:hover .tria-ab-diff-title {
-    color: var(--accent);
-  }
-
-  .tria-ab-diff-desc {
-    font-size: 0.82rem;
-    color: #777;
-    line-height: 1.75;
-    margin: 0;
-    transition: color 0.3s ease;
-  }
-  .tria-ab-diff-card:hover .tria-ab-diff-desc {
-    color: #555;
-  }
-
-  /* ═══════════════════════════════════════
-     CULTURE — Gray bg with 3 cards
-     ═══════════════════════════════════════ */
-  .tria-ab-culture {
-    background: #f5f7f9;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .tria-ab-culture-grid {
-    position: relative;
-    z-index: 1;
-  }
-
-  .tria-ab-culture-card {
-    border: 1px solid rgba(0,0,0,0.05);
-    border-radius: 20px;
-    padding: 44px 36px;
-    height: 100%;
-    background: #fff;
-    text-align: center;
-    transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-                box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .tria-ab-culture-card:hover {
-    border-color: rgba(6,142,140,0.15);
-    transform: translateY(-6px);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.04);
-  }
-
-  .tria-ab-culture-card-icon {
-    width: 46px;
-    height: 46px;
-    border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 24px;
-    background: rgba(6,142,140,0.07);
-    color: var(--accent);
-    transition: background 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .tria-ab-culture-card-title {
-    font-size: 1.1rem;
-    font-weight: 450;
-    color: #0b0d17;
-    margin-bottom: 14px;
-  }
-  .tria-ab-culture-card:hover .tria-ab-culture-card-title {
-    color: var(--accent);
-  }
-
-  .tria-ab-culture-card-desc {
-    font-size: 0.82rem;
-    color: #777;
-    line-height: 1.75;
-    margin: 0;
-    transition: color 0.3s ease;
-  }
-  .tria-ab-culture-card:hover .tria-ab-culture-card-desc {
-    color: #555;
-  }
-
-  /* ═══════════════════════════════════════
-     TEAM PHOTO + MEMBER CARDS
+     TEAM — Gray bg
      ═══════════════════════════════════════ */
   .tria-ab-team-section {
-    background: #ffffff;
+    background: #f5f7f9;
     position: relative;
     overflow: hidden;
   }
@@ -987,19 +854,14 @@ const t = createT(Astro.currentLocale);
   @media (max-width: 991px) {
     .tria-ab-visual { margin-top: 60px; }
     .tria-ab-values-intro { margin-top: 0; }
-    .tria-ab-value-card { margin-bottom: 24px; }
-    .tria-ab-value-card:last-child { margin-bottom: 0; }
-    .tria-ab-diff-card { margin-bottom: 24px; }
-    .tria-ab-diff-card:last-child { margin-bottom: 0; }
     .tria-ab-culture-card { margin-bottom: 24px; }
     .tria-ab-culture-card:last-child { margin-bottom: 0; }
-    .tria-mt-120 { margin-top: 80px; }
     .tria-ab-mission-text { font-size: 0.95rem; }
+    .tria-ab-values-intro { margin-top: 0; }
   }
 
   @media (max-width: 768px) {
-    .tria-ab-value-card { padding: 32px 28px; }
-    .tria-ab-diff-card { padding: 32px 28px; }
+    .tria-ab-culture-card { padding: 36px 28px; }
     .tria-timeline { padding-left: 30px; }
     .tria-timeline-item { padding-left: 30px; }
     .tria-timeline-dot { left: -25px; width: 12px; height: 12px; }
@@ -1012,42 +874,27 @@ const t = createT(Astro.currentLocale);
       font-size: 0.9rem;
       line-height: 1.75;
     }
-    .tria-ab-badge {
-      font-size: 0.75rem;
-      padding: 6px 16px 6px 12px;
-    }
-    .tria-ab-badge-icon { width: 22px; height: 22px; }
     .tria-ab-visual { margin-top: 40px; }
-    .tria-ab-value-card {
-      padding: 28px 24px;
-      margin-bottom: 20px;
+    .tria-ab-value-row {
+      grid-template-columns: 1fr;
+      gap: 12px;
+      padding: 26px 4px;
     }
-    .tria-ab-value-card-title { font-size: 1rem; }
-    .tria-ab-value-card-desc { font-size: 0.78rem; }
-    .tria-ab-value-card-icon {
-      width: 40px; height: 40px;
-      border-radius: 12px;
-      margin-bottom: 18px;
-    }
+    .tria-ab-value-row-num { font-size: 1.1rem; }
+    .tria-ab-value-row-title { font-size: 1.1rem; }
+    .tria-ab-value-row-desc { font-size: 0.82rem; }
     .tria-ab-section-title { font-size: 1.5rem; }
     .tria-ab-values-intro { font-size: 0.82rem; }
 
-    .tria-ab-diff-card {
-      padding: 28px 24px;
-      margin-bottom: 20px;
-    }
-    .tria-ab-diff-title { font-size: 1rem; }
-    .tria-ab-diff-desc { font-size: 0.78rem; }
-    .tria-ab-diff-number { font-size: 1.6rem; margin-bottom: 12px; }
     .tria-ab-culture-card {
-      padding: 36px 28px;
+      padding: 32px 24px;
       margin-bottom: 20px;
     }
     .tria-ab-culture-card-title { font-size: 1rem; }
     .tria-ab-culture-card-desc { font-size: 0.78rem; }
     .tria-ab-culture-card-icon {
-      width: 40px; height: 40px;
-      border-radius: 12px;
+      width: 44px; height: 44px;
+      border-radius: 14px;
       margin-bottom: 18px;
     }
     .tria-ab-members-row { margin-top: 60px; }
@@ -1060,29 +907,17 @@ const t = createT(Astro.currentLocale);
     .tria-timeline-title { font-size: 1rem; }
     .tria-timeline-desc { font-size: 0.8rem; }
 
-    .tria-ab-mission-text { font-size: 0.88rem; }
-    .tria-mt-120 { margin-top: 60px; }
-    .tria-ab-mission-accent { margin-top: 24px; }
+    .tria-ab-mission-text { font-size: 0.9rem; }
+    .tria-ab-mission-title { font-size: clamp(1.7rem, 7vw, 2.2rem); }
     .tria-ab-team-desc { font-size: 0.88rem; }
     .tria-mb-80 { margin-bottom: 40px; }
   }
 
   @media (max-width: 400px) {
     .tria-ab-text { font-size: 0.82rem; }
-    .tria-ab-tagline { margin-top: 28px; padding-top: 20px; }
-    .tria-ab-value-card {
-      padding: 22px 18px;
-      margin-bottom: 16px;
-    }
-    .tria-ab-value-card-title { font-size: 0.9rem; }
-    .tria-ab-value-card-desc { font-size: 0.72rem; }
-    .tria-ab-diff-card {
-      padding: 22px 18px;
-      margin-bottom: 16px;
-    }
-    .tria-ab-diff-title { font-size: 0.9rem; }
-    .tria-ab-diff-desc { font-size: 0.72rem; }
-    .tria-ab-diff-number { font-size: 1.4rem; }
+    .tria-ab-value-row { padding: 22px 2px; }
+    .tria-ab-value-row-title { font-size: 1rem; }
+    .tria-ab-value-row-desc { font-size: 0.78rem; }
     .tria-ab-culture-card {
       padding: 28px 22px;
       margin-bottom: 16px;
@@ -1090,8 +925,8 @@ const t = createT(Astro.currentLocale);
     .tria-ab-culture-card-title { font-size: 0.9rem; }
     .tria-ab-culture-card-desc { font-size: 0.72rem; }
     .tria-ab-culture-card-icon {
-      width: 36px; height: 36px;
-      border-radius: 10px;
+      width: 38px; height: 38px;
+      border-radius: 12px;
       margin-bottom: 14px;
     }
     .tria-ab-members-row { margin-top: 40px; }

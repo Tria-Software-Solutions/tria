@@ -1,17 +1,14 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import ErrorLayout from "../layouts/ErrorLayout.astro";
 import ErrorPage from "../components/ErrorPage.astro";
-import SiteFooter from "../components/SiteFooter.astro";
 import { createT } from "../i18n/utils";
 const t = createT(Astro.currentLocale);
 ---
 
-<Layout title={t("meta.403Title")} description={t("meta.403Desc")}>
+<ErrorLayout title={t("meta.403Title")} description={t("meta.403Desc")}>
   <ErrorPage
     code="403"
     titleKey="error.403title"
     descriptionKey="error.403desc"
-    searchPlaceholderKey="error.searchPlaceholder"
   />
-  <SiteFooter />
-</Layout>
+</ErrorLayout>

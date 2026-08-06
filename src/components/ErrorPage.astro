@@ -3,15 +3,16 @@ interface Props {
   code: string;
   titleKey: string;
   descriptionKey: string;
-  searchPlaceholderKey?: string;
 }
 
-const { code, titleKey, descriptionKey, searchPlaceholderKey = "error.searchPlaceholder" } = Astro.props;
+const { code, titleKey, descriptionKey } = Astro.props;
 const { createT } = await import("../i18n/utils");
 const t = createT(Astro.currentLocale);
+const title = t(titleKey);
+const description = t(descriptionKey);
 ---
 
-<section class="page-hero" data-section-theme="dark">
+<section class="tria-error-page" data-section-theme="dark">
   <div class="page-hero-bg">
     <!-- WebGL interactive gradient (canvas injected here) -->
     <div class="tria-hero-bg" data-grad-props='{"color1":"#0f111a","color2":"#1a1d2e","color3":"#1a3538","timeSpeed":1.2,"warpStrength":0.6,"warpFrequency":4,"blendAngle":45,"rotationAmount":300,"noiseScale":1.5,"contrast":1.3,"saturation":0.5,"zoom":0.7,"centerY":-0.1}'></div>
@@ -27,42 +28,52 @@ const t = createT(Astro.currentLocale);
     </div>
     <div class="tria-error-particles"></div>
   </div>
-  <div class="container page-hero-inner">
+
+  <div class="container tria-error-inner">
     <div class="tria-center">
-      <div class="tria-error-code" aria-hidden="true">{code}</div>
-      <h1 class="tria-error-title" data-i18n={titleKey}>{t(titleKey)}</h1>
-      <p class="tria-error-desc" data-i18n={descriptionKey}>{t(descriptionKey)}</p>
-      <div class="tria-error-line"></div>
 
-      <!-- Navigation links -->
-      <div class="tria-error-links">
+      <!-- Status label -->
+      <div class="tria-error-eyebrow">HTTP {code}</div>
+
+      <!-- Fuzzy animated title — canvas takes over once ready, crisp h1 stays as fallback -->
+      <div class="tria-error-title-wrap" id="triaErrorTitleWrap">
+        <h1 class="tria-error-heading" data-i18n={titleKey}>{title}</h1>
+        <canvas class="tria-error-canvas" id="triaErrorTitle" data-text={title} aria-hidden="true"></canvas>
+      </div>
+
+      <p class="tria-error-desc" data-i18n={descriptionKey}>{description}</p>
+
+      <div class="tria-error-line" aria-hidden="true"></div>
+
+      <!-- Single essential action -->
+      <div class="tria-error-actions">
         <a href="/" class="tria-btn tria-btn--primary" data-i18n="error.home">{t("error.home")}</a>
-        <a href="/portfolio" class="tria-error-link">
-          <span data-i18n="error.portfolio">{t("error.portfolio")}</span>
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-        <a href="/services" class="tria-error-link">
-          <span data-i18n="error.services">{t("error.services")}</span>
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-        <a href="/contact" class="tria-error-link">
-          <span data-i18n="error.contact">{t("error.contact")}</span>
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
       </div>
 
-      <!-- Search -->
-      <div class="tria-error-search-wrap">
-        <div class="tria-error-search">
-          <svg class="tria-error-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-          <input type="text" class="tria-error-search-input" id="triaErrorSearch" data-i18n-placeholder={searchPlaceholderKey} placeholder={t(searchPlaceholderKey)} aria-label={t(searchPlaceholderKey)} />
-        </div>
-      </div>
     </div>
   </div>
 </section>
 
 <style>
+  /* ═══════ Full-viewport error page ═══════ */
+  .tria-error-page {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(11, 13, 23);
+    min-height: 100vh;
+    min-height: 100svh;
+  }
+
+  .tria-error-inner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    padding: 96px 24px 72px;
+  }
+
   .tria-error-particles {
     position: absolute;
     inset: 0;
@@ -74,83 +85,80 @@ const t = createT(Astro.currentLocale);
     pointer-events: none;
   }
 
-  .tria-error-code {
+  /* ── Status label (plain text, no badge) ── */
+  .tria-error-eyebrow {
     font-family: var(--font-display, 'Outfit', sans-serif);
-    font-size: clamp(6rem, 18vw, 12rem);
-    font-weight: 300;
-    line-height: 1;
-    letter-spacing: -0.04em;
-    color: #fff;
-    margin-bottom: 8px;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.35);
+    margin-bottom: 44px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ── Fuzzy title (canvas) with crisp h1 fallback ── */
+  .tria-error-title-wrap {
     position: relative;
-    animation: tria-error-float 4s ease-in-out infinite;
-    text-shadow: 0 0 80px rgba(6, 142, 140, 0.15);
-  }
-
-  @keyframes tria-error-float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-12px); }
-  }
-
-  .tria-error-title {
+    text-align: center;
     font-family: var(--font-display, 'Outfit', sans-serif);
-    font-size: clamp(1.4rem, 3vw, 2rem);
-    font-weight: 450;
+    font-size: clamp(2.6rem, 8vw, 6rem);
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    line-height: 1.12;
     color: #fff;
-    margin: 0 0 12px;
-    line-height: 1.2;
-    letter-spacing: -0.02em;
+    margin: 0 auto 30px;
+    max-width: 100%;
   }
+  .tria-error-heading {
+    margin: 0;
+    /* !important beats the global responsive `h1 { font-size: ... !important }`
+       rules so the fallback always matches the fuzzy canvas size */
+    font-size: inherit !important;
+    font-weight: inherit;
+    letter-spacing: inherit;
+    line-height: inherit;
+    color: #fff;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+    text-wrap: balance;
+  }
+  .tria-error-canvas {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    pointer-events: auto;
+  }
+  .tria-error-canvas.is-ready { opacity: 1; }
+  .tria-error-title-wrap.is-live .tria-error-heading { opacity: 0; }
 
+  /* ── Description ── */
   .tria-error-desc {
     font-size: clamp(0.85rem, 1.5vw, 1rem);
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.45);
     max-width: 480px;
-    margin: 0 auto 28px;
-    line-height: 1.6;
+    margin: 0 auto 30px;
+    line-height: 1.7;
+    text-wrap: balance;
   }
 
   .tria-error-line {
     width: 40px;
     height: 2px;
     background: var(--accent);
-    margin: 0 auto 32px;
+    margin: 0 auto 36px;
     border-radius: 2px;
     opacity: 0.5;
   }
 
-  .tria-error-links {
+  /* ── Action: single primary button ── */
+  .tria-error-actions {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 16px;
-    margin-bottom: 40px;
-  }
-
-  .tria-error-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.35);
-    text-decoration: none;
-    transition: color 0.3s ease, gap 0.3s ease;
-  }
-
-  .tria-error-link:hover {
-    color: var(--accent);
-    gap: 12px;
-  }
-
-  .tria-error-link svg {
-    transition: transform 0.3s ease;
-  }
-
-  .tria-error-link:hover svg {
-    transform: translateX(4px);
+    justify-content: center;
   }
 
   .tria-btn--primary {
@@ -169,98 +177,171 @@ const t = createT(Astro.currentLocale);
     text-transform: uppercase;
     font-weight: 500;
     text-decoration: none;
-    transition: opacity 0.3s ease, transform 0.4s var(--ease-spring, cubic-bezier(0.16, 1, 0.3, 1));
+    transition: opacity 0.3s ease, transform 0.4s var(--ease-spring, cubic-bezier(0.16, 1, 0.3, 1)), background-color 0.3s ease;
   }
-
   .tria-btn--primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12);
-  }
-
-  /* ── Search ── */
-  .tria-error-search-wrap {
-    display: flex;
-    justify-content: center;
-  }
-
-  .tria-error-search {
-    position: relative;
-    width: 100%;
-    max-width: 360px;
-  }
-
-  .tria-error-search-icon {
-    position: absolute;
-    left: 18px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: rgba(255,255,255,0.2);
-    pointer-events: none;
-  }
-
-  .tria-error-search-input {
-    width: 100%;
-    height: 50px;
-    padding: 0 18px 0 46px;
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 60px;
-    background: rgba(255,255,255,0.04);
-    color: #fff;
-    font-family: var(--font-display, 'Outfit', sans-serif);
-    font-size: 0.85rem;
-    font-weight: 380;
-    outline: none;
-    transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
-    letter-spacing: 0.01em;
-  }
-
-  .tria-error-search-input::placeholder {
-    color: rgba(255,255,255,0.15);
-    font-weight: 380;
-  }
-
-  .tria-error-search-input:focus {
-    border-color: rgba(6,142,140,0.3);
-    background: rgba(255,255,255,0.06);
-    box-shadow: 0 0 0 6px rgba(6,142,140,0.03), inset 0 0 0 1px rgba(6,142,140,0.05);
+    background-color: var(--accent-hover, #057573);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
   }
 
   @media (max-width: 576px) {
-    .tria-error-desc {
-      font-size: 0.85rem;
-    }
-    .tria-error-links {
-      gap: 14px;
-    }
-    .tria-error-link {
-      font-size: 0.7rem;
-    }
-  }
-
-  @media (max-width: 400px) {
-    .tria-error-code {
-      font-size: 5rem;
-    }
-    .tria-error-title {
-      font-size: 1.1rem;
-    }
+    .tria-error-inner { padding: 80px 20px 56px; }
+    .tria-error-eyebrow { margin-bottom: 34px; }
+    .tria-error-desc { font-size: 0.85rem; }
   }
 </style>
 
 <script is:inline>
-(function() {
-  var input = document.getElementById('triaErrorSearch');
-  if (!input) return;
+(function () {
+  /* ─────────────────────────────────────────────────────────────
+     Fuzzy text — vanilla re-implementation of ReactBits' FuzzyText
+     (https://reactbits.dev/text-animations/fuzzy-text).
+     The title is drawn to an offscreen canvas, then every frame it
+     is redrawn as 1px slices shifted by a random amount. Intensity
+     rises when the pointer is over the text.
+     ───────────────────────────────────────────────────────────── */
+  function initFuzzyTitle(canvas, wrap) {
+    var text = (canvas.getAttribute('data-text') || '').trim();
+    if (!text) return;
 
-  function handleSearch(query) {
-    if (!query || query.trim() === '') return;
-    window.location.href = '/?s=' + encodeURIComponent(query.trim());
+    var ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    var style = window.getComputedStyle(canvas);
+    var fontFamily = style.fontFamily || '"Outfit", sans-serif';
+    var fontSize = parseFloat(style.fontSize) || 64;
+    var fontWeight = parseInt(style.fontWeight, 10) || 500;
+
+    var color = '#ffffff';
+    var baseIntensity = 0.14;    /* idle shimmer */
+    var hoverIntensity = 0.5;    /* pointer near */
+    var fuzzRange = 26;          /* max slice displacement (px) */
+    var fps = 60;
+
+    var offscreen = document.createElement('canvas');
+    var offCtx = offscreen.getContext('2d');
+    var fontStr = fontWeight + ' ' + fontSize + 'px ' + fontFamily;
+
+    var W = 0, H = 0, offW = 0, margin = 0, xOffset = 0;
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    function measure() {
+      offCtx.font = fontStr;
+      offCtx.textBaseline = 'alphabetic';
+      var m = offCtx.measureText(text);
+      var l = m.actualBoundingBoxLeft || 0;
+      var r = m.actualBoundingBoxRight || m.width;
+      var asc = m.actualBoundingBoxAscent || fontSize;
+      var desc = m.actualBoundingBoxDescent || fontSize * 0.2;
+      offW = Math.ceil(l + r) + 10;
+      H = Math.ceil(asc + desc);
+      xOffset = 5;
+      offscreen.width = offW;
+      offscreen.height = H;
+      offCtx.font = fontStr;
+      offCtx.textBaseline = 'alphabetic';
+      offCtx.fillStyle = color;
+      offCtx.fillText(text, xOffset - l, asc);
+      margin = fuzzRange + 20;
+      W = offW;
+      canvas.width = Math.round((W + margin * 2) * dpr);
+      canvas.height = Math.round(H * dpr);
+      canvas.style.width = Math.round(W + margin * 2) + 'px';
+    }
+
+    function markLive() {
+      canvas.classList.add('is-ready');
+      if (wrap) {
+        /* hide the crisp fallback once the fuzzy canvas is fully visible */
+        setTimeout(function () {
+          wrap.classList.add('is-live');
+        }, 650);
+      }
+    }
+
+    function frame(ts) {
+      if (ts - last < frameDur) { rafId = requestAnimationFrame(frame); return; }
+      last = ts;
+      var target = hovering ? hoverIntensity : baseIntensity;
+      intensity += (target - intensity) * 0.12;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.translate(margin, 0);
+      ctx.clearRect(-fuzzRange - 20, -fuzzRange - 10, W + 2 * (fuzzRange + 20), H + 2 * (fuzzRange + 10));
+      /* Horizontal: shift each 1px row left/right (ReactBits default) */
+      for (var j = 0; j < H; j++) {
+        var dx = Math.floor(intensity * (Math.random() - 0.5) * fuzzRange);
+        ctx.drawImage(offscreen, 0, j, offW, 1, dx, j, offW, 1);
+      }
+      rafId = requestAnimationFrame(frame);
+    }
+
+    var rafId = null, last = 0, intensity = baseIntensity, hovering = false;
+    var frameDur = 1000 / fps;
+
+    /* Wait for the display font before measuring/drawing */
+    var fontsReady = document.fonts && document.fonts.load
+      ? document.fonts.load(fontStr).catch(function () { return document.fonts.ready; })
+      : Promise.resolve();
+
+    fontsReady.then(function () {
+      measure();
+      markLive();
+      if (reduced) {
+        /* static render — no animation */
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.translate(margin, 0);
+        ctx.drawImage(offscreen, 0, 0);
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        return;
+      }
+      rafId = requestAnimationFrame(frame);
+
+      /* hover — intensify when the pointer is over the glyphs */
+      function onMove(e) {
+        var rect = canvas.getBoundingClientRect();
+        if (!rect.width || !rect.height) return;
+        var sx = (W + margin * 2) / rect.width;
+        var sy = H / rect.height;
+        var x = (e.clientX - rect.left) * sx;
+        var y = (e.clientY - rect.top) * sy;
+        var l = margin + xOffset;
+        hovering = x >= l && x <= l + offW - 10 && y >= 0 && y <= H;
+      }
+      canvas.addEventListener('mousemove', onMove);
+      canvas.addEventListener('mouseleave', function () { hovering = false; });
+    });
+
+    /* re-measure when the clamp() font size changes (viewport resize / zoom) */
+    var resizeTimer = null;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function () {
+        var s = window.getComputedStyle(canvas);
+        var nf = parseFloat(s.fontSize) || fontSize;
+        var ndpr = Math.min(window.devicePixelRatio || 1, 2);
+        if (nf !== fontSize || ndpr !== dpr) {
+          fontSize = nf;
+          dpr = ndpr;
+          fontStr = fontWeight + ' ' + fontSize + 'px ' + fontFamily;
+          measure();
+        }
+      }, 200);
+    });
   }
 
-  input.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') {
-      handleSearch(this.value);
-    }
-  });
+  function init() {
+    var canvas = document.getElementById('triaErrorTitle');
+    var wrap = document.getElementById('triaErrorTitleWrap');
+    if (canvas) initFuzzyTitle(canvas, wrap);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 })();
 </script>

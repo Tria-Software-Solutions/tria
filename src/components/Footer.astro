@@ -26,6 +26,8 @@ interface Props {
   socialLabel?: string;
   exploreLabel?: string;
   servicesLabel?: string;
+  servicesAllLabel?: string;
+  servicesAllHref?: string;
   projectsLabel?: string;
   contactLabel?: string;
   sectionsLabel?: string;
@@ -51,6 +53,8 @@ const {
   socialLabel,
   exploreLabel,
   servicesLabel,
+  servicesAllLabel,
+  servicesAllHref,
   projectsLabel,
   contactLabel,
   sectionsLabel,
@@ -183,6 +187,14 @@ const year = new Date().getFullYear();
               </li>
             ))}
           </ul>
+          {servicesAllLabel && servicesAllHref && (
+            <a href={servicesAllHref} class="tria-footer-services-all">
+              <span>{servicesAllLabel}</span>
+              <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M6 3h7v7M13 3L3 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          )}
         </div>
       )}
 
@@ -506,6 +518,40 @@ const year = new Date().getFullYear();
   .tria-footer-nav a:hover {
     color: rgba(255, 255, 255, 0.85);
     transform: translateY(-2px);
+  }
+
+  /* ── "All services" link under the Services column ── */
+  .tria-footer-services-all {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 18px;
+    font-size: 0.88rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.38);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                gap 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .tria-footer-services-all svg {
+    flex-shrink: 0;
+    color: var(--accent, #068e8c);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .tria-footer-services-all:hover {
+    color: rgba(255, 255, 255, 0.85);
+    transform: translateY(-2px);
+    gap: 10px;
+  }
+  .tria-footer-services-all:hover svg {
+    transform: translate(2px, -2px);
+  }
+  .tria-footer-services-all:focus-visible {
+    outline: 2px solid var(--accent, #068e8c);
+    outline-offset: 2px;
   }
 
   .tria-footer-subsection {

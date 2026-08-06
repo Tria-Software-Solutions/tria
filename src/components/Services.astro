@@ -188,12 +188,6 @@ const {
       font-size: 30px;
       margin-bottom: 24px;
     }
-    .tria-service-arrow {
-      width: 36px;
-      height: 36px;
-      font-size: 11px;
-      margin-top: 24px;
-    }
   }
 
   /* ── icon ── */
@@ -245,16 +239,12 @@ const {
 
   /* ── arrow ── */
   .tria-service-arrow {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.12);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.35);
     font-size: 13px;
-    transition: all 0.4s var(--ease-spring);
+    transition: color 0.4s var(--ease-spring);
     flex-shrink: 0;
     align-self: flex-end;
     margin-top: auto;
@@ -263,10 +253,7 @@ const {
   }
 
   .tria-service-card:hover .tria-service-arrow {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: #fff;
-    transform: translateX(6px);
+    color: rgba(255, 255, 255, 0.7);
   }
 
   /* ── gradient overlay ── */

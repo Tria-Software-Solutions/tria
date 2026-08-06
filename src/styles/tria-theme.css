@@ -1098,11 +1098,6 @@ scrollbar
   letter-spacing: 0.1em;
 }
 
-.tria-frame .tria-frame-bottom .tria-frame-bottom-left .tria-lang-btn.is-active::after {
-  width: calc(100% - 12px);
-  left: 6px;
-}
-
 .tria-frame .tria-frame-bottom .tria-frame-bottom-left .tria-lang-btn.is-active.tria-on-dark {
   color: #fff !important;
 }

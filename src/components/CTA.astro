@@ -7,9 +7,9 @@ interface Props {
   heading: string;
   description?: string;
   primaryButtonText: string;
-  secondaryButtonText: string;
+  secondaryButtonText?: string;
   primaryButtonHref: string;
-  secondaryButtonHref: string;
+  secondaryButtonHref?: string;
   showIcon?: boolean;
   padding?: string;
   accentColor?: string;
@@ -79,6 +79,7 @@ const secondaryBtnColor = isDefaultDark ? '#0b0d17' : undefined;
             arrowStyle="inline"
             size="sm"
           />
+          {secondaryButtonText && secondaryButtonHref && (
           <Button
             text={secondaryButtonText}
             href={secondaryButtonHref}
@@ -87,6 +88,7 @@ const secondaryBtnColor = isDefaultDark ? '#0b0d17' : undefined;
             arrowStyle="inline"
             size="sm"
           />
+          )}
         </div>
       </div>
     </div>

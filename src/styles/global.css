@@ -437,7 +437,7 @@ blockquote {
 .tria-slider-nav .tria-slider-arrow {
   color: var(--accent) !important;
 }
-a:not(.tria-button):hover,
+a:not(.tria-button):not(.tria-btn):hover,
 .tria-link:hover {
   color: var(--accent) !important;
 }

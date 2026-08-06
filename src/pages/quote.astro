@@ -1,0 +1,40 @@
+---
+import Layout from "../layouts/Layout.astro";
+import PageBanner from "../components/PageBanner.astro";
+import QuoteCalculator from "../components/QuoteCalculator.astro";
+import CTA from "../components/CTA.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import { createT } from "../i18n/utils";
+const t = createT(Astro.currentLocale);
+---
+
+<Layout title={t("meta.quoteTitle")} description={t("meta.quoteDesc")}
+  structuredData={{
+    "@type": "WebPage",
+    name: t("meta.quoteTitle"),
+    description: t("meta.quoteDesc"),
+    url: "https://triacr.com/quote",
+    about: {
+      "@type": "Organization",
+      name: "Tria Software Solutions",
+    },
+  }}>
+
+  <PageBanner suptitleKey="quote.suptitle" headingKey="quote.pageTitle" descriptionKey="quote.pageDesc" />
+
+  <QuoteCalculator />
+
+  <CTA 
+    heading={t("ctaQuote.heading") || ""}
+    description={t("ctaQuote.desc") || ""}
+    primaryButtonText={t("ctaQuote.button") || ""}
+    secondaryButtonText={t("ctaQuote.button2") || ""}
+    primaryButtonHref="/contact"
+    secondaryButtonHref="/services"
+    theme="dark"
+    showIcon={true}
+    padding="tria-p-120-120"
+  />
+
+  <SiteFooter />
+</Layout>

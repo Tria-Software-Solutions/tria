@@ -13,11 +13,9 @@ const barePath = path.startsWith("/es") ? (path.replace(/^\/es/, "") || "/") : p
 const allExploreLinks = [
   { href: "/", label: t("nav.home") || "" },
   { href: "/about", label: t("nav.about") || "" },
-  { href: "/team", label: t("nav.team") || "" },
   { href: "/services", label: t("nav.services") || "" },
-  { href: "/portfolio", label: t("nav.work") || "" },
-  { href: "/contact", label: t("nav.contact") || "" },
-  { href: "/blog", label: t("nav.blog") || "Blog" }
+  { href: "/quote", label: t("nav.quote") || "" },
+  { href: "/contact", label: t("nav.contact") || "" }
 ];
 
 function isCurrent(href: string): boolean {
@@ -28,56 +26,65 @@ function isCurrent(href: string): boolean {
   return barePath === pathPart || barePath.startsWith(pathPart + "/");
 }
 
-const exploreLinks = allExploreLinks
-  .filter((link) => !isCurrent(link.href))
-  .map((link) => ({ ...link, href: localePath(locale, link.href) }));
+const exploreLinks = allExploreLinks.map((link) => ({ ...link, href: localePath(locale, link.href) }));
 
-// Also filter serviceLinks
+// Core services — short list; "All services" link points to the full page
 const allServiceLinks = [
   { href: "/services#software-dev", label: t("nav.softwareDev") || "" },
   { href: "/services#uiux-design", label: t("nav.uiuxDesign") || "" },
   { href: "/services#cloud-devops", label: t("nav.cloudDevops") || "" },
-  { href: "/services#qa-testing", label: t("nav.qaTesting") || "" },
-  { href: "/services#ai-ml", label: t("nav.aiMl") || "" },
-  { href: "/services#dedicated-teams", label: t("nav.dedicatedTeams") || "" },
-  { href: "/services#cybersecurity", label: t("nav.cybersecurity") || "" },
-  { href: "/services#modernization", label: t("nav.modernization") || "" }
+  { href: "/services#ai-ml", label: t("nav.aiMl") || "" }
 ];
 
 const serviceLinks = allServiceLinks
   .filter((link) => !isCurrent(link.href))
   .map((link) => ({ ...link, href: localePath(locale, link.href) }));
 
+const servicesAllLabel = t("nav.allServices") || "";
+const servicesAllHref = isCurrent("/services") ? "" : localePath(locale, "/services");
+
 /* ── Page sections for "On this page" column ── */
 
+/* Plain-text version of an i18n key: strip HTML tags (as spaces so
+   <br> doesn't join words) and decode common HTML entities. */
+function plain(key: string): string {
+  return (t(key) || "")
+    .replace(/<[^>]*>/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&nbsp;/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+/* Labels use the real heading of each section so the "On this page"
+   column matches the section titles on the page. */
 function getPageSections(): { href: string; label: string }[] {
   const p = barePath;
   const sections: Record<string, { href: string; label: string }[]> = {
     "/": [
-      { href: "/#services", label: t("nav.services") || "Services" },
-      { href: "/#featured", label: t("featured.title")?.replace(/<[^>]*>/g, "") || "Featured Work" },
-      { href: "/#process", label: t("process.title")?.replace(/<[^>]*>/g, "") || "Process" },
-      { href: "/#pricing", label: "Pricing" },
+      { href: "/#services", label: plain("services.modernSolutions") || "Services" },
+      { href: "/#featured", label: plain("featured.title") || "Featured Work" },
+      { href: "/#process", label: plain("process.title") || "Process" },
+      { href: "/#pricing", label: plain("pricing.heading") || "Pricing" },
       { href: "/#faq", label: "FAQ" }
     ],
     "/services": [
-      { href: "/services/#practices", label: t("services.subnav.practices") || "Core Practices" },
-      { href: "/services/#engagement", label: t("services.engagement.suptitle") || "Engagement" }
+      { href: "/services/#practices", label: plain("services.showcase.heading") || "Capabilities" },
+      { href: "/services/#engagement", label: plain("services.engagement.title") || "Engagement" }
     ],
     "/about": [
-      { href: "/about#values", label: t("about.valuesSuptitle") || "Values" },
-      { href: "/about#history", label: t("about.historySuptitle") || "Timeline" },
-      { href: "/about#differentiators", label: t("about.diffSuptitle") || "Why Tria" },
-      { href: "/about#culture", label: t("team.cultureSuptitle") || "Culture" },
-      { href: "/about#team", label: t("team.suptitle") || "Team" },
-      { href: "/about#testimonials", label: "Testimonials" }
-    ],
-    "/portfolio": [
-      { href: "/portfolio#projects", label: t("portfolio.suptitle") || "Projects" }
+      { href: "/about#values", label: plain("about.valuesTitle") || "What Drives Us" },
+      { href: "/about#culture", label: plain("team.cultureTitle") || "How We Work" },
+      { href: "/about#history", label: plain("about.historyTitle") || "Timeline" },
+      { href: "/about#team", label: plain("about.teamTitle") || "Team" },
+      { href: "/about#testimonials", label: plain("testimonials.title") || "Testimonials" }
     ],
     "/contact": [
-      { href: "/contact#contact-form", label: t("contact.heading")?.replace(/<[^>]*>/g, "") || "Contact" },
-      { href: "/contact#location", label: t("contact.info.location") || "Location" }
+      { href: "/contact#contact-form", label: plain("contact.heading") || "Contact" }
     ]
   };
   return sections[p] || [];
@@ -117,6 +124,8 @@ const footerCopyright = t("footer.allRights")?.replace("{year}", String(new Date
   pageSections={pageSections}
   exploreLinks={exploreLinks}
   serviceLinks={serviceLinks}
+  servicesAllLabel={servicesAllLabel}
+  servicesAllHref={servicesAllHref}
   contactLinks={[
     { href: "#", label: t("footer.contactLink") || "", icon: "ti-mail", mailto: "hola@triacr.com" },
     { href: "#", label: t("footer.supportLink") || "", icon: "ti-headset", mailto: "support@triacr.com" },
