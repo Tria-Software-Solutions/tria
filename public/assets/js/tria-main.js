@@ -27,6 +27,9 @@ $(function () {
       wheelMultiplier: 0.8,
       touchMultiplier: 0.5,
       infinite: false,
+      // Let the wheel/touch scroll nested scrollable elements (e.g. the quote
+      // wizard steps, breakdown lists) natively instead of hijacking them.
+      allowNestedScroll: true,
     });
 
     function raf(time) {
@@ -47,10 +50,34 @@ $(function () {
     });
 
     document.addEventListener('swup:contentReplaced', function () {
-      lenis.scrollTo(0, { immediate: true });
+      // Language switch: keep the current scroll level (only texts change).
+      // Otherwise scroll to the top as usual.
+      var localeRestore =
+        typeof window.__triaLocaleScroll === 'number'
+          ? window.__triaLocaleScroll
+          : null;
+      if (localeRestore !== null) {
+        // Lenis is stopped during the swap, so native scrolling applies —
+        // move the page now; Lenis is re-synced after it restarts below.
+        // The flag stays readable for other synchronous listeners (e.g. the
+        // REINIT scrollTo(0,0)) and is cleared once the transition settles.
+        window.scrollTo(0, localeRestore);
+      } else {
+        lenis.scrollTo(0, { immediate: true });
+      }
       setTimeout(function () {
         ScrollTrigger.refresh();
         lenis.start();
+        if (localeRestore !== null) {
+          // Bring Lenis' internal state in sync with the restored position.
+          lenis.scrollTo(localeRestore, { immediate: true });
+          window.__triaLocaleScroll = null;
+        } else {
+          // Normal navigation: Lenis' internal position may be stale from
+          // before the transition — re-sync it to the top (the page was
+          // reset to 0 while it was stopped).
+          lenis.scrollTo(0, { immediate: true });
+        }
       }, 100);
     });
 
@@ -357,6 +384,11 @@ $(function () {
     });
   }
 
+  /* The custom cursor markup was removed from the design — skip all these
+     bindings when the .tria-ball element doesn't exist, otherwise GSAP gets
+     empty jQuery collections and logs "target not found" warnings. */
+  if (cursor) {
+
   $(".tria-drag, .tria-more, .tria-choose").mouseover(function () {
     gsap.to($(cursor), 0.2, {
       width: 90,
@@ -470,6 +502,7 @@ $(function () {
       ease: "sine",
     });
   });
+  }
   /***************************
 
      menu
@@ -831,7 +864,11 @@ $(function () {
     ------------------------------------------------------------
     ----------------------------------------------------------*/
   document.addEventListener("swup:contentReplaced", function () {
-    window.scrollTo(0, 0);
+    // Skip the top-scroll reset when a language switch is in flight — the
+    // Lenis handler above already restored the saved position.
+    if (typeof window.__triaLocaleScroll !== 'number') {
+      window.scrollTo(0, 0);
+    }
 
     if (document.querySelector(".tria-progress")) {
       gsap.to(".tria-progress", {
@@ -942,6 +979,8 @@ $(function () {
         cursor
 
         ***************************/
+
+    if (cursor) {
 
     $(".tria-drag, .tria-more, .tria-choose").mouseover(function () {
       gsap.to($(cursor), 0.2, {
@@ -1056,6 +1095,7 @@ $(function () {
         ease: "sine",
       });
     });
+    }
     /***************************
 
         main menu

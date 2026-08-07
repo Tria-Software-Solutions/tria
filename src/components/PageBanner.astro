@@ -3,14 +3,16 @@ interface Props {
   suptitleKey?: string;
   headingKey: string;
   descriptionKey?: string;
+  crumbKey?: string;
   variant?: "primary" | "secondary";
 }
 
-const { suptitleKey, headingKey, descriptionKey, variant = "secondary" } = Astro.props;
-const { createT } = await import("../i18n/utils");
+const { suptitleKey, headingKey, descriptionKey, crumbKey, variant = "secondary" } = Astro.props;
+const { createT, localePath } = await import("../i18n/utils");
 const t = createT(Astro.currentLocale);
 const hasChildren = await Astro.slots.render("default");
 const heroClass = variant === "primary" ? "page-hero" : "page-hero page-hero--secondary";
+const homeHref = localePath(Astro.currentLocale, "/");
 ---
 
 <section class={heroClass} data-section-theme="dark">
@@ -28,10 +30,17 @@ const heroClass = variant === "primary" ? "page-hero" : "page-hero page-hero--se
     </div>
   </div>
   <div class="container page-hero-inner">
+    {crumbKey && (
+      <nav class="tria-hero-crumb tria-up" aria-label="Breadcrumb">
+        <a href={homeHref} class="tria-hero-crumb-link" data-i18n="nav.home">{t("nav.home")}</a>
+        <span class="tria-hero-crumb-sep" aria-hidden="true">/</span>
+        <span class="tria-hero-crumb-current" aria-current="page" data-i18n={crumbKey}>{t(crumbKey)}</span>
+      </nav>
+    )}
     {hasChildren ? (
       <div class="row">
         <div class="col-lg-8">
-          {suptitleKey && <span class="tria-suptitle tria-light-soft tria-up" style="display:block;margin-bottom:24px;" data-i18n={suptitleKey}>{t(suptitleKey)}</span>}
+          {suptitleKey && <span class="tria-suptitle tria-light-soft tria-up" style="display:block;margin-bottom:20px;" data-i18n={suptitleKey}>{t(suptitleKey)}</span>}
           <h1 class="tria-up page-hero-heading" data-i18n-html={headingKey} set:html={t(headingKey)} />
           {descriptionKey && <p class="tria-up page-hero-sub" data-i18n={descriptionKey}>{t(descriptionKey)}</p>}
         </div>
@@ -42,7 +51,7 @@ const heroClass = variant === "primary" ? "page-hero" : "page-hero page-hero--se
     ) : descriptionKey ? (
       <div class="row">
         <div class="col-lg-7">
-          {suptitleKey && <span class="tria-suptitle tria-light-soft tria-up" style="display:block;margin-bottom:24px;" data-i18n={suptitleKey}>{t(suptitleKey)}</span>}
+          {suptitleKey && <span class="tria-suptitle tria-light-soft tria-up" style="display:block;margin-bottom:20px;" data-i18n={suptitleKey}>{t(suptitleKey)}</span>}
           <h1 class="page-hero-heading tria-up" data-i18n-html={headingKey} set:html={t(headingKey)} />
         </div>
         <div class="col-lg-4 offset-lg-1 tria-up">
@@ -51,7 +60,7 @@ const heroClass = variant === "primary" ? "page-hero" : "page-hero page-hero--se
       </div>
     ) : (
       <div>
-        {suptitleKey && <span class="tria-suptitle tria-light-soft tria-up" style="display:block;margin-bottom:24px;" data-i18n={suptitleKey}>{t(suptitleKey)}</span>}
+        {suptitleKey && <span class="tria-suptitle tria-light-soft tria-up" style="display:block;margin-bottom:20px;" data-i18n={suptitleKey}>{t(suptitleKey)}</span>}
         <h1 class="page-hero-heading tria-up" data-i18n-html={headingKey} set:html={t(headingKey)} />
       </div>
     )}

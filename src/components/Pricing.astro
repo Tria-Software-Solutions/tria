@@ -1,7 +1,8 @@
 ---
 import Button from "./Button.astro";
-import { createT } from "../i18n/utils";
+import { createT, localePath } from "../i18n/utils";
 const t = createT(Astro.currentLocale);
+const quotePath = localePath(Astro.currentLocale, "/quote");
 
 interface PricingPlan {
   name: string;
@@ -181,7 +182,7 @@ const ctaDefault = t("nav.startProject");
                     <p class="tria-pricing-estimator-desc" data-i18n="pricing.estimatorDesc">{t("pricing.estimatorDesc")}</p>
                   </div>
                 </div>
-                <Button text={t("pricing.estimatorCta")} href="/quote" variant="secondary" size="sm" showArrow={true} />
+                <Button text={t("pricing.estimatorCta")} href={quotePath} variant="secondary" size="sm" showArrow={true} />
               </div>
             </div>
           </div>

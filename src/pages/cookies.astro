@@ -1,0 +1,109 @@
+---
+import Layout from "../layouts/Layout.astro";
+import PageBanner from "../components/PageBanner.astro";
+import LegalDoc from "../components/LegalDoc.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import { createT } from "../i18n/utils";
+const t = createT(Astro.currentLocale);
+const isEs = Astro.currentLocale === "es";
+
+const sections = isEs ? [
+  {
+    title: "Qué son las cookies",
+    paragraphs: [
+      "Las cookies son pequeños archivos de texto que un sitio web almacena en tu dispositivo para recordar información sobre tu visita. También usamos tecnologías similares como localStorage para guardar tus preferencias (por ejemplo, el idioma y tu elección de cookies).",
+    ],
+  },
+  {
+    title: "Cookies que usamos",
+    paragraphs: [
+      "Utilizamos las siguientes categorías de cookies y almacenamiento local:",
+    ],
+    list: [
+      "Cookies necesarias: imprescindibles para el funcionamiento del sitio (seguridad, navegación básica).",
+      "Preferencias: idioma seleccionado y tu decisión de consentimiento de cookies, guardadas en localStorage.",
+      "Analítica (si está activa): datos agregados de uso del sitio para entender cómo se navega y mejorar.",
+    ],
+  },
+  {
+    title: "Tu elección",
+    paragraphs: [
+      "Al visitar el sitio por primera vez, te mostramos un aviso con dos opciones: 'Aceptar todo' o 'Rechazar'. Tu elección se guarda en tu navegador y puedes cambiar la configuración de cookies en cualquier momento desde la configuración de tu navegador.",
+      "Si rechazas las cookies, solo se usarán las estrictamente necesarias y tus preferencias.",
+    ],
+  },
+  {
+    title: "Cómo gestionar cookies en tu navegador",
+    paragraphs: [
+      "Puedes bloquear, eliminar o configurar cookies desde la configuración de tu navegador (Chrome, Safari, Firefox, Edge, etc.). Ten en cuenta que deshabilitar cookies necesarias puede afectar el funcionamiento del sitio.",
+    ],
+  },
+  {
+    title: "Cookies de terceros",
+    paragraphs: [
+      "Podemos utilizar servicios de terceros (como analítica o fuentes de Google Fonts) que pueden establecer sus propias cookies. Revisa las políticas de esos proveedores para más información.",
+    ],
+  },
+  {
+    title: "Contacto",
+    paragraphs: [
+      "Preguntas sobre esta política de cookies: hola@triacr.com.",
+    ],
+  },
+] : [
+  {
+    title: "What Are Cookies",
+    paragraphs: [
+      "Cookies are small text files that a website stores on your device to remember information about your visit. We also use similar technologies such as localStorage to save your preferences (for example, your language and your cookie choice).",
+    ],
+  },
+  {
+    title: "Cookies We Use",
+    paragraphs: [
+      "We use the following categories of cookies and local storage:",
+    ],
+    list: [
+      "Necessary cookies: essential for the site to work (security, basic navigation).",
+      "Preferences: selected language and your cookie consent decision, stored in localStorage.",
+      "Analytics (if enabled): aggregated site usage data to understand navigation and improve.",
+    ],
+  },
+  {
+    title: "Your Choice",
+    paragraphs: [
+      "When you first visit the site, we show a notice with two options: 'Accept all' or 'Decline'. Your choice is saved in your browser, and you can change cookie settings at any time from your browser settings.",
+      "If you decline cookies, only strictly necessary cookies and your preferences will be used.",
+    ],
+  },
+  {
+    title: "Managing Cookies in Your Browser",
+    paragraphs: [
+      "You can block, delete, or configure cookies from your browser settings (Chrome, Safari, Firefox, Edge, etc.). Please note that disabling necessary cookies may affect how the site works.",
+    ],
+  },
+  {
+    title: "Third-Party Cookies",
+    paragraphs: [
+      "We may use third-party services (such as analytics or Google Fonts) that can set their own cookies. Review those providers' policies for more information.",
+    ],
+  },
+  {
+    title: "Contact",
+    paragraphs: [
+      "Questions about this cookie policy: hola@triacr.com.",
+    ],
+  },
+];
+---
+
+<Layout title={t("meta.cookiesTitle")} description={t("meta.cookiesDesc")}
+  structuredData={{
+    "@type": "WebPage",
+    name: t("meta.cookiesTitle"),
+    description: t("meta.cookiesDesc"),
+    inLanguage: Astro.currentLocale,
+  }}>
+  <PageBanner headingKey="legal.cookiesTitle" descriptionKey="legal.cookiesDesc" crumbKey="nav.cookiePolicy" />
+  <LegalDoc sections={sections} lastUpdated={t("legal.lastUpdated")} />
+  <SiteFooter />
+</Layout>

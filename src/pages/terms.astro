@@ -1,0 +1,139 @@
+---
+import Layout from "../layouts/Layout.astro";
+import PageBanner from "../components/PageBanner.astro";
+import LegalDoc from "../components/LegalDoc.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import { createT } from "../i18n/utils";
+const t = createT(Astro.currentLocale);
+const isEs = Astro.currentLocale === "es";
+
+const sections = isEs ? [
+  {
+    title: "Aceptación de los términos",
+    paragraphs: [
+      "Al acceder o usar el sitio web de tria, aceptas estos Términos y Condiciones. Si no estás de acuerdo, por favor no uses el sitio.",
+    ],
+  },
+  {
+    title: "Servicios",
+    paragraphs: [
+      "tria presta servicios de ingeniería de software — productos digitales, backend, APIs y datos, IA y automatización, seguridad, UI/UX, QA, equipos dedicados y modernización.",
+      "Las especificaciones de cada servicio se rigen por el Statement of Work (SOW) y el Contrato Marco (MSA) firmados entre las partes. En caso de conflicto, el SOW prevalece.",
+    ],
+  },
+  {
+    title: "Precios y cotizaciones",
+    paragraphs: [
+      "Los precios publicados en el sitio son precios de referencia iniciales en USD. El cotizador de presupuesto genera una estimación preliminar con fines informativos; el precio final se define mediante una cotización detallada.",
+      "Los precios pueden cambiar sin previo aviso. Las cotizaciones son válidas por 30 días salvo que se indique lo contrario.",
+    ],
+  },
+  {
+    title: "Propiedad intelectual",
+    paragraphs: [
+      "El contenido del sitio (textos, diseño, logo, gráficos) es propiedad de tria o de sus licenciantes y no puede reproducirse sin autorización.",
+      "La propiedad intelectual de los entregables de proyectos se rige por el MSA/SOW correspondiente.",
+    ],
+  },
+  {
+    title: "Uso aceptable",
+    paragraphs: [
+      "No debes usar el sitio de forma que: (a) infrinja leyes o derechos de terceros; (b) introduzca código malicioso; (c) intente acceder sin autorización a sistemas de tria; o (d) interfiera con el funcionamiento del sitio.",
+    ],
+  },
+  {
+    title: "Enlaces de terceros",
+    paragraphs: [
+      "El sitio puede contener enlaces a sitios de terceros. tria no es responsable del contenido, políticas o prácticas de dichos sitios.",
+    ],
+  },
+  {
+    title: "Limitación de responsabilidad",
+    paragraphs: [
+      "El sitio se proporciona 'tal cual'. En la máxima medida permitida por la ley, tria no será responsable por daños indirectos, incidentales o consecuentes derivados del uso del sitio o de los servicios.",
+    ],
+  },
+  {
+    title: "Ley aplicable",
+    paragraphs: [
+      "Estos términos se rigen por las leyes de Costa Rica. Las disputas se resolverán en los tribunales de San José, Costa Rica.",
+    ],
+  },
+  {
+    title: "Contacto",
+    paragraphs: [
+      "Preguntas sobre estos términos: hola@triacr.com.",
+    ],
+  },
+] : [
+  {
+    title: "Acceptance of Terms",
+    paragraphs: [
+      "By accessing or using the tria website, you agree to these Terms and Conditions. If you do not agree, please do not use the site.",
+    ],
+  },
+  {
+    title: "Services",
+    paragraphs: [
+      "tria provides software engineering services — digital products, backend, APIs and data, AI and automation, security, UI/UX, QA, dedicated teams, and modernization.",
+      "Service specifications are governed by the signed Statement of Work (SOW) and Master Services Agreement (MSA) between the parties. In case of conflict, the SOW prevails.",
+    ],
+  },
+  {
+    title: "Pricing & Quotes",
+    paragraphs: [
+      "Prices published on the website are reference starting prices in USD. The budget estimator generates a preliminary estimate for informational purposes; final pricing is defined through a detailed quote.",
+      "Prices may change without notice. Quotes are valid for 30 days unless stated otherwise.",
+    ],
+  },
+  {
+    title: "Intellectual Property",
+    paragraphs: [
+      "Website content (text, design, logo, graphics) is owned by tria or its licensors and may not be reproduced without permission.",
+      "Intellectual property of project deliverables is governed by the corresponding MSA/SOW.",
+    ],
+  },
+  {
+    title: "Acceptable Use",
+    paragraphs: [
+      "You must not use the site in a way that: (a) violates laws or third-party rights; (b) introduces malicious code; (c) attempts unauthorized access to tria systems; or (d) interferes with the site's operation.",
+    ],
+  },
+  {
+    title: "Third-Party Links",
+    paragraphs: [
+      "The site may contain links to third-party websites. tria is not responsible for their content, policies, or practices.",
+    ],
+  },
+  {
+    title: "Limitation of Liability",
+    paragraphs: [
+      "The site is provided 'as is'. To the maximum extent permitted by law, tria is not liable for indirect, incidental, or consequential damages arising from the use of the site or services.",
+    ],
+  },
+  {
+    title: "Governing Law",
+    paragraphs: [
+      "These terms are governed by the laws of Costa Rica. Disputes shall be resolved in the courts of San José, Costa Rica.",
+    ],
+  },
+  {
+    title: "Contact",
+    paragraphs: [
+      "Questions about these terms: hola@triacr.com.",
+    ],
+  },
+];
+---
+
+<Layout title={t("meta.termsTitle")} description={t("meta.termsDesc")}
+  structuredData={{
+    "@type": "WebPage",
+    name: t("meta.termsTitle"),
+    description: t("meta.termsDesc"),
+    inLanguage: Astro.currentLocale,
+  }}>
+  <PageBanner headingKey="legal.termsTitle" descriptionKey="legal.termsDesc" crumbKey="nav.terms" />
+  <LegalDoc sections={sections} lastUpdated={t("legal.lastUpdated")} />
+  <SiteFooter />
+</Layout>

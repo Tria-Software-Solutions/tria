@@ -1,5 +1,6 @@
 ---
 import Header from "../components/Header.astro";
+import CookieConsent from "../components/CookieConsent.astro";
 import "../styles/global.css";
 import "../styles/tria-theme.css";
 import { createT } from "../i18n/utils";
@@ -93,13 +94,10 @@ const combinedStructured = structuredData
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- Preload the critical woff2 font file for the default weight (400) -->
-    <link rel="preload" href="https://fonts.gstatic.com/s/outfit/v11/QGYvz_MVcBeNP4NJtEtqUYLknw.woff2" as="font" type="font/woff2" crossorigin />
-
     <meta name="description" content={description} />
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#0b0d17" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <title>{metaTitle}</title>
 
@@ -245,6 +243,9 @@ const combinedStructured = structuredData
       </main>
     </div>
     <!-- wrapper end -->
+
+    <!-- Cookie consent banner (persists across Swup transitions) -->
+    <CookieConsent />
 
     <script is:inline>
       (function () {
@@ -434,6 +435,79 @@ const combinedStructured = structuredData
           }
         }
 
+        /* ── Collision-aware frame mode ──
+           When the viewport is too small for the desktop frame (rotated side
+           strips reach the logo / hamburger, or logo collides with the
+           hamburger), we switch to the glass top-bar used on mobile — but
+           adapted to ANY screen width. The <html> class lets Header.astro
+           and tria-theme.css react without relying on a fixed breakpoint. */
+        function rectsIntersect(a, b) {
+          return a && b && !(
+            a.right < b.left || a.left > b.right ||
+            a.bottom < b.top || a.top > b.bottom
+          );
+        }
+
+        function frameCollides() {
+          if (!frame) return false;
+          // Mobile already renders the glass bar via CSS — nothing to do.
+          if (window.innerWidth <= 1200) return false;
+          var top = frame.querySelector(".tria-frame-top");
+          var logo = frame.querySelector(".tria-logo");
+          var menuBtn = frame.querySelector(".tria-menu-btn");
+          var left = frame.querySelector(".tria-frame-bottom-left");
+          var right = frame.querySelector(".tria-back-to-top");
+          if (!top || !logo || !menuBtn) return false;
+
+          var topRect = top.getBoundingClientRect();
+          var logoRect = logo.getBoundingClientRect();
+          var btnRect = menuBtn.getBoundingClientRect();
+
+          // Rotated side strips — their AABB is the visual area they occupy.
+          // Glass mode hides them (0×0 at origin); a 0×0 rect would falsely
+          // "intersect" the full-width top bar, so only measure rendered ones.
+          // Cache the rect — getBoundingClientRect() forces layout, so avoid
+          // calling it twice per element per check.
+          var leftMeasured = left ? left.getBoundingClientRect() : null;
+          var leftRect = leftMeasured && leftMeasured.width > 0 ? leftMeasured : null;
+          var rightMeasured = right ? right.getBoundingClientRect() : null;
+          var rightRect = rightMeasured && rightMeasured.width > 0 ? rightMeasured : null;
+
+          // 1) Logo ↔ hamburger (narrow desktop widths)
+          if (rectsIntersect(logoRect, btnRect)) return true;
+          // 2) Top bar ↔ left strip (page name + lang switcher)
+          if (rectsIntersect(topRect, leftRect)) return true;
+          // 3) Top bar ↔ back-to-top
+          if (rectsIntersect(topRect, rightRect)) return true;
+          // 4) Logo ↔ back-to-top (short viewports)
+          if (rectsIntersect(logoRect, rightRect)) return true;
+
+          /* Proximity guard — computed by FORMULA, not by measuring the DOM:
+             glass mode hides the strips (they collapse to 0×0), so measuring
+             them would flip the state on every re-eval and get sticky. The
+             strips are bottom-anchored 65px up, capped to 128px, and the top
+             bar's bottom edge sits at ~92px (floating). On short viewports
+             the strip top approaches the top bar (83px gap at 500px height) —
+             visually cramped, which reads as a "choque". Treat gaps under
+             120px as a collision so glass kicks in before it looks broken. */
+          var stripLen = Math.min(
+            300,
+            Math.max(128, window.innerHeight - 240),
+          );
+          var stripTop = window.innerHeight - 65 - stripLen;
+          if (topRect && stripTop - topRect.bottom < 120) return true;
+          return false;
+        }
+
+        function updateFrameMode() {
+          var html = document.documentElement;
+          var collides = frameCollides();
+          var was = html.classList.contains("tria-frame-glass");
+          html.classList.toggle("tria-frame-glass", collides);
+          // Re-theme when toggling so colors match the glass bar (always dark)
+          if (collides !== was) updateFrameTheme();
+        }
+
         function initFrameTheme() {
           updateFrameTheme();
           // Re-run after tria-main.js clones page name and arrow
@@ -446,10 +520,39 @@ const combinedStructured = structuredData
           }
         }
 
-        window.addEventListener("scroll", updateFrameTheme, {
+        /* Scroll events can fire many times per frame — both updates force
+           layout reads (getBoundingClientRect / getThemeAt). Coalesce them
+           behind a rAF flag so we only re-check once per painted frame. */
+        var frameScrollPending = false;
+        window.addEventListener("scroll", function () {
+          if (frameScrollPending) return;
+          frameScrollPending = true;
+          requestAnimationFrame(function () {
+            frameScrollPending = false;
+            updateFrameMode();
+            updateFrameTheme();
+          });
+        }, {
           passive: true,
         });
-        window.addEventListener("resize", updateFrameTheme);
+        window.addEventListener("resize", function () {
+          updateFrameMode();
+          updateFrameTheme();
+          /* Viewport metrics can lag the resize event (browser zoom,
+             scrollbar collapse, scroll-clamp reflows), so a first pass can
+             read a stale innerHeight and leave the wrong mode applied.
+             Re-check once after layout settles so it always converges. */
+          if (window.__frameModeTimer) clearTimeout(window.__frameModeTimer);
+          window.__frameModeTimer = setTimeout(function () {
+            updateFrameMode();
+          }, 200);
+        });
+        window.addEventListener("load", updateFrameMode);
+        document.addEventListener("swup:contentReplaced", function () {
+          updateFrameMode();
+          updateFrameTheme();
+        });
+        updateFrameMode();
         initFrameTheme();
 
         window.__heroCleanup = null;
@@ -493,6 +596,46 @@ const combinedStructured = structuredData
         }
       }
 
+      /** Bare (locale-stripped) path of the current page, e.g. "/", "/about" */
+      function currentBarePath() {
+        var p = window.location.pathname.replace(/\/+$/, '') || '/';
+        return p.replace(/^\/es/, '') || '/';
+      }
+
+      /**
+       * If href points to a section on the CURRENT page (e.g. "/#services",
+       * "/about#values"), smooth-scroll to it via Lenis and return true.
+       * Returns false for cross-page links so navigation proceeds normally.
+       */
+      function smoothScrollToHash(href) {
+        if (!href) return false;
+        var hashIndex = href.indexOf('#');
+        if (hashIndex === -1) return false;
+        var hash = href.slice(hashIndex + 1);
+        var pathPart = href.slice(0, hashIndex) || '/';
+        if (!hash) return false;
+        // Normalize the href path the same way as the current path
+        var barePathPart = (pathPart.replace(/\/+$/, '') || '/').replace(/^\/es/, '') || '/';
+        if (barePathPart !== currentBarePath()) return false;
+        var targetEl = document.getElementById(hash);
+        if (!targetEl) return false;
+        // Glass frame (mobile bar OR collision mode) is always 90px tall
+        var glassMode = window.innerWidth < 1200 || document.documentElement.classList.contains("tria-frame-glass");
+        var offset = glassMode ? 90 : 0;
+        if (window.triaLenis && typeof window.triaLenis.scrollTo === 'function') {
+          window.triaLenis.scrollTo(targetEl, { offset: -offset, duration: 1.4 });
+        } else {
+          window.scrollTo({
+            top: targetEl.getBoundingClientRect().top + window.scrollY - offset,
+            behavior: 'smooth',
+          });
+        }
+        try {
+          history.replaceState(null, '', pathPart + '#' + hash);
+        } catch (err) {}
+        return true;
+      }
+
       function openMail(target) {
         var addr = target.getAttribute('data-mailto');
         if (addr) window.location.href = 'mailto:' + addr;
@@ -511,14 +654,19 @@ const combinedStructured = structuredData
       window.hideLinkPreviews = hideLinkPreviews;
       window.triaNavigate = navigate;
 
-      // Handle clicks: data-href (navigation) + data-mailto (mail)
+      // Handle clicks: data-href (navigation / in-page smooth scroll) + data-mailto (mail)
       document.addEventListener('click', function(e) {
         var target = e.target.closest('[data-href]');
         if (target) {
           // Skip language switcher buttons — handled by tria-i18n.js (seamless Swup switching)
           if (target.closest('[data-lang]')) return;
           e.preventDefault();
-          navigate(target.getAttribute('data-href'), target.getAttribute('target'), target);
+          var href = target.getAttribute('data-href');
+          // Same-page section links (footer "On this page", header anchors, etc.)
+          // smooth-scroll instead of triggering a full Swup page transition.
+          // Skip if the link explicitly opens a new tab.
+          if (target.getAttribute('target') !== '_blank' && smoothScrollToHash(href)) return;
+          navigate(href, target.getAttribute('target'), target);
           return;
         }
         target = e.target.closest('[data-mailto]');
@@ -534,7 +682,9 @@ const combinedStructured = structuredData
         var target = e.target.closest('[data-href]');
         if (target) {
           e.preventDefault();
-          navigate(target.getAttribute('data-href'), target.getAttribute('target'), target);
+          var href = target.getAttribute('data-href');
+          if (smoothScrollToHash(href)) return;
+          navigate(href, target.getAttribute('target'), target);
           return;
         }
         target = e.target.closest('[data-mailto]');

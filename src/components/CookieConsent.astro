@@ -1,0 +1,414 @@
+---
+import { createT, localePath } from "../i18n/utils";
+const t = createT(Astro.currentLocale);
+const locale = Astro.currentLocale || "en";
+const cookiesHref = localePath(locale, "/cookies");
+---
+
+<div class="tria-cookie-banner" id="triaCookieBanner" role="region" aria-label={t("cookies.title")} aria-hidden="true" data-cookie-banner>
+  <div class="tria-cookie-bar">
+    <div class="tria-cookie-accent" aria-hidden="true"></div>
+    <div class="container tria-cookie-inner">
+      <div class="tria-cookie-copy">
+        <div class="tria-cookie-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M8.5 8.5h.01M16 15.5h.01M12 12h.01M11 17h.01M7 14h.01" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="tria-cookie-text">
+          <p class="tria-cookie-title" data-i18n="cookies.title">{t("cookies.title")}</p>
+          <p class="tria-cookie-desc" data-i18n="cookies.text">{t("cookies.text")}</p>
+        </div>
+      </div>
+      <div class="tria-cookie-actions">
+        <a class="tria-cookie-link" href={cookiesHref} data-i18n="cookies.learnMore">{t("cookies.learnMore")}</a>
+        <button class="tria-cookie-btn tria-cookie-btn--decline" type="button" data-cookie-decline data-i18n="cookies.decline">{t("cookies.decline")}</button>
+        <button class="tria-cookie-btn tria-cookie-btn--accept" type="button" data-cookie-accept data-i18n="cookies.accept">{t("cookies.accept")}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+(function () {
+  var KEY = "triaCookieConsent";
+  var banner = document.getElementById("triaCookieBanner");
+  if (!banner) return;
+
+  var accepted;
+  try {
+    accepted = window.localStorage.getItem(KEY);
+  } catch (e) {}
+
+  function hide() {
+    banner.classList.remove("is-visible");
+    banner.classList.add("is-leaving");
+    banner.setAttribute("aria-hidden", "true");
+    setTimeout(function () {
+      banner.style.display = "none";
+    }, 500);
+  }
+
+  if (accepted) {
+    banner.style.display = "none";
+    return;
+  }
+
+  // Wait for the preloader to finish before revealing the banner.
+  // On repeat visits the preloader is hidden via an injected style (not a
+  // class), so we detect that case via sessionStorage and reveal fast.
+  var reveal = function () {
+    banner.classList.add("is-visible");
+    banner.setAttribute("aria-hidden", "false");
+  };
+  var splashSkipped = false;
+  try { splashSkipped = !!window.sessionStorage.getItem("triaSplashShown"); } catch (e) {}
+
+  var preloader = document.querySelector(".tria-preloader");
+  var shown = false;
+  var done = function (delay) {
+    if (shown) return;
+    shown = true;
+    setTimeout(reveal, delay || 350);
+  };
+
+  if (splashSkipped) {
+    done(300);
+  } else if (preloader) {
+    var obs = new MutationObserver(function () {
+      if (preloader.classList.contains("tria-hidden")) {
+        obs.disconnect();
+        done();
+      }
+    });
+    obs.observe(preloader, { attributes: true, attributeFilter: ["class"] });
+    setTimeout(function () { done(); }, 4200); // fallback if preloader never flags
+  } else {
+    setTimeout(reveal, 600);
+  }
+
+  function setConsent(value) {
+    try {
+      window.localStorage.setItem(KEY, value);
+    } catch (e) {}
+    hide();
+  }
+
+  banner.addEventListener("click", function (e) {
+    if (e.target.closest("[data-cookie-accept]")) setConsent("accepted");
+    else if (e.target.closest("[data-cookie-decline]")) setConsent("declined");
+  });
+})();
+</script>
+
+<style>
+  /* ══ Cookie consent — white modern full-width bar ══ */
+  .tria-cookie-banner {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 1500;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(28px);
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                visibility 0s linear 0.7s;
+  }
+
+  .tria-cookie-banner.is-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .tria-cookie-banner.is-leaving {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    pointer-events: none;
+    transition: transform 0.45s cubic-bezier(0.4, 0, 1, 1),
+                opacity 0.45s cubic-bezier(0.4, 0, 1, 1),
+                visibility 0s linear 0.45s;
+  }
+
+  /* ── Premium staggered entrance ──
+     The bar itself fades in with a soft upward drift; the copy and the
+     actions then rise into place with a short cascade. */
+  .tria-cookie-banner .tria-cookie-copy,
+  .tria-cookie-banner .tria-cookie-actions {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .tria-cookie-banner.is-visible .tria-cookie-copy {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.12s;
+  }
+
+  .tria-cookie-banner.is-visible .tria-cookie-actions {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.24s;
+  }
+
+  .tria-cookie-banner.is-leaving .tria-cookie-copy,
+  .tria-cookie-banner.is-leaving .tria-cookie-actions {
+    opacity: 0;
+    transform: translateY(10px);
+    transition-duration: 0.3s;
+    transition-delay: 0s;
+  }
+
+  /* ── Bar: clean white, taller, subtle top border ── */
+  .tria-cookie-bar {
+    position: relative;
+    background: #ffffff;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 -16px 48px rgba(11, 13, 23, 0.08);
+  }
+
+  /* Thin teal accent line at the very top */
+  .tria-cookie-accent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent, #068e8c);
+    pointer-events: none;
+  }
+
+  .tria-cookie-inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    padding-top: 26px;
+    padding-bottom: calc(26px + env(safe-area-inset-bottom, 0px));
+  }
+
+  /* ── Copy: teal chip icon + text ── */
+  .tria-cookie-copy {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-width: 0;
+    flex: 1;
+  }
+
+  .tria-cookie-icon {
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(6, 142, 140, 0.1);
+    color: var(--accent, #068e8c);
+    transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s ease;
+  }
+
+  .tria-cookie-banner.is-visible:hover .tria-cookie-icon {
+    transform: rotate(-6deg) scale(1.05);
+    background: rgba(6, 142, 140, 0.16);
+  }
+
+  .tria-cookie-icon svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  .tria-cookie-text {
+    min-width: 0;
+  }
+
+  .tria-cookie-title {
+    margin: 0 0 4px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #0b0d17;
+    letter-spacing: -0.01em;
+  }
+
+  .tria-cookie-desc {
+    margin: 0;
+    font-size: 0.86rem;
+    line-height: 1.6;
+    color: rgba(0, 0, 0, 0.62);
+    max-width: 640px;
+  }
+
+  /* ── Actions: flat buttons, no shadows / no gradients ── */
+  .tria-cookie-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .tria-cookie-link {
+    font-size: 0.75rem;
+    font-weight: 550;
+    letter-spacing: 0.03em;
+    color: #057573;
+    text-decoration: none;
+    white-space: nowrap;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: color 0.3s ease, background 0.3s ease;
+  }
+  .tria-cookie-link:hover {
+    color: #046b6a;
+    background: rgba(6, 142, 140, 0.06);
+  }
+
+  .tria-cookie-btn {
+    height: 46px;
+    padding: 0 26px;
+    border-radius: 100px;
+    font-family: inherit;
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  }
+
+  .tria-cookie-btn:focus-visible {
+    outline: 2px solid var(--accent, #068e8c);
+    outline-offset: 3px;
+  }
+
+  .tria-cookie-btn--accept {
+    background: #057573;
+    color: #fff;
+    border: 1px solid #057573;
+  }
+  .tria-cookie-btn--accept:hover {
+    background: #046b6a;
+    border-color: #046b6a;
+  }
+
+  .tria-cookie-btn--decline {
+    background: transparent;
+    color: rgba(0, 0, 0, 0.65);
+    border: 1px solid rgba(0, 0, 0, 0.14);
+  }
+  .tria-cookie-btn--decline:hover {
+    background: rgba(0, 0, 0, 0.04);
+    color: #0b0d17;
+    border-color: rgba(0, 0, 0, 0.24);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 991px) {
+    .tria-cookie-inner {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 18px;
+      padding-top: 22px;
+      padding-bottom: calc(22px + env(safe-area-inset-bottom, 0px));
+    }
+    .tria-cookie-actions {
+      justify-content: flex-end;
+      flex-wrap: wrap;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .tria-cookie-copy {
+      align-items: center;
+    }
+    .tria-cookie-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+    }
+    .tria-cookie-icon svg {
+      width: 23px;
+      height: 23px;
+    }
+    .tria-cookie-desc {
+      font-size: 0.82rem;
+    }
+    .tria-cookie-actions {
+      justify-content: stretch;
+    }
+    .tria-cookie-btn {
+      flex: 1 1 45%;
+      height: 44px;
+    }
+    .tria-cookie-link {
+      flex-basis: 100%;
+      text-align: center;
+    }
+  }
+
+  /* ── Short viewports (landscape phones, small laptops) ── */
+  @media (max-height: 480px) {
+    .tria-cookie-inner {
+      flex-direction: row;
+      align-items: center;
+      gap: 16px;
+      padding-top: 12px;
+      padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+    }
+    .tria-cookie-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+    }
+    .tria-cookie-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+    .tria-cookie-desc {
+      display: none;
+    }
+    .tria-cookie-title {
+      margin: 0;
+      font-size: 0.92rem;
+    }
+    .tria-cookie-actions {
+      justify-content: flex-end;
+    }
+    .tria-cookie-btn {
+      height: 38px;
+      padding: 0 18px;
+      font-size: 0.66rem;
+      flex: 0 0 auto;
+    }
+    .tria-cookie-link {
+      flex-basis: auto;
+      text-align: left;
+      padding: 0 6px;
+    }
+  }
+
+  /* ── Reduced motion ── */
+  @media (prefers-reduced-motion: reduce) {
+    .tria-cookie-banner,
+    .tria-cookie-banner.is-visible,
+    .tria-cookie-banner.is-leaving,
+    .tria-cookie-banner .tria-cookie-copy,
+    .tria-cookie-banner .tria-cookie-actions {
+      transition-duration: 0.01s;
+      transition-delay: 0s;
+    }
+  }
+</style>

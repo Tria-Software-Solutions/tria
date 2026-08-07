@@ -474,47 +474,184 @@ const menuSocials = [
      RESPONSIVE — mirrors the reference
      ═══════════════════════════════════════ */
 
-  /* ≤1200px: hide the in-menu top bar (the sticky header covers it),
-     hide the right panel and center the main menu — like the reference. */
+  /* ≤1200px: full menu stacked — the sticky glass header replaces the
+     in-menu top bar, and the whole menu (pages + services + links +
+     meta) is shown with scrolling instead of hiding the side panel. */
   @media screen and (max-width: 1200px) {
     .tria-menu-top {
       display: none !important;
     }
-    .tria-menu-side {
-      display: none;
-    }
     .tria-menu-content {
       padding: 0 24px;
+      height: auto;
+      min-height: 100vh;
+      padding-top: 116px; /* clear the sticky glass header */
+      padding-bottom: 56px;
     }
     .tria-menu-grid {
       grid-template-columns: 1fr;
       gap: 0;
-      height: 100vh;
+      height: auto;
     }
     .tria-menu-pages {
-      justify-content: center;
+      justify-content: flex-start;
+      align-items: stretch;
       padding-left: 0;
+      height: auto;
     }
     .tria-menu-pages ul {
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: flex-start;
     }
     .tria-menu-pages ul li {
-      margin-bottom: 30px !important;
+      margin-bottom: 22px !important;
     }
     .tria-menu-pages ul li a {
-      justify-content: center;
+      justify-content: flex-start;
     }
     .tria-menu-pages ul li.tria-current > a {
       padding-left: 0 !important;
     }
+    .tria-menu-side {
+      display: block;
+      border-left: none;
+      padding-left: 0;
+      align-items: stretch;
+      height: auto;
+      margin-top: 56px;
+    }
+    .tria-menu-side-inner {
+      padding-bottom: 0;
+    }
+    .tria-menu-columns {
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 48px;
+    }
+    .tria-menu-divider {
+      margin: 0 0 40px;
+    }
+    .tria-menu-bottom {
+      flex-direction: column;
+      gap: 36px;
+    }
+    .tria-menu-bottom-right {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+    .tria-menu-socials {
+      gap: 14px;
+    }
   }
 
-  /* ≤992px: smaller nav type, like the reference */
+  /* ═══════════════════════════════════════
+     GLASS FRAME AT ANY WIDTH — when JS toggles html.tria-frame-glass
+     (desktop controls collide), the fullscreen menu switches to the
+     stacked mobile layout: no in-menu top bar (the glass bar shows
+     logo + close), content clears the 90px glass bar.
+     ═══════════════════════════════════════ */
+  html.tria-frame-glass .tria-menu-top {
+    display: none !important;
+  }
+  html.tria-frame-glass .tria-menu-content {
+    padding: 0 24px;
+    height: auto;
+    min-height: 100vh;
+    padding-top: 116px; /* clear the sticky glass header */
+    padding-bottom: 56px;
+  }
+  html.tria-frame-glass .tria-menu-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+    height: auto;
+  }
+  html.tria-frame-glass .tria-menu-pages {
+    justify-content: flex-start;
+    align-items: stretch;
+    padding-left: 0;
+    height: auto;
+  }
+  html.tria-frame-glass .tria-menu-pages ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  html.tria-frame-glass .tria-menu-pages ul li {
+    margin-bottom: 22px !important;
+  }
+  html.tria-frame-glass .tria-menu-pages ul li a {
+    justify-content: flex-start;
+  }
+  html.tria-frame-glass .tria-menu-pages ul li.tria-current > a {
+    padding-left: 0 !important;
+  }
+  html.tria-frame-glass .tria-menu-side {
+    display: block;
+    border-left: none;
+    padding-left: 0;
+    align-items: stretch;
+    height: auto;
+    margin-top: 56px;
+  }
+  html.tria-frame-glass .tria-menu-side-inner {
+    padding-bottom: 0;
+  }
+  html.tria-frame-glass .tria-menu-columns {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 48px;
+  }
+  html.tria-frame-glass .tria-menu-divider {
+    margin: 0 0 40px;
+  }
+  html.tria-frame-glass .tria-menu-bottom {
+    flex-direction: column;
+    gap: 36px;
+  }
+  html.tria-frame-glass .tria-menu-bottom-right {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  html.tria-frame-glass .tria-menu-socials {
+    gap: 14px;
+  }
+
+  /* ≤992px: smaller nav type */
   @media screen and (max-width: 992px) {
     .tria-menu-pages ul li a {
-      font-size: 26px !important;
+      font-size: 24px !important;
+    }
+  }
+
+  /* ≤576px: tighter spacing + stack the columns for narrow phones */
+  @media screen and (max-width: 576px) {
+    .tria-menu-content {
+      padding-top: 100px;
+      padding-bottom: 40px;
+    }
+    .tria-menu-pages ul li {
+      margin-bottom: 20px !important;
+    }
+    .tria-menu-columns {
+      grid-template-columns: 1fr;
+      gap: 32px;
+      margin-bottom: 40px;
+    }
+    .tria-menu-bottom-right {
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+  }
+
+  /* ≤400px: header is 64px tall — tighten the top clearance */
+  @media screen and (max-width: 400px) {
+    .tria-menu-content {
+      padding-top: 88px;
     }
   }
 

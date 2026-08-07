@@ -109,6 +109,8 @@ const locale = Astro.currentLocale || "en";
     heading={t("featured.title") || ""}
     ctaText={t("featured.viewProject") || "View project"}
     wikiText={t("featured.viewWiki") || "View wiki"}
+    prevText={t("featured.prev") || "Prev"}
+    nextText={t("featured.next") || "Next"}
     projects={[
       {
         category: t("featured.project1Cat") || "",
@@ -251,8 +253,8 @@ const locale = Astro.currentLocale || "en";
     plans={[
       {
         name: t("pricing.plan1Name") || "Starter",
-        price: t("pricing.plan1Price") || "$400",
-        amount: t("pricing.plan1Amount") || "$400",
+        price: t("pricing.plan1Price") || "$700",
+        amount: t("pricing.plan1Amount") || "$700",
         prefix: t("pricing.fromLabel") || "From",
         suffix: t("pricing.projectSuffix") || "/ project",
         description: t("pricing.plan1Desc") || "",
@@ -261,8 +263,8 @@ const locale = Astro.currentLocale || "en";
       },
       {
         name: t("pricing.plan2Name") || "Professional",
-        price: t("pricing.plan2Price") || "$1,800",
-        amount: t("pricing.plan2Amount") || "$1,800",
+        price: t("pricing.plan2Price") || "$5,000",
+        amount: t("pricing.plan2Amount") || "$5,000",
         prefix: t("pricing.fromLabel") || "From",
         suffix: t("pricing.projectSuffix") || "/ project",
         description: t("pricing.plan2Desc") || "",
@@ -272,8 +274,8 @@ const locale = Astro.currentLocale || "en";
       },
       {
         name: t("pricing.plan3Name") || "Enterprise",
-        price: t("pricing.plan3Price") || "$2,500",
-        amount: t("pricing.plan3Amount") || "$2,500",
+        price: t("pricing.plan3Price") || "$3,000",
+        amount: t("pricing.plan3Amount") || "$3,000",
         prefix: t("pricing.fromLabel") || "From",
         suffix: t("pricing.projectSuffix") || "/ project",
         description: t("pricing.plan3Desc") || "",

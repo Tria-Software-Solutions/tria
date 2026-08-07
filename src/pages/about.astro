@@ -25,7 +25,7 @@ const locale = Astro.currentLocale || "en";
       },
     },
   }}>
-  <PageBanner suptitleKey="about.suptitleAlt" headingKey="about.title" descriptionKey="about.heroDesc" />
+  <PageBanner headingKey="about.title" descriptionKey="about.heroDesc" crumbKey="nav.about" />
 
   <!-- ════════════════════════════════════
        STORY — Who we are
@@ -140,69 +140,6 @@ const locale = Astro.currentLocale || "en";
             </div>
             <h3 class="tria-ab-culture-card-title" data-i18n="team.culture4Title">{t("team.culture4Title")}</h3>
             <p class="tria-ab-culture-card-desc" data-i18n="team.culture4Desc">{t("team.culture4Desc")}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════════════════════════════════
-       HISTORY TIMELINE
-       ════════════════════════════════════ -->
-  <section id="history" class="tria-ab-history" data-section-theme="light">
-    <div class="container tria-p-120-120">
-      <div class="row tria-mb-60">
-        <div class="col-lg-6">
-          <span class="tria-suptitle tria-suptitle-dark tria-up" data-i18n="about.historySuptitle">{t("about.historySuptitle")}</span>
-          <h2 class="tria-up tria-ab-section-title" data-i18n-html="about.historyTitle" set:html={t("about.historyTitle")} />
-        </div>
-      </div>
-
-      <div class="tria-timeline">
-        <div class="tria-timeline-line"></div>
-
-        <div class="tria-timeline-item tria-up">
-          <div class="tria-timeline-dot"></div>
-          <div class="tria-timeline-content">
-            <span class="tria-timeline-year" data-i18n="about.history1Year">{t("about.history1Year")}</span>
-            <h3 class="tria-timeline-title" data-i18n="about.history1Title">{t("about.history1Title")}</h3>
-            <p class="tria-timeline-desc" data-i18n="about.history1Desc">{t("about.history1Desc")}</p>
-          </div>
-        </div>
-
-        <div class="tria-timeline-item tria-up">
-          <div class="tria-timeline-dot"></div>
-          <div class="tria-timeline-content">
-            <span class="tria-timeline-year" data-i18n="about.history2Year">{t("about.history2Year")}</span>
-            <h3 class="tria-timeline-title" data-i18n="about.history2Title">{t("about.history2Title")}</h3>
-            <p class="tria-timeline-desc" data-i18n="about.history2Desc">{t("about.history2Desc")}</p>
-          </div>
-        </div>
-
-        <div class="tria-timeline-item tria-up">
-          <div class="tria-timeline-dot"></div>
-          <div class="tria-timeline-content">
-            <span class="tria-timeline-year" data-i18n="about.history3Year">{t("about.history3Year")}</span>
-            <h3 class="tria-timeline-title" data-i18n="about.history3Title">{t("about.history3Title")}</h3>
-            <p class="tria-timeline-desc" data-i18n="about.history3Desc">{t("about.history3Desc")}</p>
-          </div>
-        </div>
-
-        <div class="tria-timeline-item tria-up">
-          <div class="tria-timeline-dot"></div>
-          <div class="tria-timeline-content">
-            <span class="tria-timeline-year" data-i18n="about.history4Year">{t("about.history4Year")}</span>
-            <h3 class="tria-timeline-title" data-i18n="about.history4Title">{t("about.history4Title")}</h3>
-            <p class="tria-timeline-desc" data-i18n="about.history4Desc">{t("about.history4Desc")}</p>
-          </div>
-        </div>
-
-        <div class="tria-timeline-item tria-up">
-          <div class="tria-timeline-dot"></div>
-          <div class="tria-timeline-content">
-            <span class="tria-timeline-year" data-i18n="about.history5Year">{t("about.history5Year")}</span>
-            <h3 class="tria-timeline-title" data-i18n="about.history5Title">{t("about.history5Title")}</h3>
-            <p class="tria-timeline-desc" data-i18n="about.history5Desc">{t("about.history5Desc")}</p>
           </div>
         </div>
       </div>
@@ -479,107 +416,17 @@ const locale = Astro.currentLocale || "en";
   }
 
   /* ═══════════════════════════════════════
-     CULTURE + DIFFERENTIATORS — Gray bg
+     CULTURE — White bg (distinct from the gray Team section below)
      ═══════════════════════════════════════ */
   .tria-ab-culture-diff {
-    background: #f5f7f9;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .tria-ab-culture-diff .tria-ab-culture-card {
-    background: linear-gradient(180deg, #fff 0%, #f5f7f9 100%);
-  }
-
-  /* ═══════════════════════════════════════
-     TIMELINE
-     ═══════════════════════════════════════ */
-  .tria-ab-history {
     background: #ffffff;
     position: relative;
     overflow: hidden;
   }
 
-  .tria-timeline {
-    position: relative;
-    max-width: 720px;
-    margin: 0 auto;
-    padding-left: 40px;
-  }
-
-  .tria-timeline-line {
-    position: absolute;
-    left: 15px;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: linear-gradient(to bottom, rgba(6,142,140,0.1), rgba(6,142,140,0.4), rgba(6,142,140,0.1));
-    border-radius: 4px;
-  }
-
-  .tria-timeline-item {
-    position: relative;
-    margin-bottom: 56px;
-    padding-left: 40px;
-  }
-  .tria-timeline-item:last-child {
-    margin-bottom: 0;
-  }
-
-  .tria-timeline-dot {
-    position: absolute;
-    left: -33px;
-    top: 4px;
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background: var(--accent, #068e8c);
-    border: 3px solid #fff;
-    box-shadow: 0 0 0 3px rgba(6,142,140,0.15);
-    z-index: 1;
-  }
-
-  .tria-timeline-content {
-    background: #f8f9fb;
-    border: 1px solid rgba(0,0,0,0.04);
-    border-radius: 16px;
-    padding: 28px 32px;
-    transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .tria-timeline-content:hover {
-    border-color: rgba(6,142,140,0.12);
-    transform: translateX(4px);
-    box-shadow: 0 8px 30px rgba(0,0,0,0.03);
-  }
-
-  .tria-timeline-year {
-    display: inline-block;
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--accent, #068e8c);
-    background: rgba(6,142,140,0.07);
-    padding: 4px 14px;
-    border-radius: 100px;
-    margin-bottom: 12px;
-  }
-
-  .tria-timeline-title {
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: #0b0d17;
-    margin-bottom: 10px;
-    letter-spacing: -0.01em;
-  }
-
-  .tria-timeline-desc {
-    font-size: 0.85rem;
-    color: #777;
-    line-height: 1.7;
-    margin: 0;
+  /* Cards get a subtle gray tint so they stand out on the white section */
+  .tria-ab-culture-diff .tria-ab-culture-card {
+    background: linear-gradient(180deg, #f8fafb 0%, #f1f4f6 100%);
   }
 
   /* ═══════════════════════════════════════
@@ -770,10 +617,6 @@ const locale = Astro.currentLocale || "en";
 
   @media (max-width: 768px) {
     .tria-ab-culture-card { padding: 36px 28px; }
-    .tria-timeline { padding-left: 30px; }
-    .tria-timeline-item { padding-left: 30px; }
-    .tria-timeline-dot { left: -25px; width: 12px; height: 12px; }
-    .tria-timeline-content { padding: 24px 24px; }
     .tria-mb-80 { margin-bottom: 60px; }
   }
 
@@ -798,14 +641,6 @@ const locale = Astro.currentLocale || "en";
       margin-bottom: 18px;
     }
     .tria-ab-members-row { margin-top: 60px; }
-
-    .tria-timeline { padding-left: 24px; }
-    .tria-timeline-item { padding-left: 24px; margin-bottom: 40px; }
-    .tria-timeline-dot { left: -19px; width: 10px; height: 10px; }
-    .tria-timeline-content { padding: 20px 20px; border-radius: 14px; }
-    .tria-timeline-year { font-size: 0.7rem; }
-    .tria-timeline-title { font-size: 1rem; }
-    .tria-timeline-desc { font-size: 0.8rem; }
 
     .tria-ab-mission-text { font-size: 0.9rem; }
     .tria-ab-mission-title { font-size: clamp(1.7rem, 7vw, 2.2rem); }
@@ -838,7 +673,5 @@ const locale = Astro.currentLocale || "en";
     .tria-team-card .tria-secrc-text h5 {
       font-size: 1rem;
     }
-    .tria-timeline-item { margin-bottom: 32px; }
-    .tria-timeline-content { padding: 16px 16px; }
   }
 </style>

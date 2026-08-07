@@ -359,7 +359,7 @@ const services = [
     },
   }}>
 
-  <PageBanner suptitleKey="services.hero.suptitle" headingKey="services.hero.title" descriptionKey="services.hero.desc" />
+  <PageBanner headingKey="services.hero.title" descriptionKey="services.hero.desc" crumbKey="nav.services" />
 
   <!-- ═══════════════════════════════════════════════
        SERVICES & CAPABILITIES — light
@@ -397,6 +397,7 @@ const services = [
             </div>
             <div class="tria-tbl-detail" id={`detail-${service.slug}`} data-accordion-panel>
               <div class="tria-tbl-detail-inner">
+                <div class="tria-tbl-detail-body">
 
               <!-- overview -->
               <div class="tria-tbl-overview">
@@ -430,6 +431,7 @@ const services = [
                 ))}
               </div>
 
+                </div>
               </div>
             </div>
           </div>
@@ -711,7 +713,7 @@ const services = [
     display: grid;
     grid-template-rows: 0fr;
     visibility: hidden;
-    transition: grid-template-rows 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    transition: grid-template-rows 0.55s cubic-bezier(0.4, 0, 0.2, 1),
                 visibility 0s linear 0.55s;
   }
 
@@ -725,6 +727,12 @@ const services = [
   .tria-tbl-detail-inner {
     overflow: hidden;
     min-height: 0;
+  }
+
+  /* Padding lives on a child wrapper so the collapsing track can reach 0px.
+     (Padding on the track itself keeps it ~56px tall and freezes the close
+     animation, then visibility snaps it hidden — the abrupt disappearance.) */
+  .tria-tbl-detail-body {
     padding: 8px 32px 48px 160px;
   }
 
@@ -978,7 +986,7 @@ const services = [
      ═══════════════════════════════════════ */
   @media (max-width: 991px) {
     .tria-tbl-row { gap: 24px 32px; }
-    .tria-tbl-detail-inner { padding-left: 120px; }
+    .tria-tbl-detail-body { padding-left: 120px; }
     .tria-tbl-tools { grid-template-columns: repeat(2, 1fr); }
     .tria-eng-card { padding: 36px 28px; margin-bottom: 24px; }
     .tria-eng-card:last-child { margin-bottom: 0; }
@@ -1004,7 +1012,7 @@ const services = [
     .tria-tbl-title { font-size: 1.15rem; }
     .tria-tbl-desc { font-size: 0.8rem; }
     .tria-tbl-toggle { font-size: 0.62rem; gap: 6px; padding: 8px 14px; }
-    .tria-tbl-detail-inner { padding: 8px 20px 40px 20px; }
+    .tria-tbl-detail-body { padding: 8px 20px 40px 20px; }
     .tria-tbl-overview p { font-size: 0.82rem; }
     .tria-tbl-feats { gap: 24px; margin-top: 36px; padding-top: 36px; }
     .tria-tbl-feat-title { font-size: 0.9rem; }

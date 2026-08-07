@@ -787,6 +787,58 @@ spaces
   }
 }
 
+/* ── Phone spacing cascade — lives here (after the ≤992px rules above) so the
+   tighter values win on small screens across every page ── */
+@media (max-width: 359px) {
+  .tria-p-120-120 { padding-top: 48px; padding-bottom: 48px; }
+  .tria-p-120-90 { padding-top: 48px; padding-bottom: 36px; }
+  .tria-p-120-60 { padding-top: 48px; padding-bottom: 24px; }
+  .tria-p-90-90 { padding-top: 40px; padding-bottom: 40px; }
+  .tria-p-90-120 { padding-top: 40px; padding-bottom: 48px; }
+  .tria-p-120-0 { padding-top: 48px; }
+  .tria-p-0-120 { padding-bottom: 48px; }
+  .tria-p-0-90 { padding-bottom: 36px; }
+  .tria-p-120-30 { padding-top: 48px; padding-bottom: 12px; }
+  .tria-p-100-100 { padding-top: 40px; padding-bottom: 40px; }
+  .tria-mb-120 { margin-bottom: 48px; }
+  .tria-mb-90 { margin-bottom: 40px; }
+  .tria-mb-60 { margin-bottom: 32px; }
+  .tria-mb-30 { margin-bottom: 20px; }
+}
+
+@media (min-width: 360px) and (max-width: 480px) {
+  .tria-p-120-120 { padding-top: 56px; padding-bottom: 56px; }
+  .tria-p-120-90 { padding-top: 56px; padding-bottom: 40px; }
+  .tria-p-120-60 { padding-top: 56px; padding-bottom: 28px; }
+  .tria-p-90-90 { padding-top: 44px; padding-bottom: 44px; }
+  .tria-p-90-120 { padding-top: 44px; padding-bottom: 56px; }
+  .tria-p-120-0 { padding-top: 56px; }
+  .tria-p-0-120 { padding-bottom: 56px; }
+  .tria-p-0-90 { padding-bottom: 40px; }
+  .tria-p-120-30 { padding-top: 56px; padding-bottom: 14px; }
+  .tria-p-100-100 { padding-top: 44px; padding-bottom: 44px; }
+  .tria-mb-120 { margin-bottom: 56px; }
+  .tria-mb-90 { margin-bottom: 44px; }
+  .tria-mb-60 { margin-bottom: 36px; }
+  .tria-mb-30 { margin-bottom: 22px; }
+}
+
+@media (min-width: 481px) and (max-width: 576px) {
+  .tria-p-120-120 { padding-top: 60px; padding-bottom: 60px; }
+  .tria-p-120-90 { padding-top: 60px; padding-bottom: 44px; }
+  .tria-p-120-60 { padding-top: 60px; padding-bottom: 30px; }
+  .tria-p-90-90 { padding-top: 48px; padding-bottom: 48px; }
+  .tria-p-90-120 { padding-top: 48px; padding-bottom: 60px; }
+  .tria-p-120-0 { padding-top: 60px; }
+  .tria-p-0-120 { padding-bottom: 60px; }
+  .tria-p-0-90 { padding-bottom: 44px; }
+  .tria-p-120-30 { padding-top: 60px; padding-bottom: 16px; }
+  .tria-p-100-100 { padding-top: 50px; padding-bottom: 50px; }
+  .tria-mb-120 { margin-bottom: 60px; }
+  .tria-mb-90 { margin-bottom: 48px; }
+  .tria-mb-60 { margin-bottom: 40px; }
+}
+
 .tria-adaptive-right {
   width: 100%;
   display: -webkit-box;
@@ -874,11 +926,12 @@ scrollbar
 @media screen and (max-width: 1200px) {
   .tria-frame .tria-frame-top {
     height: 90px;
-    background-color: #080a14;
-    border-bottom: solid 1px rgba(255, 255, 255, 0.1);
+    background-color: rgba(8, 10, 20, 0.55);
+    border-bottom: solid 1px rgba(255, 255, 255, 0.12);
     padding: 0 30px;
-    -webkit-backdrop-filter: blur(8px);
-    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(18px) saturate(1.5);
+    backdrop-filter: blur(18px) saturate(1.5);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
   }
   .tria-frame .tria-frame-top .tria-logo {
     color: rgb(255, 255, 255) !important;
@@ -967,6 +1020,148 @@ scrollbar
   }
 }
 
+/* ═══════════════════════════════════════════════════════════════
+   GLASS FRAME (collision mode) — applies the mobile glass top-bar
+   at ANY screen width.
+   Toggled by JS in Layout.astro: when the desktop frame's controls
+   collide (logo / hamburger overlap the rotated side strips: page
+   name, lang switcher, back-to-top) the <html> gets
+   .tria-frame-glass and these rules take over — same look & feel as
+   mobile, but adapted to whatever width triggered the collision.
+   ═══════════════════════════════════════════════════════════════ */
+html.tria-frame-glass .tria-frame {
+  padding: 0;
+  z-index: 999;
+  height: 90px;
+}
+
+html.tria-frame-glass .tria-frame .tria-frame-top {
+  height: 90px;
+  background-color: rgba(8, 10, 20, 0.55);
+  border-bottom: solid 1px rgba(255, 255, 255, 0.12);
+  padding: 0 30px;
+  -webkit-backdrop-filter: blur(18px) saturate(1.5);
+  backdrop-filter: blur(18px) saturate(1.5);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+}
+
+/* Force light text/bars on the dark glass surface (inline theme gradient
+   uses element styles, so these need !important to win) */
+html.tria-frame-glass .tria-frame .tria-frame-top .tria-logo {
+  color: rgb(255, 255, 255) !important;
+  background-image: none !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+
+html.tria-frame-glass .tria-frame .tria-frame-top .tria-menu-btn span {
+  background: rgb(255, 255, 255) !important;
+}
+
+html.tria-frame-glass .tria-frame .tria-frame-top .tria-logo span[data-i="4"] {
+  color: #fff !important;
+}
+
+/* Rotated side strips are the source of the collision — hide them entirely */
+html.tria-frame-glass .tria-frame .tria-frame-bottom {
+  display: none;
+}
+
+/* Bring the mobile language switcher into the top bar */
+html.tria-frame-glass .tria-mobile-lang {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+html.tria-frame-glass .tria-frame-top-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+html.tria-frame-glass .tria-mobile-lang-btn {
+  pointer-events: all;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 4px 10px;
+  border-radius: 12px;
+  position: relative;
+}
+
+html.tria-frame-glass .tria-mobile-lang-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  -webkit-transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1), left 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1), left 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html.tria-frame-glass .tria-mobile-lang-btn.is-active {
+  color: #fff;
+  font-weight: 700;
+}
+
+html.tria-frame-glass .tria-mobile-lang-btn.is-active::after {
+  width: 100%;
+  left: 0;
+}
+
+html.tria-frame-glass .tria-mobile-lang-btn:hover {
+  color: #fff;
+}
+
+html.tria-frame-glass .tria-mobile-lang-btn.tria-on-dark {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+html.tria-frame-glass .tria-mobile-lang-btn.is-active.tria-on-dark {
+  color: #fff;
+}
+
+html.tria-frame-glass .tria-mobile-lang-sep {
+  display: none;
+}
+
+/* Narrow widths: mirror the mobile breakpoints inside glass mode */
+@media screen and (max-width: 576px) {
+  html.tria-frame-glass .tria-frame,
+  html.tria-frame-glass .tria-frame .tria-frame-top {
+    height: 72px;
+    padding: 0 20px;
+  }
+  html.tria-frame-glass .tria-frame .tria-frame-top .tria-logo {
+    font-size: 30px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  html.tria-frame-glass .tria-frame,
+  html.tria-frame-glass .tria-frame .tria-frame-top {
+    height: 64px;
+    padding: 0 14px;
+  }
+  html.tria-frame-glass .tria-frame .tria-frame-top .tria-logo {
+    font-size: 26px;
+  }
+  html.tria-frame-glass .tria-mobile-lang-btn {
+    font-size: 10px;
+    padding: 3px 1px;
+  }
+  html.tria-frame-glass .tria-frame-top-right {
+    gap: 10px;
+  }
+}
+
 @media screen and (max-width: 576px) {
   .tria-frame {
     height: 72px;
@@ -999,6 +1194,9 @@ scrollbar
   }
 }
 .tria-frame .tria-frame-bottom {
+  /* Cap the rotated side strips on short viewports so they never reach the
+     top bar (logo / hamburger). Floor = content height (~128px). */
+  --tria-strip-len: min(300px, max(128px, calc(100vh - 240px)));
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1021,10 +1219,10 @@ scrollbar
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 12px;
-  width: 300px;
+  width: var(--tria-strip-len);
   color: rgb(0, 0, 0);
-  -webkit-transform: rotate(-90deg) translateX(138px) translateY(-138px);
-  transform: rotate(-90deg) translateX(138px) translateY(-138px);
+  -webkit-transform: rotate(-90deg) translateX(calc(var(--tria-strip-len) / 2 - 12px)) translateY(calc(12px - var(--tria-strip-len) / 2));
+  transform: rotate(-90deg) translateX(calc(var(--tria-strip-len) / 2 - 12px)) translateY(calc(12px - var(--tria-strip-len) / 2));
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1118,9 +1316,9 @@ scrollbar
   background: rgba(255, 255, 255, 0.2) !important;
 }
 .tria-frame .tria-frame-bottom .tria-back-to-top {
-  width: 300px;
-  -webkit-transform: rotate(-90deg) translateX(130px) translateY(130px);
-  transform: rotate(-90deg) translateX(130px) translateY(130px);
+  width: var(--tria-strip-len);
+  -webkit-transform: rotate(-90deg) translateX(calc(var(--tria-strip-len) / 2 - 20px)) translateY(calc(var(--tria-strip-len) / 2 - 20px));
+  transform: rotate(-90deg) translateX(calc(var(--tria-strip-len) / 2 - 20px)) translateY(calc(var(--tria-strip-len) / 2 - 20px));
   pointer-events: all;
 }
 

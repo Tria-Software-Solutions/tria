@@ -30,6 +30,8 @@ const {
   viewAllHref = "",
   ctaText = "View project",
   wikiText = "View wiki",
+  prevText = "Prev",
+  nextText = "Next",
   projects = [],
   padding = 'tria-p-120-120'
 } = Astro.props;
@@ -123,6 +125,9 @@ const {
             />
             <div class="tria-feat-screen-viewport" id="featViewport">
               <div class="tria-feat-screen-loader" id="featLoader"></div>
+              <!-- Trusted cross-origin demo app — a plain iframe (no sandbox) avoids
+                   the Chrome "allow-scripts + allow-same-origin can escape sandboxing"
+                   warning while keeping the embedded app fully functional -->
               <iframe
                 id="featFrame"
                 title="Project live preview"
@@ -148,15 +153,14 @@ const {
 
     <!-- Prev / Next — centered across the whole section -->
     <div class="tria-feat-nav" id="featNav">
-      <button type="button" class="tria-feat-nav-btn" id="featPrev" aria-label="Previous project">
+      <button type="button" class="tria-feat-nav-btn" id="featPrev" aria-label={prevText}>
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
           <path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        <span>Prev</span>
+        <span>{prevText}</span>
       </button>
-      <span class="tria-feat-nav-count" id="featNavCount">01 / 05</span>
-      <button type="button" class="tria-feat-nav-btn" id="featNext" aria-label="Next project">
-        <span>Next</span>
+      <button type="button" class="tria-feat-nav-btn" id="featNext" aria-label={nextText}>
+        <span>{nextText}</span>
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
           <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
@@ -181,6 +185,7 @@ const {
           />
           <div class="tria-feat-lightbox-cutout" id="featLightboxCutout">
             <div class="tria-feat-lightbox-loader" id="featLightboxLoader"></div>
+            <!-- Same trusted cross-origin preview — no sandbox (see note above) -->
             <iframe id="featLightboxFrame" title="Project preview (enlarged)" referrerpolicy="no-referrer"></iframe>
             <div class="tria-feat-lightbox-fallback" id="featLightboxFallback">
               <img src="" alt="" />
@@ -433,21 +438,6 @@ const {
   }
   .tria-feat-nav-btn:first-child:hover svg { transform: translateX(-3px); }
   .tria-feat-nav-btn:active svg { transform: scale(0.9); }
-  .tria-feat-nav-count {
-    font-size: 0.68rem;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    color: rgba(0, 0, 0, 0.28);
-    font-variant-numeric: tabular-nums;
-  }
-  .tria-feat-nav-count.tria-flash {
-    animation: tria-count-flash 0.5s var(--ease-spring);
-  }
-  @keyframes tria-count-flash {
-    0% { opacity: 0; transform: translateY(8px); }
-    100% { opacity: 1; transform: none; }
-  }
-
   /* ═══════ LAPTOP STAGE — live demo preview ═══════ */
   .tria-feat-stage {
     position: sticky;
@@ -471,6 +461,15 @@ const {
   .tria-feat-stage:hover .tria-feat-laptop-media,
   .tria-feat-stage:focus-within .tria-feat-laptop-media {
     filter: blur(3px) brightness(0.95) saturate(0.95);
+  }
+
+  /* After closing the lightbox the pointer is still over the laptop, so the
+     hover blur would stay stuck — this class clears it until the pointer
+     leaves the stage (then a fresh hover re-enables the blur). */
+  .tria-feat-stage.tria-feat-blur-cleared .tria-feat-laptop-media,
+  .tria-feat-stage.tria-feat-blur-cleared:hover .tria-feat-laptop-media,
+  .tria-feat-stage.tria-feat-blur-cleared:focus-within .tria-feat-laptop-media {
+    filter: none;
   }
 
   /* ── Expand button (centered over the laptop, appears on hover) ── */
@@ -757,7 +756,6 @@ const {
     .tria-feat-nav { margin-top: 64px; }
     .tria-feat-nav-btn { font-size: 0.68rem; }
     .tria-feat-nav-btn svg { width: 32px; height: 32px; padding: 7px; }
-    .tria-feat-nav-count { font-size: 0.64rem; }
   }
 
   /* ── Touch: keep the expand button visible (no hover) but anchored below
@@ -808,7 +806,6 @@ const {
     var viewport = document.getElementById('featViewport');
     var navPrev = document.getElementById('featPrev');
     var navNext = document.getElementById('featNext');
-    var navCount = document.getElementById('featNavCount');
     var wikiLink = document.getElementById('featWiki');
     if (!frame || !loader) return;
 
@@ -836,8 +833,6 @@ const {
     var sectionVisible = false;
     var paused = false;
 
-    function pad(n) { return String(n).padStart(2, '0'); }
-
     function updateStage(row, trigger) {
       var live = (row.getAttribute('data-live') || '').trim();
       var fb = (row.getAttribute('data-fallback') || '').trim();
@@ -856,13 +851,6 @@ const {
           wikiLink.removeAttribute('data-href');
           wikiLink.setAttribute('aria-disabled', 'true');
         }
-      }
-
-      if (navCount) {
-        navCount.textContent = pad(parseInt(row.getAttribute('data-index') || '0') + 1) + ' / ' + pad(rows.length);
-        navCount.classList.remove('tria-flash');
-        void navCount.offsetWidth;
-        navCount.classList.add('tria-flash');
       }
 
       if (live) {
@@ -1015,6 +1003,24 @@ const {
       document.body.style.overflow = '';
       if (window.triaLenis) window.triaLenis.start();
       if (sectionVisible) schedule();
+
+      /* The pointer is still over the laptop after closing → clear the hover
+         blur (the stage keeps :hover since the mouse didn't move away). Remove
+         the class on mouseleave (pointer left) or mouseenter (fresh hover) so
+         the next hover blurs again. Covers both close paths: Escape/outside
+         click with the pointer on the laptop, and backdrop clicks when the
+         pointer is elsewhere. */
+      var stageEl = document.getElementById('featStage');
+      if (stageEl) {
+        stageEl.classList.add('tria-feat-blur-cleared');
+        function clearBlurFree() {
+          stageEl.classList.remove('tria-feat-blur-cleared');
+          stageEl.removeEventListener('mouseleave', clearBlurFree);
+          stageEl.removeEventListener('mouseenter', clearBlurFree);
+        }
+        stageEl.addEventListener('mouseleave', clearBlurFree);
+        stageEl.addEventListener('mouseenter', clearBlurFree);
+      }
     }
 
     /* Keep Tab inside the dialog while it's open */

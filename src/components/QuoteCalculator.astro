@@ -7,78 +7,190 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
 
 /* ── Project type (base price + timeline) ── */
 const types = [
-  { key: 'landing', label: t("quote.typeLanding"), desc: t("quote.typeLandingDesc"), base: 400, weeks: [2, 4] },
-  { key: 'website', label: t("quote.typeWebsite"), desc: t("quote.typeWebsiteDesc"), base: 800, weeks: [3, 6] },
-  { key: 'ecommerce', label: t("quote.typeEcommerce"), desc: t("quote.typeEcommerceDesc"), base: 1800, weeks: [6, 10] },
-  { key: 'webapp', label: t("quote.typeWebapp"), desc: t("quote.typeWebappDesc"), base: 2500, weeks: [8, 14] },
-  { key: 'mobile', label: t("quote.typeMobile"), desc: t("quote.typeMobileDesc"), base: 3500, weeks: [10, 16] },
-  { key: 'backend', label: t("quote.typeBackend"), desc: t("quote.typeBackendDesc"), base: 2500, weeks: [6, 12] },
-  { key: 'ai', label: t("quote.typeAi"), desc: t("quote.typeAiDesc"), base: 4000, weeks: [8, 16] },
-  { key: 'custom', label: t("quote.typeCustom"), desc: t("quote.typeCustomDesc"), base: 6000, weeks: [12, 24] },
+  {
+    key: 'landing', label: t("quote.typeLanding"), desc: t("quote.typeLandingDesc"), base: 700, weeks: [2, 4],
+    includes: [], scale: 'screens',
+    groups: ['screens', 'complexity', 'deadline', 'design', 'integrations', 'features']
+  },
+  {
+    key: 'website', label: t("quote.typeWebsite"), desc: t("quote.typeWebsiteDesc"), base: 1500, weeks: [3, 6],
+    includes: ['landing'], scale: 'screens',
+    groups: ['screens', 'complexity', 'users', 'deadline', 'design', 'integrations', 'features']
+  },
+  {
+    key: 'ecommerce', label: t("quote.typeEcommerce"), desc: t("quote.typeEcommerceDesc"), base: 2500, weeks: [6, 10],
+    includes: ['website', 'landing'], scale: 'screens',
+    groups: ['screens', 'complexity', 'users', 'deadline', 'design', 'integrations', 'features']
+  },
+  {
+    key: 'webapp', label: t("quote.typeWebapp"), desc: t("quote.typeWebappDesc"), base: 5000, weeks: [8, 14],
+    includes: [], scale: 'screens',
+    groups: ['screens', 'complexity', 'users', 'deadline', 'design', 'integrations', 'features']
+  },
+  {
+    key: 'mobile', label: t("quote.typeMobile"), desc: t("quote.typeMobileDesc"), base: 6000, weeks: [10, 16],
+    includes: [], scale: 'screens',
+    groups: ['screens', 'complexity', 'users', 'deadline', 'design', 'integrations', 'features']
+  },
+  {
+    key: 'backend', label: t("quote.typeBackend"), desc: t("quote.typeBackendDesc"), base: 3000, weeks: [6, 12],
+    includes: [], scale: 'endpoints',
+    groups: ['endpoints', 'complexity', 'users', 'deadline', 'integrations', 'features']
+  },
+  {
+    key: 'desktop', label: t("quote.typeDesktop"), desc: t("quote.typeDesktopDesc"), base: 4000, weeks: [8, 14],
+    includes: [], scale: 'screens',
+    groups: ['screens', 'complexity', 'users', 'deadline', 'design', 'integrations', 'features']
+  },
+  {
+    key: 'ai', label: t("quote.typeAi"), desc: t("quote.typeAiDesc"), base: 4000, weeks: [8, 16],
+    includes: [], scale: 'endpoints',
+    groups: ['endpoints', 'complexity', 'users', 'deadline', 'integrations', 'features']
+  },
+  {
+    key: 'cloud', label: t("quote.typeCloud"), desc: t("quote.typeCloudDesc"), base: 3000, weeks: [4, 10],
+    includes: [], scale: 'infra',
+    groups: ['infra', 'complexity', 'users', 'deadline', 'integrations', 'features']
+  },
+  {
+    key: 'data', label: t("quote.typeData"), desc: t("quote.typeDataDesc"), base: 3000, weeks: [6, 12],
+    includes: [], scale: 'infra',
+    groups: ['infra', 'complexity', 'users', 'deadline', 'integrations', 'features']
+  },
+  {
+    key: 'security', label: t("quote.typeSecurity"), desc: t("quote.typeSecurityDesc"), base: 3000, weeks: [4, 10],
+    includes: [], scale: 'infra',
+    groups: ['infra', 'complexity', 'deadline', 'integrations', 'features']
+  },
+  {
+    key: 'custom', label: t("quote.typeCustom"), desc: t("quote.typeCustomDesc"), base: 10000, weeks: [12, 24],
+    includes: [], scale: 'screens',
+    groups: ['screens', 'complexity', 'users', 'deadline', 'design', 'integrations', 'features']
+  },
 ];
 
-/* ── Screens & pages ── */
+/* ── Screens & pages (slider levels) ── */
 const screens = [
   { key: 's1', label: t("quote.screens1"), desc: t("quote.screens1Desc"), mult: 1 },
-  { key: 's2', label: t("quote.screens2"), desc: t("quote.screens2Desc"), mult: 1.35 },
-  { key: 's3', label: t("quote.screens3"), desc: t("quote.screens3Desc"), mult: 1.8 },
-  { key: 's4', label: t("quote.screens4"), desc: t("quote.screens4Desc"), mult: 2.4 },
-  { key: 's5', label: t("quote.screens5"), desc: t("quote.screens5Desc"), mult: 3.2 },
+  { key: 's2', label: t("quote.screens2"), desc: t("quote.screens2Desc"), mult: 1.1 },
+  { key: 's3', label: t("quote.screens3"), desc: t("quote.screens3Desc"), mult: 1.25 },
+  { key: 's4', label: t("quote.screens4"), desc: t("quote.screens4Desc"), mult: 1.45 },
+  { key: 's5', label: t("quote.screens5"), desc: t("quote.screens5Desc"), mult: 1.65 },
 ];
+
+/* ── API / endpoints scale (backend, AI) ── */
+const endpoints = [
+  { key: 'e1', label: t("quote.endpoints1"), desc: t("quote.endpoints1Desc"), mult: 1 },
+  { key: 'e2', label: t("quote.endpoints2"), desc: t("quote.endpoints2Desc"), mult: 1.1 },
+  { key: 'e3', label: t("quote.endpoints3"), desc: t("quote.endpoints3Desc"), mult: 1.25 },
+  { key: 'e4', label: t("quote.endpoints4"), desc: t("quote.endpoints4Desc"), mult: 1.45 },
+];
+
+/* ── Infrastructure / data scale (cloud, data, security) ── */
+const infras = [
+  { key: 'i1', label: t("quote.infra1"), desc: t("quote.infra1Desc"), mult: 1 },
+  { key: 'i2', label: t("quote.infra2"), desc: t("quote.infra2Desc"), mult: 1.1 },
+  { key: 'i3', label: t("quote.infra3"), desc: t("quote.infra3Desc"), mult: 1.25 },
+  { key: 'i4', label: t("quote.infra4"), desc: t("quote.infra4Desc"), mult: 1.45 },
+];
+
+/* Format a base price as USD, e.g. 7500 -> "$7,500" */
+function fmtUsd(n: number): string {
+  return '$' + n.toLocaleString('en-US');
+}
+
+const fromLabel = t("pricing.fromLabel");
+
+/* Which feature add-ons make sense per project type */
+const featureTypes: Record<string, string[]> = {
+  auth: ['webapp', 'ecommerce', 'mobile', 'desktop', 'custom'],
+  admin: ['webapp', 'ecommerce', 'mobile', 'desktop', 'backend', 'data', 'custom'],
+  payments: ['ecommerce', 'webapp', 'mobile', 'custom'],
+  integrations: ['landing', 'website', 'ecommerce', 'webapp', 'mobile', 'desktop', 'backend', 'ai', 'cloud', 'data', 'custom'],
+  cms: ['website', 'ecommerce', 'custom'],
+  multilang: ['website', 'ecommerce', 'webapp', 'mobile', 'desktop', 'custom'],
+  uiux: ['landing', 'website', 'ecommerce', 'webapp', 'mobile', 'desktop', 'custom'],
+  seo: ['landing', 'website', 'ecommerce', 'webapp', 'custom'],
+  analytics: ['landing', 'website', 'ecommerce', 'webapp', 'mobile', 'desktop', 'backend', 'ai', 'cloud', 'data', 'custom'],
+  security: ['ecommerce', 'webapp', 'mobile', 'desktop', 'backend', 'ai', 'cloud', 'data', 'security', 'custom'],
+  support: ['landing', 'website', 'ecommerce', 'webapp', 'mobile', 'desktop', 'backend', 'ai', 'cloud', 'data', 'security', 'custom'],
+  maintenance: ['landing', 'website', 'ecommerce', 'webapp', 'mobile', 'desktop', 'backend', 'ai', 'cloud', 'data', 'security', 'custom'],
+};
+
+/* Features already covered by each project type's BASE price. They are shown
+   as "Included" in the wizard and are never charged again as add-ons — this
+   prevents double-counting (e.g. an E-commerce already includes payments and
+   customer accounts, so selecting those features costs $0). Inheritance:
+   types that include other types (ecommerce → website → landing) inherit their
+   included features too. */
+const includedFeatures: Record<string, string[]> = {
+  landing: ['seo', 'analytics'],
+  website: ['cms', 'seo', 'analytics'],
+  ecommerce: ['payments', 'auth', 'admin', 'cms', 'seo', 'analytics'],
+  webapp: ['auth', 'admin', 'analytics'],
+  mobile: ['auth', 'analytics'],
+  backend: ['security'],
+  desktop: ['auth'],
+  ai: ['integrations', 'analytics'],
+  cloud: ['security', 'analytics'],
+  data: ['integrations', 'analytics'],
+  security: ['security'],
+  custom: [],
+};
 
 /* ── Complexity ── */
 const complexities = [
   { key: 'basic', label: t("quote.complexityBasic"), desc: t("quote.complexityBasicDesc"), mult: 1 },
-  { key: 'standard', label: t("quote.complexityStandard"), desc: t("quote.complexityStandardDesc"), mult: 1.25 },
-  { key: 'advanced', label: t("quote.complexityAdvanced"), desc: t("quote.complexityAdvancedDesc"), mult: 1.6 },
+  { key: 'standard', label: t("quote.complexityStandard"), desc: t("quote.complexityStandardDesc"), mult: 1.1 },
+  { key: 'advanced', label: t("quote.complexityAdvanced"), desc: t("quote.complexityAdvancedDesc"), mult: 1.25 },
 ];
 
 /* ── Expected users ── */
 const users = [
   { key: 'u1', label: t("quote.users1"), desc: t("quote.users1Desc"), mult: 1 },
-  { key: 'u2', label: t("quote.users2"), desc: t("quote.users2Desc"), mult: 1.12 },
-  { key: 'u3', label: t("quote.users3"), desc: t("quote.users3Desc"), mult: 1.3 },
-  { key: 'u4', label: t("quote.users4"), desc: t("quote.users4Desc"), mult: 1.55 },
-  { key: 'u5', label: t("quote.users5"), desc: t("quote.users5Desc"), mult: 1.85 },
+  { key: 'u2', label: t("quote.users2"), desc: t("quote.users2Desc"), mult: 1.05 },
+  { key: 'u3', label: t("quote.users3"), desc: t("quote.users3Desc"), mult: 1.15 },
+  { key: 'u4', label: t("quote.users4"), desc: t("quote.users4Desc"), mult: 1.3 },
+  { key: 'u5', label: t("quote.users5"), desc: t("quote.users5Desc"), mult: 1.45 },
 ];
 
 /* ── Deadline ── */
 const deadlines = [
-  { key: 'd1', label: t("quote.deadline1"), desc: t("quote.deadline1Desc"), mult: 0.9 },
+  { key: 'd1', label: t("quote.deadline1"), desc: t("quote.deadline1Desc"), mult: 0.95 },
   { key: 'd2', label: t("quote.deadline2"), desc: t("quote.deadline2Desc"), mult: 1 },
-  { key: 'd3', label: t("quote.deadline3"), desc: t("quote.deadline3Desc"), mult: 1.2 },
-  { key: 'd4', label: t("quote.deadline4"), desc: t("quote.deadline4Desc"), mult: 1.35 },
+  { key: 'd3', label: t("quote.deadline3"), desc: t("quote.deadline3Desc"), mult: 1.1 },
+  { key: 'd4', label: t("quote.deadline4"), desc: t("quote.deadline4Desc"), mult: 1.2 },
 ];
 
 /* ── UI/UX design ── */
 const designs = [
-  { key: 'ds1', label: t("quote.design1"), desc: t("quote.design1Desc"), mult: 0.92 },
+  { key: 'ds1', label: t("quote.design1"), desc: t("quote.design1Desc"), mult: 0.97 },
   { key: 'ds2', label: t("quote.design2"), desc: t("quote.design2Desc"), mult: 1 },
-  { key: 'ds3', label: t("quote.design3"), desc: t("quote.design3Desc"), mult: 1.25 },
+  { key: 'ds3', label: t("quote.design3"), desc: t("quote.design3Desc"), mult: 1.12 },
 ];
 
 /* ── Integrations ── */
 const integrations = [
   { key: 'i1', label: t("quote.integrations1"), desc: t("quote.integrations1Desc"), mult: 1 },
-  { key: 'i2', label: t("quote.integrations2"), desc: t("quote.integrations2Desc"), mult: 1.1 },
-  { key: 'i3', label: t("quote.integrations3"), desc: t("quote.integrations3Desc"), mult: 1.22 },
-  { key: 'i4', label: t("quote.integrations4"), desc: t("quote.integrations4Desc"), mult: 1.4 },
+  { key: 'i2', label: t("quote.integrations2"), desc: t("quote.integrations2Desc"), mult: 1.05 },
+  { key: 'i3', label: t("quote.integrations3"), desc: t("quote.integrations3Desc"), mult: 1.12 },
+  { key: 'i4', label: t("quote.integrations4"), desc: t("quote.integrations4Desc"), mult: 1.25 },
 ];
 
 /* ── Features (additive) ── */
 const features = [
-  { key: 'auth', label: t("quote.featureAuth"), price: 350 },
-  { key: 'admin', label: t("quote.featureAdmin"), price: 600 },
-  { key: 'payments', label: t("quote.featurePayments"), price: 500 },
-  { key: 'integrations', label: t("quote.featureIntegrations"), price: 400 },
-  { key: 'cms', label: t("quote.featureCms"), price: 350 },
-  { key: 'multilang', label: t("quote.featureMultilang"), price: 250 },
-  { key: 'uiux', label: t("quote.featureUiux"), price: 700 },
-  { key: 'seo', label: t("quote.featureSeo"), price: 250 },
-  { key: 'analytics', label: t("quote.featureAnalytics"), price: 200 },
-  { key: 'security', label: t("quote.featureSecurity"), price: 400 },
-  { key: 'support', label: t("quote.featureSupport"), price: 300 },
-  { key: 'maintenance', label: t("quote.featureMaintenance"), price: 300 },
+  { key: 'auth', label: t("quote.featureAuth"), price: 300 },
+  { key: 'admin', label: t("quote.featureAdmin"), price: 400 },
+  { key: 'payments', label: t("quote.featurePayments"), price: 350 },
+  { key: 'integrations', label: t("quote.featureIntegrations"), price: 300 },
+  { key: 'cms', label: t("quote.featureCms"), price: 250 },
+  { key: 'multilang', label: t("quote.featureMultilang"), price: 200 },
+  { key: 'uiux', label: t("quote.featureUiux"), price: 500 },
+  { key: 'seo', label: t("quote.featureSeo"), price: 200 },
+  { key: 'analytics', label: t("quote.featureAnalytics"), price: 180 },
+  { key: 'security', label: t("quote.featureSecurity"), price: 300 },
+  { key: 'support', label: t("quote.featureSupport"), price: 250 },
+  { key: 'maintenance', label: t("quote.featureMaintenance"), price: 250 },
 ];
 
 interface Props {
@@ -87,26 +199,53 @@ interface Props {
 
 const { showHeader = false } = Astro.props;
 
+/* Approx. USD→CRC exchange rate (2025-26), used for the colones equivalent */
+const crcRate = 510;
+
 const quoteTexts = {
   weeks: t("quote.resultTimelineValue"),
-  base: t("quote.resultBase"),
-  screens: t("quote.resultScreens"),
-  complexity: t("quote.resultComplexity"),
-  users: t("quote.resultUsers"),
-  deadline: t("quote.resultDeadline"),
-  design: t("quote.resultDesign"),
-  integrations: t("quote.resultIntegrations"),
-  features: t("quote.resultFeatures"),
-  total: t("quote.resultTotal"),
-  more: "+{n}",
+  next: t("quote.next"),
   sendCta: t("quote.sendCta"),
   sending: t("quote.sending"),
   successTitle: t("quote.successTitle"),
   successText: t("quote.successText"),
   contactRequired: t("quote.contactRequired"),
-  resultCta: t("quote.resultCta"),
-  reset: t("quote.resultReset"),
+  total: t("quote.resultTotal"),
+  more: "+{n}",
+  barLabel: t("quote.barLabel"),
+  sheetClose: t("quote.sheetClose"),
+  resultEmpty: t("quote.resultEmpty"),
+  typeLabel: t("quote.resultType"),
+  companyLabel: t("quote.contactCompany"),
+  phoneLabel: t("quote.contactPhone"),
+  notesLabel: t("quote.contactNotes"),
+  sections: {
+    base: t("quote.resultBase"),
+    screens: t("quote.resultScreens"),
+    complexity: t("quote.resultComplexity"),
+    users: t("quote.resultUsers"),
+    deadline: t("quote.resultDeadline"),
+    design: t("quote.resultDesign"),
+    integrations: t("quote.resultIntegrations"),
+    features: t("quote.resultFeatures"),
+  },
+  included: t("quote.typeIncluded"),
 };
+
+const screensData = screens.map((s) => ({ key: s.key, label: s.label, desc: s.desc, mult: s.mult }));
+const endpointsData = endpoints.map((e) => ({ key: e.key, label: e.label, desc: e.desc, mult: e.mult }));
+const infrasData = infras.map((ig) => ({ key: ig.key, label: ig.label, desc: ig.desc, mult: ig.mult }));
+const scaleData: Record<string, { key: string; label: string; desc: string; mult: number }[]> = {
+  screens: screensData,
+  endpoints: endpointsData,
+  infra: infrasData,
+};
+const typeScaleMap: Record<string, string> = {};
+types.forEach((t) => { typeScaleMap[t.key] = t.scale; });
+const typeGroupMap: Record<string, string[]> = {};
+types.forEach((t) => { typeGroupMap[t.key] = t.groups; });
+const typeIncludeMap: Record<string, string[]> = {};
+types.forEach((t) => { typeIncludeMap[t.key] = t.includes; });
 
 /* Minimal line icons per project type (24×24, stroke-based) — inner SVG markup */
 const typeIcons: Record<string, string> = {
@@ -122,8 +261,16 @@ const typeIcons: Record<string, string> = {
     '<rect x="7" y="2.5" width="10" height="19" rx="2" stroke="currentColor" stroke-width="1.5"></rect><path d="M11 18.5h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>',
   backend:
     '<rect x="3" y="4" width="18" height="7" rx="2" stroke="currentColor" stroke-width="1.5"></rect><rect x="3" y="13" width="18" height="7" rx="2" stroke="currentColor" stroke-width="1.5"></rect><path d="M7 7.5h.01M7 16.5h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>',
+  desktop:
+    '<rect x="3" y="4" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.5"></rect><path d="M8 20h8M12 16v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>',
   ai:
     '<rect x="6" y="6" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.5"></rect><rect x="10" y="10" width="4" height="4" stroke="currentColor" stroke-width="1.5"></rect><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>',
+  cloud:
+    '<path d="M6.5 18.5a4.5 4.5 0 0 1-.6-8.96 6 6 0 0 1 11.63 1.63A3.8 3.8 0 0 1 17.5 18.5h-11z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path>',
+  data:
+    '<ellipse cx="12" cy="5.5" rx="8" ry="3" stroke="currentColor" stroke-width="1.5"></ellipse><path d="M4 5.5v13c0 1.66 3.58 3 8 3s8-1.34 8-3v-13" stroke="currentColor" stroke-width="1.5"></path><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3" stroke="currentColor" stroke-width="1.5"></path>',
+  security:
+    '<path d="M12 3l7 2.8v5c0 4.6-3 8.2-7 10.2-4-2-7-5.6-7-10.2v-5L12 3z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path><path d="M9 12l2.2 2.2L15 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>',
   custom:
     '<path d="M12 3l9 5-9 5-9-5 9-5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path><path d="M3 13l9 5 9-5" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path>',
 };
@@ -152,192 +299,328 @@ function typeIconSvg(key: string) {
       </div>
     )}
 
-    <div class="tria-quote-layout tria-up" id="tria-quote-layout">
-      {/* ── Form ── */}
-      <form class="tria-quote-form" id="tria-quote-form" novalidate>
-        {/* Step 1 — Type */}
-        <fieldset class="tria-quote-step">
-          <legend class="tria-quote-step-label" data-i18n="quote.stepType">{t("quote.stepType")}</legend>
-          <div class="tria-quote-types">
-            {types.map((type, i) => (
-              <label class="tria-quote-type">
-                <input type="radio" name="type" value={type.key} data-base={type.base} data-weeks={JSON.stringify(type.weeks)} data-label={type.label} checked={i === 0} />
-                <span class="tria-quote-type-card">
-                  <span class="tria-quote-type-icon" set:html={typeIconSvg(type.key)}></span>
-                  <span class="tria-quote-type-copy">
-                    <span class="tria-quote-type-name">{type.label}</span>
-                    <span class="tria-quote-type-desc">{type.desc}</span>
-                  </span>
-                  <span class="tria-quote-type-radio" aria-hidden="true">
-                    <svg width="10" height="10" viewBox="0 0 16 16" fill="none">
-                      <path d="M4 9l3 3 5-7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </span>
-                </span>
-              </label>
-            ))}
-          </div>
-        </fieldset>
-
-        {/* Step 2 — Screens */}
-        <fieldset class="tria-quote-step">
-          <legend class="tria-quote-step-label" data-i18n="quote.stepScreens">{t("quote.stepScreens")}</legend>
-          <div class="tria-quote-pills">
-            {screens.map((s, i) => (
-              <label class="tria-quote-pill">
-                <input type="radio" name="screens" value={s.key} data-mult={s.mult} data-label={s.label} checked={i === 1} />
-                <span class="tria-quote-pill-inner">
-                  <span class="tria-quote-pill-name">{s.label}</span>
-                  <span class="tria-quote-pill-desc">{s.desc}</span>
-                </span>
-              </label>
-            ))}
-          </div>
-        </fieldset>
-
-        {/* Step 3 — Complexity */}
-        <fieldset class="tria-quote-step">
-          <legend class="tria-quote-step-label" data-i18n="quote.stepComplexity">{t("quote.stepComplexity")}</legend>
-          <div class="tria-quote-pills tria-quote-pills--3">
-            {complexities.map((c, i) => (
-              <label class="tria-quote-pill">
-                <input type="radio" name="complexity" value={c.key} data-mult={c.mult} data-label={c.label} checked={i === 1} />
-                <span class="tria-quote-pill-inner">
-                  <span class="tria-quote-pill-name">{c.label}</span>
-                  <span class="tria-quote-pill-desc">{c.desc}</span>
-                </span>
-              </label>
-            ))}
-          </div>
-        </fieldset>
-
-        {/* Step 4 — Users */}
-        <fieldset class="tria-quote-step">
-          <legend class="tria-quote-step-label" data-i18n="quote.stepUsers">{t("quote.stepUsers")}</legend>
-          <div class="tria-quote-pills">
-            {users.map((u, i) => (
-              <label class="tria-quote-pill">
-                <input type="radio" name="users" value={u.key} data-mult={u.mult} data-label={u.label} checked={i === 1} />
-                <span class="tria-quote-pill-inner">
-                  <span class="tria-quote-pill-name">{u.label}</span>
-                  <span class="tria-quote-pill-desc">{u.desc}</span>
-                </span>
-              </label>
-            ))}
-          </div>
-        </fieldset>
-
-        {/* Step 5 — Deadline */}
-        <fieldset class="tria-quote-step">
-          <legend class="tria-quote-step-label" data-i18n="quote.stepDeadline">{t("quote.stepDeadline")}</legend>
-          <div class="tria-quote-pills tria-quote-pills--4">
-            {deadlines.map((dl, i) => (
-              <label class="tria-quote-pill">
-                <input type="radio" name="deadline" value={dl.key} data-mult={dl.mult} data-label={dl.label} checked={i === 1} />
-                <span class="tria-quote-pill-inner">
-                  <span class="tria-quote-pill-name">{dl.label}</span>
-                  <span class="tria-quote-pill-desc">{dl.desc}</span>
-                </span>
-              </label>
-            ))}
-          </div>
-        </fieldset>
-
-        {/* Step 6 — Design */}
-        <fieldset class="tria-quote-step">
-          <legend class="tria-quote-step-label" data-i18n="quote.stepDesign">{t("quote.stepDesign")}</legend>
-          <div class="tria-quote-pills tria-quote-pills--3">
-            {designs.map((ds, i) => (
-              <label class="tria-quote-pill">
-                <input type="radio" name="design" value={ds.key} data-mult={ds.mult} data-label={ds.label} checked={i === 1} />
-                <span class="tria-quote-pill-inner">
-                  <span class="tria-quote-pill-name">{ds.label}</span>
-                  <span class="tria-quote-pill-desc">{ds.desc}</span>
-                </span>
-              </label>
-            ))}
-          </div>
-        </fieldset>
-
-        {/* Step 7 — Integrations */}
-        <fieldset class="tria-quote-step">
-          <legend class="tria-quote-step-label" data-i18n="quote.stepIntegrations">{t("quote.stepIntegrations")}</legend>
-          <div class="tria-quote-pills tria-quote-pills--4">
-            {integrations.map((ig, i) => (
-              <label class="tria-quote-pill">
-                <input type="radio" name="integrations" value={ig.key} data-mult={ig.mult} data-label={ig.label} checked={i === 0} />
-                <span class="tria-quote-pill-inner">
-                  <span class="tria-quote-pill-name">{ig.label}</span>
-                  <span class="tria-quote-pill-desc">{ig.desc}</span>
-                </span>
-              </label>
-            ))}
-          </div>
-        </fieldset>
-
-        {/* Step 8 — Features */}
-        <fieldset class="tria-quote-step">
-          <legend class="tria-quote-step-label" data-i18n="quote.stepFeatures">{t("quote.stepFeatures")}</legend>
-          <div class="tria-quote-features">
-            {features.map((f) => (
-              <label class="tria-quote-feature">
-                <input type="checkbox" name="features" value={f.key} data-price={f.price} data-label={f.label} />
-                <span class="tria-quote-feature-check">
-                  <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                    <path d="M4 9l3 3 5-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </span>
-                <span class="tria-quote-feature-label">{f.label}</span>
-              </label>
-            ))}
-          </div>
-        </fieldset>
-
-        {/* Step 9 — Contact */}
-        <fieldset class="tria-quote-step tria-quote-step--contact">
-          <legend class="tria-quote-step-label" data-i18n="quote.stepContact">{t("quote.stepContact")}</legend>
-          <div class="tria-quote-contact">
-            <div class="tria-quote-contact-row">
-              <div class="tria-quote-field">
-                <label class="tria-quote-field-label" for="quote-name" data-i18n="quote.contactName">{t("quote.contactName")}</label>
-                <input class="tria-quote-input" type="text" id="quote-name" name="name" data-i18n-placeholder="quote.contactNamePh" placeholder={t("quote.contactNamePh")} />
-              </div>
-              <div class="tria-quote-field">
-                <label class="tria-quote-field-label" for="quote-email" data-i18n="quote.contactEmail">{t("quote.contactEmail")}</label>
-                <input class="tria-quote-input" type="email" id="quote-email" name="email" data-i18n-placeholder="quote.contactEmailPh" placeholder={t("quote.contactEmailPh")} />
+    <div class="tria-quote-shell tria-up" id="tria-quote-shell">
+      {/* ── Wizard column ── */}
+      <div class="tria-quote-wizard">
+        <form class="tria-quote-form" id="tria-quote-form" novalidate>
+          {/* Step 1 — Type */}
+          <div class="tria-quiz-step is-active" data-step="1" tabindex="-1">
+            <div class="tria-quiz-step-head">
+              <div>
+                <h3 class="tria-quiz-step-title" data-i18n="quote.wizardType">{t("quote.wizardType")}</h3>
+                <p class="tria-quiz-step-hint" data-i18n="quote.hintType">{t("quote.hintType")}</p>
               </div>
             </div>
-            <div class="tria-quote-field">
-              <label class="tria-quote-field-label" for="quote-company" data-i18n="quote.contactCompany">{t("quote.contactCompany")}</label>
-              <input class="tria-quote-input" type="text" id="quote-company" name="company" data-i18n-placeholder="quote.contactCompanyPh" placeholder={t("quote.contactCompanyPh")} />
+            <div class="tria-quiz-step-body">
+            <div class="tria-quote-types">
+              {types.map((type) => (
+                <label class="tria-quote-type">
+                  <input type="checkbox" name="types" value={type.key} data-base={type.base} data-weeks={JSON.stringify(type.weeks)} data-label={type.label} />
+                  <span class="tria-quote-type-card">
+                    <span class="tria-quote-type-icon" set:html={typeIconSvg(type.key)}></span>
+                    <span class="tria-quote-type-copy">
+                      <span class="tria-quote-type-name-row">
+                        <span class="tria-quote-type-name">{type.label}</span>
+                        <span class="tria-quote-type-included" data-included-badge hidden data-i18n="quote.typeIncluded">{t("quote.typeIncluded")}</span>
+                      </span>
+                      <span class="tria-quote-type-desc">{type.desc}</span>
+                      <span class="tria-quote-type-price">{fromLabel} {fmtUsd(type.base)}</span>
+                    </span>
+                    <span class="tria-quote-type-radio" aria-hidden="true">
+                      <svg width="10" height="10" viewBox="0 0 16 16" fill="none">
+                        <path d="M4 9l3 3 5-7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                  </span>
+                </label>
+              ))}
             </div>
-            <p class="tria-quote-contact-error" id="quote-contact-error" role="alert"></p>
+            </div>
           </div>
-        </fieldset>
-      </form>
 
-      {/* ── Result panel ── */}
+          {/* Step 2 — Scope (screens + complexity) */}
+          <div class="tria-quiz-step" data-step="2" tabindex="-1">
+            <div class="tria-quiz-step-head">
+              <div>
+                <h3 class="tria-quiz-step-title" data-i18n="quote.wizardScope">{t("quote.wizardScope")}</h3>
+                <p class="tria-quiz-step-hint" data-i18n="quote.hintScope">{t("quote.hintScope")}</p>
+              </div>
+            </div>
+            <div class="tria-quiz-step-body">
+              <div class="tria-quote-group" data-group="screens">
+                <span class="tria-quote-group-label" data-i18n="quote.wizardScreens">{t("quote.wizardScreens")}</span>
+                <div class="tria-quote-pills">
+                  {screens.map((s) => (
+                    <label class="tria-quote-pill">
+                      <input type="radio" name="screens" value={s.key} data-mult={s.mult} data-label={s.label} />
+                      <span class="tria-quote-pill-inner">
+                        <span class="tria-quote-pill-name">{s.label}</span>
+                        <span class="tria-quote-pill-desc">{s.desc}</span>
+                      </span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+              <div class="tria-quote-group" data-group="endpoints" hidden>
+                <span class="tria-quote-group-label" data-i18n="quote.wizardEndpoints">{t("quote.wizardEndpoints")}</span>
+                <div class="tria-quote-pills">
+                  {endpoints.map((e) => (
+                    <label class="tria-quote-pill">
+                      <input type="radio" name="endpoints" value={e.key} data-mult={e.mult} data-label={e.label} />
+                      <span class="tria-quote-pill-inner">
+                        <span class="tria-quote-pill-name">{e.label}</span>
+                        <span class="tria-quote-pill-desc">{e.desc}</span>
+                      </span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+              <div class="tria-quote-group" data-group="infra" hidden>
+                <span class="tria-quote-group-label" data-i18n="quote.wizardInfra">{t("quote.wizardInfra")}</span>
+                <div class="tria-quote-pills">
+                  {infras.map((ig) => (
+                    <label class="tria-quote-pill">
+                      <input type="radio" name="infra" value={ig.key} data-mult={ig.mult} data-label={ig.label} />
+                      <span class="tria-quote-pill-inner">
+                        <span class="tria-quote-pill-name">{ig.label}</span>
+                        <span class="tria-quote-pill-desc">{ig.desc}</span>
+                      </span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+              <div class="tria-quote-group" data-group="complexity">
+                <span class="tria-quote-group-label" data-i18n="quote.wizardComplexity">{t("quote.wizardComplexity")}</span>
+                <div class="tria-quote-pills">
+                  {complexities.map((c) => (
+                    <label class="tria-quote-pill">
+                      <input type="radio" name="complexity" value={c.key} data-mult={c.mult} data-label={c.label} />
+                      <span class="tria-quote-pill-inner">
+                        <span class="tria-quote-pill-name">{c.label}</span>
+                        <span class="tria-quote-pill-desc">{c.desc}</span>
+                      </span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Step 3 — Timing (users + deadline + design) */}
+          <div class="tria-quiz-step" data-step="3" tabindex="-1">
+            <div class="tria-quiz-step-head">
+              <div>
+                <h3 class="tria-quiz-step-title" data-i18n="quote.wizardTiming">{t("quote.wizardTiming")}</h3>
+                <p class="tria-quiz-step-hint" data-i18n="quote.hintTiming">{t("quote.hintTiming")}</p>
+              </div>
+            </div>
+            <div class="tria-quiz-step-body">
+              <div class="tria-quote-group" data-group="users">
+                  <span class="tria-quote-group-label" data-i18n="quote.wizardUsers">{t("quote.wizardUsers")}</span>
+                  <div class="tria-quote-pills">
+                    {users.map((u) => (
+                      <label class="tria-quote-pill">
+                        <input type="radio" name="users" value={u.key} data-mult={u.mult} data-label={u.label} />
+                        <span class="tria-quote-pill-inner">
+                          <span class="tria-quote-pill-name">{u.label}</span>
+                          <span class="tria-quote-pill-desc">{u.desc}</span>
+                        </span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+                <div class="tria-quote-group" data-group="deadline">
+                  <span class="tria-quote-group-label" data-i18n="quote.wizardDeadline">{t("quote.wizardDeadline")}</span>
+                  <div class="tria-quote-pills">
+                    {deadlines.map((dl) => (
+                      <label class="tria-quote-pill">
+                        <input type="radio" name="deadline" value={dl.key} data-mult={dl.mult} data-label={dl.label} />
+                        <span class="tria-quote-pill-inner">
+                          <span class="tria-quote-pill-name">{dl.label}</span>
+                          <span class="tria-quote-pill-desc">{dl.desc}</span>
+                        </span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              <div class="tria-quote-group" data-group="design">
+                <span class="tria-quote-group-label" data-i18n="quote.wizardDesign">{t("quote.wizardDesign")}</span>
+                <div class="tria-quote-pills">
+                  {designs.map((ds) => (
+                    <label class="tria-quote-pill">
+                      <input type="radio" name="design" value={ds.key} data-mult={ds.mult} data-label={ds.label} />
+                      <span class="tria-quote-pill-inner">
+                        <span class="tria-quote-pill-name">{ds.label}</span>
+                        <span class="tria-quote-pill-desc">{ds.desc}</span>
+                      </span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Step 4 — Extras (integrations + features) */}
+          <div class="tria-quiz-step" data-step="4" tabindex="-1">
+            <div class="tria-quiz-step-head">
+              <div>
+                <h3 class="tria-quiz-step-title" data-i18n="quote.wizardExtras">{t("quote.wizardExtras")}</h3>
+                <p class="tria-quiz-step-hint" data-i18n="quote.hintExtras">{t("quote.hintExtras")}</p>
+              </div>
+            </div>
+            <div class="tria-quiz-step-body">
+              <div class="tria-quote-group" data-group="integrations">
+                <span class="tria-quote-group-label" data-i18n="quote.wizardIntegrations">{t("quote.wizardIntegrations")}</span>
+                <div class="tria-quote-pills">
+                  {integrations.map((ig) => (
+                    <label class="tria-quote-pill">
+                      <input type="radio" name="integrations" value={ig.key} data-mult={ig.mult} data-label={ig.label} />
+                      <span class="tria-quote-pill-inner">
+                        <span class="tria-quote-pill-name">{ig.label}</span>
+                        <span class="tria-quote-pill-desc">{ig.desc}</span>
+                      </span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+              <div class="tria-quote-group" data-group="features">
+                <span class="tria-quote-group-label" data-i18n="quote.wizardFeatures">{t("quote.wizardFeatures")}</span>
+                <div class="tria-quote-features">
+                  {features.map((f) => (
+                    <label class="tria-quote-feature">
+                      <input type="checkbox" name="features" value={f.key} data-price={f.price} data-label={f.label} />
+                      <span class="tria-quote-feature-check">
+                        <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                          <path d="M4 9l3 3 5-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </span>
+                      <span class="tria-quote-feature-copy">
+                        <span class="tria-quote-feature-name">{f.label}</span>
+                        <span class="tria-quote-feature-price">{fmtUsd(f.price)}</span>
+                        <span class="tria-quote-feature-included" data-feature-included hidden data-i18n="quote.typeIncluded">{t("quote.typeIncluded")}</span>
+                      </span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Step 5 — Contact */}
+          <div class="tria-quiz-step" data-step="5" tabindex="-1">
+            <div class="tria-quiz-step-head">
+              <div>
+                <h3 class="tria-quiz-step-title" data-i18n="quote.wizardContact">{t("quote.wizardContact")}</h3>
+                <p class="tria-quiz-step-hint" data-i18n="quote.hintContact">{t("quote.hintContact")}</p>
+              </div>
+            </div>
+            <div class="tria-quiz-step-body">
+            <div class="tria-quote-contact">
+              <div class="tria-quote-contact-row">
+                <div class="tria-quote-field">
+                  <label class="tria-quote-field-label" for="quote-name" data-i18n="quote.contactName">{t("quote.contactName")}</label>
+                  <input class="tria-quote-input" type="text" id="quote-name" name="name" autocomplete="name" data-i18n-placeholder="quote.contactNamePh" placeholder={t("quote.contactNamePh")} />
+                </div>
+                <div class="tria-quote-field">
+                  <label class="tria-quote-field-label" for="quote-email" data-i18n="quote.contactEmail">{t("quote.contactEmail")}</label>
+                  <input class="tria-quote-input" type="email" id="quote-email" name="email" autocomplete="email" data-i18n-placeholder="quote.contactEmailPh" placeholder={t("quote.contactEmailPh")} />
+                </div>
+              </div>
+              <div class="tria-quote-contact-row">
+                <div class="tria-quote-field">
+                  <label class="tria-quote-field-label" for="quote-company" data-i18n="quote.contactCompany">{t("quote.contactCompany")}</label>
+                  <input class="tria-quote-input" type="text" id="quote-company" name="company" autocomplete="organization" data-i18n-placeholder="quote.contactCompanyPh" placeholder={t("quote.contactCompanyPh")} />
+                </div>
+                <div class="tria-quote-field">
+                  <label class="tria-quote-field-label" for="quote-phone" data-i18n="quote.contactPhone">{t("quote.contactPhone")}</label>
+                  <input class="tria-quote-input" type="tel" id="quote-phone" name="phone" autocomplete="tel" data-i18n-placeholder="quote.contactPhonePh" placeholder={t("quote.contactPhonePh")} />
+                </div>
+              </div>
+              <div class="tria-quote-field tria-quote-field--notes">
+                <label class="tria-quote-field-label" for="quote-notes" data-i18n="quote.contactNotes">{t("quote.contactNotes")}</label>
+                <textarea class="tria-quote-input tria-quote-textarea" id="quote-notes" name="notes" rows="2" data-i18n-placeholder="quote.contactNotesPh" placeholder={t("quote.contactNotesPh")}></textarea>
+              </div>
+              <p class="tria-quote-contact-error" id="quote-contact-error" role="alert"></p>
+
+              <Button text={t("quote.sendCta")} type="submit" variant="primary" size="md" fullWidth={true} showArrow={true} id="quote-submit" className="tria-quote-submit" />
+            </div>
+            </div>
+          </div>
+        </form>
+
+        <!-- Wizard nav — same prev/next as featured work, centered with step count -->
+        <div class="tria-quote-nav">
+          <button type="button" class="tria-quote-nav-btn tria-quote-nav-btn--prev" id="quote-prev" aria-label={t("quote.back")}>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="tria-quote-nav-text" data-i18n="quote.back">{t("quote.back")}</span>
+          </button>
+          <button type="submit" form="tria-quote-form" class="tria-quote-nav-btn tria-quote-nav-btn--next" id="quote-next">
+            <span class="tria-quote-nav-text" data-i18n="quote.next">{t("quote.next")}</span>
+            <svg class="tria-quote-nav-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      {/* ── Estimate panel (invoice style) ── */}
       <aside class="tria-quote-result" id="tria-quote-result" aria-live="polite">
-        <span class="tria-quote-result-kicker" data-i18n="quote.resultLabel">{t("quote.resultLabel")}</span>
+        <div class="tria-quote-result-head">
+          <div>
+            <span class="tria-quote-result-kicker" data-i18n="quote.resultLabel">{t("quote.resultLabel")}</span>
+            <span class="tria-quote-result-docno" id="quote-docno"></span>
+          </div>
+          <span class="tria-quote-result-date" id="quote-docdate"></span>
+        </div>
+
+        <div class="tria-quote-result-empty" id="quote-result-empty" data-i18n="quote.resultEmpty">{t("quote.resultEmpty")}</div>
+
         <div class="tria-quote-result-range" id="quote-range">$0</div>
+        <span class="tria-quote-result-crc" id="quote-crc"></span>
 
         <div class="tria-quote-result-timeline">
           <span class="tria-quote-result-timeline-label" data-i18n="quote.resultTimeline">{t("quote.resultTimeline")}</span>
           <span class="tria-quote-result-timeline-value" id="quote-weeks"></span>
         </div>
 
-        <div class="tria-quote-result-divider"></div>
-
-        <span class="tria-quote-result-breakdown-label" data-i18n="quote.resultBreakdown">{t("quote.resultBreakdown")}</span>
-        <ul class="tria-quote-result-breakdown" id="quote-breakdown"></ul>
+        <div class="tria-quote-bd-wrap">
+          <ul class="tria-quote-result-breakdown" id="quote-breakdown"></ul>
+          <div class="tria-quote-bd-summary">
+            <span class="tria-quote-bd-subtotal">
+              <span data-i18n="quote.bdSubtotal">{t("quote.bdSubtotal")}</span>
+              <span id="quote-subtotal">$0</span>
+            </span>
+            <span class="tria-quote-bd-total-row">
+              <span data-i18n="quote.resultTotal">{t("quote.resultTotal")}</span>
+              <span class="tria-quote-bd-total-val">
+                <span id="quote-total">$0</span>
+                <span class="tria-quote-bd-total-crc" id="quote-total-crc"></span>
+              </span>
+            </span>
+          </div>
+        </div>
 
         <p class="tria-quote-result-disclaimer" data-i18n="quote.resultDisclaimer">{t("quote.resultDisclaimer")}</p>
 
-        <Button id="quote-submit" type="submit" form="tria-quote-form" text={t("quote.sendCta")} size="sm" fullWidth={true} />
-        <Button text={t("quote.resultCta")} href="/contact" variant="outline" size="sm" showArrow={true} fullWidth={true} className="tria-quote-result-cta2" />
         <button type="button" class="tria-quote-reset" id="quote-reset" data-i18n="quote.resultReset">{t("quote.resultReset")}</button>
       </aside>
     </div>
+
+    {/* ── Mobile summary bar — fixed bottom pill; opens the invoice as a bottom sheet ── */}
+    <button type="button" class="tria-quote-bar" id="tria-quote-bar" aria-expanded="false" aria-controls="tria-quote-result">
+      <span class="tria-quote-bar-copy">
+        <span class="tria-quote-bar-label" data-i18n="quote.barLabel">{t("quote.barLabel")}</span>
+        <span class="tria-quote-bar-total" id="quote-bar-total">$0</span>
+      </span>
+      <span class="tria-quote-bar-step" id="quote-bar-step">01 / 05</span>
+      <span class="tria-quote-bar-chev" aria-hidden="true">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
+          <path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+    </button>
 
     {/* ── Success state ── */}
     <div class="tria-quote-success" id="tria-quote-success" hidden>
@@ -418,7 +701,7 @@ function typeIconSvg(key: string) {
   }
 
   .tria-quote-section .container.tria-p-120-120 {
-    padding-top: 60px;
+    padding-top: 32px;
     padding-bottom: 120px;
   }
 
@@ -435,53 +718,99 @@ function typeIconSvg(key: string) {
     margin: 0;
   }
 
-  /* ── Layout ── */
-  .tria-quote-layout {
+  /* ── Shell layout ── */
+  .tria-quote-shell {
     display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    gap: 48px;
-    align-items: start;
+    grid-template-columns: minmax(0, 1.55fr) minmax(330px, 1fr);
+    gap: 32px;
+    align-items: stretch;
     position: relative;
     z-index: 1;
   }
 
-  /* ── Steps ── */
-  .tria-quote-step {
-    border: none;
-    padding: 0;
-    margin: 0 0 48px;
+  .tria-quote-shell[hidden] {
+    display: none;
   }
 
-  .tria-quote-step-label {
+  /* ── Wizard column — open, no app frame (home look & feel) ── */
+  .tria-quote-wizard {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tria-quote-form {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+
+  /* ── Steps ── */
+  .tria-quiz-step {
+    display: none;
+    outline: none;
+  }
+
+  .tria-quiz-step.is-active {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0;
+    animation: triaStepIn 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .tria-quiz-step.is-active.anim-from-left {
+    animation-name: triaStepInLeft;
+  }
+
+  @keyframes triaStepIn {
+    from { opacity: 0; transform: translateX(26px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes triaStepInLeft {
+    from { opacity: 0; transform: translateX(-26px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .tria-quiz-step-head {
     display: flex;
     align-items: center;
-    gap: 12px;
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+    gap: 16px;
+    margin-bottom: 24px;
+    text-align: left;
+  }
+
+  .tria-quiz-step-title {
+    font-size: 1.3rem;
+    font-weight: 560;
+    letter-spacing: -0.02em;
+    color: #0b0d17;
+    margin: 0 0 4px;
+    line-height: 1.25;
+  }
+
+  .tria-quiz-step-hint {
+    font-size: 0.8rem;
+    line-height: 1.5;
     color: rgba(0, 0, 0, 0.45);
-    margin-bottom: 22px;
-    padding: 0;
+    margin: 0;
   }
 
-  .tria-quote-step-label::before {
-    content: '';
-    width: 26px;
-    height: 1px;
-    background: var(--accent);
-    opacity: 0.45;
-  }
 
-  /* Type cards */
+
+  /* Type cards — equal height & width */
   .tria-quote-types {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 12px;
+    grid-auto-rows: 1fr;
   }
 
   .tria-quote-type {
     cursor: pointer;
+    height: 100%;
   }
 
   .tria-quote-type input {
@@ -494,6 +823,7 @@ function typeIconSvg(key: string) {
     display: flex;
     align-items: flex-start;
     gap: 16px;
+    height: 100%;
     padding: 18px 18px;
     border-radius: 18px;
     border: 1px solid rgba(0, 0, 0, 0.07);
@@ -563,6 +893,14 @@ function typeIconSvg(key: string) {
     line-height: 1.4;
   }
 
+  .tria-quote-type-price {
+    font-size: 0.72rem;
+    font-weight: 560;
+    font-variant-numeric: tabular-nums;
+    color: var(--accent);
+    margin-top: 2px;
+  }
+
   .tria-quote-type-radio {
     flex-shrink: 0;
     width: 20px;
@@ -570,7 +908,7 @@ function typeIconSvg(key: string) {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
+    border-radius: 6px;
     border: 1.5px solid rgba(0, 0, 0, 0.15);
     color: transparent;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -580,26 +918,50 @@ function typeIconSvg(key: string) {
     background: var(--accent);
     border-color: var(--accent);
     color: #fff;
+    box-shadow: 0 4px 12px rgba(6, 142, 140, 0.3);
   }
 
-  /* Pills (screens / complexity / users / deadline / design / integrations) */
+  /* "Included" — quiet inline label on types auto-included by a parent selection */
+  .tria-quote-type-name-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+  }
+
+  .tria-quote-type-included {
+    flex-shrink: 0;
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--accent);
+    opacity: 0.75;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .tria-quote-type-card {
+    position: relative;
+  }
+
+  /* Dynamic groups hidden by type logic must not render */
+  .tria-quote-group[hidden] {
+    display: none !important;
+  }
+
+  /* ── Pills (screens / endpoints / infra / complexity) ── */
   .tria-quote-pills {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 12px;
-  }
-
-  .tria-quote-pills--3 {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .tria-quote-pills--4 {
-    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 1fr;
   }
 
   .tria-quote-pill {
     cursor: pointer;
+    height: 100%;
   }
+
 
   .tria-quote-pill input {
     position: absolute;
@@ -608,9 +970,12 @@ function typeIconSvg(key: string) {
   }
 
   .tria-quote-pill-inner {
+    position: relative;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 4px;
+    height: 100%;
     padding: 16px 18px;
     border-radius: 18px;
     border: 1px solid rgba(0, 0, 0, 0.07);
@@ -618,6 +983,44 @@ function typeIconSvg(key: string) {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03), 0 4px 16px rgba(0, 0, 0, 0.03);
     text-align: center;
     transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Corner selection indicator — same pattern as the type cards */
+  .tria-quote-pill-inner::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 18px;
+    height: 18px;
+    border-radius: 6px;
+    border: 1.5px solid rgba(0, 0, 0, 0.15);
+    background: #fff;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .tria-quote-pill-inner::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 18px;
+    height: 18px;
+    background: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4 9l3 3 5-7' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/12px 12px no-repeat;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .tria-quote-pill input:checked + .tria-quote-pill-inner::before {
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 4px 12px rgba(6, 142, 140, 0.3);
+  }
+
+  .tria-quote-pill input:checked + .tria-quote-pill-inner::after {
+    opacity: 1;
+    transform: scale(1);
   }
 
   .tria-quote-pill:hover .tria-quote-pill-inner {
@@ -648,29 +1051,57 @@ function typeIconSvg(key: string) {
     color: rgba(0, 0, 0, 0.45);
   }
 
-  /* Features */
+  .tria-quote-group {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    min-width: 0;
+  }
+
+  .tria-quote-group-label {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.45);
+  }
+
+  /* Features — same card language as type cards & pills */
   .tria-quote-features {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    grid-auto-rows: 1fr;
   }
 
   .tria-quote-feature {
+    position: relative;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    gap: 12px;
-    padding: 13px 16px;
-    border-radius: 14px;
+    gap: 4px;
+    height: 100%;
+    padding: 16px 18px;
+    border-radius: 18px;
     border: 1px solid rgba(0, 0, 0, 0.07);
     background: #ffffff;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03), 0 4px 16px rgba(0, 0, 0, 0.03);
+    text-align: center;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .tria-quote-feature:hover {
     border-color: rgba(6, 142, 140, 0.4);
-    box-shadow: 0 4px 12px rgba(6, 142, 140, 0.06);
+    box-shadow: 0 4px 12px rgba(6, 142, 140, 0.06), 0 12px 32px rgba(0, 0, 0, 0.06);
+    transform: translateY(-2px);
+  }
+
+  .tria-quote-feature:has(input:checked) {
+    border-color: var(--accent);
+    background: linear-gradient(180deg, rgba(6, 142, 140, 0.05), rgba(6, 142, 140, 0.02));
+    box-shadow: 0 0 0 1px var(--accent), 0 8px 28px rgba(6, 142, 140, 0.14);
   }
 
   .tria-quote-feature input {
@@ -679,15 +1110,18 @@ function typeIconSvg(key: string) {
     pointer-events: none;
   }
 
+  /* Corner check — same pattern as the pill cards */
   .tria-quote-feature-check {
-    flex-shrink: 0;
-    width: 20px;
-    height: 20px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 18px;
+    height: 18px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: 7px;
-    border: 1.5px solid rgba(0, 0, 0, 0.18);
+    border-radius: 6px;
+    border: 1.5px solid rgba(0, 0, 0, 0.15);
     color: transparent;
     background: #fff;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -705,40 +1139,106 @@ function typeIconSvg(key: string) {
     outline-offset: 2px;
   }
 
-  .tria-quote-feature input:checked ~ .tria-quote-feature-label {
+  .tria-quote-feature-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    min-width: 0;
+    padding-right: 6px;
+  }
+
+  .tria-quote-feature-name {
+    font-size: 0.88rem;
+    font-weight: 520;
     color: #0b0d17;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
   }
 
-  .tria-quote-feature-label {
-    font-size: 0.82rem;
-    font-weight: 420;
-    color: rgba(0, 0, 0, 0.6);
-    line-height: 1.35;
-    transition: color 0.3s ease;
+  .tria-quote-feature-price {
+    font-size: 0.72rem;
+    font-weight: 560;
+    font-variant-numeric: tabular-nums;
+    color: var(--accent);
   }
 
-  /* ── Contact step ── */
+  /* Feature already included in the selected type's base price — no extra
+     cost; the card shows an "Included" label instead of the price */
+  .tria-quote-feature-included {
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.35);
+  }
+
+  .tria-quote-feature.is-included {
+    border-style: dashed;
+    border-color: rgba(6, 142, 140, 0.4);
+    background: rgba(6, 142, 140, 0.03);
+    box-shadow: none;
+    cursor: default;
+  }
+
+  .tria-quote-feature.is-included:hover {
+    border-color: rgba(6, 142, 140, 0.4);
+    box-shadow: none;
+    transform: none;
+  }
+
+  .tria-quote-feature.is-included .tria-quote-feature-price {
+    display: none;
+  }
+
+  .tria-quote-feature.is-included .tria-quote-feature-included {
+    display: block;
+    color: var(--accent);
+  }
+
+  .tria-quote-feature.is-included .tria-quote-feature-check {
+    border-color: rgba(6, 142, 140, 0.4);
+    background: rgba(6, 142, 140, 0.1);
+    color: var(--accent);
+    box-shadow: none;
+  }
+
+  /* Invoice row for an included feature — no amount, quiet accent */
+  .tria-quote-bd-item--included > span:last-child {
+    color: var(--accent);
+    font-weight: 550;
+  }
+
+  /* Desktop only: keep feature cards the same height as the pill cards */
+  @media (min-width: 992px) {
+    .tria-quote-feature {
+      min-height: 86px;
+    }
+  }
+
+  /* ── Contact step — frameless, matches /contact form look ── */
   .tria-quote-contact {
     display: flex;
     flex-direction: column;
     gap: 16px;
-    padding: 28px;
-    border-radius: 20px;
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    background: rgba(255, 255, 255, 0.7);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02), 0 8px 32px rgba(0, 0, 0, 0.04);
+    flex: 1;
+    min-height: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    box-shadow: none;
   }
 
   .tria-quote-contact-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 16px;
+    gap: 20px;
   }
 
   .tria-quote-field {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 5px;
   }
 
   .tria-quote-field-label {
@@ -750,19 +1250,71 @@ function typeIconSvg(key: string) {
   }
 
   .tria-quote-input {
-    height: 50px;
+    height: 42px;
     padding: 0 16px;
     border-radius: 12px;
     border: 1px solid rgba(0, 0, 0, 0.1);
     background: #ffffff;
     font-family: var(--font-display, 'Outfit', sans-serif);
     font-size: 0.9rem;
+    font-weight: 400;
     color: #0b0d17;
+    letter-spacing: 0.01em;
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
   }
 
+  .tria-quote-textarea {
+    flex: 1;
+    height: auto;
+    padding: 12px 16px;
+    line-height: 1.6;
+    min-height: 86px;
+    margin-bottom: 0; /* neutralize the global textarea 30px bottom margin */
+  }
+
+  /* Notes field grows so the textarea fills the step's available space */
+  .tria-quote-field--notes {
+    flex: 1;
+    min-height: 0;
+  }
+
+  .tria-quote-input::-webkit-input-placeholder {
+    color: rgba(0, 0, 0, 0.28);
+    font-weight: 380;
+    font-size: 0.9rem;
+    letter-spacing: 0.01em;
+    text-transform: none;
+  }
+  .tria-quote-input::-moz-placeholder {
+    color: rgba(0, 0, 0, 0.28);
+    font-weight: 380;
+    font-size: 0.9rem;
+    letter-spacing: 0.01em;
+    text-transform: none;
+  }
+  .tria-quote-input:-ms-input-placeholder {
+    color: rgba(0, 0, 0, 0.28);
+    font-weight: 380;
+    font-size: 0.9rem;
+    letter-spacing: 0.01em;
+    text-transform: none;
+  }
+  .tria-quote-input::-ms-input-placeholder {
+    color: rgba(0, 0, 0, 0.28);
+    font-weight: 380;
+    font-size: 0.9rem;
+    letter-spacing: 0.01em;
+    text-transform: none;
+  }
   .tria-quote-input::placeholder {
     color: rgba(0, 0, 0, 0.28);
+    font-weight: 380;
+    font-size: 0.9rem;
+    letter-spacing: 0.01em;
+    text-transform: none;
   }
 
   .tria-quote-input:focus {
@@ -782,187 +1334,391 @@ function typeIconSvg(key: string) {
     min-height: 1em;
   }
 
-  /* ── Result panel — white card with teal glow ── */
-  .tria-quote-result {
-    position: sticky;
-    top: 110px;
-    padding: 36px 32px;
-    border-radius: 24px;
-    border: 1px solid rgba(6, 142, 140, 0.22);
-    background: #ffffff;
-    box-shadow: 0 8px 40px rgba(6, 142, 140, 0.08), 0 2px 8px rgba(0, 0, 0, 0.03);
-    overflow: hidden;
-  }
-
-  .tria-quote-result::before {
-    content: '';
-    position: absolute;
-    top: -120px;
-    right: -100px;
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(6, 142, 140, 0.14) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .tria-quote-result-kicker {
-    display: block;
-    position: relative;
-    font-size: 0.66rem;
-    font-weight: 600;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: rgba(0, 0, 0, 0.4);
-    margin-bottom: 14px;
-  }
-
-  .tria-quote-result-range {
-    position: relative;
-    font-family: var(--font-display, 'Outfit', sans-serif);
-    font-size: clamp(2.4rem, 3.6vw, 3.1rem);
-    font-weight: 320;
-    letter-spacing: -0.04em;
-    color: #0b0d17;
-    line-height: 1;
-    font-variant-numeric: tabular-nums;
-    margin-bottom: 22px;
-    transition: opacity 0.2s ease;
-  }
-
-  .tria-quote-result-range::after {
-    content: '';
-    display: block;
-    width: 56px;
-    height: 3px;
-    border-radius: 2px;
-    background: linear-gradient(90deg, var(--accent), rgba(6, 142, 140, 0.2));
-    margin-top: 18px;
-  }
-
-  .tria-quote-result-timeline {
-    position: relative;
+  /* ── Wizard nav — same prev/next as featured work on /home ── */
+  .tria-quote-nav {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    padding: 14px 16px;
-    border-radius: 12px;
-    background: rgba(6, 142, 140, 0.06);
-    border: 1px solid rgba(6, 142, 140, 0.18);
-  }
-
-  .tria-quote-result-timeline-label {
-    font-size: 0.74rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: rgba(0, 0, 0, 0.45);
-  }
-
-  .tria-quote-result-timeline-value {
-    font-size: 0.86rem;
-    font-weight: 520;
-    color: #0b0d17;
-  }
-
-  .tria-quote-result-divider {
-    height: 1px;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.07), transparent 90%);
-    margin: 24px 0 18px;
-  }
-
-  .tria-quote-result-breakdown-label {
-    display: block;
-    position: relative;
-    font-size: 0.66rem;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: rgba(0, 0, 0, 0.35);
-    margin-bottom: 14px;
-  }
-
-  .tria-quote-result-breakdown {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    position: relative;
-    max-height: 300px;
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(0, 0, 0, 0.1) transparent;
-  }
-
-  .tria-quote-result-breakdown li {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    font-size: 0.8rem;
-    color: rgba(0, 0, 0, 0.55);
-    line-height: 1.4;
-  }
-
-  .tria-quote-result-breakdown li span:last-child {
-    font-weight: 520;
-    color: rgba(0, 0, 0, 0.8);
-    font-variant-numeric: tabular-nums;
-    white-space: nowrap;
-  }
-
-  .tria-quote-result-breakdown li.tria-quote-bd-total {
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: 18px;
+    margin-top: 28px;
     padding-top: 12px;
-    color: #0b0d17;
-    font-weight: 520;
   }
 
-  .tria-quote-result-breakdown li.tria-quote-bd-total span:last-child {
-    color: var(--accent);
-    font-weight: 560;
-  }
-
-  .tria-quote-result-disclaimer {
-    position: relative;
-    font-size: 0.72rem;
-    line-height: 1.6;
-    color: rgba(0, 0, 0, 0.4);
-    margin: 0 0 22px;
-  }
-
-  .tria-quote-result :global(.tria-btn) {
-    position: relative;
-  }
-
-  .tria-quote-result-cta2 {
-    margin-top: 10px;
-  }
-
-  .tria-quote-result :global(#quote-submit) {
-    margin-bottom: 10px;
-  }
-
-  .tria-quote-result :global(#quote-submit:disabled) {
-    opacity: 0.6;
-    cursor: wait;
-  }
-
-  .tria-quote-reset {
-    display: block;
-    margin: 16px auto 0;
+  .tria-quote-nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    flex-shrink: 0;
+    white-space: nowrap;
     background: none;
     border: none;
+    padding: 0;
     cursor: pointer;
     font-family: var(--font-display, 'Outfit', sans-serif);
     font-size: 0.72rem;
     font-weight: 500;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     color: rgba(0, 0, 0, 0.35);
+    transition: color 0.4s var(--ease-spring);
+  }
+
+  .tria-quote-nav-btn svg {
+    width: 34px;
+    height: 34px;
+    padding: 8px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.04);
+    transition: transform 0.4s var(--ease-spring), background 0.4s var(--ease-spring);
+  }
+
+  .tria-quote-nav-btn:hover {
+    color: var(--accent, #068e8c);
+  }
+
+  .tria-quote-nav-btn:hover svg {
+    background: rgba(6, 142, 140, 0.1);
+    color: var(--accent, #068e8c);
+    transform: translateX(3px);
+  }
+
+  .tria-quote-nav-btn--prev:hover svg {
+    transform: translateX(-3px);
+  }
+
+  .tria-quote-nav-btn:active svg {
+    transform: scale(0.9);
+  }
+
+  .tria-quote-nav-btn[hidden] {
+    display: none;
+  }
+
+  .tria-quote-nav-btn--next:disabled {
+    opacity: 0.5;
+    cursor: wait;
+  }
+
+  .tria-quote-nav-btn--next.is-blocked {
+    opacity: 0.45;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .tria-quote-nav-btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  /* ── Step body — uniform height across steps (same as step 1), scrollable when it doesn't fit ── */
+  .tria-quiz-step.is-active > .tria-quiz-step-body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 1 1 auto;
+    height: var(--tria-step-h, min(580px, calc(100vh - 300px)));
+    min-height: var(--tria-step-h, min(540px, calc(100vh - 300px)));
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+    /* Bottom padding ≥ the scroll-fade height so the last row of cards is
+       never faded/cut when scrolled to the end */
+    padding: 16px 12px 18px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(6, 142, 140, 0.3) transparent;
+  }
+
+  .tria-quiz-step.is-active > .tria-quiz-step-body::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  .tria-quiz-step.is-active > .tria-quiz-step-body::-webkit-scrollbar-thumb {
+    background: rgba(6, 142, 140, 0.3);
+    border-radius: 100px;
+  }
+
+  .tria-quiz-step.is-active > .tria-quiz-step-body::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  /* Step 5 (contact) — same fixed height as every other step for a symmetric
+     wizard; the compact form fits inside without scrolling. */
+
+  /* Scroll affordance — soft bottom fade only when content overflows */
+  .tria-quiz-step.is-active > .tria-quiz-step-body.is-overflowing {
+    -webkit-mask-image: linear-gradient(to bottom, black calc(100% - 22px), transparent 100%);
+    mask-image: linear-gradient(to bottom, black calc(100% - 22px), transparent 100%);
+  }
+
+  /* ── Result panel — minimalist card, fills the column height ── */
+  .tria-quote-result {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    padding: 24px 30px 20px;
+    border-radius: 24px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    background: #ffffff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02), 0 20px 48px rgba(0, 0, 0, 0.045);
+    color: #0b0d17;
+  }
+
+  .tria-quote-result-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    padding-bottom: 10px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+  }
+
+  .tria-quote-result-kicker {
+    display: block;
+    font-size: 0.68rem;
+    font-weight: 520;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.45);
+  }
+
+  .tria-quote-result-docno {
+    display: block;
+    margin-top: 6px;
+    font-size: 0.86rem;
+    font-weight: 560;
+    letter-spacing: 0.04em;
+    font-variant-numeric: tabular-nums;
+    color: #0b0d17;
+  }
+
+  .tria-quote-result-date {
+    font-size: 0.72rem;
+    color: rgba(0, 0, 0, 0.4);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    padding-top: 3px;
+  }
+
+  /* Empty state — nothing selected yet */
+  .tria-quote-result-empty {
+    margin: 4px 0 0;
+    padding: 30px 20px;
+    border-radius: 16px;
+    background: rgba(0, 0, 0, 0.02);
+    font-size: 0.82rem;
+    line-height: 1.65;
+    color: rgba(0, 0, 0, 0.42);
+    text-align: center;
+    flex: 1 1 0;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .tria-quote-result-empty[hidden] {
+    display: none;
+  }
+
+  .tria-quote-result.is-empty .tria-quote-reset {
+    display: none;
+  }
+
+  .tria-quote-result-range[hidden],
+  .tria-quote-result-crc[hidden],
+  .tria-quote-result-timeline[hidden],
+  .tria-quote-bd-wrap[hidden] {
+    display: none;
+  }
+
+  .tria-quote-result-crc {
+    display: block;
+    text-align: center;
+    font-size: 0.76rem;
+    font-weight: 460;
+    font-variant-numeric: tabular-nums;
+    color: rgba(0, 0, 0, 0.4);
+    margin-top: 4px;
+    margin-bottom: 0;
+  }
+
+  .tria-quote-bd-total-val {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+  }
+
+  .tria-quote-bd-total-crc {
+    font-size: 0.68rem;
+    font-weight: 460;
+    font-variant-numeric: tabular-nums;
+    color: rgba(0, 0, 0, 0.4);
+    letter-spacing: 0;
+  }
+
+  .tria-quote-result-range {
+    font-family: var(--font-display, 'Outfit', sans-serif);
+    font-size: clamp(1.8rem, 2.7vw, 2.2rem);
+    font-weight: 300;
+    letter-spacing: -0.045em;
+    color: #0b0d17;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    text-align: center;
+    margin-bottom: 14px;
+  }
+
+  .tria-quote-result-timeline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 8px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    margin-bottom: 10px;
+  }
+
+  .tria-quote-result-timeline-label {
+    font-size: 0.82rem;
+    font-weight: 440;
+    color: rgba(0, 0, 0, 0.5);
+  }
+
+  .tria-quote-result-timeline-value {
+    font-size: 0.9rem;
+    font-weight: 560;
+    color: #0b0d17;
+  }
+
+  .tria-quote-bd-wrap {
+    margin: 0 0 14px;
+    min-height: 0;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tria-quote-result-breakdown {
+    position: relative;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    /* Fills the space left in the invoice panel and scrolls when full */
+    flex: 1 1 0;
+    min-height: 0;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.12) transparent;
+  }
+
+  /* Bottom fade — hints there's more content to scroll */
+  .tria-quote-result-breakdown.is-scrollable::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 30px;
+    background: linear-gradient(to top, #ffffff, rgba(255, 255, 255, 0));
+    pointer-events: none;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  /* Breakdown rows are built at runtime via innerHTML — must stay global (no data-astro-cid) */
+  .tria-quote-result-breakdown :global(li.tria-quote-bd-item) {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 8px 0;
+    font-size: 0.84rem;
+    color: rgba(0, 0, 0, 0.6);
+    line-height: 1.45;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  .tria-quote-result-breakdown :global(li.tria-quote-bd-item:last-child) {
+    border-bottom: none;
+  }
+
+  .tria-quote-result-breakdown :global(li.tria-quote-bd-item span:first-child) {
+    min-width: 0;
+  }
+
+  .tria-quote-result-breakdown :global(li.tria-quote-bd-item span:last-child) {
+    font-weight: 540;
+    color: rgba(0, 0, 0, 0.82);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  .tria-quote-bd-summary {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+
+  .tria-quote-bd-subtotal,
+  .tria-quote-bd-total-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 0.76rem;
+  }
+
+  .tria-quote-bd-subtotal span:first-child {
+    color: rgba(0, 0, 0, 0.48);
+  }
+
+  .tria-quote-bd-subtotal span:last-child {
+    font-weight: 520;
+    color: rgba(0, 0, 0, 0.72);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .tria-quote-bd-total-row {
+    margin-top: 2px;
+    font-weight: 620;
+    color: #0b0d17;
+  }
+
+  .tria-quote-bd-total-row span:last-child {
+    font-size: 1.08rem;
+    font-weight: 620;
+    letter-spacing: -0.01em;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .tria-quote-result-disclaimer {
+    flex-shrink: 0;
+    font-size: 0.7rem;
+    line-height: 1.55;
+    color: rgba(0, 0, 0, 0.45);
+    margin-bottom: 12px;
+  }
+
+  .tria-quote-reset {
+    display: block;
+    flex-shrink: 0;
+    margin: 12px auto 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-display, 'Outfit', sans-serif);
+    font-size: 0.74rem;
+    font-weight: 480;
+    color: rgba(0, 0, 0, 0.42);
     transition: color 0.3s ease;
   }
 
@@ -992,6 +1748,7 @@ function typeIconSvg(key: string) {
     border: 1px solid rgba(6, 142, 140, 0.22);
     background: #ffffff;
     box-shadow: 0 8px 40px rgba(6, 142, 140, 0.08), 0 2px 8px rgba(0, 0, 0, 0.03);
+    animation: triaStepIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .tria-quote-success-icon {
@@ -1038,20 +1795,219 @@ function typeIconSvg(key: string) {
     color: var(--accent);
   }
 
+  /* ── Mobile summary bar (desktop: hidden) ── */
+  .tria-quote-bar {
+    display: none;
+  }
+
   /* ── Responsive ── */
+  @media (max-width: 1100px) {
+    .tria-quote-shell {
+      grid-template-columns: minmax(0, 1.4fr) minmax(300px, 1fr);
+      gap: 24px;
+    }
+  }
+
   @media (max-width: 991px) {
-    .tria-quote-layout {
+    .tria-quote-shell {
       grid-template-columns: 1fr;
       gap: 40px;
+      /* Clearance so the fixed summary bar never covers the nav / submit */
+      padding-bottom: 96px;
     }
 
-    .tria-quote-result {
-      position: static;
+    /* Wizard clears the fixed top bar when scrolled into view on step change */
+    .tria-quote-wizard {
+      scroll-margin-top: 96px;
     }
 
-    .tria-quote-pills--3,
-    .tria-quote-pills--4 {
-      grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+    /* ── Fixed summary bar ── */
+    .tria-quote-bar {
+      display: flex;
+      position: fixed;
+      left: 14px;
+      right: 14px;
+      bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+      z-index: 70;
+      align-items: center;
+      gap: 14px;
+      padding: 13px 18px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 22px;
+      background: rgba(11, 13, 23, 0.9);
+      -webkit-backdrop-filter: blur(20px) saturate(1.6);
+      backdrop-filter: blur(20px) saturate(1.6);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+      color: #fff;
+      text-align: left;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      transition: transform 0.4s var(--ease-spring, cubic-bezier(0.16, 1, 0.3, 1)), box-shadow 0.4s ease;
+    }
+
+    .tria-quote-bar:active {
+      transform: scale(0.985);
+    }
+
+    .tria-quote-bar[hidden] {
+      display: none;
+    }
+
+    .tria-quote-bar-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .tria-quote-bar-label {
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.45);
+    }
+
+    .tria-quote-bar-total {
+      font-family: var(--font-display, 'Outfit', sans-serif);
+      font-size: 1.35rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: #fff;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .tria-quote-bar-step {
+      flex-shrink: 0;
+      font-size: 0.64rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: rgba(255, 255, 255, 0.35);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .tria-quote-bar-chev {
+      flex-shrink: 0;
+      width: 34px;
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      transition: transform 0.4s var(--ease-spring, cubic-bezier(0.16, 1, 0.3, 1));
+    }
+
+    .tria-quote-bar.is-open .tria-quote-bar-chev {
+      transform: rotate(180deg);
+    }
+
+    /* ── Invoice bottom sheet (built via JS → must be :global) ── */
+    :global(.tria-quote-sheet) {
+      display: block;
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      pointer-events: none;
+    }
+
+    :global(.tria-quote-sheet-backdrop) {
+      position: absolute;
+      inset: 0;
+      background: rgba(11, 13, 23, 0.5);
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      /* Only intercept taps while open — otherwise it blocks the whole page */
+      pointer-events: none;
+    }
+
+    :global(.tria-quote-sheet.is-open .tria-quote-sheet-backdrop) {
+      pointer-events: all;
+    }
+
+    :global(.tria-quote-sheet-panel) {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      max-height: 88dvh;
+      border-radius: 26px 26px 0 0;
+      background: #fff;
+      box-shadow: 0 -24px 60px rgba(0, 0, 0, 0.18);
+      transform: translateY(105%);
+      transition: transform 0.5s var(--ease-spring, cubic-bezier(0.16, 1, 0.3, 1));
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: contain;
+      pointer-events: none;
+    }
+
+    :global(.tria-quote-sheet.is-open .tria-quote-sheet-panel) {
+      pointer-events: all;
+    }
+
+    /* Hide the summary bar while the fullscreen menu is open (menu is z-9, bar is z-70) */
+    body:has(.tria-menu-frame.tria-active) .tria-quote-bar {
+      display: none !important;
+    }
+
+    :global(.tria-quote-sheet.is-open .tria-quote-sheet-backdrop) {
+      opacity: 1;
+    }
+
+    :global(.tria-quote-sheet.is-open .tria-quote-sheet-panel) {
+      transform: translateY(0);
+    }
+
+    :global(.tria-quote-sheet-head) {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 20px 24px 4px;
+    }
+
+    :global(.tria-quote-sheet-title) {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(0, 0, 0, 0.4);
+    }
+
+    :global(.tria-quote-sheet-close) {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.05);
+      color: rgba(0, 0, 0, 0.6);
+      cursor: pointer;
+      transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    }
+
+    :global(.tria-quote-sheet-close:hover) {
+      background: rgba(6, 142, 140, 0.12);
+      color: var(--accent);
+      transform: rotate(90deg);
+    }
+
+    :global(.tria-quote-sheet-panel) .tria-quote-result {
+      border: none;
+      border-radius: 0;
+      padding: 16px 24px calc(28px + env(safe-area-inset-bottom, 0px));
+    }
+
+    html.tria-sheet-open,
+    html.tria-sheet-open body {
+      overflow: hidden;
     }
   }
 
@@ -1060,30 +2016,102 @@ function typeIconSvg(key: string) {
       margin-bottom: 48px;
     }
 
+    /* Softer section bottom on stacked (1-col) layouts */
+    .tria-quote-section .container.tria-p-120-120 {
+      padding-top: 32px;
+      padding-bottom: 96px;
+    }
+
+    /* Steps flow naturally on phones */
+    .tria-quiz-step.is-active > .tria-quiz-step-body {
+      height: auto;
+      min-height: 0;
+      max-height: none;
+      overflow: visible;
+      padding: 0;
+    }
+
+    /* Keep two compact columns — dense but not saturated, everything visible */
     .tria-quote-types,
-    .tria-quote-features {
-      grid-template-columns: 1fr;
+    .tria-quote-features,
+    .tria-quote-pills {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .tria-quote-type-card {
+      padding: 14px 14px;
+      gap: 12px;
+      border-radius: 16px;
+    }
+
+    .tria-quote-type-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+    }
+
+    .tria-quote-type-name {
+      font-size: 0.84rem;
+    }
+
+    .tria-quote-type-desc {
+      font-size: 0.68rem;
+    }
+
+    .tria-quote-type-price {
+      font-size: 0.68rem;
+    }
+
+    .tria-quote-type-radio {
+      width: 18px;
+      height: 18px;
+    }
+
+    .tria-quote-pill-inner {
+      padding: 13px 14px;
+      border-radius: 16px;
+    }
+
+    .tria-quote-pill-name {
+      font-size: 0.8rem;
+    }
+
+    .tria-quote-pill-desc {
+      font-size: 0.66rem;
+    }
+
+    .tria-quote-feature {
+      padding: 13px 14px;
+      border-radius: 16px;
+    }
+
+    .tria-quote-feature-name {
+      font-size: 0.78rem;
+    }
+
+    .tria-quote-feature-price {
+      font-size: 0.66rem;
     }
 
     .tria-quote-contact-row {
       grid-template-columns: 1fr;
     }
+
+    .tria-quote-group {
+      gap: 12px;
+    }
   }
 
   /* When used as a dedicated page section (no internal header) */
-  .tria-quote-section:not(:has(.tria-quote-header)) .tria-quote-layout {
+  .tria-quote-section:not(:has(.tria-quote-header)) .tria-quote-shell {
     padding-top: 8px;
   }
 
   @media (max-width: 576px) {
-    .tria-quote-step {
-      margin-bottom: 36px;
-    }
-
-    .tria-quote-pills,
-    .tria-quote-pills--3,
-    .tria-quote-pills--4 {
-      grid-template-columns: 1fr 1fr;
+    .tria-quote-section .container.tria-p-120-120 {
+      padding-top: 24px;
+      padding-bottom: 64px;
     }
 
     .tria-quote-result {
@@ -1095,28 +2123,101 @@ function typeIconSvg(key: string) {
     }
 
     .tria-quote-contact {
-      padding: 22px 18px;
+      gap: 22px;
     }
 
     .tria-quote-success-card {
       padding: 40px 24px;
     }
+
+    .tria-quote-nav {
+      justify-content: center;
+      gap: 14px;
+    }
+
+    .tria-quote-bar {
+      left: 12px;
+      right: 12px;
+      padding: 12px 16px;
+    }
+
+    :global(.tria-quote-sheet-panel) {
+      border-radius: 22px 22px 0 0;
+    }
+  }
+
+  /* Very narrow screens: single column keeps cards tappable */
+  @media (max-width: 380px) {
+    .tria-quote-types,
+    .tria-quote-features,
+    .tria-quote-pills {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
 
-<script define:vars={{ quoteTexts, turnstileSiteKey }}>
-  (function () {
+<script define:vars={{ quoteTexts, turnstileSiteKey, screensData, crcRate, scaleData, typeScaleMap, typeGroupMap, typeIncludeMap, featureTypes, includedFeatures }}>
+  /* Named init so the wizard can re-bind after a locale swap (swup:contentReplaced)
+     without re-executing the page's inline script. */
+  function initQuote() {
     var form = document.getElementById('tria-quote-form');
-    var layout = document.getElementById('tria-quote-layout');
+    var shell = document.getElementById('tria-quote-shell');
     var success = document.getElementById('tria-quote-success');
     var rangeEl = document.getElementById('quote-range');
     var weeksEl = document.getElementById('quote-weeks');
     var breakdownEl = document.getElementById('quote-breakdown');
     var resetBtn = document.getElementById('quote-reset');
     var successReset = document.getElementById('quote-success-reset');
-    if (!form || !rangeEl) return;
+    var prevBtn = document.getElementById('quote-prev');
+    var nextBtn = document.getElementById('quote-next');
+    var nextBtnText = nextBtn ? nextBtn.querySelector('.tria-quote-nav-text') : null;
+    var steps = Array.prototype.slice.call(document.querySelectorAll('.tria-quiz-step'));
+    var totalSteps = steps.length;
+
+    /* Mobile summary bar + invoice bottom sheet */
+    var barEl = document.getElementById('tria-quote-bar');
+    var barTotalEl = document.getElementById('quote-bar-total');
+    var barStepEl = document.getElementById('quote-bar-step');
+    var asideEl = document.getElementById('tria-quote-result');
+    var asideParent = null;
+    var asideNext = null;
+    var sheetEl = null;
+
+    /* A previous init (locale swap while the sheet was open) may have left the
+       scroll-lock state applied to the document — always start clean. */
+    document.documentElement.classList.remove('tria-sheet-open');
+
+    if (!form || !rangeEl || !steps.length) return;
+
+    var currentStep = 1;
+    var prevLow = 0;
+    var prevHigh = 0;
+    var prevSub = 0;
+    var prevMid = 0;
 
     var weeksTemplate = quoteTexts.weeks;
+
+    var subTotalEl = document.getElementById('quote-subtotal');
+    var totalEl = document.getElementById('quote-total');
+    var crcEl = document.getElementById('quote-crc');
+    var totalCrcEl = document.getElementById('quote-total-crc');
+
+    /* ── Invoice doc meta (no + date) ── */
+    var docnoEl = document.getElementById('quote-docno');
+    var docdateEl = document.getElementById('quote-docdate');
+    (function setDocMeta() {
+      var now = new Date();
+      var pad = function (n) { return String(n).padStart(2, '0'); };
+      if (docnoEl) {
+        docnoEl.textContent = 'TRIA-' + now.getFullYear() + pad(now.getMonth() + 1) + pad(now.getDate()) + '-01';
+      }
+      if (docdateEl) {
+        var lang = (document.documentElement.lang || 'en').toLowerCase();
+        docdateEl.textContent = now.toLocaleDateString(lang.indexOf('es') === 0 ? 'es' : 'en', {
+          year: 'numeric', month: 'short', day: 'numeric'
+        });
+      }
+    })();
 
     function getSelected(name) {
       return form.querySelector('input[name="' + name + '"]:checked');
@@ -1130,108 +2231,691 @@ function typeIconSvg(key: string) {
       return '$' + n.toLocaleString('en-US');
     }
 
-    function fmtMult(m) {
-      return '×' + parseFloat(m.toFixed(2)).toString();
+    /* CRC equivalent (exchange rate passed via define:vars) */
+    function crc(n) {
+      return '₡' + Math.round(n * crcRate).toLocaleString('en-US');
     }
 
+    /* ── Screens (radio pills) ── */
+    function activeScaleGroups() {
+      var groups = {};
+      selectedTypes().forEach(function (el) {
+        var scale = typeScaleMap[el.value];
+        if (scale) groups[scale] = true;
+      });
+      return groups;
+    }
+
+    /* Selected radio element for each active scale group, in priority order */
+    function activeScaleEls() {
+      var names = ['screens', 'endpoints', 'infra'];
+      var groups = activeScaleGroups();
+      var els = [];
+      for (var i = 0; i < names.length; i++) {
+        if (groups[names[i]]) {
+          var el = getSelected(names[i]);
+          if (el) els.push({ name: names[i], el: el });
+        }
+      }
+      return els;
+    }
+
+    function currentScale() {
+      var els = activeScaleEls();
+      return els.length ? els[0].el : null;
+    }
+
+    function currentScaleData() {
+      var els = activeScaleEls();
+      if (!els.length) return { key: 's2', label: '', desc: '', mult: 1 };
+      var data = scaleData[els[0].name] || [];
+      for (var j = 0; j < data.length; j++) {
+        if (data[j].key === els[0].el.value) return data[j];
+      }
+      return { key: 's2', label: '', desc: '', mult: 1 };
+    }
+
+    /* Labels of every active scale selection, e.g. "4-8 screens", "15-40 endpoints" */
+    function activeScaleLabels() {
+      return activeScaleEls().map(function (s) { return s.el.getAttribute('data-label'); });
+    }
+
+    /* ── Result panel empty state (nothing selected yet) ── */
+    function setResultEmpty(empty) {
+      var aside = document.getElementById('tria-quote-result');
+      var emptyEl = document.getElementById('quote-result-empty');
+      var head = document.querySelector('.tria-quote-result-head');
+      var tl = document.querySelector('.tria-quote-result-timeline');
+      var bdWrap = document.querySelector('.tria-quote-bd-wrap');
+      if (aside) aside.classList.toggle('is-empty', empty);
+      if (emptyEl) emptyEl.hidden = !empty;
+      if (head) head.hidden = empty;
+      if (rangeEl) rangeEl.hidden = empty;
+      if (crcEl) crcEl.hidden = empty;
+      if (tl) tl.hidden = empty;
+      if (bdWrap) bdWrap.hidden = empty;
+      syncMobileBar();
+    }
+
+    /* ── Multi-select project types ── */
+    function selectedTypes() {
+      return form.querySelectorAll('input[name="types"]:checked');
+    }
+
+    function selectedTypeKeys() {
+      return Array.prototype.map.call(selectedTypes(), function (el) { return el.value; });
+    }
+
+    /* True when any selected type needs the given option group */
+    function groupActive(group) {
+      var keys = selectedTypeKeys();
+      for (var i = 0; i < keys.length; i++) {
+        var g = typeGroupMap[keys[i]] || [];
+        if (g.indexOf(group) !== -1) return true;
+      }
+      return false;
+    }
+
+    /* ── Calculation ──
+       Progressive accumulation: the result panel sums only what has been
+       selected in the current step and the previous ones. Steps not yet
+       reached contribute neutral multipliers (1) and no breakdown rows.
+
+       Precision rules:
+       • Each selected type is scaled by ITS OWN scale group multiplier
+         (screens / endpoints / infra), so Web App + Backend no longer apply
+         one global multiplier to the whole sum.
+       • Features already included in a type's base price (includedFeatures)
+         cost $0 and appear in the invoice marked as "Included". ── */
     function calc() {
-      var typeEl = getSelected('type');
-      var screensEl = getSelected('screens');
+      var typeEls = selectedTypes();
+      if (!typeEls.length) {
+        setResultEmpty(true);
+        return;
+      }
+      setResultEmpty(false);
+
+      var reached = {
+        scope: currentStep >= 2,
+        timing: currentStep >= 3,
+        extras: currentStep >= 4
+      };
       var compEl = getSelected('complexity');
       var usersEl = getSelected('users');
       var deadlineEl = getSelected('deadline');
       var designEl = getSelected('design');
       var integEl = getSelected('integrations');
-      if (!typeEl || !screensEl || !compEl || !usersEl || !deadlineEl || !designEl || !integEl) return;
 
-      var base = parseFloat(typeEl.getAttribute('data-base')) || 0;
-      var sMult = parseFloat(screensEl.getAttribute('data-mult')) || 1;
-      var cMult = parseFloat(compEl.getAttribute('data-mult')) || 1;
-      var uMult = parseFloat(usersEl.getAttribute('data-mult')) || 1;
-      var dMult = parseFloat(deadlineEl.getAttribute('data-mult')) || 1;
-      var dsMult = parseFloat(designEl.getAttribute('data-mult')) || 1;
-      var iMult = parseFloat(integEl.getAttribute('data-mult')) || 1;
+      var incKeys = includedFeatureKeys();
 
-      var weeks = JSON.parse(typeEl.getAttribute('data-weeks') || '[2,4]');
-      var compFactor = cMult;
-      var screensIdx = ['s1', 's2', 's3', 's4', 's5'].indexOf(screensEl.value);
-      var screensWeekFactor = 0.8 + Math.max(0, screensIdx) * 0.15;
-      var wMin = Math.max(1, Math.round(weeks[0] * screensWeekFactor * (0.75 + compFactor * 0.25)));
-      var wMax = Math.max(wMin, Math.round(weeks[1] * screensWeekFactor * (0.75 + compFactor * 0.25)));
+      /* Sum of each selected type's base price scaled by its own scale
+         group multiplier. Types auto-included by a parent (e.g. Landing
+         inside Website) are already covered by the parent's base price and
+         are skipped so they don't double-count. */
+      var base = 0;
+      var wMinAll = Infinity;
+      var wMaxAll = 0;
+      typeEls.forEach(function (el) {
+        if (isCoveredByOther(el.value)) return;
+        var b = parseFloat(el.getAttribute('data-base')) || 0;
+        var scaleName = typeScaleMap[el.value];
+        var m = 1;
+        if (reached.scope && scaleName) {
+          var sel = getSelected(scaleName);
+          if (sel) m = parseFloat(sel.getAttribute('data-mult')) || 1;
+        }
+        base += b * m;
+        var weeks = JSON.parse(el.getAttribute('data-weeks') || '[2,4]');
+        if (weeks[0] < wMinAll) wMinAll = weeks[0];
+        if (weeks[1] > wMaxAll) wMaxAll = weeks[1];
+      });
+      var cMult = reached.scope && compEl && groupActive('complexity') ? parseFloat(compEl.getAttribute('data-mult')) || 1 : 1;
+      var uMult = reached.timing && usersEl && groupActive('users') ? parseFloat(usersEl.getAttribute('data-mult')) || 1 : 1;
+      var dMult = reached.timing && deadlineEl && groupActive('deadline') ? parseFloat(deadlineEl.getAttribute('data-mult')) || 1 : 1;
+      var dsMult = reached.timing && designEl && groupActive('design') ? parseFloat(designEl.getAttribute('data-mult')) || 1 : 1;
+      var iMult = reached.extras && integEl && groupActive('integrations') ? parseFloat(integEl.getAttribute('data-mult')) || 1 : 1;
 
-      var subtotal = base * sMult * cMult * uMult * dMult * dsMult * iMult;
+      var weeks = [wMinAll === Infinity ? 2 : wMinAll, wMaxAll || 4];
+
+      /* Features: included ones (already in a base price) cost $0 and are
+         listed in the invoice as "Included"; only the rest add to the total
+         and to the timeline. */
       var featureTotal = 0;
       var featureNames = [];
-      var feats = form.querySelectorAll('input[name="features"]:checked');
+      var feats = reached.extras && groupActive('features') ? form.querySelectorAll('input[name="features"]:checked') : [];
       feats.forEach(function (el) {
-        featureTotal += parseFloat(el.getAttribute('data-price')) || 0;
-        featureNames.push(el.getAttribute('data-label'));
+        if (!incKeys[el.value]) {
+          featureTotal += parseFloat(el.getAttribute('data-price')) || 0;
+          featureNames.push(el.getAttribute('data-label'));
+        }
       });
+      var featureEls = Array.prototype.slice.call(feats);
+
+      /* Weeks reflect what was actually requested: scope size, complexity,
+         expected users, deadline urgency, design depth, integrations and
+         selected features. Neutral (1) when a step isn't reached yet. */
+      var screensIdx = 1;
+      var names2 = ['screens', 'endpoints', 'infra'];
+      for (var si2 = 0; si2 < names2.length; si2++) {
+        if (!scaleData[names2[si2]]) continue;
+        var list2 = scaleData[names2[si2]] || [];
+        for (var j2 = 0; j2 < list2.length; j2++) {
+          var el2 = getSelected(names2[si2]);
+          if (el2 && el2.value === list2[j2].key && j2 > screensIdx) screensIdx = j2;
+        }
+      }
+      var scopeFactor = reached.scope ? 0.9 + Math.max(0, screensIdx) * 0.18 : 1;
+      var complexityFactor = reached.scope ? (0.8 + (cMult - 1) * 0.85) : 1;
+      var usersFactor = reached.timing ? (1 + (uMult - 1) * 0.6) : 1;
+      var deadlineFactor = reached.timing ? (1.18 - (dMult - 1) * 0.6) : 1;
+      var designFactor = reached.timing ? (1 + (dsMult - 1) * 0.5) : 1;
+      var integFactor = reached.extras ? (1 + (iMult - 1) * 0.5) : 1;
+      var featureFactor = reached.extras ? (1 + featureNames.length * 0.04) : 1;
+      var weekScale = scopeFactor * complexityFactor * usersFactor * deadlineFactor * designFactor * integFactor * featureFactor;
+      var wMin = Math.max(1, Math.round(weeks[0] * weekScale));
+      var wMax = Math.max(wMin, Math.round(weeks[1] * weekScale));
+
+      var subtotal = base * cMult * uMult * dMult * dsMult * iMult;
 
       var mid = subtotal + featureTotal;
-      var low = round50(mid * 0.85);
-      var high = round50(mid * 1.25);
+      var low = round50(mid * 0.75);
+      var high = round50(mid * 1.35);
 
-      rangeEl.textContent = money(low) + ' \u2013 ' + money(high);
+      animateRange(low, high, subtotal, mid, 450);
       weeksEl.textContent = weeksTemplate.replace('{min}', wMin).replace('{max}', wMax);
 
       var bd = [];
-      bd.push({ label: typeEl.getAttribute('data-label'), value: money(base), sub: quoteTexts.base });
-      if (sMult !== 1) bd.push({ label: screensEl.getAttribute('data-label'), value: fmtMult(sMult), sub: quoteTexts.screens });
-      if (cMult !== 1) bd.push({ label: compEl.getAttribute('data-label'), value: fmtMult(cMult), sub: quoteTexts.complexity });
-      if (uMult !== 1) bd.push({ label: usersEl.getAttribute('data-label'), value: fmtMult(uMult), sub: quoteTexts.users });
-      if (dMult !== 1) bd.push({ label: deadlineEl.getAttribute('data-label'), value: fmtMult(dMult), sub: quoteTexts.deadline });
-      if (dsMult !== 1) bd.push({ label: designEl.getAttribute('data-label'), value: fmtMult(dsMult), sub: quoteTexts.design });
-      if (iMult !== 1) bd.push({ label: integEl.getAttribute('data-label'), value: fmtMult(iMult), sub: quoteTexts.integrations });
-      if (featureNames.length) {
-        bd.push({ label: featureNames.slice(0, 3).join(', ') + (featureNames.length > 3 ? ' ' + quoteTexts.more.replace('{n}', featureNames.length - 3) : ''), value: money(featureTotal), sub: quoteTexts.features });
+      typeEls.forEach(function (el) {
+        if (isCoveredByOther(el.value)) return;
+        var b = parseFloat(el.getAttribute('data-base')) || 0;
+        var scaleName = typeScaleMap[el.value];
+        var m = 1;
+        var scaleLabel = '';
+        if (reached.scope && scaleName) {
+          var sel = getSelected(scaleName);
+          if (sel) { m = parseFloat(sel.getAttribute('data-mult')) || 1; scaleLabel = sel.getAttribute('data-label'); }
+        }
+        var label = el.getAttribute('data-label');
+        if (scaleLabel) label += ' · ' + scaleLabel;
+        bd.push({ label: label, value: money(Math.round(b * m)), sub: quoteTexts.sections.base });
+      });
+      if (reached.extras && groupActive('features')) {
+        featureEls.forEach(function (el) {
+          if (!el.checked) return;
+          if (incKeys[el.value]) {
+            bd.push({ label: el.getAttribute('data-label'), value: quoteTexts.included });
+            return;
+          }
+          bd.push({ label: el.getAttribute('data-label'), value: money(parseFloat(el.getAttribute('data-price')) || 0) });
+        });
       }
-      bd.push({ label: quoteTexts.total, value: money(mid), total: true });
-
       breakdownEl.innerHTML = '';
       bd.forEach(function (row) {
+        if (row.total) return;
         var li = document.createElement('li');
-        if (row.total) li.className = 'tria-quote-bd-total';
-        var left = row.sub && row.sub !== row.label
-          ? '<span>' + row.label + '</span>'
-          : '<span>' + row.label + '</span>';
-        li.innerHTML = left + '<span>' + row.value + '</span>';
+        li.className = 'tria-quote-bd-item' + (row.value === quoteTexts.included ? ' tria-quote-bd-item--included' : '');
+        li.innerHTML = '<span>' + row.label + '</span><span>' + row.value + '</span>';
         breakdownEl.appendChild(li);
+      });
+      updateBreakdownScroll();
+    }
+
+    /* ── Animated count-up for range + invoice summary ── */
+    function animateRange(low, high, subtotal, mid, duration) {
+      var start = performance.now();
+      function tick(now) {
+        var p = Math.min(1, (now - start) / duration);
+        var e = 1 - Math.pow(1 - p, 3);
+        var l = Math.round(prevLow + (low - prevLow) * e);
+        var h = Math.round(prevHigh + (high - prevHigh) * e);
+        var s = Math.round(prevSub + (subtotal - prevSub) * e);
+        var m = Math.round(prevMid + (mid - prevMid) * e);
+        rangeEl.textContent = money(l) + ' \u2013 ' + money(h);
+        if (crcEl) crcEl.textContent = '≈ ' + crc(l) + ' – ' + crc(h);
+        if (subTotalEl) subTotalEl.textContent = money(s);
+        if (totalEl) totalEl.textContent = money(m);
+        if (totalCrcEl) totalCrcEl.textContent = '≈ ' + crc(m);
+        if (barTotalEl) barTotalEl.textContent = rangeEl.textContent;
+        if (p < 1) {
+          requestAnimationFrame(tick);
+        } else {
+          prevLow = low;
+          prevHigh = high;
+          prevSub = subtotal;
+          prevMid = mid;
+        }
+      }
+      requestAnimationFrame(tick);
+    }
+
+    /* ── Smart type-dependent wizard ── */
+    function includesSet(key, acc) {
+      acc = acc || {};
+      var inc = typeIncludeMap[key] || [];
+      inc.forEach(function (k) {
+        if (!acc[k]) {
+          acc[k] = true;
+          includesSet(k, acc);
+        }
+      });
+      return acc;
+    }
+
+    function isCoveredByOther(key) {
+      var keys = selectedTypeKeys();
+      for (var i = 0; i < keys.length; i++) {
+        if (keys[i] === key) continue;
+        var acc = includesSet(keys[i]);
+        if (acc[key]) return true;
+      }
+      return false;
+    }
+
+    /* Every feature already included in the base price of any selected type
+       (including inherited types, e.g. ecommerce → website → landing). */
+    function includedFeatureKeys() {
+      var acc = {};
+      var keys = selectedTypeKeys();
+      keys.forEach(function (key) {
+        var set = includesSet(key);
+        set[key] = true;
+        Object.keys(set).forEach(function (k) {
+          (includedFeatures[k] || []).forEach(function (f) { acc[f] = true; });
+        });
+      });
+      return acc;
+    }
+
+    function syncBadges() {
+      form.querySelectorAll('input[name="types"]').forEach(function (inp) {
+        var label = inp.closest('.tria-quote-type');
+        var badge = label ? label.querySelector('[data-included-badge]') : null;
+        if (badge) badge.hidden = !(inp.checked && isCoveredByOther(inp.value));
       });
     }
 
-    form.addEventListener('change', calc);
+    function syncGroups() {
+      var keys = selectedTypeKeys();
+      var none = keys.length === 0;
+      document.querySelectorAll('[data-group]').forEach(function (g) {
+        var name = g.getAttribute('data-group');
+        var show = none ? true : groupActive(name);
+        g.hidden = !show;
+      });
+      var scaleGroups = activeScaleGroups();
+      ['screens', 'endpoints', 'infra'].forEach(function (name) {
+        var g = form.querySelector('[data-group="' + name + '"]');
+        if (g) g.hidden = !(none || scaleGroups[name]);
+      });
+    }
 
+    function syncFeatures() {
+      var keys = selectedTypeKeys();
+      var none = keys.length === 0;
+      var incKeys = includedFeatureKeys();
+      form.querySelectorAll('.tria-quote-feature').forEach(function (label) {
+        var input = label.querySelector('input');
+        var ftypes = (input && featureTypes[input.value]) || [];
+        var ok = none || ftypes.some(function (t) { return keys.indexOf(t) !== -1; });
+        var isIncluded = ok && !none && !!incKeys[input.value];
+        label.hidden = !ok;
+        label.classList.toggle('is-included', isIncluded);
+        var badge = label.querySelector('[data-feature-included]');
+        if (badge) badge.hidden = !isIncluded;
+        /* Uncheck features that no longer apply so they don't silently add to the total */
+        if (!ok && input && input.checked) input.checked = false;
+      });
+    }
+
+    function syncTypes(changed) {
+      if (changed) {
+        if (changed.checked) {
+          var acc = includesSet(changed.value);
+          Object.keys(acc).forEach(function (k) {
+            var inp = form.querySelector('input[name="types"][value="' + k + '"]');
+            if (inp && !inp.checked) inp.checked = true;
+          });
+        } else {
+          var acc2 = includesSet(changed.value);
+          Object.keys(acc2).forEach(function (k) {
+            var inp = form.querySelector('input[name="types"][value="' + k + '"]');
+            if (inp && inp.checked && !isCoveredByOther(k)) inp.checked = false;
+          });
+        }
+      }
+      syncBadges();
+      syncGroups();
+      syncFeatures();
+      calc();
+      updateNav();
+      updateStepScroll();
+    }
+
+    form.addEventListener('change', function (e) {
+      var t = e.target;
+      if (t && t.name === 'types') {
+        syncTypes(t);
+      } else {
+        calc();
+        updateNav();
+      }
+    });
+
+    /* ── Each step requires at least one selection before Continue ── */
+    /* Every visible required group in the step must be answered */
+    function groupsComplete(names) {
+      for (var i = 0; i < names.length; i++) {
+        var g = form.querySelector('.tria-quote-group[data-group="' + names[i] + '"]');
+        if (g && !g.hidden && !form.querySelector('input[name="' + names[i] + '"]:checked')) {
+          return false;
+        }
+      }
+      return true;
+    }
+
+    function stepHasSelection(step) {
+      if (step === 1) return !!form.querySelector('input[name="types"]:checked');
+      if (step === 2) return groupsComplete(['screens', 'endpoints', 'infra', 'complexity']);
+      if (step === 3) return groupsComplete(['users', 'deadline', 'design']);
+      if (step === 4) return groupsComplete(['integrations']);
+      return true;
+    }
+
+    /* ── Wizard navigation ── */
+    function updateNav() {
+      var lastStep = currentStep === totalSteps;
+      if (prevBtn) {
+        prevBtn.hidden = currentStep === 1;
+        prevBtn.disabled = false;
+      }
+      /* On the last step the next/send button disappears from the nav — only the
+         back button remains; submission lives in the form below. */
+      if (nextBtn) {
+        nextBtn.hidden = lastStep;
+        if (!lastStep) {
+          var blocked = !stepHasSelection(currentStep);
+          nextBtn.classList.toggle('is-blocked', blocked);
+          nextBtn.setAttribute('aria-disabled', blocked ? 'true' : 'false');
+        }
+      }
+      if (nextBtnText) {
+        nextBtnText.textContent = quoteTexts.next;
+      }
+      syncMobileBar();
+    }
+
+    function goTo(step, dir) {
+      var next = form.querySelector('.tria-quiz-step[data-step="' + step + '"]');
+      if (!next) return;
+      var cur = form.querySelector('.tria-quiz-step.is-active');
+      if (cur && cur !== next) {
+        cur.classList.remove('is-active', 'anim-from-left');
+      }
+      next.classList.add('is-active');
+      if (dir === 'back') next.classList.add('anim-from-left');
+      currentStep = step;
+      updateNav();
+      updateStepScroll();
+      calc();
+      /* Re-sync the invoice panel height — step bodies have different natural
+         heights (e.g. step 5 with the full contact form) and the panel would
+         otherwise stay at the height measured on load */
+      syncLayout();
+      var first = next.querySelector('input, textarea, button');
+      if (first && first.focus) first.focus({ preventScroll: true });
+      if (window.innerWidth < 992) {
+        var wizard = document.querySelector('.tria-quote-wizard');
+        if (wizard) wizard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    if (prevBtn) prevBtn.addEventListener('click', function () {
+      if (currentStep > 1) goTo(currentStep - 1, 'back');
+    });
+
+    /* ── Scroll affordance on step content ── */
+    function updateStepScroll() {
+      var cur = form.querySelector('.tria-quiz-step.is-active > .tria-quiz-step-body');
+      if (!cur) return;
+      cur.classList.toggle('is-overflowing', cur.scrollHeight > cur.clientHeight + 4);
+    }
+
+    /* ── Scroll affordance on the invoice items list ── */
+    function updateBreakdownScroll() {
+      if (!breakdownEl) return;
+      breakdownEl.classList.toggle('is-scrollable', breakdownEl.scrollHeight > breakdownEl.clientHeight + 4);
+    }
+
+    /* ── Uniform step height — fixed short height so all steps look the same, taller ones scroll ── */
+    function syncStepHeight() {
+      if (window.innerWidth < 769) return;
+      var body1 = form.querySelector('.tria-quiz-step[data-step="1"] > .tria-quiz-step-body');
+      if (!body1) return;
+      var prevH = body1.style.height;
+      var prevMin = body1.style.minHeight;
+      var prevFlex = body1.style.flex;
+      /* flex:none while measuring so the natural height isn't inflated by flex-grow
+         (the wizard may still be stretched by the pinned invoice panel) */
+      body1.style.flex = 'none';
+      body1.style.height = 'auto';
+      body1.style.minHeight = '0';
+      var h = body1.offsetHeight;
+      body1.style.flex = prevFlex;
+      body1.style.height = prevH;
+      body1.style.minHeight = prevMin;
+      if (!h || h < 100) return;
+      var MAX = 580;
+      /* Keep the shared height viewport-aware: shrink on short desktop viewports
+         so the wizard never pushes the nav below the fold */
+      if (window.innerHeight) {
+        MAX = Math.min(580, Math.max(440, window.innerHeight - 380));
+      }
+      form.style.setProperty('--tria-step-h', Math.min(h, MAX) + 'px');
+      updateStepScroll();
+    }
+
+    /* ── Invoice panel height matches the wizard column (and stays constant) ── */
+    function syncResultHeight() {
+      var wizard = document.querySelector('.tria-quote-wizard');
+      var result = document.getElementById('tria-quote-result');
+      if (!result) return;
+      if (window.innerWidth < 992) {
+        /* Single-column layout — let the panel flow naturally */
+        result.style.height = '';
+        return;
+      }
+      if (!wizard) return;
+      var prev = result.style.height;
+      result.style.height = '0px';
+      var h = wizard.offsetHeight;
+      result.style.height = prev;
+      if (!h || h < 300) return;
+      /* Slight headroom over the wizard so the invoice (and its items area)
+         breathes — the grid stretches both columns to the taller one, so they match */
+      result.style.height = Math.max(h + 48, 620) + 'px';
+    }
+
+    function syncLayout() {
+      syncStepHeight();
+      syncResultHeight();
+    }
+
+    /* ── Mobile: invoice as a bottom sheet + fixed summary bar ── */
+    function buildSheet() {
+      var wrap = document.createElement('div');
+      wrap.className = 'tria-quote-sheet';
+      wrap.setAttribute('role', 'dialog');
+      wrap.setAttribute('aria-modal', 'true');
+      wrap.setAttribute('aria-label', quoteTexts.barLabel);
+
+      var backdrop = document.createElement('div');
+      backdrop.className = 'tria-quote-sheet-backdrop';
+
+      var panel = document.createElement('div');
+      panel.className = 'tria-quote-sheet-panel';
+      panel.setAttribute('data-lenis-prevent', '');
+
+      var head = document.createElement('div');
+      head.className = 'tria-quote-sheet-head';
+      var title = document.createElement('span');
+      title.className = 'tria-quote-sheet-title';
+      title.textContent = quoteTexts.barLabel;
+      var close = document.createElement('button');
+      close.type = 'button';
+      close.className = 'tria-quote-sheet-close';
+      close.setAttribute('aria-label', quoteTexts.sheetClose);
+      close.innerHTML = '<svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
+      head.appendChild(title);
+      head.appendChild(close);
+
+      panel.appendChild(head);
+      wrap.appendChild(backdrop);
+      wrap.appendChild(panel);
+      return wrap;
+    }
+
+    function setupMobileInvoice() {
+      if (!asideEl) return;
+      var mobile = window.innerWidth < 992;
+      var inSheet = sheetEl && sheetEl.contains(asideEl);
+      if (mobile && !inSheet) {
+        if (!sheetEl) {
+          /* Drop any stale sheet left by a previous init (locale swap) */
+          var stale = document.querySelector('.tria-quote-sheet');
+          if (stale) stale.remove();
+          sheetEl = buildSheet();
+        }
+        asideParent = asideEl.parentNode;
+        asideNext = asideEl.nextSibling;
+        sheetEl.querySelector('.tria-quote-sheet-panel').appendChild(asideEl);
+        asideEl.classList.add('is-in-sheet');
+        document.body.appendChild(sheetEl);
+      } else if (!mobile && inSheet) {
+        setSheetOpen(false);
+        if (asideParent) asideParent.insertBefore(asideEl, asideNext);
+        if (sheetEl) { sheetEl.remove(); sheetEl = null; }
+        asideEl.classList.remove('is-in-sheet');
+      }
+    }
+
+    function setSheetOpen(open) {
+      if (!sheetEl) return;
+      sheetEl.classList.toggle('is-open', open);
+      if (barEl) barEl.classList.toggle('is-open', open);
+      if (barEl) barEl.setAttribute('aria-expanded', open ? 'true' : 'false');
+      document.documentElement.classList.toggle('tria-sheet-open', open);
+      if (window.triaLenis && typeof window.triaLenis.stop === 'function' && typeof window.triaLenis.start === 'function') {
+        if (open) window.triaLenis.stop(); else window.triaLenis.start();
+      }
+    }
+
+    function syncMobileBar() {
+      if (!barEl) return;
+      barEl.hidden = !!(success && !success.hidden) || window.innerWidth >= 992;
+      if (barTotalEl && rangeEl) {
+        var empty = asideEl && asideEl.classList.contains('is-empty');
+        barTotalEl.textContent = empty ? '$0' : rangeEl.textContent;
+      }
+      if (barStepEl) barStepEl.textContent = (currentStep < 10 ? '0' : '') + currentStep + ' / ' + (totalSteps < 10 ? '0' : '') + totalSteps;
+    }
+
+    function onQuoteKeydown(e) {
+      if (e.key === 'Escape' && sheetEl && sheetEl.classList.contains('is-open')) {
+        setSheetOpen(false);
+        if (barEl) barEl.focus({ preventScroll: true });
+      }
+    }
+
+    if (barEl) {
+      barEl.addEventListener('click', function () {
+        if (!sheetEl) return;
+        setSheetOpen(!sheetEl.classList.contains('is-open'));
+      });
+    }
+    function onQuoteDocClick(e) {
+      if (!sheetEl || !sheetEl.classList.contains('is-open')) return;
+      if (e.target.closest('.tria-quote-sheet-backdrop') || e.target.closest('.tria-quote-sheet-close') ||
+          e.target.closest('.tria-menu-btn') || e.target.closest('.tria-menu-close')) {
+        setSheetOpen(false);
+      }
+    }
+    if (document.addEventListener) {
+      document.addEventListener('click', onQuoteDocClick);
+      document.addEventListener('keydown', onQuoteKeydown);
+    }
+
+    var stepHeightTimer = null;
+    function scheduleStepHeight() {
+      clearTimeout(stepHeightTimer);
+      stepHeightTimer = setTimeout(syncLayout, 120);
+    }
+
+    function onQuoteResize() {
+      scheduleStepHeight();
+      updateStepScroll();
+      updateBreakdownScroll();
+      setupMobileInvoice();
+      syncMobileBar();
+    }
+
+    /* Re-init safety: remove listeners added by a previous init (locale swap) */
+    if (window.__triaQuoteCleanup) window.__triaQuoteCleanup();
+    window.addEventListener('resize', onQuoteResize);
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function () { setTimeout(syncLayout, 60); });
+    }
+    if (window.addEventListener) window.addEventListener('load', function () {
+      setTimeout(syncLayout, 60);
+    });
+    window.__triaQuoteCleanup = function () {
+      window.removeEventListener('resize', onQuoteResize);
+      if (document.removeEventListener) {
+        document.removeEventListener('click', onQuoteDocClick);
+        document.removeEventListener('keydown', onQuoteKeydown);
+      }
+    };
+    syncLayout();
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      clearContactError();
+      if (currentStep < totalSteps) {
+        if (!stepHasSelection(currentStep)) return;
+        goTo(currentStep + 1);
+        return;
+      }
+      submitFinal();
+    });
+
+    /* ── Reset ── */
     function resetAll() {
       form.querySelectorAll('input[type="radio"]').forEach(function (el) {
-        if (el.name === 'type') el.checked = el.value === 'landing';
-        if (el.name === 'screens') el.checked = el.value === 's2';
-        if (el.name === 'complexity') el.checked = el.value === 'standard';
-        if (el.name === 'users') el.checked = el.value === 'u2';
-        if (el.name === 'deadline') el.checked = el.value === 'd2';
-        if (el.name === 'design') el.checked = el.value === 'ds2';
-        if (el.name === 'integrations') el.checked = el.value === 'i1';
+        el.checked = false;
       });
       form.querySelectorAll('input[type="checkbox"]').forEach(function (el) {
         el.checked = false;
       });
-      var nameEl = document.getElementById('quote-name');
-      var emailEl = document.getElementById('quote-email');
-      var companyEl = document.getElementById('quote-company');
-      if (nameEl) nameEl.value = '';
-      if (emailEl) emailEl.value = '';
-      if (companyEl) companyEl.value = '';
+      ['quote-name', 'quote-email', 'quote-company', 'quote-phone', 'quote-notes'].forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el) el.value = '';
+      });
       clearContactError();
-      calc();
+      syncTypes(null);
+      goTo(1);
     }
 
     if (resetBtn) resetBtn.addEventListener('click', resetAll);
     if (successReset) successReset.addEventListener('click', function () {
       resetAll();
-      layout.hidden = false;
+      shell.hidden = false;
       success.hidden = true;
+      syncMobileBar();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+
+    /* ── Contact form submit button (only shown on the last step) ── */
+    var submitBtn = document.getElementById('quote-submit');
+    var submitBtnText = submitBtn ? submitBtn.querySelector('.tria-btn-text') : null;
 
     /* ── Contact validation ── */
     var contactError = document.getElementById('quote-contact-error');
@@ -1279,35 +2963,36 @@ function typeIconSvg(key: string) {
     /* ── Build the message summary for the lead ── */
     function buildSummary() {
       var lines = [];
-      lines.push(typeElLabel('type') + ': ' + getSelected('type').getAttribute('data-label'));
-      lines.push(quoteTexts.screens + ': ' + getSelected('screens').getAttribute('data-label'));
-      lines.push(quoteTexts.complexity + ': ' + getSelected('complexity').getAttribute('data-label'));
-      lines.push(quoteTexts.users + ': ' + getSelected('users').getAttribute('data-label'));
-      lines.push(quoteTexts.deadline + ': ' + getSelected('deadline').getAttribute('data-label'));
-      lines.push(quoteTexts.design + ': ' + getSelected('design').getAttribute('data-label'));
-      lines.push(quoteTexts.integrations + ': ' + getSelected('integrations').getAttribute('data-label'));
+      if (docnoEl) lines.push('#' + docnoEl.textContent + ' (' + (docdateEl ? docdateEl.textContent : '') + ')');
+      var typeNames = Array.prototype.map.call(selectedTypes(), function (el) {
+        return el.getAttribute('data-label');
+      });
+      lines.push(quoteTexts.typeLabel + ': ' + typeNames.join(', '));
+      var scaleLabels = activeScaleLabels();
+      lines.push(quoteTexts.sections.screens + ': ' + (scaleLabels.length ? scaleLabels.join(', ') : '-'));
+      [['complexity'], ['users'], ['deadline'], ['design'], ['integrations']].forEach(function (g) {
+        var el = getSelected(g[0]);
+        if (el) lines.push(quoteTexts.sections[g[0]] + ': ' + el.getAttribute('data-label'));
+      });
       var featNames = Array.prototype.map.call(form.querySelectorAll('input[name="features"]:checked'), function (el) {
         return el.getAttribute('data-label');
       });
-      lines.push(quoteTexts.features + ': ' + (featNames.length ? featNames.join(', ') : '-'));
+      lines.push(quoteTexts.sections.features + ': ' + (featNames.length ? featNames.join(', ') : '-'));
       lines.push(quoteTexts.total + ': ' + rangeEl.textContent + ' (' + weeksEl.textContent + ')');
       return lines.join('\n');
     }
 
-    function typeElLabel() {
-      return getSelected('type').getAttribute('data-label');
-    }
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      clearContactError();
-
+    function submitFinal() {
       var nameEl = document.getElementById('quote-name');
       var emailEl = document.getElementById('quote-email');
       var companyEl = document.getElementById('quote-company');
+      var phoneEl = document.getElementById('quote-phone');
+      var notesEl = document.getElementById('quote-notes');
       var name = nameEl ? nameEl.value.trim() : '';
       var email = emailEl ? emailEl.value.trim() : '';
       var company = companyEl ? companyEl.value.trim() : '';
+      var phone = phoneEl ? phoneEl.value.trim() : '';
+      var notes = notesEl ? notesEl.value.trim() : '';
 
       var valid = true;
       if (!name) { if (nameEl) nameEl.classList.add('tria-quote-input--error'); valid = false; }
@@ -1317,21 +3002,25 @@ function typeIconSvg(key: string) {
         return;
       }
 
-      var btn = document.getElementById('quote-submit');
-      if (btn) {
-        btn.disabled = true;
-        var btnText = btn.querySelector('.tria-btn-text');
-        if (btnText) btnText.textContent = quoteTexts.sending;
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        if (submitBtnText) submitBtnText.textContent = quoteTexts.sending;
       }
 
       getTurnstileToken().then(function (turnstileToken) {
+        var summary = buildSummary();
+        if (company) summary += '\n' + quoteTexts.companyLabel + ': ' + company;
+        if (phone) summary += '\n' + quoteTexts.phoneLabel + ': ' + phone;
+        if (notes) summary += '\n' + quoteTexts.notesLabel + ': ' + notes;
+
         var data = {
+          source: 'quote',
           name: name,
           email: email,
           company: company,
           budget: rangeEl.textContent,
-          services: [typeElLabel(), getSelected('screens').getAttribute('data-label'), getSelected('complexity').getAttribute('data-label')],
-          message: buildSummary(),
+          services: [Array.prototype.map.call(selectedTypes(), function (el) { return el.getAttribute('data-label'); }).join(', '), activeScaleLabels().join(', '), getSelected('complexity').getAttribute('data-label')],
+          message: summary,
           turnstileToken: turnstileToken,
         };
 
@@ -1342,31 +3031,46 @@ function typeIconSvg(key: string) {
         })
         .then(function (res) { return res.json(); })
         .then(function (result) {
-          if (btn) {
-            btn.disabled = false;
-            var btnText = btn.querySelector('.tria-btn-text');
-            if (btnText) btnText.textContent = quoteTexts.sendCta;
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            if (submitBtnText) submitBtnText.textContent = quoteTexts.sendCta;
           }
           if (result && result.success) {
-            layout.hidden = true;
+            setSheetOpen(false);
+            shell.hidden = true;
             success.hidden = false;
+            if (barEl) barEl.hidden = true;
             window.scrollTo({ top: 0, behavior: 'smooth' });
           } else {
             if (contactError) contactError.textContent = (result && result.error) || '';
           }
         })
         .catch(function () {
-          if (btn) {
-            btn.disabled = false;
-            var btnText = btn.querySelector('.tria-btn-text');
-            if (btnText) btnText.textContent = quoteTexts.sendCta;
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            if (submitBtnText) submitBtnText.textContent = quoteTexts.sendCta;
           }
           if (contactError) contactError.textContent = quoteTexts.contactRequired;
         });
       });
-    });
+    }
 
+    /* ── Init ── */
+    updateNav();
+    updateStepScroll();
     calc();
     loadTurnstile();
-  })();
+    setupMobileInvoice();
+    syncMobileBar();
+  }
+
+  initQuote();
+  if (!window.__triaQuoteBound) {
+    window.__triaQuoteBound = true;
+    /* The locale swap replaces #swup content without re-running inline scripts,
+       so re-bind the wizard after the swap. */
+    document.addEventListener('swup:contentReplaced', function () {
+      initQuote();
+    });
+  }
 </script>

@@ -1,0 +1,157 @@
+---
+import Layout from "../layouts/Layout.astro";
+import PageBanner from "../components/PageBanner.astro";
+import LegalDoc from "../components/LegalDoc.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import { createT } from "../i18n/utils";
+const t = createT(Astro.currentLocale);
+const isEs = Astro.currentLocale === "es";
+
+const sections = isEs ? [
+  {
+    title: "Quiénes somos",
+    paragraphs: [
+      "tria ([RAZÓN SOCIAL], cédula jurídica [CÉDULA JURÍDICA], con domicilio en Atenas, Alajuela, Costa Rica 20501) opera el sitio web [triacr.com] y presta servicios de ingeniería de software.",
+      "Esta Política de Privacidad explica cómo recopilamos, usamos y protegemos tus datos personales al usar nuestro sitio, el cotizador de presupuesto y el formulario de contacto.",
+    ],
+  },
+  {
+    title: "Datos que recopilamos",
+    paragraphs: [
+      "Cuando nos contactas o solicitas una cotización, recopilamos la información que nos proporcionas directamente:",
+    ],
+    list: [
+      "Nombre completo",
+      "Correo electrónico",
+      "Empresa (opcional)",
+      "Teléfono (opcional)",
+      "Rango de presupuesto estimado",
+      "Servicios de interés",
+      "Mensaje o descripción de tu proyecto",
+    ],
+  },
+  {
+    title: "Cómo usamos tus datos",
+    paragraphs: [
+      "Usamos tus datos para responder consultas, preparar cotizaciones y propuestas, prestar los servicios contratados y mejorar nuestro sitio.",
+      "No vendemos ni alquilamos tus datos personales a terceros.",
+    ],
+  },
+  {
+    title: "Base legal",
+    paragraphs: [
+      "Tratamos tus datos con base en tu consentimiento y en nuestro interés legítimo de responderte y prestarte servicios. Para el envío del formulario de contacto, el tratamiento es necesario para atender tu solicitud.",
+    ],
+  },
+  {
+    title: "Compartición de datos",
+    paragraphs: [
+      "Compartimos datos solo con proveedores necesarios para operar (por ejemplo, proveedores de correo electrónico y CRM) bajo acuerdos de confidencialidad, o cuando la ley lo exija.",
+    ],
+  },
+  {
+    title: "Retención y seguridad",
+    paragraphs: [
+      "Conservamos los datos de consultas por [X] meses o durante la relación comercial. Aplicamos medidas técnicas y organizativas razonables (cifrado, control de accesos, MFA) para proteger tu información.",
+    ],
+  },
+  {
+    title: "Tus derechos",
+    paragraphs: [
+      "De acuerdo con la Ley 8968 de Protección de Datos de Costa Rica y, cuando aplique, el GDPR, tienes derecho a acceder, corregir, eliminar, oponerte al tratamiento y solicitar la portabilidad de tus datos.",
+      "Para ejercer tus derechos, escribe a hola@triacr.com.",
+    ],
+  },
+  {
+    title: "Cambios a esta política",
+    paragraphs: [
+      "Podemos actualizar esta política periódicamente. Publicaremos la versión vigente en esta página con su fecha de actualización.",
+    ],
+  },
+  {
+    title: "Contacto",
+    paragraphs: [
+      "Consultas de privacidad: hola@triacr.com · Soporte: support@triacr.com · Ventas: sales@triacr.com · WhatsApp: +506 6216 4040.",
+    ],
+  },
+] : [
+  {
+    title: "Who We Are",
+    paragraphs: [
+      "tria ([LEGAL NAME], tax ID [TAX ID], with address at Atenas, Alajuela, Costa Rica 20501) operates the website [triacr.com] and provides software engineering services.",
+      "This Privacy Policy explains how we collect, use, and protect your personal data when you use our website, the budget estimator, and the contact form.",
+    ],
+  },
+  {
+    title: "Data We Collect",
+    paragraphs: [
+      "When you contact us or request a quote, we collect the information you provide directly:",
+    ],
+    list: [
+      "Full name",
+      "Email address",
+      "Company (optional)",
+      "Phone (optional)",
+      "Estimated budget range",
+      "Services of interest",
+      "Message or project description",
+    ],
+  },
+  {
+    title: "How We Use Your Data",
+    paragraphs: [
+      "We use your data to respond to inquiries, prepare quotes and proposals, provide contracted services, and improve our website.",
+      "We never sell or rent your personal data to third parties.",
+    ],
+  },
+  {
+    title: "Legal Basis",
+    paragraphs: [
+      "We process your data based on your consent and our legitimate interest in responding to you and providing services. For the contact form, processing is necessary to handle your request.",
+    ],
+  },
+  {
+    title: "Data Sharing",
+    paragraphs: [
+      "We share data only with providers required to operate (e.g., email and CRM providers) under confidentiality agreements, or when required by law.",
+    ],
+  },
+  {
+    title: "Retention & Security",
+    paragraphs: [
+      "We keep inquiry data for [X] months or the duration of the business relationship. We apply reasonable technical and organizational measures (encryption, access controls, MFA) to protect your information.",
+    ],
+  },
+  {
+    title: "Your Rights",
+    paragraphs: [
+      "Under Costa Rica's Data Protection Law 8968 and, where applicable, GDPR, you have the right to access, correct, delete, object to processing, and request data portability.",
+      "To exercise your rights, write to hola@triacr.com.",
+    ],
+  },
+  {
+    title: "Changes to This Policy",
+    paragraphs: [
+      "We may update this policy periodically. The current version will always be published on this page with its update date.",
+    ],
+  },
+  {
+    title: "Contact",
+    paragraphs: [
+      "Privacy inquiries: hola@triacr.com · Support: support@triacr.com · Sales: sales@triacr.com · WhatsApp: +506 6216 4040.",
+    ],
+  },
+];
+---
+
+<Layout title={t("meta.privacyTitle")} description={t("meta.privacyDesc")}
+  structuredData={{
+    "@type": "WebPage",
+    name: t("meta.privacyTitle"),
+    description: t("meta.privacyDesc"),
+    inLanguage: Astro.currentLocale,
+  }}>
+  <PageBanner headingKey="legal.privacyTitle" descriptionKey="legal.privacyDesc" crumbKey="nav.privacyPolicy" />
+  <LegalDoc sections={sections} lastUpdated={t("legal.lastUpdated")} />
+  <SiteFooter />
+</Layout>
