@@ -31,6 +31,23 @@ function json(res: ServerResponse, status: number, data: Record<string, unknown>
   res.end(JSON.stringify(data));
 }
 
+/**
+ * fetch() with a hard timeout. Serverless functions get killed after the
+ * platform timeout, but a hanging outbound call (Jira, Turnstile, Resend,
+ * Slack) would otherwise stall the handler indefinitely — the browser shows
+ * a stuck "Sending…" button. Every outbound call goes through here so a
+ * single slow dependency can never hang the request.
+ */
+async function fetchWithTimeout(url: string, init: RequestInit = {}, ms = 8000): Promise<Response> {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), ms);
+  try {
+    return await fetch(url, { ...init, signal: controller.signal });
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 /* ═══════════════════════════════════════
    NOTIFICATIONS (Slack + Email)
    ═══════════════════════════════════════ */
@@ -84,11 +101,14 @@ async function sendSlackNotification(data: FormData, ticketKey: string, ticketUr
   };
 
   try {
-    await fetch(webhookUrl, {
+    const res = await fetchWithTimeout(webhookUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(blocks),
-    });
+    }, 5000);
+    if (!res.ok) {
+      console.error('Slack notification rejected:', res.status, await res.text().catch(() => ''));
+    }
   } catch (err) {
     console.error('Slack notification failed:', err);
   }
@@ -139,7 +159,7 @@ async function sendEmailNotification(data: FormData, ticketKey: string) {
   `;
 
   try {
-    const res = await fetch('https://api.resend.com/emails', {
+    const res = await fetchWithTimeout('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${apiKey}`,
@@ -151,9 +171,12 @@ async function sendEmailNotification(data: FormData, ticketKey: string) {
         subject: `${isQuote ? '📊' : '🎯'} New ${isQuote ? 'estimate' : 'lead'}: ${data.name} — ${data.company || data.email}`,
         html,
       }),
-    });
+    }, 8000);
     if (!res.ok) {
-      console.error('Email notification rejected by Resend:', res.status, await res.text().catch(() => ''));
+      const body = await res.text().catch(() => '');
+      console.error('Email notification rejected by Resend:', res.status, body.slice(0, 300));
+    } else {
+      console.log('Email notification sent via Resend to', to);
     }
   } catch (err) {
     console.error('Email notification failed:', err);
@@ -174,11 +197,11 @@ async function verifyTurnstile(token: string): Promise<boolean> {
       response: token,
     });
 
-    const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+    const res = await fetchWithTimeout('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: params.toString(),
-    });
+    }, 6000);
 
     const result = await res.json();
     return result.success === true;
@@ -198,8 +221,15 @@ export default async function handler(
     return;
   }
 
+  console.log('create-jira-ticket: request received');
+
   try {
     const data: FormData = await parseBody(request);
+    console.log('create-jira-ticket: body parsed, source =', data.source || 'contact');
+
+    if (!data.turnstileToken) {
+      console.log('create-jira-ticket: missing turnstile token');
+    }
 
     // Basic validation
     if (!data.name || !data.email || !data.message) {
@@ -328,7 +358,7 @@ export default async function handler(
       const auth = Buffer.from(`${jiraEmail}:${jiraToken}`).toString('base64');
 
       try {
-        const jiraResponse = await fetch(
+        const jiraResponse = await fetchWithTimeout(
           `https://triacr.atlassian.net/rest/api/3/issue`,
           {
             method: 'POST',
@@ -338,7 +368,8 @@ export default async function handler(
               Accept: 'application/json',
             },
             body: JSON.stringify(jiraPayload),
-          }
+          },
+          8000
         );
 
         const result = await jiraResponse.json();
@@ -346,8 +377,9 @@ export default async function handler(
         if (jiraResponse.ok && result?.key) {
           ticketKey = String(result.key);
           ticketUrl = `https://triacr.atlassian.net/browse/${ticketKey}`;
+          console.log('Jira ticket created:', ticketKey);
         } else {
-          console.error('Jira API error:', result);
+          console.error('Jira API error:', JSON.stringify(result).slice(0, 300));
         }
       } catch (err) {
         console.error('Jira request failed (lead still delivered via email/Slack):', err);
@@ -356,11 +388,15 @@ export default async function handler(
       console.error('Jira not configured (JIRA_EMAIL/JIRA_TOKEN missing) — lead delivered via email/Slack only');
     }
 
-    // Fire notifications in background (don't block the response)
-    Promise.all([
+    // Notifications are awaited — NOT fire-and-forget. On Vercel serverless,
+    // the function is frozen as soon as the response ends, so un-awaited
+    // promises never get to run and emails/Slack would silently never send.
+    // Each notification has its own timeout, so the total wait is bounded
+    // (~max of the two, not the sum) and the user never waits long.
+    await Promise.allSettled([
       sendSlackNotification(data, ticketKey, ticketUrl),
       sendEmailNotification(data, ticketKey),
-    ]).catch((err) => console.error('Notifications error:', err));
+    ]);
 
     json(response, 200, {
       success: true,
